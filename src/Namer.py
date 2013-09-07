@@ -7,13 +7,14 @@ class Namer(object):
     ClassName = ''
     MethodName = ''
     Directory = ''
-    def __init__(self):
-        caller = inspect.stack(1)
+
+    def setForStack(self, caller):
         self.MethodName = caller[1][3]
         self.ClassName = caller[1][0].f_globals["__name__"]
-        self.Directory =os.path.dirname(caller[1][1])         
+        self.Directory = os.path.dirname(caller[1][1])
 
-        pass
+    def __init__(self):
+        self.setForStack(inspect.stack(1))         
 
     def getClassName(self):
          return self.ClassName
