@@ -24,3 +24,6 @@ class Namer(object):
      
     def getDirectory(self):
         return self.Directory
+
+    def get_basename(self):
+        return self.Directory + "/"  + self.ClassName + "." + self.MethodName; 
