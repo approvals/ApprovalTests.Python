@@ -17,7 +17,7 @@ class NamerTests(unittest.TestCase):
     
     def test_basename(self):
         n = Namer()
-        self.assertTrue(n.get_basename().endswith("/NamerTests.test_basename"), n.get_basename())
+        self.assertTrue(n.get_basename().endswith("\\NamerTests.test_basename"), n.get_basename())
     
 if __name__ == '__main__':
     unittest.main()

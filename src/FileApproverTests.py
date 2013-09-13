@@ -31,12 +31,22 @@ class FileApprover(object):
         # or call reporter
 
     def are_files_the_same(self,approved_file,received_file):
+        if(not self.FileExists(approved_file) or not self.FileExists(received_file)):
+            return False 
+        
         if(os.stat(approved_file).st_size != os.stat(received_file).st_size):
             return False
         else:
             return filecmp.cmp(approved_file,received_file)
             
-        
+    def FileExists(self,path):
+        try:
+           with open(path): pass
+           return True
+        except IOError:
+           print ('File does not exist ' + path)
+           return False
+       
 class TestingReporter(Reporter):
     
     def __init__(self):
