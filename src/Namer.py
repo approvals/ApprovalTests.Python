@@ -3,7 +3,7 @@ import os
 
 class Namer(object):
     """description of class"""
-    
+
     ClassName = ''
     MethodName = ''
     Directory = ''
@@ -14,16 +14,16 @@ class Namer(object):
         self.Directory = os.path.dirname(caller[1][1])
 
     def __init__(self):
-        self.setForStack(inspect.stack(1))         
+        self.setForStack(inspect.stack(1))
 
     def getClassName(self):
-         return self.ClassName
-     
+        return self.ClassName
+
     def getMethodName(self):
-         return self.MethodName
-     
+        return self.MethodName
+
     def getDirectory(self):
         return self.Directory
 
     def get_basename(self):
-        return self.Directory + "\\"  + self.ClassName + "." + self.MethodName; 
+        return self.Directory + "\\" + self.ClassName + "." + self.MethodName;

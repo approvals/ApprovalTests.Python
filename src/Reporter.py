@@ -1,10 +1,7 @@
-import inspect
-import os
-from subprocess import call
-
 class Reporter(object):
+    # interface
 
     def report(self,approved_path,received_path):
-        raise Exception("Not Implemented") 
+        raise Exception("Interface member not implemented")
     
         

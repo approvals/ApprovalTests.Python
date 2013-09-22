@@ -1,9 +1,5 @@
-import inspect
-import os
 
 class StringWriter(object):
-    """description of class"""
- 
     extention_with_dot = None
     contents=None
     RECEIVED = '.received'
