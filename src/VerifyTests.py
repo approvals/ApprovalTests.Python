@@ -1,28 +1,7 @@
 import unittest
-from FileApprover import FileApprover
-from Namer import Namer
-from StringWriter import StringWriter
-from ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
+from ApprovalException import ApprovalException
 from TestingReporter import TestingReporter
-
-
-class ApprovalException(Exception):
-
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
-
-
-def verify(data, reporter=ReceivedFileLauncherReporter()):
-    approver = FileApprover()
-    namer = Namer(2)
-    writer = StringWriter(data)
-
-    error = approver.verify(namer, writer, reporter)
-    if(error is not None):
-        raise ApprovalException(error)
+from Approvals import verify
 
 
 class VerifyTests(unittest.TestCase):
