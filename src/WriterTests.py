@@ -3,12 +3,13 @@ import os
 from StringWriter import StringWriter
 from random import randint
 
+
 class WriterTests(unittest.TestCase):
     def test_writes_file(self):
         contents = "foo" + str(randint(0, 100))
         sw = StringWriter(contents)
         fileName = './stuff.txt'
-        sw.WriteReceivedFile(fileName)
+        sw.write_received_file(fileName)
 
         received = open(fileName, 'r')
         self.assertEqual(contents, received.read())

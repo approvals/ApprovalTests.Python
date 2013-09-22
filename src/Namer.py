@@ -1,19 +1,20 @@
 import inspect
 import os
 
-class Namer(object):
-    """description of class"""
 
+class Namer(object):
     ClassName = ''
     MethodName = ''
     Directory = ''
 
     def setForStack(self, caller):
-        self.MethodName = caller[1][3]
-        self.ClassName = caller[1][0].f_globals["__name__"]
-        self.Directory = os.path.dirname(caller[1][1])
+        stackFrame = caller[self.frame]
+        self.MethodName = stackFrame[3]
+        self.ClassName = stackFrame[0].f_globals["__name__"]
+        self.Directory = os.path.dirname(stackFrame[1])
 
-    def __init__(self):
+    def __init__(self, frame=1):
+        self.frame = frame
         self.setForStack(inspect.stack(1))
 
     def getClassName(self):
@@ -26,4 +27,4 @@ class Namer(object):
         return self.Directory
 
     def get_basename(self):
-        return self.Directory + "\\" + self.ClassName + "." + self.MethodName;
+        return self.Directory + "\\" + self.ClassName + "." + self.MethodName
