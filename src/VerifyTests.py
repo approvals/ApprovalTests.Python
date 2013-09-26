@@ -1,11 +1,12 @@
 import unittest
-from ApprovalException import ApprovalException
-from TestingReporter import TestingReporter
-from Approvals import verify
+from approvaltests.ApprovalException import ApprovalException
+from approvaltests.Approvals import verify
+from approvaltests.TestingReporter import TestingReporter
 
 
 class VerifyTests(unittest.TestCase):
-    def test_verify(self):
+    @staticmethod
+    def test_verify():
         verify("Hello World.")
 
     def test_verify_fail(self):

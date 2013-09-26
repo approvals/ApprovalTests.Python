@@ -1,14 +1,15 @@
-﻿import unittest
-import shutil
-from Namer import Namer
-from StringWriter import StringWriter
-from TestingReporter import TestingReporter
-from FileApprover import FileApprover
-from ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
+﻿import shutil
+import unittest
+from approvaltests.FileApprover import FileApprover
+from approvaltests.Namer import Namer
+from approvaltests.ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
+from approvaltests.StringWriter import StringWriter
+from approvaltests.TestingReporter import TestingReporter
 
 
 class FileApproverTests(unittest.TestCase):
-    def test_compare_same_files(self):
+    @staticmethod
+    def test_compare_same_files():
         approver = FileApprover()
         writer = StringWriter("a")
         writer.write_received_file("a.txt")

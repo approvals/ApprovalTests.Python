@@ -1,6 +1,7 @@
 ﻿import unittest
 import os
-from Namer import Namer
+from approvaltests.Namer import Namer
+
 
 class NamerTests(unittest.TestCase):
     def test_class(self):
