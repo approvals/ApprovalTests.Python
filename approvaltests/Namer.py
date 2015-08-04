@@ -27,4 +27,4 @@ class Namer(object):
         return self.Directory
 
     def get_basename(self):
-        return self.Directory + "\\" + self.ClassName + "." + self.MethodName
+        return os.path.join(self.Directory, self.ClassName + "." + self.MethodName)
