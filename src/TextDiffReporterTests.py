@@ -9,6 +9,12 @@ class TextDiffReportertests(unittest.TestCase):
     def set_environment_variable(name, value):
         os.environ[name] = value
 
+    @staticmethod
+    def instantiate_reporter_for_test():
+        reporter = TextDiffReporter()
+        reporter.run_command = lambda command_array: None
+        return reporter
+
     @property
     def tmp_dir(self):
         test_dir = os.path.dirname(os.path.realpath(__file__))
@@ -37,12 +43,14 @@ class TextDiffReportertests(unittest.TestCase):
             TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME,
             self.diff_tool
         )
+        open(self.received_file_path, 'w').close()
+
 
     def tearDown(self):
         shutil.rmtree(self.tmp_dir)
 
     def test_constructs_valid_diff_command(self):
-        reporter = TextDiffReporter()
+        reporter = self.instantiate_reporter_for_test()
         command = reporter.get_command(
             self.approved_file_path,
             self.received_file_path
@@ -57,7 +65,7 @@ class TextDiffReportertests(unittest.TestCase):
     def test_empty_approved_file_created_when_one_does_not_exist(self):
         self.assertFileDoesNotExist(self.approved_file_path)
 
-        reporter = TextDiffReporter()
+        reporter = self.instantiate_reporter_for_test()
         reporter.report(self.approved_file_path, self.received_file_path)
 
         self.assertFileIsEmpty(self.approved_file_path)
@@ -66,7 +74,7 @@ class TextDiffReportertests(unittest.TestCase):
         approved_contents = "Approved"
         with open(self.approved_file_path, 'w') as approved_file:
             approved_file.write(approved_contents)
-        reporter = TextDiffReporter()
+        reporter = self.instantiate_reporter_for_test()
         reporter.report(self.approved_file_path, self.received_file_path)
 
         with open(self.approved_file_path, 'r') as approved_file:
