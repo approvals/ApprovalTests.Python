@@ -14,6 +14,13 @@ class TextDiffReportertests(unittest.TestCase):
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
+        self.receieved_file_path = 'b.txt'
+        self.approved_file_path = os.path.join(
+            self.tmp_dir,
+            'approved_file.txt'
+        )
+        self.diff_tool = 'echo'
+        os.environ[TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME] = self.diff_tool
 
     def tearDown(self):
         shutil.rmtree(self.tmp_dir)
@@ -28,16 +35,27 @@ class TextDiffReportertests(unittest.TestCase):
         self.assertEqual(command, [diff_tool, approved_path, received_path])
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
+        self.assertFileDoesNotExist(self.approved_file_path)
+
+        reporter = TextDiffReporter()
+        reporter.report(self.approved_file_path, self.receieved_file_path)
+
+        self.assertFileIsEmpty(self.approved_file_path)
+
+    def test_approved_file_not_changed_when_one_exists_already(self):
         diff_tool = 'echo'
         receieved_file_path = 'b.txt'
         approved_file_path = os.path.join(self.tmp_dir, 'approved_file.txt')
         os.environ[TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME] = diff_tool
-        self.assertFileDoesNotExist(approved_file_path)
-
+        approved_contents = "Approved"
+        with open(approved_file_path, 'w') as approved_file:
+            approved_file.write(approved_contents)
         reporter = TextDiffReporter()
         reporter.report(approved_file_path, receieved_file_path)
 
-        self.assertFileIsEmpty(approved_file_path)
+        with open(approved_file_path, 'r') as approved_file:
+            actual_contents = approved_file.read()
+        self.assertEqual(actual_contents, approved_contents)
 
     def assertFileDoesNotExist(self, file_path):
         file_exists = os.path.isfile(file_path)
