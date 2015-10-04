@@ -14,7 +14,7 @@ class TextDiffReportertests(unittest.TestCase):
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
-        self.receieved_file_path = 'b.txt'
+        self.received_file_path = 'b.txt'
         self.approved_file_path = os.path.join(
             self.tmp_dir,
             'approved_file.txt'
@@ -27,14 +27,14 @@ class TextDiffReportertests(unittest.TestCase):
 
     def test_constructs_valid_diff_command(self):
         reporter = TextDiffReporter()
-        command = reporter.get_command(self.approved_file_path, self.receieved_file_path)
-        self.assertEqual(command, [self.diff_tool, self.approved_file_path, self.receieved_file_path])
+        command = reporter.get_command(self.approved_file_path, self.received_file_path)
+        self.assertEqual(command, [self.diff_tool, self.approved_file_path, self.received_file_path])
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
         self.assertFileDoesNotExist(self.approved_file_path)
 
         reporter = TextDiffReporter()
-        reporter.report(self.approved_file_path, self.receieved_file_path)
+        reporter.report(self.approved_file_path, self.received_file_path)
 
         self.assertFileIsEmpty(self.approved_file_path)
 
@@ -43,7 +43,7 @@ class TextDiffReportertests(unittest.TestCase):
         with open(self.approved_file_path, 'w') as approved_file:
             approved_file.write(approved_contents)
         reporter = TextDiffReporter()
-        reporter.report(self.approved_file_path, self.receieved_file_path)
+        reporter.report(self.approved_file_path, self.received_file_path)
 
         with open(self.approved_file_path, 'r') as approved_file:
             actual_contents = approved_file.read()
