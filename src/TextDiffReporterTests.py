@@ -43,17 +43,13 @@ class TextDiffReportertests(unittest.TestCase):
         self.assertFileIsEmpty(self.approved_file_path)
 
     def test_approved_file_not_changed_when_one_exists_already(self):
-        diff_tool = 'echo'
-        receieved_file_path = 'b.txt'
-        approved_file_path = os.path.join(self.tmp_dir, 'approved_file.txt')
-        os.environ[TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME] = diff_tool
         approved_contents = "Approved"
-        with open(approved_file_path, 'w') as approved_file:
+        with open(self.approved_file_path, 'w') as approved_file:
             approved_file.write(approved_contents)
         reporter = TextDiffReporter()
-        reporter.report(approved_file_path, receieved_file_path)
+        reporter.report(self.approved_file_path, self.receieved_file_path)
 
-        with open(approved_file_path, 'r') as approved_file:
+        with open(self.approved_file_path, 'r') as approved_file:
             actual_contents = approved_file.read()
         self.assertEqual(actual_contents, approved_contents)
 
