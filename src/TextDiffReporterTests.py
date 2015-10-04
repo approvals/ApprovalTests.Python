@@ -30,8 +30,16 @@ class TextDiffReportertests(unittest.TestCase):
 
     def test_constructs_valid_diff_command(self):
         reporter = TextDiffReporter()
-        command = reporter.get_command(self.approved_file_path, self.received_file_path)
-        self.assertEqual(command, [self.diff_tool, self.approved_file_path, self.received_file_path])
+        command = reporter.get_command(
+            self.approved_file_path,
+            self.received_file_path
+        )
+        expected_command = [
+            self.diff_tool,
+            self.approved_file_path,
+            self.received_file_path
+        ]
+        self.assertEqual(command, expected_command)
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
         self.assertFileDoesNotExist(self.approved_file_path)
