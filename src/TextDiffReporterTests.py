@@ -14,7 +14,10 @@ class TextDiffReportertests(unittest.TestCase):
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
-        self.received_file_path = 'b.txt'
+        self.received_file_path = os.path.join(
+            self.tmp_dir,
+            'received_file.txt'
+        )
         self.approved_file_path = os.path.join(
             self.tmp_dir,
             'approved_file.txt'
