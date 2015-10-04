@@ -12,5 +12,6 @@ class TextDiffReporter(Reporter):
         return [diff_tool, approved_path, received_path]
 
     def report(self, approved_path, received_path):
+        os.mknod(approved_path)
         command_array = self.get_command(approved_path, received_path)
         subprocess.call(command_array)
