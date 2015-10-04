@@ -14,18 +14,24 @@ class TextDiffReportertests(unittest.TestCase):
         test_dir = os.path.dirname(os.path.realpath(__file__))
         return os.path.join(test_dir, 'tmp')
 
+    @property
+    def received_file_path(self):
+        return os.path.join(
+            self.tmp_dir,
+            'received_file.txt'
+        )
+
+    @property
+    def approved_file_path(self):
+        return os.path.join(
+            self.tmp_dir,
+            'approved_file.txt'
+        )
+
     def setUp(self):
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
-        self.received_file_path = os.path.join(
-            self.tmp_dir,
-            'received_file.txt'
-        )
-        self.approved_file_path = os.path.join(
-            self.tmp_dir,
-            'approved_file.txt'
-        )
         self.diff_tool = 'echo'
         self.set_environment_variable(
             TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME,
