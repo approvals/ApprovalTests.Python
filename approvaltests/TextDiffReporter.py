@@ -17,8 +17,7 @@ class TextDiffReporter(Reporter):
 
     def report(self, approved_path, received_path):
         if not os.path.isfile(approved_path):
-            with open(approved_path, 'w') as approved_file:
-                pass
+            open(approved_path, 'w').close()
         command_array = self.get_command(approved_path, received_path)
         self.run_command(command_array)
 
