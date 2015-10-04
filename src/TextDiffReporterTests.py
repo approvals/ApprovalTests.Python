@@ -26,13 +26,9 @@ class TextDiffReportertests(unittest.TestCase):
         shutil.rmtree(self.tmp_dir)
 
     def test_constructs_valid_diff_command(self):
-        diff_tool = 'meld'
-        approved_path = 'a.txt'
-        received_path = 'b.txt'
-        os.environ[TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME] = diff_tool
         reporter = TextDiffReporter()
-        command = reporter.get_command(approved_path, received_path)
-        self.assertEqual(command, [diff_tool, approved_path, received_path])
+        command = reporter.get_command(self.approved_file_path, self.receieved_file_path)
+        self.assertEqual(command, [self.diff_tool, self.approved_file_path, self.receieved_file_path])
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
         self.assertFileDoesNotExist(self.approved_file_path)
