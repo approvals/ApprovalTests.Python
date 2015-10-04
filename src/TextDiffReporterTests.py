@@ -5,6 +5,10 @@ from approvaltests.TextDiffReporter import TextDiffReporter
 
 
 class TextDiffReportertests(unittest.TestCase):
+    @staticmethod
+    def set_environment_variable(name, value):
+        os.environ[name] = value
+
     @property
     def tmp_dir(self):
         test_dir = os.path.dirname(os.path.realpath(__file__))
@@ -23,7 +27,10 @@ class TextDiffReportertests(unittest.TestCase):
             'approved_file.txt'
         )
         self.diff_tool = 'echo'
-        os.environ[TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME] = self.diff_tool
+        self.set_environment_variable(
+            TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME,
+            self.diff_tool
+        )
 
     def tearDown(self):
         shutil.rmtree(self.tmp_dir)
