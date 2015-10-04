@@ -11,8 +11,12 @@ class TextDiffReportertests(unittest.TestCase):
         return os.path.join(test_dir, 'tmp')
 
     def setUp(self):
-        shutil.rmtree(self.tmp_dir)
+        if os.path.exists(self.tmp_dir):
+            shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp_dir)
 
     def test_constructs_valid_diff_command(self):
         diff_tool = 'meld'
