@@ -13,7 +13,7 @@ class TextDiffReporter(Reporter):
     @classmethod
     def get_command(cls, approved_path, received_path):
         diff_tool = os.environ[cls.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME]
-        return [diff_tool, approved_path, received_path]
+        return [diff_tool, received_path, approved_path]
 
     def report(self, approved_path, received_path):
         if not os.path.isfile(approved_path):

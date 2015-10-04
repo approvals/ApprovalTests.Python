@@ -57,8 +57,8 @@ class TextDiffReportertests(unittest.TestCase):
         )
         expected_command = [
             self.diff_tool,
-            self.approved_file_path,
-            self.received_file_path
+            self.received_file_path,
+            self.approved_file_path
         ]
         self.assertEqual(command, expected_command)
 
