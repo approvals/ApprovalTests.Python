@@ -36,4 +36,6 @@ nosetests.xml
 
 *.received.*
 
+*.swp
+.ropeproject/*
 .idea/*
