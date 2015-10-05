@@ -43,8 +43,6 @@ class TextDiffReportertests(unittest.TestCase):
             TextDiffReporter.DIFF_TOOL_ENVIRONMENT_VARIABLE_NAME,
             self.diff_tool
         )
-        open(self.received_file_path, 'w').close()
-
 
     def tearDown(self):
         shutil.rmtree(self.tmp_dir)
