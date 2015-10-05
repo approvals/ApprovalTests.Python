@@ -39,3 +39,5 @@ nosetests.xml
 *.swp
 .ropeproject/*
 .idea/*
+
+MANIFEST
