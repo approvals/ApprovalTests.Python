@@ -1,6 +1,5 @@
 from distutils.core import setup
 
-
 setup(
     name='approvaltests',
     version='0.1.2',

@@ -6,10 +6,10 @@ from approvaltests.StringWriter import StringWriter
 
 
 def verify(data, reporter=ReceivedFileLauncherReporter()):
-        approver = FileApprover()
-        namer = Namer(2)
-        writer = StringWriter(data)
+    approver = FileApprover()
+    namer = Namer(2)
+    writer = StringWriter(data)
 
-        error = approver.verify(namer, writer, reporter)
-        if error is not None:
-            raise ApprovalException(error)
+    error = approver.verify(namer, writer, reporter)
+    if error is not None:
+        raise ApprovalException(error)

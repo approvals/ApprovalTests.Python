@@ -1,8 +1,9 @@
 ﻿import shutil
 import unittest
+
 from approvaltests.FileApprover import FileApprover
+from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
 from approvaltests.Namer import Namer
-from approvaltests.ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
 from approvaltests.StringWriter import StringWriter
 from approvaltests.TestingReporter import TestingReporter
 
@@ -41,10 +42,11 @@ class FileApproverTests(unittest.TestCase):
     def test_returns_none_when_files_are_same_files(self):
         namer = Namer()
         writer = StringWriter("b")
-        reporter = ReceivedFileLauncherReporter()
+        reporter = GenericDiffReporterFactory().get('BeyondCompare4')
         approver = FileApprover()
         error = approver.verify(namer, writer, reporter)
         self.assertEqual(None, error)
+
 
 if __name__ == '__main__':
     unittest.main()

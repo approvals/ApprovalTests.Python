@@ -1,0 +1,4 @@
+[
+    "BeyondCompare4",
+    "WinMerge"
+]

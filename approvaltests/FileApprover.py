@@ -1,22 +1,19 @@
-import os
 import filecmp
+import os
 
 
 def exists(path):
-    try:
-        with open(path):
-            pass
-        return True
-    except IOError:
-        print('File does not exist ' + path)
-        return False
+    return os.path.isfile(path)
 
 
 class FileApprover(object):
     def verify(self, namer, writer, reporter):
+
         base = namer.get_basename()
-        approved = writer.GetApprovedFileName(base)
-        received = writer.write_received_file(writer.GetReceivedFileName(base))
+        approved = namer.get_approved_filename(base)
+        received = namer.get_received_filename(base)
+
+        writer.write_received_file(received)
         ok = self.verify_files(approved, received, reporter)
         if not ok:
             return "Approval Mismatch"
@@ -27,7 +24,7 @@ class FileApprover(object):
             os.remove(received_file)
             return True
 
-        reporter.report(approved_file, received_file)
+        reporter.report(received_file, approved_file)
         return False
 
     @staticmethod

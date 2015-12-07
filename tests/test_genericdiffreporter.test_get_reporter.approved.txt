@@ -1,0 +1,4 @@
+{
+    "name": "BeyondCompare4",
+    "path": "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
+}

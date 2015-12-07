@@ -1,10 +1,11 @@
 import os
 import shutil
 import unittest
+
 from approvaltests.TextDiffReporter import TextDiffReporter
 
 
-class TextDiffReportertests(unittest.TestCase):
+class TextDiffReporterTests(unittest.TestCase):
     @staticmethod
     def set_environment_variable(name, value):
         os.environ[name] = value
@@ -50,8 +51,8 @@ class TextDiffReportertests(unittest.TestCase):
     def test_constructs_valid_diff_command(self):
         reporter = self.instantiate_reporter_for_test()
         command = reporter.get_command(
-            self.approved_file_path,
-            self.received_file_path
+            self.received_file_path,
+            self.approved_file_path
         )
         expected_command = [
             self.diff_tool,
@@ -64,7 +65,7 @@ class TextDiffReportertests(unittest.TestCase):
         self.assertFileDoesNotExist(self.approved_file_path)
 
         reporter = self.instantiate_reporter_for_test()
-        reporter.report(self.approved_file_path, self.received_file_path)
+        reporter.report(self.received_file_path, self.approved_file_path)
 
         self.assertFileIsEmpty(self.approved_file_path)
 
@@ -73,7 +74,7 @@ class TextDiffReportertests(unittest.TestCase):
         with open(self.approved_file_path, 'w') as approved_file:
             approved_file.write(approved_contents)
         reporter = self.instantiate_reporter_for_test()
-        reporter.report(self.approved_file_path, self.received_file_path)
+        reporter.report(self.received_file_path, self.approved_file_path)
 
         with open(self.approved_file_path, 'r') as approved_file:
             actual_contents = approved_file.read()
