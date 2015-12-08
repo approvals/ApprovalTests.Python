@@ -65,3 +65,16 @@ class GenericDiffReporterTests(unittest.TestCase):
         with open(approved, 'r') as approved_file:
             actual_contents = approved_file.read()
         self.assertEqual(actual_contents, approved_contents)
+
+    def test_serialization(self):
+        n = Namer(1)
+        path = os.path.join(n.get_directory(), 'saved-reporters.json')
+        self.factory.save(path)
+        with open(path, 'r') as f:
+            verify(f.read(), self.reporter)
+
+    def test_deserialization(self):
+        namer = Namer(1)
+        full_name = os.path.join(namer.get_directory(), 'custom-reporters.json')
+        reporters = self.factory.load(full_name)
+        verify(json.dumps(reporters, sort_keys=True, indent=4), self.reporter)

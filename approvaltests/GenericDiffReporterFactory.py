@@ -1,11 +1,17 @@
+import json
+import os
+
 from approvaltests.GenericDiffReporter import GenericDiffReporter
+from approvaltests.Namer import Namer
 
 
 class GenericDiffReporterFactory(object):
-    reporters = [
-        ('BeyondCompare4', 'C:/Program Files (x86)/Beyond Compare 4/BCompare.exe'),
-        ('WinMerge', 'C:/Program Files (x86)/WinMerge/WinMergeU.exe')
-    ]
+    reporters = []
+
+    def __init__(self):
+        n = Namer(1)
+        path = os.path.join(n.get_directory(), 'reporters.json')
+        self.load(path)
 
     def list(self):
         return [r[0] for r in self.reporters]
@@ -15,3 +21,13 @@ class GenericDiffReporterFactory(object):
         if not config:
             return None
         return GenericDiffReporter(config)
+
+    def save(self, file_name):
+        with open(file_name, 'w') as f:
+            json.dump(self.reporters, f, sort_keys=True, indent=4)
+        return file_name
+
+    def load(self, file_name):
+        with open(file_name, 'r') as f:
+            self.reporters = json.load(f)
+        return self.reporters
