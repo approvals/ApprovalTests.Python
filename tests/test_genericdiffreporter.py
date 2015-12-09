@@ -3,6 +3,7 @@ import os
 import unittest
 
 from approvaltests.Approvals import verify
+from approvaltests.GenericDiffReporter import GenericDiffReporter
 from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
 from approvaltests.Namer import Namer
 
@@ -10,7 +11,7 @@ from approvaltests.Namer import Namer
 class GenericDiffReporterTests(unittest.TestCase):
     def setUp(self):
         self.factory = GenericDiffReporterFactory()
-        self.reporter = self.factory.get('BeyondCompare4')
+        self.reporter = self.factory.get_first_working()
 
     def test_list_configured_reporters(self):
         verify(json.dumps(self.factory.list(), sort_keys=True, indent=4), self.reporter)
@@ -78,3 +79,11 @@ class GenericDiffReporterTests(unittest.TestCase):
         full_name = os.path.join(namer.get_directory(), 'custom-reporters.json')
         reporters = self.factory.load(full_name)
         verify(json.dumps(reporters, sort_keys=True, indent=4), self.reporter)
+
+    def test_notworking_in_environment(self):
+        reporter = GenericDiffReporter(('Custom', 'NotReal'))
+        self.assertFalse(reporter.is_working())
+
+    def test_find_working_reporter(self):
+        r = self.factory.get_first_working()
+        self.assertIsNotNone(r)

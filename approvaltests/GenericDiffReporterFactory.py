@@ -1,6 +1,5 @@
 import json
 import os
-
 from approvaltests.GenericDiffReporter import GenericDiffReporter
 from approvaltests.Namer import Namer
 
@@ -31,3 +30,8 @@ class GenericDiffReporterFactory(object):
         with open(file_name, 'r') as f:
             self.reporters = json.load(f)
         return self.reporters
+
+    def get_first_working(self):
+        instances = (GenericDiffReporter(r) for r in self.reporters)
+        working = (i for i in instances if i.is_working())
+        return next(working, None)

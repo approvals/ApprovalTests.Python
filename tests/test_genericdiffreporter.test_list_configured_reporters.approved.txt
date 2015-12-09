@@ -1,4 +1,5 @@
 [
     "BeyondCompare4",
-    "WinMerge"
+    "WinMerge",
+    "meld"
 ]

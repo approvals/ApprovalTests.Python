@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 
+from approvaltests.Command import Command
 from approvaltests.Reporter import Reporter
 
 
@@ -41,3 +42,6 @@ class GenericDiffReporter(Reporter):
             self.create_empty_file(approved_path)
         command_array = self.get_command(received_path, approved_path)
         self.run_command(command_array)
+
+    def is_working(self):
+        return Command(self.path).locate()
