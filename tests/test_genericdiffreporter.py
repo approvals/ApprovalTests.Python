@@ -87,3 +87,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_find_working_reporter(self):
         r = self.factory.get_first_working()
         self.assertIsNotNone(r)
+
+    def test_remove_reporter(self):
+        self.factory.remove("meld")
+        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4), self.reporter)

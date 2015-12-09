@@ -1,0 +1,5 @@
+[
+    "BeyondCompare4",
+    "WinMerge",
+    "opendiff"
+]

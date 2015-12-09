@@ -5,10 +5,12 @@ import unittest
 
 
 class Test(unittest.TestCase):
-    def test(self):
+    def __init__(self):
         # This environment variable should be set somewhere outside of the test
         # but is here to make the example clearer.
         os.environ["APPROVALS_TEXT_DIFF_TOOL"] = "meld"
+
+    def test(self):
         reporter = TextDiffReporter()
         Approvals.verify("x", reporter)
 
