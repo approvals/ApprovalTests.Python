@@ -4,6 +4,10 @@
         "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
     ],
     [
+        "BeyondCompare3",
+        "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
+    ],
+    [
         "WinMerge",
         "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
     ],

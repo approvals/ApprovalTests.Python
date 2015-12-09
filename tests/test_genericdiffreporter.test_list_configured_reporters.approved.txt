@@ -1,5 +1,6 @@
 [
     "BeyondCompare4",
+    "BeyondCompare3",
     "WinMerge",
     "meld",
     "opendiff"
