@@ -10,5 +10,9 @@
     [
         "meld",
         "meld"
+    ],
+    [
+        "opendiff",
+        "opendiff"
     ]
 ]
