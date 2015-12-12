@@ -1,0 +1,4 @@
+{
+    "name": "BeyondCompare4Mac",
+    "path": "/usr/local/bin/bcompare"
+}

@@ -25,6 +25,12 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_get_araxis(self):
         verify(str(self.factory.get("AraxisMergeWin")), self.factory.get("AraxisMergeWin"))
 
+    def test_get_araxis_mac(self):
+        verify(str(self.factory.get("AraxisMergeMac")), self.factory.get("AraxisMergeMac"))
+
+    def test_get_beyondcompare4_mac(self):
+        verify(str(self.factory.get("BeyondCompare4Mac")), self.factory.get("BeyondCompare4Mac"))
+
     def test_constructs_valid_diff_command(self):
         reporter = self.factory.get("BeyondCompare4")
         namer = Namer(1)

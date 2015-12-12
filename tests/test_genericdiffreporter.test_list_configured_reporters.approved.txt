@@ -1,7 +1,9 @@
 [
     "BeyondCompare4",
+    "BeyondCompare4Mac",
     "BeyondCompare3",
     "AraxisMergeWin",
+    "AraxisMergeMac",
     "WinMerge",
     "meld",
     "opendiff"
