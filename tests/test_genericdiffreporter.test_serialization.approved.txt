@@ -1,22 +1,26 @@
 [
-    [
-        "BeyondCompare4",
-        "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
-    ],
-    [
-        "BeyondCompare3",
-        "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
-    ],
-    [
-        "WinMerge",
-        "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
-    ],
-    [
-        "meld",
-        "meld"
-    ],
-    [
-        "opendiff",
-        "opendiff"
-    ]
+  [
+    "BeyondCompare4",
+    "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
+  ],
+  [
+    "BeyondCompare3",
+    "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
+  ],
+  [
+    "AraxisMergeWin",
+    "C:/Program Files/Araxis/Araxis Merge/Merge.exe"
+  ],
+  [
+    "WinMerge",
+    "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
+  ],
+  [
+    "meld",
+    "meld"
+  ],
+  [
+    "opendiff",
+    "opendiff"
+  ]
 ]

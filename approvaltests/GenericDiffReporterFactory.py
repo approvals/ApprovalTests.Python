@@ -23,7 +23,7 @@ class GenericDiffReporterFactory(object):
 
     def save(self, file_name):
         with open(file_name, 'w') as f:
-            json.dump(self.reporters, f, sort_keys=True, indent=4)
+            json.dump(self.reporters, f, sort_keys=True, indent=2)
         return file_name
 
     def load(self, file_name):

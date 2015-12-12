@@ -1,6 +1,7 @@
 [
     "BeyondCompare4",
     "BeyondCompare3",
+    "AraxisMergeWin",
     "WinMerge",
     "meld",
     "opendiff"
