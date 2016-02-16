@@ -14,7 +14,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.reporter = self.factory.get_first_working()
 
     def test_list_configured_reporters(self):
-        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4), self.reporter)
+        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)
 
     def test_get_reporter(self):
         verify(str(self.factory.get("BeyondCompare4")), self.reporter)
@@ -87,7 +87,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         namer = Namer(1)
         full_name = os.path.join(namer.get_directory(), 'custom-reporters.json')
         reporters = self.factory.load(full_name)
-        verify(json.dumps(reporters, sort_keys=True, indent=4), self.reporter)
+        verify(json.dumps(reporters, sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)
 
     def test_notworking_in_environment(self):
         reporter = GenericDiffReporter(('Custom', 'NotReal'))
@@ -99,4 +99,4 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_remove_reporter(self):
         self.factory.remove("meld")
-        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4), self.reporter)
+        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)
