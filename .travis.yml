@@ -1,8 +1,8 @@
 language: python
 python: 3.5
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq meld
+  - sudo apt-get update
+  - sudo apt-get install meld
 install:
   - pip install tox
 script:
