@@ -42,7 +42,7 @@ class FileApproverTests(unittest.TestCase):
     def test_returns_none_when_files_are_same_files(self):
         namer = Namer()
         writer = StringWriter("b")
-        reporter = GenericDiffReporterFactory().get('BeyondCompare4')
+        reporter = GenericDiffReporterFactory().get_first_working()
         approver = FileApprover()
         error = approver.verify(namer, writer, reporter)
         self.assertEqual(None, error)
