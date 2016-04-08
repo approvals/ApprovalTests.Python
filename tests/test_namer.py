@@ -9,7 +9,7 @@ class NamerTests(unittest.TestCase):
         self.namer = Namer()
 
     def test_class(self):
-        self.assertEqual("test_namer", self.namer.get_class_name())
+        self.assertEqual("NamerTests", self.namer.get_class_name())
 
     def test_method(self):
         n = Namer()
@@ -20,7 +20,7 @@ class NamerTests(unittest.TestCase):
 
     def test_basename(self):
         n = Namer()
-        self.assertTrue(n.get_basename().endswith("test_namer.test_basename"), n.get_basename())
+        self.assertTrue(n.get_basename().endswith("NamerTests.test_basename"), n.get_basename())
 
     def test_received_name(self):
         filename = self.namer.get_received_filename('./stuff')

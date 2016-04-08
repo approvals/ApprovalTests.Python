@@ -38,5 +38,5 @@ class Namer(object):
     def set_for_stack(self, caller):
         stacktrace = caller[self.frame]
         self.MethodName = stacktrace[3]
-        self.ClassName = stacktrace[0].f_globals["__name__"]
+        self.ClassName = stacktrace[0].f_locals["self"].__class__.__name__
         self.Directory = os.path.dirname(stacktrace[1])
