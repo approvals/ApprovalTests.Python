@@ -6,6 +6,8 @@ Capturing Human Intelligence - ApprovalTests is an open source assertion/verific
 
 For more information see: [www.approvaltests.com](http://approvaltests.com/).
 
+[![Build Status](https://travis-ci.org/approvals/ApprovalTests.Python.png?branch=master)](https://travis-ci.org/approvals/ApprovalsTests.Python)
+
 ##What can I use ApprovalTests for?
 
 You can use ApprovalTests to verify objects that require more than a simple assert including long strings, large arrays, 
