@@ -1,4 +1,5 @@
 [
+    "BeyondCompare4x64",
     "BeyondCompare4",
     "BeyondCompare4Mac",
     "BeyondCompare3",
