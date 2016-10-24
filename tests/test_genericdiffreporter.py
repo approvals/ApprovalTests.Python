@@ -33,7 +33,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_constructs_valid_diff_command(self):
         reporter = self.factory.get("BeyondCompare4")
-        namer = Namer(1)
+        namer = Namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
         command = reporter.get_command(
@@ -48,7 +48,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(command, expected_command)
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
-        namer = Namer(1)
+        namer = Namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
         if os.path.isfile(approved):
@@ -61,7 +61,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(0, os.stat(approved).st_size)
 
     def test_approved_file_not_changed_when_one_exists_already(self):
-        namer = Namer(1)
+        namer = Namer()
         approved_contents = "Approved"
         approved = namer.get_approved_filename()
         os.remove(approved)
@@ -77,14 +77,14 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(actual_contents, approved_contents)
 
     def test_serialization(self):
-        n = Namer(1)
+        n = Namer()
         path = os.path.join(n.get_directory(), 'saved-reporters.json')
         self.factory.save(path)
         with open(path, 'r') as f:
             verify(f.read(), self.reporter)
 
     def test_deserialization(self):
-        namer = Namer(1)
+        namer = Namer()
         full_name = os.path.join(namer.get_directory(), 'custom-reporters.json')
         reporters = self.factory.load(full_name)
         verify(json.dumps(reporters, sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)

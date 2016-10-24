@@ -34,5 +34,9 @@
   [
     "opendiff",
     "opendiff"
+  ],
+  [
+    "DiffMerge",
+    "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
   ]
 ]

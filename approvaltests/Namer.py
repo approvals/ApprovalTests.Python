@@ -10,9 +10,8 @@ class Namer(object):
     APPROVED = '.approved'
     RECEIVED = '.received'
 
-    def __init__(self, frame=1, extension='.txt'):
+    def __init__(self, extension='.txt'):
         self.extension_with_dot = extension
-        self.frame = frame
         self.set_for_stack(inspect.stack(1))
 
     def get_class_name(self):
@@ -36,7 +35,19 @@ class Namer(object):
         return basename + self.APPROVED + self.extension_with_dot
 
     def set_for_stack(self, caller):
-        stacktrace = caller[self.frame]
+        frame = self.get_test_frame(caller)
+        stacktrace = caller[frame]
         self.MethodName = stacktrace[3]
         self.ClassName = stacktrace[0].f_locals["self"].__class__.__name__
         self.Directory = os.path.dirname(stacktrace[1])
+
+    def get_test_frame(self, caller):
+        frameNumber = 1
+        for index, frame in enumerate(caller):
+            if "self" in frame[0].f_locals \
+                    and "_testMethodName" in frame[0].f_locals["self"].__dict__ \
+                    and frame[3] is not "__call__" \
+                    and frame[3] is not "run":
+                frameNumber = index
+
+        return frameNumber

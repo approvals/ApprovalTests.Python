@@ -6,5 +6,6 @@
     "AraxisMergeWin",
     "AraxisMergeMac",
     "WinMerge",
-    "opendiff"
+    "opendiff",
+    "DiffMerge"
 ]

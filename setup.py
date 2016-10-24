@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='approvaltests',
-    version='0.1.12',
+    version='0.1.13',
     description='Assertion/verification library to aid testing',
     author='ApprovalTests Contributors',
     author_email='jamesrcounts@outlook.com',

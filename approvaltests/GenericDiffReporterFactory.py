@@ -1,3 +1,4 @@
+import inspect
 import json
 import os
 from approvaltests.GenericDiffReporter import GenericDiffReporter
@@ -8,8 +9,8 @@ class GenericDiffReporterFactory(object):
     reporters = []
 
     def __init__(self):
-        n = Namer(1)
-        path = os.path.join(n.get_directory(), 'reporters.json')
+        directory = os.path.dirname(inspect.stack(1)[0][1])
+        path = os.path.join(directory, 'reporters.json')
         self.load(path)
 
     def list(self):
