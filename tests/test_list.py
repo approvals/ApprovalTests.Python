@@ -14,3 +14,7 @@ class TestList(TestCase):
     def test(self):
         alist = ['a', 'b', 'c', 'd']
         Approvals.verify_all('letters', alist)
+
+    def test_uppercase(self):
+        alist = ['a', 'b', 'c', 'd']
+        Approvals.verify_all('uppercase', alist, lambda x: '{0} => {1}'.format(x, x.upper()))
