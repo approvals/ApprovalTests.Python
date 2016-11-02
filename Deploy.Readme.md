@@ -1,3 +1,5 @@
+Increment version in setup.py
+
  ```bash
 $  git tag 0.1.13 -m "Adds new reporters and dynamic way to find test name"
 $  git push --tags origin master
