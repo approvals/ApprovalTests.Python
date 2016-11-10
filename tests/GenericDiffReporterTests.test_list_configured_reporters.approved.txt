@@ -6,6 +6,7 @@
     "AraxisMergeWin",
     "AraxisMergeMac",
     "WinMerge",
+    "vimdiff",
     "meld",
     "opendiff",
     "DiffMerge"

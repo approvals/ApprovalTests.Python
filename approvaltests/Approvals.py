@@ -18,7 +18,7 @@ def set_default_reporter(reporter):
 
 def get_default_reporter():
     if DEFAULT_REPORTER.v is None:
-        return ReceivedFileLauncherReporter()
+        return DiffReporter()
     return DEFAULT_REPORTER.v
 
 

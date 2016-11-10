@@ -39,9 +39,12 @@ class GenericDiffReporterFactory(object):
         return self.reporters
 
     def get_first_working(self):
-        instances = (GenericDiffReporter(r) for r in self.reporters)
-        working = (i for i in instances if i.is_working())
+        working = (i for i in self.get_all_reporters() if i.is_working())
         return next(working, None)
+    
+    def get_all_reporters(self):
+        instances = (GenericDiffReporter(r) for r in self.reporters)
+        return instances
 
     def remove(self, reporter_name):
         self.reporters = [r for r in self.reporters if r[0] != reporter_name]

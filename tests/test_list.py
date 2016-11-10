@@ -2,20 +2,20 @@ import os
 from unittest import TestCase
 
 from approvaltests import Approvals
-from approvaltests.TextDiffReporter import TextDiffReporter
 from approvaltests.reporters.clipboard_reporter import CommandLineReporter 
 from approvaltests.reporters.multi_reporter import MultiReporter 
+from approvaltests.reporters.diff_reporter import DiffReporter 
+from approvaltests.GenericDiffReporter import GenericDiffReporter
 
 
 class TestList(TestCase):
     def setUp(self):
-        os.environ["APPROVALS_TEXT_DIFF_TOOL"] = 'diff' 
-        reporter = MultiReporter(TextDiffReporter(), CommandLineReporter())
+        reporter = MultiReporter(GenericDiffReporter.create('diff'), CommandLineReporter())
         Approvals.set_default_reporter(reporter)
         
     def test(self):
         alist = ['a', 'b', 'c', 'd', 'e']
-        Approvals.verify_all('letters', alist)
+        Approvals.verify_all('letters', alist, reporter=DiffReporter())
 
     def test_uppercase(self):
         alist = ['a', 'b', 'c', 'd']
