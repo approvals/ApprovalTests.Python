@@ -7,6 +7,7 @@ from approvaltests.FileApprover import FileApprover
 from approvaltests.Namer import Namer
 from approvaltests.ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
 from approvaltests.StringWriter import StringWriter
+from approvaltests.reporters.diff_reporter import DiffReporter
 
 DEFAULT_REPORTER = local()
 
@@ -17,7 +18,7 @@ def set_default_reporter(reporter):
     
 
 def get_default_reporter():
-    if DEFAULT_REPORTER.v is None:
+    if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
         return DiffReporter()
     return DEFAULT_REPORTER.v
 
