@@ -27,12 +27,16 @@ def verify(data, reporter=None):
     if reporter is None:
         reporter = get_default_reporter()
     approver = FileApprover()
-    namer = Namer()
+    namer = get_default_namer()
     writer = StringWriter(data)
 
     error = approver.verify(namer, writer, reporter)
     if error is not None:
         raise ApprovalException(error)
+
+
+def get_default_namer():
+    return Namer()
 
 
 def verify_all(header, alist, formatter=None, reporter=None):

@@ -45,7 +45,7 @@ class Namer(object):
 
     def get_class_name_for_frame(self, stacktrace):
         if "self" not in stacktrace[0].f_locals:
-            return None
+            return os.path.splitext(os.path.basename(stacktrace[1]))[0]
         else:
             return stacktrace[0].f_locals["self"].__class__.__name__
 
