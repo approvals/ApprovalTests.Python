@@ -1,7 +1,7 @@
 import unittest
 
 from approvaltests.ApprovalException import ApprovalException
-from approvaltests.Approvals import verify, verify_as_json
+from approvaltests.Approvals import verify, verify_as_json, verify_file
 from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
 from approvaltests.TestingReporter import TestingReporter
 
@@ -33,3 +33,6 @@ class VerifyTests(unittest.TestCase):
             "z": 26
         }
         verify_as_json(o, self.reporter)
+
+    def test_verify_file(self):
+        verify_file("testFile.txt", self.reporter)
