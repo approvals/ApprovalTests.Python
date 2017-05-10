@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='approvaltests',
-    version='0.1.14',
+    version='0.1.15',
     description='Assertion/verification library to aid testing',
     author='ApprovalTests Contributors',
     author_email='jamesrcounts@outlook.com',
