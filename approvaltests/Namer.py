@@ -1,6 +1,5 @@
 import inspect
 import os
-import pytest
 
 
 class Namer(object):
