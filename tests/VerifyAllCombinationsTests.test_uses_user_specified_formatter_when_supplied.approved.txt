@@ -1,0 +1,4 @@
+inputs=(1, 2), outputs=4
+inputs=(1, 4), outputs=6
+inputs=(3, 2), outputs=6
+inputs=(3, 4), outputs=8
