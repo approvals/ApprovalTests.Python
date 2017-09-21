@@ -3,11 +3,11 @@ from itertools import product
 from threading import local
 
 
-from approvaltests.ApprovalException import ApprovalException
-from approvaltests.FileApprover import FileApprover
-from approvaltests.Namer import Namer
-from approvaltests.ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
-from approvaltests.StringWriter import StringWriter
+from approvaltests.approval_exception import ApprovalException
+from approvaltests.file_approver import FileApprover
+from approvaltests.namer import Namer
+from approvaltests.reporters.received_file_launcher_reporter import ReceivedFileLauncherReporter
+from approvaltests.string_writer import StringWriter
 from approvaltests.reporters.diff_reporter import DiffReporter
 
 DEFAULT_REPORTER = local()
@@ -59,7 +59,7 @@ def verify_all_combinations(function_under_test, input_arguments, formatter=None
             following calls being recorded and verified: f('water', 1), f('water', 4), f('cola', 1), f('cola', 4).
         formatter (function): function for formatting the function inputs/outputs before they are recorded to an
             approval file for comparison.
-        reporter (approvaltests.Reporter.Reporter): an approval reporter.
+        reporter (approvaltests.reporter.Reporter): an approval reporter.
 
     Raises:
         ApprovalException: if the results to not match the approved results.

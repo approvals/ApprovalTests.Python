@@ -1,4 +1,4 @@
-from approvaltests import Approvals
+from approvaltests import approvals
 from approvaltests.TextDiffReporter import TextDiffReporter
 import os
 import unittest
@@ -12,7 +12,7 @@ class Test(unittest.TestCase):
 
     def test(self):
         reporter = TextDiffReporter()
-        Approvals.verify("x", reporter)
+        approvals.verify("x", reporter)
 
 if __name__ == "__main__":
     unittest.main()

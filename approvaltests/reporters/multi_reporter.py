@@ -1,4 +1,4 @@
-from ..Reporter import Reporter
+from ..reporter import Reporter
 
 
 class MultiReporter(Reporter):

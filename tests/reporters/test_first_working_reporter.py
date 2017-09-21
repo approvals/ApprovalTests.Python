@@ -1,6 +1,6 @@
 import unittest
 
-from approvaltests.Reporter import Reporter
+from approvaltests.reporter import Reporter
 from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 
 

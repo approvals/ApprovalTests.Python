@@ -1,17 +1,16 @@
 import inspect
 import json
 import os
-from approvaltests.GenericDiffReporter import GenericDiffReporter
-from approvaltests.Namer import Namer
+from approvaltests.generic_diff_reporter import GenericDiffReporter
+from approvaltests.namer import Namer
+from approvaltests.utils import get_adjacent_file
 
 
 class GenericDiffReporterFactory(object):
     reporters = []
 
     def __init__(self):
-        directory = os.path.dirname(inspect.stack(1)[0][1])
-        path = os.path.join(directory, 'reporters.json')
-        self.load(path)
+        self.load(get_adjacent_file('reporters.json'))
 
     def list(self):
         return [r[0] for r in self.reporters]

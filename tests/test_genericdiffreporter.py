@@ -3,10 +3,10 @@ import os
 import shutil
 import unittest
 
-from approvaltests.Approvals import verify
-from approvaltests.GenericDiffReporter import GenericDiffReporter
-from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
-from approvaltests.Namer import Namer
+from approvaltests.approvals import verify
+from approvaltests.generic_diff_reporter import GenericDiffReporter
+from approvaltests.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.namer import Namer
 
 
 class GenericDiffReporterTests(unittest.TestCase):

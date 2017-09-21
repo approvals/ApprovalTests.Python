@@ -2,7 +2,7 @@
 import unittest
 from random import randint
 
-from approvaltests.StringWriter import StringWriter
+from approvaltests.string_writer import StringWriter
 
 
 class WriterTests(unittest.TestCase):

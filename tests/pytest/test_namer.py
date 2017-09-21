@@ -1,4 +1,4 @@
-from approvaltests.Approvals import get_default_namer, verify
+from approvaltests.approvals import get_default_namer, verify
 
 
 def test_basic_approval():
