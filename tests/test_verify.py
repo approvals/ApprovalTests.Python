@@ -1,7 +1,7 @@
 import unittest
 
 from approvaltests.ApprovalException import ApprovalException
-from approvaltests.Approvals import verify, verify_as_json, verify_all_combinations
+from approvaltests.Approvals import verify, verify_as_json, verify_file, verify_all_combinations
 from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
 from approvaltests.TestingReporter import TestingReporter
 
@@ -113,3 +113,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             formatter=lambda args, output: "inputs=" + str(args) + ", outputs=" + str(output) + "\n",
             reporter=self.reporter
         )
+
+        
+    def test_verify_file(self):
+        verify_file("testFile.txt", self.reporter)

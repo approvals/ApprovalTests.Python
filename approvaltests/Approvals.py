@@ -101,3 +101,9 @@ class PrintList(object):
 
 def args_and_result_formatter(args, result):
     return 'args: {} => {}\n'.format(repr(args), repr(result))
+
+  
+def verify_file(file_name, reporter=None):
+    with open(file_name, 'r') as f:
+        file_contents = f.read()
+        verify(file_contents, reporter)
