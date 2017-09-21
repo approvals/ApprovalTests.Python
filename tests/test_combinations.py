@@ -2,7 +2,7 @@ import unittest
 
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify_all_combinations
-from approvaltests.testing_reporter import TestingReporter
+from approvaltests.reporters.testing_reporter import TestingReporter
 
 
 class VerifyAllCombinationsTests(unittest.TestCase):

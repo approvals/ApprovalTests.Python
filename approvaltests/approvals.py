@@ -5,7 +5,7 @@ from threading import local
 
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.file_approver import FileApprover
-from approvaltests.namer import Namer
+from approvaltests.core.namer import Namer
 from approvaltests.reporters.received_file_launcher_reporter import ReceivedFileLauncherReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.reporters.diff_reporter import DiffReporter
