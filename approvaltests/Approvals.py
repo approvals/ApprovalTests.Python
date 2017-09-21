@@ -69,3 +69,9 @@ class PrintList(object):
         text = str(cls.index) + ') ' + str(x)
         cls.index += 1
         return text
+
+
+def verify_file(file_name, reporter=None):
+    with open(file_name, 'r') as f:
+        file_contents = f.read()
+        verify(file_contents, reporter)
