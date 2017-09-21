@@ -1,6 +1,6 @@
 import pyperclip
 
-from ..Reporter import Reporter
+from ..reporter import Reporter
 
 
 def get_command_text(received_path, approved_path):

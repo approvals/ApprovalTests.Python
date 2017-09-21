@@ -1,7 +1,7 @@
 ﻿import os
 import unittest
 
-from approvaltests.Namer import Namer
+from approvaltests.namer import Namer
 
 
 class NamerTests(unittest.TestCase):

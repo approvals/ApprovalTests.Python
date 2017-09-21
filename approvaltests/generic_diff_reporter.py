@@ -2,8 +2,8 @@ import json
 import os
 import subprocess
 
-from approvaltests.Command import Command
-from approvaltests.Reporter import Reporter
+from approvaltests.command import Command
+from approvaltests.reporter import Reporter
 
 
 class GenericDiffReporter(Reporter):

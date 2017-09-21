@@ -1,6 +1,6 @@
 from .first_working_reporter import FirstWorkingReporter
 from .clipboard_reporter import CommandLineReporter
-from ..GenericDiffReporterFactory import GenericDiffReporterFactory
+from ..generic_diff_reporter_factory import GenericDiffReporterFactory
 
 
 class DiffReporter(FirstWorkingReporter):

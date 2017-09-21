@@ -1,6 +1,6 @@
 ﻿import unittest
 
-from approvaltests.ReceivedFileLauncherReporter import ReceivedFileLauncherReporter
+from approvaltests.reporters.received_file_launcher_reporter import ReceivedFileLauncherReporter
 
 
 class ReporterTests(unittest.TestCase):

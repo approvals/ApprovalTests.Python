@@ -1,9 +1,9 @@
 import unittest
 
-from approvaltests.ApprovalException import ApprovalException
-from approvaltests.Approvals import verify, verify_as_json, verify_file
-from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
-from approvaltests.TestingReporter import TestingReporter
+from approvaltests.approval_exception import ApprovalException
+from approvaltests.approvals import verify, verify_as_json, verify_file
+from approvaltests.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.testing_reporter import TestingReporter
 from approvaltests.utils import get_adjacent_file
 
 

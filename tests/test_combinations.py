@@ -1,8 +1,8 @@
 import unittest
 
-from approvaltests.ApprovalException import ApprovalException
-from approvaltests.Approvals import verify_all_combinations
-from approvaltests.TestingReporter import TestingReporter
+from approvaltests.approval_exception import ApprovalException
+from approvaltests.approvals import verify_all_combinations
+from approvaltests.testing_reporter import TestingReporter
 
 
 class VerifyAllCombinationsTests(unittest.TestCase):

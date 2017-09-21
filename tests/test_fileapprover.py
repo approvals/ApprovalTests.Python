@@ -1,11 +1,11 @@
 ﻿import shutil
 import unittest
 
-from approvaltests.FileApprover import FileApprover
-from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
-from approvaltests.Namer import Namer
-from approvaltests.StringWriter import StringWriter
-from approvaltests.TestingReporter import TestingReporter
+from approvaltests.file_approver import FileApprover
+from approvaltests.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.namer import Namer
+from approvaltests.string_writer import StringWriter
+from approvaltests.testing_reporter import TestingReporter
 
 
 class FileApproverTests(unittest.TestCase):

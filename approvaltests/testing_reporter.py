@@ -1,4 +1,4 @@
-from approvaltests.Reporter import Reporter
+from approvaltests.reporter import Reporter
 
 
 class TestingReporter(Reporter):
