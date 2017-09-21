@@ -4,9 +4,9 @@ import shutil
 import unittest
 
 from approvaltests.approvals import verify
-from approvaltests.generic_diff_reporter import GenericDiffReporter
-from approvaltests.generic_diff_reporter_factory import GenericDiffReporterFactory
-from approvaltests.namer import Namer
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.core.namer import Namer
 
 
 class GenericDiffReporterTests(unittest.TestCase):

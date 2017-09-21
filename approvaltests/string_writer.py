@@ -1,4 +1,7 @@
-class StringWriter(object):
+from approvaltests.core.writer import Writer
+
+
+class StringWriter(Writer):
     contents = ''
 
     def __init__(self, contents, extension='.txt'):

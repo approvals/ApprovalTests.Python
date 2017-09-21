@@ -5,7 +5,7 @@ from approvaltests import approvals
 from approvaltests.reporters.clipboard_reporter import CommandLineReporter 
 from approvaltests.reporters.multi_reporter import MultiReporter 
 from approvaltests.reporters.diff_reporter import DiffReporter 
-from approvaltests.generic_diff_reporter import GenericDiffReporter
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 
 
 class TestList(TestCase):

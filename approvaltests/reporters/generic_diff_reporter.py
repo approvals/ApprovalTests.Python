@@ -3,7 +3,7 @@ import os
 import subprocess
 
 from approvaltests.command import Command
-from approvaltests.reporter import Reporter
+from approvaltests.core.reporter import Reporter
 
 
 class GenericDiffReporter(Reporter):

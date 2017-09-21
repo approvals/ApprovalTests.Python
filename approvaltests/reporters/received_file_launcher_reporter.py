@@ -1,5 +1,6 @@
 from subprocess import call
-from approvaltests.reporter import Reporter
+
+from approvaltests.core.reporter import Reporter
 
 
 class ReceivedFileLauncherReporter(Reporter):

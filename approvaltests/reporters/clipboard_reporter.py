@@ -1,6 +1,6 @@
 import pyperclip
 
-from ..reporter import Reporter
+from approvaltests.core.reporter import Reporter
 
 
 def get_command_text(received_path, approved_path):

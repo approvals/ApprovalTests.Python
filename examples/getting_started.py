@@ -1,7 +1,7 @@
 import unittest
 
 from approvaltests.approvals import verify
-from approvaltests.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 
 
 class GettingStartedTest(unittest.TestCase):

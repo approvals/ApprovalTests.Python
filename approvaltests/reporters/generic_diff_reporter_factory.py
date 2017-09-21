@@ -1,8 +1,8 @@
 import inspect
 import json
 import os
-from approvaltests.generic_diff_reporter import GenericDiffReporter
-from approvaltests.namer import Namer
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+from approvaltests.core.namer import Namer
 from approvaltests.utils import get_adjacent_file
 
 

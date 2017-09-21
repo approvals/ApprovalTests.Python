@@ -1,4 +1,4 @@
-from ..reporter import Reporter
+from approvaltests.core.reporter import Reporter
 
 
 class FirstWorkingReporter(Reporter):
