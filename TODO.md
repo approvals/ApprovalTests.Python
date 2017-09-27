@@ -1,3 +1,4 @@
-* import reporter etc in approvaltests/__init__.py to make api easier to use.
-* assert_equal_with_reporter(expected, actual, reporter).
+* linter
+* automatically push to pypi from Travis
+* Add assert_against_file
 * Add documentation.
