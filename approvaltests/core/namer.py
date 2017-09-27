@@ -24,8 +24,13 @@ class Namer(object):
         return self.Directory
 
     def get_basename(self):
+        file_name = self.get_file_name()
+        return os.path.join(self.Directory, file_name)
+
+    def get_file_name(self):
         class_name = "" if (self.ClassName is None) else (self.ClassName + ".")
-        return os.path.join(self.Directory, class_name + self.MethodName)
+        file_name = class_name + self.MethodName
+        return file_name
 
     def get_received_filename(self, basename=None):
         basename = basename or self.get_basename()

@@ -1,4 +1,6 @@
+import codecs
 import json
+import tempfile
 from itertools import product
 from threading import local
 
@@ -6,11 +8,27 @@ from threading import local
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.file_approver import FileApprover
 from approvaltests.core.namer import Namer
-from approvaltests.reporters.received_file_launcher_reporter import ReceivedFileLauncherReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.reporters.diff_reporter import DiffReporter
 
 DEFAULT_REPORTER = local()
+
+
+def assert_equal_with_reporter(expected, actual, reporter=None):
+    if actual == expected:
+        return
+
+    name = get_default_namer().get_file_name()
+    expected_file = write_to_temporary_file(expected, name + '.expected.')
+    actual_file = write_to_temporary_file(actual, name + '.actual.')
+    get_reporter(reporter).report(actual_file, expected_file)
+    raise AssertionError('expected != actual\n  actual: "{}"\nexpected: "{}"'.format(actual, expected))
+
+
+def write_to_temporary_file(expected, name):
+    with tempfile.NamedTemporaryFile(mode='w+b', suffix='.txt', prefix=name, delete=False) as temp:
+        temp.write(expected.encode('utf-8-sig'))
+        return temp.name
 
 
 def set_default_reporter(reporter):
@@ -25,8 +43,7 @@ def get_default_reporter():
 
 
 def verify(data, reporter=None):
-    if reporter is None:
-        reporter = get_default_reporter()
+    reporter = get_reporter(reporter)
     approver = FileApprover()
     namer = get_default_namer()
     writer = StringWriter(data)
@@ -34,6 +51,12 @@ def verify(data, reporter=None):
     error = approver.verify(namer, writer, reporter)
     if error is not None:
         raise ApprovalException(error)
+
+
+def get_reporter(reporter):
+    if reporter is None:
+        reporter = get_default_reporter()
+    return reporter
 
 
 def get_default_namer():
