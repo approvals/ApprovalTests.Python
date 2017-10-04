@@ -1,7 +1,7 @@
 import unittest
 
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.approvals import verify_all_combinations
+from approvaltests import verify_all_combinations
 from approvaltests.reporters.testing_reporter import TestingReporter
 
 
