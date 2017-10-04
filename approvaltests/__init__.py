@@ -1,5 +1,6 @@
 __author__ = 'Chris Lucian; Llewellyn Falco; Jim Counts; Tim Preece'
 
-from .approvals import *
 from .utils import *
+from .asserts import *
+from .approvals import *
 from .combination_approvals import *

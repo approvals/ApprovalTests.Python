@@ -1,7 +1,7 @@
 import json
-import tempfile
 from threading import local
 
+from approvaltests import write_to_temporary_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
@@ -26,12 +26,6 @@ def assert_equal_with_reporter(expected, actual, reporter=None):
     actual_file = write_to_temporary_file(actual, name + '.actual.')
     get_reporter(reporter).report(actual_file, expected_file)
     raise AssertionError('expected != actual\n  actual: "{}"\nexpected: "{}"'.format(actual, expected))
-
-
-def write_to_temporary_file(expected, name):
-    with tempfile.NamedTemporaryFile(mode='w+b', suffix='.txt', prefix=name, delete=False) as temp:
-        temp.write(expected.encode('utf-8-sig'))
-        return temp.name
 
 
 def set_default_reporter(reporter):
