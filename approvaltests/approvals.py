@@ -1,9 +1,10 @@
-import json
 from threading import local
 
+from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
+from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 
@@ -20,6 +21,15 @@ def get_default_reporter():
         return DiffReporter()
     return DEFAULT_REPORTER.v
 
+def get_reporter(reporter):
+    if reporter is None:
+        reporter = get_default_reporter()
+    return reporter
+
+
+def get_default_namer():
+    return Namer()
+
 
 def verify(data, reporter=None):
     verify_with_namer(data, get_default_namer(), reporter)
@@ -34,51 +44,18 @@ def verify_with_namer(data, namer, reporter):
         raise ApprovalException(error)
 
 
-def get_reporter(reporter):
-    if reporter is None:
-        reporter = get_default_reporter()
-    return reporter
-
-
-def get_default_namer():
-    return Namer()
-
-
-def verify_all(header, alist, formatter=None, reporter=None):
-    if formatter is None:
-        formatter = PrintList().print_item 
-    text = header + '\n\n'
-    for i in alist:
-        text += formatter(i) + '\n'
-    verify(text, reporter)
-
-
 def verify_as_json(object, reporter=None):
     n_ = to_json(object) + "\n"
     verify(n_, reporter)
-
-def to_json(object):
-    return json.dumps(
-        object,
-        sort_keys=True,
-        indent=4,
-        separators=(',', ': '),
-        default=lambda o: o.__dict__)
-
-
-class PrintList(object):
-    index = 0
-
-    @classmethod
-    def print_item(cls, x):
-        text = str(cls.index) + ') ' + str(x)
-        cls.index += 1
-        return text
 
 
 def verify_file(file_name, reporter=None):
     with open(file_name, 'r') as f:
         file_contents = f.read()
         verify(file_contents, reporter)
+
+def verify_all(header, alist, formatter=None, reporter=None):
+    text = format_list(alist, formatter, header)
+    verify(text, reporter)
 
 

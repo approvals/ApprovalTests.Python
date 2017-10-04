@@ -1,4 +1,5 @@
 import inspect
+import json
 import os
 
 
@@ -14,3 +15,12 @@ def write_to_temporary_file(expected, name):
     with tempfile.NamedTemporaryFile(mode='w+b', suffix='.txt', prefix=name, delete=False) as temp:
         temp.write(expected.encode('utf-8-sig'))
         return temp.name
+
+
+def to_json(object):
+    return json.dumps(
+        object,
+        sort_keys=True,
+        indent=4,
+        separators=(',', ': '),
+        default=lambda o: o.__dict__)
