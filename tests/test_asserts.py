@@ -2,7 +2,7 @@ import codecs
 import unittest
 
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.approvals import assert_equal_with_reporter, assert_against_file
+from approvaltests import assert_against_file, assert_equal_with_reporter
 from approvaltests.core import Reporter
 from approvaltests.reporters.testing_reporter import TestingReporter
 from approvaltests.utils import get_adjacent_file
