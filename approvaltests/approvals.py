@@ -14,6 +14,12 @@ from approvaltests.reporters.diff_reporter import DiffReporter
 DEFAULT_REPORTER = local()
 
 
+def assert_against_file(actual, file_path, reporter=None):
+    namer = get_default_namer()
+    namer.get_approved_filename = lambda self,_=None: file_path
+    verify_with_parts(actual, namer, reporter)
+
+
 def assert_equal_with_reporter(expected, actual, reporter=None):
     if actual == expected:
         return
@@ -43,11 +49,14 @@ def get_default_reporter():
 
 
 def verify(data, reporter=None):
+    namer = get_default_namer()
+    verify_with_parts(data, namer, reporter)
+
+
+def verify_with_parts(data, namer, reporter):
     reporter = get_reporter(reporter)
     approver = FileApprover()
-    namer = get_default_namer()
     writer = StringWriter(data)
-
     error = approver.verify(namer, writer, reporter)
     if error is not None:
         raise ApprovalException(error)
@@ -130,3 +139,5 @@ def verify_file(file_name, reporter=None):
     with open(file_name, 'r') as f:
         file_contents = f.read()
         verify(file_contents, reporter)
+
+

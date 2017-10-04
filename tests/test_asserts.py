@@ -1,8 +1,9 @@
 import codecs
 import unittest
 
-from approvaltests.approvals import assert_equal_with_reporter
+from approvaltests.approvals import assert_equal_with_reporter, assert_against_file
 from approvaltests.core import Reporter
+from approvaltests.utils import get_adjacent_file
 
 
 class TestAssertEqualWithReporter(unittest.TestCase):
@@ -24,3 +25,8 @@ class TestAssertEqualWithReporter(unittest.TestCase):
         self.assertEqual(reporter.received, 'actual')
         self.assertEqual(reporter.approved, 'expected')
 
+
+class TestAsserts(unittest.TestCase):
+    def test_assert_against_file_works(self):
+        file_path = get_adjacent_file("manual_file.approved.txt")
+        assert_against_file("This text is in a file", file_path)
