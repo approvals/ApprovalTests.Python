@@ -130,6 +130,8 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 
 ##SUPPORT AND DOCUMENTATION
 
+* [Documentation](/docs/README.md)
+
 * GitHub: [https://github.com/approvals/ApprovalTests.Python](https://github.com/approvals/ApprovalTests.Python)
 
 * ApprovalTests Homepage: [http://www.approvaltests.com](http://www.approvaltests.com)
