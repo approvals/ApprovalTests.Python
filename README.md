@@ -27,8 +27,8 @@ From pypi:
 
     import unittest
     
-    from approvaltests.Approvals import verify
-    from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
+    from approvaltests.approvals import verify
+    from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
     
     
     class GettingStartedTest(unittest.TestCase):
@@ -106,8 +106,8 @@ You could then use that file by loading it into the factory:
 
     import unittest
     
-    from approvaltests.Approvals import verify
-    from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
+    from approvaltests.approvals import verify
+    from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
     
     
     class GettingStartedTest(unittest.TestCase):
