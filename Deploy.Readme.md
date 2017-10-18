@@ -1,4 +1,28 @@
-Increment version in setup.py
+# Prerequisites
+
+* An account on pypi and pypitest
+* Access to approvaltests on pypip and pypitest
+* a `.pypirc` file in your home dir, e.g.
+
+```
+[distutils]
+index-servers =
+    pypi
+    pypitest
+
+[pypi]
+username: your_username
+password:
+
+
+[pypitest]
+username: your_username
+password:
+```
+
+# Pushing a new version to pypi
+
+Increment version in approvaltests/version.py.
 
  ```bash
 $  git tag 0.1.13 -m "Adds new reporters and dynamic way to find test name"
