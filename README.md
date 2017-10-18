@@ -1,5 +1,4 @@
-ApprovalTests.Python
-====================
+# ApprovalTests.Python
 
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid testing.  
 `approvaltests` is the ApprovalTests port for Python.
@@ -8,7 +7,7 @@ For more information see: [www.approvaltests.com](http://approvaltests.com/).
 
 [![Build Status](https://travis-ci.org/approvals/ApprovalTests.Python.png?branch=master)](https://travis-ci.org/approvals/ApprovalsTests.Python)
 
-##What can I use ApprovalTests for?
+## What can I use ApprovalTests for?
 
 You can use ApprovalTests to verify objects that require more than a simple assert including long strings, large arrays, 
 and complex hash structures and objects.  ApprovalTests really shines when you need a more granular look at the test 
@@ -16,20 +15,20 @@ failure.  Sometimes, trying to find a small difference in a long string printed 
 ApprovalTests solves this problem by providing reporters which let you view the test results in one of many popular diff 
 utilities.
 
-##SETUP
+## SETUP
 
 From pypi:
 
 	pip install approvaltests
 
-##GETTING STARTED
+## GETTING STARTED
 
 ```python
 
     import unittest
     
-    from approvaltests.Approvals import verify
-    from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
+    from approvaltests.approvals import verify
+    from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
     
     
     class GettingStartedTest(unittest.TestCase):
@@ -107,8 +106,8 @@ You could then use that file by loading it into the factory:
 
     import unittest
     
-    from approvaltests.Approvals import verify
-    from approvaltests.GenericDiffReporterFactory import GenericDiffReporterFactory
+    from approvaltests.approvals import verify
+    from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
     
     
     class GettingStartedTest(unittest.TestCase):
@@ -128,7 +127,7 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 `reporters.json` file that ships with Approvals and submitting a pull request.
 
 
-##SUPPORT AND DOCUMENTATION
+## SUPPORT AND DOCUMENTATION
 
 * [Documentation](/docs/README.md)
 
