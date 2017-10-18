@@ -1,4 +1,5 @@
 import inspect
+import json
 import os
 
 
@@ -25,7 +26,8 @@ class Namer(object):
 
     def get_basename(self):
         file_name = self.get_file_name()
-        return os.path.join(self.Directory, file_name)
+        subdirectory = self.Config.get('subdirectory', '')
+        return os.path.join(self.Directory, subdirectory, file_name)
 
     def get_file_name(self):
         class_name = "" if (self.ClassName is None) else (self.ClassName + ".")
@@ -46,6 +48,7 @@ class Namer(object):
         self.MethodName = stacktrace[3]
         self.ClassName = self.get_class_name_for_frame(stacktrace)
         self.Directory = os.path.dirname(stacktrace[1])
+        self.Config = self.get_config()
 
     def get_class_name_for_frame(self, stacktrace):
         if "self" not in stacktrace[0].f_locals:
@@ -70,3 +73,11 @@ class Namer(object):
         is_pytest_test = frame[3].startswith("test_")
 
         return is_unittest_test or is_pytest_test
+
+    def get_config(self):
+        config_file = os.path.join(self.Directory, 'approvaltests_config.json')
+        if os.path.exists(config_file):
+            with open(config_file, 'r') as f:
+                return json.load(f)
+        else:
+            return {}
