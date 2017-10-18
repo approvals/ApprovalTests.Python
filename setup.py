@@ -1,9 +1,18 @@
+import os
 from distutils.core import setup
+
 from setuptools import find_packages
+
+here = os.path.abspath(os.path.dirname(__file__))
+print("Here:", here)
+about = {}
+with open(os.path.join(here, 'approvaltests', 'version.py'), 'r') as f:
+    exec(f.read(), about)
+
 
 setup(
     name='approvaltests',
-    version='0.1.15',
+    version= about['version_number'],
     description='Assertion/verification library to aid testing',
     author='ApprovalTests Contributors',
     author_email='jamesrcounts@outlook.com',
