@@ -4,3 +4,8 @@ class ApprovalException(Exception):
 
     def __str__(self):
         return repr(self.value)
+
+
+class TestNameNotFound(ApprovalException):
+    pass
+
