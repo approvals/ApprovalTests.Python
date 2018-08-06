@@ -2,6 +2,12 @@ language: python
 python:
   - "2.7"
   - "3.6"
+matrix:
+  include:
+    - python: 3.6
+      env: TOXENV=py36
+    - python: 2.7
+      env: TOXENV=py27
 before_install:
   - sudo apt-get update
   - sudo apt-get install meld
