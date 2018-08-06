@@ -6,6 +6,6 @@ class ApprovalException(Exception):
         return repr(self.value)
 
 
-class TestNameNotFound(ApprovalException):
+class FrameNotFound(ApprovalException):
     pass
 
