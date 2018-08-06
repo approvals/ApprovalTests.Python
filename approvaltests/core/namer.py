@@ -2,6 +2,8 @@ import inspect
 import json
 import os
 
+from approvaltests.approval_exception import FrameNotFound
+
 
 class Namer(object):
     ClassName = ''
@@ -57,12 +59,13 @@ class Namer(object):
             return stacktrace[0].f_locals["self"].__class__.__name__
 
     def get_test_frame(self, caller):
-        frameNumber = 1
         for index, frame in enumerate(caller):
             if self.is_test_method(frame):
-                frameNumber = index
-
-        return frameNumber
+                return index
+        message = """Could not find test method/function. Possible reasons could be: 
+1) approvaltests is not being used inside a test function 
+2) your test framework is not supported by ApprovalTests (unittest and pytest are currently supported)."""
+        raise FrameNotFound(message)
 
     def is_test_method(self, frame):
         is_unittest_test = ("self" in frame[0].f_locals
