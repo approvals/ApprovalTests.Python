@@ -8,10 +8,10 @@ def format_list(alist, formatter, header):
 
 
 class FormatLineItem(object):
-    index = 0
+    def __init__(self):
+        self.index = 0
 
-    @classmethod
-    def print_item(cls, x):
-        text = str(cls.index) + ') ' + str(x)
-        cls.index += 1
+    def print_item(self, x):
+        text = str(self.index) + ') ' + str(x)
+        self.index += 1
         return text
