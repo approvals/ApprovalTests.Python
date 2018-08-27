@@ -22,10 +22,13 @@ class TestList(TestCase):
         approvals.verify_all('uppercase', alist, lambda x: '{0} => {1}'.format(x, x.upper()))
 
     def test_format_line_part1(self):
+        # This is part one of a test which reproduces the issue #32
         alist = ['1', '2', '3']
         approvals.verify_all('index', alist, reporter=DiffReporter())
 
     def test_format_line_part2(self):
-        # Depends on test_format_line_part1
+        # This is a part two of a test that would reproduce a bug where
+        # `verify_all` does not reset index when called from two different tests.
+        # More details in issue #32
         alist = ['1', '2', '3']
         approvals.verify_all('index', alist, reporter=DiffReporter())
