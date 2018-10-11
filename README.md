@@ -24,22 +24,22 @@ From pypi:
 ## GETTING STARTED
 
 ```python
+import unittest
 
-    import unittest
-    
-    from approvaltests.approvals import verify
-    from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.approvals import verify
+from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
     
     
-    class GettingStartedTest(unittest.TestCase):
-        def setUp(self):
-            self.reporter = GenericDiffReporterFactory().get_first_working()
-    
-        def test_simple(self):
-            verify('Hello', self.reporter)
-    
-    if __name__ == "__main__":
-        unittest.main()
+class GettingStartedTest(unittest.TestCase):
+    def setUp(self):
+        self.reporter = GenericDiffReporterFactory().get_first_working()
+
+    def test_simple(self):
+        verify('Hello', self.reporter)
+
+
+if __name__ == "__main__":
+    unittest.main()
 ```
 
 Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
@@ -58,20 +58,20 @@ it can be used if the test fails.
 You don't have to do it this way.  You can request a specific reporter from the factory using the `get` method
 
 ```python    
-    class GettingStartedTest(unittest.TestCase):
-        def setUp(self):
-            self.factory = GenericDiffReporterFactory()
-    
-        def test_simple(self):
-            verify('Hello', self.factory.get('BeyondCompare4'))
+class GettingStartedTest(unittest.TestCase):
+    def setUp(self):
+        self.factory = GenericDiffReporterFactory()
+
+    def test_simple(self):
+        verify('Hello', self.factory.get('BeyondCompare4'))
 ```
 
 Or you can build your own GenericDiffReporter on the fly
 
 ```python    
-    class GettingStartedTest(unittest.TestCase):
-        def test_simple(self):
-            verify('Hello', GenericDiffReporter(('Custom', 'C:/my/favorite/diff/utility.exe')))
+class GettingStartedTest(unittest.TestCase):
+    def test_simple(self):
+        verify('Hello', GenericDiffReporter(('Custom', 'C:/my/favorite/diff/utility.exe')))
 ```
 
 As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2` 
@@ -104,23 +104,23 @@ You could then use that file by loading it into the factory:
 
 ```python
 
-    import unittest
-    
-    from approvaltests.approvals import verify
-    from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
-    
-    
-    class GettingStartedTest(unittest.TestCase):
-        def setUp(self):
-            factory = GenericDiffReporterFactory()
-            factory.load('C:/myreporters.json')
-            self.reporter = factory.get_first_working()
-    
-        def test_simple(self):
-            verify('Hello', self.reporter)
-    
-    if __name__ == "__main__":
-        unittest.main()
+import unittest
+
+from approvaltests.approvals import verify
+from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+
+
+class GettingStartedTest(unittest.TestCase):
+    def setUp(self):
+        factory = GenericDiffReporterFactory()
+        factory.load('C:/myreporters.json')
+        self.reporter = factory.get_first_working()
+
+    def test_simple(self):
+        verify('Hello', self.reporter)
+
+if __name__ == "__main__":
+    unittest.main()
 ```
 
 Of course, if you have some interesting new reporters in `myreporters.json` then please consider updating the 
