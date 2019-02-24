@@ -28,6 +28,10 @@
     "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
   ],
   [
+    "kdiff3",
+    "/usr/bin/kdiff3"
+  ],
+  [
     "vimdiff",
     "/usr/bin/vimdiff"
   ],
