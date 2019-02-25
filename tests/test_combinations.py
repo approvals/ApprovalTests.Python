@@ -67,8 +67,17 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
     def test_records_exception_message_when_function_under_test_throws_an_exception(self):
+        class BackwardCompatibleException(Exception):
+            """Exception with repr that's the same for pre 3.7 and 3.7+.
+
+            Python3.7 got rid of the trailing comma in the `repr` of `BaseException`: https://bugs.python.org/issue30399
+            """
+            def __repr__(self):
+                return 'Exception{}'.format(self.args)
+
         def function_that_raises_exceptions(*args):
-            raise Exception(args)
+            raise BackwardCompatibleException(args)
+
         arg1_combinations = (1, 3)
         arg2_combinations = (2, 4)
         arg_combinations = (arg1_combinations, arg2_combinations)
