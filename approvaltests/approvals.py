@@ -52,7 +52,7 @@ def verify_as_json(object, reporter=None):
 def verify_file(file_name, reporter=None):
     with open(file_name, 'r') as f:
         file_contents = f.read()
-        verify(file_contents, reporter)
+    verify(file_contents, reporter)
 
 def verify_all(header, alist, formatter=None, reporter=None):
     text = format_list(alist, formatter, header)
