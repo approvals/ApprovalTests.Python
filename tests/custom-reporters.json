@@ -10,5 +10,10 @@
     [
         "FakeReporter",
         "i_am_fake"
+    ],
+    [
+        "PyCharm",
+        "/Applications/PyCharm",
+        "PyCharmReporter"
     ]
 ]

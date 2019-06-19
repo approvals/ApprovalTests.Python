@@ -9,5 +9,6 @@
     "kdiff3",
     "vimdiff",
     "opendiff",
-    "DiffMerge"
+    "DiffMerge",
+    "PyCharm"
 ]

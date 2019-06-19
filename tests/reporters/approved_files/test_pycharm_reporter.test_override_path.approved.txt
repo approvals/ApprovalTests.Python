@@ -1,0 +1,1 @@
+['foobar', 'diff', 'received.txt', 'approved.txt']

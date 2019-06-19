@@ -10,5 +10,6 @@
     "vimdiff",
     "meld",
     "opendiff",
-    "DiffMerge"
+    "DiffMerge",
+    "PyCharm"
 ]
