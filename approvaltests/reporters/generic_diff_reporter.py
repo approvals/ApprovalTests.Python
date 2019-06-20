@@ -14,14 +14,20 @@ class GenericDiffReporter(Reporter):
     def __init__(self, config):
         self.name = config[0]
         self.path = config[1]
+        if len(config) > 2:
+            self.extra_args = config[2]
+        else:
+            self.extra_args = []
 
     def __str__(self):
+        config = {
+            'name': self.name,
+            'path': self.path
+        }
+        if self.extra_args:
+            config.update({"arguments": self.extra_args})
         return json.dumps(
-            {
-                'name': self.name,
-                'path': self.path
-            },
-            sort_keys=True,
+            config,
             indent=4,
             separators=(',', ': ')
         )
@@ -35,11 +41,7 @@ class GenericDiffReporter(Reporter):
         subprocess.call(command_array)
 
     def get_command(self, received, approved):
-        return [
-            self.path,
-            received,
-            approved
-        ]
+        return [self.path] + self.extra_args + [received, approved]
 
     def report(self, received_path, approved_path):
         if not self.is_working:

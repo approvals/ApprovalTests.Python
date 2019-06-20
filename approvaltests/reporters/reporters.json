@@ -50,6 +50,6 @@
   [
     "PyCharm",
     "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
-    "PyCharmReporter"
+    ["diff"]
   ]
 ]

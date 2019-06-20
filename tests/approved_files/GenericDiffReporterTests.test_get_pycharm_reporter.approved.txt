@@ -1,5 +1,7 @@
 {
     "name": "PyCharm",
     "path": "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
-    "clazz": "PyCharmReporter"
+    "arguments": [
+        "diff"
+    ]
 }

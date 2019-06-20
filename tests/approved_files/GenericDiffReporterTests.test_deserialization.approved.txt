@@ -13,7 +13,9 @@
     ],
     [
         "PyCharm",
-        "/Applications/PyCharm",
-        "PyCharmReporter"
+        "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
+        [
+            "diff"
+        ]
     ]
 ]
