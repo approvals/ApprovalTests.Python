@@ -1,8 +1,6 @@
-import inspect
 import json
-import os
+
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
-from approvaltests.core.namer import Namer
 from approvaltests.utils import get_adjacent_file
 
 
@@ -17,6 +15,10 @@ class GenericDiffReporterFactory(object):
 
     def get(self, reporter_name):
         config = next((r for r in self.reporters if r[0] == reporter_name), None)
+        return self._create_reporter(config)
+
+    @staticmethod
+    def _create_reporter(config):
         if not config:
             return None
         return GenericDiffReporter(config)
@@ -42,7 +44,7 @@ class GenericDiffReporterFactory(object):
         return next(working, None)
     
     def get_all_reporters(self):
-        instances = (GenericDiffReporter(r) for r in self.reporters)
+        instances = (self._create_reporter(r) for r in self.reporters)
         return instances
 
     def remove(self, reporter_name):

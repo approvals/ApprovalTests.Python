@@ -10,5 +10,12 @@
     [
         "FakeReporter",
         "i_am_fake"
+    ],
+    [
+        "PyCharm",
+        "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
+        [
+            "diff"
+        ]
     ]
 ]

@@ -163,3 +163,6 @@ class GenericDiffReporterTests(unittest.TestCase):
         if file_size != 0:
             msg = "File is not empty: {}" % file_path
             self.fail(msg)
+
+    def test_get_pycharm_reporter(self):
+        verify(str(self.factory.get("PyCharm")), reporter=self.reporter)
