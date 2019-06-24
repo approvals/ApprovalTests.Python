@@ -29,6 +29,7 @@ class GenericDiffReporter(Reporter):
         return json.dumps(
             config,
             indent=4,
+            sort_keys=True,
             separators=(',', ': ')
         )
 

@@ -1,7 +1,7 @@
 {
-    "name": "PyCharm",
-    "path": "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
     "arguments": [
         "diff"
-    ]
+    ],
+    "name": "PyCharm",
+    "path": "/Applications/PyCharm CE.app/Contents/MacOS/pycharm"
 }
