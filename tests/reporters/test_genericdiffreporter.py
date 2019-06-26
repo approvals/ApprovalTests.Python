@@ -85,10 +85,13 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_serialization(self):
         n = Namer()
-        path = os.path.join(n.get_directory(), 'saved-reporters.json')
-        self.factory.save(path)
-        with open(path, 'r') as f:
-            verify(f.read(), self.reporter)
+        saved_reporters_file = os.path.join(n.get_directory(), 'saved-reporters.json')
+        self.factory.save(saved_reporters_file)
+        try:
+            with open(saved_reporters_file, 'r') as f:
+                verify(f.read(), self.reporter)
+        finally:
+            os.remove(saved_reporters_file)
 
     def test_deserialization(self):
         namer = Namer()

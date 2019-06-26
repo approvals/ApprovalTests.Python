@@ -86,4 +86,10 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+# caches
 .cache/
+.pytest_cache
+
+# virtual environments
+virtualenv
+venv
