@@ -32,10 +32,6 @@
     "/usr/bin/kdiff3"
   ],
   [
-    "vimdiff",
-    "/usr/bin/vimdiff"
-  ],
-  [
     "meld",
     "meld"
   ],
