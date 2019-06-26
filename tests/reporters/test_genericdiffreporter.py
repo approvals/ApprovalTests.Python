@@ -6,6 +6,7 @@ import unittest
 from approvaltests.approvals import verify
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+import approvaltests
 from approvaltests.core.namer import Namer
 
 
@@ -89,7 +90,10 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.factory.save(saved_reporters_file)
         try:
             with open(saved_reporters_file, 'r') as f:
-                verify(f.read(), self.reporter)
+                file_contents = f.read()
+                project_base_dir = os.path.commonpath([__file__, approvaltests.__file__])
+                file_contents = file_contents.replace(str(project_base_dir), "")
+                verify(file_contents, self.reporter)
         finally:
             os.remove(saved_reporters_file)
 

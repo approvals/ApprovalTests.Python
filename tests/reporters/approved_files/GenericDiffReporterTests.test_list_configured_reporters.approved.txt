@@ -11,5 +11,6 @@
     "meld",
     "opendiff",
     "DiffMerge",
-    "PyCharm"
+    "PyCharm",
+    "PythonNative"
 ]

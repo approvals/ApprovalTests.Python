@@ -53,5 +53,12 @@
     [
       "diff"
     ]
+  ],
+  [
+    "PythonNative",
+    "python",
+    [
+      "/approvaltests/reporters/python_native_reporter.py"
+    ]
   ]
 ]

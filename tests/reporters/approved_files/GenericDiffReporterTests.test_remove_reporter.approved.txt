@@ -10,5 +10,6 @@
     "vimdiff",
     "opendiff",
     "DiffMerge",
-    "PyCharm"
+    "PyCharm",
+    "PythonNative"
 ]
