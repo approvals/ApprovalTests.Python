@@ -13,7 +13,7 @@ from approvaltests.core.namer import Namer
 class GenericDiffReporterTests(unittest.TestCase):
     def setUp(self):
         self.factory = GenericDiffReporterFactory()
-        self.reporter = self.factory.get("PyCharm") #self.factory.get_first_working()
+        self.reporter = self.factory.get_first_working()
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)

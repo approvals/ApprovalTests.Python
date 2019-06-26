@@ -8,7 +8,6 @@
     "WinMerge",
     "kdiff3",
     "meld",
-    "opendiff",
     "DiffMerge",
     "PyCharm",
     "PythonNative"
