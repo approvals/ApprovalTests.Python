@@ -1,7 +1,6 @@
 import os
 
 from approvaltests import verify
-from approvaltests.reporters import GenericDiffReporterFactory
 
 from approvaltests.reporters.python_native_reporter import *
 
@@ -24,9 +23,7 @@ def test_files_differ(tmpdir):
         f1.write("abc")
     with open(file2, "w") as f2:
         f2.write("def")
-    factory = GenericDiffReporterFactory()
-    reporter = factory.get("PyCharm")
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")
-    verify(diff, reporter=reporter)
+    verify(diff)
 
