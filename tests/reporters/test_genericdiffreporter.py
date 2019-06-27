@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import shutil
 import unittest
 
@@ -91,8 +92,11 @@ class GenericDiffReporterTests(unittest.TestCase):
         try:
             with open(saved_reporters_file, 'r') as f:
                 file_contents = f.read()
-                project_base_dir = os.path.commonpath([__file__, approvaltests.__file__])
-                file_contents = file_contents.replace(str(project_base_dir), "")
+                # remove the absolute path to the python_native_reporter.py file since it is different on every machine
+                regex = re.compile(r'.*"([^"]*)python_native_reporter.py')
+                match = regex.findall(file_contents)
+                if match:
+                    file_contents = file_contents.replace(match[0], "")
                 verify(file_contents, self.reporter)
         finally:
             os.remove(saved_reporters_file)
