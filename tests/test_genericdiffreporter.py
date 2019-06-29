@@ -7,7 +7,7 @@ from approvaltests.approvals import verify
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 from approvaltests.core.namer import Namer
-
+from approvaltests.utils import to_json
 
 class GenericDiffReporterTests(unittest.TestCase):
     def setUp(self):
@@ -21,7 +21,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         shutil.rmtree(self.tmp_dir)
 
     def test_list_configured_reporters(self):
-        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)
+        verify(to_json(self.factory.list()), self.reporter)
 
     def test_get_reporter(self):
         verify(str(self.factory.get("BeyondCompare4")), self.reporter)
@@ -94,7 +94,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         namer = Namer()
         full_name = os.path.join(namer.get_directory(), 'custom-reporters.json')
         reporters = self.factory.load(full_name)
-        verify(json.dumps(reporters, sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)
+        verify(to_json(reporters), self.reporter)
 
     def test_notworking_in_environment(self):
         reporter = GenericDiffReporter(('Custom', 'NotReal'))
@@ -106,7 +106,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_remove_reporter(self):
         self.factory.remove("meld")
-        verify(json.dumps(self.factory.list(), sort_keys=True, indent=4, separators=(',', ': ')), self.reporter)
+        verify(to_json(self.factory.list()), self.reporter)
 
     @staticmethod
     def instantiate_reporter_for_test():

@@ -4,6 +4,7 @@ import subprocess
 
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
+from approvaltests.utils import to_json
 
 
 class GenericDiffReporter(Reporter):
@@ -26,12 +27,7 @@ class GenericDiffReporter(Reporter):
         }
         if self.extra_args:
             config.update({"arguments": self.extra_args})
-        return json.dumps(
-            config,
-            indent=4,
-            sort_keys=True,
-            separators=(',', ': ')
-        )
+        return to_json(config)
 
     @staticmethod
     def create_empty_file(file_path):
