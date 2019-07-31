@@ -1,11 +1,13 @@
 import json
 import os
+import re
 import shutil
 import unittest
 
 from approvaltests.approvals import verify
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+import approvaltests
 from approvaltests.core.namer import Namer
 
 
@@ -85,10 +87,19 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_serialization(self):
         n = Namer()
-        path = os.path.join(n.get_directory(), 'saved-reporters.json')
-        self.factory.save(path)
-        with open(path, 'r') as f:
-            verify(f.read(), self.reporter)
+        saved_reporters_file = os.path.join(n.get_directory(), 'saved-reporters.json')
+        self.factory.save(saved_reporters_file)
+        try:
+            with open(saved_reporters_file, 'r') as f:
+                file_contents = f.read()
+                # remove the absolute path to the python_native_reporter.py file since it is different on every machine
+                regex = re.compile(r'.*"([^"]*)python_native_reporter.py')
+                match = regex.findall(file_contents)
+                if match:
+                    file_contents = file_contents.replace(match[0], "")
+                verify(file_contents, self.reporter)
+        finally:
+            os.remove(saved_reporters_file)
 
     def test_deserialization(self):
         namer = Namer()

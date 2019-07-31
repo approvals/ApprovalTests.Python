@@ -1,7 +1,7 @@
 from approvaltests.core.reporter import Reporter
 
 
-class TestingReporter(Reporter):
+class ReporterForTesting(Reporter):
 
     def __init__(self):
         self.called = False

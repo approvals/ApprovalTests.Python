@@ -32,16 +32,8 @@
     "/usr/bin/kdiff3"
   ],
   [
-    "vimdiff",
-    "/usr/bin/vimdiff"
-  ],
-  [
     "meld",
     "meld"
-  ],
-  [
-    "opendiff",
-    "opendiff"
   ],
   [
     "DiffMerge",
@@ -52,6 +44,13 @@
     "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
     [
       "diff"
+    ]
+  ],
+  [
+    "PythonNative",
+    "python",
+    [
+      "python_native_reporter.py"
     ]
   ]
 ]

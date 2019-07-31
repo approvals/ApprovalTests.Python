@@ -3,7 +3,7 @@ import unittest
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
-from approvaltests.reporters.testing_reporter import TestingReporter
+from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.utils import get_adjacent_file
 
 
@@ -15,7 +15,7 @@ class VerifyTests(unittest.TestCase):
         verify("Hello World.", self.reporter)
 
     def test_verify_fail(self):
-        reporter = TestingReporter()
+        reporter = ReporterForTesting()
         try:
             verify("Hello World.", reporter)
             self.assertFalse(True, "expected exception")

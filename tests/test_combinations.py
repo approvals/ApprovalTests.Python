@@ -3,12 +3,12 @@ import unittest
 from approvaltests.approval_exception import ApprovalException
 from approvaltests import verify_all_combinations, verify_all_combinations_with_namer, get_default_namer
 from approvaltests.reporters import CommandLineReporter
-from approvaltests.reporters.testing_reporter import TestingReporter
+from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
 class VerifyAllCombinationsTests(unittest.TestCase):
     def setUp(self):
-        self.reporter = TestingReporter()
+        self.reporter = ReporterForTesting()
         self.func = lambda *args: sum(args) + 1
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_one_arg(self):
@@ -97,7 +97,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
     def setUp(self):
-        self.reporter = TestingReporter()
+        self.reporter = ReporterForTesting()
         self.reporter = CommandLineReporter()
         self.func = lambda *args: sum(args) + 1
 

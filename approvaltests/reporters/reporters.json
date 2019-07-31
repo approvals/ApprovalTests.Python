@@ -32,16 +32,8 @@
     "/usr/bin/kdiff3"
   ],
   [
-    "vimdiff",
-    "/usr/bin/vimdiff"
-  ],
-  [
     "meld",
     "meld"
-  ],
-  [
-    "opendiff",
-    "opendiff"
   ],
   [
     "DiffMerge",

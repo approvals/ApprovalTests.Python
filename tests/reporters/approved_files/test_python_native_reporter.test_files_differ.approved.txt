@@ -1,0 +1,12 @@
+--- a.received.txt
+
++++ b.approved.txt
+
+@@ -1 +1 @@
+
+-abc
++def
+
+to approve this result:
+
+mv -f tmpdir/a.received.txt tmpdir/b.approved.txt

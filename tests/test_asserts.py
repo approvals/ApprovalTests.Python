@@ -4,7 +4,7 @@ import unittest
 from approvaltests.approval_exception import ApprovalException
 from approvaltests import assert_against_file, assert_equal_with_reporter
 from approvaltests.core import Reporter
-from approvaltests.reporters.testing_reporter import TestingReporter
+from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.utils import get_adjacent_file
 
 
@@ -34,7 +34,7 @@ class TestAsserts(unittest.TestCase):
         assert_against_file("This text is in a file", file_path)
 
     def test_assert_against_file_fails_with_reporter(self):
-        reporter = TestingReporter()
+        reporter = ReporterForTesting()
         file_path = get_adjacent_file("manual_file.approved.txt")
         try:
             assert_against_file("This text is NOT in a file", file_path, reporter )
