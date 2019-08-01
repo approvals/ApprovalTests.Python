@@ -5,6 +5,8 @@ from approvaltests.reporters import GenericDiffReporterFactory
 
 from approvaltests.reporters.python_native_reporter import *
 
+factory = GenericDiffReporterFactory()
+
 
 def test_files_identical(tmpdir):
     file1 = os.path.join(str(tmpdir), "a.received.txt")
@@ -14,7 +16,7 @@ def test_files_identical(tmpdir):
         f1.write(identical_contents)
     with open(file2, "w") as f2:
         f2.write(identical_contents)
-    assert calculate_diff(file1, file2) == "Files are identical"
+    verify(calculate_diff(file1, file2), reporter=factory.get("PythonNative"))
 
 
 def test_files_differ(tmpdir):
@@ -27,6 +29,5 @@ def test_files_differ(tmpdir):
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")
 
-    factory = GenericDiffReporterFactory()
     verify(diff, reporter=factory.get("PythonNative"))
 
