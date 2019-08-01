@@ -1,6 +1,7 @@
 import os
 
 from approvaltests import verify
+from approvaltests.reporters import GenericDiffReporterFactory
 
 from approvaltests.reporters.python_native_reporter import *
 
@@ -25,5 +26,7 @@ def test_files_differ(tmpdir):
         f2.write("def")
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")
-    verify(diff)
+
+    factory = GenericDiffReporterFactory()
+    verify(diff, reporter=factory.get("PythonNative"))
 
