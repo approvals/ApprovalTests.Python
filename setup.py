@@ -19,5 +19,5 @@ setup(
     url='https://github.com/approvals/ApprovalTests.Python',
     packages=find_packages(exclude=['tests*']),
     package_data={'approvaltests':['reporters/reporters.json']},
-    install_requires=['pyperclip==1.5.27',],
+    install_requires=['pyperclip==1.5.27', 'pytest'],
 )
