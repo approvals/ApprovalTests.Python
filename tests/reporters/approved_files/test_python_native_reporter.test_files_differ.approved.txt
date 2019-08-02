@@ -1,11 +1,11 @@
---- a.received.txt
+--- b.approved.txt
 
-+++ b.approved.txt
++++ a.received.txt
 
 @@ -1 +1 @@
 
--abc
-+def
+-def
++abc
 
 to approve this result:
 
