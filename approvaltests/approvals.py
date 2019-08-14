@@ -1,4 +1,5 @@
 from threading import local
+import xml.dom.minidom
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
@@ -20,6 +21,7 @@ def get_default_reporter():
     if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
         return DiffReporter()
     return DEFAULT_REPORTER.v
+
 
 def get_reporter(reporter):
     if reporter is None:
@@ -49,10 +51,20 @@ def verify_as_json(object, reporter=None):
     verify(n_, reporter)
 
 
+def verify_xml(xml_string, reporter=None):
+    try:
+        dom = xml.dom.minidom.parseString(xml_string)
+        pretty_xml = dom.toprettyxml()
+    except Exception:
+        pretty_xml = xml_string
+    verify_with_namer(pretty_xml, Namer(extension='.xml'), reporter)
+
+
 def verify_file(file_name, reporter=None):
     with open(file_name, 'r') as f:
         file_contents = f.read()
     verify(file_contents, reporter)
+
 
 def verify_all(header, alist, formatter=None, reporter=None):
     text = format_list(alist, formatter, header)
