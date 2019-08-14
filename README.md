@@ -78,7 +78,7 @@ As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command lin
 then it will be compatible with GenericDiffReporter.  Otherwise you will have to derive your own reporter, which 
 we won't cover here.
 
-To wrap up things up, I should note that you can completely replace the collection of reporters known to the reporter 
+To wrap things up, I should note that you can completely replace the collection of reporters known to the reporter 
 factory by writing your own JSON file and loading it.
 
 For example if you had `C:/myreporters.json`
