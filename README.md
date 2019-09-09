@@ -23,6 +23,37 @@ From pypi:
 
 ## GETTING STARTED
 
+Example using pytest:
+
+```python
+
+from approvaltests.approvals import verify    
+
+def test_simple(self):
+    result = "foobar"
+    verify(result)
+
+```
+
+Install the plugin pytest-approvaltests and use it to select a reporter:
+
+    pip install pytest-approvaltests
+    pytest --approvaltests-use-reporter='PythonNative'
+
+
+Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
+of the current test results and use that as the golden master.  The reporter helps you manage the golden master.  
+Whenever your current results differ from the golden master, the reporter will launch an external application and then 
+change some part of the system.  Either you will update the master because you expected the changes and they are good,
+or you will go back to your code and update or roll back your changes to get your results back in line with the 
+golden master.
+
+The reporter is used both to alert you to changes in your test output, and to provide a tool to update the golden 
+master. In this snippet, we chose the 'PythonNative' reporter when we ran the tests. For more information about selecting
+reporters see [the documentation](https://github.com/approvals/ApprovalTests.Python.PytestPlugin)
+
+Example using unittest:
+
 ```python
 import unittest
 
@@ -42,15 +73,9 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
-of the current test results and use that as the golden master.  The reporter helps you manage the golden master.  
-Whenever your current results differ from the golden master, the reporter will launch an external application and then 
-change some part of the system.  Either you will update the master because you expected the changes and they are good,
-or you will go back to your code and update or roll back your changes to get your results back in line with the 
-golden master.
 
-The reporter is used both to alert you to changes in your test output, and to provide a tool to update the golden 
-master.  So, diff and merge utilities make very good reporters.  Approvals come with a few reporters configured, 
+This example is similar to the pytest version shown above, except we are selecting the reporter in the test code
+ rather than at runtime. ApprovalTests.Python come with a few reporters configured, 
 supporting Linux, Mac OSX, and Windows.  In the example shown above, we use the `GenericDiffReporterFactory` to find 
 and select the first diff utility that exists on our system.  Later, we pass that reporter to the verify method so that
 it can be used if the test fails.
@@ -134,3 +159,16 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 * GitHub: [https://github.com/approvals/ApprovalTests.Python](https://github.com/approvals/ApprovalTests.Python)
 
 * ApprovalTests Homepage: [http://www.approvaltests.com](http://www.approvaltests.com)
+
+## For developers
+
+Pull requests are welcomed, particularly those accompanied by automated tests.
+
+To run the self-tests, install pytest and tox, then execute
+
+    python3 -m tox
+
+This will run the self-tests on several python versions. We would like to continue to support python 2. 
+
+All pull requests will be pre-checked using travis to execute all these tests. You can see the results of travis test
+runs [here](https://travis-ci.org/approvals/ApprovalTests.Python/pull_requests).
