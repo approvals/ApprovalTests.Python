@@ -1,22 +1,24 @@
 ﻿import os
-import unittest
 from random import randint
 
 from approvaltests.string_writer import StringWriter
 
 
-class WriterTests(unittest.TestCase):
-    def test_writes_file(self):
-        contents = "foo" + str(randint(0, 100))
-        sw = StringWriter(contents)
-        filename = './stuff.txt'
-        sw.write_received_file(filename)
+def test_writes_file(tmpdir):
+    contents = "foo" + str(randint(0, 100))
+    sw = StringWriter(contents)
+    filename = os.path.join(str(tmpdir), 'stuff.txt')
+    sw.write_received_file(filename)
 
-        with open(filename, 'r') as received:
-            self.assertEqual(contents, received.read())
-
-        os.remove(filename)
+    with open(filename, 'r') as received:
+        assert contents == received.read()
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_writes_file_to_missing_directory(tmpdir):
+    contents = "foo"
+    sw = StringWriter(contents)
+    filename = os.path.join(str(tmpdir), 'non_existent_folder', './stuff.txt')
+    sw.write_received_file(filename)
+
+    with open(filename, 'r') as received:
+        assert contents == received.read()
