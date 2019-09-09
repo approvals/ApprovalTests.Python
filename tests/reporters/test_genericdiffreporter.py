@@ -177,3 +177,11 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_get_pycharm_reporter(self):
         verify(str(self.factory.get("PyCharm")), reporter=self.reporter)
+
+    def test_non_working_reporter_does_not_report(self):
+        self.assertFileDoesNotExist(self.approved_file_path)
+
+        reporter = GenericDiffReporter(('Custom', 'NotReal'))
+        success = reporter.report(self.received_file_path, self.approved_file_path)
+
+        self.assertFalse(success)

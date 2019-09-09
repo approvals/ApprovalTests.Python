@@ -41,7 +41,7 @@ class GenericDiffReporter(Reporter):
         return [self.path] + self.extra_args + [received, approved]
 
     def report(self, received_path, approved_path):
-        if not self.is_working:
+        if not self.is_working():
             return False
         if not os.path.isfile(approved_path):
             self.create_empty_file(approved_path)
