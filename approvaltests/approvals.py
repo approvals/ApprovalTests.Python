@@ -4,6 +4,7 @@ import xml.dom.minidom
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.core.namer import Namer
+from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
@@ -24,17 +25,17 @@ def get_default_reporter():
 
 
 def get_reporter(reporter):
-    if reporter is None:
-        reporter = get_default_reporter()
-    return reporter
+    return reporter or get_default_reporter()
 
 
 def get_default_namer():
     return Namer()
 
 
-def verify(data, reporter=None):
-    verify_with_namer(data, get_default_namer(), reporter)
+def verify(data, reporter=None, namer=None):
+    reporter_to_use = reporter or get_default_reporter()
+    namer_to_use = namer or get_default_namer()
+    verify_with_namer(data, namer_to_use, reporter_to_use)
 
 
 def verify_with_namer(data, namer, reporter):
@@ -71,3 +72,5 @@ def verify_all(header, alist, formatter=None, reporter=None):
     verify(text, reporter)
 
 
+def get_scenario_namer(scenario_name):
+    return ScenarioNamer(get_default_namer(), scenario_name)
