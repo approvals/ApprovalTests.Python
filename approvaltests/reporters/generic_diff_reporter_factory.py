@@ -11,6 +11,9 @@ class GenericDiffReporterFactory(object):
         self.load(get_adjacent_file('reporters.json'))
         self.add_fallback_reporter_config(["PythonNative", "python", [get_adjacent_file("python_native_reporter.py")]])
 
+    def add_default_reporter_config(self, config):
+        self.reporters.insert(0, config)
+
     def add_fallback_reporter_config(self, config):
         self.reporters.append(config)
 
