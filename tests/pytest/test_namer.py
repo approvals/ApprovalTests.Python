@@ -23,6 +23,10 @@ def pytest_verify(request):
     return pytest_verify
 
 
+def test_pytest_namer_sanity(pytest_verify):
+    pytest_verify('Sanity')
+
+
 @pytest.mark.parametrize('arg', ['Hello, World!'])
 def test_pytest_received_filename(arg, request):
     namer = get_pytest_namer(request)
