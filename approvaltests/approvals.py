@@ -5,6 +5,7 @@ from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.core.namer import Namer
 from approvaltests.core.scenario_namer import ScenarioNamer
+from approvaltests.core.pytest_namer import PytestNamer
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
@@ -74,3 +75,6 @@ def verify_all(header, alist, formatter=None, reporter=None):
 
 def get_scenario_namer(scenario_name):
     return ScenarioNamer(get_default_namer(), scenario_name)
+
+def get_pytest_namer(pytest_request):
+    return PytestNamer(get_default_namer(), pytest_request)
