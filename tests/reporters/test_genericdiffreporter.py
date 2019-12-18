@@ -4,12 +4,13 @@ import re
 import shutil
 import unittest
 
-from approvaltests.approvals import verify
+from approvaltests.approvals import verify, get_default_namer
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 import approvaltests
 from approvaltests.core.namer import Namer
 from approvaltests.utils import to_json
+
 
 class GenericDiffReporterTests(unittest.TestCase):
     def setUp(self):
@@ -42,7 +43,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_constructs_valid_diff_command(self):
         reporter = self.factory.get("BeyondCompare4")
-        namer = Namer()
+        namer = get_default_namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
         command = reporter.get_command(
@@ -86,7 +87,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(actual_contents, approved_contents)
 
     def test_serialization(self):
-        n = Namer()
+        n = get_default_namer()
         saved_reporters_file = os.path.join(n.get_directory(), 'saved-reporters.json')
         self.factory.save(saved_reporters_file)
         try:
@@ -102,7 +103,7 @@ class GenericDiffReporterTests(unittest.TestCase):
             os.remove(saved_reporters_file)
 
     def test_deserialization(self):
-        namer = Namer()
+        namer = get_default_namer()
         full_name = os.path.join(namer.get_directory(), 'custom-reporters.json')
         reporters = self.factory.load(full_name)
         verify(to_json(reporters), self.reporter)

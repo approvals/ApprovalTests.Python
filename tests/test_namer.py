@@ -1,25 +1,25 @@
 ﻿import os
 import unittest
 
-from approvaltests.core.namer import Namer
+from approvaltests.core.namer import Namer, StackFrameNamer
 
 
 class NamerTests(unittest.TestCase):
     def setUp(self):
-        self.namer = Namer()
+        self.namer = StackFrameNamer()
 
     def test_class(self):
         self.assertEqual("NamerTests", self.namer.get_class_name())
 
     def test_method(self):
-        n = Namer()
+        n = StackFrameNamer()
         self.assertEqual("test_method", n.get_method_name())
 
     def test_file(self):
         self.assertTrue(os.path.exists(self.namer.get_directory() + "/test_namer.py"))
 
     def test_basename(self):
-        n = Namer()
+        n = StackFrameNamer()
         self.assertTrue(n.get_basename().endswith("NamerTests.test_basename"), n.get_basename())
 
     def test_received_name(self):

@@ -3,7 +3,7 @@ import xml.dom.minidom
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.core.namer import Namer
+from approvaltests.core.namer import Namer, StackFrameNamer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
@@ -28,8 +28,8 @@ def get_reporter(reporter):
     return reporter or get_default_reporter()
 
 
-def get_default_namer():
-    return Namer()
+def get_default_namer(extension=None):
+    return StackFrameNamer(extension)
 
 
 def verify(data, reporter=None, namer=None):
@@ -52,13 +52,14 @@ def verify_as_json(object, reporter=None):
     verify(n_, reporter)
 
 
-def verify_xml(xml_string, reporter=None):
+def verify_xml(xml_string, reporter=None, namer=None):
     try:
         dom = xml.dom.minidom.parseString(xml_string)
         pretty_xml = dom.toprettyxml()
     except Exception:
         pretty_xml = xml_string
-    verify_with_namer(pretty_xml, Namer(extension='.xml'), reporter)
+    namer = namer or get_default_namer(extension='.xml')
+    verify_with_namer(pretty_xml, namer, reporter)
 
 
 def verify_file(file_name, reporter=None):

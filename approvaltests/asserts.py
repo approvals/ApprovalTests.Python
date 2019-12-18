@@ -1,9 +1,18 @@
-from approvaltests import get_default_namer, verify_with_namer, write_to_temporary_file, get_reporter
+from approvaltests import get_default_namer, verify_with_namer, write_to_temporary_file, get_reporter, \
+    StackFrameNamer
+
+
+class FilePathNamer(StackFrameNamer):
+    def __init__(self, file_path, extension=None):
+        StackFrameNamer.__init__(self, extension)
+        self.file_path = file_path
+
+    def get_approved_filename(self, basename=None):
+        return self.file_path
 
 
 def assert_against_file(actual, file_path, reporter=None):
-    namer = get_default_namer()
-    namer.get_approved_filename = lambda self,_=None: file_path
+    namer = FilePathNamer(file_path)
     verify_with_namer(actual, namer, reporter)
 
 

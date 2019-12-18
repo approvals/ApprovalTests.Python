@@ -1,6 +1,7 @@
 ﻿import shutil
 import unittest
 
+from approvaltests import get_default_namer
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
@@ -24,7 +25,7 @@ class FileApproverTests(unittest.TestCase):
         self.assertTrue(reporter.called)
 
     def test_full(self):
-        namer = Namer()
+        namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
         approver = FileApprover()
@@ -32,7 +33,7 @@ class FileApproverTests(unittest.TestCase):
         self.assertTrue(reporter.called)
 
     def test_returns_error_when_files_are_different(self):
-        namer = Namer()
+        namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
         approver = FileApprover()
@@ -40,7 +41,7 @@ class FileApproverTests(unittest.TestCase):
         self.assertEqual("Approval Mismatch", error)
 
     def test_returns_none_when_files_are_same_files(self):
-        namer = Namer()
+        namer = get_default_namer()
         writer = StringWriter("b")
         reporter = GenericDiffReporterFactory().get_first_working()
         approver = FileApprover()
