@@ -29,7 +29,7 @@ Example using pytest:
 
 from approvaltests.approvals import verify    
 
-def test_simple(self):
+def test_simple():
     result = "foobar"
     verify(result)
 
@@ -166,7 +166,7 @@ Pull requests are welcomed, particularly those accompanied by automated tests.
 
 To run the self-tests, install pytest and tox, then execute
 
-    python3 -m tox
+    python -m tox
 
 This will run the self-tests on several python versions. We would like to continue to support python 2. 
 
