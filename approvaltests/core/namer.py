@@ -11,13 +11,20 @@ class Namer(object):
 
     def __init__(self, extension=None):
         self.extension_with_dot = extension or '.txt'
-        self.config = None
+
+    def get_file_name(self):
+        raise Exception("This class is abstract, override this method in a subclass")
+
+    def get_directory(self):
+        raise Exception("This class is abstract, override this method in a subclass")
+
+    def get_config(self):
+        raise Exception("This class is abstract, override this method in a subclass")
 
     def get_basename(self):
-        raise NotImplementedError("this class is abstract, and subclasses must implement this method")
-
-    def config_directory(self):
-        raise NotImplementedError("this class is abstract, and subclasses must implement this method")
+        file_name = self.get_file_name()
+        subdirectory = self.get_config().get('subdirectory', '')
+        return os.path.join(self.get_directory(), subdirectory, file_name)
 
     def get_received_filename(self, basename=None):
         basename = basename or self.get_basename()
@@ -26,17 +33,6 @@ class Namer(object):
     def get_approved_filename(self, basename=None):
         basename = basename or self.get_basename()
         return basename + Namer.APPROVED + self.extension_with_dot
-
-    def get_config(self):
-        """lazy load config when we need it, then store it in the instance variable self.config"""
-        if self.config is None:
-            config_file = os.path.join(self.config_directory(), 'approvaltests_config.json')
-            if os.path.exists(config_file):
-                with open(config_file, 'r') as f:
-                    self.config = json.load(f)
-            else:
-                self.config = {}
-        return self.config
 
     def set_extension(self, extension):
         self.extension_with_dot = extension
@@ -50,6 +46,7 @@ class StackFrameNamer(Namer):
     def __init__(self, extension=None):
         Namer.__init__(self, extension)
         self.set_for_stack(inspect.stack(1))
+        self.config = None
 
     def set_for_stack(self, caller):
         frame = self.get_test_frame(caller)
@@ -92,13 +89,19 @@ class StackFrameNamer(Namer):
     def get_directory(self):
         return self.Directory
 
-    def get_basename(self):
-        file_name = self.get_file_name()
-        subdirectory = self.get_config().get('subdirectory', '')
-        return os.path.join(self.Directory, subdirectory, file_name)
-
     def config_directory(self):
         return self.Directory
+
+    def get_config(self):
+        """lazy load config when we need it, then store it in the instance variable self.config"""
+        if self.config is None:
+            config_file = os.path.join(self.config_directory(), 'approvaltests_config.json')
+            if os.path.exists(config_file):
+                with open(config_file, 'r') as f:
+                    self.config = json.load(f)
+            else:
+                self.config = {}
+        return self.config
 
     def get_file_name(self):
         class_name = "" if (self.ClassName is None) else (self.ClassName + ".")
