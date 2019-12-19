@@ -17,5 +17,3 @@ def test_pytest_namer(request):
     verify("foo", namer=namer)
 
 
-def test_verify_fixture(pytest_verify):
-    pytest_verify("foo")
