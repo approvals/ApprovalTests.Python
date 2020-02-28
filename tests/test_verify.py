@@ -59,7 +59,7 @@ class VerifyTests(unittest.TestCase):
         verify_as_json(o, self.reporter)
 
     def test_verify_file(self):
-        name = "testFile.txt"
+        name = "exampleFile.txt"
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
