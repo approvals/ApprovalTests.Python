@@ -1,1 +1,3 @@
 contents of test file
+containing multiple lines
+to make it a more useful test
