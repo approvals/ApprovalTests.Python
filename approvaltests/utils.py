@@ -23,4 +23,6 @@ def to_json(object):
         sort_keys=True,
         indent=4,
         separators=(',', ': '),
-        default=lambda o: o.__dict__)
+        default=lambda o: o.__dict__,
+        ensure_ascii=True,
+    )
