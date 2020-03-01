@@ -114,8 +114,8 @@ def verify_with_namer(data, namer, reporter, encoding=None, errors=None, newline
         raise ApprovalException(error)
 
 
-def verify_as_json(object, reporter=None):
-    n_ = to_json(object) + "\n"
+def verify_as_json(obj, reporter=None):
+    n_ = to_json(obj) + "\n"
     verify(n_, reporter, encoding="utf-8", newline="\n")
 
 
