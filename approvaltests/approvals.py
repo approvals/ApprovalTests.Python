@@ -115,8 +115,8 @@ def verify_with_namer(data, namer, reporter, encoding=None, errors=None, newline
 
 
 def verify_as_json(obj, reporter=None):
-    n_ = to_json(obj) + "\n"
-    verify(n_, reporter, encoding="utf-8", newline="\n")
+    json_string = to_json(obj) + "\n"
+    verify(json_string, reporter, encoding="utf-8", newline="\n")
 
 
 def verify_xml(xml_string, reporter=None, namer=None):
