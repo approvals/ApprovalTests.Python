@@ -17,9 +17,9 @@ def write_to_temporary_file(expected, name):
         return temp.name
 
 
-def to_json(object):
+def to_json(obj):
     return json.dumps(
-        object,
+        obj,
         sort_keys=True,
         indent=4,
         separators=(',', ': '),
