@@ -127,10 +127,10 @@ def verify_as_json(obj, reporter=None):
             will be used; see get_default_reporter().
             
     Raises:
-        TypeError: If obj cannot be rendered to JSON.
+        TypeError: If obj has a type that cannot be rendered to JSON.
         
-        ValueError: If obj is a data structure with circular references, such as a list containing a
-            reference to itself.
+        ValueError: If obj is a value that cannot be rendered to JSON; for example, a data
+            structure containing circular references.
     """
     json_string = to_json(obj) + "\n"
     verify(json_string, reporter, encoding="utf-8", newline="\n")
