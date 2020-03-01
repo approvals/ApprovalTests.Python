@@ -62,6 +62,12 @@ class VerifyTests(unittest.TestCase):
         with self.assertRaises(TypeError):
             verify_as_json(Ellipsis, self.reporter)
 
+    def test_verify_as_json_raises_value_error_for_non_renderable_values(self):
+        circular_data = []
+        circular_data.append(circular_data)
+        with self.assertRaises(ValueError):
+            verify_as_json(circular_data, self.reporter)
+
     def test_verify_file(self):
         name = "exampleFile.txt"
         filename = get_adjacent_file(name)
