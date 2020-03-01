@@ -129,9 +129,8 @@ def verify_as_json(obj, reporter=None):
     Raises:
         TypeError: If obj cannot be rendered to JSON.
         
-        ValueError: If out-of-range floats such as NaN, which are not part part of the JSON
-            specification are serialised, or if obj is a data structure with circular references,
-            such as a list containing a reference to itself.
+        ValueError: If obj is a data structure with circular references, such as a list containing a
+            reference to itself.
     """
     json_string = to_json(obj) + "\n"
     verify(json_string, reporter, encoding="utf-8", newline="\n")

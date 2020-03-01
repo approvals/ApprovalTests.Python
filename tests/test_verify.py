@@ -57,6 +57,10 @@ class VerifyTests(unittest.TestCase):
             "z": 26
         }
         verify_as_json(o, self.reporter)
+        
+    def test_verify_as_json_raises_type_error_for_non_renderable_types(self):
+        with self.assertRaises(TypeError):
+            verify_as_json(Ellipsis, self.reporter)
 
     def test_verify_file(self):
         name = "exampleFile.txt"

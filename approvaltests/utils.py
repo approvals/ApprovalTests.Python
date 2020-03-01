@@ -18,11 +18,16 @@ def write_to_temporary_file(expected, name):
 
 
 def to_json(obj):
-    return json.dumps(
-        obj,
-        sort_keys=True,
-        indent=4,
-        separators=(',', ': '),
-        default=lambda o: o.__dict__,
-        ensure_ascii=True,
-    )
+    try:
+        return json.dumps(
+            obj,
+            sort_keys=True,
+            indent=4,
+            separators=(',', ': '),
+            default=lambda o: o.__dict__,
+            ensure_ascii=True,
+        )
+    except AttributeError as e:
+        # For objects without __dict__ which cause the default callable, above,
+        # to fail, convert the AttributeError to a TypeError
+        raise TypeError(e)
