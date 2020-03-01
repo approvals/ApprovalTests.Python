@@ -115,6 +115,24 @@ def verify_with_namer(data, namer, reporter, encoding=None, errors=None, newline
 
 
 def verify_as_json(obj, reporter=None):
+    """Verify an object rendered as a JSON string.
+    
+    Args:
+        obj: Any object representable in JSON by the standard library json module. Typically a
+            dictionary, through other objects with JSON equivalents such as lists, ints, floats and
+            strings may also be used. Other types will have *all* their data members extracted and
+            rendered as a JSON object, which may violate encapsulation of your types.
+            
+        reporter: An optional Reporter. If None (the default), the default reporter
+            will be used; see get_default_reporter().
+            
+    Raises:
+        TypeError: If obj cannot be rendered to JSON.
+        
+        ValueError: If out-of-range floats such as NaN, which are not part part of the JSON
+            specification are serialised, or if obj is a data structure with circular references,
+            such as a list containing a reference to itself.
+    """
     json_string = to_json(obj) + "\n"
     verify(json_string, reporter, encoding="utf-8", newline="\n")
 
