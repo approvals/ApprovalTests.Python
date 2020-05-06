@@ -3,7 +3,7 @@
 import unittest
 
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
+from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_binary, verify_binary_file
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.utils import get_adjacent_file
@@ -15,7 +15,7 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify(self):
         verify("Hello World.", self.reporter)
-        
+
     def test_verify_with_encoding(self):
         verify(u"Høvdingens kjære squaw får litt pizza i Mexico by", self.reporter, encoding="utf-8")
 
@@ -24,7 +24,8 @@ class VerifyTests(unittest.TestCase):
             verify(u"Høvdingens kjære squaw får litt pizza i Mexico by", self.reporter, encoding="ascii")
 
     def test_verify_with_errors_replacement_character(self):
-        verify(u"Falsches Üben von Xylophonmusik quält jeden größeren Zwerg", self.reporter, encoding="ascii", errors="replace")
+        verify(u"Falsches Üben von Xylophonmusik quält jeden größeren Zwerg", self.reporter, encoding="ascii",
+               errors="replace")
 
     def test_verify_with_newlines(self):
         verify(
@@ -71,3 +72,19 @@ class VerifyTests(unittest.TestCase):
     def test_verify_xml(self):
         xml = """<?xml version="1.0" encoding="UTF-8"?><orderHistory createdAt='2019-08-02T16:40:18.109470'><order date='2018-09-01T00:00:00+00:00' totalDollars='149.99'><product id='EVENT02'>Makeover</product></order><order date='2017-09-01T00:00:00+00:00' totalDollars='14.99'><product id='LIPSTICK01'>Cherry Bloom</product></order></orderHistory>"""
         verify_xml(xml)
+
+    def test_verify_binary(self):
+        verify_binary(b"Hello World.", self.reporter)
+
+    def test_verify_binary_fail(self):
+        reporter = ReporterForTesting()
+        try:
+            verify_binary(b"Hello World.", reporter)
+            self.assertFalse(True, "expected exception")
+        except ApprovalException as e:
+            self.assertTrue("Approval Mismatch", e.value)
+
+    def test_verify_binary_file(self):
+        name = "exampleFile.blb"
+        filename = get_adjacent_file(name)
+        verify_binary_file(filename, self.reporter)

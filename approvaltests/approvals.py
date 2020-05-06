@@ -4,6 +4,7 @@ import xml.dom.minidom
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
+from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.file_approver import FileApprover
@@ -17,7 +18,7 @@ DEFAULT_REPORTER = local()
 def set_default_reporter(reporter):
     global DEFAULT_REPORTER
     DEFAULT_REPORTER.v = reporter
-    
+
 
 def get_default_reporter():
     if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
@@ -43,6 +44,8 @@ def verify(data, reporter=None, namer=None, encoding=None, errors=None, newline=
         
         reporter: An optional Reporter. If None (the default), the default reporter
             will be used; see get_default_reporter().
+
+        namer: A Namer instance used for naming approved and received data files.
             
         encoding: An optional encoding to be used when serialising the data to a byte stream for
             comparison. If None (the default) a locale-dependent encoding will be used; see
@@ -208,9 +211,58 @@ def verify_all(header, alist, formatter=None, reporter=None, encoding=None, erro
         
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
-    """    
+    """
     text = format_list(alist, formatter, header)
     verify(text, reporter, encoding=encoding, errors=errors, newline=newline)
+
+
+def verify_binary(data, reporter=None, namer=None):
+    """Verify raw byte data against a previously approved version of the byte-string.
+
+       Args:
+           data: A raw byte string containing the data to be compared with approved data from a previous run.
+
+           reporter: An optional Reporter. If None (the default), the default reporter
+               will be used; see get_default_reporter().
+
+           namer: A Namer instance used for naming approved and received data files.
+
+       Raises:
+           ApprovalException: If the verification fails because the given bytes do not match the
+               approved bytes.
+    """
+    reporter_to_use = reporter or get_default_reporter()
+    namer_to_use = namer or get_default_namer(extension='.blb')
+    verify_binary_with_namer(data, namer_to_use, reporter_to_use)
+
+
+def verify_binary_with_namer(data, namer, reporter):
+    reporter = get_reporter(reporter)
+    approver = FileApprover()
+    writer = BinaryWriter(data)
+    error = approver.verify(namer, writer, reporter)
+    if error is not None:
+        raise ApprovalException(error)
+
+
+def verify_binary_file(filename, reporter=None):
+    """Verify the contents of a binary file against previously approved contents.
+
+           Args:
+               file_name: The path to a file. The file will be opened in binary mode.
+
+               reporter: An optional Reporter. If None (the default), the default reporter
+                   will be used; see get_default_reporter().
+
+               namer: A Namer instance used for naming approved and received data files.
+
+           Raises:
+               ApprovalException: If the verification fails because the given bytes do not match the
+                   approved bytes.
+    """
+    with io.open(filename, 'rb') as f:
+        file_contents = f.read()
+    verify_binary(file_contents, reporter)
 
 
 def get_scenario_namer(scenario_name):
