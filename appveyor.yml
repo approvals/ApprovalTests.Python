@@ -1,0 +1,15 @@
+environment:
+  matrix:
+    - TOXENV: py27
+    - TOXENV: py36
+    - TOXENV: py37
+    - TOXENV: py38
+
+build: off
+
+install:
+- choco install meld
+- pip install tox
+
+test_script:
+- tox
