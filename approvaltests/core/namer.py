@@ -73,8 +73,8 @@ class StackFrameNamer(Namer):
     def is_test_method(self, frame):
         is_unittest_test = ("self" in frame[0].f_locals
                and "_testMethodName" in frame[0].f_locals["self"].__dict__
-               and frame[3] is not "__call__"
-               and frame[3] is not "run")
+               and frame[3] != "__call__"
+               and frame[3] != "run")
 
         is_pytest_test = frame[3].startswith("test_")
 
