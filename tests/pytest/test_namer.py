@@ -4,6 +4,10 @@ from approvaltests.approvals import get_default_namer, verify
 from approvaltests.pytest.namer import PyTestNamer
 
 
+def test_basic_approval():
+    verify("foo")
+
+
 def test_received_filename():
     namer = get_default_namer()
     expected = os_path("ApprovalTests.Python/tests/pytest/test_namer.test_received_filename.received.txt")
