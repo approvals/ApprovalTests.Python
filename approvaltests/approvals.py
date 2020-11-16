@@ -71,7 +71,7 @@ def verify(data, reporter=None, namer=None, encoding=None, errors=None, newline=
     verify_with_namer(data, namer_to_use, reporter_to_use, encoding=encoding, errors=errors, newline=newline)
 
 
-def verify_with_namer(data, namer, reporter, encoding=None, errors=None, newline=None):
+def verify_with_namer(data, namer, reporter=None, encoding=None, errors=None, newline=None):
     """Verify string data against a previously approved version of the string.
     
     Args:
