@@ -1,0 +1,29 @@
+1. markdown snippets
+  a. github actions for mbsnippets
+2. powershell scripts
+3. starter projects
+4. github action that pushes to pypi
+5. options support
+
+python
+type hints
+
+1. defaults
+  a. should be \n instead of os specific when writing
+  b. should be \r\n == \n when comparing
+2. nonblocking difftool launching
+
+
+
+
+  def test_mypy(self) -> None:
+       try:
+           import mypy.api
+       except ImportError:
+           print("mypy not found")
+           self.skipTest("mypy not found")
+       stdout, stderr, exit_code = mypy.api.run([
+           '--config-file', 'mypy.ini',
+           SCRIPT_DIR,
+       ])
+       self.assertEqual(0, exit_code, "\n\n" + stdout + stderr)
