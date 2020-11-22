@@ -8,14 +8,14 @@ from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 class VerifyAllCombinationsTests(unittest.TestCase):
     def setUp(self):
-        self.reporter = ReporterForTesting()
+        self.reporter = None
         self.func = lambda *args: sum(args) + 1
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_one_arg(self):
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
         with self.assertRaises(ApprovalException):
-            verify_all_combinations(self.func, all_args_combinations, reporter=self.reporter)
+            verify_all_combinations(self.func, all_args_combinations, reporter=ReporterForTesting())
 
     def test_passes_for_func_accepting_one_arg_and_combination_of_one_arg(self):
         arg1_combinations = (1,)
@@ -26,7 +26,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
         with self.assertRaises(ApprovalException):
-            verify_all_combinations(self.func, all_args_combinations, reporter=self.reporter)
+            verify_all_combinations(self.func, all_args_combinations, reporter=ReporterForTesting())
 
     def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(self):
         arg1_combinations = (1, 2)
@@ -38,7 +38,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         arg2_combinations = (2,)
         arg_combinations = (arg1_combinations, arg2_combinations)
         with self.assertRaises(ApprovalException):
-            verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
+            verify_all_combinations(self.func, arg_combinations, reporter=ReporterForTesting())
 
     def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(self):
         arg1_combinations = (1,)
@@ -51,7 +51,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         arg2_combinations = (2, 4)
         arg_combinations = (arg1_combinations, arg2_combinations)
         with self.assertRaises(ApprovalException):
-            verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
+            verify_all_combinations(self.func, arg_combinations, reporter=ReporterForTesting())
 
     def test_for_func_accepting_three_args_and_combination_of_three_args(self):
         arg1_combinations = (1, 2, 3)
