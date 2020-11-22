@@ -15,7 +15,7 @@ type hints
      the new file reading needs to handle encoding
 
 
-
+2. Add Retrospective at end (15 minutes)
 
   def test_mypy(self) -> None:
        try:
