@@ -10,8 +10,9 @@ type hints
 
 1. defaults
   a. should be \n instead of os specific when writing
-  b. should be \r\n == \n when comparing
-2. nonblocking difftool launching
+  b. should be \r\n == \n when comparing   (wip, need to handle non-standard text files - broken CI builds)
+     need to fall back to filecmp
+     the new file reading needs to handle encoding
 
 
 
