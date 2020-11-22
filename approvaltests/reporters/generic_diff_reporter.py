@@ -35,7 +35,7 @@ class GenericDiffReporter(Reporter):
 
     @staticmethod
     def run_command(command_array):
-        subprocess.call(command_array)
+        subprocess.Popen(command_array)
 
     def get_command(self, received, approved):
         return [self.path] + self.extra_args + [received, approved]
