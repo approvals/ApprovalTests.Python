@@ -1,5 +1,6 @@
 import filecmp
 import os
+import pathlib
 
 
 def exists(path):
@@ -32,7 +33,7 @@ class FileApprover(object):
         if not exists(approved_file) or not exists(received_file):
             return False
 
-        if os.stat(approved_file).st_size != os.stat(received_file).st_size:
-            return False
-        else:
-            return filecmp.cmp(approved_file, received_file)
+        approved_text = pathlib.Path(approved_file).read_text().replace("\r\n", "\n")
+        received_text = pathlib.Path(received_file).read_text().replace("\r\n", "\n")
+
+        return approved_text == received_text
