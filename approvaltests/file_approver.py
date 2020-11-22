@@ -33,7 +33,12 @@ class FileApprover(object):
         if not exists(approved_file) or not exists(received_file):
             return False
 
-        approved_text = pathlib.Path(approved_file).read_text().replace("\r\n", "\n")
-        received_text = pathlib.Path(received_file).read_text().replace("\r\n", "\n")
+        try:
+            approved_raw = pathlib.Path(approved_file).read_text()
+            approved_text = approved_raw.replace("\r\n", "\n")
+            received_raw = pathlib.Path(received_file).read_text()
+            received_text = received_raw.replace("\r\n", "\n")
 
-        return approved_text == received_text
+            return approved_text == received_text
+        except:
+            return filecmp.cmp(approved_file,received_file)
