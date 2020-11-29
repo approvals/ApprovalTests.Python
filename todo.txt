@@ -5,6 +5,7 @@
 4. github action that pushes to pypi
 5. options support
 6. check all uses of default reporter in tests
+7. make code more pythonic (method overloads vs default parameters)
 
 python
 type hints
