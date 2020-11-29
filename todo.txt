@@ -4,6 +4,7 @@
 3. starter projects
 4. github action that pushes to pypi
 5. options support
+6. check all uses of default reporter in tests
 
 python
 type hints

@@ -11,7 +11,7 @@ from approvaltests.utils import get_adjacent_file
 
 class VerifyTests(unittest.TestCase):
     def setUp(self):
-        self.reporter = GenericDiffReporterFactory().get('BeyondCompare4Mac')
+        self.reporter = None
 
     def test_verify(self):
         verify("Hello World.", self.reporter)
@@ -66,7 +66,7 @@ class VerifyTests(unittest.TestCase):
     def test_verify_file_with_windows_1252_encoding(self):
         name = "exampleFileWindows1252.txt"
         filename = get_adjacent_file(name)
-        verify_file(filename, self.reporter, encoding="cp1252", newline="\r\n")
+        verify_file(filename, self.reporter)
 
     def test_verify_xml(self):
         xml = """<?xml version="1.0" encoding="UTF-8"?><orderHistory createdAt='2019-08-02T16:40:18.109470'><order date='2018-09-01T00:00:00+00:00' totalDollars='149.99'><product id='EVENT02'>Makeover</product></order><order date='2017-09-01T00:00:00+00:00' totalDollars='14.99'><product id='LIPSTICK01'>Cherry Bloom</product></order></orderHistory>"""

@@ -1,10 +1,13 @@
 import io
+import shutil
 from threading import local
 import xml.dom.minidom
 
+from approvaltests.core import Writer
+
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.core.namer import StackFrameNamer
+from approvaltests.core.namer import StackFrameNamer, Namer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
@@ -106,9 +109,13 @@ def verify_with_namer(data, namer, reporter=None, encoding=None, errors=None, ne
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
-    reporter = get_reporter(reporter)
-    approver = FileApprover()
     writer = StringWriter(data, encoding=encoding, errors=errors, newline=newline)
+    verify_with_namer_and_writer(namer, writer, reporter)
+
+
+def verify_with_namer_and_writer(namer, writer, reporter):
+    approver = FileApprover()
+    reporter = get_reporter(reporter)
     error = approver.verify(namer, writer, reporter)
     if error is not None:
         raise ApprovalException(error)
@@ -129,6 +136,15 @@ def verify_xml(xml_string, reporter=None, namer=None):
     verify_with_namer(pretty_xml, namer, reporter, encoding="utf-8", newline="\n")
 
 
+class ExistingFileWriter(Writer):
+    def __init__(self, file_name):
+        self.file_name = file_name
+
+    def write_received_file(self, received_file):
+        shutil.copyfile(self.file_name, received_file)
+        return received_file
+
+
 def verify_file(file_name, reporter=None, encoding=None, errors=None, newline=None):
     """Verify the contents of a text file against previously approved contents.
     
@@ -137,22 +153,7 @@ def verify_file(file_name, reporter=None, encoding=None, errors=None, newline=No
         
         reporter: An optional Reporter. If None (the default), the default reporter
             will be used; see get_default_reporter().
-            
-        encoding: An optional encoding to be used when reading the file and serialising the data to
-            a byte stream for comparison. If None (the default) a locale-dependent encoding will be
-            used; see locale.getpreferredencoding().
-            
-        errors: An optional string that specifies how encoding and decoding errors are to be handled
-            If None (the default) or 'strict', raise a ValueError exception if there is an encoding
-            error. Pass 'ignore' to ignore encoding errors. Pass 'replace' to use a replacement
-            marker (such as '?') when there is malformed data.
-            
-        newline: An optional string that controls how universal newlines work when reading the file
-            and comparing data. It can be None, '', '\n', '\r', and '\r\n'. If None (the default)
-            universal newlines are enabled and any '\n' characters are translated to the system
-            default line separator given by os.linesep. If newline is '', no translation takes
-            place. If newline is any of the other legal values, any '\n' characters written are
-            translated to the given string.
+
             
     Raises:
         ApprovalException: If the verification fails because the given string does not match the
@@ -161,9 +162,7 @@ def verify_file(file_name, reporter=None, encoding=None, errors=None, newline=No
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
-    with io.open(file_name, 'rt', encoding=encoding, errors=errors, newline=newline) as f:
-        file_contents = f.read()
-    verify(file_contents, reporter, encoding=encoding, errors=errors, newline=newline)
+    verify_with_namer_and_writer(get_default_namer(), ExistingFileWriter(file_name), reporter)
 
 
 def verify_file_with_encoding(file_name, reporter=None, encoding=None, errors=None, newline=None):
