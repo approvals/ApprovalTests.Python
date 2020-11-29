@@ -14,11 +14,13 @@ class Command(object):
         path, name = os.path.split(self.command)
         if path and self.executable(self.command):
             return self.command
-        else:
-            for path in os.environ["PATH"].split(os.pathsep):
-                path=path.strip('"')
-                exe = os.path.join(path, self.command)
-                if self.executable(exe):
-                    return exe
+        if True: # use 'where' to find the executable so it finds python and python.exe
+            pass
+
+        for path in os.environ["PATH"].split(os.pathsep):
+            path=path.strip('"')
+            exe = os.path.join(path, self.command)
+            if self.executable(exe):
+                return exe
 
         return None
