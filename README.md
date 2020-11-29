@@ -5,7 +5,7 @@ Capturing Human Intelligence - ApprovalTests is an open source assertion/verific
 
 For more information see: [www.approvaltests.com](http://approvaltests.com/).
 
-Travis CI: [![Build Status](https://travis-ci.org/approvals/ApprovalTests.Python.png?branch=master)](https://travis-ci.org/approvals/ApprovalsTests.Python)
+Travis CI: [![Build Status](https://travis-ci.org/approvals/ApprovalTests.Python.png?branch=master)](https://travis-ci.org/github/approvals/ApprovalTests.Python/builds)
 
 Github Actions: [![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Test/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.Python/actions)
 
