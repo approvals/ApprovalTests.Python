@@ -17,7 +17,7 @@ type hints
      the new file reading needs to handle encoding
 
 2. Test nonblocking difftool launching
-  a. Linux
+  a. Linux - also why doesn't meld appear by default?
   b. Mac
 
 3. Add Retrospective at end (15 minutes)
