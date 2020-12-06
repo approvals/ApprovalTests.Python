@@ -68,6 +68,11 @@ class VerifyTests(unittest.TestCase):
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
+    def test_verify_file_with_actual_windows_1252_encoding(self):
+        name = "exampleFile_Actual_Windows1252.txt"
+        filename = get_adjacent_file(name)
+        verify_file(filename, self.reporter)
+
     def test_verify_xml(self):
         xml = """<?xml version="1.0" encoding="UTF-8"?><orderHistory createdAt='2019-08-02T16:40:18.109470'><order date='2018-09-01T00:00:00+00:00' totalDollars='149.99'><product id='EVENT02'>Makeover</product></order><order date='2017-09-01T00:00:00+00:00' totalDollars='14.99'><product id='LIPSTICK01'>Cherry Bloom</product></order></orderHistory>"""
         verify_xml(xml)
