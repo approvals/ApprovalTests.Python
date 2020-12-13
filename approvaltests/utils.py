@@ -26,3 +26,7 @@ def to_json(object):
         default=lambda o: o.__dict__,
         ensure_ascii=True,
     )
+
+
+def is_windows_os():
+    return os.name == 'nt'

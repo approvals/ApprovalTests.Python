@@ -10,7 +10,7 @@ from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 import approvaltests
 from approvaltests.core.namer import Namer
-from approvaltests.utils import to_json
+from approvaltests.utils import to_json, is_windows_os
 
 
 class GenericDiffReporterTests(unittest.TestCase):
@@ -123,7 +123,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     @staticmethod
     def instantiate_reporter_for_test():
-        program = r'C:\Windows\System32\help.exe' if os.name == 'nt' else 'echo'
+        program = r'C:\Windows\System32\help.exe' if is_windows_os() else 'echo'
         reporter = GenericDiffReporter.create(program)
         reporter.run_command = lambda command_array: None
         return reporter
