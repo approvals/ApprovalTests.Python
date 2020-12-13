@@ -9,6 +9,7 @@
 8. get the python reporter to work with separate process launch
    (or not fire up in separate thread at all)
 9. get the python reporter to work on windows
+10. change setup.py to pull in requirements.txt - and check requirements
 
 python
 type hints
