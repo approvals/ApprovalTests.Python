@@ -58,7 +58,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         ]
         self.assertEqual(command, expected_command)
 
-    def test_empty_approved_file_created_when_one_does_not_exist_temp(self):
+    def test_empty_approved_file_created_when_one_does_not_exist(self):
         namer = Namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
@@ -148,7 +148,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         )
 
 
-    def test_empty_approved_file_created_when_one_does_not_exist(self):
+    def test_empty_approved_file_created_when_one_does_not_exist_2(self):
         self.assertFileDoesNotExist(self.approved_file_path)
 
         reporter = self.instantiate_reporter_for_test()
