@@ -27,7 +27,8 @@ def test_files_differ(tmpdir):
     with open(file2, "w") as f2:
         f2.write("def")
     diff = calculate_diff(file1, file2)
-    diff = diff.replace(str(tmpdir), "tmpdir")
+    diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
+    diff = diff.replace('\\', '/')
 
     verify(diff, reporter=factory.get("PythonNative"))
 
