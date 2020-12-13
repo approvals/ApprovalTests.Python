@@ -5,6 +5,7 @@ import shutil
 import unittest
 
 from approvaltests.approvals import verify, get_default_namer
+from approvaltests.command import Command
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
 import approvaltests
@@ -57,7 +58,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         ]
         self.assertEqual(command, expected_command)
 
-    def test_empty_approved_file_created_when_one_does_not_exist(self):
+    def test_empty_approved_file_created_when_one_does_not_exist_temp(self):
         namer = Namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
@@ -122,7 +123,8 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     @staticmethod
     def instantiate_reporter_for_test():
-        reporter = GenericDiffReporter.create('echo')
+        program = r'C:\Windows\System32\help.exe' if os.name == 'nt' else 'echo'
+        reporter = GenericDiffReporter.create(program)
         reporter.run_command = lambda command_array: None
         return reporter
 
@@ -144,6 +146,7 @@ class GenericDiffReporterTests(unittest.TestCase):
             self.tmp_dir,
             'approved_file.txt'
         )
+
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
         self.assertFileDoesNotExist(self.approved_file_path)
