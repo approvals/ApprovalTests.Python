@@ -100,6 +100,7 @@ class GenericDiffReporterTests(unittest.TestCase):
                 match = regex.findall(file_contents)
                 if match:
                     file_contents = file_contents.replace(match[0], "")
+                file_contents = file_contents.replace('python.exe', 'python')
                 verify(file_contents, self.reporter)
         finally:
             os.remove(saved_reporters_file)
