@@ -14,19 +14,10 @@
 12. *** Test nonblocking difftool launching
   a. Linux - also why doesn't meld appear by default?
   b. Mac
-
-
-python
-type hints
-
-1. defaults
-  a. should be \n instead of os specific when writing
-  b. should be \r\n == \n when comparing   (wip, need to handle non-standard text files - broken CI builds)
-     need to fall back to filecmp
-     the new file reading needs to handle encoding
-
-
-3. Add Retrospective at end (15 minutes)
+13. python type hints - use mypy linter to check it - see code snippet below
+14. Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
+     the new file creation handles writing with correct encoding
+15. combination approvals needs line ending option
 
   def test_mypy(self) -> None:
        try:
