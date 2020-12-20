@@ -6,11 +6,14 @@
 5. options support
 6. check all uses of default reporter in tests
 7. make code more pythonic (method overloads vs default parameters)
-8. get the python reporter to work with separate process launch
+8. *** get the python reporter to work [not swallow output] with separate process launch
    (or not fire up in separate thread at all)
-9. get the python reporter to work on windows
+9. DONE get the python reporter to work on windows
 10. change setup.py to pull in requirements.txt - and check requirements
 11. Fail test if there are duplicate names - pylint ?
+12. *** Test nonblocking difftool launching
+  a. Linux - also why doesn't meld appear by default?
+  b. Mac
 
 
 python
@@ -22,9 +25,6 @@ type hints
      need to fall back to filecmp
      the new file reading needs to handle encoding
 
-2. Test nonblocking difftool launching
-  a. Linux - also why doesn't meld appear by default?
-  b. Mac
 
 3. Add Retrospective at end (15 minutes)
 
