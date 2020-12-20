@@ -59,7 +59,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(command, expected_command)
 
     def test_empty_approved_file_created_when_one_does_not_exist(self):
-        namer = Namer()
+        namer = get_default_namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
         if os.path.isfile(approved):
@@ -68,6 +68,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
         reporter = self.factory.get("BeyondCompare4")
         reporter.run_command = lambda command_array: None
+        reporter.is_working = lambda: True
         reporter.report(received, approved)
         self.assertEqual(0, os.stat(approved).st_size)
 
