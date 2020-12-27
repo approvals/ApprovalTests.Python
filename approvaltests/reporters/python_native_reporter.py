@@ -4,7 +4,13 @@ import os
 import sys
 from difflib import unified_diff
 
-from approvaltests.reporters import get_command_text
+from approvaltests.reporters import get_command_text, Reporter
+
+
+class PythonNativeReporter(Reporter):
+    def report(self, received_path, approved_path):
+        print(calculate_diff(received_path, approved_path))
+        return True
 
 
 def calculate_diff(file1, file2):
