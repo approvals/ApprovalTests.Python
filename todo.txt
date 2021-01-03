@@ -18,6 +18,7 @@
 14. Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
      the new file creation handles writing with correct encoding
 15. combination approvals needs line ending option
+16. add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 
   def test_mypy(self) -> None:
        try:
