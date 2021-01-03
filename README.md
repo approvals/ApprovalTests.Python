@@ -23,6 +23,15 @@ From pypi:
 
 ## Getting Started
 
+### Overview
+
+Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
+of the current test results and use that as the golden master.  The reporter helps you manage the golden master.  
+Whenever your current results differ from the golden master, Approvals will launch an external application for you to 
+examine the differences.  Either you will update the master because you expected the changes and they are good,
+or you will go back to your code and update or roll back your changes to get your results back in line with the 
+golden master.
+
 ### Example using pytest
 
 ```python
@@ -39,15 +48,6 @@ Install the plugin pytest-approvaltests and use it to select a reporter:
 
     pip install pytest-approvaltests
     pytest --approvaltests-use-reporter='PythonNative'
-
-### Overview
-
-Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
-of the current test results and use that as the golden master.  The reporter helps you manage the golden master.  
-Whenever your current results differ from the golden master, Approvals will launch an external application for you to 
-examine the differences.  Either you will update the master because you expected the changes and they are good,
-or you will go back to your code and update or roll back your changes to get your results back in line with the 
-golden master.
 
 The reporter is used both to alert you to changes in your test output, and to provide a tool to update the golden 
 master. In this snippet, we chose the 'PythonNative' reporter when we ran the tests. For more information about selecting
