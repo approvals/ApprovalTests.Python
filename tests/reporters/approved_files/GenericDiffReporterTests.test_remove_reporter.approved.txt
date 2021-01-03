@@ -7,7 +7,6 @@
     "AraxisMergeMac",
     "WinMerge",
     "kdiff3",
-    "vimdiff",
     "DiffMerge",
     "PyCharm"
 ]
