@@ -168,7 +168,7 @@ To run the self-tests, install pytest and tox, then execute
 
     python -m tox
 
-This will run the self-tests on several python versions. We would like to continue to support python 2. 
+This will run the self-tests on several python versions. We support python 3.6 and above. 
 
 All pull requests will be pre-checked using travis to execute all these tests. You can see the results of travis test
 runs [here](https://travis-ci.org/approvals/ApprovalTests.Python/pull_requests).
