@@ -1,7 +1,7 @@
 import json
 
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
-from approvaltests.utils import get_adjacent_file, is_windows_os
+from approvaltests.utils import get_adjacent_file
 
 
 class GenericDiffReporterFactory(object):
@@ -9,18 +9,9 @@ class GenericDiffReporterFactory(object):
 
     def __init__(self):
         self.load(get_adjacent_file('reporters.json'))
-        if is_windows_os():
-            exe = 'python.exe'
-        else:
-            exe = 'python'
-
-        self.add_fallback_reporter_config(["PythonNative", exe, [get_adjacent_file("python_native_reporter.py")]])
 
     def add_default_reporter_config(self, config):
         self.reporters.insert(0, config)
-
-    def add_fallback_reporter_config(self, config):
-        self.reporters.append(config)
 
     def list(self):
         return [r[0] for r in self.reporters]

@@ -1,11 +1,8 @@
 import os
 
 from approvaltests import verify
-from approvaltests.reporters import GenericDiffReporterFactory
 
 from approvaltests.reporters.python_native_reporter import *
-
-factory = GenericDiffReporterFactory()
 
 
 def test_files_identical(tmpdir):
@@ -16,7 +13,7 @@ def test_files_identical(tmpdir):
         f1.write(identical_contents)
     with open(file2, "w") as f2:
         f2.write(identical_contents)
-    verify(calculate_diff(file1, file2), reporter=factory.get("PythonNative"))
+    verify(calculate_diff(file1, file2))
 
 
 def test_files_differ(tmpdir):
@@ -30,5 +27,5 @@ def test_files_differ(tmpdir):
     diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
     diff = diff.replace('\\', '/')
 
-    verify(diff, reporter=factory.get("PythonNative"))
+    verify(diff)
 

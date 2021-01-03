@@ -8,6 +8,5 @@
     "WinMerge",
     "kdiff3",
     "DiffMerge",
-    "PyCharm",
-    "PythonNative"
+    "PyCharm"
 ]

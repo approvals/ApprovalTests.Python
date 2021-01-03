@@ -45,12 +45,5 @@
     [
       "diff"
     ]
-  ],
-  [
-    "PythonNative",
-    "python",
-    [
-      "python_native_reporter.py"
-    ]
   ]
 ]
