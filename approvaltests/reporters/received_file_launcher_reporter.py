@@ -4,6 +4,13 @@ from approvaltests.core.reporter import Reporter
 
 
 class ReceivedFileLauncherReporter(Reporter):
+    """
+    A blocking reporter that attempts to
+    open the received file using the
+    system default text file viewer.
+
+    Note: only works on Windows for now.
+    """
 
     @staticmethod
     def get_command(approved_path, received_path):

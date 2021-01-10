@@ -8,6 +8,10 @@ from approvaltests.reporters import get_command_text, Reporter
 
 
 class PythonNativeReporter(Reporter):
+    """
+    A blocking reporter that outputs diff straight
+    to standard output
+    """
     def report(self, received_path, approved_path):
         print(calculate_diff(received_path, approved_path))
         return True

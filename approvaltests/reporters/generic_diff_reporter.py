@@ -8,6 +8,11 @@ from approvaltests.utils import to_json
 
 
 class GenericDiffReporter(Reporter):
+    """
+    A non-blocking reporter that launches
+    an external diff tool given by config.
+    """
+
     @staticmethod
     def create(diff_tool_path):
         return GenericDiffReporter(['custom', diff_tool_path])
