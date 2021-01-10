@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from distutils.core import setup
 
 from setuptools import find_packages
@@ -20,4 +21,6 @@ setup(
     packages=find_packages(exclude=['tests*']),
     package_data={'approvaltests':['reporters/reporters.json']},
     install_requires=['pyperclip==1.5.27', 'pytest'],
+    long_description=(Path(__file__).parent / "README.md").read_text(),
+    long_description_content_type='text/markdown',
 )
