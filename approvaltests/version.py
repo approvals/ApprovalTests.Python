@@ -1,1 +1,1 @@
-version_number = "0.3.post1"
+version_number = "0.3.post2"
