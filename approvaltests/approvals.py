@@ -117,7 +117,7 @@ def verify_with_namer_and_writer(namer, writer, reporter):
     approver = FileApprover()
     reporter = get_reporter(reporter)
     error = approver.verify(namer, writer, reporter)
-    if error is not None:
+    if error:
         raise ApprovalException(error)
 
 
