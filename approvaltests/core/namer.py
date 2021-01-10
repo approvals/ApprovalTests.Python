@@ -105,5 +105,4 @@ class StackFrameNamer(Namer):
 
     def get_file_name(self):
         class_name = "" if (self.ClassName is None) else (self.ClassName + ".")
-        file_name = class_name + self.MethodName
-        return file_name
+        return class_name + self.MethodName
