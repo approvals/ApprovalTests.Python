@@ -17,7 +17,7 @@ utilities.
 
 ## Setup
 
-From pypi:
+From [pypi](https://pypi.org/project/approvaltests/):
 
 	pip install approvaltests
 
