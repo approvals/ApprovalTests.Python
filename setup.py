@@ -21,12 +21,12 @@ setup(
     long_description=(HERE / 'README.md').read_text(),
     long_description_content_type='text/markdown',
     classifiers=[
-        "Development Status :: 4 - Beta",  # FIXME is that a correct status?
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows",
-        # "Operating System :: MacOS :: MacOS X",  # FIXME tested/supported on mac?
+        "Operating System :: MacOS :: MacOS X",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.6",
