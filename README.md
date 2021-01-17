@@ -73,7 +73,7 @@ reporters see [the documentation](https://github.com/approvals/ApprovalTests.Pyt
 
 ### Example using unittest
 
-<!-- snippet: getting_started_with_unittest -->
+<!-- snippet: getting_started_with_unittest.py -->
 <a id='snippet-getting_started_with_unittest'></a>
 ```py
 import unittest
