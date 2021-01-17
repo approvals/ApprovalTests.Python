@@ -49,15 +49,7 @@ golden master.
 
 ### Example using pytest
 
-```python
-
-from approvaltests.approvals import verify    
-
-def test_simple():
-    result = "foobar"
-    verify(result)
-
-```
+snippet: getting_started_with_pytest.py
 
 Install the plugin pytest-approvaltests and use it to select a reporter:
 

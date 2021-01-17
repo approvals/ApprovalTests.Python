@@ -10,7 +10,7 @@ class GettingStartedTest(unittest.TestCase):
         self.reporter = GenericDiffReporterFactory().get_first_working()
 
     def test_simple(self):
-        verify('Hello', self.reporter)
+        verify('Hello ApprovalTests', self.reporter)
 
 
 if __name__ == "__main__":
