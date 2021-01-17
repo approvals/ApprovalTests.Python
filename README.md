@@ -1,5 +1,7 @@
 # ApprovalTests.Python
 
+toc
+
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid testing.  
 `approvaltests` is the ApprovalTests port for Python.
 
