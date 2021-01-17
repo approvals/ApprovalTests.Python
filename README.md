@@ -49,7 +49,18 @@ golden master.
 
 ### Example using pytest
 
-snippet: getting_started_with_pytest.py
+<!-- snippet: getting_started_with_pytest.py -->
+<a id='snippet-getting_started_with_pytest.py'></a>
+```py
+from approvaltests.approvals import verify
+
+
+def test_simple():
+    result = "Hello ApprovalTests"
+    verify(result)
+```
+<sup><a href='/tests/examples/getting_started_with_pytest.py#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_pytest.py' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Install the plugin pytest-approvaltests and use it to select a reporter:
 
@@ -75,7 +86,7 @@ class GettingStartedTest(unittest.TestCase):
         self.reporter = GenericDiffReporterFactory().get_first_working()
 
     def test_simple(self):
-        verify('Hello', self.reporter)
+        verify('Hello ApprovalTests', self.reporter)
 
 if __name__ == "__main__":
     unittest.main()
