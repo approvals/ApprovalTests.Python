@@ -1,6 +1,19 @@
 # ApprovalTests.Python
 
-toc
+<!-- toc -->
+## Contents
+
+  * [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
+  * [Setup](#setup)
+  * [Getting Started](#getting-started)
+    * [Overview](#overview)
+    * [Example using pytest](#example-using-pytest)
+    * [Example using unittest](#example-using-unittest)
+  * [Reporters](#reporters)
+    * [Selecting a Reporter](#selecting-a-reporter)
+    * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
+  * [Support and Documentation](#support-and-documentation)
+  * [For developers](#for-developers)<!-- endToc -->
 
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid testing.  
 `approvaltests` is the ApprovalTests port for Python.
@@ -57,7 +70,26 @@ reporters see [the documentation](https://github.com/approvals/ApprovalTests.Pyt
 
 ### Example using unittest
 
-snippet: getting_started_with_unittest
+<!-- snippet: getting_started_with_unittest -->
+<a id='snippet-getting_started_with_unittest'></a>
+```py
+import unittest
+
+from approvaltests.approvals import verify
+from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+
+class GettingStartedTest(unittest.TestCase):
+    def setUp(self):
+        self.reporter = GenericDiffReporterFactory().get_first_working()
+
+    def test_simple(self):
+        verify('Hello', self.reporter)
+
+if __name__ == "__main__":
+    unittest.main()
+```
+<sup><a href='/tests/examples/getting_started_with_unittest.py#L1-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_unittest' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ```python
 import unittest
