@@ -57,6 +57,8 @@ reporters see [the documentation](https://github.com/approvals/ApprovalTests.Pyt
 
 ### Example using unittest
 
+snippet: getting_started_with_unittest
+
 ```python
 import unittest
 
