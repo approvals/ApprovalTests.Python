@@ -8,4 +8,3 @@ class ApprovalException(Exception):
 
 class FrameNotFound(ApprovalException):
     pass
-

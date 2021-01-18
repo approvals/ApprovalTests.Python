@@ -12,8 +12,11 @@ def get_adjacent_file(name):
 
 def write_to_temporary_file(expected, name):
     import tempfile
-    with tempfile.NamedTemporaryFile(mode='w+b', suffix='.txt', prefix=name, delete=False) as temp:
-        temp.write(expected.encode('utf-8-sig'))
+
+    with tempfile.NamedTemporaryFile(
+        mode="w+b", suffix=".txt", prefix=name, delete=False
+    ) as temp:
+        temp.write(expected.encode("utf-8-sig"))
         return temp.name
 
 
@@ -22,11 +25,11 @@ def to_json(object):
         object,
         sort_keys=True,
         indent=4,
-        separators=(',', ': '),
+        separators=(",", ": "),
         default=lambda o: o.__dict__,
         ensure_ascii=True,
     )
 
 
 def is_windows_os():
-    return os.name == 'nt'
+    return os.name == "nt"

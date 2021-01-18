@@ -10,25 +10,29 @@ from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 
 class TestList(TestCase):
     def setUp(self):
-        reporter = MultiReporter(GenericDiffReporter.create('diff'), CommandLineReporter())
+        reporter = MultiReporter(
+            GenericDiffReporter.create("diff"), CommandLineReporter()
+        )
         approvals.set_default_reporter(reporter)
 
     def test(self):
-        alist = ['a', 'b', 'c', 'd', 'e']
-        approvals.verify_all('letters', alist, reporter=DiffReporter())
+        alist = ["a", "b", "c", "d", "e"]
+        approvals.verify_all("letters", alist, reporter=DiffReporter())
 
     def test_uppercase(self):
-        alist = ['a', 'b', 'c', 'd']
-        approvals.verify_all('uppercase', alist, lambda x: '{0} => {1}'.format(x, x.upper()))
+        alist = ["a", "b", "c", "d"]
+        approvals.verify_all(
+            "uppercase", alist, lambda x: "{0} => {1}".format(x, x.upper())
+        )
 
     def test_format_line_part1(self):
         # This is part one of a test which reproduces the issue #32
-        alist = ['1', '2', '3']
-        approvals.verify_all('index', alist, reporter=DiffReporter())
+        alist = ["1", "2", "3"]
+        approvals.verify_all("index", alist, reporter=DiffReporter())
 
     def test_format_line_part2(self):
         # This is a part two of a test that would reproduce a bug where
         # `verify_all` does not reset index when called from two different tests.
         # More details in issue #32
-        alist = ['1', '2', '3']
-        approvals.verify_all('index', alist, reporter=DiffReporter())
+        alist = ["1", "2", "3"]
+        approvals.verify_all("index", alist, reporter=DiffReporter())

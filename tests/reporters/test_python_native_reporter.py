@@ -25,7 +25,6 @@ def test_files_differ(tmpdir):
         f2.write("def")
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
-    diff = diff.replace('\\', '/')
+    diff = diff.replace("\\", "/")
 
     verify(diff)
-

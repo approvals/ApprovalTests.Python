@@ -1,5 +1,10 @@
-from approvaltests import get_default_namer, verify_with_namer, write_to_temporary_file, get_reporter, \
-    StackFrameNamer
+from approvaltests import (
+    get_default_namer,
+    verify_with_namer,
+    write_to_temporary_file,
+    get_reporter,
+    StackFrameNamer,
+)
 
 
 class FilePathNamer(StackFrameNamer):
@@ -21,7 +26,9 @@ def assert_equal_with_reporter(expected, actual, reporter=None):
         return
 
     name = get_default_namer().get_file_name()
-    expected_file = write_to_temporary_file(expected, name + '.expected.')
-    actual_file = write_to_temporary_file(actual, name + '.actual.')
+    expected_file = write_to_temporary_file(expected, name + ".expected.")
+    actual_file = write_to_temporary_file(actual, name + ".actual.")
     get_reporter(reporter).report(actual_file, expected_file)
-    raise AssertionError('expected != actual\n  actual: "{}"\nexpected: "{}"'.format(actual, expected))
+    raise AssertionError(
+        'expected != actual\n  actual: "{}"\nexpected: "{}"'.format(actual, expected)
+    )

@@ -1,1 +1,1 @@
-__author__ = 'Chris Lucian; Llewellyn Falco; Jim Counts'
+__author__ = "Chris Lucian; Llewellyn Falco; Jim Counts"

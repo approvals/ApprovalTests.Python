@@ -6,11 +6,11 @@ from approvaltests.approval_exception import FrameNotFound
 
 
 class Namer(object):
-    APPROVED = '.approved'
-    RECEIVED = '.received'
+    APPROVED = ".approved"
+    RECEIVED = ".received"
 
     def __init__(self, extension=None):
-        self.extension_with_dot = extension or '.txt'
+        self.extension_with_dot = extension or ".txt"
 
     def get_file_name(self):
         raise Exception("This class is abstract, override this method in a subclass")
@@ -23,7 +23,7 @@ class Namer(object):
 
     def get_basename(self):
         file_name = self.get_file_name()
-        subdirectory = self.get_config().get('subdirectory', '')
+        subdirectory = self.get_config().get("subdirectory", "")
         return os.path.join(self.get_directory(), subdirectory, file_name)
 
     def get_received_filename(self, basename=None):
@@ -39,9 +39,9 @@ class Namer(object):
 
 
 class StackFrameNamer(Namer):
-    Directory = ''
-    MethodName = ''
-    ClassName = ''
+    Directory = ""
+    MethodName = ""
+    ClassName = ""
 
     def __init__(self, extension=None):
         Namer.__init__(self, extension)
@@ -71,10 +71,12 @@ class StackFrameNamer(Namer):
         raise FrameNotFound(message)
 
     def is_test_method(self, frame):
-        is_unittest_test = ("self" in frame[0].f_locals
-               and "_testMethodName" in frame[0].f_locals["self"].__dict__
-               and frame[3] != "__call__"
-               and frame[3] != "run")
+        is_unittest_test = (
+            "self" in frame[0].f_locals
+            and "_testMethodName" in frame[0].f_locals["self"].__dict__
+            and frame[3] != "__call__"
+            and frame[3] != "run"
+        )
 
         is_pytest_test = frame[3].startswith("test_")
 
@@ -95,9 +97,11 @@ class StackFrameNamer(Namer):
     def get_config(self):
         """lazy load config when we need it, then store it in the instance variable self.config"""
         if self.config is None:
-            config_file = os.path.join(self.config_directory(), 'approvaltests_config.json')
+            config_file = os.path.join(
+                self.config_directory(), "approvaltests_config.json"
+            )
             if os.path.exists(config_file):
-                with open(config_file, 'r') as f:
+                with open(config_file, "r") as f:
                     self.config = json.load(f)
             else:
                 self.config = {}

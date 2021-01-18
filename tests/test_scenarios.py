@@ -12,4 +12,7 @@ def is_leap(year):
 
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year):
-    verify("is Leap " + str(year) + ": " + str(is_leap(year)), namer=get_scenario_namer(year))
+    verify(
+        "is Leap " + str(year) + ": " + str(is_leap(year)),
+        namer=get_scenario_namer(year),
+    )

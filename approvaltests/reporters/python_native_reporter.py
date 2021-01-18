@@ -12,6 +12,7 @@ class PythonNativeReporter(Reporter):
     A blocking reporter that outputs diff straight
     to standard output
     """
+
     def report(self, received_path, approved_path):
         print(calculate_diff(received_path, approved_path))
         return True
@@ -20,10 +21,12 @@ class PythonNativeReporter(Reporter):
 def calculate_diff(file1, file2):
     with open(file1) as f1:
         with open(file2) as f2:
-            diff = unified_diff(f2.readlines(),
-                                f1.readlines(),
-                                os.path.basename(file2),
-                                os.path.basename(file1))
+            diff = unified_diff(
+                f2.readlines(),
+                f1.readlines(),
+                os.path.basename(file2),
+                os.path.basename(file1),
+            )
             diff_string = "\n".join(diff)
             if diff_string.strip():
                 approve = get_command_text(file1, file2)
@@ -33,6 +36,6 @@ def calculate_diff(file1, file2):
             return diff_string + approve_cmd
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fileA, fileB = sys.argv[1:3]
     print(calculate_diff(fileA, fileB))
