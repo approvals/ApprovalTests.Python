@@ -20,10 +20,7 @@ class GenericDiffReporter(Reporter):
     def __init__(self, config):
         self.name = config[0]
         self.path = config[1]
-        if len(config) > 2:
-            self.extra_args = config[2]
-        else:
-            self.extra_args = []
+        self.extra_args = config[2] if len(config) > 2 else []
 
     def __str__(self):
         config = {"name": self.name, "path": self.path}

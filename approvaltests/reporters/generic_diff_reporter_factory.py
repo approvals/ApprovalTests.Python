@@ -43,8 +43,7 @@ class GenericDiffReporterFactory(object):
         return next(working, None)
 
     def get_all_reporters(self):
-        instances = (self._create_reporter(r) for r in self.reporters)
-        return instances
+        return (self._create_reporter(r) for r in self.reporters)
 
     def remove(self, reporter_name):
         self.reporters = [r for r in self.reporters if r[0] != reporter_name]
