@@ -5,6 +5,7 @@ import sys
 from difflib import unified_diff
 
 from approvaltests.reporters import get_command_text, Reporter
+from approvaltests.utils import ensure_file_exists
 
 
 class PythonNativeReporter(Reporter):
@@ -13,6 +14,7 @@ class PythonNativeReporter(Reporter):
     to standard output
     """
     def report(self, received_path, approved_path):
+        ensure_file_exists(approved_path)
         print(calculate_diff(received_path, approved_path))
         return True
 

@@ -1,7 +1,6 @@
-import json
-import os
 import subprocess
 
+from approvaltests import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
 from approvaltests.utils import to_json
@@ -35,10 +34,6 @@ class GenericDiffReporter(Reporter):
         return to_json(config)
 
     @staticmethod
-    def create_empty_file(file_path):
-        open(file_path, 'w').close()
-
-    @staticmethod
     def run_command(command_array):
         subprocess.Popen(command_array)
 
@@ -48,11 +43,12 @@ class GenericDiffReporter(Reporter):
     def report(self, received_path, approved_path):
         if not self.is_working():
             return False
-        if not os.path.isfile(approved_path):
-            self.create_empty_file(approved_path)
+        ensure_file_exists(approved_path)
         command_array = self.get_command(received_path, approved_path)
         self.run_command(command_array)
         return True
 
     def is_working(self):
         return Command(self.path).locate()
+
+
