@@ -1,5 +1,6 @@
 # ApprovalTests.Python
 
+
 <!-- toc -->
 ## Contents
 
@@ -22,6 +23,7 @@ For more information see: [www.approvaltests.com](http://approvaltests.com/).
 
 Github Actions: [![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Test/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.Python/actions)
 
+
 ## What can I use ApprovalTests for?
 
 You can use ApprovalTests to verify objects that require more than a simple assert including long strings, large arrays, 
@@ -30,11 +32,13 @@ failure.  Sometimes, trying to find a small difference in a long string printed 
 ApprovalTests solves this problem by providing reporters which let you view the test results in one of many popular diff 
 utilities.
 
+
 ## Setup
 
 From [pypi](https://pypi.org/project/approvaltests/):
 
 	pip install approvaltests
+
 
 ## Getting Started
 
@@ -46,6 +50,7 @@ Whenever your current results differ from the golden master, Approvals will laun
 examine the differences.  Either you will update the master because you expected the changes and they are good,
 or you will go back to your code and update or roll back your changes to get your results back in line with the 
 golden master.
+
 
 ### Example using pytest
 
@@ -71,6 +76,7 @@ The reporter is used both to alert you to changes in your test output, and to pr
 master. In this snippet, we chose the 'PythonNative' reporter when we ran the tests. For more information about selecting
 reporters see [the documentation](https://github.com/approvals/ApprovalTests.Python.PytestPlugin)
 
+
 ### Example using unittest
 
 <!-- snippet: getting_started_with_unittest.py -->
@@ -93,8 +99,8 @@ if __name__ == "__main__":
 <sup><a href='/tests/examples/getting_started_with_unittest.py#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_unittest.py' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-This example is similar to the pytest version shown above, except we are selecting the reporter in the test code
- rather than at runtime.
+This example has the same behaviour as the pytest version, but uses the built-in test framework `unittest` instead.
+
 
 ## Reporters
 
