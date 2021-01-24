@@ -28,3 +28,6 @@
            SCRIPT_DIR,
        ])
        self.assertEqual(0, exit_code, "\n\n" + stdout + stderr)
+
+Authors:
+@claremacrae @objarni @tdpreece @emilybache @rzijp @obestwalter
