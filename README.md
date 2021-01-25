@@ -21,7 +21,9 @@ Capturing Human Intelligence - ApprovalTests is an open source assertion/verific
 
 For more information see: [www.approvaltests.com](http://approvaltests.com/).
 
-Github Actions: [![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Test/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.Python/actions)
+[![PyPI version](https://img.shields.io/pypi/v/approvaltests.svg)](https://pypi.org/project/approvaltests)
+[![Python versions](https://img.shields.io/pypi/pyversions/approvaltests.svg)](https://pypi.org/project/approvaltests)
+[![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Test/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.Python/actions)
 
 
 ## What can I use ApprovalTests for?
