@@ -14,18 +14,19 @@ from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 
-DEFAULT_REPORTER = local()
+_DEFAULT_REPORTER = DiffReporter()
+_THREAD_LOCAL_STORE = local()
 
 
 def set_default_reporter(reporter):
-    global DEFAULT_REPORTER
-    DEFAULT_REPORTER.v = reporter
+    _THREAD_LOCAL_STORE.reporter = reporter
     
 
 def get_default_reporter():
-    if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
-        return DiffReporter()
-    return DEFAULT_REPORTER.v
+    try:
+        return _THREAD_LOCAL_STORE.reporter or _DEFAULT_REPORTER
+    except AttributeError:
+        return _DEFAULT_REPORTER
 
 
 def get_reporter(reporter):
