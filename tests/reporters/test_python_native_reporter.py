@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from approvaltests import verify
 
@@ -29,3 +30,11 @@ def test_files_differ(tmpdir):
 
     verify(diff)
 
+def test_approved_file_is_created_when_missing(tmpdir):
+    file1 = os.path.join(str(tmpdir), "a.received.txt")
+    file2 = os.path.join(str(tmpdir), "b.approved.txt")
+    with open(file1, "w") as f1:
+        f1.write("abc")
+    reporter = PythonNativeReporter()
+    reporter.report(file1, file2)
+    assert Path(file2).exists()

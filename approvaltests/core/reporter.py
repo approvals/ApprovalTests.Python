@@ -6,9 +6,6 @@ class Reporter(object):
     reporter is 'report', which takes the absolute
     paths of the received- and approved files, and
     returns a truthy value on success.
-
-    Whether the reporter is blocking or not is determined
-    by the reporter itself.
     """
 
     def report(self, received_path, approved_path):
@@ -16,7 +13,13 @@ class Reporter(object):
         Apply the reporter to pair of files given
         as absolute paths parameters.
 
-        A truthy return value from report means ???
-        A falsy return value from report means ???
+        A truthy return value from report means that it succeeded,
+        such as because any command existed.
+
+        A falsy return value from report means that its operation
+        failed in some way.
+
+        Note: At the time of writing, not all implementations of
+        Reporter return this value correctly.
         """
         raise Exception("Interface member not implemented")

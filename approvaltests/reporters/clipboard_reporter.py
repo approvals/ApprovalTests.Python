@@ -9,10 +9,14 @@ def get_command_text(received_path, approved_path):
 
 class ClipboardReporter(Reporter):
     """
-    A blocking reporter that creates
+    A reporter that creates
     a command line suitable for approving
     the last failed test on systems that
-    support terminal command 'mv'.
+    support terminal command 'mv', and puts
+    the command on the clipboard, over-writes
+    the previous clipboard contents.
+
+    See also CommandLineReporter.
     """
 
     def report(self, received_path, approved_path):
@@ -24,10 +28,16 @@ class ClipboardReporter(Reporter):
 
 class CommandLineReporter(Reporter):
     """
-    A blocking reporter that outputs
-    command lines suitable for approving
+    A reporter that outputs a
+    command line suitable for approving
     failing tests on systems that support
     terminal command 'mv'.
+
+    The output is typically copied and pasted
+    to a console window or script, to approve
+    the new test results.
+
+    See also ClipboardReporter.
     """
 
     def report(self, received_path, approved_path):

@@ -3,9 +3,11 @@ from approvaltests.core.reporter import Reporter
 
 class MultiReporter(Reporter):
     """
-    A reporter that combines a list of
-    reporters and calls each of them in
-    turn.
+    A composite reporter that goes through a list
+    of reporters, running all that are working on
+    the current machine.
+
+    See also FirstWorkingReporter.
     """
 
     def __init__(self, *reporters):

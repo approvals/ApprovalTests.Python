@@ -3,13 +3,16 @@ from approvaltests.core.reporter import Reporter
 
 class FirstWorkingReporter(Reporter):
     """
-    A reporter that goes through a list
-    of reporters and returns success
-    as soon as any reporter returns
-    a truish value.
+    A composite reporter that goes through a list
+    of reporters, running the first one that is
+    working on the current machine.
 
-    If no reporter does, this reporter
-    returns False, meaning not successful.
+    This is mostly an implementation detail of other
+    classes in the library, but it may be useful in scenarios
+    where a team wants to supply a list of custom reporter,
+    and have the first working one of these be used.
+
+    See also MultiReporter.
     """
 
     def __init__(self, *reporters):
