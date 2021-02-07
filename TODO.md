@@ -13,7 +13,6 @@
 11. combination approvals needs line ending option
 12. add checks to twine in github actions
 13. use BLACK for formatting
-14. add 3.9 python
 15. error output is too confusing
 20. add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 
@@ -32,6 +31,7 @@
 22. Add documentation.
 23. Look at issues https://github.com/approvals/ApprovalTests.Python/issues
 24. add options to signature
+25. Randomize order of tests in pytest plugin
 
 
 Authors:
