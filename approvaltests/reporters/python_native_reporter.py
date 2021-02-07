@@ -10,8 +10,11 @@ from approvaltests.utils import ensure_file_exists
 
 class PythonNativeReporter(Reporter):
     """
-    A blocking reporter that outputs diff straight
-    to standard output
+    A reporter that outputs diff straight
+    to standard output.
+
+    This is useful when running in a non-GUI environment,
+    such as in Continuous Integration systems.
     """
     def report(self, received_path, approved_path):
         ensure_file_exists(approved_path)
