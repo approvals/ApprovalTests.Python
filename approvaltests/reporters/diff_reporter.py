@@ -5,11 +5,13 @@ from .python_native_reporter import PythonNativeReporter
 
 class DiffReporter(FirstWorkingReporter):
     """
-    A reporter that first goes through
-    the given list of reporters, then,
-    as a fallback uses the builtin
-    PythonNative reporter, meaning
-    this reporter *should* never fail.
+    The DiffReporter class goes through a chain of possible diffing tools,
+    to find the first option installed on your system.
+
+    If none are found, it falls back to writing the diffs on
+    the console.
+
+    At present, the default Reporter is the DiffReporter.
     """
 
     def __init__(self, reporter_factory=None):

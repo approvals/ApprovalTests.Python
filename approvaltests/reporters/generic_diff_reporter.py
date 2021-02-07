@@ -8,7 +8,7 @@ from approvaltests.utils import to_json
 
 class GenericDiffReporter(Reporter):
     """
-    A non-blocking reporter that launches
+    A reporter that launches
     an external diff tool given by config.
     """
 
