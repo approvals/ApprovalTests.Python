@@ -92,15 +92,14 @@ from approvaltests.approvals import verify
 
 
 class GettingStartedTest(unittest.TestCase):
-
     def test_simple(self):
-        verify('Hello ApprovalTests')
+        verify("Hello ApprovalTests")
 
 
 if __name__ == "__main__":
     unittest.main()
 ```
-<sup><a href='/tests/examples/getting_started_with_unittest.py#L1-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_unittest.py' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/examples/getting_started_with_unittest.py#L1-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_unittest.py' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This example has the same behaviour as the pytest version, but uses the built-in test framework `unittest` instead.
