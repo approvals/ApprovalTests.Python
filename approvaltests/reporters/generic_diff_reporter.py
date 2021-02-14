@@ -14,7 +14,7 @@ class GenericDiffReporter(Reporter):
 
     @staticmethod
     def create(diff_tool_path):
-        return GenericDiffReporter(['custom', diff_tool_path])
+        return GenericDiffReporter(["custom", diff_tool_path])
 
     def __init__(self, config):
         self.name = config[0]
@@ -25,10 +25,7 @@ class GenericDiffReporter(Reporter):
             self.extra_args = []
 
     def __str__(self):
-        config = {
-            'name': self.name,
-            'path': self.path
-        }
+        config = {"name": self.name, "path": self.path}
         if self.extra_args:
             config.update({"arguments": self.extra_args})
         return to_json(config)
@@ -50,5 +47,3 @@ class GenericDiffReporter(Reporter):
 
     def is_working(self):
         return Command(self.path).locate()
-
-

@@ -4,7 +4,9 @@ import unittest
 from approvaltests import get_default_namer
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
-from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.reporters.generic_diff_reporter_factory import (
+    GenericDiffReporterFactory,
+)
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
 
@@ -49,5 +51,5 @@ class FileApproverTests(unittest.TestCase):
         self.assertEqual(None, error)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

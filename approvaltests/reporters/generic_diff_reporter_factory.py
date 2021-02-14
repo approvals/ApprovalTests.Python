@@ -8,7 +8,7 @@ class GenericDiffReporterFactory(object):
     reporters = []
 
     def __init__(self):
-        self.load(get_adjacent_file('reporters.json'))
+        self.load(get_adjacent_file("reporters.json"))
 
     def add_default_reporter_config(self, config):
         self.reporters.insert(0, config)
@@ -27,25 +27,21 @@ class GenericDiffReporterFactory(object):
         return GenericDiffReporter(config)
 
     def save(self, file_name):
-        with open(file_name, 'w') as f:
+        with open(file_name, "w") as f:
             json.dump(
-                self.reporters,
-                f,
-                sort_keys=True,
-                indent=2,
-                separators=(',', ': ')
+                self.reporters, f, sort_keys=True, indent=2, separators=(",", ": ")
             )
         return file_name
 
     def load(self, file_name):
-        with open(file_name, 'r') as f:
+        with open(file_name, "r") as f:
             self.reporters = json.load(f)
         return self.reporters
 
     def get_first_working(self):
         working = (i for i in self.get_all_reporters() if i.is_working())
         return next(working, None)
-    
+
     def get_all_reporters(self):
         instances = (self._create_reporter(r) for r in self.reporters)
         return instances

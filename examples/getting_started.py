@@ -1,7 +1,9 @@
 import unittest
 
 from approvaltests.approvals import verify
-from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.reporters.generic_diff_reporter_factory import (
+    GenericDiffReporterFactory,
+)
 
 
 class GettingStartedTest(unittest.TestCase):
@@ -9,7 +11,8 @@ class GettingStartedTest(unittest.TestCase):
         self.reporter = GenericDiffReporterFactory().get_first_working()
 
     def test_simple(self):
-        verify('Hello', self.reporter)
+        verify("Hello", self.reporter)
+
 
 if __name__ == "__main__":
     unittest.main()

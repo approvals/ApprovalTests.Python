@@ -14,5 +14,6 @@ class Test(unittest.TestCase):
         reporter = TextDiffReporter()
         approvals.verify("x", reporter)
 
+
 if __name__ == "__main__":
     unittest.main()

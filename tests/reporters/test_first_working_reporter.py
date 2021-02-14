@@ -7,7 +7,7 @@ from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 class ReporterForTesting(Reporter):
     def __init__(self, success, additional=None):
         if additional is None:
-            additional = lambda : None
+            additional = lambda: None
         self.additional = additional
         self.called = False
         self.success = success
@@ -23,7 +23,7 @@ class TestFirstWorkingReporter(unittest.TestCase):
         r1 = ReporterForTesting(True)
         r2 = ReporterForTesting(False)
         first = FirstWorkingReporter(r1, r2)
-        success = first.report('a.txt', 'b.txt')
+        success = first.report("a.txt", "b.txt")
         self.assertTrue(r1.called)
         self.assertTrue(success)
         self.assertFalse(r2.called)
@@ -32,7 +32,7 @@ class TestFirstWorkingReporter(unittest.TestCase):
         r1 = ReporterForTesting(False)
         r2 = ReporterForTesting(False)
         first = FirstWorkingReporter(r1, r2)
-        success = first.report('a.txt', 'b.txt')
+        success = first.report("a.txt", "b.txt")
         self.assertTrue(r1.called)
         self.assertTrue(r2.called)
         self.assertFalse(success)
@@ -40,10 +40,11 @@ class TestFirstWorkingReporter(unittest.TestCase):
     def test_exception(self):
         def exception():
             raise Exception()
+
         r1 = ReporterForTesting(False, exception)
         r2 = ReporterForTesting(False)
         first = FirstWorkingReporter(r1, r2)
-        success = first.report('a.txt', 'b.txt')
+        success = first.report("a.txt", "b.txt")
         self.assertTrue(r1.called)
         self.assertTrue(r2.called)
         self.assertFalse(success)

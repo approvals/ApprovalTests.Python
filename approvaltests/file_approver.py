@@ -33,7 +33,7 @@ class FileApprover(object):
     def are_files_the_same(approved_file, received_file):
         if not exists(approved_file) or not exists(received_file):
             return False
-        if filecmp.cmp(approved_file,received_file):
+        if filecmp.cmp(approved_file, received_file):
             return True
         try:
             approved_raw = pathlib.Path(approved_file).read_text()

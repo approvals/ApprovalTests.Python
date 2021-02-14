@@ -4,7 +4,9 @@ import unittest
 
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
-from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
+from approvaltests.reporters.generic_diff_reporter_factory import (
+    GenericDiffReporterFactory,
+)
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.utils import get_adjacent_file
 
@@ -15,16 +17,29 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify(self):
         verify("Hello World.", self.reporter)
-        
+
     def test_verify_with_encoding(self):
-        verify(u"Høvdingens kjære squaw får litt pizza i Mexico by", self.reporter, encoding="utf-8")
+        verify(
+            u"Høvdingens kjære squaw får litt pizza i Mexico by",
+            self.reporter,
+            encoding="utf-8",
+        )
 
     def test_verify_with_encoding_error_raises_value_error(self):
         with self.assertRaises(ValueError):
-            verify(u"Høvdingens kjære squaw får litt pizza i Mexico by", self.reporter, encoding="ascii")
+            verify(
+                u"Høvdingens kjære squaw får litt pizza i Mexico by",
+                self.reporter,
+                encoding="ascii",
+            )
 
     def test_verify_with_errors_replacement_character(self):
-        verify(u"Falsches Üben von Xylophonmusik quält jeden größeren Zwerg", self.reporter, encoding="ascii", errors="replace")
+        verify(
+            u"Falsches Üben von Xylophonmusik quält jeden größeren Zwerg",
+            self.reporter,
+            encoding="ascii",
+            errors="replace",
+        )
 
     def test_verify_with_newlines(self):
         verify(
@@ -34,7 +49,7 @@ class VerifyTests(unittest.TestCase):
             u"I have to understand.\n",
             reporter=self.reporter,
             encoding="utf-8",
-            newline="\r\n"
+            newline="\r\n",
         )
 
     def test_verify_fail(self):
@@ -52,10 +67,7 @@ class VerifyTests(unittest.TestCase):
                 self.json = None
 
         o = Bag()
-        o.json = {
-            "a": 0,
-            "z": 26
-        }
+        o.json = {"a": 0, "z": 26}
         verify_as_json(o, self.reporter)
 
     def test_verify_file(self):

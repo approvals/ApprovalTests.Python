@@ -3,7 +3,9 @@ from itertools import product
 from approvaltests import verify, verify_with_namer, get_default_namer
 
 
-def verify_all_combinations(function_under_test, input_arguments, formatter=None, reporter=None):
+def verify_all_combinations(
+    function_under_test, input_arguments, formatter=None, reporter=None
+):
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
     Args:
@@ -19,10 +21,14 @@ def verify_all_combinations(function_under_test, input_arguments, formatter=None
         ApprovalException: if the results to not match the approved results.
     """
     namer = get_default_namer()
-    verify_all_combinations_with_namer(function_under_test, input_arguments, namer, formatter, reporter)
+    verify_all_combinations_with_namer(
+        function_under_test, input_arguments, namer, formatter, reporter
+    )
 
 
-def verify_all_combinations_with_namer(function_under_test, input_arguments, namer, formatter=None, reporter=None):
+def verify_all_combinations_with_namer(
+    function_under_test, input_arguments, namer, formatter=None, reporter=None
+):
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
     Args:
@@ -47,8 +53,8 @@ def verify_all_combinations_with_namer(function_under_test, input_arguments, nam
         except Exception as e:
             result = e
         approval_strings.append(formatter(args, result))
-    verify_with_namer(''.join(approval_strings), namer=namer, reporter=reporter)
+    verify_with_namer("".join(approval_strings), namer=namer, reporter=reporter)
 
 
 def args_and_result_formatter(args, result):
-    return 'args: {} => {}\n'.format(repr(args), repr(result))
+    return "args: {} => {}\n".format(repr(args), repr(result))

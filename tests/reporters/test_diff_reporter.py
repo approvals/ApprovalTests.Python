@@ -1,4 +1,8 @@
-from approvaltests.reporters import GenericDiffReporterFactory, DiffReporter, PythonNativeReporter
+from approvaltests.reporters import (
+    GenericDiffReporterFactory,
+    DiffReporter,
+    PythonNativeReporter,
+)
 
 
 class FakeFactory:

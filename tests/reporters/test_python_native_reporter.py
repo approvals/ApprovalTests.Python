@@ -26,9 +26,10 @@ def test_files_differ(tmpdir):
         f2.write("def")
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
-    diff = diff.replace('\\', '/')
+    diff = diff.replace("\\", "/")
 
     verify(diff)
+
 
 def test_approved_file_is_created_when_missing(tmpdir):
     file1 = os.path.join(str(tmpdir), "a.received.txt")

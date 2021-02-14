@@ -20,21 +20,23 @@ class NamerTests(unittest.TestCase):
 
     def test_basename(self):
         n = StackFrameNamer()
-        self.assertTrue(n.get_basename().endswith("NamerTests.test_basename"), n.get_basename())
+        self.assertTrue(
+            n.get_basename().endswith("NamerTests.test_basename"), n.get_basename()
+        )
 
     def test_received_name(self):
-        filename = self.namer.get_received_filename('./stuff')
-        self.assertEqual(filename, './stuff.received.txt')
+        filename = self.namer.get_received_filename("./stuff")
+        self.assertEqual(filename, "./stuff.received.txt")
 
     def test_approved_name(self):
-        filename = self.namer.get_approved_filename('./stuff')
-        self.assertEqual(filename, './stuff.approved.txt')
+        filename = self.namer.get_approved_filename("./stuff")
+        self.assertEqual(filename, "./stuff.approved.txt")
 
     def test_alternative_extension(self):
-        n = Namer(extension='.html')
-        filename = n.get_approved_filename('./stuff')
-        self.assertEqual(filename, './stuff.approved.html')
+        n = Namer(extension=".html")
+        filename = n.get_approved_filename("./stuff")
+        self.assertEqual(filename, "./stuff.approved.html")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
