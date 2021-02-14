@@ -9,6 +9,7 @@ iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/windows
 iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/python-pycharm.ps1 | iex
 
 choco install python --version=3.6.7 --allow-downgrade
+choco install visualstudio2019buildtools
 pip install tox
 
 # Clone repo
