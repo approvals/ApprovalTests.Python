@@ -1,10 +1,10 @@
 import inspect
 import json
 import os
-
-from approvaltests.approval_exception import FrameNotFound
 from inspect import FrameInfo
 from typing import Dict, List, Optional
+
+from approvaltests.approval_exception import FrameNotFound
 
 
 class Namer(object):

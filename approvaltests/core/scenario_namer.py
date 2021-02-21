@@ -1,5 +1,7 @@
-from approvaltests.core.namer import StackFrameNamer
 from typing import Optional
+
+from approvaltests.core.namer import StackFrameNamer
+
 
 class ScenarioNamer:
     """
