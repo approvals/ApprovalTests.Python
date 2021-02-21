@@ -1,15 +1,16 @@
 import os
+from typing import Optional
 
 
 class Command(object):
-    def __init__(self, cmd):
+    def __init__(self, cmd: str) -> None:
         self.command = cmd
 
     @staticmethod
-    def executable(cmd):
+    def executable(cmd: str) -> bool:
         return os.path.isfile(cmd) and os.access(cmd, os.X_OK)
 
-    def locate(self):
+    def locate(self) -> Optional[str]:
         path, name = os.path.split(self.command)
         if path and self.executable(self.command):
             return self.command
