@@ -1,14 +1,4 @@
 s = '''
-approvaltests.approval_exception
-approvaltests.approvals
-approvaltests.asserts
-approvaltests.combination_approvals
-approvaltests.command
-approvaltests.core.namer
-approvaltests.core.scenario_namer
-approvaltests.file_approver
-approvaltests.list_utils
-approvaltests.pytest.namer
 approvaltests.reporters.clipboard_reporter
 approvaltests.reporters.diff_reporter
 approvaltests.reporters.first_working_reporter
@@ -20,7 +10,7 @@ approvaltests.reporters.received_file_launcher_reporter
 approvaltests.reporters.testing_reporter
 approvaltests.string_writer
 approvaltests.utils
-'''.strip().splitlines()[0:10]
+'''.strip().splitlines()[0:1]
 
 import os
 for module in s:
