@@ -11,13 +11,13 @@ from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
 class VerifyAllCombinationsTests(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.reporter = None
         self.func = lambda *args: sum(args) + 1
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_one_arg(
         self,
-    ):
+    ) -> None:
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
         with self.assertRaises(ApprovalException):
@@ -25,7 +25,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
                 self.func, all_args_combinations, reporter=ReporterForTesting()
             )
 
-    def test_passes_for_func_accepting_one_arg_and_combination_of_one_arg(self):
+    def test_passes_for_func_accepting_one_arg_and_combination_of_one_arg(self) -> None:
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
         verify_all_combinations(
@@ -34,7 +34,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_two_args(
         self,
-    ):
+    ) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
         with self.assertRaises(ApprovalException):
@@ -42,7 +42,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
                 self.func, all_args_combinations, reporter=ReporterForTesting()
             )
 
-    def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(self):
+    def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(self) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
         verify_all_combinations(
@@ -51,7 +51,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
     def test_fails_for_mismatch_with_for_func_accepting_two_args_and_combination_of_one_arg(
         self,
-    ):
+    ) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
         arg_combinations = (arg1_combinations, arg2_combinations)
@@ -60,7 +60,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
                 self.func, arg_combinations, reporter=ReporterForTesting()
             )
 
-    def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(self):
+    def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(self) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
         arg_combinations = (arg1_combinations, arg2_combinations)
@@ -68,7 +68,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
     def test_fails_for_mismatch_with_for_func_accepting_two_args_and_combination_of_two_args(
         self,
-    ):
+    ) -> None:
         arg1_combinations = (1, 3)
         arg2_combinations = (2, 4)
         arg_combinations = (arg1_combinations, arg2_combinations)
@@ -77,14 +77,14 @@ class VerifyAllCombinationsTests(unittest.TestCase):
                 self.func, arg_combinations, reporter=ReporterForTesting()
             )
 
-    def test_for_func_accepting_three_args_and_combination_of_three_args(self):
+    def test_for_func_accepting_three_args_and_combination_of_three_args(self) -> None:
         arg1_combinations = (1, 2, 3)
         arg2_combinations = (2, 4, 6)
         arg3_combinations = (10, 11, 12)
         arg_combinations = (arg1_combinations, arg2_combinations, arg3_combinations)
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
-    def test_when_arg_combinations_have_equal_lengths(self):
+    def test_when_arg_combinations_have_equal_lengths(self) -> None:
         arg1_combinations = (1, 3, 5, 7)
         arg2_combinations = (2, 4, 6)
         arg_combinations = (arg1_combinations, arg2_combinations)
@@ -92,7 +92,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
     def test_records_exception_message_when_function_under_test_throws_an_exception(
         self,
-    ):
+    ) -> None:
         class BackwardCompatibleException(Exception):
             """Exception with repr that's the same for pre 3.7 and 3.7+.
 
@@ -112,7 +112,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             function_that_raises_exceptions, arg_combinations, reporter=self.reporter
         )
 
-    def test_uses_user_specified_formatter_when_supplied(self):
+    def test_uses_user_specified_formatter_when_supplied(self) -> None:
         arg1_combinations = (1, 3)
         arg2_combinations = (2, 4)
         arg_combinations = (arg1_combinations, arg2_combinations)
@@ -129,12 +129,12 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.reporter = ReporterForTesting()
         self.reporter = CommandLineReporter()
         self.func = lambda *args: sum(args) + 1
 
-    def test_passes_for_func_accepting_one_arg_and_combination_of_one_arg(self):
+    def test_passes_for_func_accepting_one_arg_and_combination_of_one_arg(self) -> None:
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
         namer = get_default_namer()

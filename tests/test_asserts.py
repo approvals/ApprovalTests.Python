@@ -9,7 +9,7 @@ from approvaltests.utils import get_adjacent_file
 
 
 class TestAssertEqualWithReporter(unittest.TestCase):
-    def test_text_reporter_called_on_failure(self):
+    def test_text_reporter_called_on_failure(self) -> None:
         class LocalReporter(Reporter):
             def __init__(self):
                 self.received = None
@@ -33,11 +33,11 @@ class TestAssertEqualWithReporter(unittest.TestCase):
 
 
 class TestAsserts(unittest.TestCase):
-    def test_assert_against_file_works(self):
+    def test_assert_against_file_works(self) -> None:
         file_path = get_adjacent_file("manual_file.approved.txt")
         assert_against_file("This text is in a file", file_path)
 
-    def test_assert_against_file_fails_with_reporter(self):
+    def test_assert_against_file_fails_with_reporter(self) -> None:
         reporter = ReporterForTesting()
         file_path = get_adjacent_file("manual_file.approved.txt")
         try:
