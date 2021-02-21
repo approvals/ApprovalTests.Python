@@ -2,12 +2,14 @@ import os
 
 import approvaltests
 from approvaltests.core import Namer
+from _pytest.fixtures import FixtureRequest
+from typing import Any, Dict, Optional
 
 
 class PyTestNamer(Namer):
     "Pass a pytest 'request' to the constructor. You get one of those as a pytest fixture"
 
-    def __init__(self, request, extension=None):
+    def __init__(self, request: FixtureRequest, extension: None=None) -> None:
         Namer.__init__(self, extension)
         self.request = request
         self.filepath, self.filename = os.path.split(str(self.request.fspath))
@@ -18,11 +20,11 @@ class PyTestNamer(Namer):
         if subdir:
             self.config["subdirectory"] = subdir
 
-    def get_file_name(self):
+    def get_file_name(self) -> str:
         return os.path.splitext(self.filename)[0] + "." + self.request.node.name
 
-    def get_directory(self):
+    def get_directory(self) -> str:
         return self.filepath
 
-    def get_config(self):
+    def get_config(self) -> Dict[Any, Any]:
         return self.config

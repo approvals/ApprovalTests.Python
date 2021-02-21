@@ -1,14 +1,25 @@
 import filecmp
 import os
 import pathlib
+from approvaltests.core.namer import StackFrameNamer
+from approvaltests.core.scenario_namer import ScenarioNamer
+from approvaltests.existing_file_writer import ExistingFileWriter
+from approvaltests.pytest.namer import PyTestNamer
+from approvaltests.reporters.clipboard_reporter import CommandLineReporter
+from approvaltests.reporters.diff_reporter import DiffReporter
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+from approvaltests.reporters.multi_reporter import MultiReporter
+from approvaltests.reporters.testing_reporter import ReporterForTesting
+from approvaltests.string_writer import StringWriter
+from typing import Any, Optional, Union
 
 
-def exists(path):
+def exists(path: str) -> bool:
     return os.path.isfile(path)
 
 
 class FileApprover(object):
-    def verify(self, namer, writer, reporter):
+    def verify(self, namer: Union[StackFrameNamer, ScenarioNamer, PyTestNamer], writer: Union[StringWriter, ExistingFileWriter], reporter: Union[ReporterForTesting, CommandLineReporter, DiffReporter, MultiReporter, GenericDiffReporter]) -> Optional[str]:
 
         base = namer.get_basename()
         approved = namer.get_approved_filename(base)
@@ -21,7 +32,7 @@ class FileApprover(object):
             return "Approval Mismatch"
         return None
 
-    def verify_files(self, approved_file, received_file, reporter):
+    def verify_files(self, approved_file: str, received_file: str, reporter: Any) -> bool:
         if self.are_files_the_same(approved_file, received_file):
             os.remove(received_file)
             return True
@@ -30,7 +41,7 @@ class FileApprover(object):
         return False
 
     @staticmethod
-    def are_files_the_same(approved_file, received_file):
+    def are_files_the_same(approved_file: str, received_file: str) -> bool:
         if not exists(approved_file) or not exists(received_file):
             return False
         if filecmp.cmp(approved_file, received_file):
