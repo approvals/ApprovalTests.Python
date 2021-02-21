@@ -1,9 +1,9 @@
 import os
+from typing import Any, Dict
 
-import approvaltests
-from approvaltests.core import Namer
 from _pytest.fixtures import FixtureRequest
-from typing import Any, Dict, Optional
+
+from approvaltests.core import Namer
 
 
 class PyTestNamer(Namer):
