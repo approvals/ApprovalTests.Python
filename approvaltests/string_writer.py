@@ -3,14 +3,15 @@ import os
 import sys
 
 from approvaltests.core.writer import Writer
+from typing import Optional
 
 
 class StringWriter(Writer):
     contents = ""
 
     def __init__(
-        self, contents, extension=".txt", encoding=None, errors=None, newline=None
-    ):
+        self, contents: str, extension: str=".txt", encoding: Optional[str]=None, errors: Optional[str]=None, newline: Optional[str]=None
+    ) -> None:
         if sys.version_info.major == 2 and isinstance(contents, str):
             contents = contents.decode("ascii")
         self.contents = contents or u""
@@ -19,7 +20,7 @@ class StringWriter(Writer):
         self.errors = errors
         self.newline = newline
 
-    def write_received_file(self, received_file):
+    def write_received_file(self, received_file: str) -> str:
         self.create_directory_if_needed(received_file)
         with io.open(
             received_file,
@@ -32,7 +33,7 @@ class StringWriter(Writer):
         return received_file
 
     @staticmethod
-    def create_directory_if_needed(received_file):
+    def create_directory_if_needed(received_file: str) -> None:
         directory = os.path.dirname(received_file)
         if directory and not os.path.exists(directory):
             os.makedirs(directory)

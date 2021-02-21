@@ -1,16 +1,17 @@
 import inspect
 import json
 import os
+from typing import Dict, List, Union
 
 
-def get_adjacent_file(name):
+def get_adjacent_file(name: str) -> str:
     calling_file = inspect.stack(1)[1][1]
     directory = os.path.dirname(os.path.abspath(calling_file))
     filename = os.path.join(directory, name)
     return filename
 
 
-def write_to_temporary_file(expected, name):
+def write_to_temporary_file(expected: str, name: str):
     import tempfile
 
     with tempfile.NamedTemporaryFile(
@@ -20,7 +21,7 @@ def write_to_temporary_file(expected, name):
         return temp.name
 
 
-def to_json(object):
+def to_json(object: Union[List[Union[List[str], List[Union[str, List[str]]]]], List[str], Dict[str, Union[str, List[str]]], Dict[str, str]]) -> str:
     return json.dumps(
         object,
         sort_keys=True,
@@ -31,14 +32,14 @@ def to_json(object):
     )
 
 
-def is_windows_os():
+def is_windows_os() -> bool:
     return os.name == "nt"
 
 
-def create_empty_file(file_path):
+def create_empty_file(file_path: str) -> None:
     open(file_path, "w").close()
 
 
-def ensure_file_exists(approved_path):
+def ensure_file_exists(approved_path: str) -> None:
     if not os.path.isfile(approved_path):
         create_empty_file(approved_path)

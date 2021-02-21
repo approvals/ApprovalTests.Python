@@ -1,7 +1,4 @@
 s = '''
-approvaltests.reporters.multi_reporter
-approvaltests.reporters.python_native_reporter
-approvaltests.reporters.received_file_launcher_reporter
 approvaltests.reporters.testing_reporter
 approvaltests.string_writer
 approvaltests.utils
