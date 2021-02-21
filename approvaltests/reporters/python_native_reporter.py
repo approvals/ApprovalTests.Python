@@ -17,13 +17,13 @@ class PythonNativeReporter(Reporter):
     such as in Continuous Integration systems.
     """
 
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         ensure_file_exists(approved_path)
         print(calculate_diff(received_path, approved_path))
         return True
 
 
-def calculate_diff(file1, file2):
+def calculate_diff(file1: str, file2: str):
     with open(file1) as f1:
         with open(file2) as f2:
             diff = unified_diff(

@@ -10,7 +10,7 @@ class MultiReporter(Reporter):
     See also FirstWorkingReporter.
     """
 
-    def __init__(self, *reporters):
+    def __init__(self, *reporters) -> None:
         self.reporters = reporters
 
     def report(self, received_path, approved_path):
