@@ -1,3 +1,5 @@
+from typing import Optional
+
 from approvaltests import (
     get_default_namer,
     verify_with_namer,
@@ -6,7 +8,6 @@ from approvaltests import (
     StackFrameNamer,
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from typing import Optional
 
 
 class FilePathNamer(StackFrameNamer):

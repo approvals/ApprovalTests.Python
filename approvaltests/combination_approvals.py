@@ -1,10 +1,10 @@
 from itertools import product
+from typing import Any, Callable, Optional, Tuple, Union
 
-from approvaltests import verify, verify_with_namer, get_default_namer
+from approvaltests import verify_with_namer, get_default_namer
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.reporters.clipboard_reporter import CommandLineReporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from typing import Any, Callable, Optional, Tuple, Union
 
 
 def verify_all_combinations(
