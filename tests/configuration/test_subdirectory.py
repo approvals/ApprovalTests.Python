@@ -4,5 +4,5 @@ from approvaltests import approvals
 
 
 class TestSubdirectories(TestCase):
-    def test_subdirectory(self):
+    def test_subdirectory(self) -> None:
         approvals.verify("xxx")

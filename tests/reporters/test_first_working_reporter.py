@@ -2,24 +2,25 @@ import unittest
 
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
+from typing import Callable, Optional
 
 
 class ReporterForTesting(Reporter):
-    def __init__(self, success, additional=None):
+    def __init__(self, success: bool, additional: Optional[Callable]=None) -> None:
         if additional is None:
             additional = lambda: None
         self.additional = additional
         self.called = False
         self.success = success
 
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         self.called = True
         self.additional()
         return self.success
 
 
 class TestFirstWorkingReporter(unittest.TestCase):
-    def test_first_one(self):
+    def test_first_one(self) -> None:
         r1 = ReporterForTesting(True)
         r2 = ReporterForTesting(False)
         first = FirstWorkingReporter(r1, r2)
@@ -28,7 +29,7 @@ class TestFirstWorkingReporter(unittest.TestCase):
         self.assertTrue(success)
         self.assertFalse(r2.called)
 
-    def test_second_one(self):
+    def test_second_one(self) -> None:
         r1 = ReporterForTesting(False)
         r2 = ReporterForTesting(False)
         first = FirstWorkingReporter(r1, r2)
@@ -37,7 +38,7 @@ class TestFirstWorkingReporter(unittest.TestCase):
         self.assertTrue(r2.called)
         self.assertFalse(success)
 
-    def test_exception(self):
+    def test_exception(self) -> None:
         def exception():
             raise Exception()
 
