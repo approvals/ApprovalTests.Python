@@ -12,20 +12,20 @@ from approvaltests.utils import get_adjacent_file
 
 
 class VerifyTests(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.reporter = None
 
-    def test_verify(self):
+    def test_verify(self) -> None:
         verify("Hello World.", self.reporter)
 
-    def test_verify_with_encoding(self):
+    def test_verify_with_encoding(self) -> None:
         verify(
             u"Høvdingens kjære squaw får litt pizza i Mexico by",
             self.reporter,
             encoding="utf-8",
         )
 
-    def test_verify_with_encoding_error_raises_value_error(self):
+    def test_verify_with_encoding_error_raises_value_error(self) -> None:
         with self.assertRaises(ValueError):
             verify(
                 u"Høvdingens kjære squaw får litt pizza i Mexico by",
@@ -33,7 +33,7 @@ class VerifyTests(unittest.TestCase):
                 encoding="ascii",
             )
 
-    def test_verify_with_errors_replacement_character(self):
+    def test_verify_with_errors_replacement_character(self) -> None:
         verify(
             u"Falsches Üben von Xylophonmusik quält jeden größeren Zwerg",
             self.reporter,
@@ -41,7 +41,7 @@ class VerifyTests(unittest.TestCase):
             errors="replace",
         )
 
-    def test_verify_with_newlines(self):
+    def test_verify_with_newlines(self) -> None:
         verify(
             u"I cannot live without approval.\n"
             u"Your satisfaction is my demand.\n"
@@ -52,7 +52,7 @@ class VerifyTests(unittest.TestCase):
             newline="\r\n",
         )
 
-    def test_verify_fail(self):
+    def test_verify_fail(self) -> None:
         reporter = ReporterForTesting()
         try:
             verify("Hello World.", reporter)
@@ -60,7 +60,7 @@ class VerifyTests(unittest.TestCase):
         except ApprovalException as e:
             self.assertTrue("Approval Mismatch", e.value)
 
-    def test_verify_as_json(self):
+    def test_verify_as_json(self) -> None:
         class Bag(object):
             def __init__(self):
                 self.stuff = 1
@@ -70,7 +70,7 @@ class VerifyTests(unittest.TestCase):
         o.json = {"a": 0, "z": 26}
         verify_as_json(o, self.reporter)
 
-    def test_verify_file(self):
+    def test_verify_file(self) -> None:
         name = "exampleFile.txt"
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
@@ -80,11 +80,11 @@ class VerifyTests(unittest.TestCase):
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
-    def test_verify_file_with_actual_windows_1252_encoding(self):
+    def test_verify_file_with_actual_windows_1252_encoding(self) -> None:
         name = "exampleFile_Actual_Windows1252.txt"
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
-    def test_verify_xml(self):
+    def test_verify_xml(self) -> None:
         xml = """<?xml version="1.0" encoding="UTF-8"?><orderHistory createdAt='2019-08-02T16:40:18.109470'><order date='2018-09-01T00:00:00+00:00' totalDollars='149.99'><product id='EVENT02'>Makeover</product></order><order date='2017-09-01T00:00:00+00:00' totalDollars='14.99'><product id='LIPSTICK01'>Cherry Bloom</product></order></orderHistory>"""
         verify_xml(xml)

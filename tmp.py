@@ -2,7 +2,6 @@ s = '''
 tests.test_fileapprover
 tests.test_list
 tests.test_namer
-tests.test_scenarios
 tests.test_verify
 approvaltests.reporters.generic_diff_reporter
 tests.reporters.test_reporter
