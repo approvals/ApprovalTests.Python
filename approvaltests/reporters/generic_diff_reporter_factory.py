@@ -1,11 +1,13 @@
+from typing import List
 import json
 
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+from approvaltests.reporters import Reporter
 from approvaltests.utils import get_adjacent_file
 
 
 class GenericDiffReporterFactory(object):
-    reporters = []
+    reporters : List[Reporter] = []
 
     def __init__(self):
         self.load(get_adjacent_file("reporters.json"))
