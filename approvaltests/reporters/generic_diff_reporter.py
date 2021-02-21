@@ -4,6 +4,7 @@ from approvaltests import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
 from approvaltests.utils import to_json
+from typing import List, Optional, Tuple, Union
 
 
 class GenericDiffReporter(Reporter):
@@ -13,10 +14,10 @@ class GenericDiffReporter(Reporter):
     """
 
     @staticmethod
-    def create(diff_tool_path):
+    def create(diff_tool_path: str) :
         return GenericDiffReporter(["custom", diff_tool_path])
 
-    def __init__(self, config):
+    def __init__(self, config: Union[List[Union[str, List[str]]], Tuple[str, str], List[str]]) -> None:
         self.name = config[0]
         self.path = config[1]
         if len(config) > 2:
@@ -24,7 +25,7 @@ class GenericDiffReporter(Reporter):
         else:
             self.extra_args = []
 
-    def __str__(self):
+    def __str__(self) -> str:
         config = {"name": self.name, "path": self.path}
         if self.extra_args:
             config.update({"arguments": self.extra_args})
@@ -34,10 +35,10 @@ class GenericDiffReporter(Reporter):
     def run_command(command_array):
         subprocess.Popen(command_array)
 
-    def get_command(self, received, approved):
+    def get_command(self, received: str, approved: str) -> List[str]:
         return [self.path] + self.extra_args + [received, approved]
 
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         if not self.is_working():
             return False
         ensure_file_exists(approved_path)
@@ -45,5 +46,5 @@ class GenericDiffReporter(Reporter):
         self.run_command(command_array)
         return True
 
-    def is_working(self):
+    def is_working(self) -> Optional[str]:
         return Command(self.path).locate()
