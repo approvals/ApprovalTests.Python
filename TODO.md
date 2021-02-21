@@ -1,4 +1,5 @@
 1.  use BLACK for formatting
+1. python type hints - use mypy linter to check it - see code snippet below
 1. setup github action to lint
 1.  linter - add flake8 to pycharm and tox
 1. check all uses of default reporter in tests
@@ -10,7 +11,6 @@
 
 
 
-1. python type hints - use mypy linter to check it - see code snippet below
 1. powershell scripts
 1.  add mdsnippets
 1. options support
