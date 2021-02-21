@@ -1,9 +1,9 @@
 import io
 import os
 import sys
+from typing import Optional
 
 from approvaltests.core.writer import Writer
-from typing import Optional
 
 
 class StringWriter(Writer):
