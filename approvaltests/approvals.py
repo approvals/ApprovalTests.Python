@@ -1,14 +1,11 @@
-import io
-import shutil
 from threading import local
 import xml.dom.minidom
 
-from approvaltests.core import Writer
-
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.core.namer import StackFrameNamer, Namer
+from approvaltests.core.namer import StackFrameNamer
 from approvaltests.core.scenario_namer import ScenarioNamer
+from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
@@ -22,13 +19,6 @@ from typing import Any, Callable, List, Optional, Union
 
 DEFAULT_REPORTER = local()
 
-class ExistingFileWriter(Writer):
-    def __init__(self, file_name: str) -> None:
-        self.file_name = file_name
-
-    def write_received_file(self, received_file: str) -> str:
-        shutil.copyfile(self.file_name, received_file)
-        return received_file
 
 def set_default_reporter(reporter: MultiReporter) -> None:
     global DEFAULT_REPORTER
