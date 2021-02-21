@@ -93,3 +93,4 @@ fabric.properties
 # virtual environments
 virtualenv
 venv
+*.sqlite3

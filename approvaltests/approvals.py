@@ -22,6 +22,13 @@ from typing import Any, Callable, List, Optional, Union
 
 DEFAULT_REPORTER = local()
 
+class ExistingFileWriter(Writer):
+    def __init__(self, file_name: str) -> None:
+        self.file_name = file_name
+
+    def write_received_file(self, received_file: str) -> str:
+        shutil.copyfile(self.file_name, received_file)
+        return received_file
 
 def set_default_reporter(reporter: MultiReporter) -> None:
     global DEFAULT_REPORTER
@@ -151,13 +158,6 @@ def verify_xml(xml_string: str, reporter: None=None, namer: None=None) -> None:
     verify_with_namer(pretty_xml, namer, reporter, encoding="utf-8", newline="\n")
 
 
-class ExistingFileWriter(Writer):
-    def __init__(self, file_name: str) -> None:
-        self.file_name = file_name
-
-    def write_received_file(self, received_file: str) -> str:
-        shutil.copyfile(self.file_name, received_file)
-        return received_file
 
 
 def verify_file(file_name: str, reporter: None=None, encoding: None=None, errors: None=None, newline: None=None) -> None:
