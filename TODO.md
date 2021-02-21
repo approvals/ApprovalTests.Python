@@ -1,4 +1,3 @@
-1.  use BLACK for formatting
 1. python type hints - use mypy linter to check it - see code snippet below
 1. setup github action to lint
 1.  linter - add flake8 to pycharm and tox
@@ -8,18 +7,16 @@
 1.  add checks to twine in github actions
 1. markdown snippets
 1. starter projects
-
-
-
 1. powershell scripts
-1.  add mdsnippets
-1. options support
+1. new feature: options support
 1. make code more pythonic (method overloads vs default parameters)
 1.  Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
 1.   the new file creation handles writing with correct encoding
 1.  combination approvals needs line ending option
 1.  error output is too confusing
 1.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
+
+```python
 
   def test_mypy(self) -> None:
        try:
@@ -32,10 +29,10 @@
            SCRIPT_DIR,
        ])
        self.assertEqual(0, exit_code, "\n\n" + stdout + stderr)
-22. Add documentation.
-23. Look at issues https://github.com/approvals/ApprovalTests.Python/issues
-24. add options to signature
-25. Randomize order of tests in pytest plugin
+```
+
+1. Look at issues https://github.com/approvals/ApprovalTests.Python/issues
+1. Randomize order of tests in pytest plugin
 
 
 Authors:
