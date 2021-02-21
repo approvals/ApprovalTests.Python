@@ -6,9 +6,17 @@
 
 
 iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/windows.ps1 | iex
-iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/python-pycharm.ps1 | iex
+# iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/python-pycharm.ps1 | iex
 
-choco install python --version=3.6.7 --allow-downgrade
+iwr -useb cin.st | iex
+choco feature enable --name=allowGlobalConfirmation
+choco install beyondcompare
+choco install python --version=3.6.7 
+choco install pip
+choco install pycharm
+
+syspin "C:\Program Files (x86)\JetBrains\PyCharm 2020.3.2\bin\pycharm64.exe" "Pin to taskbar"
+
 choco install visualstudio2019buildtools
 pip install tox
 
