@@ -4,9 +4,10 @@ from pathlib import Path
 from approvaltests import verify
 
 from approvaltests.reporters.python_native_reporter import *
+from py._path.local import LocalPath
 
 
-def test_files_identical(tmpdir):
+def test_files_identical(tmpdir: LocalPath) -> None:
     file1 = os.path.join(str(tmpdir), "a.received.txt")
     file2 = os.path.join(str(tmpdir), "b.approved.txt")
     identical_contents = "abc"
@@ -17,7 +18,7 @@ def test_files_identical(tmpdir):
     verify(calculate_diff(file1, file2))
 
 
-def test_files_differ(tmpdir):
+def test_files_differ(tmpdir: LocalPath) -> None:
     file1 = os.path.join(str(tmpdir), "a.received.txt")
     file2 = os.path.join(str(tmpdir), "b.approved.txt")
     with open(file1, "w") as f1:
@@ -31,7 +32,7 @@ def test_files_differ(tmpdir):
     verify(diff)
 
 
-def test_approved_file_is_created_when_missing(tmpdir):
+def test_approved_file_is_created_when_missing(tmpdir: LocalPath) -> None:
     file1 = os.path.join(str(tmpdir), "a.received.txt")
     file2 = os.path.join(str(tmpdir), "b.approved.txt")
     with open(file1, "w") as f1:

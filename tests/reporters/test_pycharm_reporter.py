@@ -2,7 +2,7 @@ from approvaltests import verify
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 
 
-def test_pycharm_diff_command():
+def test_pycharm_diff_command() -> None:
     reporter = GenericDiffReporter(
         ["PyCharm", "/Applications/PyCharm CE.app/Contents/MacOS/pycharm", ["diff"]]
     )

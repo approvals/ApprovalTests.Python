@@ -1,7 +1,4 @@
 s = '''
-tests.configuration.test_subdirectory
-tests.reporters.test_diff_reporter
-tests.reporters.test_first_working_reporter
 tests.reporters.test_genericdiffreporter
 tests.reporters.test_pycharm_reporter
 tests.reporters.test_python_native_reporter
