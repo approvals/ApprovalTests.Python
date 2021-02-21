@@ -5,18 +5,20 @@ from approvaltests import (
     get_reporter,
     StackFrameNamer,
 )
+from approvaltests.reporters.testing_reporter import ReporterForTesting
+from typing import Optional
 
 
 class FilePathNamer(StackFrameNamer):
-    def __init__(self, file_path, extension=None):
+    def __init__(self, file_path: str, extension: None=None) -> None:
         StackFrameNamer.__init__(self, extension)
         self.file_path = file_path
 
-    def get_approved_filename(self, basename=None):
+    def get_approved_filename(self, basename: Optional[str]=None) -> str:
         return self.file_path
 
 
-def assert_against_file(actual, file_path, reporter=None):
+def assert_against_file(actual: str, file_path: str, reporter: Optional[ReporterForTesting]=None) -> None:
     namer = FilePathNamer(file_path)
     verify_with_namer(actual, namer, reporter)
 

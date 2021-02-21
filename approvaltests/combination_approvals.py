@@ -1,11 +1,15 @@
 from itertools import product
 
 from approvaltests import verify, verify_with_namer, get_default_namer
+from approvaltests.core.namer import StackFrameNamer
+from approvaltests.reporters.clipboard_reporter import CommandLineReporter
+from approvaltests.reporters.testing_reporter import ReporterForTesting
+from typing import Any, Callable, Optional, Tuple, Union
 
 
 def verify_all_combinations(
-    function_under_test, input_arguments, formatter=None, reporter=None
-):
+    function_under_test: Callable, input_arguments: Any, formatter: Optional[Callable]=None, reporter: Optional[ReporterForTesting]=None
+) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
     Args:
@@ -27,8 +31,8 @@ def verify_all_combinations(
 
 
 def verify_all_combinations_with_namer(
-    function_under_test, input_arguments, namer, formatter=None, reporter=None
-):
+    function_under_test: Callable, input_arguments: Any, namer: StackFrameNamer, formatter: Optional[Callable]=None, reporter: Optional[Union[CommandLineReporter, ReporterForTesting]]=None
+) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
     Args:
@@ -56,5 +60,5 @@ def verify_all_combinations_with_namer(
     verify_with_namer("".join(approval_strings), namer=namer, reporter=reporter)
 
 
-def args_and_result_formatter(args, result):
+def args_and_result_formatter(args: Union[Tuple[int, int], Tuple[int, int, int], Tuple[int]], result: int) -> str:
     return "args: {} => {}\n".format(repr(args), repr(result))

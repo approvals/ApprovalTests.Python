@@ -20,7 +20,7 @@ approvaltests.reporters.received_file_launcher_reporter
 approvaltests.reporters.testing_reporter
 approvaltests.string_writer
 approvaltests.utils
-'''.strip().splitlines()
+'''.strip().splitlines()[0:4]
 
 import os
 for module in s:
