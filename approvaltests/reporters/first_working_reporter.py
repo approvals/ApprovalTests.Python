@@ -15,10 +15,10 @@ class FirstWorkingReporter(Reporter):
     See also MultiReporter.
     """
 
-    def __init__(self, *reporters):
+    def __init__(self, *reporters) -> None:
         self.reporters = reporters
 
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         for r in self.reporters:
             try:
                 success = r.report(received_path, approved_path)
