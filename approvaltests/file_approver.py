@@ -1,6 +1,8 @@
 import filecmp
 import os
 import pathlib
+from typing import Any, Optional, Union
+
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
@@ -11,7 +13,6 @@ from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.multi_reporter import MultiReporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
-from typing import Any, Optional, Union
 
 
 def exists(path: str) -> bool:
