@@ -1,8 +1,8 @@
-from typing import Any, Iterator, Union, List
 import json
+from typing import Any, Iterator, Union, List
 
-from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters import Reporter
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.utils import get_adjacent_file
 
 

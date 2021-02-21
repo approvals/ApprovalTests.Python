@@ -1,7 +1,7 @@
 from subprocess import call
+from typing import List
 
 from approvaltests.core.reporter import Reporter
-from typing import List
 
 
 class ReceivedFileLauncherReporter(Reporter):
