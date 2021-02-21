@@ -1,13 +1,11 @@
 s = '''
-tests.reporters.test_reporter
-tests.test_asserts
-tests.test_combinations
 tests.test_fileapprover
 tests.test_list
 tests.test_namer
 tests.test_scenarios
 tests.test_verify
 approvaltests.reporters.generic_diff_reporter
+tests.reporters.test_reporter
 approvaltests.reporters.diff_reporter
 tests.reporters.test_python_native_reporter
 '''.strip().splitlines()[0:4]

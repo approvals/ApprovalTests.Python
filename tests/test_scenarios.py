@@ -2,7 +2,7 @@ import pytest
 from approvaltests import verify, get_scenario_namer
 
 
-def is_leap(year):
+def is_leap(year: int) -> bool:
     if year % 400 == 0:
         return True
     if year % 100 == 0:
@@ -11,7 +11,7 @@ def is_leap(year):
 
 
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
-def test_scenarios(year):
+def test_scenarios(year: int) -> None:
     verify(
         "is Leap " + str(year) + ": " + str(is_leap(year)),
         namer=get_scenario_namer(year),
