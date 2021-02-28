@@ -6,7 +6,7 @@ import unittest
 
 from approvaltests.approvals import verify, get_default_namer
 from approvaltests.command import Command
-from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter, create_config
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
@@ -114,7 +114,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         verify(to_json(reporters), self.reporter)
 
     def test_notworking_in_environment(self) -> None:
-        reporter = GenericDiffReporter(("Custom", "NotReal"))
+        reporter = GenericDiffReporter(create_config(["Custom", "NotReal"]))
         self.assertFalse(reporter.is_working())
 
     def test_find_working_reporter(self) -> None:
@@ -183,7 +183,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_non_working_reporter_does_not_report(self) -> None:
         self.assertFileDoesNotExist(self.approved_file_path)
 
-        reporter = GenericDiffReporter(("Custom", "NotReal"))
+        reporter = GenericDiffReporter(create_config(["Custom", "NotReal"]))
         success = reporter.report(self.received_file_path, self.approved_file_path)
 
         self.assertFalse(success)

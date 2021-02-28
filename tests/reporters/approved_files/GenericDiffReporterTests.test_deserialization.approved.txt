@@ -1,21 +1,24 @@
 [
-    [
-        "BeyondCompare4",
-        "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
-    ],
-    [
-        "WinMerge",
-        "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
-    ],
-    [
-        "FakeReporter",
-        "i_am_fake"
-    ],
-    [
-        "PyCharm",
-        "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
-        [
+    {
+        "extra_args": [],
+        "name": "BeyondCompare4",
+        "path": "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
+    },
+    {
+        "extra_args": [],
+        "name": "WinMerge",
+        "path": "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
+    },
+    {
+        "extra_args": [],
+        "name": "FakeReporter",
+        "path": "i_am_fake"
+    },
+    {
+        "extra_args": [
             "diff"
-        ]
-    ]
+        ],
+        "name": "PyCharm",
+        "path": "/Applications/PyCharm CE.app/Contents/MacOS/pycharm"
+    }
 ]

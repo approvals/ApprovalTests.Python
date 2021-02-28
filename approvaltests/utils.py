@@ -21,7 +21,7 @@ def write_to_temporary_file(expected: str, name: str):
         return temp.name
 
 
-def to_json(object: Union[List[Union[List[str], List[Union[str, List[str]]]]], List[str], Dict[str, Union[str, List[str]]], Dict[str, str]]) -> str:
+def to_json(object) -> str:
     return json.dumps(
         object,
         sort_keys=True,

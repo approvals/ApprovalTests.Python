@@ -38,20 +38,12 @@ class GenericDiffReporter(Reporter):
 
     @staticmethod
     def create(diff_tool_path: str) -> "GenericDiffReporter":
-        return GenericDiffReporter(["custom", diff_tool_path])
+        return GenericDiffReporter(create_config(["custom", diff_tool_path]))
 
-    def __init__(self, config: Union[List[Union[str, List[str]]], Tuple[str, str], List[str]]) -> None:
-        self.name = config[0]
-        self.path = config[1]
-        if len(config) > 2:
-            self.extra_args = config[2]
-        else:
-            self.extra_args = []
-
-    # def __init__(self, config: GenericDiffReporterConfig) -> None:
-    #     self.name = config.name
-    #     self.path = config.path
-    #     self.extra_args = config.extra_args
+    def __init__(self, config: GenericDiffReporterConfig) -> None:
+        self.name = config.name
+        self.path = config.path
+        self.extra_args = config.extra_args
 
     def __str__(self) -> str:
         config = {"name": self.name, "path": self.path}
