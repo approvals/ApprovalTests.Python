@@ -7,6 +7,29 @@ from approvaltests.utils import to_json
 from typing import List, Optional, Tuple, Union
 
 
+def create_config(config):
+    name = config[0]
+    path = config[1]
+    if len(config) > 2:
+        extra_args = config[2]
+    else:
+        extra_args = []
+    return GenericDiffReporterConfig(name, path, extra_args)
+
+
+class GenericDiffReporterConfig:
+    def __init__(self, name: str, path: str, extra_args: Optional[List[str]]=None):
+        self.name = name
+        self.path = path
+        self.extra_args = extra_args
+
+    def serialize(self):
+        result = [self.name, self.path]
+        if self.extra_args:
+            result.append(self.extra_args)
+        return result
+
+
 class GenericDiffReporter(Reporter):
     """
     A reporter that launches
@@ -14,7 +37,7 @@ class GenericDiffReporter(Reporter):
     """
 
     @staticmethod
-    def create(diff_tool_path: str) :
+    def create(diff_tool_path: str) -> "GenericDiffReporter":
         return GenericDiffReporter(["custom", diff_tool_path])
 
     def __init__(self, config: Union[List[Union[str, List[str]]], Tuple[str, str], List[str]]) -> None:
@@ -24,6 +47,11 @@ class GenericDiffReporter(Reporter):
             self.extra_args = config[2]
         else:
             self.extra_args = []
+
+    # def __init__(self, config: GenericDiffReporterConfig) -> None:
+    #     self.name = config.name
+    #     self.path = config.path
+    #     self.extra_args = config.extra_args
 
     def __str__(self) -> str:
         config = {"name": self.name, "path": self.path}
