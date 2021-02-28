@@ -33,6 +33,7 @@
 
 1. Look at issues https://github.com/approvals/ApprovalTests.Python/issues
 1. Randomize order of tests in pytest plugin
+1. Refactor create_config in GenericDiffReporter to take three arguments instead of a list with three elements then you might be able to get rid of it entirely and just call the GenericDiffReporter constructor directly. The challenge is the optional argument.
 
 
 Authors:
