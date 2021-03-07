@@ -40,9 +40,11 @@ class GenericDiffReporter(Reporter):
         self.extra_args = config.extra_args
 
     def __str__(self) -> str:
-        config = {"name": self.name, "path": self.path}
         if self.extra_args:
-            config.update({"arguments": self.extra_args})
+            config = {"name": self.name, "path": self.path, "arguments": self.extra_args}
+        else:
+            config = {"name": self.name, "path": self.path}
+
         return to_json(config)
 
     @staticmethod
