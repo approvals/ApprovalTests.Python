@@ -2,7 +2,11 @@ import json
 from typing import Any, Iterator, Union, List, Optional
 
 from approvaltests.reporters import Reporter
-from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter, GenericDiffReporterConfig, create_config
+from approvaltests.reporters.generic_diff_reporter import (
+    GenericDiffReporter,
+    GenericDiffReporterConfig,
+    create_config,
+)
 from approvaltests.utils import get_adjacent_file
 
 
@@ -31,7 +35,11 @@ class GenericDiffReporterFactory(object):
     def save(self, file_name: str) -> str:
         with open(file_name, "w") as f:
             json.dump(
-                [reporter.serialize() for reporter in self.reporters], f, sort_keys=True, indent=2, separators=(",", ": ")
+                [reporter.serialize() for reporter in self.reporters],
+                f,
+                sort_keys=True,
+                indent=2,
+                separators=(",", ": "),
             )
         return file_name
 

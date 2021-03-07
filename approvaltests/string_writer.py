@@ -10,7 +10,12 @@ class StringWriter(Writer):
     contents = ""
 
     def __init__(
-        self, contents: str, extension: str=".txt", encoding: Optional[str]=None, errors: Optional[str]=None, newline: Optional[str]=None
+        self,
+        contents: str,
+        extension: str = ".txt",
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        newline: Optional[str] = None,
     ) -> None:
         if sys.version_info.major == 2 and isinstance(contents, str):
             contents = contents.decode("ascii")

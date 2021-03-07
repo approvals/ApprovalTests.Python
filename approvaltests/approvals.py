@@ -31,15 +31,32 @@ def get_default_reporter() -> Union[DiffReporter, MultiReporter]:
     return DEFAULT_REPORTER.v
 
 
-def get_reporter(reporter: Any) -> Union[DiffReporter, GenericDiffReporter, ReporterForTesting, CommandLineReporter, MultiReporter]:
+def get_reporter(
+    reporter: Any,
+) -> Union[
+    DiffReporter,
+    GenericDiffReporter,
+    ReporterForTesting,
+    CommandLineReporter,
+    MultiReporter,
+]:
     return reporter or get_default_reporter()
 
 
-def get_default_namer(extension: Optional[str]=None) -> StackFrameNamer:
+def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
     return StackFrameNamer(extension)
 
 
-def verify(data: str, reporter: Optional[Union[ReporterForTesting, DiffReporter, GenericDiffReporter]]=None, namer: Optional[Union[PyTestNamer, ScenarioNamer]]=None, encoding: Optional[str]=None, errors: Optional[str]=None, newline: Optional[str]=None) -> None:
+def verify(
+    data: str,
+    reporter: Optional[
+        Union[ReporterForTesting, DiffReporter, GenericDiffReporter]
+    ] = None,
+    namer: Optional[Union[PyTestNamer, ScenarioNamer]] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+    newline: Optional[str] = None,
+) -> None:
     """Verify string data against a previously approved version of the string.
 
     Args:
@@ -85,7 +102,12 @@ def verify(data: str, reporter: Optional[Union[ReporterForTesting, DiffReporter,
 
 
 def verify_with_namer(
-    data: str, namer: Union[ScenarioNamer, PyTestNamer, StackFrameNamer], reporter: Optional[Any]=None, encoding: Optional[str]=None, errors: Optional[str]=None, newline: Optional[str]=None
+    data: str,
+    namer: Union[ScenarioNamer, PyTestNamer, StackFrameNamer],
+    reporter: Optional[Any] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+    newline: Optional[str] = None,
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -125,7 +147,11 @@ def verify_with_namer(
     verify_with_namer_and_writer(namer, writer, reporter)
 
 
-def verify_with_namer_and_writer(namer: Union[ScenarioNamer, PyTestNamer, StackFrameNamer], writer: Union[StringWriter, ExistingFileWriter], reporter: Any) -> None:
+def verify_with_namer_and_writer(
+    namer: Union[ScenarioNamer, PyTestNamer, StackFrameNamer],
+    writer: Union[StringWriter, ExistingFileWriter],
+    reporter: Any,
+) -> None:
     approver = FileApprover()
     reporter = get_reporter(reporter)
     error = approver.verify(namer, writer, reporter)
@@ -138,7 +164,7 @@ def verify_as_json(object, reporter=None):
     verify(n_, reporter, encoding="utf-8", newline="\n")
 
 
-def verify_xml(xml_string: str, reporter: None=None, namer: None=None) -> None:
+def verify_xml(xml_string: str, reporter: None = None, namer: None = None) -> None:
     try:
         dom = xml.dom.minidom.parseString(xml_string)
         pretty_xml = dom.toprettyxml()
@@ -148,9 +174,13 @@ def verify_xml(xml_string: str, reporter: None=None, namer: None=None) -> None:
     verify_with_namer(pretty_xml, namer, reporter, encoding="utf-8", newline="\n")
 
 
-
-
-def verify_file(file_name: str, reporter: None=None, encoding: None=None, errors: None=None, newline: None=None) -> None:
+def verify_file(
+    file_name: str,
+    reporter: None = None,
+    encoding: None = None,
+    errors: None = None,
+    newline: None = None,
+) -> None:
     """Verify the contents of a text file against previously approved contents.
 
     Args:
@@ -182,11 +212,11 @@ def verify_file_with_encoding(
 def verify_all(
     header: str,
     alist: List[str],
-    formatter: Optional[Callable]=None,
-    reporter: Optional[DiffReporter]=None,
-    encoding: None=None,
-    errors: None=None,
-    newline: None=None,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[DiffReporter] = None,
+    encoding: None = None,
+    errors: None = None,
+    newline: None = None,
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 

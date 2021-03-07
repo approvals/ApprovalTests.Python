@@ -20,7 +20,18 @@ def exists(path: str) -> bool:
 
 
 class FileApprover(object):
-    def verify(self, namer: Union[StackFrameNamer, ScenarioNamer, PyTestNamer], writer: Union[StringWriter, ExistingFileWriter], reporter: Union[ReporterForTesting, CommandLineReporter, DiffReporter, MultiReporter, GenericDiffReporter]) -> Optional[str]:
+    def verify(
+        self,
+        namer: Union[StackFrameNamer, ScenarioNamer, PyTestNamer],
+        writer: Union[StringWriter, ExistingFileWriter],
+        reporter: Union[
+            ReporterForTesting,
+            CommandLineReporter,
+            DiffReporter,
+            MultiReporter,
+            GenericDiffReporter,
+        ],
+    ) -> Optional[str]:
 
         base = namer.get_basename()
         approved = namer.get_approved_filename(base)
@@ -33,7 +44,9 @@ class FileApprover(object):
             return "Approval Mismatch"
         return None
 
-    def verify_files(self, approved_file: str, received_file: str, reporter: Any) -> bool:
+    def verify_files(
+        self, approved_file: str, received_file: str, reporter: Any
+    ) -> bool:
         if self.are_files_the_same(approved_file, received_file):
             os.remove(received_file)
             return True

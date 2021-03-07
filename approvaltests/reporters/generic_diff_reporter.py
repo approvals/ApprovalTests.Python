@@ -8,7 +8,7 @@ from approvaltests.utils import to_json
 
 
 class GenericDiffReporterConfig:
-    def __init__(self, name: str, path: str, extra_args: Optional[List[str]]=None):
+    def __init__(self, name: str, path: str, extra_args: Optional[List[str]] = None):
         self.name = name
         self.path = path
         self.extra_args = extra_args or []
@@ -41,7 +41,11 @@ class GenericDiffReporter(Reporter):
 
     def __str__(self) -> str:
         if self.extra_args:
-            config = {"name": self.name, "path": self.path, "arguments": self.extra_args}
+            config = {
+                "name": self.name,
+                "path": self.path,
+                "arguments": self.extra_args,
+            }
         else:
             config = {"name": self.name, "path": self.path}
 

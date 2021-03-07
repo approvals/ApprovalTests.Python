@@ -8,7 +8,10 @@ from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
 def verify_all_combinations(
-    function_under_test: Callable, input_arguments: Any, formatter: Optional[Callable]=None, reporter: Optional[ReporterForTesting]=None
+    function_under_test: Callable,
+    input_arguments: Any,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[ReporterForTesting] = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -31,7 +34,11 @@ def verify_all_combinations(
 
 
 def verify_all_combinations_with_namer(
-    function_under_test: Callable, input_arguments: Any, namer: StackFrameNamer, formatter: Optional[Callable]=None, reporter: Optional[Union[CommandLineReporter, ReporterForTesting]]=None
+    function_under_test: Callable,
+    input_arguments: Any,
+    namer: StackFrameNamer,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[Union[CommandLineReporter, ReporterForTesting]] = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -60,5 +67,7 @@ def verify_all_combinations_with_namer(
     verify_with_namer("".join(approval_strings), namer=namer, reporter=reporter)
 
 
-def args_and_result_formatter(args: Union[Tuple[int, int], Tuple[int, int, int], Tuple[int]], result: int) -> str:
+def args_and_result_formatter(
+    args: Union[Tuple[int, int], Tuple[int, int, int], Tuple[int]], result: int
+) -> str:
     return "args: {} => {}\n".format(repr(args), repr(result))

@@ -18,8 +18,8 @@ class ScenarioNamer:
         basename = self.base_namer.get_basename()
         return basename + "." + str(self.scenario_name)
 
-    def get_approved_filename(self, base: Optional[str]=None) -> str:
+    def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.base_namer.get_approved_filename(base)
 
-    def get_received_filename(self, base: Optional[str]=None) -> str:
+    def get_received_filename(self, base: Optional[str] = None) -> str:
         return self.base_namer.get_received_filename(base)

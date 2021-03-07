@@ -11,7 +11,7 @@ class Namer(object):
     APPROVED = ".approved"
     RECEIVED = ".received"
 
-    def __init__(self, extension: Optional[str]=None) -> None:
+    def __init__(self, extension: Optional[str] = None) -> None:
         self.extension_with_dot = extension or ".txt"
 
     def get_file_name(self):
@@ -28,11 +28,11 @@ class Namer(object):
         subdirectory = self.get_config().get("subdirectory", "")
         return os.path.join(self.get_directory(), subdirectory, file_name)
 
-    def get_received_filename(self, basename: Optional[str]=None) -> str:
+    def get_received_filename(self, basename: Optional[str] = None) -> str:
         basename = basename or self.get_basename()
         return basename + Namer.RECEIVED + self.extension_with_dot
 
-    def get_approved_filename(self, basename: Optional[str]=None) -> str:
+    def get_approved_filename(self, basename: Optional[str] = None) -> str:
         basename = basename or self.get_basename()
         return basename + Namer.APPROVED + self.extension_with_dot
 
@@ -45,7 +45,7 @@ class StackFrameNamer(Namer):
     MethodName = ""
     ClassName = ""
 
-    def __init__(self, extension: Optional[str]=None) -> None:
+    def __init__(self, extension: Optional[str] = None) -> None:
         Namer.__init__(self, extension)
         self.set_for_stack(inspect.stack(1))
         self.config = None
