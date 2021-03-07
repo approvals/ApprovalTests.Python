@@ -3,7 +3,7 @@ import os
 import pathlib
 from typing import Any, Optional, Union
 
-from approvaltests.core.namer import StackFrameNamer
+from approvaltests.core.namer import StackFrameNamer, Namer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.pytest.namer import PyTestNamer
@@ -22,7 +22,7 @@ def exists(path: str) -> bool:
 class FileApprover(object):
     def verify(
         self,
-        namer: Union[StackFrameNamer, ScenarioNamer, PyTestNamer],
+        namer: Namer,
         writer: Union[StringWriter, ExistingFileWriter],
         reporter: Union[
             ReporterForTesting,
