@@ -48,7 +48,8 @@ class StackFrameNamer(Namer):
     def __init__(self, extension: Optional[str] = None) -> None:
         Namer.__init__(self, extension)
         self.set_for_stack(inspect.stack(1))
-        self.config = None
+        self.config = {}
+        self.config_loaded = False
 
     def set_for_stack(self, caller: List[FrameInfo]) -> None:
         frame = self.get_test_frame(caller)
@@ -98,7 +99,7 @@ class StackFrameNamer(Namer):
 
     def get_config(self) -> Dict[str, str]:
         """lazy load config when we need it, then store it in the instance variable self.config"""
-        if self.config is None:
+        if not self.config_loaded:
             config_file = os.path.join(
                 self.config_directory(), "approvaltests_config.json"
             )
@@ -107,6 +108,7 @@ class StackFrameNamer(Namer):
                     self.config = json.load(f)
             else:
                 self.config = {}
+            self.config_loaded = True
         return self.config
 
     def get_file_name(self) -> str:
