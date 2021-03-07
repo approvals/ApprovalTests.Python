@@ -4,7 +4,7 @@ from typing import Any, Callable, List, Optional, Union
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.core.namer import StackFrameNamer
+from approvaltests.core.namer import StackFrameNamer, Namer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
@@ -103,7 +103,7 @@ def verify(
 
 def verify_with_namer(
     data: str,
-    namer: Union[ScenarioNamer, PyTestNamer, StackFrameNamer],
+    namer: Namer,
     reporter: Optional[Any] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
@@ -164,7 +164,7 @@ def verify_as_json(object, reporter=None):
     verify(n_, reporter, encoding="utf-8", newline="\n")
 
 
-def verify_xml(xml_string: str, reporter: None = None, namer: None = None) -> None:
+def verify_xml(xml_string: str, reporter: None = None, namer: Namer = None) -> None:
     try:
         dom = xml.dom.minidom.parseString(xml_string)
         pretty_xml = dom.toprettyxml()
