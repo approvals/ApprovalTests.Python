@@ -1,5 +1,5 @@
 import json
-from typing import Any, Iterator, Union, List
+from typing import Any, Iterator, Union, List, Optional
 
 from approvaltests.reporters import Reporter
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter, GenericDiffReporterConfig, create_config
@@ -41,7 +41,7 @@ class GenericDiffReporterFactory(object):
         self.reporters = [create_config(config) for config in configs]
         return self.reporters
 
-    def get_first_working(self) -> GenericDiffReporter:
+    def get_first_working(self) -> Optional[GenericDiffReporter]:
         working = (i for i in self.get_all_reporters() if i.is_working())
         return next(working, None)
 
