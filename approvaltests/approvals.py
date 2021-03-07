@@ -52,7 +52,7 @@ def verify(
     reporter: Optional[
         Union[ReporterForTesting, DiffReporter, GenericDiffReporter]
     ] = None,
-    namer: Optional[Union[PyTestNamer, ScenarioNamer]] = None,
+    namer: Optional[Namer] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,
