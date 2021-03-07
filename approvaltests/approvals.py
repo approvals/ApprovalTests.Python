@@ -148,7 +148,7 @@ def verify_with_namer(
 
 
 def verify_with_namer_and_writer(
-    namer: Union[ScenarioNamer, PyTestNamer, StackFrameNamer],
+    namer: Namer,
     writer: Union[StringWriter, ExistingFileWriter],
     reporter: Any,
 ) -> None:
