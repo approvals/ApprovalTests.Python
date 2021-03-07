@@ -1,3 +1,4 @@
+1.cached property for Namer.get_config
 1. python type hints - use mypy linter to check it - see code snippet below
 1. setup github action to lint
 1.  linter - add flake8 to pycharm and tox
