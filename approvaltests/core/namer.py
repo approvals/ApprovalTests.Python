@@ -48,7 +48,7 @@ class StackFrameNamer(Namer):
     def __init__(self, extension: Optional[str] = None) -> None:
         Namer.__init__(self, extension)
         self.set_for_stack(inspect.stack(1))
-        self.config = {}
+        self.config: Dict[str,str] = {}
         self.config_loaded = False
 
     def set_for_stack(self, caller: List[FrameInfo]) -> None:
