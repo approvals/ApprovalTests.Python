@@ -4,7 +4,7 @@ from typing import Any, Callable, List, Optional, Union
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.core import Reporter
+from approvaltests.core import Reporter, Writer
 from approvaltests.core.namer import StackFrameNamer, Namer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
@@ -32,7 +32,7 @@ def get_default_reporter() -> Reporter:
     return DEFAULT_REPORTER.v
 
 
-def get_reporter(reporter: Reporter) -> Reporter:
+def get_reporter(reporter: Optional[Reporter]) -> Reporter:
     return reporter or get_default_reporter()
 
 
@@ -42,9 +42,7 @@ def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
 
 def verify(
     data: str,
-    reporter: Optional[
-        Union[ReporterForTesting, DiffReporter, GenericDiffReporter]
-    ] = None,
+    reporter: Optional[Reporter] = None,
     namer: Optional[Namer] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
@@ -142,8 +140,8 @@ def verify_with_namer(
 
 def verify_with_namer_and_writer(
     namer: Namer,
-    writer: Union[StringWriter, ExistingFileWriter],
-    reporter: Any,
+    writer: Writer,
+    reporter: Optional[Reporter],
 ) -> None:
     approver = FileApprover()
     reporter = get_reporter(reporter)
@@ -169,7 +167,7 @@ def verify_xml(xml_string: str, reporter: None = None, namer: Namer = None) -> N
 
 def verify_file(
     file_name: str,
-    reporter: None = None,
+    reporter: Reporter = None,
     encoding: None = None,
     errors: None = None,
     newline: None = None,

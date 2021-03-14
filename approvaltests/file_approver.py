@@ -1,18 +1,11 @@
 import filecmp
 import os
 import pathlib
-from typing import Any, Optional, Union
+from typing import Any, Optional
 
-from approvaltests.core.namer import StackFrameNamer, Namer
-from approvaltests.core.scenario_namer import ScenarioNamer
-from approvaltests.existing_file_writer import ExistingFileWriter
-from approvaltests.pytest.namer import PyTestNamer
-from approvaltests.reporters.clipboard_reporter import CommandLineReporter
-from approvaltests.reporters.diff_reporter import DiffReporter
-from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
-from approvaltests.reporters.multi_reporter import MultiReporter
-from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approvaltests.string_writer import StringWriter
+from approvaltests.core.reporter import Reporter
+from approvaltests.core.writer import Writer
+from approvaltests.core.namer import Namer
 
 
 def exists(path: str) -> bool:
@@ -23,14 +16,8 @@ class FileApprover(object):
     def verify(
         self,
         namer: Namer,
-        writer: Union[StringWriter, ExistingFileWriter],
-        reporter: Union[
-            ReporterForTesting,
-            CommandLineReporter,
-            DiffReporter,
-            MultiReporter,
-            GenericDiffReporter,
-        ],
+        writer: Writer,
+        reporter: Reporter,
     ) -> Optional[str]:
 
         base = namer.get_basename()
