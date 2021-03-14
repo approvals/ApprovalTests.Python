@@ -32,7 +32,7 @@ class FileApprover(object):
         return None
 
     def verify_files(
-        self, approved_file: str, received_file: str, reporter: Any
+        self, approved_file: str, received_file: str, reporter: Reporter
     ) -> bool:
         if self.are_files_the_same(approved_file, received_file):
             os.remove(received_file)

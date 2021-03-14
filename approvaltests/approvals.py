@@ -1,6 +1,6 @@
 import xml.dom.minidom
 from threading import local
-from typing import Any, Callable, List, Optional, Union
+from typing import Callable, List, Optional
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
@@ -10,12 +10,8 @@ from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
-from approvaltests.pytest.namer import PyTestNamer
-from approvaltests.reporters.clipboard_reporter import CommandLineReporter
 from approvaltests.reporters.diff_reporter import DiffReporter
-from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.multi_reporter import MultiReporter
-from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
 
 DEFAULT_REPORTER = local()
@@ -95,7 +91,7 @@ def verify(
 def verify_with_namer(
     data: str,
     namer: Namer,
-    reporter: Optional[Any] = None,
+    reporter: Optional[Reporter] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,

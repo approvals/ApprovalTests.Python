@@ -34,7 +34,7 @@ def verify_all_combinations(
 
 def verify_all_combinations_with_namer(
     function_under_test: Callable,
-    input_arguments: Any,
+    input_arguments: Sequence[Sequence[Any]],
     namer: StackFrameNamer,
     formatter: Optional[Callable] = None,
     reporter: Optional[Reporter] = None,

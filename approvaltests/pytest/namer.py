@@ -13,7 +13,7 @@ class PyTestNamer(Namer):
         Namer.__init__(self, extension)
         self.request = request
         self.filepath, self.filename = os.path.split(str(self.request.fspath))
-        self.config = {}
+        self.config: Dict[str, str] = {}
         subdir = self.request.config.getoption(
             "approvaltests_subdirectory", default=None
         )
@@ -26,5 +26,5 @@ class PyTestNamer(Namer):
     def get_directory(self) -> str:
         return self.filepath
 
-    def get_config(self) -> Dict[Any, Any]:
+    def get_config(self) -> Dict[str, str]:
         return self.config
