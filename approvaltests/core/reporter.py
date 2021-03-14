@@ -1,4 +1,6 @@
-class Reporter(object):
+from abc import ABC, abstractmethod
+
+class Reporter(ABC):
     """
     Super class of all reporters in ApprovalTests.Python
 
@@ -8,6 +10,7 @@ class Reporter(object):
     returns a truthy value on success.
     """
 
+    @abstractmethod
     def report(self, received_path: str, approved_path: str) -> bool:
         """
         Apply the reporter to pair of files given
