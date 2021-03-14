@@ -4,6 +4,7 @@ from typing import Any, Callable, List, Optional, Union
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
+from approvaltests.core import Reporter
 from approvaltests.core.namer import StackFrameNamer, Namer
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
@@ -25,21 +26,13 @@ def set_default_reporter(reporter: MultiReporter) -> None:
     DEFAULT_REPORTER.v = reporter
 
 
-def get_default_reporter() -> Union[DiffReporter, MultiReporter]:
+def get_default_reporter() -> Reporter:
     if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
         return DiffReporter()
     return DEFAULT_REPORTER.v
 
 
-def get_reporter(
-    reporter: Any,
-) -> Union[
-    DiffReporter,
-    GenericDiffReporter,
-    ReporterForTesting,
-    CommandLineReporter,
-    MultiReporter,
-]:
+def get_reporter(reporter: Reporter) -> Reporter:
     return reporter or get_default_reporter()
 
 
