@@ -1,6 +1,4 @@
 1.cached property for Namer.get_config
-1. python type hints - use mypy linter to check it - see code snippet below
-1. review monkeytype types
 1. setup github action to lint
 1.  linter - add flake8 to pycharm and tox
 1. check all uses of default reporter in tests
@@ -17,7 +15,7 @@
 1.  combination approvals needs line ending option
 1.  error output is too confusing
 1.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
-
+1. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis 
 ```python
 
   def test_mypy(self) -> None:
