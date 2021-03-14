@@ -8,7 +8,7 @@ class Reporter(object):
     returns a truthy value on success.
     """
 
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         """
         Apply the reporter to pair of files given
         as absolute paths parameters.
