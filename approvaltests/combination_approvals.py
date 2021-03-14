@@ -1,9 +1,8 @@
 from itertools import product
 from typing import Any, Callable, Optional, Tuple, Union
 
-from approvaltests import verify_with_namer, get_default_namer
+from approvaltests import verify_with_namer, get_default_namer, Reporter
 from approvaltests.core.namer import StackFrameNamer
-from approvaltests.reporters.clipboard_reporter import CommandLineReporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
@@ -38,7 +37,7 @@ def verify_all_combinations_with_namer(
     input_arguments: Any,
     namer: StackFrameNamer,
     formatter: Optional[Callable] = None,
-    reporter: Optional[Union[CommandLineReporter, ReporterForTesting]] = None,
+    reporter: Optional[Reporter] = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
