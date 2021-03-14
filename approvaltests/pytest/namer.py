@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict
+from typing import Dict
 
 from _pytest.fixtures import FixtureRequest
 

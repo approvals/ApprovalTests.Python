@@ -1,11 +1,11 @@
 import filecmp
 import os
 import pathlib
-from typing import Any, Optional
+from typing import Optional
 
+from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
-from approvaltests.core.namer import Namer
 
 
 def exists(path: str) -> bool:

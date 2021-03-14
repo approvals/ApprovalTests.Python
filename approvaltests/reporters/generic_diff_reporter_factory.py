@@ -1,5 +1,5 @@
 import json
-from typing import Any, Iterator, Union, List, Optional
+from typing import Iterator, List, Optional
 
 from approvaltests.reporters import Reporter
 from approvaltests.reporters.generic_diff_reporter import (

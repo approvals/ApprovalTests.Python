@@ -1,13 +1,13 @@
-from approvaltests.reporters import (
-    GenericDiffReporterFactory,
-    DiffReporter,
-    PythonNativeReporter,
-)
 from typing import Any, List
+
+from approvaltests.reporters import (
+    DiffReporter,
+    PythonNativeReporter, Reporter,
+)
 
 
 class FakeFactory:
-    def get_all_reporters(self) -> List[Any]:
+    def get_all_reporters(self) -> List[Reporter]:
         return []
 
 
