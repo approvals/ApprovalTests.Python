@@ -22,7 +22,7 @@ class GenericDiffReporterFactory(object):
     def list(self) -> List[str]:
         return [r.name for r in self.reporters]
 
-    def get(self, reporter_name: str) -> Union[GenericDiffReporter, None]:
+    def get(self, reporter_name: str) -> Optional[Reporter]:
         config = next((r for r in self.reporters if r.name == reporter_name), None)
         if not config:
             return None
