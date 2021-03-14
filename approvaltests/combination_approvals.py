@@ -66,7 +66,5 @@ def verify_all_combinations_with_namer(
     verify_with_namer("".join(approval_strings), namer=namer, reporter=reporter)
 
 
-def args_and_result_formatter(
-    args: List[Any], result: int
-) -> str:
+def args_and_result_formatter(args: List[Any], result: int) -> str:
     return "args: {} => {}\n".format(repr(args), repr(result))
