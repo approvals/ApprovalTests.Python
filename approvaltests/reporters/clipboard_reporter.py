@@ -1,4 +1,4 @@
-import pyperclip
+import pyperclip  # type: ignore
 
 from approvaltests.core.reporter import Reporter
 
