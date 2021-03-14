@@ -17,8 +17,6 @@ class StringWriter(Writer):
         errors: Optional[str] = None,
         newline: Optional[str] = None,
     ) -> None:
-        if sys.version_info.major == 2 and isinstance(contents, str):
-            contents = contents.decode("ascii")
         self.contents = contents or u""
         self.extension_with_dot = extension
         self.encoding = encoding
