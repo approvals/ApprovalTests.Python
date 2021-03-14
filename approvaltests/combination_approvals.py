@@ -1,5 +1,5 @@
 from itertools import product
-from typing import Any, Callable, Optional, Tuple, Union
+from typing import Any, Callable, Optional, Tuple, Union, List, Sequence
 
 from approvaltests import verify_with_namer, get_default_namer, Reporter
 from approvaltests.core.namer import StackFrameNamer
@@ -8,7 +8,7 @@ from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 def verify_all_combinations(
     function_under_test: Callable,
-    input_arguments: Any,
+    input_arguments: Sequence[Sequence[Any]],
     formatter: Optional[Callable] = None,
     reporter: Optional[ReporterForTesting] = None,
 ) -> None:
@@ -67,6 +67,6 @@ def verify_all_combinations_with_namer(
 
 
 def args_and_result_formatter(
-    args: Union[Tuple[int, int], Tuple[int, int, int], Tuple[int]], result: int
+    args: List[Any], result: int
 ) -> str:
     return "args: {} => {}\n".format(repr(args), repr(result))

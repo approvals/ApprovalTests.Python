@@ -81,7 +81,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         arg1_combinations = (1, 2, 3)
         arg2_combinations = (2, 4, 6)
         arg3_combinations = (10, 11, 12)
-        arg_combinations = (arg1_combinations, arg2_combinations, arg3_combinations)
+        arg_combinations = [arg1_combinations, arg2_combinations, arg3_combinations]
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
     def test_when_arg_combinations_have_equal_lengths(self) -> None:
