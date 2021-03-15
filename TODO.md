@@ -13,7 +13,7 @@
 1.  Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
 1.   the new file creation handles writing with correct encoding
 1.  combination approvals needs line ending option
-1.  error output is too confusing
+1.  error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
 1.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 1. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis 
 ```python
