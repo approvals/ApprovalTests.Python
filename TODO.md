@@ -33,8 +33,38 @@
 
 1. Look at issues https://github.com/approvals/ApprovalTests.Python/issues
 1. Randomize order of tests in pytest plugin
+```.ini
+[mypy]
+python_version = 3.7
+pretty = True
+no_incremental = True
+ignore_missing_imports = True
 
-
+strict = True
+    ;;;;;;;;  `strict` enables the following flags:
+    ; --check-untyped-defs
+    ; --disallow-any-generics
+    ; --disallow-incomplete-defs
+    ; --disallow-subclassing-any
+    ; --disallow-untyped-calls
+    ; --disallow-untyped-decorators
+    ; --disallow-untyped-defs
+    ; --no-implicit-optional
+    ; --no-implicit-reexport
+    ; --strict-equality
+    ; --warn-redundant-casts
+    ; --warn-return-any
+    ; --warn-unused-configs
+    ; --warn-unused-ignores
+no_site_packages = True
+disallow_any_unimported = True
+disallow_any_expr = True
+disallow_any_decorated = True
+disallow_any_explicit = True
+strict_optional = True
+warn_no_return = True
+warn_unreachable = True
+```
 Authors:
 @claremacrae
 @objarni
