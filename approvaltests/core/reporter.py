@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Reporter(ABC):
     """
     Super class of all reporters in ApprovalTests.Python
@@ -9,6 +10,9 @@ class Reporter(ABC):
     paths of the received- and approved files, and
     returns a truthy value on success.
     """
+
+    def __eq__(self, other):
+        return repr(self) == repr(other)
 
     @abstractmethod
     def report(self, received_path: str, approved_path: str) -> bool:

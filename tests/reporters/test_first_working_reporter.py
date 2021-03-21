@@ -13,6 +13,11 @@ class ReporterForTesting(Reporter):
         self.called = False
         self.success = success
 
+    def __str__(self):
+        return f"{self.__class__.__name__}({self.success})"
+
+    __repr__ = __str__
+
     def report(self, received_path: str, approved_path: str) -> bool:
         self.called = True
         self.additional()
@@ -28,6 +33,13 @@ class TestFirstWorkingReporter(unittest.TestCase):
         self.assertTrue(r1.called)
         self.assertTrue(success)
         self.assertFalse(r2.called)
+
+    def test_string_representation(self) -> None:
+        r1 = ReporterForTesting(True)
+        r2 = ReporterForTesting(False)
+        first = FirstWorkingReporter(r1, r2)
+        expected = 'FirstWorkingReporter(ReporterForTesting(True), ReporterForTesting(False))'
+        self.assertEqual(expected, str(first))
 
     def test_second_one(self) -> None:
         r1 = ReporterForTesting(False)

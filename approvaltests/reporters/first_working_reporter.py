@@ -28,3 +28,10 @@ class FirstWorkingReporter(Reporter):
                 pass
 
         return False
+
+    def __str__(self):
+        reporters = ", ".join(str(s) for s in self.reporters)
+        return f"FirstWorkingReporter({reporters})"
+
+    __repr__ = __str__
+

@@ -187,3 +187,8 @@ class GenericDiffReporterTests(unittest.TestCase):
         success = reporter.report(self.received_file_path, self.approved_file_path)
 
         self.assertFalse(success)
+
+    def _test_string_representation(self) -> None:
+        reporter = GenericDiffReporter(create_config(["Custom", "NotReal"]))
+        expected = "GenericDiffReporter(...)"
+        self.assertEqual(expected, str(reporter))

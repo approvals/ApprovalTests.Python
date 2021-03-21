@@ -16,6 +16,9 @@
 1.  error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
 1.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 1. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis 
+1. Property Tests
+  1. eval(any.__repr__) == any
+  1. create(any_reporter) == create(any_reporter)
 ```python
 
   def test_mypy(self) -> None:

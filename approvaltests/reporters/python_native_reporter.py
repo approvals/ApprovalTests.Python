@@ -22,6 +22,11 @@ class PythonNativeReporter(Reporter):
         print(calculate_diff(received_path, approved_path))
         return True
 
+    def __str__(self):
+        return self.__class__.__name__
+
+    __repr__ = __str__
+
 
 def calculate_diff(file1: str, file2: str):
     with open(file1) as f1:
