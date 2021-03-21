@@ -1,4 +1,5 @@
-1.cached property for Namer.get_config
+1. approvals.verify should take any and str(it)
+1. cached property for Namer.get_config 
 1. setup github action to lint
 1.  linter - add flake8 to pycharm and tox
 1. check all uses of default reporter in tests
