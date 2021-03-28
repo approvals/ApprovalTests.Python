@@ -116,14 +116,7 @@ it can be used if the test fails.
 
 You don't have to do it this way.  You can request a specific reporter from the factory using the `get` method
 
-```python    
-class GettingStartedTest(unittest.TestCase):
-    def setUp(self):
-        self.factory = GenericDiffReporterFactory()
-
-    def test_simple(self):
-        verify('Hello', self.factory.get('BeyondCompare4'))
-```
+snippet: select_reporter_from_factory
 
 Or you can build your own GenericDiffReporter on the fly
 
