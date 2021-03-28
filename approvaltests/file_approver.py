@@ -12,6 +12,12 @@ def exists(path: str) -> bool:
     return os.path.isfile(path)
 
 
+class ReporterNotWorkingException(Exception):
+
+    def __init__(self, reporter: Reporter):
+        super().__init__(f"Reporter {reporter} failed to work!")
+
+
 class FileApprover(object):
     def verify(
         self,
@@ -38,7 +44,9 @@ class FileApprover(object):
             os.remove(received_file)
             return True
 
-        reporter.report(received_file, approved_file)
+        worked = reporter.report(received_file, approved_file)
+        if not worked:
+            raise ReporterNotWorkingException(reporter)
         return False
 
     @staticmethod
