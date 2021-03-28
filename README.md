@@ -116,7 +116,18 @@ it can be used if the test fails.
 
 You don't have to do it this way.  You can request a specific reporter from the factory using the `get` method
 
-snippet: select_reporter_from_factory
+<!-- snippet: select_reporter_from_factory -->
+<a id='snippet-select_reporter_from_factory'></a>
+```py
+class TestSelectReporter(unittest.TestCase):
+    def setUp(self):
+        self.factory = GenericDiffReporterFactory()
+
+    def test_simple(self):
+        verify('Hello', self.factory.get('BeyondCompare4'))
+```
+<sup><a href='/tests/samples/test_getting_started.py#L6-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Or you can build your own GenericDiffReporter on the fly
 
