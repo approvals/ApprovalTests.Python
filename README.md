@@ -129,6 +129,10 @@ class TestSelectReporter(unittest.TestCase):
 <sup><a href='/tests/samples/test_getting_started.py#L6-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+or you can construct the reporter directly
+
+snippet: select_reporter_from_class
+
 Or you can build your own GenericDiffReporter on the fly
 
 ```python    
