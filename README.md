@@ -126,12 +126,20 @@ class TestSelectReporter(unittest.TestCase):
     def test_simple(self):
         verify('Hello', self.factory.get('BeyondCompare4'))
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L6-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L7-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 or you can construct the reporter directly
 
-snippet: select_reporter_from_class
+<!-- snippet: select_reporter_from_class -->
+<a id='snippet-select_reporter_from_class'></a>
+```py
+class TestSelectReporterFromClass(unittest.TestCase):
+     def test_simple(self):
+        verify('Hello', reporter=ReportWithBeyondCompare())
+```
+<sup><a href='/tests/samples/test_getting_started.py#L16-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Or you can build your own GenericDiffReporter on the fly
 
