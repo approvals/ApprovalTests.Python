@@ -36,3 +36,7 @@ class ReportWithBeyondCompare(FirstWorkingReporter):
             ReportWithBeyondCompareWindows(),
             ReportWithBeyondCompareLinux()
         )
+
+
+def report_with_beyond_compare() -> ReportWithBeyondCompare:
+    return ReportWithBeyondCompare()

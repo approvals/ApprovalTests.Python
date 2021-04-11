@@ -1,8 +1,11 @@
 ﻿import unittest
 
+from approvaltests import verify
+from approvaltests.reporters import GenericDiffReporterFactory
 from approvaltests.reporters.received_file_launcher_reporter import (
     ReceivedFileLauncherReporter,
 )
+from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare, report_with_beyond_compare
 
 
 class ReporterTests(unittest.TestCase):
@@ -11,6 +14,11 @@ class ReporterTests(unittest.TestCase):
         command = reporter.get_command("a.txt", "b.txt")
         self.assertEqual(command, ["cmd", "/C", "start", "b.txt", "/B"])
 
+    def test_different_ways_of_creating_reporter(self):
+        reporter1 = GenericDiffReporterFactory().get('BeyondCompare')
+        reporter2 = ReportWithBeyondCompare()
+        reporter3 = report_with_beyond_compare()
+        assert reporter1 == reporter2 == reporter3
 
 if __name__ == "__main__":
     unittest.main()
