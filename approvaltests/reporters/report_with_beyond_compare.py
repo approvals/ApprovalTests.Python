@@ -24,7 +24,7 @@ class ReportWithBeyondCompareWindows(GenericDiffReporter):
     def __init__(self):
         super().__init__(
             config=GenericDiffReporterConfig(name= self.__class__.__name__,
-            path= "C:/Program Files/Beyond Compare 4/BCompare.exe")
+            path= "{ProgramFiles}/Beyond Compare 4/BCompare.exe")
         )
 
 

@@ -6,6 +6,7 @@ from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
 from approvaltests.utils import to_json
 
+PROGRAM_FILES = "{ProgramFiles}"
 
 class GenericDiffReporterConfig:
     def __init__(self, name: str, path: str, extra_args: Optional[List[str]] = None):
@@ -36,7 +37,7 @@ class GenericDiffReporter(Reporter):
 
     def __init__(self, config: GenericDiffReporterConfig) -> None:
         self.name = config.name
-        self.path = config.path
+        self.path = self.expand_program_files(config.path)
         self.extra_args = config.extra_args
 
     def __str__(self) -> str:
@@ -66,5 +67,20 @@ class GenericDiffReporter(Reporter):
         self.run_command(command_array)
         return True
 
-    def is_working(self) -> Optional[str]:
-        return Command(self.path).locate()
+    def is_working(self) -> bool:
+        found = Command(self.path).locate()
+        if not found:
+            return False
+        else:
+            self.path = found
+            return True
+
+    @staticmethod
+    def expand_program_files(path: str) -> str:
+        if PROGRAM_FILES not in path:
+            return path
+
+        for candidate in [r"C:\Program Files", r"C:\Program Files (x86)", r"C:\ProgramW6432"]:
+            possible = path.replace(PROGRAM_FILES, candidate)
+            if Command.executable(possible):
+                return possible
