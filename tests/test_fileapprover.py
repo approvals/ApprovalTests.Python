@@ -1,7 +1,7 @@
 ﻿import shutil
 import unittest
 
-from approvaltests import get_default_namer
+from approvaltests import get_default_namer, verify
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import (
@@ -40,7 +40,10 @@ class FileApproverTests(unittest.TestCase):
         reporter = ReporterForTesting()
         approver = FileApprover()
         error = approver.verify(namer, writer, reporter)
-        self.assertEqual("Approval Mismatch", error)
+        import re
+        replaced = re.sub("ved: .*approved_files.", 'ved: <rootdir>/', error)
+
+        verify(replaced)
 
     def test_returns_none_when_files_are_same_files(self):
         namer = get_default_namer()

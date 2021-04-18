@@ -14,6 +14,8 @@ from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.multi_reporter import MultiReporter
 from approvaltests.string_writer import StringWriter
 
+__unittest = True
+__tracebackhide__ = True
 DEFAULT_REPORTER = local()
 
 

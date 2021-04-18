@@ -33,8 +33,11 @@ class FileApprover(object):
         # The writer has the ability to change the name of the received file
         received = writer.write_received_file(received)
         ok = self.verify_files(approved, received, reporter)
+
         if not ok:
-            return "Approval Mismatch"
+            return f"Approval Mismatch, received != approved\n" \
+                   f"\tApproved: {approved}\n" \
+                   f"\tReceived: {received} "
         return None
 
     def verify_files(
