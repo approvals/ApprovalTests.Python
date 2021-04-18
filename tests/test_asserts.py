@@ -1,5 +1,6 @@
 import codecs
 import unittest
+from pathlib import Path
 
 from approvaltests.approval_exception import ApprovalException
 from approvaltests import assert_against_file, assert_equal_with_reporter
@@ -16,12 +17,8 @@ class TestAssertEqualWithReporter(unittest.TestCase):
                 self.approved = None
 
             def report(self, received_path, approved_path):
-                self.received = codecs.open(
-                    received_path, "r", encoding="utf-8-sig"
-                ).read()
-                self.approved = codecs.open(
-                    approved_path, "r", encoding="utf-8-sig"
-                ).read()
+                self.received = Path(received_path).read_text(encoding="utf-8-sig")
+                self.approved = Path(approved_path).read_text(encoding="utf-8-sig")
 
         reporter = LocalReporter()
         try:
