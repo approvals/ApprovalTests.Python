@@ -8,6 +8,7 @@ from approvaltests.utils import to_json
 
 PROGRAM_FILES = "{ProgramFiles}"
 
+
 class GenericDiffReporterConfig:
     def __init__(self, name: str, path: str, extra_args: Optional[List[str]] = None):
         self.name = name
@@ -80,7 +81,11 @@ class GenericDiffReporter(Reporter):
         if PROGRAM_FILES not in path:
             return path
 
-        for candidate in [r"C:\Program Files", r"C:\Program Files (x86)", r"C:\ProgramW6432"]:
+        for candidate in [
+            r"C:\Program Files",
+            r"C:\Program Files (x86)",
+            r"C:\ProgramW6432",
+        ]:
             possible = path.replace(PROGRAM_FILES, candidate)
             if Command.executable(possible):
                 return possible

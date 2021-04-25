@@ -24,7 +24,9 @@ class GenericDiffReporterFactory(object):
         return [r.name for r in self.reporters]
 
     def get(self, reporter_name: str) -> Optional[Reporter]:
-        reporter = GenericDiffReporterFactory.get_reporter_programmmatically(reporter_name)
+        reporter = GenericDiffReporterFactory.get_reporter_programmmatically(
+            reporter_name
+        )
         return reporter or self.get_from_json_config(reporter_name)
 
     @staticmethod

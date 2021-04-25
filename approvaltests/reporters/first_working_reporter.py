@@ -37,4 +37,3 @@ class FirstWorkingReporter(Reporter):
 
     def __eq__(self, other) -> bool:
         return repr(self) == repr(other)
-

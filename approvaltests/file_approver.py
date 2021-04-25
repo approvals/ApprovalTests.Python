@@ -13,7 +13,6 @@ def exists(path: str) -> bool:
 
 
 class ReporterNotWorkingException(Exception):
-
     def __init__(self, reporter: Reporter):
         super().__init__(f"Reporter {reporter} failed to work!")
 
@@ -35,9 +34,11 @@ class FileApprover(object):
         ok = self.verify_files(approved, received, reporter)
 
         if not ok:
-            return f"Approval Mismatch, received != approved\n" \
-                   f"\tApproved: {approved}\n" \
-                   f"\tReceived: {received} "
+            return (
+                f"Approval Mismatch, received != approved\n"
+                f"\tApproved: {approved}\n"
+                f"\tReceived: {received} "
+            )
         return None
 
     def verify_files(
