@@ -46,7 +46,7 @@ def verify(
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,
-    *,
+    *, # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
