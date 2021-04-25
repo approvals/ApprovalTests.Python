@@ -6,6 +6,7 @@ from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.core import Reporter, Writer
 from approvaltests.core.namer import StackFrameNamer, Namer
+from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
@@ -45,6 +46,8 @@ def verify(
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,
+    *,
+    options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -78,7 +81,9 @@ def verify(
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
-    reporter_to_use = reporter or get_default_reporter()
+    if options is None:
+        options = Options()
+    reporter_to_use = reporter or options.reporter
     namer_to_use = namer or get_default_namer()
     verify_with_namer(
         data,
