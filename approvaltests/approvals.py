@@ -83,12 +83,13 @@ def verify(
     """
     if options is None:
         options = Options()
-    reporter_to_use = reporter or options.reporter
+    if reporter is not None:
+        options = options.with_reporter(reporter)
     namer_to_use = namer or get_default_namer()
     verify_with_namer(
         data,
         namer_to_use,
-        reporter_to_use,
+        options.reporter,
         encoding=encoding,
         errors=errors,
         newline=newline,
