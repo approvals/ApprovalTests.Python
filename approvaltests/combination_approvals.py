@@ -1,7 +1,7 @@
 from itertools import product
 from typing import Any, Callable, Optional, Tuple, Union, List, Sequence
 
-from approvaltests import verify_with_namer, get_default_namer, Reporter
+from approvaltests import verify_with_namer, get_default_namer, Reporter, initialize_options, Options
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
@@ -11,6 +11,9 @@ def verify_all_combinations(
     input_arguments: Sequence[Sequence[Any]],
     formatter: Optional[Callable] = None,
     reporter: Optional[ReporterForTesting] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -27,8 +30,9 @@ def verify_all_combinations(
         ApprovalException: if the results to not match the approved results.
     """
     namer = get_default_namer()
+    options = initialize_options(options, reporter)
     verify_all_combinations_with_namer(
-        function_under_test, input_arguments, namer, formatter, reporter
+        function_under_test, input_arguments, namer, formatter, None, options=options
     )
 
 
@@ -38,6 +42,9 @@ def verify_all_combinations_with_namer(
     namer: StackFrameNamer,
     formatter: Optional[Callable] = None,
     reporter: Optional[Reporter] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -63,7 +70,8 @@ def verify_all_combinations_with_namer(
         except Exception as e:
             result = e
         approval_strings.append(formatter(args, result))
-    verify_with_namer("".join(approval_strings), namer=namer, reporter=reporter)
+    options = initialize_options(options, reporter)
+    verify_with_namer("".join(approval_strings), namer=namer, options=options)
 
 
 def args_and_result_formatter(args: List[Any], result: int) -> str:

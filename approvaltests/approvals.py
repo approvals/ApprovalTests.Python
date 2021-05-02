@@ -184,13 +184,14 @@ def verify_xml(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:
+    options = initialize_options(options, reporter)
     try:
         dom = xml.dom.minidom.parseString(xml_string)
         pretty_xml = dom.toprettyxml()
     except Exception:
         pretty_xml = xml_string
     namer = namer or get_default_namer(extension=".xml")
-    verify_with_namer(pretty_xml, namer, reporter, encoding="utf-8", newline="\n")
+    verify_with_namer(pretty_xml, namer, None, encoding="utf-8", newline="\n",options=options)
 
 
 def verify_file(
@@ -199,6 +200,8 @@ def verify_file(
     encoding: None = None,
     errors: None = None,
     newline: None = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     """Verify the contents of a text file against previously approved contents.
 
@@ -216,16 +219,20 @@ def verify_file(
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
+    options = initialize_options(options, reporter)
     verify_with_namer_and_writer(
-        get_default_namer(), ExistingFileWriter(file_name), reporter
-    )
+        get_default_namer(), ExistingFileWriter(file_name), None, options=options)
 
 
 def verify_file_with_encoding(
-    file_name, reporter=None, encoding=None, errors=None, newline=None
+    file_name, reporter=None, encoding=None, errors=None, newline=None,
+     *,   # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+     options: Optional[Options] = None
+
 ):
     """Deprecated. See verify_file. This function is functionally identical."""
-    verify_file(file_name, reporter, encoding, errors, newline)
+    options = initialize_options(options, reporter)
+    verify_file(file_name, None, encoding, errors, newline,options=options)
 
 
 def verify_all(
@@ -236,6 +243,9 @@ def verify_all(
     encoding: None = None,
     errors: None = None,
     newline: None = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 
@@ -273,8 +283,9 @@ def verify_all(
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
+    options = initialize_options(options, reporter)
     text = format_list(alist, formatter, header)
-    verify(text, reporter, encoding=encoding, errors=errors, newline=newline)
+    verify(text, None, encoding=encoding, errors=errors, newline=newline, options=options)
 
 
 def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
