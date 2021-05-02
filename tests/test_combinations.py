@@ -42,7 +42,9 @@ class VerifyAllCombinationsTests(unittest.TestCase):
                 self.func, all_args_combinations, reporter=ReporterForTesting()
             )
 
-    def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(self) -> None:
+    def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(
+        self,
+    ) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
         verify_all_combinations(
@@ -60,7 +62,9 @@ class VerifyAllCombinationsTests(unittest.TestCase):
                 self.func, arg_combinations, reporter=ReporterForTesting()
             )
 
-    def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(self) -> None:
+    def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(
+        self,
+    ) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
         arg_combinations = (arg1_combinations, arg2_combinations)

@@ -41,7 +41,8 @@ class FileApproverTests(unittest.TestCase):
         approver = FileApprover()
         error = approver.verify(namer, writer, reporter)
         import re
-        replaced = re.sub("ved: .*approved_files.", 'ved: <rootdir>/', error)
+
+        replaced = re.sub("ved: .*approved_files.", "ved: <rootdir>/", error)
 
         verify(replaced)
 

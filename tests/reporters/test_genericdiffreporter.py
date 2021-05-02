@@ -6,7 +6,10 @@ import unittest
 
 from approvaltests.approvals import verify, get_default_namer
 from approvaltests.command import Command
-from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter, create_config
+from approvaltests.reporters.generic_diff_reporter import (
+    GenericDiffReporter,
+    create_config,
+)
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )

@@ -46,7 +46,7 @@ def verify(
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,
-    *, # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
@@ -93,7 +93,9 @@ def verify(
     )
 
 
-def initialize_options(options: Optional[Options], reporter: Optional[Reporter]) -> Options:
+def initialize_options(
+    options: Optional[Options], reporter: Optional[Reporter]
+) -> Options:
     if options is None:
         options = Options()
     if reporter is not None:
@@ -110,7 +112,6 @@ def verify_with_namer(
     newline: Optional[str] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
-
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -147,7 +148,7 @@ def verify_with_namer(
             None or 'strict'.
     """
     writer = StringWriter(data, encoding=encoding, errors=errors, newline=newline)
-    options = initialize_options(options,reporter)
+    options = initialize_options(options, reporter)
     verify_with_namer_and_writer(namer, writer, options.reporter)
 
 
@@ -177,11 +178,11 @@ def verify_as_json(
 
 
 def verify_xml(
-        xml_string: str,
-        reporter: None = None,
-        namer: Namer = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    xml_string: str,
+    reporter: None = None,
+    namer: Namer = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     try:
         dom = xml.dom.minidom.parseString(xml_string)

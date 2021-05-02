@@ -6,7 +6,7 @@ from typing import Callable, Optional
 
 
 class ReporterForTesting(Reporter):
-    def __init__(self, success: bool, additional: Optional[Callable]=None) -> None:
+    def __init__(self, success: bool, additional: Optional[Callable] = None) -> None:
         if additional is None:
             additional = lambda: None
         self.additional = additional
@@ -38,7 +38,9 @@ class TestFirstWorkingReporter(unittest.TestCase):
         r1 = ReporterForTesting(True)
         r2 = ReporterForTesting(False)
         first = FirstWorkingReporter(r1, r2)
-        expected = 'FirstWorkingReporter(ReporterForTesting(True), ReporterForTesting(False))'
+        expected = (
+            "FirstWorkingReporter(ReporterForTesting(True), ReporterForTesting(False))"
+        )
         self.assertEqual(expected, str(first))
 
     def test_second_one(self) -> None:

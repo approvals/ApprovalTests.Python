@@ -2,7 +2,8 @@ from typing import List
 
 from approvaltests.reporters import (
     DiffReporter,
-    PythonNativeReporter, Reporter,
+    PythonNativeReporter,
+    Reporter,
 )
 
 
