@@ -1,7 +1,13 @@
 from itertools import product
 from typing import Any, Callable, Optional, Tuple, Union, List, Sequence
 
-from approvaltests import verify_with_namer, get_default_namer, Reporter, initialize_options, Options
+from approvaltests import (
+    verify_with_namer,
+    get_default_namer,
+    Reporter,
+    initialize_options,
+    Options,
+)
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
@@ -13,7 +19,6 @@ def verify_all_combinations(
     reporter: Optional[ReporterForTesting] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
-
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -44,7 +49,6 @@ def verify_all_combinations_with_namer(
     reporter: Optional[Reporter] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
-
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 

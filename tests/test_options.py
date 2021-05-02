@@ -1,6 +1,12 @@
 import inspect
 
-from approvaltests import get_default_reporter, approvals, verify, ReporterForTesting, combination_approvals
+from approvaltests import (
+    get_default_reporter,
+    approvals,
+    verify,
+    ReporterForTesting,
+    combination_approvals,
+)
 from approvaltests.core.options import Options
 
 

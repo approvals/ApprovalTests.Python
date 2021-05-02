@@ -191,7 +191,9 @@ def verify_xml(
     except Exception:
         pretty_xml = xml_string
     namer = namer or get_default_namer(extension=".xml")
-    verify_with_namer(pretty_xml, namer, None, encoding="utf-8", newline="\n",options=options)
+    verify_with_namer(
+        pretty_xml, namer, None, encoding="utf-8", newline="\n", options=options
+    )
 
 
 def verify_file(
@@ -221,18 +223,22 @@ def verify_file(
     """
     options = initialize_options(options, reporter)
     verify_with_namer_and_writer(
-        get_default_namer(), ExistingFileWriter(file_name), None, options=options)
+        get_default_namer(), ExistingFileWriter(file_name), None, options=options
+    )
 
 
 def verify_file_with_encoding(
-    file_name, reporter=None, encoding=None, errors=None, newline=None,
-     *,   # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-     options: Optional[Options] = None
-
+    file_name,
+    reporter=None,
+    encoding=None,
+    errors=None,
+    newline=None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ):
     """Deprecated. See verify_file. This function is functionally identical."""
     options = initialize_options(options, reporter)
-    verify_file(file_name, None, encoding, errors, newline,options=options)
+    verify_file(file_name, None, encoding, errors, newline, options=options)
 
 
 def verify_all(
@@ -245,7 +251,6 @@ def verify_all(
     newline: None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
-
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 
@@ -285,7 +290,9 @@ def verify_all(
     """
     options = initialize_options(options, reporter)
     text = format_list(alist, formatter, header)
-    verify(text, None, encoding=encoding, errors=errors, newline=newline, options=options)
+    verify(
+        text, None, encoding=encoding, errors=errors, newline=newline, options=options
+    )
 
 
 def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
