@@ -81,10 +81,7 @@ def verify(
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
-    if options is None:
-        options = Options()
-    if reporter is not None:
-        options = options.with_reporter(reporter)
+    options = initialize_options(options, reporter)
     namer_to_use = namer or get_default_namer()
     verify_with_namer(
         data,
@@ -96,6 +93,14 @@ def verify(
     )
 
 
+def initialize_options(options: Optional[Options], reporter: Optional[Reporter]) -> Options:
+    if options is None:
+        options = Options()
+    if reporter is not None:
+        options = options.with_reporter(reporter)
+    return options
+
+
 def verify_with_namer(
     data: str,
     namer: Namer,
@@ -103,6 +108,9 @@ def verify_with_namer(
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -139,27 +147,42 @@ def verify_with_namer(
             None or 'strict'.
     """
     writer = StringWriter(data, encoding=encoding, errors=errors, newline=newline)
-    verify_with_namer_and_writer(namer, writer, reporter)
+    options = initialize_options(options,reporter)
+    verify_with_namer_and_writer(namer, writer, options.reporter)
 
 
 def verify_with_namer_and_writer(
     namer: Namer,
     writer: Writer,
     reporter: Optional[Reporter],
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
+    options = initialize_options(options, reporter)
     approver = FileApprover()
-    reporter = get_reporter(reporter)
-    error = approver.verify(namer, writer, reporter)
+    error = approver.verify(namer, writer, options.reporter)
     if error:
         raise ApprovalException(error)
 
 
-def verify_as_json(object, reporter=None):
+def verify_as_json(
+    object,
+    reporter=None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+):
+    options = initialize_options(options, reporter)
     n_ = to_json(object) + "\n"
-    verify(n_, reporter, encoding="utf-8", newline="\n")
+    verify(n_, None, encoding="utf-8", newline="\n", options=options)
 
 
-def verify_xml(xml_string: str, reporter: None = None, namer: Namer = None) -> None:
+def verify_xml(
+        xml_string: str,
+        reporter: None = None,
+        namer: Namer = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
+) -> None:
     try:
         dom = xml.dom.minidom.parseString(xml_string)
         pretty_xml = dom.toprettyxml()
