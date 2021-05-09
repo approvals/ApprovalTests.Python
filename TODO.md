@@ -1,3 +1,4 @@
+1. start with - scrubber & options
 1. approvals.verify should take any and str(it)
 1. cached property for Namer.get_config 
 1. setup github action to lint
@@ -16,7 +17,15 @@
 1.  combination approvals needs line ending option
 1.  error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
 1.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
-1. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis 
+1. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
+1. Future things
+   1. Pairwise
+   1. storyboards
+   1. templated namer
+    1. docs on implementing Approvaltests in CI
+        1. file commiter reporter
+    1. squence to animated gif writer
+    
 1. Property Tests
   1. eval(any.__repr__) == any
   1. create(any_reporter) == create(any_reporter)
