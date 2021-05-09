@@ -86,10 +86,10 @@ def verify(
     verify_with_namer(
         data,
         namer_to_use,
-        options.reporter,
         encoding=encoding,
         errors=errors,
         newline=newline,
+        options=options
     )
 
 
@@ -147,8 +147,8 @@ def verify_with_namer(
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
-    writer = StringWriter(data, encoding=encoding, errors=errors, newline=newline)
     options = initialize_options(options, reporter)
+    writer = StringWriter(options.scrub(data), encoding=encoding, errors=errors, newline=newline)
     verify_with_namer_and_writer(namer, writer, options.reporter)
 
 
