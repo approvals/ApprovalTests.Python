@@ -1,6 +1,6 @@
 import xml.dom.minidom
 from threading import local
-from typing import Callable, List, Optional
+from typing import Callable, List, Optional, Any
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
@@ -40,7 +40,7 @@ def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
 
 
 def verify(
-    data: str,
+    data: Any,
     reporter: Optional[Reporter] = None,
     namer: Optional[Namer] = None,
     encoding: Optional[str] = None,
@@ -104,7 +104,7 @@ def initialize_options(
 
 
 def verify_with_namer(
-    data: str,
+    data: Any,
     namer: Namer,
     reporter: Optional[Reporter] = None,
     encoding: Optional[str] = None,
@@ -148,7 +148,7 @@ def verify_with_namer(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
-    writer = StringWriter(options.scrub(data), encoding=encoding, errors=errors, newline=newline)
+    writer = StringWriter(options.scrub(str(data)), encoding=encoding, errors=errors, newline=newline)
     verify_with_namer_and_writer(namer, writer, options.reporter)
 
 
