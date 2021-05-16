@@ -6,9 +6,7 @@ from typing import Callable
 def scrub_with_regex(regex: str, callable: Callable[[int], str]) -> Callable[[str],str]:
     def scrub(text: str) -> str:
         matches = defaultdict(lambda: len(matches))
-        def find_index(string: str ) -> int:
-            return matches[string]
-        return re.sub(regex, lambda m: callable(find_index(m.group(0))), text)
+        return re.sub(regex, lambda m: callable(matches[m.group(0)]), text)
     return scrub
 
 
