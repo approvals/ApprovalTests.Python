@@ -1,0 +1,6 @@
+{
+    "end": "<date0>",
+    "pause": "<date1>",
+    "resume": "<date1>",
+    "start": "<date2>"
+}
