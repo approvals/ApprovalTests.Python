@@ -1,6 +1,9 @@
 # Features
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Options - with file extension](#options---with-file-extension)<!-- endToc -->
 
 ## Options - with file extension
 If you want to set the extension of the approval file, you can now do it through the options.
