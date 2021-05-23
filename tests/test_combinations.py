@@ -141,7 +141,6 @@ class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
     def test_passes_for_func_accepting_one_arg_and_combination_of_one_arg(self) -> None:
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
-        namer = get_default_namer()
         verify_all_combinations_with_namer(
-            self.func, all_args_combinations, namer, reporter=self.reporter
+            self.func, all_args_combinations, reporter=self.reporter
         )

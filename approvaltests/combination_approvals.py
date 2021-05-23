@@ -6,7 +6,7 @@ from approvaltests import (
     get_default_namer,
     Reporter,
     initialize_options,
-    Options,
+    Options, verify,
 )
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.reporters.testing_reporter import ReporterForTesting
@@ -34,17 +34,15 @@ def verify_all_combinations(
     Raises:
         ApprovalException: if the results to not match the approved results.
     """
-    namer = get_default_namer()
     options = initialize_options(options, reporter)
     verify_all_combinations_with_namer(
-        function_under_test, input_arguments, namer, formatter, None, options=options
+        function_under_test, input_arguments, formatter, None, options=options
     )
 
 
 def verify_all_combinations_with_namer(
     function_under_test: Callable,
     input_arguments: Sequence[Sequence[Any]],
-    namer: StackFrameNamer,
     formatter: Optional[Callable] = None,
     reporter: Optional[Reporter] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
@@ -65,6 +63,12 @@ def verify_all_combinations_with_namer(
     Raises:
         ApprovalException: if the results to not match the approved results.
     """
+    text = print_combinations(formatter, function_under_test, input_arguments)
+    options = initialize_options(options, reporter)
+    verify(text, options=options)
+
+
+def print_combinations(formatter: Callable, function_under_test: Callable, input_arguments: Sequence[Sequence[Any]]) -> str:
     if formatter is None:
         formatter = args_and_result_formatter
     approval_strings = []
@@ -74,8 +78,7 @@ def verify_all_combinations_with_namer(
         except Exception as e:
             result = e
         approval_strings.append(formatter(args, result))
-    options = initialize_options(options, reporter)
-    verify_with_namer("".join(approval_strings), namer=namer, options=options)
+    return "".join(approval_strings)
 
 
 def args_and_result_formatter(args: List[Any], result: int) -> str:
