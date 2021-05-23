@@ -6,7 +6,8 @@ from approvaltests import (
     get_default_namer,
     Reporter,
     initialize_options,
-    Options, verify,
+    Options,
+    verify,
 )
 from approvaltests.core.namer import StackFrameNamer
 from approvaltests.reporters.testing_reporter import ReporterForTesting
@@ -68,7 +69,11 @@ def verify_all_combinations_with_namer(
     verify(text, options=options)
 
 
-def print_combinations(formatter: Callable, function_under_test: Callable, input_arguments: Sequence[Sequence[Any]]) -> str:
+def print_combinations(
+    formatter: Callable,
+    function_under_test: Callable,
+    input_arguments: Sequence[Sequence[Any]],
+) -> str:
     if formatter is None:
         formatter = args_and_result_formatter
     approval_strings = []

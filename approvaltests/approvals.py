@@ -89,7 +89,7 @@ def verify(
         encoding=encoding,
         errors=errors,
         newline=newline,
-        options=options
+        options=options,
     )
 
 
@@ -148,7 +148,9 @@ def verify_with_namer(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
-    writer = StringWriter(options.scrub(str(data)), encoding=encoding, errors=errors, newline=newline)
+    writer = StringWriter(
+        options.scrub(str(data)), encoding=encoding, errors=errors, newline=newline
+    )
     verify_with_namer_and_writer(namer, writer, options.reporter)
 
 
@@ -192,7 +194,6 @@ def verify_xml(
         pretty_xml = xml_string
 
     verify(pretty_xml, options=options.for_file.with_extension(".xml"))
-
 
 
 def verify_file(
