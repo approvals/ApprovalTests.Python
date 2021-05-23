@@ -49,3 +49,7 @@ def test_setting_reporter():
     testr = ReporterForTesting()
     options = Options().with_reporter(testr)
     assert options.reporter == testr
+
+
+def test_file_extensions():
+    verify("# This is a markdown header", options=Options().for_file.with_extension(".md"))

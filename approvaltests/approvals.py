@@ -82,7 +82,7 @@ def verify(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
-    namer_to_use = namer or get_default_namer()
+    namer_to_use = namer or options.namer
     verify_with_namer(
         data,
         namer_to_use,
