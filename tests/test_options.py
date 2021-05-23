@@ -52,4 +52,6 @@ def test_setting_reporter():
 
 
 def test_file_extensions():
-    verify("# This is a markdown header", options=Options().for_file.with_extension(".md"))
+    content = "# This is a markdown header"
+    verify(content, options=Options().for_file.with_extension(".md"))
+    verify(content, options=Options().for_file.with_extension("md"))

@@ -8,6 +8,8 @@ class FileOptions:
         self.fields = fields
 
     def with_extension(self, extension_with_dot: str) -> "Options":
+        if not(extension_with_dot.startswith(".")):
+            extension_with_dot = "." + extension_with_dot
         return Options({**self.fields, **{"extension_with_dot": extension_with_dot}})
 
 class Options:
