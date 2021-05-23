@@ -190,10 +190,9 @@ def verify_xml(
         pretty_xml = dom.toprettyxml()
     except Exception:
         pretty_xml = xml_string
-    namer = namer or get_default_namer(extension=".xml")
-    verify_with_namer(
-        pretty_xml, namer, None, encoding="utf-8", newline="\n", options=options
-    )
+
+    verify(pretty_xml, options=options.for_file.with_extension(".xml"))
+
 
 
 def verify_file(
