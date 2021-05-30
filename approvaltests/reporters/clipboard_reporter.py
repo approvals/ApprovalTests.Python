@@ -1,10 +1,16 @@
 import pyperclip  # type: ignore
 
+from approvaltests import is_windows_os
 from approvaltests.core.reporter import Reporter
 
 
-def get_command_text(received_path: str, approved_path: str) -> str:
-    return "mv -f {0} {1}".format(received_path, approved_path)
+def get_command_text(received_path: str, approved_path: str, is_windows: bool=None) -> str:
+    if is_windows is None:
+        is_windows = is_windows_os()
+    if is_windows:
+        return 'move /Y "{0}" "{1}"'.format(received_path, approved_path)
+    else:
+        return "mv -f {0} {1}".format(received_path, approved_path)
 
 
 class ClipboardReporter(Reporter):
@@ -44,3 +50,5 @@ class CommandLineReporter(Reporter):
         text = get_command_text(received_path, approved_path)
         print("\n\n{}\n\n".format(text))
         return True
+
+

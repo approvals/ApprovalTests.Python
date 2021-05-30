@@ -1,7 +1,7 @@
 ﻿import unittest
 
-from approvaltests import verify
-from approvaltests.reporters import GenericDiffReporterFactory
+from approvaltests import verify, verify_all
+from approvaltests.reporters import GenericDiffReporterFactory, get_command_text
 from approvaltests.reporters.received_file_launcher_reporter import (
     ReceivedFileLauncherReporter,
 )
@@ -24,5 +24,5 @@ class ReporterTests(unittest.TestCase):
         assert reporter1 == reporter2 == reporter3
 
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_move_command(self):
+        verify_all('', [True, False], lambda b:get_command_text('a.text', "r.txt", b))
