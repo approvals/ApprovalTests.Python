@@ -9,4 +9,4 @@
 
 to approve this result:
 
-mv -f tmpdir/a.received.txt tmpdir/b.approved.txt
+move /Y "tmpdir/a.received.txt" "tmpdir/b.approved.txt"

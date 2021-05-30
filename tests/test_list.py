@@ -13,7 +13,7 @@ class TestList(TestCase):
         reporter = MultiReporter(
             GenericDiffReporter.create("diff"), CommandLineReporter()
         )
-        approvals.set_default_reporter(reporter)
+        ##approvals.set_default_reporter(reporter)
 
     def test(self) -> None:
         alist = ["a", "b", "c", "d", "e"]

@@ -30,9 +30,10 @@ class TestAssertEqualWithReporter(unittest.TestCase):
 
 
 class TestAsserts(unittest.TestCase):
+
     def test_assert_against_file_works(self) -> None:
         file_path = get_adjacent_file("manual_file.approved.txt")
-        assert_against_file("This text is in a file", file_path)
+        assert_against_file("This text is in a file\n", file_path)
 
     def test_assert_against_file_fails_with_reporter(self) -> None:
         reporter = ReporterForTesting()

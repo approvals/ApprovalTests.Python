@@ -22,3 +22,8 @@ def test_writes_file_to_missing_directory(tmpdir):
 
     with open(filename, "r") as received:
         assert contents == received.read()
+
+def test_new_lines_with_empty_string():
+    sw = StringWriter("")
+    sw2 = StringWriter(None)
+    assert sw.contents == sw2.contents

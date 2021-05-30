@@ -31,6 +31,15 @@ class ReportWithBeyondCompareWindows(GenericDiffReporter):
                 path="{ProgramFiles}/Beyond Compare 4/BCompare.exe",
             )
         )
+class ReportWithPycharm(GenericDiffReporter):
+    def __init__(self):
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="{ProgramFiles}/JetBrains/PyCharm 2021.1.1/bin/pycharm64.exe",
+                extra_args= ["diff"]
+            )
+        )
 
 
 class ReportWithBeyondCompare(FirstWorkingReporter):

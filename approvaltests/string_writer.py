@@ -17,11 +17,17 @@ class StringWriter(Writer):
         errors: Optional[str] = None,
         newline: Optional[str] = None,
     ) -> None:
-        self.contents = contents or u""
+        self.contents = self.sanitize_string(contents)
         self.extension_with_dot = extension
         self.encoding = encoding
         self.errors = errors
         self.newline = newline
+
+    def sanitize_string(self, contents):
+        contents = contents or u""
+        if len(contents) == 0 or contents[-1] != '\n':
+            contents = contents + '\n'
+        return contents
 
     def write_received_file(self, received_file: str) -> str:
         self.create_directory_if_needed(received_file)

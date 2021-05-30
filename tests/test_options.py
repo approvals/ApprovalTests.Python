@@ -29,7 +29,7 @@ def assert_verify_methods_have_options(module):
 
 
 def test_empty_options_has_default_reporter():
-    approvals.set_default_reporter(None)
+    ##approvals.set_default_reporter(None)
     options = Options()
     assert options.reporter == get_default_reporter()
 
@@ -57,3 +57,4 @@ def test_file_extensions():
     verify(content, options=Options().for_file.with_extension(".md"))
     # end-snippet
     verify(content, options=Options().for_file.with_extension("md"))
+
