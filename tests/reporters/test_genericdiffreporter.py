@@ -4,7 +4,8 @@ import re
 import shutil
 import unittest
 
-from approvaltests.approvals import verify, get_default_namer
+from approvaltests import MultiReporter, get_default_reporter
+from approvaltests.approvals import verify, get_default_namer, set_default_reporter
 from approvaltests.command import Command
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
@@ -15,13 +16,13 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 import approvaltests
 from approvaltests.core.namer import Namer
+from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
 from approvaltests.utils import to_json, is_windows_os
 
 
 class GenericDiffReporterTests(unittest.TestCase):
     def setUp(self) -> None:
         self.factory = GenericDiffReporterFactory()
-        self.reporter = self.factory.get_first_working()
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
@@ -30,29 +31,28 @@ class GenericDiffReporterTests(unittest.TestCase):
         shutil.rmtree(self.tmp_dir)
 
     def test_list_configured_reporters(self) -> None:
-        verify(to_json(self.factory.list()), self.reporter)
+        verify(to_json(self.factory.list()))
 
     def test_get_reporter(self) -> None:
-        verify(str(self.factory.get("BeyondCompare4")), self.reporter)
+        verify(str(self.factory.get("BeyondCompare4")))
 
     def test_get_winmerge(self) -> None:
-        verify(str(self.factory.get("WinMerge")), self.factory.get("WinMerge"))
+        self.assert_for_reporter("WinMerge")
 
     def test_get_araxis(self) -> None:
-        verify(
-            str(self.factory.get("AraxisMergeWin")), self.factory.get("AraxisMergeWin")
-        )
+        self.assert_for_reporter("AraxisMergeWin")
+
+    def assert_for_reporter(self, reporter):
+        the_reporter = self.factory.get(reporter)
+        verify(str(the_reporter), MultiReporter(get_default_reporter(), the_reporter))
 
     def test_get_araxis_mac(self) -> None:
-        verify(
-            str(self.factory.get("AraxisMergeMac")), self.factory.get("AraxisMergeMac")
-        )
+
+        self.assert_for_reporter("AraxisMergeMac")
 
     def test_get_beyondcompare4_mac(self) -> None:
-        verify(
-            str(self.factory.get("BeyondCompare4Mac")),
-            self.factory.get("BeyondCompare4Mac"),
-        )
+        self.assert_for_reporter("BeyondCompare4Mac")
+       
 
     def test_constructs_valid_diff_command(self) -> None:
         reporter = self.factory.get("BeyondCompare4")
@@ -106,7 +106,7 @@ class GenericDiffReporterTests(unittest.TestCase):
                 if match:
                     file_contents = file_contents.replace(match[0], "")
                 file_contents = file_contents.replace("python.exe", "python")
-                verify(file_contents, self.reporter)
+                verify(file_contents)
         finally:
             os.remove(saved_reporters_file)
 
@@ -114,7 +114,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         namer = get_default_namer()
         full_name = os.path.join(namer.get_directory(), "custom-reporters.json")
         reporters = self.factory.load(full_name)
-        verify(to_json(reporters), self.reporter)
+        verify(to_json(reporters))
 
     def test_notworking_in_environment(self) -> None:
         reporter = GenericDiffReporter(create_config(["Custom", "NotReal"]))
@@ -127,7 +127,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_remove_reporter(self) -> None:
         self.factory.remove("meld")
-        verify(to_json(self.factory.list()), self.reporter)
+        verify(to_json(self.factory.list()))
 
     @staticmethod
     def instantiate_reporter_for_test() -> GenericDiffReporter:
@@ -181,7 +181,7 @@ class GenericDiffReporterTests(unittest.TestCase):
             self.fail(msg)
 
     def test_get_pycharm_reporter(self) -> None:
-        verify(str(self.factory.get("PyCharm")), reporter=self.reporter)
+        verify(str(self.factory.get("PyCharm")))
 
     def test_non_working_reporter_does_not_report(self) -> None:
         self.assertFileDoesNotExist(self.approved_file_path)
