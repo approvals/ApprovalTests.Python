@@ -1,6 +1,11 @@
 # Configuration
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Samples](#samples)
+  * [Examples](#examples)
+  * [How to configure a default reporter for your system](#how-to-configure-a-default-reporter-for-your-system)<!-- endToc -->
 
 You can create directory level configuration for approvals.
 To do this create a file named 'approvaltests_config.json' and place it in the same directory as your test.
