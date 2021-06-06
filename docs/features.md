@@ -3,6 +3,7 @@
 <!-- toc -->
 ## Contents
 
+  * [v 1.0.0](#v-100)
     * [Verify(text) ensures a newline at the file](#verifytext-ensures-a-newline-at-the-file)
       * [Upgrade Path](#upgrade-path)
     * [Namer handles multiple nested methods in a unit test](#namer-handles-multiple-nested-methods-in-a-unit-test)
