@@ -65,9 +65,12 @@ class StackFrameNamer(Namer):
             return stacktrace[0].f_locals["self"].__class__.__name__
 
     def get_test_frame(self, caller: List[FrameInfo]) -> int:
+        tmp_array = []
         for index, frame in enumerate(caller):
             if self.is_test_method(frame):
-                return index
+                tmp_array.append(index)
+        if tmp_array:
+            return tmp_array[-1]
         message = """Could not find test method/function. Possible reasons could be: 
 1) approvaltests is not being used inside a test function 
 2) your test framework is not supported by ApprovalTests (unittest and pytest are currently supported)."""
