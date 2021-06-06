@@ -1,4 +1,5 @@
 # Configuration
+toc 
 
 You can create directory level configuration for approvals.
 To do this create a file named 'approvaltests_config.json' and place it in the same directory as your test.
@@ -18,3 +19,23 @@ A sample approvaltests_config.json:
   "subdirectory": "approved_files"
 }
 ```
+
+## How to configure a default reporter for your system
+
+If you don't like the standard default for reporting and wish to change it everywhere this is the recommended way to do it.
+
+snippet: default_reporter
+
+The problem is you need to do this before you do anything else.
+While some test frameworks allow for this, our recommended suggestion is to do it directly in Python by using the `__init__.py`
+below. 
+
+**note:** Please be aware that this will not override the reporters that are specified in your tests, as approval tests uses
+[the principle of least surprise.](https://en.wikipedia.org/wiki/Principle_of_least_astonishment)
+
+snippet: configure_approvaltests_under_init
+
+snippet: configure_approvaltests
+
+
+
