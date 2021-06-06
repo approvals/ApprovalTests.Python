@@ -24,7 +24,13 @@ A sample approvaltests_config.json:
 
 If you don't like the standard default for reporting and wish to change it everywhere this is the recommended way to do it.
 
-snippet: default_reporter
+<!-- snippet: default_reporter -->
+<a id='snippet-default_reporter'></a>
+```py
+set_default_reporter(ReporterByCopyMoveCommandForEverythingToClipboard())
+```
+<sup><a href='/tests/approvals_config.py#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_reporter' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 The problem is you need to do this before you do anything else.
 While some test frameworks allow for this, our recommended suggestion is to do it directly in Python by using the `__init__.py`
@@ -33,9 +39,23 @@ below.
 **note:** Please be aware that this will not override the reporters that are specified in your tests, as approval tests uses
 [the principle of least surprise.](https://en.wikipedia.org/wiki/Principle_of_least_astonishment)
 
-snippet: configure_approvaltests_under_init
+<!-- snippet: configure_approvaltests_under_init -->
+<a id='snippet-configure_approvaltests_under_init'></a>
+```py
+# From __init__.py
+configure_approvaltests()
+```
+<sup><a href='/tests/__init__.py#L4-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests_under_init' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
-snippet: configure_approvaltests
+<!-- snippet: configure_approvaltests -->
+<a id='snippet-configure_approvaltests'></a>
+```py
+def configure_approvaltests():
+    set_default_reporter(my_preferred_reporter)
+```
+<sup><a href='/tests/approvals_config.py#L6-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 
 
