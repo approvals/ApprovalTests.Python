@@ -1,6 +1,6 @@
 # Configuration
 
-toc 
+toc
 
 You can create directory level configuration for approvals.
 To do this create a file named 'approvaltests_config.json' and place it in the same directory as your test.
