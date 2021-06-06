@@ -109,45 +109,27 @@ This example has the same behaviour as the pytest version, but uses the built-in
 
 ### Selecting a Reporter
 
-ApprovalTests.Python come with a few reporters configured, 
-supporting Linux, Mac OSX, and Windows.  In the example shown above, we use the `GenericDiffReporterFactory` to find 
-and select the first diff utility that exists on our system.  Later, we pass that reporter to the verify method so that
-it can be used if the test fails.
+All verify functions take an optional `options` parameter that can configure reporters (as well as many other aspects).
 
-You don't have to do it this way.  You can request a specific reporter from the factory using the `get` method
+ApprovalTests.Python comes with a few reporters configured, supporting Linux, Mac OSX, and Windows.
 
-<!-- snippet: select_reporter_from_factory -->
-<a id='snippet-select_reporter_from_factory'></a>
-```py
-class TestSelectReporter(unittest.TestCase):
-    def setUp(self):
-        self.factory = GenericDiffReporterFactory()
-
-    def test_simple(self):
-        verify("Hello", self.factory.get("BeyondCompare4"))
-```
-<sup><a href='/tests/samples/test_getting_started.py#L11-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-
-or you can construct the reporter directly
+In the example shown below, we pass in an options with a reporter we're selecting directly:
 
 <!-- snippet: select_reporter_from_class -->
-<a id='snippet-select_reporter_from_class'></a>
-```py
-class TestSelectReporterFromClass(unittest.TestCase):
-    def test_simple(self):
-        verify("Hello", reporter=report_with_beyond_compare())
-```
-<sup><a href='/tests/samples/test_getting_started.py#L22-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+You can also use the `GenericDiffReporterFactory` to find and select the first diff utility that exists on our system.
+
+An advantage of this method is you can modify the reporters.json file directly to handle your unique system.
+
+<!-- snippet: select_reporter_from_factory -->
+<!-- endSnippet -->
+
+
 
 Or you can build your own GenericDiffReporter on the fly
 
-```python    
-class GettingStartedTest(unittest.TestCase):
-    def test_simple(self):
-        verify('Hello', GenericDiffReporter(('Custom', 'C:/my/favorite/diff/utility.exe')))
-```
+snippet: custom_generic_diff_reporter
 
 As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2` 
 then it will be compatible with GenericDiffReporter.  Otherwise you will have to derive your own reporter, which 

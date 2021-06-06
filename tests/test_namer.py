@@ -15,6 +15,13 @@ class NamerTests(unittest.TestCase):
         n = StackFrameNamer()
         self.assertEqual("test_method", n.get_method_name())
 
+    def test_name_works_from_inside_an_other_method(self):
+        self.an_other_method()
+
+    def an_other_method(self):
+        n = StackFrameNamer()
+        self.assertEqual("test_name_works_from_inside_an_other_method", n.get_method_name())
+
     def test_file(self):
         self.assertTrue(os.path.exists(self.namer.get_directory() + "/test_namer.py"))
 

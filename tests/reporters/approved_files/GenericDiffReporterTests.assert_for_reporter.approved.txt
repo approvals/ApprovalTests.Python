@@ -1,4 +1,4 @@
 {
-    "name": "AraxisMergeWin",
-    "path": "C:/Program Files/Araxis/Araxis Merge/Merge.exe"
+    "name": "AraxisMergeMac",
+    "path": "/Applications/Araxis Merge.app/Contents/Utilities/compare"
 }
