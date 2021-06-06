@@ -22,7 +22,7 @@ This will show by your diff tool opening with two files that look identical, but
 one actually has a newline at the end.
 
 #### Upgrade Path
-We suggest you use `ReporterByCopyMoveCommandForEverythingToClipboard()` as your [Default Reporter]() to re-approve all your files.
+We suggest you use `ReporterByCopyMoveCommandForEverythingToClipboard()` as your [Default Reporter](configuration.md#how-to-configure-a-default-reporter-for-your-system) to re-approve all your files.
 
 ### Namer handles multiple nested methods in a unit test
 Previously if you had nested methods in your unit test, the names would incorrectly
