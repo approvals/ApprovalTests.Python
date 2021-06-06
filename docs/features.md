@@ -8,7 +8,9 @@
     * [Namer handles multiple nested methods in a unit test](#namer-handles-multiple-nested-methods-in-a-unit-test)
   * [v 0.5.0](#v-050)
     * [Options - with file extension](#options---with-file-extension)<!-- endToc -->
-## v 1.0.0 
+    
+## v 1.0.0
+
 ### Verify(text) ensures a newline at the file
 **BREAKING CHANGE**
 Since most tools will ensure a newline at the end of a file, approval test is now
