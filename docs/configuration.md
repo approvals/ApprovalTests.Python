@@ -6,6 +6,7 @@
   * [Samples](#samples)
   * [Examples](#examples)
   * [How to configure a default reporter for your system](#how-to-configure-a-default-reporter-for-your-system)
+    * [Unittest](#unittest)
     * [Pytest](#pytest)<!-- endToc -->
 
 You can create directory level configuration for approvals.
