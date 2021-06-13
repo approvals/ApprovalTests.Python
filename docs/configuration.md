@@ -65,7 +65,9 @@ def configure_approvaltests():
 
 ### Pytest
 
-Pytest allows for the creatation of a [session scoped autouse fixture in the conftest.py](https://pythontesting.net/framework/pytest/pytest-session-scoped-fixtures/#example) file in Pytest.
+Alternatively, pytest allows for the creation of a [session scoped autouse fixture in the conftest.py](https://pythontesting.net/framework/pytest/pytest-session-scoped-fixtures/#example) file in Pytest.
 Here's a [blog with an example](https://pythontesting.net/framework/pytest/pytest-session-scoped-fixtures/#example)
 
+Here's the code for implementing it in `conftest.py` (so skip the code in `__init__.py`):
+snippet: conftest_pytest_session_scoped
 
