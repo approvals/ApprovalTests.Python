@@ -5,7 +5,8 @@
 
   * [Samples](#samples)
   * [Examples](#examples)
-  * [How to configure a default reporter for your system](#how-to-configure-a-default-reporter-for-your-system)<!-- endToc -->
+  * [How to configure a default reporter for your system](#how-to-configure-a-default-reporter-for-your-system)
+    * [Pytest](#pytest)<!-- endToc -->
 
 You can create directory level configuration for approvals.
 To do this create a file named 'approvaltests_config.json' and place it in the same directory as your test.
@@ -69,5 +70,13 @@ Alternatively, pytest allows for the creation of a [session scoped autouse fixtu
 Here's a [blog with an example](https://pythontesting.net/framework/pytest/pytest-session-scoped-fixtures/#example)
 
 Here's the code for implementing it in `conftest.py` (so skip the code in `__init__.py`):
-snippet: conftest_pytest_session_scoped
+<!-- snippet: conftest_pytest_session_scoped -->
+<a id='snippet-conftest_pytest_session_scoped'></a>
+```py
+@pytest.fixture(scope="session", autouse=True)
+def set_default_reporter():
+    configure_approvaltests()
+```
+<sup><a href='/tests/conftest.py#L5-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-conftest_pytest_session_scoped' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
