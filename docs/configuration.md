@@ -39,7 +39,8 @@ set_default_reporter(ReporterByCopyMoveCommandForEverythingToClipboard())
 <sup><a href='/tests/approvals_config.py#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-The problem is you need to do this before you do anything else.
+The problem is you need to do this before you do anything else. Here are suggestions on how to do that.
+### Unittest
 While some test frameworks allow for this, our recommended suggestion is to do it directly in Python by using the `__init__.py`
 below. 
 
