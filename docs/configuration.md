@@ -63,5 +63,9 @@ def configure_approvaltests():
 <sup><a href='/tests/approvals_config.py#L6-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+### Pytest
+
+Pytest allows for the creatation of a [session scoped autouse fixture in the conftest.py](https://pythontesting.net/framework/pytest/pytest-session-scoped-fixtures/#example) file in Pytest.
+Here's a [blog with an example](https://pythontesting.net/framework/pytest/pytest-session-scoped-fixtures/#example)
 
 
