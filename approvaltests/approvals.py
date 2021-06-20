@@ -40,14 +40,14 @@ def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
 
 
 def verify(
-    data: Any,
-    reporter: Optional[Reporter] = None,
-    namer: Optional[Namer] = None,
-    encoding: Optional[str] = None,
-    errors: Optional[str] = None,
-    newline: Optional[str] = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        data: Any,
+        reporter: Optional[Reporter] = None,
+        namer: Optional[Namer] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        newline: Optional[str] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -94,7 +94,7 @@ def verify(
 
 
 def initialize_options(
-    options: Optional[Options], reporter: Optional[Reporter]
+        options: Optional[Options], reporter: Optional[Reporter]
 ) -> Options:
     if options is None:
         options = Options()
@@ -104,14 +104,14 @@ def initialize_options(
 
 
 def verify_with_namer(
-    data: Any,
-    namer: Namer,
-    reporter: Optional[Reporter] = None,
-    encoding: Optional[str] = None,
-    errors: Optional[str] = None,
-    newline: Optional[str] = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        data: Any,
+        namer: Namer,
+        reporter: Optional[Reporter] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        newline: Optional[str] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -155,11 +155,11 @@ def verify_with_namer(
 
 
 def verify_with_namer_and_writer(
-    namer: Namer,
-    writer: Writer,
-    reporter: Optional[Reporter],
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        namer: Namer,
+        writer: Writer,
+        reporter: Optional[Reporter],
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, reporter)
     approver = FileApprover()
@@ -169,10 +169,10 @@ def verify_with_namer_and_writer(
 
 
 def verify_as_json(
-    object,
-    reporter=None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        object,
+        reporter=None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ):
     options = initialize_options(options, reporter)
     n_ = to_json(object) + "\n"
@@ -180,11 +180,11 @@ def verify_as_json(
 
 
 def verify_xml(
-    xml_string: str,
-    reporter: None = None,
-    namer: Namer = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        xml_string: str,
+        reporter: None = None,
+        namer: Namer = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, reporter)
     try:
@@ -197,13 +197,13 @@ def verify_xml(
 
 
 def verify_file(
-    file_name: str,
-    reporter: Reporter = None,
-    encoding: None = None,
-    errors: None = None,
-    newline: None = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        file_name: str,
+        reporter: Reporter = None,
+        encoding: None = None,
+        errors: None = None,
+        newline: None = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify the contents of a text file against previously approved contents.
 
@@ -228,13 +228,13 @@ def verify_file(
 
 
 def verify_file_with_encoding(
-    file_name,
-    reporter=None,
-    encoding=None,
-    errors=None,
-    newline=None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        file_name,
+        reporter=None,
+        encoding=None,
+        errors=None,
+        newline=None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ):
     """Deprecated. See verify_file. This function is functionally identical."""
     options = initialize_options(options, reporter)
@@ -242,15 +242,15 @@ def verify_file_with_encoding(
 
 
 def verify_all(
-    header: str,
-    alist: List[str],
-    formatter: Optional[Callable] = None,
-    reporter: Optional[DiffReporter] = None,
-    encoding: None = None,
-    errors: None = None,
-    newline: None = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        header: str,
+        alist: List[str],
+        formatter: Optional[Callable] = None,
+        reporter: Optional[DiffReporter] = None,
+        encoding: None = None,
+        errors: None = None,
+        newline: None = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 
@@ -297,3 +297,27 @@ def verify_all(
 
 def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
     return ScenarioNamer(get_default_namer(), scenario_name)
+
+
+def verify_sequence(initialFrame, number_of_frames, next_frame_func,
+                    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+                    options: Optional[Options] = None
+                    ):
+    text = f"Initial:\n{initialFrame}"
+    for i in range(1, number_of_frames + 1):
+        next_frame = f"\n\nFrame #{i}:\n{next_frame_func(i)}"
+        text += next_frame
+    verify(text, options=options)
+
+
+# def verify_sequence2(initialFrame, number_of_frames,
+#                     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+#                     options: Optional[Options] = None
+#                     ):
+#     text = ""
+#     for i, next_frame in zip(range(0, number_of_frames ), initialFrame):
+#         if i == 0:
+#           text += f"Initial:\n{next_frame}"
+#         else:
+#          text += f"\n\nFrame #{i}:\n{next_frame}"
+#     verify(text, options=options)

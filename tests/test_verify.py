@@ -2,17 +2,46 @@
 
 import unittest
 
-from approvaltests import Options
+from approvaltests import Options, verify_sequence, verify_sequence2
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
 from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
-from approvaltests.reporters.generic_diff_reporter_factory import (
-    GenericDiffReporterFactory,
-)
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.utils import get_adjacent_file
 
+
+def print_grid(width, height, cell_print_func):
+    result = ""
+    for y  in range(0,height):
+        for x in range(0,width):
+            result += cell_print_func(x,y)
+        result += "\n"
+    return result
+
+class GameOfLife:
+    def __init__(self, board):
+        self.board = board
+
+    def advance(self) -> "GameOfLife":
+        old = self.board
+        def my_next(x, y):
+            count = (
+                old(x + 1, y) +
+                old(x + 1, y - 1) +
+                old(x + 1, y + 1) +
+                old(x - 1, y) +
+                old(x - 1, y - 1) +
+                old(x - 1, y + 1) +
+                old(x,     y + 1) +
+                old(x,     y - 1)
+            )
+            return count == 3 or (count == 2 and old(x, y))
+        self.board = my_next
+        return self
+
+    def __str__(self):
+        return print_grid(5, 5, lambda x, y : "X " if  self.board(x, y) else ". ")
 
 class VerifyTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -94,8 +123,13 @@ class VerifyTests(unittest.TestCase):
 
     def test_newlines_at_end_of_files(self) -> None:
         verify("There should be a blank line underneath this", options=Options().with_reporter(ReportWithPycharm()))
-'''
-move /Y "C:\Code\ApprovalTests.Python\tests\approved_files\VerifyTests.test_verify.received.txt" "C:\Code\ApprovalTests.Python\tests\approved_files\VerifyTests.test_verify.approved.txt"
-move /Y "C:\Code\ApprovalTests.Python\tests\approved_files\VerifyTests.test_verify_with_encoding.received.txt" "C:\Code\ApprovalTests.Python\tests\approved_files\VerifyTests.test_verify_with_encoding.approved.txt"
-move /Y "C:\Code\ApprovalTests.Python\tests\approved_files\VerifyTests.test_verify_with_errors_replacement_character.received.txt" "C:\Code\ApprovalTests.Python\tests\approved_files\VerifyTests.test_verify_with_errors_replacement_character.approved.txt"
-'''
+
+    def test_sequence(self) -> None:
+        gameOfLife = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
+        verify_sequence(gameOfLife, 2, lambda _ :  gameOfLife.advance()  )
+
+        # def as_iterable():
+        #     yield gameOfLife
+        #     while True:
+        #         yield gameOfLife.advance()
+        # verify_sequence2(as_iterable(), 3)
