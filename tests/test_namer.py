@@ -5,11 +5,9 @@ from approvaltests.core.namer import Namer, StackFrameNamer
 
 
 class NamerTests(unittest.TestCase):
-    def setUp(self):
-        self.namer = StackFrameNamer()
 
     def test_class(self):
-        self.assertEqual("NamerTests", self.namer.get_class_name())
+        self.assertEqual("NamerTests", StackFrameNamer().get_class_name())
 
     def test_method(self):
         n = StackFrameNamer()
@@ -23,7 +21,8 @@ class NamerTests(unittest.TestCase):
         self.assertEqual("test_name_works_from_inside_an_other_method", n.get_method_name())
 
     def test_file(self):
-        self.assertTrue(os.path.exists(self.namer.get_directory() + "/test_namer.py"))
+        directory = StackFrameNamer().get_directory()
+        assert os.path.exists(directory + "/test_namer.py")
 
     def test_basename(self):
         n = StackFrameNamer()
@@ -32,11 +31,11 @@ class NamerTests(unittest.TestCase):
         )
 
     def test_received_name(self):
-        filename = self.namer.get_received_filename("./stuff")
+        filename = StackFrameNamer().get_received_filename("./stuff")
         self.assertEqual(filename, "./stuff.received.txt")
 
     def test_approved_name(self):
-        filename = self.namer.get_approved_filename("./stuff")
+        filename = StackFrameNamer().get_approved_filename("./stuff")
         self.assertEqual(filename, "./stuff.approved.txt")
 
     def test_alternative_extension(self):
