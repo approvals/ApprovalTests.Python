@@ -2,7 +2,7 @@
 
 import unittest
 
-from approvaltests import Options, verify_sequence, verify_sequence2
+from approvaltests import Options, verify_sequence
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
 from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
