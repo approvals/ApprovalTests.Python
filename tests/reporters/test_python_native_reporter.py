@@ -22,9 +22,9 @@ def test_files_differ(tmpdir: LocalPath) -> None:
     file1 = os.path.join(str(tmpdir), "a.received.txt")
     file2 = os.path.join(str(tmpdir), "b.approved.txt")
     with open(file1, "w") as f1:
-        f1.write("abc")
+        f1.write("abc\n")
     with open(file2, "w") as f2:
-        f2.write("def")
+        f2.write("def\n")
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
     diff = diff.replace("\\", "/")
