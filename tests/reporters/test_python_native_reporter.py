@@ -28,8 +28,13 @@ def test_files_differ(tmpdir: LocalPath) -> None:
     diff = calculate_diff(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
     diff = diff.replace("\\", "/")
-
-    verify(diff)
+    clean_diff = ""
+    for line in diff.split("\n"):
+        if (line.startswith("mv") or line.startswith("move")):
+            clean_diff += "<move command line>"
+        else:
+            clean_diff += line +"\n"
+    verify(clean_diff)
 
 
 def test_approved_file_is_created_when_missing(tmpdir: LocalPath) -> None:
