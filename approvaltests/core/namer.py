@@ -77,14 +77,16 @@ class StackFrameNamer(Namer):
         raise FrameNotFound(message)
 
     def is_test_method(self, frame: FrameInfo) -> bool:
+        method_name = frame[3]
         is_unittest_test = (
             "self" in frame[0].f_locals
             and "_testMethodName" in frame[0].f_locals["self"].__dict__
-            and frame[3] != "__call__"
-            and frame[3] != "run"
+            and method_name != "__call__"
+            and method_name != "_callTestMethod"
+            and method_name != "run"
         )
 
-        is_pytest_test = frame[3].startswith("test_")
+        is_pytest_test = method_name.startswith("test_")
 
         return is_unittest_test or is_pytest_test
 
