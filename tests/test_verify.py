@@ -8,6 +8,7 @@ from approvaltests.approvals import verify, verify_as_json, verify_file, verify_
 from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.reporters.testing_reporter import ReporterForTesting
+from approvaltests.storyboard import Storyboard
 from approvaltests.utils import get_adjacent_file
 
 
@@ -42,6 +43,10 @@ class GameOfLife:
 
     def __str__(self):
         return print_grid(5, 5, lambda x, y : "X " if  self.board(x, y) else ". ")
+
+
+
+
 
 class VerifyTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -127,6 +132,7 @@ class VerifyTests(unittest.TestCase):
     def test_sequence(self) -> None:
         gameOfLife = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
         verify_sequence(gameOfLife, 2, lambda _ :  gameOfLife.advance()  )
+        verify(Storyboard().add_frame(gameOfLife).add_frames(2, lambda _ : gameOfLife.advance()))
 
         # def as_iterable():
         #     yield gameOfLife
