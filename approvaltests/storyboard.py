@@ -29,7 +29,7 @@ class Storyboard:
             try:
                 number_of_frames = len(data)
             except:
-                raise RuntimeError("You must pass in the number of frames.")
+                raise RuntimeError("You must pass in the number of frames for this iterable.")
         for _, frame in zip(range(number_of_frames), data):
             self.add_frame(frame)
         return self
