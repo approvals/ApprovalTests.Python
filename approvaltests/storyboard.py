@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any, Callable, Optional, Iterable
 
 
 class Storyboard:
@@ -16,7 +16,7 @@ class Storyboard:
 
         return self
 
-    def add_frames(self, number_of_frames: int, function_for_frame: Callable) -> "Storyboard":
+    def add_frames(self, number_of_frames: int, function_for_frame: Callable[[int],Any]) -> "Storyboard":
         for n in range(number_of_frames):
             self.add_frame(function_for_frame(n))
         return self
@@ -24,7 +24,7 @@ class Storyboard:
     def __str__(self) -> str:
         return self.story
 
-    def iterate_frames(self, data, number_of_frames = -1) -> "Storyboard":
+    def iterate_frames(self, data: Iterable[Any], number_of_frames:Optional[int] = -1) -> "Storyboard":
         if number_of_frames == -1:
             try:
                 number_of_frames = len(data)
