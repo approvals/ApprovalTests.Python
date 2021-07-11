@@ -2,7 +2,7 @@
 
 import unittest
 
-from approvaltests import Options, verify_sequence
+from approvaltests import Options
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
 from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
@@ -129,6 +129,16 @@ class VerifyTests(unittest.TestCase):
     def test_newlines_at_end_of_files(self) -> None:
         verify("There should be a blank line underneath this", options=Options().with_reporter(ReportWithPycharm()))
 
-    def test_sequence(self) -> None:
-        gameOfLife = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
-        verify(Storyboard().add_frame(gameOfLife).add_frames(2, lambda _ : gameOfLife.advance()))
+    def test_storyboard(self) -> None:
+        game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
+        verify(Storyboard().add_frame(game_of_life).add_frames(2, lambda _ : game_of_life.advance()))
+
+
+    def test_storyboard_of_iterable(self) -> None:
+        list_of_numbers = ["-", "\\", "|", "/"]*3
+        verify(Storyboard().iterate_frames(list_of_numbers, 5))
+
+        list_of_numbers = ["-", "\\", "|", "/", "-"]
+        verify(Storyboard().iterate_frames(list_of_numbers))
+
+

@@ -23,3 +23,13 @@ class Storyboard:
 
     def __str__(self) -> str:
         return self.story
+
+    def iterate_frames(self, data, number_of_frames = -1) -> "Storyboard":
+        if number_of_frames == -1:
+            try:
+                number_of_frames = len(data)
+            except:
+                raise RuntimeError("You must pass in the number of frames.")
+        for _, frame in zip(range(number_of_frames), data):
+            self.add_frame(frame)
+        return self
