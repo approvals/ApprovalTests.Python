@@ -299,25 +299,5 @@ def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
     return ScenarioNamer(get_default_namer(), scenario_name)
 
 
-def verify_sequence(initialFrame, number_of_frames, next_frame_func,
-                    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-                    options: Optional[Options] = None
-                    ):
-    text = f"Initial:\n{initialFrame}"
-    for i in range(1, number_of_frames + 1):
-        next_frame = f"\n\nFrame #{i}:\n{next_frame_func(i)}"
-        text += next_frame
-    verify(text, options=options)
 
 
-# def verify_sequence2(initialFrame, number_of_frames,
-#                     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-#                     options: Optional[Options] = None
-#                     ):
-#     text = ""
-#     for i, next_frame in zip(range(0, number_of_frames ), initialFrame):
-#         if i == 0:
-#           text += f"Initial:\n{next_frame}"
-#         else:
-#          text += f"\n\nFrame #{i}:\n{next_frame}"
-#     verify(text, options=options)

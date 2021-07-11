@@ -131,11 +131,4 @@ class VerifyTests(unittest.TestCase):
 
     def test_sequence(self) -> None:
         gameOfLife = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
-        verify_sequence(gameOfLife, 2, lambda _ :  gameOfLife.advance()  )
         verify(Storyboard().add_frame(gameOfLife).add_frames(2, lambda _ : gameOfLife.advance()))
-
-        # def as_iterable():
-        #     yield gameOfLife
-        #     while True:
-        #         yield gameOfLife.advance()
-        # verify_sequence2(as_iterable(), 3)
