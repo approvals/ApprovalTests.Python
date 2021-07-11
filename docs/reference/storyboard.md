@@ -1,6 +1,10 @@
 # Storyboard
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Why Use Storyboards](#why-use-storyboards)
+  * [How to Add multiple Frames](#how-to-add-multiple-frames)<!-- endToc -->
 
 ## Why Use Storyboards
  
