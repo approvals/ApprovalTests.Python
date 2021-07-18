@@ -5,13 +5,19 @@ class Storyboard:
     def __init__(self) -> None:
         self.frame_number = 0
         self.story = ""
+        self.add_new_line = False
 
-    def add_frame(self, data: Any) -> "Storyboard":
-        if self.frame_number == 0:
+    def add_frame(self, data: Any, title: Optional[str] = None) -> "Storyboard":
+        if self.add_new_line:
+            self.story += "\n"
+            self.add_new_line = False
+        if title:
+            self.story += f'{title}:\n'
+        elif self.frame_number == 0:
             self.story += "Initial:\n"
         else:
-            self.story += f"\n\nFrame #{self.frame_number}:\n"
-        self.story += str(data)
+            self.story += f"Frame #{self.frame_number}:\n"
+        self.story += f"{data}\n\n"
         self.frame_number += 1
 
         return self
@@ -33,3 +39,14 @@ class Storyboard:
         for _, frame in zip(range(number_of_frames), data):
             self.add_frame(frame)
         return self
+
+    def add_description(self, description):
+        self.story += f"{description}\n\n"
+        return self
+
+    def add_description_with_data(self, description:str, data:Any) -> "Storyboard":
+        self.story += f"{description}: {data}\n"
+        self.add_new_line = True
+        return self
+
+

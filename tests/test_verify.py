@@ -23,6 +23,8 @@ def print_grid(width, height, cell_print_func):
 class GameOfLife:
     def __init__(self, board):
         self.board = board
+        self.alive = "X"
+        self.dead = "."
 
     def advance(self) -> "GameOfLife":
         old = self.board
@@ -42,10 +44,15 @@ class GameOfLife:
         return self
 
     def __str__(self):
-        return print_grid(5, 5, lambda x, y : "X " if  self.board(x, y) else ". ")
+        return print_grid(5, 5, lambda x, y : f"{self.alive} " if  self.board(x, y) else f"{self.dead} ")
 
+    def set_alive_cell(self, alive):
+        self.alive = alive
+        return self.alive
 
-
+    def set_dead_cell(self, dead):
+        self.dead = dead
+        return self.dead
 
 
 class VerifyTests(unittest.TestCase):
@@ -133,6 +140,14 @@ class VerifyTests(unittest.TestCase):
         game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
         verify(Storyboard().add_frame(game_of_life).add_frames(2, lambda _ : game_of_life.advance()))
 
+    def test_simple_storyboard(self) -> None:
+        game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
+        #begin-snippet: use_storyboard
+        story = Storyboard()
+        story.add_description("Game of Life")
+        story.add_frame(game_of_life)
+        verify(story)
+        #end-snippet
 
     def test_storyboard_of_iterable(self) -> None:
         list_of_numbers = ["-", "\\", "|", "/"]*3
@@ -141,4 +156,29 @@ class VerifyTests(unittest.TestCase):
         list_of_numbers = ["-", "\\", "|", "/", "-"]
         verify(Storyboard().iterate_frames(list_of_numbers))
 
+    def test_other_storyboard_machanisms(self) -> None:
+        game_of_life = GameOfLife ( lambda x, y: 1 <= x <= 3 and y == 2)
+
+        story = Storyboard()
+        story.add_description("Game of Life")
+        story.add_frame(game_of_life)
+
+        game_of_life = game_of_life.advance()
+        story.add_frame(game_of_life, "Start game_of_life")
+
+        game_of_life = game_of_life.advance()
+        story.add_frame(game_of_life)
+
+        story.add_description_with_data("setting alive", game_of_life.set_alive_cell("*"))
+        story.add_description_with_data("setting dead", game_of_life.set_dead_cell("_"))
+        game_of_life = game_of_life.advance()
+        story.add_frame(game_of_life)
+
+        game_of_life = game_of_life.advance()
+        story.add_frame(game_of_life)
+
+        game_of_life = game_of_life.advance()
+        story.add_frame(game_of_life)
+
+        verify(story)
 

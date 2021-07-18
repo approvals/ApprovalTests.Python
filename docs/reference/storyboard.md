@@ -8,6 +8,12 @@
 
 ## Why Use Storyboards
  
+ Sometime we might want to see different steps in a workflow or lifetime of an object. Storyboards enable that.
+
+## How To Use Storyboards
+
+snippet: use_storyboard
+
 ## How to Add multiple Frames
 ___
 [Back to top](../README.md)
