@@ -12,6 +12,8 @@
 
 ## How To Use Storyboards
 
+Here is example of creating story board, adding content to it, and verifying it.
+
 snippet: use_storyboard
 
 ## How to Add multiple Frames

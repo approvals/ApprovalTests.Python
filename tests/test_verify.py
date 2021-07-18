@@ -141,20 +141,32 @@ class VerifyTests(unittest.TestCase):
         verify(Storyboard().add_frame(game_of_life).add_frames(2, lambda _ : game_of_life.advance()))
 
     def test_simple_storyboard(self) -> None:
-        game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
+        class AsciiWheel:
+            def __init__(self):
+                self.steps = ["-", "\\", "|", "/"]
+                self.step = 0
+            def __str__(self):
+                return self.steps[self.step]
+
+            def advance(self):
+                self.step += 1
+                self.step = self.step % 4
+        ascii_wheel = AsciiWheel()
         #begin-snippet: use_storyboard
         story = Storyboard()
-        story.add_description("Game of Life")
-        story.add_frame(game_of_life)
+        story.add_description("Spinning wheel")
+        story.add_frame(ascii_wheel)
+        ascii_wheel.advance()
+        story.add_frame(ascii_wheel)
         verify(story)
         #end-snippet
 
     def test_storyboard_of_iterable(self) -> None:
-        list_of_numbers = ["-", "\\", "|", "/"]*3
-        verify(Storyboard().iterate_frames(list_of_numbers, 5))
+        spinning_wheel = ["-", "\\", "|", "/"]*3
+        verify(Storyboard().iterate_frames(spinning_wheel, 5))
 
-        list_of_numbers = ["-", "\\", "|", "/", "-"]
-        verify(Storyboard().iterate_frames(list_of_numbers))
+        spinning_wheel = ["-", "\\", "|", "/", "-"]
+        verify(Storyboard().iterate_frames(spinning_wheel))
 
     def test_other_storyboard_machanisms(self) -> None:
         game_of_life = GameOfLife ( lambda x, y: 1 <= x <= 3 and y == 2)
