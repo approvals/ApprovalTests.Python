@@ -16,7 +16,9 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 import approvaltests
 from approvaltests.core.namer import Namer
-from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
+from approvaltests.reporters.report_all_to_clipboard import (
+    ReporterByCopyMoveCommandForEverythingToClipboard,
+)
 from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare
 from approvaltests.utils import to_json, is_windows_os
 
@@ -45,14 +47,15 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def assert_for_reporter(self, reporter):
         the_reporter = self.factory.get(reporter)
-        verify(str(the_reporter), MultiReporter(ReportWithBeyondCompare(), the_reporter))
+        verify(
+            str(the_reporter), MultiReporter(ReportWithBeyondCompare(), the_reporter)
+        )
 
     def test_get_araxis_mac(self) -> None:
         self.assert_for_reporter("AraxisMergeMac")
 
     def test_get_beyondcompare4_mac(self) -> None:
         self.assert_for_reporter("BeyondCompare4Mac")
-       
 
     def test_constructs_valid_diff_command(self) -> None:
         reporter = self.factory.get("BeyondCompare4")

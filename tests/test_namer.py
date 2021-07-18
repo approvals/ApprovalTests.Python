@@ -5,7 +5,6 @@ from approvaltests.core.namer import Namer, StackFrameNamer
 
 
 class NamerTests(unittest.TestCase):
-
     def test_class(self):
         self.assertEqual("NamerTests", StackFrameNamer().get_class_name())
 
@@ -18,7 +17,9 @@ class NamerTests(unittest.TestCase):
 
     def an_other_method(self):
         n = StackFrameNamer()
-        self.assertEqual("test_name_works_from_inside_an_other_method", n.get_method_name())
+        self.assertEqual(
+            "test_name_works_from_inside_an_other_method", n.get_method_name()
+        )
 
     def test_file(self):
         directory = StackFrameNamer().get_directory()

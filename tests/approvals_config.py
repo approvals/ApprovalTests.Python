@@ -1,5 +1,7 @@
 from approvaltests import set_default_reporter, DiffReporter
-from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
+from approvaltests.reporters.report_all_to_clipboard import (
+    ReporterByCopyMoveCommandForEverythingToClipboard,
+)
 
 my_preferred_reporter = None
 

@@ -23,6 +23,5 @@ class ReporterTests(unittest.TestCase):
         reporter3 = report_with_beyond_compare()
         assert reporter1 == reporter2 == reporter3
 
-
     def test_move_command(self):
-        verify_all('', [True, False], lambda b:get_command_text('a.text', "r.txt", b))
+        verify_all("", [True, False], lambda b: get_command_text("a.text", "r.txt", b))

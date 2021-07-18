@@ -25,8 +25,8 @@ class StringWriter(Writer):
 
     def sanitize_string(self, contents):
         contents = contents or u""
-        if len(contents) == 0 or contents[-1] != '\n':
-            contents = contents + '\n'
+        if len(contents) == 0 or contents[-1] != "\n":
+            contents = contents + "\n"
         return contents
 
     def write_received_file(self, received_file: str) -> str:

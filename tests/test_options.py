@@ -57,4 +57,3 @@ def test_file_extensions():
     verify(content, options=Options().for_file.with_extension(".md"))
     # end-snippet
     verify(content, options=Options().for_file.with_extension("md"))
-

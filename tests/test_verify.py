@@ -5,7 +5,9 @@ import unittest
 from approvaltests import Options
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
-from approvaltests.reporters.report_all_to_clipboard import ReporterByCopyMoveCommandForEverythingToClipboard
+from approvaltests.reporters.report_all_to_clipboard import (
+    ReporterByCopyMoveCommandForEverythingToClipboard,
+)
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.storyboard import Storyboard
@@ -14,11 +16,12 @@ from approvaltests.utils import get_adjacent_file
 
 def print_grid(width, height, cell_print_func):
     result = ""
-    for y  in range(0,height):
-        for x in range(0,width):
-            result += cell_print_func(x,y)
+    for y in range(0, height):
+        for x in range(0, width):
+            result += cell_print_func(x, y)
         result += "\n"
     return result
+
 
 class GameOfLife:
     def __init__(self, board):
@@ -28,23 +31,27 @@ class GameOfLife:
 
     def advance(self) -> "GameOfLife":
         old = self.board
+
         def my_next(x, y):
             count = (
-                old(x + 1, y) +
-                old(x + 1, y - 1) +
-                old(x + 1, y + 1) +
-                old(x - 1, y) +
-                old(x - 1, y - 1) +
-                old(x - 1, y + 1) +
-                old(x,     y + 1) +
-                old(x,     y - 1)
+                old(x + 1, y)
+                + old(x + 1, y - 1)
+                + old(x + 1, y + 1)
+                + old(x - 1, y)
+                + old(x - 1, y - 1)
+                + old(x - 1, y + 1)
+                + old(x, y + 1)
+                + old(x, y - 1)
             )
             return count == 3 or (count == 2 and old(x, y))
+
         self.board = my_next
         return self
 
     def __str__(self):
-        return print_grid(5, 5, lambda x, y : f"{self.alive} " if  self.board(x, y) else f"{self.dead} ")
+        return print_grid(
+            5, 5, lambda x, y: f"{self.alive} " if self.board(x, y) else f"{self.dead} "
+        )
 
     def set_alive_cell(self, alive):
         self.alive = alive
@@ -64,7 +71,7 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify_with_encoding(self) -> None:
         verify(
-            u"Høvdingens kjære squaw får litt pizza i Mexico by",
+            "Høvdingens kjære squaw får litt pizza i Mexico by",
             self.reporter,
             encoding="utf-8",
         )
@@ -72,14 +79,14 @@ class VerifyTests(unittest.TestCase):
     def test_verify_with_encoding_error_raises_value_error(self) -> None:
         with self.assertRaises(ValueError):
             verify(
-                u"Høvdingens kjære squaw får litt pizza i Mexico by",
+                "Høvdingens kjære squaw får litt pizza i Mexico by",
                 self.reporter,
                 encoding="ascii",
             )
 
     def test_verify_with_errors_replacement_character(self) -> None:
         verify(
-            u"Falsches Üben von Xylophonmusik quält jeden größeren Zwerg",
+            "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg",
             self.reporter,
             encoding="ascii",
             errors="replace",
@@ -87,10 +94,10 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify_with_newlines(self) -> None:
         verify(
-            u"I cannot live without approval.\n"
-            u"Your satisfaction is my demand.\n"
-            u"I must control what you think of me.\n"
-            u"I have to understand.\n",
+            "I cannot live without approval.\n"
+            "Your satisfaction is my demand.\n"
+            "I must control what you think of me.\n"
+            "I have to understand.\n",
             reporter=self.reporter,
             encoding="utf-8",
             newline="\r\n",
@@ -134,42 +141,51 @@ class VerifyTests(unittest.TestCase):
         verify_xml(xml)
 
     def test_newlines_at_end_of_files(self) -> None:
-        verify("There should be a blank line underneath this", options=Options().with_reporter(ReportWithPycharm()))
+        verify(
+            "There should be a blank line underneath this",
+            options=Options().with_reporter(ReportWithPycharm()),
+        )
 
     def test_storyboard(self) -> None:
         game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
-        verify(Storyboard().add_frame(game_of_life).add_frames(2, lambda _ : game_of_life.advance()))
+        verify(
+            Storyboard()
+            .add_frame(game_of_life)
+            .add_frames(2, lambda _: game_of_life.advance())
+        )
 
     def test_simple_storyboard(self) -> None:
         class AsciiWheel:
             def __init__(self):
                 self.steps = ["-", "\\", "|", "/"]
                 self.step = 0
+
             def __str__(self):
                 return self.steps[self.step]
 
             def advance(self):
                 self.step += 1
                 self.step = self.step % 4
+
         ascii_wheel = AsciiWheel()
-        #begin-snippet: use_storyboard
+        # begin-snippet: use_storyboard
         story = Storyboard()
         story.add_description("Spinning wheel")
         story.add_frame(ascii_wheel)
         ascii_wheel.advance()
         story.add_frame(ascii_wheel)
         verify(story)
-        #end-snippet
+        # end-snippet
 
     def test_storyboard_of_iterable(self) -> None:
-        spinning_wheel = ["-", "\\", "|", "/"]*3
+        spinning_wheel = ["-", "\\", "|", "/"] * 3
         verify(Storyboard().iterate_frames(spinning_wheel, 5))
 
         spinning_wheel = ["-", "\\", "|", "/", "-"]
         verify(Storyboard().iterate_frames(spinning_wheel))
 
     def test_other_storyboard_machanisms(self) -> None:
-        game_of_life = GameOfLife ( lambda x, y: 1 <= x <= 3 and y == 2)
+        game_of_life = GameOfLife(lambda x, y: 1 <= x <= 3 and y == 2)
 
         story = Storyboard()
         story.add_description("Game of Life")
@@ -181,7 +197,9 @@ class VerifyTests(unittest.TestCase):
         game_of_life = game_of_life.advance()
         story.add_frame(game_of_life)
 
-        story.add_description_with_data("setting alive", game_of_life.set_alive_cell("*"))
+        story.add_description_with_data(
+            "setting alive", game_of_life.set_alive_cell("*")
+        )
         story.add_description_with_data("setting dead", game_of_life.set_dead_cell("_"))
         game_of_life = game_of_life.advance()
         story.add_frame(game_of_life)
@@ -193,4 +211,3 @@ class VerifyTests(unittest.TestCase):
         story.add_frame(game_of_life)
 
         verify(story)
-

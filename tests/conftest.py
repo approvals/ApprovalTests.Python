@@ -6,4 +6,6 @@ import pytest
 @pytest.fixture(scope="session", autouse=True)
 def set_default_reporter():
     configure_approvaltests()
+
+
 # end-snippet

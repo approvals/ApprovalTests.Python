@@ -30,10 +30,10 @@ def test_files_differ(tmpdir: LocalPath) -> None:
     diff = diff.replace("\\", "/")
     clean_diff = ""
     for line in diff.split("\n"):
-        if (line.startswith("mv") or line.startswith("move")):
+        if line.startswith("mv") or line.startswith("move"):
             clean_diff += "<move command line>"
         else:
-            clean_diff += line +"\n"
+            clean_diff += line + "\n"
     verify(clean_diff)
 
 
