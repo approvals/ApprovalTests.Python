@@ -4,8 +4,7 @@
 ## Contents
 
   * [Why Use Storyboards](#why-use-storyboards)
-  * [How To Use Storyboards](#how-to-use-storyboards)
-  * [How to Add multiple Frames](#how-to-add-multiple-frames)<!-- endToc -->
+  * [How To Use Storyboards](#how-to-use-storyboards)<!-- endToc -->
 
 ## Why Use Storyboards
  
@@ -34,7 +33,19 @@ verify(story)
 
 will produce 
 
-snippet: VerifyTests.test_simple_storyboard.approved.txt
+<!-- snippet: VerifyTests.test_simple_storyboard.approved.txt -->
+<a id='snippet-VerifyTests.test_simple_storyboard.approved.txt'></a>
+```txt
+Spinning wheel
+
+Initial:
+-
+
+Frame #1:
+\
+```
+<sup><a href='/tests/approved_files/VerifyTests.test_simple_storyboard.approved.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-VerifyTests.test_simple_storyboard.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ___
 [Back to top](../README.md)
