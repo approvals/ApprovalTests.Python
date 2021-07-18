@@ -3,6 +3,8 @@
 <!-- toc -->
 ## Contents
 
+  * [v 1.1.0](#v-110)
+    * [Storyboards](#storyboards)
   * [v 1.0.0](#v-100)
     * [Verify(text) ensures a newline at the file](#verifytext-ensures-a-newline-at-the-file)
       * [Upgrade Path](#upgrade-path)
