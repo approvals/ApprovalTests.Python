@@ -37,7 +37,7 @@ If you don't like the standard default for reporting and wish to change it every
 ```py
 set_default_reporter(ReporterByCopyMoveCommandForEverythingToClipboard())
 ```
-<sup><a href='/tests/approvals_config.py#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/approvals_config.py#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The problem is you need to do this before you do anything else. Here are suggestions on how to do that.
@@ -54,7 +54,7 @@ below.
 # From __init__.py
 configure_approvaltests()
 ```
-<sup><a href='/tests/__init__.py#L4-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests_under_init' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/__init__.py#L5-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests_under_init' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <!-- snippet: configure_approvaltests -->
@@ -63,7 +63,7 @@ configure_approvaltests()
 def configure_approvaltests():
     set_default_reporter(my_preferred_reporter)
 ```
-<sup><a href='/tests/approvals_config.py#L6-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/approvals_config.py#L8-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Pytest
@@ -79,6 +79,6 @@ Here's the code for implementing it in `conftest.py` (so skip the code in `__ini
 def set_default_reporter():
     configure_approvaltests()
 ```
-<sup><a href='/tests/conftest.py#L5-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-conftest_pytest_session_scoped' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/conftest.py#L5-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-conftest_pytest_session_scoped' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
