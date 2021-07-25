@@ -54,3 +54,5 @@ class Storyboard:
         self.story += f"{description}: {data}\n"
         self.add_new_line = True
         return self
+
+StoryBoard = Storyboard
