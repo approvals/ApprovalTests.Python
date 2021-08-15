@@ -15,6 +15,9 @@ choco install python --version=3.6.7
 choco install pip
 choco install pycharm
 
+# Keyboard rotation for Dvorak
+Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/LearnWithLlew/MobTime.keyboardswitching/main/install.windows.ps1 | Invoke-Expression
+
 syspin "C:\Program Files (x86)\JetBrains\PyCharm 2020.3.2\bin\pycharm64.exe" "Pin to taskbar"
 
 choco install visualstudio2019buildtools

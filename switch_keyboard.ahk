@@ -1,1 +1,0 @@
-Send {Control Down}{Shift Down}{Shift Up}{Control Up}
