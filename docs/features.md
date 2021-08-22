@@ -3,6 +3,7 @@
 <!-- toc -->
 ## Contents
 
+    * [Create regex scrubber](#create-regex-scrubber)
   * [v 1.1.0](#v-110)
     * [Storyboards](#storyboards)
   * [v 1.0.0](#v-100)
