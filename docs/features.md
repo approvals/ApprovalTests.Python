@@ -11,6 +11,13 @@
     * [Namer handles multiple nested methods in a unit test](#namer-handles-multiple-nested-methods-in-a-unit-test)
   * [v 0.5.0](#v-050)
     * [Options - with file extension](#options---with-file-extension)<!-- endToc -->
+## v 2.0.0
+    
+### Create regex scrubber
+Renamed `scrub_with_regex` to `create_regex_scrubber`.  
+It can now take either a `str` or a `Callable[[int], str]`
+
+Going forward, functions that return scrubber will start with `create` while functions that scrub directly will start with `scrub`
 
 ## v 1.1.0
 
