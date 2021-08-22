@@ -2,10 +2,11 @@ import re
 from collections import defaultdict
 from typing import Callable, Optional, Union
 
+Scrubber = Callable[[str],str]
 
 def create_regex_scrubber(
     regex: str, function_or_replace_string: Union[Callable[[int], str], str]
-) -> Callable[[str], str]:
+) -> Scrubber:
     def scrub(text: str) -> str:
         if isinstance(function_or_replace_string, str):
              callable = lambda _: function_or_replace_string
