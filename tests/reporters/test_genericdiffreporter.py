@@ -1,23 +1,17 @@
-import json
 import os
 import re
 import shutil
 import unittest
+from typing import cast
 
-from approvaltests import MultiReporter, get_default_reporter
-from approvaltests.approvals import verify, get_default_namer, set_default_reporter
-from approvaltests.command import Command
+from approvaltests import MultiReporter
+from approvaltests.approvals import verify, get_default_namer
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
     create_config,
 )
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
-)
-import approvaltests
-from approvaltests.core.namer import Namer
-from approvaltests.reporters.report_all_to_clipboard import (
-    ReporterByCopyMoveCommandForEverythingToClipboard,
 )
 from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare
 from approvaltests.utils import to_json, is_windows_os
@@ -58,7 +52,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assert_for_reporter("BeyondCompare4Mac")
 
     def test_constructs_valid_diff_command(self) -> None:
-        reporter = self.factory.get("BeyondCompare4")
+        reporter = cast(GenericDiffReporter, self.factory.get("BeyondCompare4"))
         namer = get_default_namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()

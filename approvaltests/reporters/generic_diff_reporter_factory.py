@@ -11,6 +11,11 @@ from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondC
 from approvaltests.utils import get_adjacent_file
 
 
+class NoConfigReporter(Reporter):
+    def report(self, received_path: str, approved_path: str) -> bool:
+        raise RuntimeError("This machine has no reporter configuration")
+
+
 class GenericDiffReporterFactory(object):
     reporters: List[GenericDiffReporterConfig] = []
 
@@ -23,7 +28,7 @@ class GenericDiffReporterFactory(object):
     def list(self) -> List[str]:
         return [r.name for r in self.reporters]
 
-    def get(self, reporter_name: str) -> Optional[Reporter]:
+    def get(self, reporter_name: str) -> Reporter:
         reporter = GenericDiffReporterFactory.get_reporter_programmmatically(
             reporter_name
         )
@@ -35,10 +40,10 @@ class GenericDiffReporterFactory(object):
             return ReportWithBeyondCompare()
         return None
 
-    def get_from_json_config(self, reporter_name: str) -> Optional[Reporter]:
+    def get_from_json_config(self, reporter_name: str) -> Reporter:
         config = next((r for r in self.reporters if r.name == reporter_name), None)
         if not config:
-            return None
+            return NoConfigReporter()
         return self._create_reporter(config)
 
     @staticmethod
