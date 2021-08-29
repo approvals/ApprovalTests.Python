@@ -82,9 +82,9 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_approved_file_not_changed_when_one_exists_already(self) -> None:
         namer = get_default_namer()
-        approved_contents = "Approved"
         approved = namer.get_approved_filename()
         os.remove(approved)
+        approved_contents = "Approved"
         with open(approved, "w") as approved_file:
             approved_file.write(approved_contents)
         reporter = self.factory.get("BeyondCompare4")
@@ -160,17 +160,6 @@ class GenericDiffReporterTests(unittest.TestCase):
 
         self.assertFileIsEmpty(self.approved_file_path)
 
-    def test_approved_file_not_changed_when_one_exists_already(self) -> None:
-        approved_contents = "Approved"
-        with open(self.approved_file_path, "w") as approved_file:
-            approved_file.write(approved_contents)
-        reporter = self.instantiate_reporter_for_test()
-        reporter.report(self.received_file_path, self.approved_file_path)
-
-        with open(self.approved_file_path, "r") as approved_file:
-            actual_contents = approved_file.read()
-        self.assertEqual(actual_contents, approved_contents)
-
     def assertFileDoesNotExist(self, file_path: str) -> None:
         file_exists = os.path.isfile(file_path)
         if file_exists:
@@ -180,7 +169,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def assertFileIsEmpty(self, file_path: str) -> None:
         file_size = os.stat(file_path).st_size
         if file_size != 0:
-            msg = "File is not empty: {}" % file_path
+            msg = f"File is not empty: {file_path}"
             self.fail(msg)
 
     def test_get_pycharm_reporter(self) -> None:
