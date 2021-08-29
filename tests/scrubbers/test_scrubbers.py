@@ -1,7 +1,7 @@
 import datetime
 
 from approvaltests import verify_all, Options, verify_as_json, verify
-from approvaltests.scrubbers.date_scrubbers import scrub_all_dates, create_regex_scrubber
+from approvaltests.scrubbers.date_scrubbers import scrub_all_dates, create_regex_scrubber, scrub_all_guids
 
 
 def test_full_stack_scrubbing():
@@ -19,20 +19,25 @@ def test_date_scrubbing():
     mydict = {"start": date1, "pause": date2, "resume": date2, "end": date3}
     verify_as_json(mydict, options=Options().with_scrubber(scrub_all_dates))
 
+
 def test_regex():
-    verify('and then jane said "blah blah blah "', options=Options().with_scrubber(create_regex_scrubber("(blah )+", "[nonsense]")))
+    verify('and then jane said "blah blah blah "',
+           options=Options().with_scrubber(create_regex_scrubber("(blah )+", "[nonsense]")))
+
 
 def test_regex_by_lambda():
-    verify('and then jane said "blah blah blah "', options=Options().with_scrubber(create_regex_scrubber("(blah )+", lambda n:f"[nonsense_{n}]")))
+    verify('and then jane said "blah blah blah "',
+           options=Options().with_scrubber(create_regex_scrubber("(blah )+", lambda n: f"[nonsense_{n}]")))
 
 
-# TODO
-# def template_regex_scrubber():
-#     return create_regex_scrubber("(blah )*", lambda n: "[nonsense]")
-#
-#
-# def test_guid():
-#     pass
+def test_guid():
+    guids = ["2fd78d4a-ad49-447d-96a8-deda585a9aa5",
+             "2fd78d4a-1111-1111-1111-deda585a9aa5",
+             "2fd78d4a-3333-3333-3333-deda585a9aa5",
+             "2fd78d4a-ad49-447d-96a8-deda585a9aa5",
+             "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"]
+    verify_all("guids", guids, options=Options().with_scrubber(scrub_all_guids))
+
 #
 # def test_combine_scrubbers():
 #     verify("blah1 date guid", options=Options().with_scrubber(combine_scrubbers('guid, date, nonsense')))
