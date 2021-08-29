@@ -22,6 +22,9 @@ def test_date_scrubbing():
 def test_regex():
     verify('and then jane said "blah blah blah "', options=Options().with_scrubber(create_regex_scrubber("(blah )+", "[nonsense]")))
 
+def test_regex_by_lambda():
+    verify('and then jane said "blah blah blah "', options=Options().with_scrubber(create_regex_scrubber("(blah )+", lambda n:f"[nonsense_{n}]")))
+
 
 # TODO
 # def template_regex_scrubber():
