@@ -1,6 +1,6 @@
 from typing import Dict, Callable
 
-from approvaltests.core import Reporter
+from approvaltests.core import Namer, Reporter
 
 
 class FileOptions:
@@ -40,7 +40,7 @@ class Options:
         return FileOptions(self.fields)
 
     @property
-    def namer(self) -> "Namer":
+    def namer(self) -> Namer:
         from approvaltests import get_default_namer
 
         namer = get_default_namer()
