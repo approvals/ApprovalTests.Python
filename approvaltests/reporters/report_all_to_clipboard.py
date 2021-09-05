@@ -1,4 +1,4 @@
-import pyperclip
+import pyperclip # type: ignore
 
 from approvaltests import Reporter
 from approvaltests.reporters import get_command_text
