@@ -69,8 +69,9 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertFalse(os.path.isfile(approved))
 
         reporter = self.factory.get("BeyondCompare4")
-        reporter.run_command = lambda command_array: None
-        reporter.is_working = lambda: True
+
+        setattr(reporter, "run_command",  lambda command_array: None)
+        setattr(reporter, "is_working", lambda: True)
         reporter.report(received, approved)
         self.assertEqual(0, os.stat(approved).st_size)
 
@@ -82,7 +83,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         with open(approved, "w") as approved_file:
             approved_file.write(approved_contents)
         reporter = self.factory.get("BeyondCompare4")
-        reporter.run_command = lambda command_array: None
+        setattr(reporter, "run_command", lambda command_array: None)
 
         reporter.report(namer.get_received_filename(), approved)
 
@@ -130,7 +131,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def instantiate_reporter_for_test() -> GenericDiffReporter:
         program = r"C:\Windows\System32\help.exe" if is_windows_os() else "echo"
         reporter = GenericDiffReporter.create(program)
-        reporter.run_command = lambda command_array: None
+        setattr(reporter, "run_command", lambda command_array: None)
         return reporter
 
     @property
