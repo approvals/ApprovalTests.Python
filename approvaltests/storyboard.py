@@ -1,4 +1,4 @@
-from typing import Any, Callable, Optional, Iterable
+from typing import Any, Callable, Optional, Iterable, Sized, Collection
 
 
 class Storyboard:
@@ -33,7 +33,7 @@ class Storyboard:
         return self.story
 
     def iterate_frames(
-        self, data: Iterable[Any], number_of_frames: Optional[int] = -1
+        self, data: Collection[Any], number_of_frames: int = -1
     ) -> "Storyboard":
         if number_of_frames == -1:
             try:

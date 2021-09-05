@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, Union, DefaultDict
 
 Scrubber = Callable[[str],str]
 
@@ -13,7 +13,7 @@ def create_regex_scrubber(
         else:
             callable = function_or_replace_string
 
-        matches = defaultdict(lambda: len(matches))
+        matches = defaultdict(lambda: len(matches)) # type: DefaultDict[str, int]
         return re.sub(regex, lambda m: callable(matches[m.group(0)]), text)
 
     return scrub

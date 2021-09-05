@@ -1,9 +1,9 @@
 from typing import Optional
 
-from approvaltests.core.namer import StackFrameNamer
+from approvaltests.core.namer import StackFrameNamer, Namer
 
 
-class ScenarioNamer:
+class ScenarioNamer(Namer):
     """
     For use with parameterized tests.
 
