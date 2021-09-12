@@ -70,7 +70,7 @@ def verify_all_combinations_with_namer(
 
 
 def print_combinations(
-    formatter: Callable,
+    formatter: Optional[Callable],
     function_under_test: Callable,
     input_arguments: Sequence[Sequence[Any]],
 ) -> str:
