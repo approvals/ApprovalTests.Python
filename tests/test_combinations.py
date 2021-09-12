@@ -134,7 +134,6 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.reporter = ReporterForTesting()
         self.reporter = CommandLineReporter()
         self.func = lambda *args: sum(args) + 1
 
