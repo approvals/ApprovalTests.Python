@@ -26,7 +26,7 @@ class Namer(object):
     def get_basename(self) -> str:
         file_name = self.get_file_name()
         subdirectory = self.get_config().get("subdirectory", "")
-        return os.path.join(self.get_directory(), subdirectory, file_name)
+        return str(os.path.join(self.get_directory(), subdirectory, file_name))
 
     def get_received_filename(self, basename: Optional[str] = None) -> str:
         basename = basename or self.get_basename()
@@ -62,7 +62,7 @@ class StackFrameNamer(Namer):
         if "self" not in stacktrace[0].f_locals:
             return os.path.splitext(os.path.basename(stacktrace[1]))[0]
         else:
-            return stacktrace[0].f_locals["self"].__class__.__name__
+            return f"{stacktrace[0].f_locals['self'].__class__.__name__}"
 
     def get_test_frame(self, caller: List[FrameInfo]) -> int:
         tmp_array = []

@@ -21,7 +21,7 @@ class PyTestNamer(Namer):
             self.config["subdirectory"] = subdir
 
     def get_file_name(self) -> str:
-        return os.path.splitext(self.filename)[0] + "." + self.request.node.name
+        return f"{os.path.splitext(self.filename)[0]}.{self.request.node.name}"
 
     def get_directory(self) -> str:
         return self.filepath

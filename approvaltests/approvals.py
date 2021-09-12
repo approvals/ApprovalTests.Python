@@ -1,6 +1,6 @@
 import xml.dom.minidom
 from threading import local
-from typing import Callable, List, Optional, Any
+from typing import Callable, List, Optional, Any, cast
 
 from approvaltests import to_json
 from approvaltests.approval_exception import ApprovalException
@@ -20,7 +20,7 @@ __tracebackhide__ = True
 DEFAULT_REPORTER = local()
 
 
-def set_default_reporter(reporter: MultiReporter) -> None:
+def set_default_reporter(reporter: Reporter) -> None:
     global DEFAULT_REPORTER
     DEFAULT_REPORTER.v = reporter
 
@@ -28,7 +28,7 @@ def set_default_reporter(reporter: MultiReporter) -> None:
 def get_default_reporter() -> Reporter:
     if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
         return DiffReporter()
-    return DEFAULT_REPORTER.v
+    return cast(Reporter, DEFAULT_REPORTER.v)
 
 
 def get_reporter(reporter: Optional[Reporter]) -> Reporter:
