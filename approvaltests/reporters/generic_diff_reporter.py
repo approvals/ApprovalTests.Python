@@ -89,3 +89,4 @@ class GenericDiffReporter(Reporter):
             possible = path.replace(PROGRAM_FILES, candidate)
             if Command.executable(possible):
                 return possible
+        return path
