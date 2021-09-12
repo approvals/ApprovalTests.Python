@@ -1,11 +1,12 @@
 import re
 from pathlib import Path
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages #type: ignore
 
 HERE = Path(__file__).parent
 _version_file_contents = (HERE / "approvaltests" / "version.py").read_text()
-VERSION = re.search(r'"(.*)"', _version_file_contents).group(1)
+matched = re.search(r'"(.*)"', _version_file_contents)
+VERSION = matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
 setup(
     name="approvaltests",
