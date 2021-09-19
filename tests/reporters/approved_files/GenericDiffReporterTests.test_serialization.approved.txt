@@ -24,10 +24,6 @@
     "/Applications/Araxis Merge.app/Contents/Utilities/compare"
   ],
   [
-    "WinMerge",
-    "C:/Program Files (x86)/WinMerge/WinMergeU.exe"
-  ],
-  [
     "kdiff3",
     "/usr/bin/kdiff3"
   ],
