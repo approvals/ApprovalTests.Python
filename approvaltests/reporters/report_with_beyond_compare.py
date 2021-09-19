@@ -32,13 +32,20 @@ class ReportWithBeyondCompareWindows(GenericDiffReporter):
             )
         )
 
-
+class ReportWithWinMerge(GenericDiffReporter):
+    def __init__(self):
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="{ProgramFiles}/WinMerge/WinMergeU.exe",
+            )
+        )
 class ReportWithPycharm(GenericDiffReporter):
     def __init__(self):
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
-                path="{ProgramFiles}/JetBrains/PyCharm 2021.1.1/bin/pycharm64.exe",
+                path="{ProgramFiles}/JetBrains/PyCharm 2021.2.2/bin/pycharm64.exe",
                 extra_args=["diff"],
             )
         )

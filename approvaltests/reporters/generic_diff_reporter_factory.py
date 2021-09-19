@@ -7,7 +7,7 @@ from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporterConfig,
     create_config,
 )
-from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare
+from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare, ReportWithWinMerge
 from approvaltests.utils import get_adjacent_file
 
 
@@ -36,9 +36,10 @@ class GenericDiffReporterFactory(object):
 
     @staticmethod
     def get_reporter_programmmatically(reporter_name: str) -> Optional[Reporter]:
-        if "BeyondCompare" == reporter_name:
-            return ReportWithBeyondCompare()
-        return None
+        reporters = {"BeyondCompare": ReportWithBeyondCompare,
+                     "WinMerge": ReportWithWinMerge}
+        clazz = reporters.get(reporter_name)
+        return clazz and clazz()
 
     def get_from_json_config(self, reporter_name: str) -> Reporter:
         config = next((r for r in self.reporters if r.name == reporter_name), None)
