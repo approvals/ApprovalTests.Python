@@ -1,6 +1,7 @@
 import inspect
 import json
 import os
+from copy import deepcopy
 from typing import Dict, List, Union
 
 
@@ -30,6 +31,22 @@ def to_json(object) -> str:
         default=lambda o: o.__dict__,
         ensure_ascii=True,
     )
+
+def deserialize_json_fields(a_dict: dict) -> dict:
+    a_dict = deepcopy(a_dict)
+    for key, val in a_dict.items():
+        if isinstance(val, str) and val.startswith('{'):
+            try:
+                deserialized_val = json.loads(val)
+            except:
+                # leave field unchanged on exception
+                pass
+            else:
+                a_dict[key] = deserialized_val
+        elif isinstance(val, dict):
+            a_dict[key] = deserialize_json_fields(val)
+    return a_dict
+
 
 
 def is_windows_os() -> bool:

@@ -2,7 +2,7 @@ import xml.dom.minidom
 from threading import local
 from typing import Callable, List, Optional, Any, cast
 
-from approvaltests import to_json
+from approvaltests import to_json, utils
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.core import Reporter, Writer
 from approvaltests.core.namer import StackFrameNamer, Namer
@@ -172,8 +172,11 @@ def verify_as_json(
     object,
     reporter=None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    deserialize_json_fields = False,
     options: Optional[Options] = None
 ):
+    if deserialize_json_fields:
+        object = utils.deserialize_json_fields(object)
     options = initialize_options(options, reporter)
     n_ = to_json(object) + "\n"
     verify(n_, None, encoding="utf-8", newline="\n", options=options)

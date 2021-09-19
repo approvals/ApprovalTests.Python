@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import json
 import unittest
 
 from approvaltests import Options
@@ -120,6 +120,14 @@ class VerifyTests(unittest.TestCase):
         o = Bag()
         o.json = {"a": 0, "z": 26}
         verify_as_json(o, self.reporter)
+
+    def test_json_in_json(self):
+        dict = {'a': 1, 'b': 2, 'c': 3}
+        verify_as_json({'type': 'dictionary', 'value': json.dumps(dict)}, deserialize_json_fields=True)
+
+    def test_json_in_dict_in_json(self):
+        dict = {'a': 1, 'b': 2, 'c': 3}
+        verify_as_json({'type': 'dictionary', 'value': {'key': json.dumps(dict)}}, deserialize_json_fields=True)
 
     def test_verify_file(self) -> None:
         name = "exampleFile.txt"
