@@ -82,11 +82,11 @@ class GenericDiffReporter(Reporter):
             return path
 
         for candidate in [
-            r"C:\Program Files",
-            r"C:\Program Files (x86)",
-            r"C:\ProgramW6432",
+            r"C:/Program Files",
+            r"C:/Program Files (x86)",
+            r"C:/ProgramW6432",
         ]:
             possible = path.replace(PROGRAM_FILES, candidate)
             if Command.executable(possible):
                 return possible
-        return path
+        return  path.replace(PROGRAM_FILES, "C:/Program Files")

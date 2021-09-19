@@ -1,4 +1,4 @@
 {
     "name": "ReportWithWinMerge",
-    "path": "C:\\Program Files/WinMerge/WinMergeU.exe"
+    "path": "C:/Program Files/WinMerge/WinMergeU.exe"
 }
