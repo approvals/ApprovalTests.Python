@@ -1,4 +1,5 @@
 import xml.dom.minidom
+from pathlib import Path
 from threading import local
 from typing import Callable, List, Optional, Any, cast
 
@@ -225,8 +226,9 @@ def verify_file(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
+    options = options.for_file.with_extension(Path(file_name).suffix)
     verify_with_namer_and_writer(
-        get_default_namer(), ExistingFileWriter(file_name), None, options=options
+        options.namer, ExistingFileWriter(file_name), None, options=options
     )
 
 

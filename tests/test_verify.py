@@ -2,7 +2,7 @@
 import json
 import unittest
 
-from approvaltests import Options
+from approvaltests import Options, create_empty_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
 from approvaltests.reporters.report_all_to_clipboard import (
@@ -219,3 +219,7 @@ class VerifyTests(unittest.TestCase):
         story.add_frame(game_of_life)
 
         verify(story)
+
+    def test_exist_file_extension(self):
+        create_empty_file("temp.xml")
+        verify_file("temp.xml")
