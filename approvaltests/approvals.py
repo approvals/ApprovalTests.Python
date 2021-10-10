@@ -226,7 +226,7 @@ def verify_file(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
-    options = options.for_file.with_extension(Path(file_name).suffix)
+    options = options.for_file.with_extension(Path(file_name).suffix, no_override = True)
     verify_with_namer_and_writer(
         options.namer, ExistingFileWriter(file_name), None, options=options
     )

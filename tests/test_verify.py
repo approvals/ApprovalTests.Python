@@ -221,5 +221,7 @@ class VerifyTests(unittest.TestCase):
         verify(story)
 
     def test_exist_file_extension(self):
-        create_empty_file("temp.xml")
-        verify_file("temp.xml")
+        verify_file("sample.xml")
+
+    def test_exist_file_with_modified_extension(self):    
+        verify_file("sample.xml",options=Options().for_file.with_extension(".json"))
