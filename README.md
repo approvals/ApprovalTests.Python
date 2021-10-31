@@ -46,6 +46,8 @@ From [pypi](https://pypi.org/project/approvaltests/):
 
 ## Getting Started
 
+Try the [Starter Project](https://github.com/approvals/ApprovalTests.Python.StarterProject), just clone and go.
+
 ### Overview
 
 Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
