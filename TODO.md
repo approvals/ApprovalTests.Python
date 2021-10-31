@@ -1,24 +1,25 @@
-1. start with - scrubber & options
-1. approvals.verify should take any and str(it)
-1. cached property for Namer.get_config 
-1. setup github action to lint
-1.  linter - add flake8 to pycharm and tox
-1. check all uses of default reporter in tests
-1. change setup.py to pull in requirements.txt - and check requirements
-1. Fail test if there are duplicate names - pylint ?
-1.  add checks to twine in github actions
-1. markdown snippets
-1. starter projects
-1. powershell scripts
-1. new feature: options support
-1. make code more pythonic (method overloads vs default parameters)
-1.  Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
-1.   the new file creation handles writing with correct encoding
-1.  combination approvals needs line ending option
-1.  error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
-1.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
-1. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
-1. Future things
+1. Get starter project to pass CI
+2. start with - scrubber & options
+3. approvals.verify should take any and str(it)
+4. cached property for Namer.get_config 
+5. setup github action to lint
+6.  linter - add flake8 to pycharm and tox
+7. check all uses of default reporter in tests
+8. change setup.py to pull in requirements.txt - and check requirements
+9. Fail test if there are duplicate names - pylint ?
+10.  add checks to twine in github actions
+11. markdown snippets
+12. starter projects
+13. powershell scripts
+14. new feature: options support
+15. make code more pythonic (method overloads vs default parameters)
+16.  Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
+17.   the new file creation handles writing with correct encoding
+18.  combination approvals needs line ending option
+19.  error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
+20.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
+21. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
+22. Future things
    1. Pairwise
    1. storyboards
    1. templated namer
