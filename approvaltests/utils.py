@@ -2,7 +2,7 @@ import inspect
 import json
 import os
 from copy import deepcopy
-from typing import Dict, List, Union
+import empty_files
 
 
 def get_adjacent_file(name: str) -> str:
@@ -54,7 +54,8 @@ def is_windows_os() -> bool:
 
 
 def create_empty_file(file_path: str) -> None:
-    open(file_path, "w").close()
+    from empty_files.empty_files import create_empty_file
+    create_empty_file(file_path)
 
 
 def ensure_file_exists(approved_path: str) -> None:
