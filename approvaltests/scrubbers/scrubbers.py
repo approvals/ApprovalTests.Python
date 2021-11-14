@@ -32,7 +32,16 @@ def scrub_all_guids(data: str) -> str:
     )(data)
 
 
-def templates_regex_scrubber_with_lambda():
-        return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", lambda t: f"<your replacement_{t}>");
-def templates_regex_scrubber_with_replacement():
-        return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", "<your replacement>");
+
+def templates_regex_scrubber_with_lambda() -> Scrubber:
+    '''
+     This method exists as a convient way to get an example scrubber for you to use.
+     To use this template, simply inline the method in your IDE.
+    '''
+    return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", lambda t: f"<your replacement_{t}>");
+def templates_regex_scrubber_with_replacement() -> Scrubber:
+    '''
+     This method exists as a convient way to get an example scrubber for you to use.
+     To use this template, simply inline the method in your IDE.
+    '''
+    return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", "<your replacement>");
