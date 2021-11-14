@@ -1,35 +1,33 @@
-1. Get starter project to pass CI
 2. start with - scrubber & options
-3. approvals.verify should take any and str(it)
 4. cached property for Namer.get_config 
 5. setup github action to lint
-6.  linter - add flake8 to pycharm and tox
+6. linter - add flake8 to pycharm and tox
 7. check all uses of default reporter in tests
 8. change setup.py to pull in requirements.txt - and check requirements
 9. Fail test if there are duplicate names - pylint ?
-10.  add checks to twine in github actions
+10. add checks to twine in github actions
 11. markdown snippets
 12. starter projects
 13. powershell scripts
 14. new feature: options support
 15. make code more pythonic (method overloads vs default parameters)
-16.  Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
-17.   the new file creation handles writing with correct encoding
-18.  combination approvals needs line ending option
-19.  error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
-20.  add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
+16. Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
+17. the new file creation handles writing with correct encoding
+18. combination approvals needs line ending option
+19. error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
+20. add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 21. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
 22. Future things
-   1. Pairwise
-   1. storyboards
-   1. templated namer
+23. Pairwise
+24. storyboards
+25. templated namer
     1. docs on implementing Approvaltests in CI
-        1. file commiter reporter
-    1. squence to animated gif writer
-    
-1. Property Tests
-  1. eval(any.__repr__) == any
-  1. create(any_reporter) == create(any_reporter)
+    2. file commiter reporter
+    3. squence to animated gif writer
+26. Get starter project to pass CI with version
+27. Property Tests
+28. eval(any.__repr__) == any
+29. create(any_reporter) == create(any_reporter)
 ```python
 
   def test_mypy(self) -> None:

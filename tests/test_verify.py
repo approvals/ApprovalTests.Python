@@ -225,3 +225,5 @@ class VerifyTests(unittest.TestCase):
 
     def test_exist_file_with_modified_extension(self):    
         verify_file(get_adjacent_file("sample.xml"),options=Options().for_file.with_extension(".json"))
+    def test_verify_converts_to_string(self):
+        verify(1)

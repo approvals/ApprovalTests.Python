@@ -13,7 +13,7 @@ setup(
     version=VERSION,
     description="Assertion/verification library to aid testing",
     author="ApprovalTests Contributors",
-    author_email="jamesrcounts@outlook.com",
+    author_email="llewellyn.falco@gmail.com",
     url="https://github.com/approvals/ApprovalTests.Python",
     python_requires=">=3.6.1",
     packages=find_packages(exclude=["tests*"]),
