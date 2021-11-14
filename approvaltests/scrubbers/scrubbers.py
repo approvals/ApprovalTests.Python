@@ -30,3 +30,9 @@ def scrub_all_guids(data: str) -> str:
         r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", lambda t: f"<guid_{t}>"
 
     )(data)
+
+
+def templates_regex_scrubber_with_lambda():
+        return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", lambda t: f"<your replacement_{t}>");
+def templates_regex_scrubber_with_replacement():
+        return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", "<your replacement>");
