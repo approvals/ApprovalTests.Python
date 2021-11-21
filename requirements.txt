@@ -1,3 +1,4 @@
 pyperclip
 pytest
 empty-files
+bs4

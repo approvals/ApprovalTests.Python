@@ -95,7 +95,7 @@ def verify(
 
 
 def initialize_options(
-    options: Optional[Options], reporter: Optional[Reporter]
+    options: Optional[Options], reporter: Optional[Reporter] = None
 ) -> Options:
     if options is None:
         options = Options()
@@ -198,6 +198,20 @@ def verify_xml(
         pretty_xml = xml_string
 
     verify(pretty_xml, options=options.for_file.with_extension(".xml"))
+
+def verify_html(
+    html_string: str,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+) -> None:
+    options = initialize_options(options)
+    try:
+        from bs4 import BeautifulSoup
+        pretty_html = BeautifulSoup(html_string, 'html.parser').prettify()
+    except Exception:
+        pretty_html = html_string
+
+    verify(pretty_html, options=options.for_file.with_extension(".html"))
 
 
 def verify_file(

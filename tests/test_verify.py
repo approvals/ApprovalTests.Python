@@ -4,7 +4,7 @@ import unittest
 
 from approvaltests import Options, create_empty_file
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml
+from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
@@ -147,6 +147,10 @@ class VerifyTests(unittest.TestCase):
     def test_verify_xml(self) -> None:
         xml = """<?xml version="1.0" encoding="UTF-8"?><orderHistory createdAt='2019-08-02T16:40:18.109470'><order date='2018-09-01T00:00:00+00:00' totalDollars='149.99'><product id='EVENT02'>Makeover</product></order><order date='2017-09-01T00:00:00+00:00' totalDollars='14.99'><product id='LIPSTICK01'>Cherry Bloom</product></order></orderHistory>"""
         verify_xml(xml)
+
+    def test_verify_html(self) -> None:
+        html = """<!DOCTYPEhtml><html><head> <title>Example</title> </head> <body> <p>This is an example of a simple HTML page with one paragraph.</p></body></html>"""
+        verify_html(html)
 
     def test_newlines_at_end_of_files(self) -> None:
         verify(

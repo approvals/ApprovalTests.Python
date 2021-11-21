@@ -18,7 +18,7 @@ setup(
     python_requires=">=3.6.1",
     packages=find_packages(exclude=["tests*"]),
     package_data={"approvaltests": ["reporters/reporters.json"]},
-    install_requires=["pyperclip==1.5.27", "pytest"],
+    install_requires=["pyperclip==1.5.27", "pytest","bs4"],
     long_description=(HERE / "README.md").read_text(),
     long_description_content_type="text/markdown",
     classifiers=[
