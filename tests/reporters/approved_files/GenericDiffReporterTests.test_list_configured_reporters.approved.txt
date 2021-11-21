@@ -8,5 +8,6 @@
     "kdiff3",
     "meld",
     "DiffMerge",
-    "PyCharm"
+    "PyCharm",
+    "diff"
 ]
