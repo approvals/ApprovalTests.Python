@@ -27,7 +27,7 @@ jobs:
       - name: set version
         run: |
           rm ./approvaltests/version.py
-          echo version=\"${{ steps.version.outputs.tag }}\" > ./approvaltests/version.py
+          echo version_number=\"${{ steps.version.outputs.tag }}\" > ./approvaltests/version.py
 
       - uses: EndBug/add-and-commit@v4
         with:
