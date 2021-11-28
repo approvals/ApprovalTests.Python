@@ -15,7 +15,7 @@ snippet: verify_binary_image
 
 Which will produce
 
-snippet: VerifyTests.test_verify_file_binary_file.approved.png
+![](../../tests/approved_files/VerifyTests.test_verify_file_binary_file.approved.png)
 
 ### Approving NumPy arrays
 This more detailed example demonstrates how you could use `verify_binary` to approve NumPy arrays. It also shows the 
