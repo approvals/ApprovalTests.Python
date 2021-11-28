@@ -13,7 +13,7 @@ def serialize_ndarray(a: np.ndarray):
 
 # begin-snippet: verify_numpy_array
 def test_simulator_produces_correct_output():
-    np_array = np.full(shape = (32,16),fill_value=42)
+    np_array = np.full(shape = (32,16),fill_value=42,dtype=np.int64)
     verify_binary(serialize_ndarray(np_array), ".npy", options=Options().with_reporter(NDArrayDiffReporter()))
 # end-snippet
 
