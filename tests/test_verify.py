@@ -150,10 +150,12 @@ class VerifyTests(unittest.TestCase):
         verify_file(filename)
 
     def test_verify_bytes(self) -> None:
+        # begin-snippet: verify_binary_image
         name = "icon.png"
         filename = get_adjacent_file(name)
         with open(filename, mode='rb') as f:
             verify_binary(f.read(),".png")
+        # end-snippet
 
 
     def test_verify_xml(self) -> None:
