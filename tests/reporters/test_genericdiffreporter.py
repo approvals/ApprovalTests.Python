@@ -4,8 +4,9 @@ import shutil
 import unittest
 from typing import cast
 
-from approvaltests import MultiReporter
+
 from approvaltests.approvals import verify, get_default_namer
+from approvaltests.reporters import MultiReporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
     create_config,

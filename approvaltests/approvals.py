@@ -1,10 +1,11 @@
 import xml.dom.minidom
 from pathlib import Path
 from threading import local
-from typing import Callable, List, Optional, Any, cast
+from typing import Callable, List, Optional, Any, cast, ByteString
 
 from approvaltests import to_json, utils
 from approvaltests.approval_exception import ApprovalException
+from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
 from approvaltests.core.namer import StackFrameNamer, Namer
 from approvaltests.core.options import Options
@@ -13,7 +14,6 @@ from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
-from approvaltests.reporters.multi_reporter import MultiReporter
 from approvaltests.string_writer import StringWriter
 
 __unittest = True
@@ -91,6 +91,21 @@ def verify(
         errors=errors,
         newline=newline,
         options=options,
+    )
+
+
+def verify_binary(
+    data: ByteString,
+    file_extension_with_dot: str,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+) -> None:
+    options = initialize_options(options, None).for_file.with_extension(file_extension_with_dot)
+    verify_with_namer_and_writer(
+        options.namer,
+        BinaryWriter(data, file_extension_with_dot),
+        None,
+        options=options
     )
 
 

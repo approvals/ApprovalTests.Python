@@ -61,3 +61,9 @@ def create_empty_file(file_path: str) -> None:
 def ensure_file_exists(approved_path: str) -> None:
     if not os.path.isfile(approved_path):
         create_empty_file(approved_path)
+
+
+def create_directory_if_needed(received_file: str) -> None:
+    directory = os.path.dirname(received_file)
+    if directory and not os.path.exists(directory):
+        os.makedirs(directory)
