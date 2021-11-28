@@ -29,13 +29,15 @@ jobs:
           rm ./approvaltests/version.py
           echo version=\"${{ steps.version.outputs.tag }}\" > ./approvaltests/version.py
 
-      - uses: EndBug/add-and-commit@v4
-        with:
-          author_name: Release to Pip GitHub Action
-          author_email: actions@github.com
-          message: 'a update version to ${{ steps.version.outputs.tag }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push changes
+        run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -m "${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
+            remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+            branch="${GITHUB_REF:11}"
+            git push "${remote}" ${branch} || echo "nothing to push"
+        shell: bash
 
       - name: Build and publish
         env:
