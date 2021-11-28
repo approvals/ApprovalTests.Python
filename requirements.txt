@@ -2,3 +2,4 @@ pyperclip
 pytest
 empty-files
 bs4
+numpy

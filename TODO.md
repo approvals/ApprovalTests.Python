@@ -1,4 +1,5 @@
 1. start with - scrubber & options
+2. Make get command for copy and paste work with any OS (powershell) 
 3. markdown snippets
 4. cached property for Namer.get_config 
 5. setup github action to lint
