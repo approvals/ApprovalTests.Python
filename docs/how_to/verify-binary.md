@@ -40,7 +40,7 @@ It uses serializers instead of dumping the binary blob directly to disk. In this
 <a id='snippet-verify_numpy_array'></a>
 ```py
 def test_simulator_produces_correct_output():
-    np_array = np.full(shape = (32,16),fill_value=42)
+    np_array = np.full(shape = (32,16),fill_value=42,dtype=np.int64)
     verify_binary(serialize_ndarray(np_array), ".npy", options=Options().with_reporter(NDArrayDiffReporter()))
 ```
 <sup><a href='/tests/test_example_numpy.py#L14-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_numpy_array' title='Start of snippet'>anchor</a></sup>
