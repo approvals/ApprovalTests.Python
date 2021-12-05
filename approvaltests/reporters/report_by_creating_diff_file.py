@@ -13,6 +13,7 @@ class ReportByCreatingDiffFile(Reporter):
             file.write(diff)
         return True
 
-    def get_diff_file_name(self, received_path):
+    @staticmethod
+    def get_diff_file_name(received_path):
         suffix = Path(received_path).suffix
         return received_path.replace(f".received{suffix}", ".diff")
