@@ -1,11 +1,7 @@
 --- b.approved.txt
-
 +++ a.received.txt
-
 @@ -1 +1 @@
-
 -def
-
 +abc
 
 

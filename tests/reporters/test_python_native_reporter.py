@@ -15,7 +15,7 @@ def test_files_identical(tmpdir: LocalPath) -> None:
         f1.write(identical_contents)
     with open(file2, "w") as f2:
         f2.write(identical_contents)
-    verify(calculate_diff(file1, file2))
+    verify(calculate_diff_with_approve_instruction(file1, file2))
 
 
 def test_files_differ(tmpdir: LocalPath) -> None:
@@ -25,7 +25,7 @@ def test_files_differ(tmpdir: LocalPath) -> None:
         f1.write("abc\n")
     with open(file2, "w") as f2:
         f2.write("def\n")
-    diff = calculate_diff(file1, file2)
+    diff = calculate_diff_with_approve_instruction(file1, file2)
     diff = diff.replace(str(tmpdir), "tmpdir")  # use scrubber in future
     diff = diff.replace("\\", "/")
     clean_diff = ""
