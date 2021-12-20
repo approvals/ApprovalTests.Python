@@ -37,7 +37,7 @@ jobs:
             git checkout -b temp
             git fetch
             git checkout main
-            git main temp
+            git merge temp
             remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
             branch="main"
             git push "${remote}" ${branch} || echo "nothing to push"
