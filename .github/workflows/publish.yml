@@ -34,8 +34,12 @@ jobs:
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git commit -m "${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
+            git checkout -b temp
+            git fetch
+            git checkout main
+            git main temp
             remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
-            branch="${GITHUB_REF:11}"
+            branch="main"
             git push "${remote}" ${branch} || echo "nothing to push"
         shell: bash
 
