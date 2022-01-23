@@ -13,6 +13,7 @@ from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
+from approvaltests.reporters.reporter_that_automatically_approves import ReporterThatAutomaticallyApproves
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.storyboard import Storyboard
 from approvaltests.utils import get_adjacent_file
@@ -64,12 +65,6 @@ class GameOfLife:
     def set_dead_cell(self, dead):
         self.dead = dead
         return self.dead
-
-
-class ReporterThatAutomaticallyApproves(Reporter):
-    def report(self, received_path: str, approved_path: str) -> bool:
-        shutil.move(received_path, approved_path)
-        return True
 
 
 class VerifyTests(unittest.TestCase):
@@ -257,9 +252,6 @@ class VerifyTests(unittest.TestCase):
         verify(1)
 
     def test_verify_automatic_approval(self):
-        # delete the approved file
-        # run it once and see it fail
-        # run it again and see it pass
         os.remove(approvals.get_default_namer().get_approved_filename())
         with pytest.raises(ApprovalException):
             verify(2, options=Options().with_reporter(reporter=ReporterThatAutomaticallyApproves()))
