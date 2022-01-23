@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
+import os
+import shutil
 import unittest
 
-from approvaltests import Options, create_empty_file
+import pytest
+
+from approvaltests import Options, create_empty_file, Reporter, approvals
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary
 from approvaltests.reporters.report_all_to_clipboard import (
@@ -34,14 +38,14 @@ class GameOfLife:
 
         def my_next(x, y):
             count = (
-                old(x + 1, y)
-                + old(x + 1, y - 1)
-                + old(x + 1, y + 1)
-                + old(x - 1, y)
-                + old(x - 1, y - 1)
-                + old(x - 1, y + 1)
-                + old(x, y + 1)
-                + old(x, y - 1)
+                    old(x + 1, y)
+                    + old(x + 1, y - 1)
+                    + old(x + 1, y + 1)
+                    + old(x - 1, y)
+                    + old(x - 1, y - 1)
+                    + old(x - 1, y + 1)
+                    + old(x, y + 1)
+                    + old(x, y - 1)
             )
             return count == 3 or (count == 2 and old(x, y))
 
@@ -60,6 +64,12 @@ class GameOfLife:
     def set_dead_cell(self, dead):
         self.dead = dead
         return self.dead
+
+
+class ReporterThatAutomaticallyApproves(Reporter):
+    def report(self, received_path: str, approved_path: str) -> bool:
+        shutil.move(received_path, approved_path)
+        return True
 
 
 class VerifyTests(unittest.TestCase):
@@ -154,9 +164,8 @@ class VerifyTests(unittest.TestCase):
         name = "icon.png"
         filename = get_adjacent_file(name)
         with open(filename, mode='rb') as f:
-            verify_binary(f.read(),".png")
+            verify_binary(f.read(), ".png")
         # end-snippet
-
 
     def test_verify_xml(self) -> None:
         xml = """<?xml version="1.0" encoding="UTF-8"?><orderHistory createdAt='2019-08-02T16:40:18.109470'><order date='2018-09-01T00:00:00+00:00' totalDollars='149.99'><product id='EVENT02'>Makeover</product></order><order date='2017-09-01T00:00:00+00:00' totalDollars='14.99'><product id='LIPSTICK01'>Cherry Bloom</product></order></orderHistory>"""
@@ -176,8 +185,8 @@ class VerifyTests(unittest.TestCase):
         game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
         verify(
             Storyboard()
-            .add_frame(game_of_life)
-            .add_frames(2, lambda _: game_of_life.advance())
+                .add_frame(game_of_life)
+                .add_frames(2, lambda _: game_of_life.advance())
         )
 
     def test_simple_storyboard(self) -> None:
@@ -241,7 +250,17 @@ class VerifyTests(unittest.TestCase):
     def test_exist_file_extension(self):
         verify_file(get_adjacent_file("sample.xml"))
 
-    def test_exist_file_with_modified_extension(self):    
-        verify_file(get_adjacent_file("sample.xml"),options=Options().for_file.with_extension(".json"))
+    def test_exist_file_with_modified_extension(self):
+        verify_file(get_adjacent_file("sample.xml"), options=Options().for_file.with_extension(".json"))
+
     def test_verify_converts_to_string(self):
         verify(1)
+
+    def test_verify_automatic_approval(self):
+        # delete the approved file
+        # run it once and see it fail
+        # run it again and see it pass
+        os.remove(approvals.get_default_namer().get_approved_filename())
+        with pytest.raises(ApprovalException):
+            verify(2, options=Options().with_reporter(reporter=ReporterThatAutomaticallyApproves()))
+        verify(2)
