@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
-import os
-import shutil
 import unittest
 
 import pytest
 
-from approvaltests import Options, create_empty_file, Reporter, approvals
+from approvaltests import Options, delete_approved_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary
 from approvaltests.reporters.report_all_to_clipboard import (
@@ -252,7 +250,8 @@ class VerifyTests(unittest.TestCase):
         verify(1)
 
     def test_verify_automatic_approval(self):
-        os.remove(approvals.get_default_namer().get_approved_filename())
+        delete_approved_file()
         with pytest.raises(ApprovalException):
             verify(2, options=Options().with_reporter(reporter=ReporterThatAutomaticallyApproves()))
         verify(2)
+

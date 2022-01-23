@@ -1,3 +1,4 @@
+import os
 import xml.dom.minidom
 from pathlib import Path
 from threading import local
@@ -331,3 +332,7 @@ def verify_all(
 
 def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
     return ScenarioNamer(get_default_namer(), scenario_name)
+
+
+def delete_approved_file():
+    os.remove(get_default_namer().get_approved_filename())
