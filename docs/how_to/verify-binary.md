@@ -22,9 +22,9 @@ In this example, you can see how `verify_binary` is used to approve rendered ima
 name = "icon.png"
 filename = get_adjacent_file(name)
 with open(filename, mode='rb') as f:
-    verify_binary(f.read(),".png")
+    verify_binary(f.read(), ".png")
 ```
-<sup><a href='/tests/test_verify.py#L153-L158' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_binary_image' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L156-L161' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_binary_image' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Which will produce
