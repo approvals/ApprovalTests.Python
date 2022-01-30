@@ -46,6 +46,3 @@ def test_combine_scrubbers():
             combine_scrubbers(scrub_all_guids, scrub_all_dates, create_regex_scrubber("(blah )+", "[nonsense] "))
         )
     )
-#
-# def test_date_finder_scrubbers():
-#     pass
