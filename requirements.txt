@@ -1,5 +1,1 @@
-pyperclip
-pytest
-empty-files
-bs4
-numpy
+-r requirements.dev.txt
