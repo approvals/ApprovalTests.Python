@@ -1,4 +1,4 @@
 
 
-move /Y "a.text" "r.txt"
+move "a.text" "r.txt"
 mv -f a.text r.txt

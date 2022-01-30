@@ -10,7 +10,7 @@ def get_command_text(
     if is_windows is None:
         is_windows = is_windows_os()
     if is_windows:
-        return 'move /Y "{0}" "{1}"'.format(received_path, approved_path)
+        return 'move "{0}" "{1}"'.format(received_path, approved_path)
     else:
         return "mv -f {0} {1}".format(received_path, approved_path)
 
