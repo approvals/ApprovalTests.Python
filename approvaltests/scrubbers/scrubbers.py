@@ -45,3 +45,10 @@ def templates_regex_scrubber_with_replacement() -> Scrubber:
      To use this template, simply inline the method in your IDE.
     '''
     return  create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", "<your replacement>");
+
+def combine_scrubbers(*scrubbers):
+    def combined(data: str) -> str:
+        for scrubber in scrubbers:
+            data = scrubber(data)
+        return data
+    return combined
