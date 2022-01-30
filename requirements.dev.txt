@@ -1,3 +1,2 @@
 -r requirements.prod.txt
-pytest
 numpy

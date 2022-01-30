@@ -8,6 +8,9 @@ _version_file_contents = (HERE / "approvaltests" / "version.py").read_text()
 matched = re.search(r'"(.*)"', _version_file_contents)
 VERSION = matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
+with open('requirements.prod.txt') as f:
+    required = f.read().splitlines()
+
 setup(
     name="approvaltests",
     version=VERSION,
@@ -18,7 +21,7 @@ setup(
     python_requires=">=3.6.1",
     packages=find_packages(exclude=["tests*"]),
     package_data={"approvaltests": ["reporters/reporters.json"]},
-    install_requires=["pyperclip==1.5.27", "pytest", "bs4", "empty-files"],
+    install_requires=required,
     long_description=(HERE / "README.md").read_text(),
     long_description_content_type="text/markdown",
     classifiers=[
