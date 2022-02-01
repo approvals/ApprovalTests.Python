@@ -76,7 +76,7 @@ Here's the code for implementing it in `conftest.py` (so skip the code in `__ini
 <a id='snippet-conftest_pytest_session_scoped'></a>
 ```py
 @pytest.fixture(scope="session", autouse=True)
-def set_default_reporter():
+def set_default_reporter_for_all_tests():
     configure_approvaltests()
 ```
 <sup><a href='/tests/conftest.py#L5-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-conftest_pytest_session_scoped' title='Start of snippet'>anchor</a></sup>
