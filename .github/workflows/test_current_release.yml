@@ -1,0 +1,36 @@
+name: Test Current Release
+
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: '45 16 * * 0'  # <https://crontab.guru/#45_16_*_*_0> - "At 16:45 UTC on Sunday"  
+    - cron: '30 18 * * 0'
+    - cron: '30 19 * * 0'  
+
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.9]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: approvals/ApprovalTests.Python.StarterProject
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install tox
+          pip install pytest
+      - name: Test
+        run: |
+          tox -e py  # Run tox using the version of Python in `PATH`
