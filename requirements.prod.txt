@@ -1,4 +1,4 @@
 pyperclip
 empty-files
-bs4
+beautifulsoup4
 pytest
