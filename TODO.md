@@ -3,10 +3,8 @@
 4. setup github action to lint
 5. linter - add flake8 to pycharm and tox
 6. check all uses of default reporter in tests
-7. change setup.py to pull in requirements.txt - and check requirements
 8. Fail test if there are duplicate names - pylint ?
 9. add checks to twine in github actions
-10. new feature: options support
 11. make code more pythonic (method overloads vs default parameters)
 12. Agree on defaults: should be \n instead of os specific when writing, BOM on new file creation,
 13. the new file creation handles writing with correct encoding
@@ -14,7 +12,6 @@
 15. error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
 16. add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 17. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
-18. Future things
 19. Pairwise
 20. templated namer
     1. docs on implementing Approvaltests in CI
