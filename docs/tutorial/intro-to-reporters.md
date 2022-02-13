@@ -1,6 +1,11 @@
 # Introduction to Reporters
 
-toc
+<!-- toc -->
+## Contents
+
+  * [What is a reporter](#what-is-a-reporter)
+  * [Supported Diff Tools](#supported-diff-tools)
+  * [resources](#resources)<!-- endToc -->
 
 ## What is a reporter
 When approvaltests fails the mechanism to give you more information about that failing
@@ -11,7 +16,17 @@ The default reporter will search your machine for any installed diff tool.
 
 ## Supported Diff Tools  
 
-include: GenericDiffReporterTests.test_document_existing_reporters.approved.md
+* AraxisMergeMac <!-- include: GenericDiffReporterTests.test_document_existing_reporters.approved.md -->
+* AraxisMergeWin
+* BeyondCompare3
+* BeyondCompare4
+* BeyondCompare4Mac
+* BeyondCompare4x64
+* DiffMerge
+* PyCharm
+* diff
+* kdiff3
+* meld <!-- endInclude -->
 
 ## resources
 1. [configuring a reporter]()
