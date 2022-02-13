@@ -28,7 +28,11 @@ The default reporter will search your machine for any installed diff tool.
 * kdiff3
 * meld <!-- endInclude -->
 
+## Customizing the reporters.json
+
+You can add a difftool and path to ApprovalTests by editing the [`reporters.json`](../../approvaltests/reporters/reporters.json) file.
+
 ## resources
 1. [configuring a reporter](../configuration.md#how-to-configure-a-default-reporter-for-your-system)
 2. [creating a custom reporter](../how_to/create_a_custom_reporter.md)
-3. [Options](../reference/options.md)
+4. [Options](../reference/options.md)
