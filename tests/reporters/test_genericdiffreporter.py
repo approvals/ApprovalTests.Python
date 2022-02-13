@@ -4,7 +4,7 @@ import shutil
 import unittest
 from typing import cast
 
-
+from approvaltests import Options
 from approvaltests.approvals import verify, get_default_namer
 from approvaltests.reporters import MultiReporter
 from approvaltests.reporters.generic_diff_reporter import (
@@ -30,6 +30,16 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_list_configured_reporters(self) -> None:
         verify(to_json(self.factory.list()))
+
+    def test_document_existing_reporters(self) -> None:
+        reporters = self.factory.list()
+        reporters.sort()
+        markdown = ""
+        for reporter in reporters:
+            markdown += f"* { reporter}\n"
+
+        verify(markdown,options=Options().for_file.with_extension(".md"))
+
 
     def test_get_reporter(self) -> None:
         verify(str(self.factory.get("BeyondCompare4")))
