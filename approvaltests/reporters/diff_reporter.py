@@ -2,6 +2,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
 from .first_working_reporter import FirstWorkingReporter
+from .introduction_reporter import IntroductionReporter
 from .python_native_reporter import PythonNativeReporter
 
 
@@ -20,5 +21,5 @@ class DiffReporter(FirstWorkingReporter):
         factory = reporter_factory or GenericDiffReporterFactory()
 
         reporters = list(factory.get_all_reporters())
-        reporters.append(PythonNativeReporter())
+        reporters.append(IntroductionReporter())
         super(DiffReporter, self).__init__(*reporters)

@@ -3,7 +3,7 @@ from typing import List
 from approvaltests.reporters import (
     DiffReporter,
     PythonNativeReporter,
-    Reporter,
+    Reporter, IntroductionReporter,
 )
 from approvaltests.reporters.report_by_creating_diff_file import ReportByCreatingDiffFile
 
@@ -17,7 +17,7 @@ def test_fallback_reporter() -> None:
     empty_reporter_factory = FakeFactory()
     reporter = DiffReporter(empty_reporter_factory)
     # Testing implementation detail, not great but good enough for now
-    assert isinstance(reporter.reporters[-1], PythonNativeReporter)
+    assert isinstance(reporter.reporters[-1], IntroductionReporter)
 
 
 def test_get_diff_file_name() -> None:
