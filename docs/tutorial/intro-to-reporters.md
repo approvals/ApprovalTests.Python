@@ -14,6 +14,6 @@ The default reporter will search your machine for any installed diff tool.
 include: GenericDiffReporterTests.test_document_existing_reporters.approved.md
 
 ## resources
-1. [configuring a reporter]()
-2. creating a custom reporter
-3. Options
+1. [configuring a reporter](https://github.com/approvals/ApprovalTests.Python/blob/main/docs/configuration.md#how-to-configure-a-default-reporter-for-your-system)
+2. [creating a custom reporter]()
+3. [Options]()
