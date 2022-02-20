@@ -1,8 +1,10 @@
 import filecmp
 import os
 import pathlib
+from abc import ABC, abstractproperty
 from typing import Optional
 
+from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
@@ -15,6 +17,22 @@ def exists(path: str) -> bool:
 class ReporterNotWorkingException(Exception):
     def __init__(self, reporter: Reporter):
         super().__init__(f"Reporter {reporter} failed to work!")
+
+
+class FileComparator(Comparator):
+    def compare(self, received_path: str, approved_path: str) -> bool:
+        if not exists(approved_path) or not exists(received_path):
+            return False
+        if filecmp.cmp(approved_path, received_path):
+            return True
+        try:
+            approved_raw = pathlib.Path(approved_path).read_text()
+            approved_text = approved_raw.replace("\r\n", "\n")
+            received_raw = pathlib.Path(received_path).read_text()
+            received_text = received_raw.replace("\r\n", "\n")
+            return approved_text == received_text
+        except:
+            return False
 
 
 class FileApprover(object):
@@ -44,7 +62,8 @@ class FileApprover(object):
     def verify_files(
         self, approved_file: str, received_file: str, reporter: Reporter
     ) -> bool:
-        if self.are_files_the_same(approved_file, received_file):
+        comparator = FileComparator()
+        if comparator.compare(received_file, approved_file):
             os.remove(received_file)
             return True
 
@@ -52,18 +71,3 @@ class FileApprover(object):
         if not worked:
             raise ReporterNotWorkingException(reporter)
         return False
-
-    @staticmethod
-    def are_files_the_same(approved_file: str, received_file: str) -> bool:
-        if not exists(approved_file) or not exists(received_file):
-            return False
-        if filecmp.cmp(approved_file, received_file):
-            return True
-        try:
-            approved_raw = pathlib.Path(approved_file).read_text()
-            approved_text = approved_raw.replace("\r\n", "\n")
-            received_raw = pathlib.Path(received_file).read_text()
-            received_text = received_raw.replace("\r\n", "\n")
-            return approved_text == received_text
-        except:
-            return False
