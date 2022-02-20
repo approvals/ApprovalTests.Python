@@ -1,7 +1,7 @@
 ﻿import shutil
 import unittest
 
-from approvaltests import get_default_namer, verify
+from approvaltests import get_default_namer, verify, Options
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import (
@@ -18,12 +18,12 @@ class FileApproverTests(unittest.TestCase):
         writer = StringWriter("a")
         writer.write_received_file("a.txt")
         shutil.copy("a.txt", "a_same.txt")
-        approver.verify_files("a.txt", "a_same.txt", None)
+        approver.verify_files("a.txt", "a_same.txt", None,Options().comparator)
 
     def test_compare_different_files(self):
         approver = FileApprover()
         reporter = ReporterForTesting()
-        approver.verify_files("a.txt", "b.txt", reporter)
+        approver.verify_files("a.txt", "b.txt", reporter,Options().comparator)
         self.assertTrue(reporter.called)
 
     def test_full(self):
@@ -31,7 +31,7 @@ class FileApproverTests(unittest.TestCase):
         writer = StringWriter("b")
         reporter = ReporterForTesting()
         approver = FileApprover()
-        approver.verify(namer, writer, reporter)
+        approver.verify(namer, writer, reporter,Options().comparator)
         self.assertTrue(reporter.called)
 
     def test_returns_error_when_files_are_different(self):
@@ -39,7 +39,7 @@ class FileApproverTests(unittest.TestCase):
         writer = StringWriter("b")
         reporter = ReporterForTesting()
         approver = FileApprover()
-        error = approver.verify(namer, writer, reporter)
+        error = approver.verify(namer, writer, reporter,Options().comparator)
         import re
 
         replaced = re.sub("ved: .*approved_files.", "ved: <rootdir>/", error)
@@ -51,7 +51,7 @@ class FileApproverTests(unittest.TestCase):
         writer = StringWriter("b")
         reporter = GenericDiffReporterFactory().get_first_working()
         approver = FileApprover()
-        error = approver.verify(namer, writer, reporter)
+        error = approver.verify(namer, writer, reporter,Options().comparator)
         self.assertEqual(None, error)
 
 

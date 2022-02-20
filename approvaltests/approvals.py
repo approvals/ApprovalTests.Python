@@ -180,7 +180,7 @@ def verify_with_namer_and_writer(
 ) -> None:
     options = initialize_options(options, reporter)
     approver = FileApprover()
-    error = approver.verify(namer, writer, options.reporter)
+    error = approver.verify(namer, writer, options.reporter, options.comparator)
     if error:
         raise ApprovalException(error)
 

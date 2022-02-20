@@ -1,6 +1,8 @@
 from typing import Dict, Callable
 
 from approvaltests.core import Namer, Reporter
+from approvaltests.core.comparator import Comparator
+from approvaltests.file_approver import FileComparator
 
 
 class FileOptions:
@@ -28,6 +30,10 @@ class Options:
         from approvaltests import get_default_reporter
 
         return self.fields.get("reporter", get_default_reporter())
+
+    @property
+    def comparator(self) -> Comparator:
+        return self.fields.get("compartor", FileComparator())
 
     def scrub(self, data):
         if "scrubber_func" in self.fields:
