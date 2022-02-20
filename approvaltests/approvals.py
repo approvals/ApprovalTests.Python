@@ -167,13 +167,13 @@ def verify_with_namer(
     writer = StringWriter(
         options.scrub(str(data)), encoding=encoding, errors=errors, newline=newline
     )
-    verify_with_namer_and_writer(namer, writer, options.reporter)
+    verify_with_namer_and_writer(namer, writer, options=options)
 
 
 def verify_with_namer_and_writer(
     namer: Namer,
     writer: Writer,
-    reporter: Optional[Reporter],
+    reporter: Optional[Reporter]= None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:

@@ -33,7 +33,10 @@ class Options:
 
     @property
     def comparator(self) -> Comparator:
-        return self.fields.get("compartor", FileComparator())
+        return self.fields.get("comparator", FileComparator())
+
+    def with_comparator(self, comparator: Comparator) -> "Options":
+        return Options({**self.fields, **{"comparator": comparator}})
 
     def scrub(self, data):
         if "scrubber_func" in self.fields:
@@ -57,3 +60,5 @@ class Options:
         namer = get_default_namer()
         namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
         return namer
+
+

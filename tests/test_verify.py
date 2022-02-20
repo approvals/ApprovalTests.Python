@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import random
 import unittest
 
 import pytest
@@ -7,6 +8,7 @@ import pytest
 from approvaltests import Options, delete_approved_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary
+from approvaltests.core.comparator import Comparator
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
@@ -63,6 +65,9 @@ class GameOfLife:
     def set_dead_cell(self, dead):
         self.dead = dead
         return self.dead
+
+
+
 
 
 class VerifyTests(unittest.TestCase):
@@ -255,3 +260,9 @@ class VerifyTests(unittest.TestCase):
             verify(2, options=Options().with_reporter(reporter=ReporterThatAutomaticallyApproves()))
         verify(2)
 
+    def test_verify_custom_comparator_allows_all_inputs(self):
+        class EverythingIsTrue(Comparator):
+            def compare(self, received_path: str, approved_path: str) -> bool:
+                return True
+
+        verify(random.random(), options=Options().with_comparator(EverythingIsTrue()))
