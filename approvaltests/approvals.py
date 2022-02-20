@@ -1,4 +1,3 @@
-import os
 import xml.dom.minidom
 from pathlib import Path
 from threading import local
@@ -335,4 +334,6 @@ def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
 
 
 def delete_approved_file():
-    os.remove(get_default_namer().get_approved_filename())
+    filename = Path(get_default_namer().get_approved_filename())
+    if filename.exists():
+        filename.unlink()
