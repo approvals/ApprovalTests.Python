@@ -5,6 +5,7 @@
 
   * [What is a reporter](#what-is-a-reporter)
   * [Supported Diff Tools](#supported-diff-tools)
+  * [Customizing the reporters.json](#customizing-the-reportersjson)
   * [resources](#resources)<!-- endToc -->
 
 ## What is a reporter
