@@ -39,15 +39,19 @@ class Options:
         return Options({**self.fields, **{"comparator": comparator}})
 
     def scrub(self, data):
-        if "scrubber_func" in self.fields:
+        if self.has_scrubber():
             return self.fields["scrubber_func"](data)
         return data
 
-    def with_reporter(self, reporter: "Reporter") -> "Options":
-        return Options({**self.fields, **{"reporter": reporter}})
-
     def with_scrubber(self, scrubber_func: Callable[[str], str]) -> "Options":
         return Options({**self.fields, **{"scrubber_func": scrubber_func}})
+
+    def has_scrubber(self):
+        return "scrubber_func" in self.fields
+
+
+    def with_reporter(self, reporter: "Reporter") -> "Options":
+        return Options({**self.fields, **{"reporter": reporter}})
 
     @property
     def for_file(self) -> FileOptions:

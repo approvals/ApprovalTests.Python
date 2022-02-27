@@ -26,8 +26,8 @@ class FileApproverTests(unittest.TestCase):
         approver.verify_files("a.txt", "b.txt", reporter,Options().comparator)
         self.assertTrue(reporter.called)
 
-    # def test_scrubbed_files(self):
-       # verify_file("a.txt",options=Options().with_scrubber(lambda t : "<scrubbed>"  ))
+    def test_scrubbed_files(self):
+        verify_file("a.txt",options=Options().with_scrubber(lambda t : "<scrubbed>"  ))
 
 
     def test_full(self):
