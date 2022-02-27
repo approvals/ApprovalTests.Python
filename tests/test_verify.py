@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 import pytest
+from pyparsing.testing import pyparsing_test
 
 from approvaltests import Options, delete_approved_file, get_default_namer
 from approvaltests.approval_exception import ApprovalException
@@ -18,7 +19,7 @@ from approvaltests.reporters.reporter_that_automatically_approves import Reporte
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.storyboard import Storyboard
-from approvaltests.utils import get_adjacent_file
+from approvaltests.utils import get_adjacent_file, is_windows_os
 
 
 def print_grid(width, height, cell_print_func):
@@ -144,6 +145,7 @@ class VerifyTests(unittest.TestCase):
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
+    @pytest.mark.skipif(not is_windows_os(), reason="Doesn't work on unix")
     def test_verify_file_with_windows_1252_encoding(self):
         name = "exampleFileWindows1252.txt"
         filename = get_adjacent_file(name)
