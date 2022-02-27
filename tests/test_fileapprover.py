@@ -1,7 +1,7 @@
 ﻿import shutil
 import unittest
 
-from approvaltests import get_default_namer, verify, Options
+from approvaltests import get_default_namer, verify, Options, verify_file
 from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import (
@@ -25,6 +25,10 @@ class FileApproverTests(unittest.TestCase):
         reporter = ReporterForTesting()
         approver.verify_files("a.txt", "b.txt", reporter,Options().comparator)
         self.assertTrue(reporter.called)
+
+    # def test_scrubbed_files(self):
+       # verify_file("a.txt",options=Options().with_scrubber(lambda t : "<scrubbed>"  ))
+
 
     def test_full(self):
         namer = get_default_namer()

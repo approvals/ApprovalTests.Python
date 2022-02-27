@@ -257,7 +257,7 @@ def verify_file(
     options = initialize_options(options, reporter)
     options = options.for_file.with_extension(Path(file_name).suffix, no_override = True)
     verify_with_namer_and_writer(
-        options.namer, ExistingFileWriter(file_name), None, options=options
+        options.namer, ExistingFileWriter(file_name, options), None, options=options
     )
 
 
