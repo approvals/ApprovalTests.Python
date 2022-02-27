@@ -1,4 +1,5 @@
 import shutil
+from pathlib import Path
 
 from approvaltests.core import Options
 from approvaltests.core import Writer
@@ -13,9 +14,7 @@ class ExistingFileWriter(Writer):
         if not self.options.has_scrubber():
             shutil.copyfile(self.file_name, received_file)
         else:
-            with open(self.file_name, mode="r") as file:
-                text = file.read()
-            text = self.options.scrub(text)
-            with open(received_file, mode="w") as file:
-                file.write(text)
+            text = Path(self.file_name).read_text()
+            scrubbed_text = self.options.scrub(text)
+            Path(received_file).write_text(scrubbed_text)
         return received_file
