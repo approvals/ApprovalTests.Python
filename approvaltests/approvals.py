@@ -232,9 +232,6 @@ def verify_html(
 def verify_file(
     file_name: str,
     reporter: Reporter = None,
-    encoding: None = None,
-    errors: None = None,
-    newline: None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:
@@ -272,7 +269,7 @@ def verify_file_with_encoding(
 ):
     """Deprecated. See verify_file. This function is functionally identical."""
     options = initialize_options(options, reporter)
-    verify_file(file_name, None, encoding, errors, newline, options=options)
+    verify_file(file_name, None, options=options)
 
 
 def verify_all(
