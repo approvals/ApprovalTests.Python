@@ -257,21 +257,6 @@ def verify_file(
         options.namer, ExistingFileWriter(file_name, options), None, options=options
     )
 
-
-def verify_file_with_encoding(
-    file_name,
-    reporter=None,
-    encoding=None,
-    errors=None,
-    newline=None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
-):
-    """Deprecated. See verify_file. This function is functionally identical."""
-    options = initialize_options(options, reporter)
-    verify_file(file_name, None, options=options)
-
-
 def verify_all(
     header: str,
     alist: List[str],
