@@ -2,10 +2,11 @@
 import json
 import random
 import unittest
+from pathlib import Path
 
 import pytest
 
-from approvaltests import Options, delete_approved_file
+from approvaltests import Options, delete_approved_file, get_default_namer
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary
 from approvaltests.core.comparator import Comparator
@@ -15,6 +16,7 @@ from approvaltests.reporters.report_all_to_clipboard import (
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.reporters.reporter_that_automatically_approves import ReporterThatAutomaticallyApproves
 from approvaltests.reporters.testing_reporter import ReporterForTesting
+from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.storyboard import Storyboard
 from approvaltests.utils import get_adjacent_file
 
@@ -142,7 +144,7 @@ class VerifyTests(unittest.TestCase):
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
-    def hidden_test_verify_file_with_windows_1252_encoding(self):
+    def test_verify_file_with_windows_1252_encoding(self):
         name = "exampleFileWindows1252.txt"
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
