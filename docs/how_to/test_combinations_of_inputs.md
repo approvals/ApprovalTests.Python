@@ -14,6 +14,7 @@
 If you have a function `isAwake(day, time)` and you want to test it for multiple days & times.
 Combination Testing can be used to generate all combinations of provided inputs.
 
+If is a weekend then starting at 11 it is Maybe, if it is a weekday then starting at 7 it is a maybe and at 9 it is yes.
 
 | Input1<BR> (Day) | Input2 <BR> (Time) | Output <BR> (isAwake) |
 |---|----|---|

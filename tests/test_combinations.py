@@ -16,7 +16,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         self.func = lambda *args: sum(args) + 1
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_one_arg(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
@@ -33,7 +33,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         )
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_two_args(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
@@ -43,7 +43,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             )
 
     def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
@@ -52,7 +52,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         )
 
     def test_fails_for_mismatch_with_for_func_accepting_two_args_and_combination_of_one_arg(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
@@ -63,7 +63,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             )
 
     def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
@@ -71,7 +71,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
     def test_fails_for_mismatch_with_for_func_accepting_two_args_and_combination_of_two_args(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1, 3)
         arg2_combinations = (2, 4)
@@ -95,7 +95,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
     def test_records_exception_message_when_function_under_test_throws_an_exception(
-        self,
+            self,
     ) -> None:
         class BackwardCompatibleException(Exception):
             """Exception with repr that's the same for pre 3.7 and 3.7+.
@@ -124,10 +124,10 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             self.func,
             arg_combinations,
             formatter=lambda args, output: "inputs="
-            + str(args)
-            + ", outputs="
-            + str(output)
-            + "\n",
+                                           + str(args)
+                                           + ", outputs="
+                                           + str(output)
+                                           + "\n",
             reporter=self.reporter,
         )
 
@@ -144,10 +144,20 @@ class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
             self.func, all_args_combinations, reporter=self.reporter
         )
 
+
 def test_example_for_combinations():
     # begin-snippet: combination_introduction
-    verify_all_combinations(is_awake,[["Monday","Sunday"],["7:00","9:00","11:00"]])
-    # end0snii
+    verify_all_combinations(is_awake, [["Monday", "Sunday"], ["7:00", "9:00", "11:00"]])
+    # end-snippet
+
 
 def is_awake(day, time):
-    return "maybe"
+    weekdays = ["Monday"]
+    is_weekday = day in weekdays
+    time = int(time.replace(":00",""))
+    if is_weekday and time > 8:
+        return "Yes"
+    elif not is_weekday and time < 10:
+        return "No"
+    else:
+        return "Maybe"
