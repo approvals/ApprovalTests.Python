@@ -143,3 +143,11 @@ class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
         verify_all_combinations_with_namer(
             self.func, all_args_combinations, reporter=self.reporter
         )
+
+def test_example_for_combinations():
+    # begin-snippet: combination_introduction
+    verify_all_combinations(is_awake,[["Monday","Sunday"],["7:00","9:00","11:00"]])
+    # end0snii
+
+def is_awake(day, time):
+    return "maybe"

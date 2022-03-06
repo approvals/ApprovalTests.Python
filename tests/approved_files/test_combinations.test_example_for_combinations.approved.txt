@@ -1,0 +1,6 @@
+args: ('Monday', '7:00') => 'maybe'
+args: ('Monday', '9:00') => 'maybe'
+args: ('Monday', '11:00') => 'maybe'
+args: ('Sunday', '7:00') => 'maybe'
+args: ('Sunday', '9:00') => 'maybe'
+args: ('Sunday', '11:00') => 'maybe'

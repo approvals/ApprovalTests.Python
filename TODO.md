@@ -1,4 +1,4 @@
-1. markdown snippets
+1. markdown snippets - regex (?<!(a>.*\n))```py
 3. cached property for Namer.get_config 
 4. setup github action to lint
 5. linter - add flake8 to pycharm and tox
@@ -10,7 +10,6 @@
 13. the new file creation handles writing with correct encoding
 14. combination approvals needs line ending option
 15. error output is too confusing (from Clare: logged as https://github.com/approvals/ApprovalTests.Python/issues/97)
-16. add tests to test the installed library - integration or system tests. For example, to confirm that JSON reporter files work. tox might help us.
 17. Have Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
 19. Pairwise
 20. templated namer
