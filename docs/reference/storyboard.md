@@ -43,6 +43,7 @@ Initial:
 
 Frame #1:
 \
+
 ```
 <sup><a href='/tests/approved_files/VerifyTests.test_simple_storyboard.approved.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-VerifyTests.test_simple_storyboard.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

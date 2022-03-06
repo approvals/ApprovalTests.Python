@@ -151,10 +151,18 @@ def test_example_for_combinations():
     # end-snippet
 
 
+def test_starting_snippet():
+    # begin-snippet: combinations_starting_point
+    inputs1 = ["input1.value1", "input1.value2"]
+    inputs2 = ["input2.value1", "input2.value2", "input2.value3"]
+    verify_all_combinations(lambda a, b: "placeholder", [inputs1, inputs2])
+    # end-snippet
+
+
 def is_awake(day, time):
     weekdays = ["Monday"]
     is_weekday = day in weekdays
-    time = int(time.replace(":00",""))
+    time = int(time.replace(":00", ""))
     if is_weekday and time > 8:
         return "Yes"
     elif not is_weekday and time < 10:
