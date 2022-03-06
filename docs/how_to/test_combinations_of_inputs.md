@@ -26,9 +26,8 @@ If is a weekend then starting at 11 it is Maybe, if it is a weekday then startin
 | Monday | 11:00 | Yes |
 
 If you wanted to test this matrix combination approvals can do it with a single line:
-```python
-CombinationApprovals.verifyAllCombintions(isAwake,["Sunday","Monday"],[7,9,11])
-```
+
+snippet: combination_introduction
 
 ## When to use Combinations
 
