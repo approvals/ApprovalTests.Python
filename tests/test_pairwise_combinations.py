@@ -9,11 +9,7 @@ def get_key(in1: Any, in2: Any) -> str:
 
 def add_pair(in1: Any, in2:Any, all_pairs_with_index: Dict[str,int]) -> None:
     key = get_key(in1, in2)
-    if key in all_pairs_with_index.keys():
-        count = all_pairs_with_index[key]
-    else:
-        count = len(all_pairs_with_index)
-    all_pairs_with_index[key] = count
+    all_pairs_with_index.setdefault(key, len(all_pairs_with_index))
 
 
 def get_all_pairs_count(inputs: Sequence[Sequence[Any]])-> Dict[str, int]:
