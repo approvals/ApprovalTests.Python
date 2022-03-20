@@ -14,6 +14,7 @@ def add_pair(in1: Any, in2:Any, all_pairs_with_index: Dict[str,int]) -> None:
 
 def get_all_pairs_count(inputs: Sequence[Sequence[Any]])-> Dict[str, int]:
     cases = get_best_covering_pairs(inputs)
+    print(f"reduce set of {len(cases)} cases")
     pairCount = {}
     for params in cases:
         for i1 in range(len(inputs)-1):
@@ -48,8 +49,8 @@ def assert_pairwise_combinations(inputs: Sequence[Sequence[Any]]) -> None:
     
 def test_pair_properties() -> None:
       input1 = [112, 111, 113, 114, 115]
-      input2 = [221, 222, 223, 224]
+      input2 = [221, 222, 223, 224,225]
       input3 = [331, 332, 333, 334, 335]
-      input4 = [441, 442, 443, 444]
+      input4 = [441, 442, 443, 444,445]
       assert_pairwise_combinations([input1, input2, input3, input4])
 
