@@ -54,3 +54,14 @@ def test_pair_properties() -> None:
       input4 = [441, 442, 443, 444,445]
       assert_pairwise_combinations([input1, input2, input3, input4])
 
+def test_reduction() -> None:
+    inputs1 = list(range(1,10))
+    inputs2 = list(range(11,20))
+    inputs3 = list(range(21,30))
+    inputs4 = list(range(31,40))
+    inputs5 = list(range(41,50))
+    inputs6 = list(range(51,60))
+    inputs7 = list(range(61,70))
+    inputs8 = list(range(71,80))
+    inputs9 = list(range(81,90))
+    #print(len(get_best_covering_pairs([inputs1, inputs2, inputs3, inputs4, inputs5, inputs6,inputs7, inputs8, inputs9])))
