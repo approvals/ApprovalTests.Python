@@ -1,5 +1,6 @@
 from typing import Sequence, Any, Dict
 
+from approvaltests import verify_all_combinations, verify_best_covering_pairs
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 
 
@@ -43,10 +44,7 @@ def assert_pairwise_combinations(inputs: Sequence[Sequence[Any]]) -> None:
     all_pairs_with_index = get_all_pairs_count(inputs)
     assert_all_pairs_present(all_pairs_with_index, inputs)
 
-    #allPairCombinationCount = calculateAllPairCombinationCount(inputs)
-    # assertEquals(121, allPairCombinationCount)
-    #assertEquals(allPairCombinationCount, pairCount.size())
-    
+
 def test_pair_properties() -> None:
       input1 = [112, 111, 113, 114, 115]
       input2 = [221, 222, 223, 224,225]
@@ -64,4 +62,5 @@ def test_reduction() -> None:
     inputs7 = list(range(61,70))
     inputs8 = list(range(71,80))
     inputs9 = list(range(81,90))
-    print(len(get_best_covering_pairs([inputs1, inputs2, inputs3, inputs4, inputs5, inputs6,inputs7, inputs8, inputs9])))
+    assert_pairwise_combinations([inputs1, inputs2, inputs3, inputs4, inputs5, inputs6,inputs7, inputs8, inputs9])
+    verify_best_covering_pairs(lambda *args: sum(args), [inputs1, inputs2, inputs3, inputs4, inputs5, inputs6,inputs7, inputs8, inputs9])

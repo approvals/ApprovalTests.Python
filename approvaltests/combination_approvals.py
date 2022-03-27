@@ -7,19 +7,35 @@ from approvaltests import (
     Reporter,
     initialize_options,
     Options,
-    verify,
+    verify, pairwise_combinations,
 )
 from approvaltests.core.namer import StackFrameNamer
+from approvaltests.pairwise_combinations import get_best_covering_pairs
 from approvaltests.reporters.testing_reporter import ReporterForTesting
+
+VariationForEachParameter = Sequence[Sequence[Any]]
+CombinationsOfParameters = Sequence[Sequence[Any]]
+
+
+def verify_best_covering_pairs(
+        function_under_test: Callable,
+        input_arguments: VariationForEachParameter,
+        formatter: Optional[Callable] = None,
+        reporter: Optional[ReporterForTesting] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None) -> None:
+    text = print_combinations(formatter, function_under_test, input_arguments, get_best_covering_pairs)
+    options = initialize_options(options, reporter)
+    verify(text, options=options)
 
 
 def verify_all_combinations(
-    function_under_test: Callable,
-    input_arguments: Sequence[Sequence[Any]],
-    formatter: Optional[Callable] = None,
-    reporter: Optional[ReporterForTesting] = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        function_under_test: Callable,
+        input_arguments: VariationForEachParameter,
+        formatter: Optional[Callable] = None,
+        reporter: Optional[ReporterForTesting] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -42,12 +58,12 @@ def verify_all_combinations(
 
 
 def verify_all_combinations_with_namer(
-    function_under_test: Callable,
-    input_arguments: Sequence[Sequence[Any]],
-    formatter: Optional[Callable] = None,
-    reporter: Optional[Reporter] = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        function_under_test: Callable,
+        input_arguments: VariationForEachParameter,
+        formatter: Optional[Callable] = None,
+        reporter: Optional[Reporter] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -64,20 +80,21 @@ def verify_all_combinations_with_namer(
     Raises:
         ApprovalException: if the results to not match the approved results.
     """
-    text = print_combinations(formatter, function_under_test, input_arguments)
+    text = print_combinations(formatter, function_under_test, input_arguments, lambda i: product(*i))
     options = initialize_options(options, reporter)
     verify(text, options=options)
 
 
 def print_combinations(
-    formatter: Optional[Callable],
-    function_under_test: Callable,
-    input_arguments: Sequence[Sequence[Any]],
+        formatter: Optional[Callable],
+        function_under_test: Callable,
+        input_arguments: VariationForEachParameter,
+        combiner: Callable[[VariationForEachParameter], CombinationsOfParameters]
 ) -> str:
     if formatter is None:
         formatter = args_and_result_formatter
     approval_strings = []
-    for args in product(*input_arguments):
+    for args in combiner(input_arguments):
         try:
             result = function_under_test(*args)
         except Exception as e:
