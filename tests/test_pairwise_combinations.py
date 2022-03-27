@@ -64,4 +64,4 @@ def test_reduction() -> None:
     inputs7 = list(range(61,70))
     inputs8 = list(range(71,80))
     inputs9 = list(range(81,90))
-    #print(len(get_best_covering_pairs([inputs1, inputs2, inputs3, inputs4, inputs5, inputs6,inputs7, inputs8, inputs9])))
+    print(len(get_best_covering_pairs([inputs1, inputs2, inputs3, inputs4, inputs5, inputs6,inputs7, inputs8, inputs9])))
