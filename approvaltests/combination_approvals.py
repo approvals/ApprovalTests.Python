@@ -1,6 +1,8 @@
 from itertools import product
 from typing import Any, Callable, Optional, Tuple, Union, List, Sequence
 
+from py.path import local
+
 from approvaltests import (
     verify_with_namer,
     get_default_namer,
@@ -17,6 +19,11 @@ VariationForEachParameter = Sequence[Sequence[Any]]
 CombinationsOfParameters = Sequence[Sequence[Any]]
 
 
+def calculate_total_size(input_arguments):
+    from functools import reduce
+    return reduce(lambda current_size, arguments: len(arguments) * current_size, input_arguments, 1)
+
+
 def verify_best_covering_pairs(
         function_under_test: Callable,
         input_arguments: VariationForEachParameter,
@@ -24,9 +31,20 @@ def verify_best_covering_pairs(
         reporter: Optional[ReporterForTesting] = None,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
         options: Optional[Options] = None) -> None:
-    text = print_combinations(formatter, function_under_test, input_arguments, get_best_covering_pairs)
+    count = 0
+
+    def create_pairs(parameters):
+        combinations = get_best_covering_pairs(parameters)
+        nonlocal count
+        count = len(combinations)
+        return combinations
+
+    text = print_combinations(formatter, function_under_test, input_arguments, create_pairs)
     options = initialize_options(options, reporter)
-    verify(text, options=options)
+    total = calculate_total_size(input_arguments)
+
+    header = f"Testing an optimized {count}/{total} scenarios:\n\n"
+    verify(header + text, options=options)
 
 
 def verify_all_combinations(
