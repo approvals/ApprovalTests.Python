@@ -31,15 +31,11 @@ def verify_best_covering_pairs(
         reporter: Optional[ReporterForTesting] = None,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
         options: Optional[Options] = None) -> None:
-    count = 0
 
-    def create_pairs(parameters):
-        combinations = get_best_covering_pairs(parameters)
-        nonlocal count
-        count = len(combinations)
-        return combinations
+    combinations = get_best_covering_pairs(input_arguments)
+    count = len(combinations)
 
-    text = print_combinations(formatter, function_under_test, input_arguments, create_pairs)
+    text = print_combinations(formatter, function_under_test, combinations)
     options = initialize_options(options, reporter)
     total = calculate_total_size(input_arguments)
 
@@ -98,7 +94,7 @@ def verify_all_combinations_with_namer(
     Raises:
         ApprovalException: if the results to not match the approved results.
     """
-    text = print_combinations(formatter, function_under_test, input_arguments, lambda i: product(*i))
+    text = print_combinations(formatter, function_under_test, product(*input_arguments))
     options = initialize_options(options, reporter)
     verify(text, options=options)
 
@@ -106,13 +102,12 @@ def verify_all_combinations_with_namer(
 def print_combinations(
         formatter: Optional[Callable],
         function_under_test: Callable,
-        input_arguments: VariationForEachParameter,
-        combiner: Callable[[VariationForEachParameter], CombinationsOfParameters]
+        parameter_combinations: CombinationsOfParameters
 ) -> str:
     if formatter is None:
         formatter = args_and_result_formatter
     approval_strings = []
-    for args in combiner(input_arguments):
+    for args in parameter_combinations:
         try:
             result = function_under_test(*args)
         except Exception as e:
