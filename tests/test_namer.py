@@ -1,7 +1,8 @@
 ﻿import os
 import unittest
 
-from approvaltests.core.namer import Namer, StackFrameNamer
+from approvaltests.core.namer import Namer
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 
 
 class NamerTests(unittest.TestCase):

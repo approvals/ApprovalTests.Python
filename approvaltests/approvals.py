@@ -7,7 +7,8 @@ from approvaltests import to_json, utils
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
-from approvaltests.core.namer import StackFrameNamer, Namer
+from approvaltests.core.namer import Namer
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter

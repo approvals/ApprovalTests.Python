@@ -1,17 +1,11 @@
 from itertools import product
-from typing import Any, Callable, Optional, Tuple, Union, List, Sequence
-
-from py.path import local
+from typing import Any, Callable, Optional, List, Sequence
 
 from approvaltests import (
-    verify_with_namer,
-    get_default_namer,
     Reporter,
     initialize_options,
     Options,
-    verify, pairwise_combinations,
-)
-from approvaltests.core.namer import StackFrameNamer
+    verify, )
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
