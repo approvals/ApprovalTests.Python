@@ -9,8 +9,8 @@ from approvaltests.approvals import verify, get_default_namer
 from approvaltests.reporters import MultiReporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
-    create_config,
 )
+from approvaltests.reporters.generic_diff_reporter_config import create_config
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )

@@ -1,29 +1,13 @@
 import subprocess
-from typing import List, Optional
+from typing import List
 
-from approvaltests import ensure_file_exists
+from approvaltests.utils import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
+from approvaltests.reporters.generic_diff_reporter_config import GenericDiffReporterConfig, create_config
 from approvaltests.utils import to_json
 
 PROGRAM_FILES = "{ProgramFiles}"
-
-
-class GenericDiffReporterConfig:
-    def __init__(self, name: str, path: str, extra_args: Optional[List[str]] = None):
-        self.name = name
-        self.path = path
-        self.extra_args = extra_args or []
-
-    def serialize(self):
-        result = [self.name, self.path]
-        if self.extra_args:
-            result.append(self.extra_args)
-        return result
-
-
-def create_config(config) -> GenericDiffReporterConfig:
-    return GenericDiffReporterConfig(*config)
 
 
 class GenericDiffReporter(Reporter):

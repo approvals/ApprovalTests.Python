@@ -1,12 +1,11 @@
 import json
 from typing import Iterator, List, Optional
 
-from approvaltests.reporters import Reporter
+from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
-    GenericDiffReporterConfig,
-    create_config,
 )
+from approvaltests.reporters.generic_diff_reporter_config import GenericDiffReporterConfig, create_config
 from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare, ReportWithWinMerge
 from approvaltests.utils import get_adjacent_file
 

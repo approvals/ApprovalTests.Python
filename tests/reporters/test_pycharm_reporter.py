@@ -1,8 +1,8 @@
 from approvaltests import verify
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
-    create_config,
 )
+from approvaltests.reporters.generic_diff_reporter_config import create_config
 
 
 def test_pycharm_diff_command() -> None:

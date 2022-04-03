@@ -4,7 +4,8 @@ import os
 import sys
 from difflib import unified_diff
 
-from approvaltests.reporters import get_command_text, Reporter
+from approvaltests.reporters.clipboard_reporter import get_command_text
+from approvaltests.core.reporter import Reporter
 from approvaltests.utils import ensure_file_exists
 
 

@@ -1,6 +1,6 @@
 import pyperclip  # type: ignore
 
-from approvaltests import is_windows_os
+from approvaltests.utils import is_windows_os
 from approvaltests.core.reporter import Reporter
 
 

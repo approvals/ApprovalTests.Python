@@ -1,8 +1,8 @@
 from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
-    GenericDiffReporterConfig,
 )
+from approvaltests.reporters.generic_diff_reporter_config import GenericDiffReporterConfig
 
 
 class ReportWithBeyondCompareLinux(GenericDiffReporter):

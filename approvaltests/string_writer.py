@@ -1,9 +1,7 @@
 import io
-import os
-import sys
 from typing import Optional
 
-from approvaltests import create_directory_if_needed
+from approvaltests.utils import create_directory_if_needed
 from approvaltests.core.writer import Writer
 
 

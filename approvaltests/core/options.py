@@ -1,8 +1,10 @@
 from typing import Dict, Callable
 
-from approvaltests.core import Namer, Reporter
+from approvaltests.core.namer import Namer
+from approvaltests.core.reporter import Reporter
 from approvaltests.core.comparator import Comparator
 from approvaltests.file_approver import FileComparator
+
 
 
 class FileOptions:
@@ -26,8 +28,7 @@ class Options:
 
     @property
     def reporter(self) -> Reporter:
-        # TODO Fix circular import
-        from approvaltests import get_default_reporter
+        from approvaltests.reporters.default_reporter_factory import get_default_reporter
 
         return self.fields.get("reporter", get_default_reporter())
 

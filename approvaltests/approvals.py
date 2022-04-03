@@ -1,8 +1,8 @@
 import xml.dom.minidom
 from pathlib import Path
-from threading import local
-from typing import Callable, List, Optional, Any, cast, ByteString
+from typing import Callable, List, Optional, Any, ByteString
 
+import approvaltests.reporters.default_reporter_factory
 from approvaltests import to_json, utils
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
@@ -18,22 +18,18 @@ from approvaltests.string_writer import StringWriter
 
 __unittest = True
 __tracebackhide__ = True
-DEFAULT_REPORTER = local()
 
 
 def set_default_reporter(reporter: Reporter) -> None:
-    global DEFAULT_REPORTER
-    DEFAULT_REPORTER.v = reporter
+    return approvaltests.reporters.default_reporter_factory.set_default_reporter(reporter)
 
 
 def get_default_reporter() -> Reporter:
-    if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
-        return DiffReporter()
-    return cast(Reporter, DEFAULT_REPORTER.v)
+    return approvaltests.reporters.default_reporter_factory.get_default_reporter()
 
 
 def get_reporter(reporter: Optional[Reporter]) -> Reporter:
-    return reporter or get_default_reporter()
+    return approvaltests.reporters.default_reporter_factory.get_reporter(reporter)
 
 
 def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:

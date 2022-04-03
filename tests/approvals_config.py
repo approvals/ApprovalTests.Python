@@ -1,4 +1,4 @@
-from approvaltests import set_default_reporter, DiffReporter
+from approvaltests.reporters.default_reporter_factory import set_default_reporter
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )

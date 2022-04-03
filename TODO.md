@@ -1,18 +1,20 @@
 1. markdown snippets - regex (?<!(a>.*\n))```py
-3. cached property for Namer.get_config 
-4. setup github action to lint
-5. linter - add flake8 to pycharm and tox
-6. check all uses of default reporter in tests
-8. Fail test if there are duplicate names - pylint ?
-9. add checks to twine in github actions
-11. make code more pythonic (method overloads vs default parameters)
-17. _Have_ Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
-19. Pairwise
-20. templated namer
+2. cached property for Namer.get_config 
+3. setup github action to lint
+   1. Do we make a github action whose sole purpose is to lint? 
+   2. Options: Lint passes/fails or autocorrects? 
+   3. Actions work well when simple. Make a lint.bat and go from there
+4. linter - add flake8 to pycharm and tox
+5. check all uses of default reporter in tests
+6. Fail test if there are duplicate names - pylint ?
+7. add checks to twine in github actions
+8. make code more pythonic (method overloads vs default parameters)
+9. _Have_ Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
+10. templated namer
     1. docs on implementing Approvaltests in CI
     2. file commiter reporter
     3. squence to animated gif writer
-22. Property Tests
+11. Property Tests
     1. eval(any.__repr__) == any
 ```python
 

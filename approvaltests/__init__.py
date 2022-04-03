@@ -1,3 +1,4 @@
+"""Approvaltests module."""
 from .version import *
 from .utils import *
 from .approvals import *
