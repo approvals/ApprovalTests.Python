@@ -8,7 +8,8 @@ class IntroductionReporter(Reporter):
         print(self.get_text())
         return PythonNativeReporter().report(received_path, approved_path)
 
-    def get_text(self):
+    @staticmethod
+    def get_text():
         return '''
         Welcome to ApprovalTests!
         No DiffReporters have been detected on this system.

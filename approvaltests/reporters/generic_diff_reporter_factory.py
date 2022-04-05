@@ -5,8 +5,10 @@ from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
 )
-from approvaltests.reporters.generic_diff_reporter_config import GenericDiffReporterConfig, create_config
-from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare, ReportWithWinMerge
+from approvaltests.reporters.generic_diff_reporter_config \
+    import GenericDiffReporterConfig, create_config
+from approvaltests.reporters.report_with_beyond_compare \
+    import ReportWithBeyondCompare, ReportWithWinMerge
 from approvaltests.utils import get_adjacent_file
 
 
@@ -15,7 +17,7 @@ class NoConfigReporter(Reporter):
         raise RuntimeError("This machine has no reporter configuration")
 
 
-class GenericDiffReporterFactory(object):
+class GenericDiffReporterFactory():
     reporters: List[GenericDiffReporterConfig] = []
 
     def __init__(self) -> None:

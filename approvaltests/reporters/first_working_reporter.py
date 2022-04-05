@@ -19,12 +19,12 @@ class FirstWorkingReporter(Reporter):
         self.reporters = reporters
 
     def report(self, received_path: str, approved_path: str) -> bool:
-        for r in self.reporters:
+        for reporter in self.reporters:
             try:
-                success = r.report(received_path, approved_path)
+                success = reporter.report(received_path, approved_path)
                 if success:
                     return True
-            except:
+            except:# pylint: disable=bare-except
                 pass
 
         return False
