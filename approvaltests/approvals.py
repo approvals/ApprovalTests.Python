@@ -308,7 +308,7 @@ def verify_all(
     )
 
 
-def get_scenario_namer(scenario_name: int) -> ScenarioNamer:
+def get_scenario_namer(scenario_name: Any) -> ScenarioNamer:
     return ScenarioNamer(get_default_namer(), scenario_name)
 
 

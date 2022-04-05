@@ -11,7 +11,7 @@ class NamerBase(Namer):
     def __init__(self, extension: Optional[str] = None) -> None:
         self.extension_with_dot = extension or ".txt"
 
-    #@abstractmethod
+    @abstractmethod
     def get_file_name(self):
         raise Exception("This class is abstract, override this method in a subclass")
 

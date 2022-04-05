@@ -3,7 +3,7 @@ from typing import Dict
 
 from _pytest.fixtures import FixtureRequest
 
-from approvaltests.core import NamerBase
+from approvaltests.namer.namer_base import NamerBase
 
 
 class PyTestNamer(NamerBase):
