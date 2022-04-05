@@ -4,10 +4,10 @@ import json
 from approvaltests import Reporter
 
 
-def sendTcpSocket(HOST, PORT, data):
+def send_tcp_socket(host, port, data):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        sock.connect((HOST, PORT))
+        sock.connect((host, port))
         sock.sendall(bytes(data, encoding="utf-8"))
     finally:
         sock.close()
@@ -22,5 +22,4 @@ class ReportToDiffEngineTray(Reporter):
             "CanKill": False,
         }
 
-        sendTcpSocket("localhost", 3492, json.dumps(payload))
-
+        send_tcp_socket("localhost", 3492, json.dumps(payload))

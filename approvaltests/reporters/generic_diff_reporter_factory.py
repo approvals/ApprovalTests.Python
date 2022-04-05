@@ -51,10 +51,10 @@ class GenericDiffReporterFactory(object):
         return GenericDiffReporter(config)
 
     def save(self, file_name: str) -> str:
-        with open(file_name, "w") as f:
+        with open(file_name, "w", encoding='utf8') as file:
             json.dump(
                 [reporter.serialize() for reporter in self.reporters],
-                f,
+                file,
                 sort_keys=True,
                 indent=2,
                 separators=(",", ": "),
@@ -62,8 +62,8 @@ class GenericDiffReporterFactory(object):
         return file_name
 
     def load(self, file_name: str) -> List[GenericDiffReporterConfig]:
-        with open(file_name, "r") as f:
-            configs = json.load(f)
+        with open(file_name, "r", encoding='utf8') as file:
+            configs = json.load(file)
         self.reporters = [create_config(config) for config in configs]
         return self.reporters
 
