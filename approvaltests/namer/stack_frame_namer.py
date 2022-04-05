@@ -9,9 +9,9 @@ from approvaltests.approval_exception import FrameNotFound
 
 
 class StackFrameNamer(NamerBase):
-    Directory = ""
-    MethodName = ""
-    ClassName = ""
+    directory = ""
+    method_name = ""
+    class_name = ""
 
     def __init__(self, extension: Optional[str] = None) -> None:
         NamerBase.__init__(self, extension)
@@ -22,9 +22,9 @@ class StackFrameNamer(NamerBase):
     def set_for_stack(self, caller: List[FrameInfo]) -> None:
         frame = self.get_test_frame(caller)
         stacktrace = caller[frame]
-        self.MethodName = stacktrace[3]
-        self.ClassName = self.get_class_name_for_frame(stacktrace)
-        self.Directory = os.path.dirname(stacktrace[1])
+        self.method_name = stacktrace[3]
+        self.class_name = self.get_class_name_for_frame(stacktrace)
+        self.directory = os.path.dirname(stacktrace[1])
 
     @staticmethod
     def get_class_name_for_frame(stacktrace: FrameInfo) -> str:
@@ -62,17 +62,17 @@ class StackFrameNamer(NamerBase):
         return is_unittest_test or is_pytest_test
 
     def get_class_name(self) -> str:
-        return self.ClassName
+        return self.class_name
 
     def get_method_name(self) -> str:
-        return self.MethodName
+        return self.method_name
 
     def get_directory(self) -> str:
-        return self.Directory
+        return self.directory
 
     def config_directory(self) -> str:
-        return self.Directory
+        return self.directory
 
     def get_file_name(self) -> str:
-        class_name = "" if (self.ClassName is None) else (self.ClassName + ".")
-        return class_name + self.MethodName
+        class_name = "" if (self.class_name is None) else (self.class_name + ".")
+        return class_name + self.method_name

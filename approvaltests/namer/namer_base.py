@@ -10,6 +10,8 @@ class NamerBase(Namer):
 
     def __init__(self, extension: Optional[str] = None) -> None:
         self.extension_with_dot = extension or ".txt"
+        self.config_loaded = False
+        self.config = None
 
     @abstractmethod
     def get_file_name(self):
@@ -18,6 +20,9 @@ class NamerBase(Namer):
     @abstractmethod
     def get_directory(self):
         raise Exception("This class is abstract, override this method in a subclass")
+
+    def config_directory(self) -> str:
+        return None
 
     def get_config(self) -> Dict[str, str]:
         """lazy load config when we need it, then store it in the instance variable self.config"""
@@ -48,5 +53,4 @@ class NamerBase(Namer):
 
     def set_extension(self, extension):
         self.extension_with_dot = extension
-
 
