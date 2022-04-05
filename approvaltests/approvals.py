@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Callable, List, Optional, Any, ByteString
 
 import approvaltests.reporters.default_reporter_factory
-from approvaltests import to_json, utils
+from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
@@ -189,7 +189,7 @@ def verify_as_json(
     options: Optional[Options] = None
 ):
     if deserialize_json_fields:
-        object = utils.deserialize_json_fields(object)
+        object = approvaltests.utils.deserialize_json_fields(object)
     options = initialize_options(options, reporter)
     n_ = to_json(object) + "\n"
     verify(n_, None, encoding="utf-8", newline="\n", options=options)

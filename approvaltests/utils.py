@@ -2,7 +2,6 @@ import inspect
 import json
 import os
 from copy import deepcopy
-import empty_files
 
 
 def get_adjacent_file(name: str) -> str:
