@@ -1,10 +1,10 @@
 import os
 from typing import Optional
 
+from approvaltests.core.namer import Namer
 
-class NamerBase(object):
-    APPROVED = ".approved"
-    RECEIVED = ".received"
+
+class NamerBase(Namer):
 
     def __init__(self, extension: Optional[str] = None) -> None:
         self.extension_with_dot = extension or ".txt"
