@@ -1,4 +1,5 @@
-from approvaltests.reporters import MultiReporter, PythonNativeReporter
+from approvaltests.reporters.multi_reporter import MultiReporter
+from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approvaltests.reporters.report_by_creating_diff_file import ReportByCreatingDiffFile
 
 
