@@ -1,11 +1,10 @@
 import filecmp
 import os
 import pathlib
-from abc import ABC, abstractproperty
 from typing import Optional
 
 from approvaltests.core.comparator import Comparator
-from approvaltests.core.namer import Namer
+from approvaltests.namer.namer_base import NamerBase
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
 
@@ -38,7 +37,7 @@ class FileComparator(Comparator):
 class FileApprover(object):
     def verify(
         self,
-        namer: Namer,
+        namer: NamerBase,
         writer: Writer,
         reporter: Reporter,
         comparator: Comparator

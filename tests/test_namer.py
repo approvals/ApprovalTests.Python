@@ -1,7 +1,7 @@
 ﻿import os
 import unittest
 
-from approvaltests.core.namer import Namer
+from approvaltests.namer.namer_base import NamerBase
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 
 
@@ -41,7 +41,7 @@ class NamerTests(unittest.TestCase):
         self.assertEqual(filename, "./stuff.approved.txt")
 
     def test_alternative_extension(self):
-        n = Namer(extension=".html")
+        n = NamerBase(extension=".html")
         filename = n.get_approved_filename("./stuff")
         self.assertEqual(filename, "./stuff.approved.html")
 

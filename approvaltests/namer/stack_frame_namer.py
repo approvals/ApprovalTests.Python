@@ -4,17 +4,17 @@ import os
 from inspect import FrameInfo
 from typing import Optional, Dict, List
 
-from approvaltests.core.namer import Namer
+from approvaltests.namer.namer_base import NamerBase
 from approvaltests.approval_exception import FrameNotFound
 
 
-class StackFrameNamer(Namer):
+class StackFrameNamer(NamerBase):
     Directory = ""
     MethodName = ""
     ClassName = ""
 
     def __init__(self, extension: Optional[str] = None) -> None:
-        Namer.__init__(self, extension)
+        NamerBase.__init__(self, extension)
         self.set_for_stack(inspect.stack(1))
         self.config: Dict[str, str] = {}
         self.config_loaded = False

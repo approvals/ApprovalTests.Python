@@ -1,6 +1,6 @@
 from typing import Dict, Callable
 
-from approvaltests.core.namer import Namer
+from approvaltests.namer.namer_base import NamerBase
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.comparator import Comparator
 from approvaltests.file_approver import FileComparator
@@ -59,7 +59,7 @@ class Options:
         return FileOptions(self.fields)
 
     @property
-    def namer(self) -> Namer:
+    def namer(self) -> NamerBase:
         from approvaltests.namer.default_namer_factory import get_default_namer
 
         namer = get_default_namer()

@@ -2,7 +2,6 @@
 import unittest
 
 from approvaltests import get_default_namer, verify, Options, verify_file
-from approvaltests.core.namer import Namer
 from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
