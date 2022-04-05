@@ -19,6 +19,9 @@ class ScenarioNamer(NamerBase):
         basename = self.base_namer.get_basename()
         return basename + "." + str(self.scenario_name)
 
+    def get_directory(self) -> str:
+        return self.base_namer.get_directory()
+
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.base_namer.get_approved_filename(base)
 

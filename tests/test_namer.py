@@ -41,7 +41,7 @@ class NamerTests(unittest.TestCase):
         self.assertEqual(filename, "./stuff.approved.txt")
 
     def test_alternative_extension(self):
-        n = NamerBase(extension=".html")
+        n = StackFrameNamer(extension=".html")
         filename = n.get_approved_filename("./stuff")
         self.assertEqual(filename, "./stuff.approved.html")
 

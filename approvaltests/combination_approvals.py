@@ -78,7 +78,7 @@ def verify_all_combinations_with_namer(
         input_arguments: list of values to test for each input argument.  For example, a function f(product, quantity)
             could be tested with the input_arguments [['water', 'cola'], [1, 4]], which would result in outputs for the
             following calls being recorded and verified: f('water', 1), f('water', 4), f('cola', 1), f('cola', 4).
-        namer (approvaltests.NamerBase): A namer that defines the name of received and approved files.
+        namer (approvaltests.core.Namer): A namer that defines the name of received and approved files.
         formatter (function): function for formatting the function inputs/outputs before they are recorded to an
             approval file for comparison.
         reporter (approvaltests.reporter.Reporter): an approval reporter.
