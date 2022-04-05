@@ -14,7 +14,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
 class ReporterTests(unittest.TestCase):
     def test_file_launcher(self):
         reporter = ReceivedFileLauncherReporter()
-        command = reporter.get_command("a.txt", "b.txt")
+        command = reporter.get_command( "b.txt")
         self.assertEqual(command, ["cmd", "/C", "start", "b.txt", "/B"])
 
     def test_different_ways_of_creating_reporter(self):

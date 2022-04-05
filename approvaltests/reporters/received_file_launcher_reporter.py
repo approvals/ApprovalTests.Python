@@ -18,9 +18,10 @@ class ReceivedFileLauncherReporter(Reporter):
     """
 
     @staticmethod
-    def get_command(approved_path: str, received_path: str) -> List[str]:
+    def get_command(received_path: str) -> List[str]:
         return ["cmd", "/C", "start", received_path, "/B"]
 
-    def report(self, approved_path, received_path):
-        command_array = self.get_command(approved_path, received_path)
+    def report(self, received_path: str, approved_path: str) -> bool:
+        command_array = self.get_command( received_path)
         call(command_array)
+        return True
