@@ -1,7 +1,7 @@
 import io
 from typing import ByteString
 
-from approvaltests import create_directory_if_needed
+from approvaltests.utils import create_directory_if_needed
 from approvaltests.core.writer import Writer
 
 

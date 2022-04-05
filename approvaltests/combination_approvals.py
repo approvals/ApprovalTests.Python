@@ -1,11 +1,9 @@
 from itertools import product
 from typing import Any, Callable, Optional, List, Sequence
+from approvaltests.core.reporter import Reporter
+from approvaltests.approvals import verify, initialize_options
+from approvaltests.core.options import Options
 
-from approvaltests import (
-    Reporter,
-    initialize_options,
-    Options,
-    verify, )
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 

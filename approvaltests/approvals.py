@@ -34,7 +34,7 @@ def get_reporter(reporter: Optional[Reporter]) -> Reporter:
 
 
 def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
-    return StackFrameNamer(extension)
+    return approvaltests.namer.default_namer_factory.get_default_namer(extension)
 
 
 def verify(

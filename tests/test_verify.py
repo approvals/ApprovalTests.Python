@@ -2,10 +2,8 @@
 import json
 import random
 import unittest
-from pathlib import Path
 
 import pytest
-from pyparsing.testing import pyparsing_test
 
 from approvaltests import Options, delete_approved_file, get_default_namer
 from approvaltests.approval_exception import ApprovalException

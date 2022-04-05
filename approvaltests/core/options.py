@@ -60,7 +60,7 @@ class Options:
 
     @property
     def namer(self) -> Namer:
-        from approvaltests import get_default_namer
+        from approvaltests.namer.default_namer_factory import get_default_namer
 
         namer = get_default_namer()
         namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
