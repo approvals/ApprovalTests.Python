@@ -3,7 +3,6 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 from .first_working_reporter import FirstWorkingReporter
 from .introduction_reporter import IntroductionReporter
-from .python_native_reporter import PythonNativeReporter
 
 
 class DiffReporter(FirstWorkingReporter):

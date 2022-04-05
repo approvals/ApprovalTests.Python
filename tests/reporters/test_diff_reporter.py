@@ -1,10 +1,8 @@
 from typing import List
+from approvaltests.core.reporter import Reporter
+from approvaltests.reporters.diff_reporter import DiffReporter
+from approvaltests.reporters.introduction_reporter import IntroductionReporter
 
-from approvaltests.reporters import (
-    DiffReporter,
-    PythonNativeReporter,
-    Reporter, IntroductionReporter,
-)
 from approvaltests.reporters.report_by_creating_diff_file import ReportByCreatingDiffFile
 
 
