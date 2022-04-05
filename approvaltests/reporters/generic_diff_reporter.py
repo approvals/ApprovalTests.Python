@@ -4,7 +4,8 @@ from typing import List
 from approvaltests.utils import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
-from approvaltests.reporters.generic_diff_reporter_config import GenericDiffReporterConfig, create_config
+from approvaltests.reporters.generic_diff_reporter_config \
+    import GenericDiffReporterConfig, create_config
 from approvaltests.utils import to_json
 
 PROGRAM_FILES = "{ProgramFiles}"
@@ -54,11 +55,9 @@ class GenericDiffReporter(Reporter):
 
     def is_working(self) -> bool:
         found = Command(self.path).locate()
-        if not found:
-            return False
-        else:
+        if found:
             self.path = found
-            return True
+        return found
 
     @staticmethod
     def expand_program_files(path: str) -> str:
