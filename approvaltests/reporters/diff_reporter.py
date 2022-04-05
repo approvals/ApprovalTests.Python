@@ -21,4 +21,4 @@ class DiffReporter(FirstWorkingReporter):
 
         reporters = list(factory.get_all_reporters())
         reporters.append(IntroductionReporter())
-        super(DiffReporter, self).__init__(*reporters)
+        super(__class__, self).__init__(*reporters)
