@@ -7,7 +7,7 @@ from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
-from approvaltests.namer.namer_base import NamerBase
+from approvaltests.core.namer import Namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
@@ -40,7 +40,7 @@ def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
 def verify(
     data: Any,
     reporter: Optional[Reporter] = None,
-    namer: Optional[NamerBase] = None,
+    namer: Optional[Namer] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
     newline: Optional[str] = None,
@@ -118,7 +118,7 @@ def initialize_options(
 
 def verify_with_namer(
     data: Any,
-    namer: NamerBase,
+    namer: Namer,
     reporter: Optional[Reporter] = None,
     encoding: Optional[str] = None,
     errors: Optional[str] = None,
@@ -168,7 +168,7 @@ def verify_with_namer(
 
 
 def verify_with_namer_and_writer(
-    namer: NamerBase,
+    namer: Namer,
     writer: Writer,
     reporter: Optional[Reporter]= None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
@@ -198,7 +198,7 @@ def verify_as_json(
 def verify_xml(
     xml_string: str,
     reporter: None = None,
-    namer: NamerBase = None,
+    namer: Namer = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:

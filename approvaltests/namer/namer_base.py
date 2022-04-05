@@ -25,11 +25,11 @@ class NamerBase(Namer):
 
     def get_received_filename(self, basename: Optional[str] = None) -> str:
         basename = basename or self.get_basename()
-        return basename + NamerBase.RECEIVED + self.extension_with_dot
+        return basename + Namer.RECEIVED + self.extension_with_dot
 
     def get_approved_filename(self, basename: Optional[str] = None) -> str:
         basename = basename or self.get_basename()
-        return basename + NamerBase.APPROVED + self.extension_with_dot
+        return basename + Namer.APPROVED + self.extension_with_dot
 
     def set_extension(self, extension):
         self.extension_with_dot = extension

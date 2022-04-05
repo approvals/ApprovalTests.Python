@@ -4,7 +4,7 @@ import pathlib
 from typing import Optional
 
 from approvaltests.core.comparator import Comparator
-from approvaltests.namer.namer_base import NamerBase
+from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
 
@@ -37,7 +37,7 @@ class FileComparator(Comparator):
 class FileApprover(object):
     def verify(
         self,
-        namer: NamerBase,
+        namer: Namer,
         writer: Writer,
         reporter: Reporter,
         comparator: Comparator
