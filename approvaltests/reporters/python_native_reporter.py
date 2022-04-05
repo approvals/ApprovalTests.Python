@@ -39,18 +39,19 @@ def calculate_diff_with_approve_instruction(file1: str, file2: str):
     return diff_string + approve_cmd
 
 
-def calculate_diff(file1: str, file2: str):
-    with open(file1) as f1:
-        with open(file2) as f2:
+def calculate_diff(filename1: str, filename2: str):
+    with open(filename1) as file1:
+        with open(filename2) as file2:
             diff = unified_diff(
-                f2.readlines(),
-                f1.readlines(),
-                os.path.basename(file2),
-                os.path.basename(file1),
+                file2.readlines(),
+                file1.readlines(),
+                os.path.basename(filename2),
+                os.path.basename(filename1),
             )
             diff_string = "".join(diff)
             return diff_string
 
 if __name__ == "__main__":
-    fileA, fileB = sys.argv[1:3]
-    print(calculate_diff_with_approve_instruction(fileA, fileB))
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
+    print(calculate_diff_with_approve_instruction(file1, file2))

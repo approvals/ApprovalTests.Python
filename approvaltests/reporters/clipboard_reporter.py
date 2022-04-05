@@ -10,9 +10,10 @@ def get_command_text(
     if is_windows is None:
         is_windows = is_windows_os()
     if is_windows:
-        return 'move "{0}" "{1}"'.format(received_path, approved_path)
+        command = f'move "{received_path}" "{approved_path}"'
     else:
-        return "mv -f {0} {1}".format(received_path, approved_path)
+        command = f"mv -f {received_path} {approved_path}"
+    return command
 
 
 class ClipboardReporter(Reporter):
@@ -50,5 +51,5 @@ class CommandLineReporter(Reporter):
 
     def report(self, received_path, approved_path):
         text = get_command_text(received_path, approved_path)
-        print("\n\n{}\n\n".format(text))
+        print(f"\n\n{text}\n\n")
         return True

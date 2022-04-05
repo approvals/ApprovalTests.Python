@@ -14,5 +14,5 @@ class MultiReporter(Reporter):
         self.reporters = reporters
 
     def report(self, received_path, approved_path):
-        for r in self.reporters:
-            r.report(received_path, approved_path)
+        for reporter in self.reporters:
+            reporter.report(received_path, approved_path)
