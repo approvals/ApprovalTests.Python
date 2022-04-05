@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from typing import Callable, Optional, Union, DefaultDict
+from typing import Callable, Union, DefaultDict
 
 Scrubber = Callable[[str],str]
 
@@ -19,10 +19,10 @@ def create_regex_scrubber(
     return scrub
 
 
-def scrub_all_dates(d: str) -> str:
+def scrub_all_dates(date: str) -> str:
     return create_regex_scrubber(
         r"\d{4}-\d{2}-\d{2}\ \d{2}:\d{2}:\d{2}", lambda t: f"<date{t}>"
-    )(d)
+    )(date)
 
 
 def scrub_all_guids(data: str) -> str:

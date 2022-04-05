@@ -26,11 +26,13 @@ class StackFrameNamer(Namer):
         self.ClassName = self.get_class_name_for_frame(stacktrace)
         self.Directory = os.path.dirname(stacktrace[1])
 
-    def get_class_name_for_frame(self, stacktrace: FrameInfo) -> str:
+    @staticmethod
+    def get_class_name_for_frame(stacktrace: FrameInfo) -> str:
         if "self" not in stacktrace[0].f_locals:
-            return os.path.splitext(os.path.basename(stacktrace[1]))[0]
+            name = os.path.splitext(os.path.basename(stacktrace[1]))[0]
         else:
-            return f"{stacktrace[0].f_locals['self'].__class__.__name__}"
+            name = f"{stacktrace[0].f_locals['self'].__class__.__name__}"
+        return name
 
     def get_test_frame(self, caller: List[FrameInfo]) -> int:
         tmp_array = []
@@ -39,12 +41,13 @@ class StackFrameNamer(Namer):
                 tmp_array.append(index)
         if tmp_array:
             return tmp_array[-1]
-        message = """Could not find test method/function. Possible reasons could be: 
-1) approvaltests is not being used inside a test function 
+        message = """Could not find test method/function. Possible reasons could be:
+1) approvaltests is not being used inside a test function
 2) your test framework is not supported by ApprovalTests (unittest and pytest are currently supported)."""
         raise FrameNotFound(message)
 
-    def is_test_method(self, frame: FrameInfo) -> bool:
+    @staticmethod
+    def is_test_method(frame: FrameInfo) -> bool:
         method_name = frame[3]
         is_unittest_test = (
             "self" in frame[0].f_locals
