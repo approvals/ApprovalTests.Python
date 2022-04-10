@@ -22,6 +22,7 @@ class NamerBase(Namer):
         raise Exception("This class is abstract, override this method in a subclass")
 
     def config_directory(self) -> str:
+        #pylint:disable=no-self-use
         return None
 
     def get_config(self) -> Dict[str, str]:
@@ -53,4 +54,3 @@ class NamerBase(Namer):
 
     def set_extension(self, extension):
         self.extension_with_dot = extension
-
