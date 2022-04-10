@@ -1,8 +1,8 @@
 from typing import Dict, Callable
 
-from approvaltests.core.namer import Namer
-from approvaltests.core.reporter import Reporter
-from approvaltests.core.comparator import Comparator
+from .namer import Namer
+from .reporter import Reporter
+from .comparator import Comparator
 from approvaltests.file_approver import FileComparator
 
 
