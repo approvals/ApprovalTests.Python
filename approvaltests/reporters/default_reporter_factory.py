@@ -17,7 +17,6 @@ def set_default_reporter(reporter: "Reporter") -> None:
 def get_default_reporter() -> "Reporter":
     if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
         return DiffReporter()
-    # return cast(Reporter, DEFAULT_REPORTER.v)
     return DEFAULT_REPORTER.v
 
 
