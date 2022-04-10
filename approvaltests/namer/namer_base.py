@@ -44,13 +44,13 @@ class NamerBase(Namer):
         subdirectory = self.get_config().get("subdirectory", "")
         return str(os.path.join(self.get_directory(), subdirectory, file_name))
 
-    def get_received_filename(self, basename: Optional[str] = None) -> str:
-        basename = basename or self.get_basename()
-        return basename + Namer.RECEIVED + self.extension_with_dot
+    def get_received_filename(self, base: Optional[str] = None) -> str:
+        base = base or self.get_basename()
+        return base + Namer.RECEIVED + self.extension_with_dot
 
-    def get_approved_filename(self, basename: Optional[str] = None) -> str:
-        basename = basename or self.get_basename()
-        return basename + Namer.APPROVED + self.extension_with_dot
+    def get_approved_filename(self, base: Optional[str] = None) -> str:
+        base = base or self.get_basename()
+        return base + Namer.APPROVED + self.extension_with_dot
 
     def set_extension(self, extension):
         self.extension_with_dot = extension

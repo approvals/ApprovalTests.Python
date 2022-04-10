@@ -8,11 +8,11 @@ class Namer(ABC):
     RECEIVED = ".received"
 
     @abstractmethod
-    def get_received_filename(self, basename: Optional[str] = None) -> str:
+    def get_received_filename(self, base: Optional[str] = None) -> str:
         pass
 
     @abstractmethod
-    def get_approved_filename(self, basename: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: Optional[str] = None) -> str:
         pass
 
 
