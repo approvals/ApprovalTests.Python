@@ -16,7 +16,7 @@ class FileOptions:
                        no_override= False
                         ) -> "Options":
         if not (extension_with_dot.startswith(".")):
-            extension_with_dot = "." + extension_with_dot
+            extension_with_dot = f".{extension_with_dot}"
         if no_override and "extension_with_dot" in self.fields:
             extension_with_dot = self.fields["extension_with_dot"]
         return Options({**self.fields, **{"extension_with_dot": extension_with_dot}})
@@ -40,9 +40,7 @@ class Options:
         return Options({**self.fields, **{"comparator": comparator}})
 
     def scrub(self, data):
-        if self.has_scrubber():
-            return self.fields["scrubber_func"](data)
-        return data
+        return self.fields["scrubber_func"](data) if self.has_scrubber() else data
 
     def with_scrubber(self, scrubber_func: Callable[[str], str]) -> "Options":
         return Options({**self.fields, **{"scrubber_func": scrubber_func}})
