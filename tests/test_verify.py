@@ -22,8 +22,8 @@ from approvaltests.utils import get_adjacent_file, is_windows_os
 
 def print_grid(width, height, cell_print_func):
     result = ""
-    for y in range(0, height):
-        for x in range(0, width):
+    for y in range(height):
+        for x in range(width):
             result += cell_print_func(x, y)
         result += "\n"
     return result
@@ -210,7 +210,7 @@ class VerifyTests(unittest.TestCase):
 
             def advance(self):
                 self.step += 1
-                self.step = self.step % 4
+                self.step %= 4
 
         ascii_wheel = AsciiWheel()
         # begin-snippet: use_storyboard

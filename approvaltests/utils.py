@@ -7,8 +7,7 @@ from copy import deepcopy
 def get_adjacent_file(name: str) -> str:
     calling_file = inspect.stack(1)[1][1]
     directory = os.path.dirname(os.path.abspath(calling_file))
-    filename = os.path.join(directory, name)
-    return filename
+    return os.path.join(directory, name)
 
 
 def write_to_temporary_file(expected: str, name: str):
