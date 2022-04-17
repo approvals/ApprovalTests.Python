@@ -1,0 +1,15 @@
+Initial:
+-
+
+Frame #1:
+\
+
+Frame #2:
+|
+
+Frame #3:
+/
+
+Frame #4:
+-
+

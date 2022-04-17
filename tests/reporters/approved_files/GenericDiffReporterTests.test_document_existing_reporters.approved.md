@@ -1,0 +1,11 @@
+* AraxisMergeMac
+* AraxisMergeWin
+* BeyondCompare3
+* BeyondCompare4
+* BeyondCompare4Mac
+* BeyondCompare4x64
+* DiffMerge
+* PyCharm
+* diff
+* kdiff3
+* meld

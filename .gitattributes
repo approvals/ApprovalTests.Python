@@ -1,6 +1,9 @@
 # Auto detect text files and perform LF normalization, except on approved files
 * text=auto
+tests/exampleFileWindows1252.txt binary
+tests/exampleFile_Actual_Windows1252.txt binary
 tests/approved_files/* -text
+*.npy binary
 
 # Custom for Visual Studio
 *.cs     diff=csharp

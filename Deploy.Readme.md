@@ -1,4 +1,14 @@
-# Prerequisites
+## Via Github Actions
+1. Change version number in 
+https://github.com/approvals/ApprovalTests.Python/blob/master/approvaltests/version.py
+
+2. Create a new realease with that version number and tag it. 
+https://github.com/approvals/ApprovalTests.Python/releases
+
+Done! it will automatically push to pypi via the github action.
+
+## From personal Machine (historical)
+### Prerequisites
 
 * An account on pypi and pypitest
 * Access to approvaltests on pypip and pypitest
@@ -20,7 +30,7 @@ username: your_username
 password:
 ```
 
-# Pushing a new version to pypi
+### Pushing a new version to pypi
 
 Increment version in approvaltests/version.py.
 

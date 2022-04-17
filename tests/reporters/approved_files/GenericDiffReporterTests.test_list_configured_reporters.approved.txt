@@ -5,10 +5,9 @@
     "BeyondCompare3",
     "AraxisMergeWin",
     "AraxisMergeMac",
-    "WinMerge",
     "kdiff3",
     "meld",
     "DiffMerge",
     "PyCharm",
-    "PythonNative"
+    "diff"
 ]
