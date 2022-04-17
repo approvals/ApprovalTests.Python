@@ -22,6 +22,7 @@ class NamerBase(Namer):
         raise Exception("This class is abstract, override this method in a subclass")
 
     def config_directory(self) -> str:
+        #pylint:disable=no-self-use
         return None
 
     def get_config(self) -> Dict[str, str]:
@@ -43,14 +44,13 @@ class NamerBase(Namer):
         subdirectory = self.get_config().get("subdirectory", "")
         return str(os.path.join(self.get_directory(), subdirectory, file_name))
 
-    def get_received_filename(self, basename: Optional[str] = None) -> str:
-        basename = basename or self.get_basename()
-        return basename + Namer.RECEIVED + self.extension_with_dot
+    def get_received_filename(self, base: Optional[str] = None) -> str:
+        base = base or self.get_basename()
+        return base + Namer.RECEIVED + self.extension_with_dot
 
-    def get_approved_filename(self, basename: Optional[str] = None) -> str:
-        basename = basename or self.get_basename()
-        return basename + Namer.APPROVED + self.extension_with_dot
+    def get_approved_filename(self, base: Optional[str] = None) -> str:
+        base = base or self.get_basename()
+        return base + Namer.APPROVED + self.extension_with_dot
 
     def set_extension(self, extension):
         self.extension_with_dot = extension
-
