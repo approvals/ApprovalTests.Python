@@ -1,6 +1,6 @@
-from threading import local
-from typing import Optional, cast
 import typing
+from threading import local
+from typing import Optional
 
 if typing.TYPE_CHECKING:
     from approvaltests.core import Reporter
@@ -10,7 +10,6 @@ DEFAULT_REPORTER = local()
 
 
 def set_default_reporter(reporter: "Reporter") -> None:
-    global DEFAULT_REPORTER
     DEFAULT_REPORTER.v = reporter
 
 
