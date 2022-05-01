@@ -37,18 +37,20 @@ ApprovalTests solves this problem by providing reporters which let you view the 
 utilities.
 
 
-## Setup
+## Getting Started
+
+### New Projects
+
+If you are starting a new project, we suggest you use the [Starter Project](https://github.com/approvals/ApprovalTests.Python.StarterProject).
+You can just clone this and go. It's great for exercises, katas, and green field projects.
+
+###  Adding to Existing Projects 
 
 From [pypi](https://pypi.org/project/approvaltests/):
 
 	pip install approvaltests
 
-
-## Getting Started
-
-Try the [Starter Project](https://github.com/approvals/ApprovalTests.Python.StarterProject), just clone and go.
-
-### Overview
+## Overview
 
 Approvals work by comparing the test results to a golden master.  If no golden master exists you can create a snapshot 
 of the current test results and use that as the golden master.  The reporter helps you manage the golden master.  
