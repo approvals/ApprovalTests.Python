@@ -5,9 +5,10 @@
 ## Contents
 
   * [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
-  * [Setup](#setup)
   * [Getting Started](#getting-started)
-    * [Overview](#overview)
+    * [New Projects](#new-projects)
+    * [Adding to Existing Projects](#adding-to-existing-projects)
+  * [Overview](#overview)
     * [Example using pytest](#example-using-pytest)
     * [Example using unittest](#example-using-unittest)
   * [Reporters](#reporters)
