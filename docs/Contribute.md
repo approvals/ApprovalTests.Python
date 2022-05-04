@@ -3,18 +3,9 @@
 <!-- toc -->
 ## Contents
 
-  * [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
-  * [Getting Started](#getting-started)
-    * [New Projects](#new-projects)
-    * [Adding to Existing Projects](#adding-to-existing-projects)
-  * [Overview](#overview)
-    * [Example using pytest](#example-using-pytest)
-    * [Example using unittest](#example-using-unittest)
-  * [Reporters](#reporters)
-    * [Selecting a Reporter](#selecting-a-reporter)
-    * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
-  * [Support and Documentation](#support-and-documentation)
-  * [For developers](#for-developers)<!-- endToc -->
+  * [Join our Weekly Mobbing sessions](#join-our-weekly-mobbing-sessions)
+    * [Calendar Invite](#calendar-invite)
+    * [Zoom Link](#zoom-link)<!-- endToc -->
 
 ## Join our Weekly Mobbing sessions
 
