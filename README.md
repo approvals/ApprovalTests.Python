@@ -231,7 +231,11 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 * ApprovalTests Homepage: [http://www.approvaltests.com](http://www.approvaltests.com)
 
 ## For developers
+### Join our weekly ApprovalTests.python Mob/Ensemble
 
+The best way to contribute is to [join our weekly mob](./docs/Contribute.md)
+
+### Pull Requests
 Pull requests are welcomed, particularly those accompanied by automated tests.
 
 To run the self-tests, install pytest and tox, then execute
