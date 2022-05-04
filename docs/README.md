@@ -8,3 +8,6 @@
 
 ## Reference
 * [Storyboard](reference/storyboard.md)
+
+## Links
+ * [How to Contribute](Contribute.md)
