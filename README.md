@@ -16,7 +16,7 @@
     * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
   * [Support and Documentation](#support-and-documentation)
   * [For developers](#for-developers)
-    * [Join our weekly ApprovalTests.python Mob/Ensemble](#join-our-weekly-approvaltestspython-mobensemble)
+    * [Weekly Ensemble](#weekly-ensemble)
     * [Pull Requests](#pull-requests)<!-- endToc -->
 
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid testing.  
