@@ -10,10 +10,8 @@ from .introduction_reporter import *
 from .multi_reporter import *
 from .python_native_reporter import *
 from .received_file_launcher_reporter import *
-from .reporter_that_automatically_approves import *
-from .report_all_to_clipboard import *
 from .report_by_creating_diff_file import *
-from .report_on_cyber_dojo import *
-from .report_to_diff_engine import *
-from .report_with_beyond_compare import *
-from .testing_reporter import *
+from .clipboard_reporter import *
+from .diff_reporter import *
+from .first_working_reporter import *
+from .multi_reporter import *
