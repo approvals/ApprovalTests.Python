@@ -131,7 +131,7 @@ class VerifyTests(unittest.TestCase):
         verify_as_json(o, self.reporter)
         
     def test_verify_as_json_raises_type_error_for_non_renderable_types(self):
-        with self.assertRaises(TypeError):
+        with self.assertRaises(AttributeError):
             verify_as_json(Ellipsis, self.reporter)
 
     def test_verify_as_json_raises_value_error_for_non_renderable_values(self):
