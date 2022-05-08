@@ -7,8 +7,7 @@ from copy import deepcopy
 def get_adjacent_file(name: str) -> str:
     calling_file = inspect.stack(1)[1][1]
     directory = os.path.dirname(os.path.abspath(calling_file))
-    filename = os.path.join(directory, name)
-    return filename
+    return os.path.join(directory, name)
 
 
 def write_to_temporary_file(expected: str, name: str):
@@ -20,7 +19,7 @@ def write_to_temporary_file(expected: str, name: str):
         temp.write(expected.encode("utf-8-sig"))
         return temp.name
 
-
+      
 def to_json(object) -> str:
     return json.dumps(
         object,
@@ -31,6 +30,7 @@ def to_json(object) -> str:
         ensure_ascii=True,
     )
 
+  
 def deserialize_json_fields(a_dict: dict) -> dict:
     a_dict = deepcopy(a_dict)
     for key, val in a_dict.items():
@@ -66,3 +66,4 @@ def create_directory_if_needed(received_file: str) -> None:
     directory = os.path.dirname(received_file)
     if directory and not os.path.exists(directory):
         os.makedirs(directory)
+

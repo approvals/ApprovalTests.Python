@@ -22,8 +22,8 @@ from approvaltests.utils import get_adjacent_file, is_windows_os
 
 def print_grid(width, height, cell_print_func):
     result = ""
-    for y in range(0, height):
-        for x in range(0, width):
+    for y in range(height):
+        for x in range(width):
             result += cell_print_func(x, y)
         result += "\n"
     return result
@@ -129,6 +129,16 @@ class VerifyTests(unittest.TestCase):
         o = Bag()
         o.json = {"a": 0, "z": 26}
         verify_as_json(o, self.reporter)
+        
+    def test_verify_as_json_raises_type_error_for_non_renderable_types(self):
+        with self.assertRaises(TypeError):
+            verify_as_json(Ellipsis, self.reporter)
+
+    def test_verify_as_json_raises_value_error_for_non_renderable_values(self):
+        circular_data = []
+        circular_data.append(circular_data)
+        with self.assertRaises(ValueError):
+            verify_as_json(circular_data, self.reporter)
 
     def test_json_in_json(self):
         dict = {'a': 1, 'b': 2, 'c': 3}
@@ -200,7 +210,7 @@ class VerifyTests(unittest.TestCase):
 
             def advance(self):
                 self.step += 1
-                self.step = self.step % 4
+                self.step %= 4
 
         ascii_wheel = AsciiWheel()
         # begin-snippet: use_storyboard
