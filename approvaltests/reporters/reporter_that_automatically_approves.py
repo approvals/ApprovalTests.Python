@@ -1,6 +1,6 @@
 import shutil
 
-from approvaltests import Reporter
+from approvaltests.core import Reporter
 
 
 class ReporterThatAutomaticallyApproves(Reporter):
