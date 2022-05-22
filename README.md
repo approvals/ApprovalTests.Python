@@ -15,6 +15,7 @@
     * [Selecting a Reporter](#selecting-a-reporter)
     * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
   * [Support and Documentation](#support-and-documentation)
+    * [Dependencies](#dependencies)
   * [For developers](#for-developers)
     * [Weekly Ensemble](#weekly-ensemble)
     * [Pull Requests](#pull-requests)<!-- endToc -->
@@ -236,7 +237,17 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 
 ApprovalTests require Python 3.6 or greater and the following dependencies:
 
-snippet: requirements.prod.txt
+<!-- snippet: requirements.prod.txt -->
+<a id='snippet-requirements.prod.txt'></a>
+```txt
+pyperclip>=1.3
+empty-files>=0.0.3
+beautifulsoup4>=4.4.0
+pytest>=4.0.0
+allpairspy>=2.1.0
+```
+<sup><a href='/requirements.prod.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## For developers
 ### Weekly Ensemble
