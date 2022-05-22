@@ -1,4 +1,4 @@
-name: Test
+name: Test Min Versions
 
 on: [push, pull_request]
 
