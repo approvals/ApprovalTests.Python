@@ -182,7 +182,7 @@ class VerifyTests(unittest.TestCase):
         verify_xml(xml)
 
     def test_verify_html(self) -> None:
-        html = """<!DOCTYPEhtml><html><head> <title>Example</title> </head> <body> <p>This is an example of a simple HTML page with one paragraph.</p></body></html>"""
+        html = """<!DOCTYPE html><html><head> <title>Example</title> </head> <body> <p>This is an example of a simple HTML page with one paragraph.</p></body></html>"""
         verify_html(html)
 
     def test_newlines_at_end_of_files(self) -> None:
