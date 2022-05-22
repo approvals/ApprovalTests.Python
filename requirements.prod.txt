@@ -1,5 +1,5 @@
-pyperclip
-empty-files
-beautifulsoup4
-pytest
-allpairspy
+pyperclip>=1.3
+empty-files>=0.0.3
+beautifulsoup4>=4.4.0
+pytest>=4.0.0
+allpairspy>=2.1.0
