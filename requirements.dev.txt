@@ -1,3 +1,2 @@
 -r requirements.prod.txt
-numpy
-pylint
+-r requirements.test.txt
