@@ -232,6 +232,12 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 
 * ApprovalTests Homepage: [http://www.approvaltests.com](http://www.approvaltests.com)
 
+### Dependencies
+
+ApprovalTests require Python 3.6 or greater and the following dependencies:
+
+snippet: requirements.prod.txt
+
 ## For developers
 ### Weekly Ensemble
 
