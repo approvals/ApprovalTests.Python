@@ -240,7 +240,7 @@ ApprovalTests require Python 3.6 or greater and the following dependencies:
 <!-- snippet: requirements.prod.txt -->
 <a id='snippet-requirements.prod.txt'></a>
 ```txt
-pyperclip>=1.3
+pyperclip>=1.5.29
 empty-files>=0.0.3
 beautifulsoup4>=4.4.0
 pytest>=4.0.0
