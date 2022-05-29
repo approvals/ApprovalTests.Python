@@ -1,21 +1,18 @@
 # How to extend your own verify() methods
 
-<!-- toc -->
-## Contents
-
-  * [Custom Verify Method](#custom-verify-method)
-  * [Create a `Verifiable` Object](#create-a-verifiable-object)<!-- endToc -->
+toc
 
 ## Custom Verify Method
 
-Often people create a custom `verify()` method.
+One method would be to create a custom `verify()` method.
 
-For example:
+For example, as we use it to handle json:
 
 ``` 
-verify_my_object(my_object: MyObject)->None:
-  # do initalazition stuff
-  # call verify with modified stuff
+def verify_my_object(my_object: MyObject) -> None:
+    # do initalazition stuff
+    # call verify with modified stuff
+    ...
 ```  
   
 ## Create a `Verifiable` Object
@@ -29,26 +26,5 @@ And then just call `verify(YourVarifiableObject)`
 
 For Example:
 
-<!-- snippet: verifiable_object_example -->
-<a id='snippet-verifiable_object_example'></a>
-```py
-def test_verifiable(self):
-    class MarkdownParagraph(Verifiable):
-        def __init__(self, title, text):
-            self.title = title
-            self.text = text
-
-        def __str__(self) -> str:
-            return remove_indentation_from(f''' 
-            # {self.title}
-            {self.text}
-            ''')
-
-        def get_verify_parameters(self, options: Options) -> VerifyParameters:
-            return VerifyParameters(options.for_file.with_extension(".md"))
-
-    verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))
-```
-<sup><a href='/tests/test_verify.py#L283-L300' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+snippet: verifiable_object_example
   
