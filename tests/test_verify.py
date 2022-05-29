@@ -2,6 +2,7 @@
 import json
 import random
 import unittest
+from abc import abstractmethod
 
 import pytest
 
@@ -9,6 +10,9 @@ from approvaltests import Options, delete_approved_file, get_default_namer
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary
 from approvaltests.core.comparator import Comparator
+from approvaltests.core.verifiable import Verifiable
+from approvaltests.core.verify_parameters import VerifyParameters
+from approvaltests.multiline_string_utils import remove_indentation_from
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
@@ -66,9 +70,6 @@ class GameOfLife:
     def set_dead_cell(self, dead):
         self.dead = dead
         return self.dead
-
-
-
 
 
 class VerifyTests(unittest.TestCase):
@@ -129,7 +130,7 @@ class VerifyTests(unittest.TestCase):
         o = Bag()
         o.json = {"a": 0, "z": 26}
         verify_as_json(o, self.reporter)
-        
+
     def test_verify_as_json_raises_type_error_for_non_renderable_types(self):
         with self.assertRaises(AttributeError):
             verify_as_json(Ellipsis, self.reporter)
@@ -278,3 +279,20 @@ class VerifyTests(unittest.TestCase):
                 return True
 
         verify(random.random(), options=Options().with_comparator(EverythingIsTrue()))
+
+    def test_verifiable(self):
+        class MarkdownParagraph(Verifiable):
+            def __init__(self, title, text):
+                self.title = title
+                self.text = text
+
+            def __str__(self) -> str:
+                return remove_indentation_from(f''' 
+                # {self.title}
+                {self.text}
+                ''')
+
+            def get_verify_parameters(self, options: Options) -> VerifyParameters:
+                return VerifyParameters(options.for_file.with_extension(".md"))
+
+        verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))

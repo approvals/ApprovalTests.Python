@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Callable, List, Optional, Any, ByteString
 
 import approvaltests.reporters.default_reporter_factory
+from approvaltests.core.verifiable import Verifiable
 from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
@@ -80,6 +81,11 @@ def verify(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
+
+    if isinstance(data, Verifiable):
+        parameters = data.get_verify_parameters(options)
+        options = parameters.options
+
     namer_to_use = namer or options.namer
     verify_with_namer(
         data,
