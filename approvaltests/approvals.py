@@ -186,7 +186,7 @@ def verify_with_namer_and_writer(
     if error:
         raise ApprovalException(error)
 
-
+# begin-snippet: verify_as_json
 def verify_as_json(
     object,
     reporter=None,
@@ -199,6 +199,7 @@ def verify_as_json(
     options = initialize_options(options, reporter)
     n_ = to_json(object) + "\n"
     verify(n_, None, encoding="utf-8", newline="\n", options=options)
+# end-snippet
 
 
 def verify_xml(
