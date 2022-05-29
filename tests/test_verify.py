@@ -280,6 +280,7 @@ class VerifyTests(unittest.TestCase):
 
         verify(random.random(), options=Options().with_comparator(EverythingIsTrue()))
 
+    # begin-snippet: verifiable_object_example
     def test_verifiable(self):
         class MarkdownParagraph(Verifiable):
             def __init__(self, title, text):
@@ -296,3 +297,4 @@ class VerifyTests(unittest.TestCase):
                 return VerifyParameters(options.for_file.with_extension(".md"))
 
         verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))
+    # end-snippet
