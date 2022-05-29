@@ -28,7 +28,7 @@ ascii_wheel.advance()
 story.add_frame(ascii_wheel)
 verify(story)
 ```
-<sup><a href='/tests/test_verify.py#L216-L223' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_storyboard' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L217-L224' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_storyboard' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will produce 
