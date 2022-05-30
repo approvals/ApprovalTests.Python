@@ -13,7 +13,7 @@ def get_default_namer(extension: Optional[str] = None) -> Namer:
 class NamerFactory:
     @staticmethod
     @contextmanager
-    def with_parameters(args: Any):
+    def with_parameters(*args: Any):
         from approvaltests.core.scenario_namer import ScenarioNamer
-        namer = ScenarioNamer(get_default_namer(), args)
+        namer = ScenarioNamer(get_default_namer(), *args)
         yield Options().with_namer(namer)

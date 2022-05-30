@@ -49,6 +49,8 @@ class NamerTests(unittest.TestCase):
     def test_additional_information(self):
         with NamerFactory.with_parameters("case1") as options:
             assert_ends_with(options.namer.get_approved_filename(), "test_additional_information.case1.approved.txt")
+        with NamerFactory.with_parameters("case1", "case2") as options:
+            assert_ends_with(options.namer.get_approved_filename(), "test_additional_information.case1.case2.approved.txt")
 
         namer = get_default_namer()
         assert_ends_with(namer.get_approved_filename(), "test_additional_information.approved.txt")
