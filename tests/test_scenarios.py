@@ -19,7 +19,9 @@ def test_scenarios_old(year: int) -> None:
     )
 
 
+# begin-snippet: parametrized-test-example
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
     with NamerFactory.with_parameters(year) as options:
         verify(f"is Leap {str(year)}: {str(is_leap(year))}", options=options)
+# end-snippet
