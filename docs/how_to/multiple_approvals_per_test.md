@@ -14,10 +14,9 @@ Approval tests supports parametrized tests, here is an example:
 ```py
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
-    with NamerFactory.with_parameters(year) as options:
-        verify(f"is Leap {str(year)}: {str(is_leap(year))}", options=options)
+    verify(f"is Leap {str(year)}: {str(is_leap(year))}", options=NamerFactory.with_parameters(year))
 ```
-<sup><a href='/tests/test_scenarios.py#L22-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Verify Multiple Things without Blocking
