@@ -19,3 +19,11 @@ def test_scenarios(year: int) -> None:
 ```
 <sup><a href='/tests/test_scenarios.py#L22-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+## Verify Multiple Things without Blocking
+
+If you want to manually verify multiple things, you can still use the `with_parameters` directly. 
+However, if any of them fail your test will end. To prevent this you can use `gather_all_exceptions_and_throw`.
+Here is an example:
+
+snippet: multiple-verifies-without-blocking
