@@ -20,7 +20,12 @@ class ScenarioNamer(Namer):
         return basename + "." + str(self.scenario_name)
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
+        base = base or self.get_basename()
         return self.base_namer.get_approved_filename(base)
 
     def get_received_filename(self, base: Optional[str] = None) -> str:
+        base = base or self.get_basename()
         return self.base_namer.get_received_filename(base)
+
+    def set_extension(self, extension: str) -> None:
+        self.base_namer.set_extension(extension)

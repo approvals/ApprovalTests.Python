@@ -52,5 +52,5 @@ class NamerBase(Namer):
         base = base or self.get_basename()
         return base + Namer.APPROVED + self.extension_with_dot
 
-    def set_extension(self, extension):
+    def set_extension(self, extension: str) -> None:
         self.extension_with_dot = extension

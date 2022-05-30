@@ -1,7 +1,8 @@
 ﻿import os
 import unittest
 
-from approvaltests.namer.namer_base import NamerBase
+from approvaltests.multiline_string_utils import remove_indentation_from
+from approvaltests.namer.default_namer_factory import get_default_namer, NamerFactory
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 
 
@@ -44,6 +45,17 @@ class NamerTests(unittest.TestCase):
         n = StackFrameNamer(extension=".html")
         filename = n.get_approved_filename("./stuff")
         self.assertEqual(filename, "./stuff.approved.html")
+
+    def test_additional_information(self):
+        with NamerFactory.with_parameters("case1") as options:
+            assert_ends_with(options.namer.get_approved_filename(), "test_additional_information.case1.approved.txt")
+
+        namer = get_default_namer()
+        assert_ends_with(namer.get_approved_filename(), "test_additional_information.approved.txt")
+
+
+def assert_ends_with(received_string, expected_ending):
+    assert received_string.endswith(expected_ending)
 
 
 if __name__ == "__main__":
