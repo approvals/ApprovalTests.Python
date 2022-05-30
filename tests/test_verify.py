@@ -8,7 +8,8 @@ import pytest
 
 from approvaltests import Options, delete_approved_file, get_default_namer
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary
+from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary, \
+    verify_exception
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.verifiable import Verifiable
 from approvaltests.core.verify_parameters import VerifyParameters
@@ -298,3 +299,9 @@ class VerifyTests(unittest.TestCase):
 
         verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))
     # end-snippet
+
+    def test_verify_exception(self):
+        def throw_exception():
+            raise RuntimeError("some error")
+
+        verify_exception(throw_exception)

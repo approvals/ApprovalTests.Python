@@ -1,9 +1,11 @@
+import traceback
 import xml.dom.minidom
 from pathlib import Path
 from typing import Callable, List, Optional, Any, ByteString
 
 import approvaltests.reporters.default_reporter_factory
 from approvaltests.core.verifiable import Verifiable
+from approvaltests.multiline_string_utils import remove_indentation_from
 from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
@@ -39,14 +41,14 @@ def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
 
 
 def verify(
-    data: Any,
-    reporter: Optional[Reporter] = None,
-    namer: Optional[Namer] = None,
-    encoding: Optional[str] = None,
-    errors: Optional[str] = None,
-    newline: Optional[str] = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        data: Any,
+        reporter: Optional[Reporter] = None,
+        namer: Optional[Namer] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        newline: Optional[str] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -98,10 +100,10 @@ def verify(
 
 
 def verify_binary(
-    data: ByteString,
-    file_extension_with_dot: str,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        data: ByteString,
+        file_extension_with_dot: str,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, None).for_file.with_extension(file_extension_with_dot)
     verify_with_namer_and_writer(
@@ -113,7 +115,7 @@ def verify_binary(
 
 
 def initialize_options(
-    options: Optional[Options], reporter: Optional[Reporter] = None
+        options: Optional[Options], reporter: Optional[Reporter] = None
 ) -> Options:
     if options is None:
         options = Options()
@@ -123,14 +125,14 @@ def initialize_options(
 
 
 def verify_with_namer(
-    data: Any,
-    namer: Namer,
-    reporter: Optional[Reporter] = None,
-    encoding: Optional[str] = None,
-    errors: Optional[str] = None,
-    newline: Optional[str] = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        data: Any,
+        namer: Namer,
+        reporter: Optional[Reporter] = None,
+        encoding: Optional[str] = None,
+        errors: Optional[str] = None,
+        newline: Optional[str] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -174,11 +176,11 @@ def verify_with_namer(
 
 
 def verify_with_namer_and_writer(
-    namer: Namer,
-    writer: Writer,
-    reporter: Optional[Reporter]= None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        namer: Namer,
+        writer: Writer,
+        reporter: Optional[Reporter] = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, reporter)
     approver = FileApprover()
@@ -186,28 +188,31 @@ def verify_with_namer_and_writer(
     if error:
         raise ApprovalException(error)
 
+
 # begin-snippet: verify_as_json
 def verify_as_json(
-    object,
-    reporter=None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    deserialize_json_fields = False,
-    options: Optional[Options] = None
+        object,
+        reporter=None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        deserialize_json_fields=False,
+        options: Optional[Options] = None
 ):
     if deserialize_json_fields:
         object = approvaltests.utils.deserialize_json_fields(object)
     options = initialize_options(options, reporter)
     n_ = to_json(object) + "\n"
     verify(n_, None, encoding="utf-8", newline="\n", options=options)
+
+
 # end-snippet
 
 
 def verify_xml(
-    xml_string: str,
-    reporter: None = None,
-    namer: Namer = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        xml_string: str,
+        reporter: None = None,
+        namer: Namer = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, reporter)
     try:
@@ -218,10 +223,11 @@ def verify_xml(
 
     verify(pretty_xml, options=options.for_file.with_extension(".xml"))
 
+
 def verify_html(
-    html_string: str,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        html_string: str,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options)
     try:
@@ -234,10 +240,10 @@ def verify_html(
 
 
 def verify_file(
-    file_name: str,
-    reporter: Reporter = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        file_name: str,
+        reporter: Reporter = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify the contents of a text file against previously approved contents.
 
@@ -256,21 +262,22 @@ def verify_file(
             None or 'strict'.
     """
     options = initialize_options(options, reporter)
-    options = options.for_file.with_extension(Path(file_name).suffix, no_override = True)
+    options = options.for_file.with_extension(Path(file_name).suffix, no_override=True)
     verify_with_namer_and_writer(
         options.namer, ExistingFileWriter(file_name, options), None, options=options
     )
 
+
 def verify_all(
-    header: str,
-    alist: List[str],
-    formatter: Optional[Callable] = None,
-    reporter: Optional[DiffReporter] = None,
-    encoding: None = None,
-    errors: None = None,
-    newline: None = None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+        header: str,
+        alist: List[str],
+        formatter: Optional[Callable] = None,
+        reporter: Optional[DiffReporter] = None,
+        encoding: None = None,
+        errors: None = None,
+        newline: None = None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 
@@ -313,6 +320,21 @@ def verify_all(
     verify(
         text, None, encoding=encoding, errors=errors, newline=newline, options=options
     )
+
+
+def verify_exception(
+        callable: Callable,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        options: Optional[Options] = None
+):
+    result = ""
+    try:
+        callable()
+    except Exception as exception:
+        result = remove_indentation_from(f"""
+        {type(exception).__name__}: {str(exception)}
+        """)
+    verify(result, options=options)
 
 
 def get_scenario_namer(*scenario_name: Any) -> ScenarioNamer:
