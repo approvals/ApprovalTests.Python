@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Sequence, Any
 
 from approvaltests.utilities.exceptions.multiple_exceptions import MultipleExceptions
 
@@ -20,3 +20,11 @@ class ExceptionCollector:
             raise self._exceptions[0]
 
         raise MultipleExceptions(self._exceptions)
+
+
+def gather_all_exceptions(parameters: Sequence[Any], callable: Callable[[Any], Any]) -> ExceptionCollector:
+    collector = ExceptionCollector()
+    for p in parameters:
+        collector.gather(lambda: callable(p))
+
+    return collector

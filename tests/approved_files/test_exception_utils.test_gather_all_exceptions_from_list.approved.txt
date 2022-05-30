@@ -1,0 +1,10 @@
+MultipleExceptions: 
+  AssertionError: assert 1 == 0
+  +1
+  -0
+  AssertionError: assert 1 == 0
+  +1
+  -0
+  AssertionError: assert 1 == 0
+  +1
+  -0
