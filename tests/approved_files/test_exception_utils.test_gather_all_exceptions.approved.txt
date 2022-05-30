@@ -1,4 +1,4 @@
 MultipleExceptions: 
-  AssertionError: assert (1 % 2) == 0
-  AssertionError: assert (3 % 2) == 0
-  AssertionError: assert (5 % 2) == 0
+  ValueError: 1 is not odd!
+  ValueError: 3 is not odd!
+  ValueError: 5 is not odd!

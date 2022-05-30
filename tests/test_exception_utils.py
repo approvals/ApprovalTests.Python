@@ -3,7 +3,8 @@ from approvaltests.utilities.exceptions.exception_collector import ExceptionColl
 
 
 def is_odd(integer):
-    assert integer % 2 == 0
+    if integer % 2 != 0:
+        raise ValueError(f"{integer} is not odd!")
 
 
 def test_gather_all_exceptions():
