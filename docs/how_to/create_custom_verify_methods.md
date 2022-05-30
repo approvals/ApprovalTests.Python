@@ -16,11 +16,11 @@ For example, as we use it to handle json:
 <a id='snippet-verify_as_json'></a>
 ```py
 def verify_as_json(
-    object,
-    reporter=None,
-    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    deserialize_json_fields = False,
-    options: Optional[Options] = None
+        object,
+        reporter=None,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+        deserialize_json_fields=False,
+        options: Optional[Options] = None
 ):
     if deserialize_json_fields:
         object = approvaltests.utils.deserialize_json_fields(object)
@@ -28,7 +28,7 @@ def verify_as_json(
     n_ = to_json(object) + "\n"
     verify(n_, None, encoding="utf-8", newline="\n", options=options)
 ```
-<sup><a href='/approvaltests/approvals.py#L189-L202' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L192-L207' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
@@ -63,6 +63,6 @@ def test_verifiable(self):
 
     verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))
 ```
-<sup><a href='/tests/test_verify.py#L283-L300' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L284-L301' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   
