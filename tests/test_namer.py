@@ -1,7 +1,6 @@
 ﻿import os
 import unittest
 
-from approvaltests.multiline_string_utils import remove_indentation_from
 from approvaltests.namer.default_namer_factory import get_default_namer, NamerFactory
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 

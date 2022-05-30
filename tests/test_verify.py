@@ -2,26 +2,24 @@
 import json
 import random
 import unittest
-from abc import abstractmethod
 
 import pytest
 
-from approvaltests import Options, delete_approved_file, get_default_namer
+from approvaltests import Options, delete_approved_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary, \
     verify_exception
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.verifiable import Verifiable
 from approvaltests.core.verify_parameters import VerifyParameters
-from approvaltests.multiline_string_utils import remove_indentation_from
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.reporters.reporter_that_automatically_approves import ReporterThatAutomaticallyApproves
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.storyboard import Storyboard
+from approvaltests.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests.utils import get_adjacent_file, is_windows_os
 
 

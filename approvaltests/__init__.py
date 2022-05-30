@@ -1,6 +1,6 @@
 """Approvaltests module."""
 from .version import *
-from .utils import *
+from .utilities import *
 from .approvals import *
 from .asserts import *
 from .combination_approvals import *

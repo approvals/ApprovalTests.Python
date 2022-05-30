@@ -1,11 +1,9 @@
-import traceback
 import xml.dom.minidom
 from pathlib import Path
 from typing import Callable, List, Optional, Any, ByteString
 
 import approvaltests.reporters.default_reporter_factory
 from approvaltests.core.verifiable import Verifiable
-from approvaltests.multiline_string_utils import remove_indentation_from
 from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
@@ -19,6 +17,7 @@ from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
+from approvaltests.utilities.exceptions.exception_utils import to_string
 
 __unittest = True
 __tracebackhide__ = True
@@ -331,9 +330,7 @@ def verify_exception(
     try:
         callable()
     except Exception as exception:
-        result = remove_indentation_from(f"""
-        {type(exception).__name__}: {str(exception)}
-        """)
+        result = to_string(exception)
     verify(result, options=options)
 
 
