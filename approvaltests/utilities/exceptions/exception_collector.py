@@ -28,3 +28,7 @@ def gather_all_exceptions(parameters: Sequence[Any], callable: Callable[[Any], A
         collector.gather(lambda: callable(p))
 
     return collector
+
+
+def gather_all_exceptions_and_throw(parameters: Sequence[Any], callable: Callable[[Any], Any]) -> None:
+    gather_all_exceptions(parameters, callable).release()
