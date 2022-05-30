@@ -1,10 +1,4 @@
 MultipleExceptions: 
-  AssertionError: assert 1 == 0
-  +1
-  -0
-  AssertionError: assert 1 == 0
-  +1
-  -0
-  AssertionError: assert 1 == 0
-  +1
-  -0
+  AssertionError: assert (1 % 2) == 0
+  AssertionError: assert (3 % 2) == 0
+  AssertionError: assert (5 % 2) == 0
