@@ -51,7 +51,7 @@ def test_scenarios(year: int) -> None:
 Another alternative is to simply make multiple `verify()` calls using the `NamerFactory.with_parameters` in the code. 
 Be aware that this will halt your test on the first `verify()` that fails, same as a normal `assert`.
 
-<!-- snippet: multiple-verifies-without-blocking -->
+<!-- snippet: multiple-verifies-with-blocking -->
 <a id='snippet-multiple-verifies-without-blocking'></a>
 ```py
 years = [1993, 1992, 1900, 2000]
