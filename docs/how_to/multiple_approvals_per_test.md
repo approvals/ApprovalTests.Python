@@ -6,7 +6,32 @@
   * [Verifying Parametrized Tests](#verifying-parametrized-tests)
   * [Verify Multiple Things without Blocking](#verify-multiple-things-without-blocking)<!-- endToc -->
 
-## Verifying Parametrized Tests
+## The Scenario
+
+Let's say that you want to test whether or not a year is a leap year for four values [1993, 1992, 1900, 2000]
+
+But instead of testing them all in one file using `verify_all` 
+you would like to have 4 seperate approval files.
+
+
+1. test_file.test_name.`1993`.approved.txt
+2. test_file.test_name.`1992`.approved.txt
+3. test_file.test_name.`1900`.approved.txt
+4. test_file.test_name.`2000`.approved.txt
+
+Here is a sample of one of the `.approved.` files:
+
+<!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
+<a id='snippet-test_scenarios.test_manual_scenarios.1992.approved.txt'></a>
+```txt
+is Leap 1992: True
+```
+<sup><a href='/tests/approved_files/test_scenarios.test_manual_scenarios.1992.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_scenarios.test_manual_scenarios.1992.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+Here are 3 ways you can do this in a single test.
+
+### Method 1: Verifying Parametrized Tests
 
 Approval tests supports parametrized tests, here is an example:
 
@@ -19,7 +44,7 @@ def test_scenarios(year: int) -> None:
 ```
 <sup><a href='/tests/test_scenarios.py#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
-## Verify Multiple Things with Blocking
+### Method 2: Verify Multiple Things with Blocking
 
 Another alternative is to simply make multiple `verify()` calls using the `NamerFactory.with_parameters` in the code. 
 Be aware that this will halt your test on the first `verify()` that fails, same as a normal `assert`.
@@ -33,7 +58,7 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 <sup><a href='/tests/test_scenarios.py#L43-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-## Verify Multiple Things without Blocking
+### Method 3: Verify Multiple Things without Blocking
 
 To manually verify multiple things without the executation stopping on the first failure,
 using `gather_all_exceptions_and_throw` will prevent blocking, while still failing on any failure.  
@@ -49,20 +74,8 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 <sup><a href='/tests/test_scenarios.py#L43-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-Which will produce the 4 files:
 
-1. test_scenarios.test_manual_scenarios.`1993`.approved.txt
-2. test_scenarios.test_manual_scenarios.`1992`.approved.txt
-3. test_scenarios.test_manual_scenarios.`1900`.approved.txt
-4. test_scenarios.test_manual_scenarios.`2000`.approved.txt
 
-Here is a sample of one of them: 
-<!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
-<a id='snippet-test_scenarios.test_manual_scenarios.1992.approved.txt'></a>
-```txt
-is Leap 1992: True
-```
-<sup><a href='/tests/approved_files/test_scenarios.test_manual_scenarios.1992.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_scenarios.test_manual_scenarios.1992.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+
 
 
