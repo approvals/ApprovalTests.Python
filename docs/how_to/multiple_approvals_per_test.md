@@ -29,9 +29,10 @@ Here is an example:
 <!-- snippet: multiple-verifies-without-blocking -->
 <a id='snippet-multiple-verifies-without-blocking'></a>
 ```py
-gather_all_exceptions_and_throw([1, 2], lambda i: verify(f"{i}", options=NamerFactory.with_parameters(i)))
+inputs = [1, 2]
+gather_all_exceptions_and_throw(inputs, lambda i: verify(f"{i}", options=NamerFactory.with_parameters(i)))
 ```
-<sup><a href='/tests/test_scenarios.py#L32-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L32-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Which will produce the 2 files:
