@@ -37,7 +37,7 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 
 Which will produce the 2 files:
 
-`test_scenarios.test_manual_scenarios.1992.approved.txt`
+test_scenarios.test_manual_scenarios.`1992`.approved.txt
 
 <!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
 <a id='snippet-test_scenarios.test_manual_scenarios.1992.approved.txt'></a>
@@ -49,7 +49,7 @@ is Leap 1992: True
 
 and 
 
-`test_scenarios.test_manual_scenarios.1993.approved.txt`
+test_scenarios.test_manual_scenarios.`1993`.approved.txt
 
 <!-- snippet: test_scenarios.test_manual_scenarios.1993.approved.txt -->
 <a id='snippet-test_scenarios.test_manual_scenarios.1993.approved.txt'></a>
