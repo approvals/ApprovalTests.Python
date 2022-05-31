@@ -3,8 +3,9 @@
 <!-- toc -->
 ## Contents
 
-  * [Verifying Parametrized Tests](#verifying-parametrized-tests)
-  * [Verify Multiple Things without Blocking](#verify-multiple-things-without-blocking)<!-- endToc -->
+  * [The Scenario](#the-scenario)
+    * [Method 1: Verifying Parametrized Tests](#method-1-verifying-parametrized-tests)
+    * [Method 3: Verify Multiple Things without Blocking](#method-3-verify-multiple-things-without-blocking)<!-- endToc -->
 
 ## The Scenario
 
