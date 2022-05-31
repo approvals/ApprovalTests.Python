@@ -30,5 +30,6 @@ def test_scenarios(year: int) -> None:
 
 def test_manual_scenarios() -> None:
     # begin-snippet: multiple-verifies-without-blocking
-    gather_all_exceptions_and_throw([1, 2], lambda i: verify(f"{i}", options=NamerFactory.with_parameters(i)))
+    inputs = [1, 2]
+    gather_all_exceptions_and_throw(inputs, lambda i: verify(f"{i}", options=NamerFactory.with_parameters(i)))
     # end-snippet
