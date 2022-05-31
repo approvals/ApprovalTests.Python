@@ -21,7 +21,7 @@ def test_scenarios(year: int) -> None:
 <!-- endSnippet -->
 ## Verify Multiple Things with Blocking
 
-An other alternative is to simply make multiple `verify()` calls using the `NamerFactory` in the code. 
+Another alternative is to simply make multiple `verify()` calls using the `NamerFactory.with_parameters` in the code. 
 Be aware that this will halt your test on the first `verify()` that fails, same as a normal `assert`.
 
 <!-- snippet: multiple-verifies-without-blocking -->
@@ -35,8 +35,9 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 
 ## Verify Multiple Things without Blocking
 
-If you want to manually verify multiple things, you can still use the `with_parameters` directly. 
-However, if any of them fail your test will end. To prevent this you can use `gather_all_exceptions_and_throw`.
+To manually verify multiple things without the executation stopping on the first failure,
+using `gather_all_exceptions_and_throw` will prevent blocking, while still failing on any failure.  
+
 Here is an example:
 
 <!-- snippet: multiple-verifies-without-blocking -->
