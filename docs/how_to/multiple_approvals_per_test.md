@@ -5,6 +5,7 @@
 
   * [The Scenario](#the-scenario)
     * [Method 1: Verifying Parametrized Tests](#method-1-verifying-parametrized-tests)
+    * [Method 2: Verify Multiple Things with Blocking](#method-2-verify-multiple-things-with-blocking)
     * [Method 3: Verify Multiple Things without Blocking](#method-3-verify-multiple-things-without-blocking)<!-- endToc -->
 
 ## The Scenario
@@ -51,7 +52,20 @@ def test_scenarios(year: int) -> None:
 Another alternative is to simply make multiple `verify()` calls using the `NamerFactory.with_parameters` in the code. 
 Be aware that this will halt your test on the first `verify()` that fails, same as a normal `assert`.
 
-snippet: multiple-verifies-with-blocking
+<!-- snippet: multiple-verifies-with-blocking -->
+<a id='snippet-multiple-verifies-with-blocking'></a>
+```py
+year = 1992
+verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+year = 1993
+verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+year = 1900
+verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+year = 2000
+verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+```
+<sup><a href='/tests/test_scenarios.py#L31-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-with-blocking' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### Method 3: Verify Multiple Things without Blocking
 
