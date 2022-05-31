@@ -41,12 +41,12 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 <sup><a href='/tests/test_scenarios.py#L32-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-Which will produce the 2 files:
+Which will produce the 4 files:
 
-test_scenarios.test_manual_scenarios.`1992`.approved.txt
-test_scenarios.test_manual_scenarios.`1993`.approved.txt
-test_scenarios.test_manual_scenarios.`1900`.approved.txt
-test_scenarios.test_manual_scenarios.`2000`.approved.txt
+1. test_scenarios.test_manual_scenarios.`1993`.approved.txt
+2. test_scenarios.test_manual_scenarios.`1900`.approved.txt
+3. test_scenarios.test_manual_scenarios.`2000`.approved.txt
+4. test_scenarios.test_manual_scenarios.`1992`.approved.txt
 
 Here is a sample of one of them: 
 <!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
