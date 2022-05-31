@@ -51,9 +51,9 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 Which will produce the 4 files:
 
 1. test_scenarios.test_manual_scenarios.`1993`.approved.txt
-2. test_scenarios.test_manual_scenarios.`1900`.approved.txt
-3. test_scenarios.test_manual_scenarios.`2000`.approved.txt
-4. test_scenarios.test_manual_scenarios.`1992`.approved.txt
+2. test_scenarios.test_manual_scenarios.`1992`.approved.txt
+3. test_scenarios.test_manual_scenarios.`1900`.approved.txt
+4. test_scenarios.test_manual_scenarios.`2000`.approved.txt
 
 Here is a sample of one of them: 
 <!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
