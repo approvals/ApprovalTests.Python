@@ -33,3 +33,11 @@ gather_all_exceptions_and_throw([1, 2], lambda i: verify(f"{i}", options=NamerFa
 ```
 <sup><a href='/tests/test_scenarios.py#L32-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+Which will produce the 2 files:
+
+snippet: test_scenarios.test_manual_scenarios.1.approved.txt
+
+and 
+
+snippet: test_scenarios.test_manual_scenarios.2.approved.txt
