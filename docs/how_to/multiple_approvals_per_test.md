@@ -51,14 +51,7 @@ def test_scenarios(year: int) -> None:
 Another alternative is to simply make multiple `verify()` calls using the `NamerFactory.with_parameters` in the code. 
 Be aware that this will halt your test on the first `verify()` that fails, same as a normal `assert`.
 
-<!-- snippet: multiple-verifies-with-blocking -->
-<a id='snippet-multiple-verifies-without-blocking'></a>
-```py
-years = [1993, 1992, 1900, 2000]
-gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str(is_leap_year(y))}", options=NamerFactory.with_parameters(y)))
-```
-<sup><a href='/tests/test_scenarios.py#L43-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+snippet: multiple-verifies-with-blocking
 
 ### Method 3: Verify Multiple Things without Blocking
 
