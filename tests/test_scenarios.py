@@ -5,7 +5,7 @@ from approvaltests.utilities.exceptions.exception_collector import gather_all_ex
     gather_all_exceptions_and_throw
 
 
-def is_leap(year: int) -> bool:
+def is_leap_year(year: int) -> bool:
     if year % 400 == 0:
         return True
     if year % 100 == 0:
@@ -16,7 +16,7 @@ def is_leap(year: int) -> bool:
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios_old(year: int) -> None:
     verify(
-        "is Leap " + str(year) + ": " + str(is_leap(year)),
+        f"is Leap {str(year)}: {str(is_leap_year(year))}",
         namer=get_scenario_namer(year),
     )
 
@@ -24,12 +24,12 @@ def test_scenarios_old(year: int) -> None:
 # begin-snippet: parametrized-test-example
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
-    verify(f"is Leap {str(year)}: {str(is_leap(year))}", options=NamerFactory.with_parameters(year))
+    verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
 # end-snippet
 
 
 def test_manual_scenarios() -> None:
     # begin-snippet: multiple-verifies-without-blocking
-    inputs = [1, 2]
-    gather_all_exceptions_and_throw(inputs, lambda i: verify(f"{i}", options=NamerFactory.with_parameters(i)))
+    years = [1993,1992]
+    gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str(is_leap_year(y))}", options=NamerFactory.with_parameters(y)))
     # end-snippet
