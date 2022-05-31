@@ -44,6 +44,7 @@ def test_scenarios(year: int) -> None:
 ```
 <sup><a href='/tests/test_scenarios.py#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
 ### Method 2: Verify Multiple Things with Blocking
 
 Another alternative is to simply make multiple `verify()` calls using the `NamerFactory.with_parameters` in the code. 
