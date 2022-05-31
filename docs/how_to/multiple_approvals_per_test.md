@@ -15,7 +15,7 @@ Approval tests supports parametrized tests, here is an example:
 ```py
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
-    verify(f"is Leap {str(year)}: {str(is_leap(year))}", options=NamerFactory.with_parameters(year))
+    verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
 ```
 <sup><a href='/tests/test_scenarios.py#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
@@ -29,8 +29,8 @@ Here is an example:
 <!-- snippet: multiple-verifies-without-blocking -->
 <a id='snippet-multiple-verifies-without-blocking'></a>
 ```py
-inputs = [1, 2]
-gather_all_exceptions_and_throw(inputs, lambda i: verify(f"{i}", options=NamerFactory.with_parameters(i)))
+years = [1993,1992]
+gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str(is_leap_year(y))}", options=NamerFactory.with_parameters(y)))
 ```
 <sup><a href='/tests/test_scenarios.py#L32-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
@@ -39,10 +39,22 @@ Which will produce the 2 files:
 
 `test_scenarios.test_manual_scenarios.1992.approved.txt`
 
-snippet: test_scenarios.test_manual_scenarios.1992.approved.txt
+<!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
+<a id='snippet-test_scenarios.test_manual_scenarios.1992.approved.txt'></a>
+```txt
+is Leap 1992: True
+```
+<sup><a href='/tests/approved_files/test_scenarios.test_manual_scenarios.1992.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_scenarios.test_manual_scenarios.1992.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 and 
 
 `test_scenarios.test_manual_scenarios.1993.approved.txt`
 
-snippet: test_scenarios.test_manual_scenarios.1993.approved.txt
+<!-- snippet: test_scenarios.test_manual_scenarios.1993.approved.txt -->
+<a id='snippet-test_scenarios.test_manual_scenarios.1993.approved.txt'></a>
+```txt
+is Leap 1993: False
+```
+<sup><a href='/tests/approved_files/test_scenarios.test_manual_scenarios.1993.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_scenarios.test_manual_scenarios.1993.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
