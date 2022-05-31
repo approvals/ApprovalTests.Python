@@ -19,6 +19,12 @@ def test_scenarios(year: int) -> None:
 ```
 <sup><a href='/tests/test_scenarios.py#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+## Verify Multiple Things with Blocking
+
+An other alternative is to simply make multiple `verify()` calls using the `NamerFactory` in the code. 
+Be aware that this will halt your test on the first `verify()` that fails, same as a normal `assert`.
+
+snippet: multiple-verifies-without-blocking
 
 ## Verify Multiple Things without Blocking
 
@@ -38,7 +44,11 @@ gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str
 Which will produce the 2 files:
 
 test_scenarios.test_manual_scenarios.`1992`.approved.txt
+test_scenarios.test_manual_scenarios.`1993`.approved.txt
+test_scenarios.test_manual_scenarios.`1900`.approved.txt
+test_scenarios.test_manual_scenarios.`2000`.approved.txt
 
+Here is a sample of one of them: 
 <!-- snippet: test_scenarios.test_manual_scenarios.1992.approved.txt -->
 <a id='snippet-test_scenarios.test_manual_scenarios.1992.approved.txt'></a>
 ```txt
@@ -47,14 +57,4 @@ is Leap 1992: True
 <sup><a href='/tests/approved_files/test_scenarios.test_manual_scenarios.1992.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_scenarios.test_manual_scenarios.1992.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-and 
 
-test_scenarios.test_manual_scenarios.`1993`.approved.txt
-
-<!-- snippet: test_scenarios.test_manual_scenarios.1993.approved.txt -->
-<a id='snippet-test_scenarios.test_manual_scenarios.1993.approved.txt'></a>
-```txt
-is Leap 1993: False
-```
-<sup><a href='/tests/approved_files/test_scenarios.test_manual_scenarios.1993.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_scenarios.test_manual_scenarios.1993.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
