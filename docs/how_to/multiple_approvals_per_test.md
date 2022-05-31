@@ -37,6 +37,8 @@ gather_all_exceptions_and_throw(inputs, lambda i: verify(f"{i}", options=NamerFa
 
 Which will produce the 2 files:
 
+`test_scenarios.test_manual_scenarios.1.approved.txt`
+
 <!-- snippet: test_scenarios.test_manual_scenarios.1.approved.txt -->
 <a id='snippet-test_scenarios.test_manual_scenarios.1.approved.txt'></a>
 ```txt
@@ -46,6 +48,8 @@ Which will produce the 2 files:
 <!-- endSnippet -->
 
 and 
+
+`test_scenarios.test_manual_scenarios.2.approved.txt`
 
 <!-- snippet: test_scenarios.test_manual_scenarios.2.approved.txt -->
 <a id='snippet-test_scenarios.test_manual_scenarios.2.approved.txt'></a>
