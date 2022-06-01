@@ -40,7 +40,7 @@ See the required interfaces:
 
 And then just call `verify(YourVarifiableObject)`
 
-If verify is called with an instance of `Verifiable` it will to a callback, allowing you to do whatever is needed,
+If verify is called with an instance of `Verifiable` it will do a callback, allowing you to do whatever is needed,
 for example:
 
 <!-- snippet: verifiable_object_example -->
