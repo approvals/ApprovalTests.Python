@@ -1,7 +1,7 @@
 import pyperclip # type: ignore
 
-from approvaltests.core import Reporter
-from approvaltests.reporters import get_command_text
+from approvaltests.core.reporter import Reporter
+from approvaltests.reporters.clipboard_reporter import get_command_text
 
 
 class ReporterByCopyMoveCommandForEverythingToClipboard(Reporter):

@@ -1,4 +1,3 @@
-from contextlib import contextmanager
 from typing import Optional, Any
 
 from approvaltests.core.options import Options
