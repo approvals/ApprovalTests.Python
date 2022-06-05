@@ -30,5 +30,5 @@ def gather_all_exceptions(parameters: Sequence[Any], callable: Callable[[Any], A
     return collector
 
 
-def gather_all_exceptions_and_throw(parameters: Sequence[Any], callable: Callable[[Any], Any]) -> None:
-    gather_all_exceptions(parameters, callable).release()
+def gather_all_exceptions_and_throw(parameters: Sequence[Any], code_to_execute: Callable[[Any], Any]) -> None:
+    gather_all_exceptions(parameters, code_to_execute).release()
