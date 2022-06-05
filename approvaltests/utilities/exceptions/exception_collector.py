@@ -7,9 +7,9 @@ class ExceptionCollector:
     def __init__(self):
         self._exceptions = []
 
-    def gather(self, callable: Callable):
+    def gather(self, code_to_execute: Callable):
         try:
-            callable()
+            code_to_execute()
         except Exception as exception:
             self._exceptions.append(exception)
 
