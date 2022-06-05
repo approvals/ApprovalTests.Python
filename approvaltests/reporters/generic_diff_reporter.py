@@ -40,7 +40,7 @@ class GenericDiffReporter(Reporter):
 
     @staticmethod
     def run_command(command_array):
-        with subprocess.Popen(command_array) as process:
+        with subprocess.Popen(command_array):
             pass
 
     def get_command(self, received: str, approved: str) -> List[str]:

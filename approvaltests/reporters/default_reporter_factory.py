@@ -1,9 +1,5 @@
-import typing
 from threading import local
 from typing import Optional
-
-if typing.TYPE_CHECKING:
-    from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.diff_reporter import DiffReporter
 
 DEFAULT_REPORTER = local()
