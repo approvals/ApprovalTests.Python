@@ -1,12 +1,7 @@
-from typing import Optional, Any
+from typing import Any
 
 from approvaltests.core.options import Options
-from approvaltests.core.namer import Namer
-from approvaltests.namer.stack_frame_namer import StackFrameNamer
-
-
-def get_default_namer(extension: Optional[str] = None) -> Namer:
-    return StackFrameNamer(extension)
+from approvaltests.namer.default_name import get_default_namer
 
 
 class NamerFactory:

@@ -1,9 +1,9 @@
 from typing import Dict, Callable
 
-from .namer import Namer
-from .reporter import Reporter
-from .comparator import Comparator
+from approvaltests.core.reporter import Reporter
+from approvaltests.core.comparator import Comparator
 from approvaltests.file_approver import FileComparator
+from approvaltests.core.namer import Namer
 
 
 class FileOptions:
@@ -61,8 +61,7 @@ class Options:
 
     @property
     def namer(self) -> Namer:
-        from approvaltests.namer.default_namer_factory import get_default_namer
-
+        from approvaltests.namer.default_name import get_default_namer
         namer = self.fields.get("namer", get_default_namer())
         if hasattr(namer, 'set_extension'):
             namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
