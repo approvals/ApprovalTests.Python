@@ -22,10 +22,10 @@ class ExceptionCollector:
         raise MultipleExceptions(self._exceptions)
 
 
-def gather_all_exceptions(parameters: Sequence[Any], callable: Callable[[Any], Any]) -> ExceptionCollector:
+def gather_all_exceptions(parameters: Sequence[Any], code_to_execute: Callable[[Any], Any]) -> ExceptionCollector:
     collector = ExceptionCollector()
-    for p in parameters:
-        collector.gather(lambda: callable(p))
+    for parameter in parameters:
+        collector.gather(lambda p=parameter: code_to_execute(p))
 
     return collector
 
