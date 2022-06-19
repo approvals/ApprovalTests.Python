@@ -7,6 +7,10 @@ def test_markdown_table():
     todo:
     Put into right location
     Clean it up
+        remove clutter
+        typehints
+        api consistent with java
+        making it the same as java
         Consider a different name rather than printRow
          Maybe call it addRow
     Write documentation

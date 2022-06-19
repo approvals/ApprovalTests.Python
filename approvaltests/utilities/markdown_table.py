@@ -14,10 +14,13 @@ class MarkdownTable(Verifiable):
     @staticmethod
     def with_headers(*column_names: str) -> "MarkdownTable":
         table = MarkdownTable()
-        table.markdown = MarkdownTable.print_row(*column_names)
+        table.add_rows(*column_names)
         dividers = map(lambda _: "---", column_names)
         table.markdown += MarkdownTable.print_row(*dividers)
         return table
+
+    def add_rows(self, *column_names):
+        self.markdown = MarkdownTable.print_row(*column_names)
 
     def __str__(self):
         return self.markdown
