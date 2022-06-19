@@ -1,13 +1,14 @@
 from typing import Any, Callable, Iterable
 
-
 from approvaltests.core.verifiable import Verifiable
-from approvaltests.core.options import  Options
+from approvaltests.core.options import Options
 from approvaltests.core.verify_parameters import VerifyParameters
 
 
-
 class MarkdownTable(Verifiable):
+    def __init__(self):
+        self.markdown = ""
+
     def get_verify_parameters(self, options: Options) -> VerifyParameters:
         return VerifyParameters(options.for_file.with_extension(".md"))
 
@@ -16,13 +17,14 @@ class MarkdownTable(Verifiable):
         table = MarkdownTable()
         table.add_rows(*column_names)
         dividers = map(lambda _: "---", column_names)
-        table.markdown += MarkdownTable.print_row(*dividers)
+        table.add_rows(*dividers)
         return table
 
-    def add_rows(self, *column_names):
-        self.markdown = MarkdownTable.print_row(*column_names)
+    def add_rows(self, *column_names: str) -> "MarkdownTable":
+        self.markdown += MarkdownTable.print_row(*column_names)
+        return self
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.markdown
 
     @staticmethod
@@ -33,9 +35,8 @@ class MarkdownTable(Verifiable):
         return row + "\n"
 
     def add_rows_for_inputs(self, inputs: Iterable[Any], *varargs: Callable[[Any], Any]) -> "MarkdownTable":
-        for input in inputs:
-            #Create a list with the input and all the conversions, using varargs.map
-            row = [input]
-            row += map(lambda callable: callable(input), varargs)
-            self.markdown += MarkdownTable.print_row(*row)
-        pass
+        for row_input in inputs:
+            row = [row_input]
+            row += map(lambda c: c(row_input), varargs)
+            self.add_rows(*row)
+        return self
