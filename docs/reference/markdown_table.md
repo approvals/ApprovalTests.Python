@@ -1,6 +1,7 @@
 # Markdown Tables
 
 Another way to test a variety of inputs is to use a `MarkdownTable`.
+This works particularly well when you want to try the same set of inputs against multiple functions.
 Here's an example:
 
 <!-- snippet: markdown_table_example -->
@@ -16,7 +17,7 @@ Approvals.verify(table);
 
 which will produce:
 
-<!-- include: TableTest.differentCases.approved.md -->
+<!-- include: test_markdown_table.test_markdown_table.approved.md -->
 | Input | Camel Case | Snake Case | Kebab Case |
 | --- | --- | --- | --- |
 | verify json | verifyJson | verify_json | verify-json |
