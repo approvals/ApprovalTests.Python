@@ -6,13 +6,13 @@ Here's an example:
 
 <!-- snippet: markdown_table_example -->
 <a id='snippet-markdown_table_example'></a>
-```java
-String[] inputs = {"verify json", "verify all", "verify parameters", "verify as json"};
-MarkdownTable table = MarkdownTable.withHeaders("Input", "Camel Case", "Snake Case", "Kebab Case");
-table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
-Approvals.verify(table);
+```py
+inputs = ["verify json", "verify all", "verify parameters", "verify as json"]
+table = MarkdownTable.with_headers("Input", "Camel Case", "Snake Case", "Kebab Case")
+table.add_rows_for_inputs(inputs, to_camel_case, to_snake_case, to_kebab_case)
+verify(table)
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L19-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/utilities/test_markdown_table.py#L6-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce:
