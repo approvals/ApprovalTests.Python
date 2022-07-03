@@ -190,16 +190,16 @@ def verify_with_namer_and_writer(
 
 # begin-snippet: verify_as_json
 def verify_as_json(
-        object,
+        object_to_verify,
         reporter=None,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
         deserialize_json_fields=False,
         options: Optional[Options] = None
 ):
     if deserialize_json_fields:
-        object = approvaltests.utils.deserialize_json_fields(object)
+        object_to_verify = approvaltests.utils.deserialize_json_fields(object_to_verify)
     options = initialize_options(options, reporter)
-    n_ = to_json(object) + "\n"
+    n_ = to_json(object_to_verify) + "\n"
     verify(n_, None, encoding="utf-8", newline="\n", options=options)
 
 
@@ -322,13 +322,13 @@ def verify_all(
 
 
 def verify_exception(
-        callable: Callable,
+        code_that_throws_exception: Callable,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
         options: Optional[Options] = None
 ):
     result = ""
     try:
-        callable()
+        code_that_throws_exception()
     except Exception as exception:
         result = to_string(exception)
     verify(result, options=options)

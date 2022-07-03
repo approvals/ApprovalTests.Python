@@ -20,9 +20,9 @@ def write_to_temporary_file(expected: str, name: str):
         return temp.name
 
       
-def to_json(object) -> str:
+def to_json(object_to_verify) -> str:
     return json.dumps(
-        object,
+        object_to_verify,
         sort_keys=True,
         indent=4,
         separators=(",", ": "),
