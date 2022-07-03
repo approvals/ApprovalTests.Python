@@ -16,17 +16,17 @@ For example, as we use it to handle json:
 <a id='snippet-verify_as_json'></a>
 ```py
 def verify_as_json(
-        object,
+        object_to_verify,
         reporter=None,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
         deserialize_json_fields=False,
         options: Optional[Options] = None
 ):
     if deserialize_json_fields:
-        object = approvaltests.utils.deserialize_json_fields(object)
+        object_to_verify = approvaltests.utils.deserialize_json_fields(object_to_verify)
     options = initialize_options(options, reporter)
-    n_ = to_json(object) + "\n"
-    verify(n_, None, encoding="utf-8", newline="\n", options=options)
+    json_text = to_json(object_to_verify) + "\n"
+    verify(json_text, None, encoding="utf-8", newline="\n", options=options)
 ```
 <sup><a href='/approvaltests/approvals.py#L191-L206' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
