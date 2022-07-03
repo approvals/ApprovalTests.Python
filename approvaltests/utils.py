@@ -19,7 +19,6 @@ def write_to_temporary_file(expected: str, name: str):
         temp.write(expected.encode("utf-8-sig"))
         return temp.name
 
-      
 def to_json(object_to_verify) -> str:
     return json.dumps(
         object_to_verify,
@@ -30,7 +29,6 @@ def to_json(object_to_verify) -> str:
         ensure_ascii=True,
     )
 
-  
 def deserialize_json_fields(a_dict: dict) -> dict:
     a_dict = deepcopy(a_dict)
     for key, val in a_dict.items():
