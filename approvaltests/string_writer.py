@@ -36,6 +36,6 @@ class StringWriter(Writer):
             encoding=self.encoding,
             errors=self.errors,
             newline=self.newline,
-        ) as f:
-            f.write(self.contents)
+        ) as file:
+            file.write(self.contents)
         return received_file

@@ -21,7 +21,7 @@ class BinaryWriter(Writer):
         with io.open(
                 received_file,
                 mode='wb'
-        ) as f:
-            f.write(self.contents)
+        ) as file:
+            file.write(self.contents)
 
         return received_file

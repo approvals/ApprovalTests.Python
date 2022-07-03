@@ -199,8 +199,8 @@ def verify_as_json(
     if deserialize_json_fields:
         object_to_verify = approvaltests.utils.deserialize_json_fields(object_to_verify)
     options = initialize_options(options, reporter)
-    n_ = to_json(object_to_verify) + "\n"
-    verify(n_, None, encoding="utf-8", newline="\n", options=options)
+    json_text = to_json(object_to_verify) + "\n"
+    verify(json_text, None, encoding="utf-8", newline="\n", options=options)
 
 
 # end-snippet

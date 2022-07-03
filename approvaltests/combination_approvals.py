@@ -102,8 +102,8 @@ def print_combinations(
     for args in parameter_combinations:
         try:
             result = function_under_test(*args)
-        except Exception as e:
-            result = e
+        except Exception as exception:
+            result = exception
         approval_strings.append(formatter(args, result))
     return "".join(approval_strings)
 

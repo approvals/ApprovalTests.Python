@@ -25,8 +25,8 @@ class Storyboard:
     def add_frames(
         self, number_of_frames: int, function_for_frame: Callable[[int], Any]
     ) -> "Storyboard":
-        for n in range(number_of_frames):
-            self.add_frame(function_for_frame(n))
+        for number in range(number_of_frames):
+            self.add_frame(function_for_frame(number))
         return self
 
     def __str__(self) -> str:
