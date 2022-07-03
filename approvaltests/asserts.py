@@ -34,5 +34,5 @@ def assert_equal_with_reporter(expected, actual, reporter=None):
     actual_file = write_to_temporary_file(actual, name + ".actual.")
     get_reporter(reporter).report(actual_file, expected_file)
     raise AssertionError(
-        'expected != actual\n  actual: "{}"\nexpected: "{}"'.format(actual, expected)
+        f'expected != actual\n  actual: "{actual}"\nexpected: "{expected}"'
     )

@@ -4,6 +4,5 @@ class ReporterMissingException(BaseException):
 
     def __str__(self):
         return (
-            "Could not find %s in the environment, perhaps you need to configure your reporter."
-            % repr(self.value)
+            f"Could not find {repr(self.value)} in the environment, perhaps you need to configure your reporter."
         )

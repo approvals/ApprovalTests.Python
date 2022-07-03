@@ -109,4 +109,4 @@ def print_combinations(
 
 
 def args_and_result_formatter(args: List[Any], result: int) -> str:
-    return "args: {} => {}\n".format(repr(args), repr(result))
+    return f"args: {repr(args)} => {repr(result)}\n"
