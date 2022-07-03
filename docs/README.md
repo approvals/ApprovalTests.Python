@@ -13,6 +13,7 @@
 ## Reference
 * [Options](reference/options.md)
 * [Storyboard](reference/storyboard.md)
+* [MarkdownTables](reference/markdown_table.md)
 
 ## Tutorial
 * [Intro to reporters](tutorial/intro-to-reporters.md)
