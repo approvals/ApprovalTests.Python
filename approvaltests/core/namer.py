@@ -13,5 +13,3 @@ class Namer(ABC):
     @abstractmethod
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         pass
-
-

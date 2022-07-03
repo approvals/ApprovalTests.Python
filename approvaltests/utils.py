@@ -66,4 +66,3 @@ def create_directory_if_needed(received_file: str) -> None:
     directory = os.path.dirname(received_file)
     if directory and not os.path.exists(directory):
         os.makedirs(directory)
-
