@@ -49,7 +49,7 @@ class FileApprover(object):
 
         # The writer has the ability to change the name of the received file
         received = writer.write_received_file(received)
-        verified = self.verify_files(approved, received, reporter,comparator)
+        verified = FileApprover.verify_files(approved, received, reporter,comparator)
 
         if not verified:
             return (
@@ -59,8 +59,9 @@ class FileApprover(object):
             )
         return None
 
+    @staticmethod
     def verify_files(
-        self, approved_file: str, received_file: str, reporter: Reporter, comparator: Comparator
+        approved_file: str, received_file: str, reporter: Reporter, comparator: Comparator
     ) -> bool:
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)

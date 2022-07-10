@@ -13,16 +13,14 @@ from approvaltests.string_writer import StringWriter
 class FileApproverTests(unittest.TestCase):
     @staticmethod
     def test_compare_same_files():
-        approver = FileApprover()
         writer = StringWriter("a")
         writer.write_received_file("a.txt")
         shutil.copy("a.txt", "a_same.txt")
-        approver.verify_files("a.txt", "a_same.txt", None,Options().comparator)
+        FileApprover.verify_files("a.txt", "a_same.txt", None,Options().comparator)
 
     def test_compare_different_files(self):
-        approver = FileApprover()
         reporter = ReporterForTesting()
-        approver.verify_files("a.txt", "b.txt", reporter,Options().comparator)
+        FileApprover.verify_files("a.txt", "b.txt", reporter,Options().comparator)
         self.assertTrue(reporter.called)
 
     def test_scrubbed_files(self):
