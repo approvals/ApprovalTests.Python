@@ -14,7 +14,7 @@ class FormatLineItem(object):
     def __init__(self) -> None:
         self.index = 0
 
-    def print_item(self, input: str) -> str:
-        text = str(self.index) + ") " + str(input)
+    def print_item(self, item: str) -> str:
+        text = str(self.index) + ") " + str(item)
         self.index += 1
         return text

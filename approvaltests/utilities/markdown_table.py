@@ -35,8 +35,8 @@ class MarkdownTable(Verifiable):
         return row + "\n"
 
     def add_rows_for_inputs(self, inputs: Iterable[Any], *input_transformers: Callable[[Any], Any]) -> "MarkdownTable":
-        def transform_resolver_for_input(input: Any) -> Callable[[Callable[[Any],Any]], Any] :
-            return lambda transform: transform(input)
+        def transform_resolver_for_input(input_value: Any) -> Callable[[Callable[[Any], Any]], Any] :
+            return lambda transform: transform(input_value)
 
         for row_input in inputs:
             row = [row_input]
