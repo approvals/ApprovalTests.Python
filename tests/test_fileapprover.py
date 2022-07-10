@@ -31,16 +31,14 @@ class FileApproverTests(unittest.TestCase):
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
-        approver = FileApprover()
-        approver.verify(namer, writer, reporter,Options().comparator)
+        FileApprover.verify(namer, writer, reporter,Options().comparator)
         self.assertTrue(reporter.called)
 
     def test_returns_error_when_files_are_different(self):
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
-        approver = FileApprover()
-        error = approver.verify(namer, writer, reporter,Options().comparator)
+        error = FileApprover.verify(namer, writer, reporter,Options().comparator)
         import re
 
         replaced = re.sub("ved: .*approved_files.", "ved: <rootdir>/", error)
@@ -51,8 +49,7 @@ class FileApproverTests(unittest.TestCase):
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = GenericDiffReporterFactory().get_first_working()
-        approver = FileApprover()
-        error = approver.verify(namer, writer, reporter,Options().comparator)
+        error = FileApprover.verify(namer, writer, reporter,Options().comparator)
         self.assertEqual(None, error)
 
 
