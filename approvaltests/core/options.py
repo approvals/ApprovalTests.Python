@@ -14,7 +14,7 @@ class FileOptions:
                        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
                        no_override=False
                        ) -> "Options":
-        if not (extension_with_dot.startswith(".")):
+        if not extension_with_dot.startswith("."):
             extension_with_dot = "." + extension_with_dot
         if no_override and "extension_with_dot" in self.fields:
             extension_with_dot = self.fields["extension_with_dot"]
