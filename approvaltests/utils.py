@@ -14,10 +14,11 @@ def write_to_temporary_file(expected: str, name: str):
     import tempfile
 
     with tempfile.NamedTemporaryFile(
-        mode="w+b", suffix=".txt", prefix=name, delete=False
+            mode="w+b", suffix=".txt", prefix=name, delete=False
     ) as temp:
         temp.write(expected.encode("utf-8-sig"))
         return temp.name
+
 
 def to_json(object_to_verify) -> str:
     return json.dumps(
@@ -28,6 +29,7 @@ def to_json(object_to_verify) -> str:
         default=lambda o: o.__dict__,
         ensure_ascii=True,
     )
+
 
 def deserialize_json_fields(a_dict: dict) -> dict:
     a_dict = deepcopy(a_dict)
@@ -45,14 +47,13 @@ def deserialize_json_fields(a_dict: dict) -> dict:
     return a_dict
 
 
-
 def is_windows_os() -> bool:
     return os.name == "nt"
 
 
 def create_empty_file(file_path: str) -> None:
-    from empty_files.empty_files import create_empty_file
-    create_empty_file(file_path)
+    import empty_files.empty_files
+    empty_files.empty_files.create_empty_file(file_path)
 
 
 def ensure_file_exists(approved_path: str) -> None:
