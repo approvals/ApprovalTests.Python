@@ -37,7 +37,7 @@ def deserialize_json_fields(a_dict: dict) -> dict:
         if isinstance(val, str) and val.startswith('{'):
             try:
                 deserialized_val = json.loads(val)
-            except:
+            except BaseException:
                 # leave field unchanged on exception
                 pass
             else:
