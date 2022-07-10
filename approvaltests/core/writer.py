@@ -1,5 +1,8 @@
-class Writer(object):
-    # interface
+from abc import ABC, abstractmethod
 
+
+class Writer(ABC):
+
+    @abstractmethod
     def write_received_file(self, received_file: str) -> str:
-        raise Exception("Interface member not implemented")
+        pass
