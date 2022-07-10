@@ -30,7 +30,7 @@ class FileComparator(Comparator):
             received_raw = pathlib.Path(received_path).read_text()
             received_text = received_raw.replace("\r\n", "\n")
             return approved_text == received_text
-        except:
+        except BaseException:
             return False
 
 
