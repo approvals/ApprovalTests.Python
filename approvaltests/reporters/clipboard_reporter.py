@@ -1,5 +1,4 @@
-import pyperclip  # type: ignore
-
+from approvaltests.utilities.clipboard_utilities import copy_to_clipboard
 from approvaltests.utils import is_windows_os
 from approvaltests.core.reporter import Reporter
 
@@ -31,7 +30,7 @@ class ClipboardReporter(Reporter):
     def report(self, received_path, approved_path):
         text = get_command_text(received_path, approved_path)
         print(text)
-        pyperclip.copy(text)
+        copy_to_clipboard(text)
         return True
 
 

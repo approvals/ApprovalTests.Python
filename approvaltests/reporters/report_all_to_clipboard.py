@@ -1,17 +1,17 @@
-import pyperclip # type: ignore
-
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.clipboard_reporter import get_command_text
+from approvaltests.utilities.clipboard_utilities import copy_to_clipboard
 
 
 class ReporterByCopyMoveCommandForEverythingToClipboard(Reporter):
     text = ""
 
     def report(self, received_path, approved_path):
+
         ReporterByCopyMoveCommandForEverythingToClipboard.text = (
             ReporterByCopyMoveCommandForEverythingToClipboard.text
             + get_command_text(received_path, approved_path)
             + "\n"
         )
-        pyperclip.copy(ReporterByCopyMoveCommandForEverythingToClipboard.text)
+        copy_to_clipboard(ReporterByCopyMoveCommandForEverythingToClipboard.text)
         return True
