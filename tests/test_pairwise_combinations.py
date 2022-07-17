@@ -1,7 +1,7 @@
 import inspect
 from typing import Sequence, Any, Dict
 
-from approvaltests import verify_all_combinations, verify_best_covering_pairs
+from approvaltests.combination_approvals import verify_all_combinations, verify_best_covering_pairs
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 
 

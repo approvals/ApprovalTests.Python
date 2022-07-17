@@ -1,10 +1,9 @@
 import unittest
 
 from approvaltests.approval_exception import ApprovalException
-from approvaltests import (
+from approvaltests.combination_approvals import (
     verify_all_combinations,
     verify_all_combinations_with_namer,
-    get_default_namer,
 )
 from approvaltests.reporters import CommandLineReporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
