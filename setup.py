@@ -13,6 +13,9 @@ with open(HERE / 'requirements.prod.required.txt') as f:
     required = f.read().splitlines()
 with open(HERE / 'requirements.prod.extras.txt') as f:
     required += f.read().splitlines()
+
+print(f"required={required}")
+
 setup(
     name="approvaltests",
     version=VERSION,
