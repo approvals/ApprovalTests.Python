@@ -250,7 +250,8 @@ These dependencies are always required for approvaltests
 These dependencies are required if you are going to use the related functionality
 If you want the bare minimum you can use the pypi project 
 [approvaltests-minimal](https://pypi.org/project/approvaltests-minimal/) 
-<!-- snippet: requirements.prod.extras.txt -->
+
+snippet: requirements.prod.extras.txt 
 
 ## For developers
 ### Weekly Ensemble
