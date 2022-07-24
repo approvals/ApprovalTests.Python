@@ -236,8 +236,9 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 ### Dependencies
 
 ApprovalTests require Python 3.6 or greater and the following dependencies:
-
-<!-- snippet: requirements.prod.txt -->
+#### Required dependencies
+These dependencies are always required for approvaltests
+<!-- snippet: requirements.prod.required.txt -->
 <a id='snippet-requirements.prod.txt'></a>
 ```txt
 -r requirements.prod.required.txt
@@ -245,6 +246,11 @@ ApprovalTests require Python 3.6 or greater and the following dependencies:
 ```
 <sup><a href='/requirements.prod.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+#### Extra dependencies
+These dependencies are required if you are going to use the related functionality
+If you want the bare minimum you can use the pypi project 
+[approvaltests-minimal](https://pypi.org/project/approvaltests-minimal/) 
+<!-- snippet: requirements.prod.extras.txt -->
 
 ## For developers
 ### Weekly Ensemble
