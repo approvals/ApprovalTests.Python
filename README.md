@@ -240,16 +240,10 @@ ApprovalTests require Python 3.6 or greater and the following dependencies:
 <!-- snippet: requirements.prod.txt -->
 <a id='snippet-requirements.prod.txt'></a>
 ```txt
-# Required
-pytest>=4.0.0
-empty-files>=0.0.3
-
-# Required only if functionality is used
-pyperclip>=1.5.29     # For Clipboard Reporter
-beautifulsoup4>=4.4.0 # For verify_html
-allpairspy>=2.1.0     # For PairwiseCombinations
+-r requirements.prod.required.txt
+-r requirements.prod.extras.txt
 ```
-<sup><a href='/requirements.prod.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/requirements.prod.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## For developers
