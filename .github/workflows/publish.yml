@@ -50,7 +50,8 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
-     - name: Build and publish minimal
+          
+      - name: Build and publish minimal
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
