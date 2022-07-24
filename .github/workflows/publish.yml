@@ -6,9 +6,7 @@ on:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -19,16 +17,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
-
       - name: Determine version from git tag
         id: version
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-
       - name: set version
         run: |
           rm ./approvaltests/version.py
           echo version_number = \"${{ steps.version.outputs.tag }}\" > ./approvaltests/version.py
-
       - name: Push changes
         run: |
             git config --local user.email "action@github.com"
@@ -42,7 +37,6 @@ jobs:
             branch="main"
             git push "${remote}" ${branch} || echo "nothing to push"
         shell: bash
-
       - name: Build and publish
         env:
           TWINE_USERNAME: __token__
@@ -50,7 +44,6 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
-
       - name: Build and publish minimal
         env:
           TWINE_USERNAME: __token__
