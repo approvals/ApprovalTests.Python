@@ -16,6 +16,7 @@
     * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
   * [Support and Documentation](#support-and-documentation)
     * [Dependencies](#dependencies)
+      * [Required dependencies](#required-dependencies)
   * [For developers](#for-developers)
     * [Weekly Ensemble](#weekly-ensemble)
     * [Pull Requests](#pull-requests)<!-- endToc -->
@@ -239,19 +240,27 @@ ApprovalTests require Python 3.6 or greater and the following dependencies:
 #### Required dependencies
 These dependencies are always required for approvaltests
 <!-- snippet: requirements.prod.required.txt -->
-<a id='snippet-requirements.prod.txt'></a>
+<a id='snippet-requirements.prod.required.txt'></a>
 ```txt
--r requirements.prod.required.txt
--r requirements.prod.extras.txt
+pytest>=4.0.0
+empty-files>=0.0.3
 ```
-<sup><a href='/requirements.prod.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/requirements.prod.required.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.required.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 #### Extra dependencies
 These dependencies are required if you are going to use the related functionality
 If you want the bare minimum you can use the pypi project 
 [approvaltests-minimal](https://pypi.org/project/approvaltests-minimal/) 
 
-snippet: requirements.prod.extras.txt 
+<!-- snippet: requirements.prod.extras.txt -->
+<a id='snippet-requirements.prod.extras.txt'></a>
+```txt
+pyperclip>=1.5.29     # For Clipboard Reporter
+beautifulsoup4>=4.4.0 # For verify_html
+allpairspy>=2.1.0     # For PairwiseCombinations
+```
+<sup><a href='/requirements.prod.extras.txt#L1-L3' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## For developers
 ### Weekly Ensemble
