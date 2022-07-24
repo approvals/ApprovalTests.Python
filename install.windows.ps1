@@ -14,6 +14,7 @@ choco install beyondcompare
 choco install python --version=3.6.7 
 choco install pip
 choco install pycharm
+choco install ditto
 
 # Keyboard rotation for Dvorak
 Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/LearnWithLlew/MobTime.keyboardswitching/main/install.windows.ps1 | Invoke-Expression
