@@ -9,9 +9,10 @@ _version_file_contents = (HERE / "approvaltests" / "version.py").read_text()
 matched = re.search(r'"(.*)"', _version_file_contents)
 VERSION = matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
-with open(HERE / 'requirements.prod.txt') as f:
+with open(HERE / 'requirements.prod.required.txt') as f:
     required = f.read().splitlines()
-
+with open(HERE / 'requirements.prod.extras.txt') as f:
+    required += f.read().splitlines()
 setup(
     name="approvaltests",
     version=VERSION,
