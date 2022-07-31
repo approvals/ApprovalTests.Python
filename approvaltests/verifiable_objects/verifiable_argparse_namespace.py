@@ -1,16 +1,6 @@
-import abc
 import argparse
-import typing
 
-
-class FormatWrapper(abc.ABC):
-    @abc.abstractmethod
-    def wrap(self, data: typing.Any) -> typing.Any:
-        pass
-
-    @abc.abstractmethod
-    def is_match(self, data: typing.Any) -> bool:
-        pass
+from approvaltests.core.format_wrapper import FormatWrapper
 
 
 class ArgparseNamespaceFormatterWrapper(FormatWrapper):
