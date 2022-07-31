@@ -2,9 +2,9 @@ import argparse
 import typing
 from abc import ABC
 
-from approvaltests import verify, register_formatter
+from approvaltests import verify, register_formatter, find_formatter_for_specified_class
 from approvaltests.core.format_wrapper import FormatWrapper
-from approvaltests.verifiable_objects.verifiable_argparse_namespace import ArgparseNamespaceFormatter
+from approvaltests.verifiable_objects.argparse_namespace_formatter import ArgparseNamespaceFormatter
 
 
 def test_argparse_namespace() -> None:
@@ -27,4 +27,6 @@ def test_register_formatter() -> None:
             return 42
 
     with register_formatter(ExampleFormatterWrapper()):
+        assert 42 == find_formatter_for_specified_class("Some Result")
         verify("Some Result")
+    assert "Some Result" == find_formatter_for_specified_class("Some Result")

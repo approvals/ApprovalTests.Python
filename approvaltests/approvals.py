@@ -1,12 +1,14 @@
 import argparse
+import typing
 import xml.dom.minidom
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Callable, List, Optional, Any, ByteString
+from typing import Callable, List, Optional, Any, ByteString, Iterator, Sequence
 
 import approvaltests.reporters.default_reporter_factory
-from approvaltests.core.format_wrapper import FormatWrapper
+from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
 from approvaltests.core.verifiable import Verifiable
+from approvaltests.utilities.map_reduce import first
 from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
@@ -21,7 +23,7 @@ from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.utilities.exceptions.exception_utils import to_string
-from approvaltests.verifiable_objects.verifiable_argparse_namespace import ArgparseNamespaceFormatter, \
+from approvaltests.verifiable_objects.argparse_namespace_formatter import ArgparseNamespaceFormatter, \
     ArgparseNamespaceFormatterWrapper
 
 __unittest = True
@@ -105,25 +107,19 @@ def verify(
     )
 
 
-format_wrappers = [ArgparseNamespaceFormatterWrapper()]
+
+format_wrappers = [ArgparseNamespaceFormatterWrapper(), AlwaysMatch()]
 
 
 @contextmanager
-def register_formatter(formatter: FormatWrapper):
+def register_formatter(formatter: FormatWrapper) -> Iterator[None]:
     format_wrappers.insert(0, formatter)
     yield
     format_wrappers.remove(formatter)
 
 
-
-def find_formatter_for_specified_class(data):
-    formatters = format_wrappers
-
-    for formatter in formatters:
-        if formatter.is_match(data):
-            return formatter.wrap(data)
-    return data
-
+def find_formatter_for_specified_class(data: Any) -> Any:
+    return first(format_wrappers, lambda f: f.is_match(data)).wrap(data)
 
 def verify_binary(
         data: ByteString,
