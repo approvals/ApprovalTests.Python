@@ -102,12 +102,12 @@ def verify(
         options=options,
     )
 
-
 def find_formatter_for_specified_class(data):
     formatters = [ArgparseNamespaceFormatterWrapper()]
 
     for formatter in formatters:
-        data = formatter.wrap(data)
+        if formatter.is_match(data):
+            return formatter.wrap(data)
     return data
 
 
