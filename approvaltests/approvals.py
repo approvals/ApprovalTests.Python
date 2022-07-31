@@ -1,9 +1,11 @@
 import argparse
 import xml.dom.minidom
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Callable, List, Optional, Any, ByteString
 
 import approvaltests.reporters.default_reporter_factory
+from approvaltests.core.format_wrapper import FormatWrapper
 from approvaltests.core.verifiable import Verifiable
 from approvaltests.utils import to_json
 from approvaltests.approval_exception import ApprovalException
@@ -102,8 +104,20 @@ def verify(
         options=options,
     )
 
+
+format_wrappers = [ArgparseNamespaceFormatterWrapper()]
+
+
+@contextmanager
+def register_formatter(formatter: FormatWrapper):
+    format_wrappers.insert(0, formatter)
+    yield
+    format_wrappers.remove(formatter)
+
+
+
 def find_formatter_for_specified_class(data):
-    formatters = [ArgparseNamespaceFormatterWrapper()]
+    formatters = format_wrappers
 
     for formatter in formatters:
         if formatter.is_match(data):
