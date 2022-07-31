@@ -23,8 +23,8 @@ from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.utilities.exceptions.exception_utils import to_string
-from approvaltests.verifiable_objects.argparse_namespace_formatter import ArgparseNamespaceFormatter, \
-    ArgparseNamespaceFormatterWrapper
+from approvaltests.verifiable_objects.formatter_of_argparse_namespace import FormatterOfArgparseNamespace, \
+    FormatterWrapperOfArgparseNamespace
 
 __unittest = True
 __tracebackhide__ = True
@@ -108,7 +108,7 @@ def verify(
 
 
 
-format_wrappers = [ArgparseNamespaceFormatterWrapper(), AlwaysMatch()]
+format_wrappers = [FormatterWrapperOfArgparseNamespace(), AlwaysMatch()]
 
 
 @contextmanager
@@ -119,7 +119,8 @@ def register_formatter(formatter: FormatWrapper) -> Iterator[None]:
 
 
 def find_formatter_for_specified_class(data: Any) -> Any:
-    return first(format_wrappers, lambda f: f.is_match(data)).wrap(data)
+    wrapper = first(format_wrappers, lambda f: f.is_match(data))
+    return wrapper.wrap(data)
 
 def verify_binary(
         data: ByteString,

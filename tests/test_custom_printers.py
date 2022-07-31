@@ -4,7 +4,7 @@ from abc import ABC
 
 from approvaltests import verify, register_formatter, find_formatter_for_specified_class
 from approvaltests.core.format_wrapper import FormatWrapper
-from approvaltests.verifiable_objects.argparse_namespace_formatter import ArgparseNamespaceFormatter
+from approvaltests.verifiable_objects.formatter_of_argparse_namespace import FormatterOfArgparseNamespace
 
 
 def test_argparse_namespace() -> None:
@@ -12,7 +12,7 @@ def test_argparse_namespace() -> None:
     args.add_argument("foo")
     args.add_argument("--foo2")
     result = args.parse_args(["bar", "--foo2=bar2"])
-    verify(ArgparseNamespaceFormatter(result))
+    verify(FormatterOfArgparseNamespace(result))
     verify(result)
 
 

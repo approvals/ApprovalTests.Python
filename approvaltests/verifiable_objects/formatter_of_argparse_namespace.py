@@ -3,15 +3,15 @@ import argparse
 from approvaltests.core.format_wrapper import FormatWrapper
 
 
-class ArgparseNamespaceFormatterWrapper(FormatWrapper):
+class FormatterWrapperOfArgparseNamespace(FormatWrapper):
     def wrap(self, data):
-        return ArgparseNamespaceFormatter(data)
+        return FormatterOfArgparseNamespace(data)
 
     def is_match(self, data) -> bool:
         return isinstance(data, argparse.Namespace)
 
 
-class ArgparseNamespaceFormatter:
+class FormatterOfArgparseNamespace:
     def __init__(self, result):
         self.result = result
 
