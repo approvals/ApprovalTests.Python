@@ -1,3 +1,4 @@
+import argparse
 import xml.dom.minidom
 from pathlib import Path
 from typing import Callable, List, Optional, Any, ByteString
@@ -18,6 +19,8 @@ from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.utilities.exceptions.exception_utils import to_string
+from approvaltests.verifiable_objects.verifiable_argparse_namespace import ArgparseNamespaceFormatter, \
+    ArgparseNamespaceFormatterWrapper
 
 __unittest = True
 __tracebackhide__ = True
@@ -81,6 +84,8 @@ def verify(
         ValueError: If data cannot be encoded using the specified encoding when errors is set to
             None or 'strict'.
     """
+    data = find_formatter_for_specified_class(data)
+
     options = initialize_options(options, reporter)
 
     if isinstance(data, Verifiable):
@@ -96,6 +101,14 @@ def verify(
         newline=newline,
         options=options,
     )
+
+
+def find_formatter_for_specified_class(data):
+    formatters = [ArgparseNamespaceFormatterWrapper()]
+
+    for formatter in formatters:
+        data = formatter.wrap(data)
+    return data
 
 
 def verify_binary(
