@@ -4,12 +4,13 @@ from pathlib import Path
 
 from setuptools import setup, find_packages #type: ignore
 
-HERE = Path(__file__).parent
-_version_file_contents = (HERE / "approvaltests" / "version.py").read_text()
+from setup_utils import get_parent_directory
+
+_version_file_contents = (get_parent_directory() / "approvaltests" / "version.py").read_text()
 matched = re.search(r'"(.*)"', _version_file_contents)
 VERSION = matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
-with open(HERE / 'requirements.prod.required.txt') as f:
+with open(get_parent_directory() / 'requirements.prod.required.txt') as f:
     required = f.read().splitlines()
 
 setup(
@@ -28,7 +29,7 @@ setup(
         "verify_html": ["beautifulsoup4"],
         "PairwiseCombinations": ["allpairspy"]
     },
-    long_description=(HERE / "README.md").read_text(),
+    long_description=(get_parent_directory() / "README.md").read_text(),
     long_description_content_type="text/markdown",
     classifiers=[
         "Development Status :: 4 - Beta",
