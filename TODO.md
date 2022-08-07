@@ -1,5 +1,5 @@
 2. Python Minimal
-   1. Check if we can use setup.minimal.py directly
+   1. Check if we can use setup.minimal.py directly - DONE
    2. Autogenerate setup.minimal.py 
    3. python parse requirements.prod.extras in minimal.py
    4. Figure out how to reference the two pypi projects in readme
