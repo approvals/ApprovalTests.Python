@@ -1,10 +1,9 @@
-from setup_utils import get_parent_directory, get_version, applesource
+from setup_utils import get_parent_directory, get_version, get_requirements_from_file
 
 from setuptools import setup, find_packages #type: ignore
 
-required = applesource()
-with open(get_parent_directory() / 'requirements.prod.extras.txt') as f:
-    required += f.read().splitlines()
+required = get_requirements_from_file('requirements.prod.required.txt')
+required += get_requirements_from_file('requirements.prod.extras.txt')
 
 print(f"required={required}")
 

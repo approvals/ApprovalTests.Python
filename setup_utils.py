@@ -11,7 +11,7 @@ def get_version():
     matched = re.search(r'"(.*)"', _version_file_contents)
     return matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
-def applesource():
-    with open(get_parent_directory() / 'requirements.prod.required.txt') as f:
+def get_requirements_from_file(file):
+    with open(get_parent_directory() / file) as f:
         required = f.read().splitlines()
     return required

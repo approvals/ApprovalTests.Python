@@ -2,9 +2,9 @@
 
 from setuptools import setup, find_packages #type: ignore
 
-from setup_utils import get_parent_directory, get_version, applesource
+from setup_utils import get_parent_directory, get_version, get_requirements_from_file
 
-required = applesource()
+required = get_requirements_from_file('requirements.prod.required.txt')
 
 setup(
     name="approvaltests-minimal",
