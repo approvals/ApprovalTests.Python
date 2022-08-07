@@ -1,9 +1,8 @@
-from setup_utils import get_parent_directory, get_version
+from setup_utils import get_parent_directory, get_version, applesource
 
 from setuptools import setup, find_packages #type: ignore
 
-with open(get_parent_directory() / 'requirements.prod.required.txt') as f:
-    required = f.read().splitlines()
+required = applesource()
 with open(get_parent_directory() / 'requirements.prod.extras.txt') as f:
     required += f.read().splitlines()
 
