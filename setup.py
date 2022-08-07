@@ -8,7 +8,7 @@ required += get_requirements_from_file('requirements.prod.extras.txt')
 print(f"required={required}")
 
 package_name = "approvaltests"
-red = "Assertion/verification library to aid testing"
+package_description = "Assertion/verification library to aid testing"
 green = {}
 
-do_the_setup(package_name, red, green, required)
+do_the_setup(package_name, package_description, green, required)

@@ -20,11 +20,11 @@ def get_requirements_from_file(file):
     return required
 
 
-def do_the_setup(package_name, red, green, required):
+def do_the_setup(package_name, package_description, green, required):
     setup(
         name=package_name,
         version=get_version(),
-        description=red,
+        description=package_description,
         author="ApprovalTests Contributors",
         author_email="llewellyn.falco@gmail.com",
         url="https://github.com/approvals/ApprovalTests.Python",
