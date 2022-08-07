@@ -1,14 +1,6 @@
-import os
-import re
-from setup_utils import get_parent_directory
-from pathlib import Path
+from setup_utils import get_parent_directory, get_version
 
 from setuptools import setup, find_packages #type: ignore
-
-
-_version_file_contents = (get_parent_directory() / "approvaltests" / "version.py").read_text()
-matched = re.search(r'"(.*)"', _version_file_contents)
-VERSION = matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
 with open(get_parent_directory() / 'requirements.prod.required.txt') as f:
     required = f.read().splitlines()
@@ -19,7 +11,7 @@ print(f"required={required}")
 
 setup(
     name="approvaltests",
-    version=VERSION,
+    version=get_version(),
     description="Assertion/verification library to aid testing",
     author="ApprovalTests Contributors",
     author_email="llewellyn.falco@gmail.com",

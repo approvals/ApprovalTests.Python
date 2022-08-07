@@ -1,21 +1,15 @@
-import os
-import re
-from pathlib import Path
+
 
 from setuptools import setup, find_packages #type: ignore
 
-from setup_utils import get_parent_directory
-
-_version_file_contents = (get_parent_directory() / "approvaltests" / "version.py").read_text()
-matched = re.search(r'"(.*)"', _version_file_contents)
-VERSION = matched.group(1) if matched is not None else "UNKNOWN VERSION"
+from setup_utils import get_parent_directory, get_version
 
 with open(get_parent_directory() / 'requirements.prod.required.txt') as f:
     required = f.read().splitlines()
 
 setup(
     name="approvaltests-minimal",
-    version=VERSION,
+    version=get_version(),
     description="Assertion/verification library to aid testing with the minimal required dependencies + the ability to opt in for the others ",
     author="ApprovalTests Contributors",
     author_email="llewellyn.falco@gmail.com",
