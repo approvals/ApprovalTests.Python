@@ -49,7 +49,5 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVALTESTS_MINIMAL }}
         run: |
-          rm setup.py
-          mv setup.minimal.py setup.py
-          python setup.py sdist bdist_wheel
+          python setup.minimal.py sdist bdist_wheel
           twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
