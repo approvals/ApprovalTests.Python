@@ -20,7 +20,7 @@ def get_requirements_from_file(file):
     return required
 
 
-def do_the_setup(package_name, package_description, green, required):
+def do_the_setup(package_name, package_description, required, extra_requires):
     setup(
         name=package_name,
         version=get_version(),
@@ -32,7 +32,7 @@ def do_the_setup(package_name, package_description, green, required):
         packages=find_packages(exclude=["tests*"]),
         package_data={"approvaltests": ["reporters/reporters.json"]},
         install_requires=required,
-        extras_require=green,
+        extras_require=extra_requires,
         long_description=(get_parent_directory() / "README.md").read_text(),
         long_description_content_type="text/markdown",
         classifiers=[
