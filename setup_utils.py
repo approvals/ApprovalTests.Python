@@ -20,9 +20,9 @@ def get_requirements_from_file(file):
     return required
 
 
-def do_the_setup(blue, red, green, required):
+def do_the_setup(package_name, red, green, required):
     setup(
-        name=blue,
+        name=package_name,
         version=get_version(),
         description=red,
         author="ApprovalTests Contributors",
