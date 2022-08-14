@@ -48,9 +48,12 @@ class StackFrameNamer(NamerBase):
     @staticmethod
     def is_test_method(frame: FrameInfo) -> bool:
         method_name = frame[3]
+        locals = frame[0].f_locals
         is_unittest_test = (
-            "self" in frame[0].f_locals
-            and "_testMethodName" in frame[0].f_locals["self"].__dict__
+            "self" in locals
+
+            and hasattr(locals["self"], "__dict__")
+            and "_testMethodName" in vars(locals["self"])
             and method_name != "__call__"
             and method_name != "_callTestMethod"
             and method_name != "run"
