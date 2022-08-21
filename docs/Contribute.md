@@ -5,7 +5,8 @@
 
   * [Join our Weekly Mobbing sessions](#join-our-weekly-mobbing-sessions)
     * [Calendar Invite](#calendar-invite)
-    * [Zoom Link](#zoom-link)<!-- endToc -->
+    * [Zoom Link](#zoom-link)
+  * [Solo Developement](#solo-developement)<!-- endToc -->
 
 ## Join our Weekly Mobbing sessions
 

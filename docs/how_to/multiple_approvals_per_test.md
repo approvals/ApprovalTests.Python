@@ -42,9 +42,12 @@ Approval tests supports parametrized tests, here is an example:
 ```py
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
-    verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+    verify(
+        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        options=NamerFactory.with_parameters(year),
+    )
 ```
-<sup><a href='/tests/test_scenarios.py#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L26-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Method 2: Verify Multiple Things with Blocking
@@ -56,15 +59,27 @@ Be aware that this will halt your test on the first `verify()` that fails, same 
 <a id='snippet-multiple-verifies-with-blocking'></a>
 ```py
 year = 1992
-verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+verify(
+    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    options=NamerFactory.with_parameters(year),
+)
 year = 1993
-verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+verify(
+    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    options=NamerFactory.with_parameters(year),
+)
 year = 1900
-verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+verify(
+    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    options=NamerFactory.with_parameters(year),
+)
 year = 2000
-verify(f"is Leap {str(year)}: {str(is_leap_year(year))}", options=NamerFactory.with_parameters(year))
+verify(
+    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    options=NamerFactory.with_parameters(year),
+)
 ```
-<sup><a href='/tests/test_scenarios.py#L31-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-with-blocking' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L39-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-with-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Method 3: Verify Multiple Things without Blocking
@@ -78,9 +93,15 @@ Here is an example:
 <a id='snippet-multiple-verifies-without-blocking'></a>
 ```py
 years = [1993, 1992, 1900, 2000]
-gather_all_exceptions_and_throw(years, lambda y: verify(f"is Leap {str(y)}: {str(is_leap_year(y))}", options=NamerFactory.with_parameters(y)))
+gather_all_exceptions_and_throw(
+    years,
+    lambda y: verify(
+        f"is Leap {str(y)}: {str(is_leap_year(y))}",
+        options=NamerFactory.with_parameters(y),
+    ),
+)
 ```
-<sup><a href='/tests/test_scenarios.py#L43-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L64-L73' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

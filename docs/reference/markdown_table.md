@@ -8,11 +8,13 @@ Here's an example:
 <a id='snippet-markdown_table_example'></a>
 ```py
 inputs = ["verify json", "verify all", "verify parameters", "verify as json"]
-table = MarkdownTable.with_headers("Input", "Camel Case", "Snake Case", "Kebab Case")
+table = MarkdownTable.with_headers(
+    "Input", "Camel Case", "Snake Case", "Kebab Case"
+)
 table.add_rows_for_inputs(inputs, to_camel_case, to_snake_case, to_kebab_case)
 verify(table)
 ```
-<sup><a href='/tests/utilities/test_markdown_table.py#L6-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/utilities/test_markdown_table.py#L6-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce:

@@ -16,11 +16,11 @@ For example, as we use it to handle json:
 <a id='snippet-verify_as_json'></a>
 ```py
 def verify_as_json(
-        object_to_verify,
-        reporter=None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        deserialize_json_fields=False,
-        options: Optional[Options] = None
+    object_to_verify,
+    reporter=None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    deserialize_json_fields=False,
+    options: Optional[Options] = None
 ):
     if deserialize_json_fields:
         object_to_verify = approvaltests.utils.deserialize_json_fields(object_to_verify)
@@ -28,7 +28,7 @@ def verify_as_json(
     json_text = to_json(object_to_verify) + "\n"
     verify(json_text, None, encoding="utf-8", newline="\n", options=options)
 ```
-<sup><a href='/approvaltests/approvals.py#L214-L229' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L220-L235' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
@@ -53,16 +53,20 @@ def test_verifiable(self):
             self.text = text
 
         def __str__(self) -> str:
-            return remove_indentation_from(f''' 
+            return remove_indentation_from(
+                f""" 
             # {self.title}
             {self.text}
-            ''')
+            """
+            )
 
         def get_verify_parameters(self, options: Options) -> VerifyParameters:
             return VerifyParameters(options.for_file.with_extension(".md"))
 
-    verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))
+    verify(
+        MarkdownParagraph("Paragraph Title", "This is where the paragraph text is.")
+    )
 ```
-<sup><a href='/tests/test_verify.py#L282-L299' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L305-L327' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   
