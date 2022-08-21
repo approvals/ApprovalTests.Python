@@ -4,7 +4,7 @@ from typing import Any, Callable, Optional, Collection
 class Storyboard:
     def __init__(self) -> None:
         self.frame_number = 0
-        self.story = ''
+        self.story = ""
         self.add_new_line = False
 
     def add_frame(self, data: Any, title: Optional[str] = None) -> "Storyboard":
