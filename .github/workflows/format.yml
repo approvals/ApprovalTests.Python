@@ -3,7 +3,7 @@ on:
   push:
   workflow_dispatch:
 jobs:
-  release:
+  Format:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
