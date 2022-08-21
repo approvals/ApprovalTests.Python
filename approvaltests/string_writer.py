@@ -24,7 +24,7 @@ class StringWriter(Writer):
 
     @staticmethod
     def sanitize_string(contents):
-        contents = contents or u""
+        contents = contents or ""
         if len(contents) == 0 or contents[-1] != "\n":
             contents = contents + "\n"
         return contents

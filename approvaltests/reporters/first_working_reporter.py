@@ -24,7 +24,7 @@ class FirstWorkingReporter(Reporter):
                 success = reporter.report(received_path, approved_path)
                 if success:
                     return True
-            except:# pylint: disable=bare-except
+            except:  # pylint: disable=bare-except
                 pass
 
         return False

@@ -3,7 +3,9 @@ from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.introduction_reporter import IntroductionReporter
 
-from approvaltests.reporters.report_by_creating_diff_file import ReportByCreatingDiffFile
+from approvaltests.reporters.report_by_creating_diff_file import (
+    ReportByCreatingDiffFile,
+)
 
 
 class FakeFactory:
@@ -19,5 +21,7 @@ def test_fallback_reporter() -> None:
 
 
 def test_get_diff_file_name() -> None:
-    diff_file = ReportByCreatingDiffFile.get_diff_file_name("VerifyTests.test_verify_html.received.html")
+    diff_file = ReportByCreatingDiffFile.get_diff_file_name(
+        "VerifyTests.test_verify_html.received.html"
+    )
     assert diff_file == "VerifyTests.test_verify_html.diff"

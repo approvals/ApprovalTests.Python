@@ -1,5 +1,8 @@
 from approvaltests import verify_exception
-from approvaltests.utilities.exceptions.exception_collector import ExceptionCollector, gather_all_exceptions
+from approvaltests.utilities.exceptions.exception_collector import (
+    ExceptionCollector,
+    gather_all_exceptions,
+)
 
 
 def is_odd(integer):

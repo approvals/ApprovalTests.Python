@@ -40,8 +40,8 @@ def calculate_diff_with_approve_instruction(file1: str, file2: str):
 
 
 def calculate_diff(filename1: str, filename2: str):
-    with open(filename1, encoding='utf8') as file1:
-        with open(filename2, encoding='utf8') as file2:
+    with open(filename1, encoding="utf8") as file1:
+        with open(filename2, encoding="utf8") as file2:
             diff = unified_diff(
                 file2.readlines(),
                 file1.readlines(),
@@ -50,6 +50,7 @@ def calculate_diff(filename1: str, filename2: str):
             )
             diff_string = "".join(diff)
             return diff_string
+
 
 if __name__ == "__main__":
     print(calculate_diff_with_approve_instruction(sys.argv[1], sys.argv[2]))

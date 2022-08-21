@@ -4,8 +4,10 @@ from typing import List
 from approvaltests.utils import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
-from approvaltests.reporters.generic_diff_reporter_config \
-    import GenericDiffReporterConfig, create_config
+from approvaltests.reporters.generic_diff_reporter_config import (
+    GenericDiffReporterConfig,
+    create_config,
+)
 from approvaltests.utils import to_json
 
 PROGRAM_FILES = "{ProgramFiles}"
@@ -73,4 +75,4 @@ class GenericDiffReporter(Reporter):
             possible = path.replace(PROGRAM_FILES, candidate)
             if Command.executable(possible):
                 return possible
-        return  path.replace(PROGRAM_FILES, "C:/Program Files")
+        return path.replace(PROGRAM_FILES, "C:/Program Files")

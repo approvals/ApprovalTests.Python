@@ -37,10 +37,7 @@ class FileComparator(Comparator):
 class FileApprover(object):
     @staticmethod
     def verify(
-            namer: Namer,
-        writer: Writer,
-        reporter: Reporter,
-        comparator: Comparator
+        namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
     ) -> Optional[str]:
 
         base = namer.get_basename()
@@ -49,7 +46,7 @@ class FileApprover(object):
 
         # The writer has the ability to change the name of the received file
         received = writer.write_received_file(received)
-        verified = FileApprover.verify_files(approved, received, reporter,comparator)
+        verified = FileApprover.verify_files(approved, received, reporter, comparator)
 
         if not verified:
             return (
@@ -61,7 +58,10 @@ class FileApprover(object):
 
     @staticmethod
     def verify_files(
-        approved_file: str, received_file: str, reporter: Reporter, comparator: Comparator
+        approved_file: str,
+        received_file: str,
+        reporter: Reporter,
+        comparator: Comparator,
     ) -> bool:
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)

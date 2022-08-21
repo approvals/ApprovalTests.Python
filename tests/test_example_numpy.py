@@ -5,16 +5,24 @@ from approvaltests import verify_binary, Options
 from approvaltests.core import Reporter
 from approvaltests.reporters import get_command_text
 
+
 def serialize_ndarray(a: np.ndarray):
     bs = io.BytesIO()
     np.save(bs, a)
     bs.seek(0)
     return bs.read()
 
+
 # begin-snippet: verify_numpy_array
 def test_simulator_produces_correct_output():
-    np_array = np.full(shape = (32,16),fill_value=42,dtype=np.int64)
-    verify_binary(serialize_ndarray(np_array), ".npy", options=Options().with_reporter(NDArrayDiffReporter()))
+    np_array = np.full(shape=(32, 16), fill_value=42, dtype=np.int64)
+    verify_binary(
+        serialize_ndarray(np_array),
+        ".npy",
+        options=Options().with_reporter(NDArrayDiffReporter()),
+    )
+
+
 # end-snippet
 
 # Use a custom reporter to show the assertion message from numpy
@@ -22,8 +30,9 @@ def test_simulator_produces_correct_output():
 
 # begin-snippet: numpy_custom_reporter
 
+
 def load_ndarray(path):
-    with open(path, mode='rb') as f:
+    with open(path, mode="rb") as f:
         return np.load(f)
 
 
@@ -33,12 +42,15 @@ class NDArrayDiffReporter(Reporter):
             self._create_empty_array(approved_path)
         received = load_ndarray(received_path)
         approved = load_ndarray(approved_path)
-        to_approve_msg = f"To approve run:\n {get_command_text(received_path,approved_path)}"
+        to_approve_msg = (
+            f"To approve run:\n {get_command_text(received_path,approved_path)}"
+        )
         print(np.testing.build_err_msg([received, approved], err_msg=to_approve_msg))
         return True
-# end-snippet
+
+    # end-snippet
 
     @staticmethod
     def _create_empty_array(path):
-        with open(path, mode='wb') as f:
+        with open(path, mode="wb") as f:
             f.write(serialize_ndarray(np.zeros((0,))))

@@ -3,7 +3,8 @@ from approvaltests.utilities.multiline_string_utils import remove_indentation_fr
 
 
 def test_remove_indentation_from_works_perfectly() -> None:
-    text = remove_indentation_from('''
+    text = remove_indentation_from(
+        """
 
         ^^ Blank line above ^^
 
@@ -15,5 +16,6 @@ def test_remove_indentation_from_works_perfectly() -> None:
 
         VV Blank line Below VV 
 
-        ''')
+        """
+    )
     verify("remove_indentation_from\n" + text)

@@ -51,7 +51,6 @@ class StackFrameNamer(NamerBase):
         locals = frame[0].f_locals
         is_unittest_test = (
             "self" in locals
-
             and hasattr(locals["self"], "__dict__")
             and "_testMethodName" in vars(locals["self"])
             and method_name != "__call__"

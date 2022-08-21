@@ -46,9 +46,20 @@ class NamerTests(unittest.TestCase):
         self.assertEqual(filename, "./stuff.approved.html")
 
     def test_additional_information(self):
-        assert_ends_with(NamerFactory.with_parameters("case1").namer.get_approved_filename(), "test_additional_information.case1.approved.txt")
-        assert_ends_with(NamerFactory.with_parameters("case1", "case2").namer.get_approved_filename(), "test_additional_information.case1.case2.approved.txt")
-        assert_ends_with(get_default_namer().get_approved_filename(), "test_additional_information.approved.txt")
+        assert_ends_with(
+            NamerFactory.with_parameters("case1").namer.get_approved_filename(),
+            "test_additional_information.case1.approved.txt",
+        )
+        assert_ends_with(
+            NamerFactory.with_parameters(
+                "case1", "case2"
+            ).namer.get_approved_filename(),
+            "test_additional_information.case1.case2.approved.txt",
+        )
+        assert_ends_with(
+            get_default_namer().get_approved_filename(),
+            "test_additional_information.approved.txt",
+        )
 
 
 def assert_ends_with(received_string, expected_ending):

@@ -6,10 +6,14 @@ from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
 )
-from approvaltests.reporters.generic_diff_reporter_config \
-    import GenericDiffReporterConfig, create_config
-from approvaltests.reporters.report_with_beyond_compare \
-    import ReportWithBeyondCompare, ReportWithWinMerge
+from approvaltests.reporters.generic_diff_reporter_config import (
+    GenericDiffReporterConfig,
+    create_config,
+)
+from approvaltests.reporters.report_with_beyond_compare import (
+    ReportWithBeyondCompare,
+    ReportWithWinMerge,
+)
 from approvaltests.utils import get_adjacent_file
 
 
@@ -18,7 +22,7 @@ class NoConfigReporter(Reporter):
         raise RuntimeError("This machine has no reporter configuration")
 
 
-class GenericDiffReporterFactory():
+class GenericDiffReporterFactory:
     reporters: List[GenericDiffReporterConfig] = []
 
     def __init__(self) -> None:
@@ -38,10 +42,12 @@ class GenericDiffReporterFactory():
 
     @staticmethod
     def get_reporter_programmmatically(reporter_name: str) -> Optional[Reporter]:
-        reporters = {"BeyondCompare": ReportWithBeyondCompare,
-                     "WinMerge": ReportWithWinMerge,
-                     "PythonNative":PythonNativeReporter,
-                     "PythonNativeReporter": PythonNativeReporter}
+        reporters = {
+            "BeyondCompare": ReportWithBeyondCompare,
+            "WinMerge": ReportWithWinMerge,
+            "PythonNative": PythonNativeReporter,
+            "PythonNativeReporter": PythonNativeReporter,
+        }
         clazz = reporters.get(reporter_name)
         return clazz and clazz()
 
@@ -56,7 +62,7 @@ class GenericDiffReporterFactory():
         return GenericDiffReporter(config)
 
     def save(self, file_name: str) -> str:
-        with open(file_name, "w", encoding='utf8') as file:
+        with open(file_name, "w", encoding="utf8") as file:
             json.dump(
                 [reporter.serialize() for reporter in self.reporters],
                 file,
@@ -67,7 +73,7 @@ class GenericDiffReporterFactory():
         return file_name
 
     def load(self, file_name: str) -> List[GenericDiffReporterConfig]:
-        with open(file_name, "r", encoding='utf8') as file:
+        with open(file_name, "r", encoding="utf8") as file:
             configs = json.load(file)
         self.reporters = [create_config(config) for config in configs]
         return self.reporters

@@ -7,8 +7,15 @@ import pytest
 
 from approvaltests import Options, delete_approved_file
 from approvaltests.approval_exception import ApprovalException
-from approvaltests.approvals import verify, verify_as_json, verify_file, verify_xml, verify_html, verify_binary, \
-    verify_exception
+from approvaltests.approvals import (
+    verify,
+    verify_as_json,
+    verify_file,
+    verify_xml,
+    verify_html,
+    verify_binary,
+    verify_exception,
+)
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.verifiable import Verifiable
 from approvaltests.core.verify_parameters import VerifyParameters
@@ -16,7 +23,9 @@ from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
-from approvaltests.reporters.reporter_that_automatically_approves import ReporterThatAutomaticallyApproves
+from approvaltests.reporters.reporter_that_automatically_approves import (
+    ReporterThatAutomaticallyApproves,
+)
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.storyboard import Storyboard
 from approvaltests.utilities.multiline_string_utils import remove_indentation_from
@@ -43,14 +52,14 @@ class GameOfLife:
 
         def my_next(x, y):
             count = (
-                    old(x + 1, y)
-                    + old(x + 1, y - 1)
-                    + old(x + 1, y + 1)
-                    + old(x - 1, y)
-                    + old(x - 1, y - 1)
-                    + old(x - 1, y + 1)
-                    + old(x, y + 1)
-                    + old(x, y - 1)
+                old(x + 1, y)
+                + old(x + 1, y - 1)
+                + old(x + 1, y + 1)
+                + old(x - 1, y)
+                + old(x - 1, y - 1)
+                + old(x - 1, y + 1)
+                + old(x, y + 1)
+                + old(x, y - 1)
             )
             return count == 3 or (count == 2 and old(x, y))
 
@@ -141,12 +150,18 @@ class VerifyTests(unittest.TestCase):
             verify_as_json(circular_data, self.reporter)
 
     def test_json_in_json(self):
-        dict = {'a': 1, 'b': 2, 'c': 3}
-        verify_as_json({'type': 'dictionary', 'value': json.dumps(dict)}, deserialize_json_fields=True)
+        dict = {"a": 1, "b": 2, "c": 3}
+        verify_as_json(
+            {"type": "dictionary", "value": json.dumps(dict)},
+            deserialize_json_fields=True,
+        )
 
     def test_json_in_dict_in_json(self):
-        dict = {'a': 1, 'b': 2, 'c': 3}
-        verify_as_json({'type': 'dictionary', 'value': {'key': json.dumps(dict)}}, deserialize_json_fields=True)
+        dict = {"a": 1, "b": 2, "c": 3}
+        verify_as_json(
+            {"type": "dictionary", "value": {"key": json.dumps(dict)}},
+            deserialize_json_fields=True,
+        )
 
     def test_verify_file(self) -> None:
         name = "exampleFile.txt"
@@ -173,7 +188,7 @@ class VerifyTests(unittest.TestCase):
         # begin-snippet: verify_binary_image
         name = "icon.png"
         filename = get_adjacent_file(name)
-        with open(filename, mode='rb') as f:
+        with open(filename, mode="rb") as f:
             verify_binary(f.read(), ".png")
         # end-snippet
 
@@ -195,8 +210,8 @@ class VerifyTests(unittest.TestCase):
         game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
         verify(
             Storyboard()
-                .add_frame(game_of_life)
-                .add_frames(2, lambda _: game_of_life.advance())
+            .add_frame(game_of_life)
+            .add_frames(2, lambda _: game_of_life.advance())
         )
 
     def test_simple_storyboard(self) -> None:
@@ -261,7 +276,10 @@ class VerifyTests(unittest.TestCase):
         verify_file(get_adjacent_file("sample.xml"))
 
     def test_exist_file_with_modified_extension(self):
-        verify_file(get_adjacent_file("sample.xml"), options=Options().for_file.with_extension(".json"))
+        verify_file(
+            get_adjacent_file("sample.xml"),
+            options=Options().for_file.with_extension(".json"),
+        )
 
     def test_verify_converts_to_string(self):
         verify(1)
@@ -269,7 +287,12 @@ class VerifyTests(unittest.TestCase):
     def test_verify_automatic_approval(self):
         delete_approved_file()
         with pytest.raises(ApprovalException):
-            verify(2, options=Options().with_reporter(reporter=ReporterThatAutomaticallyApproves()))
+            verify(
+                2,
+                options=Options().with_reporter(
+                    reporter=ReporterThatAutomaticallyApproves()
+                ),
+            )
         verify(2)
 
     def test_verify_custom_comparator_allows_all_inputs(self):
@@ -287,15 +310,20 @@ class VerifyTests(unittest.TestCase):
                 self.text = text
 
             def __str__(self) -> str:
-                return remove_indentation_from(f''' 
+                return remove_indentation_from(
+                    f""" 
                 # {self.title}
                 {self.text}
-                ''')
+                """
+                )
 
             def get_verify_parameters(self, options: Options) -> VerifyParameters:
                 return VerifyParameters(options.for_file.with_extension(".md"))
 
-        verify(MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."))
+        verify(
+            MarkdownParagraph("Paragraph Title", "This is where the paragraph text is.")
+        )
+
     # end-snippet
 
     def test_verify_exception(self):

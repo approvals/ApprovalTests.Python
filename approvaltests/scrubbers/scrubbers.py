@@ -6,7 +6,7 @@ Scrubber = Callable[[str], str]
 
 
 def create_regex_scrubber(
-        regex: str, function_or_replace_string: Union[Callable[[int], str], str]
+    regex: str, function_or_replace_string: Union[Callable[[int], str], str]
 ) -> Scrubber:
     def scrub(text: str) -> str:
         if isinstance(function_or_replace_string, str):
@@ -28,8 +28,8 @@ def scrub_all_dates(date: str) -> str:
 
 def scrub_all_guids(data: str) -> str:
     return create_regex_scrubber(
-        r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}", lambda t: f"<guid_{t}>"
-
+        r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}",
+        lambda t: f"<guid_{t}>",
     )(data)
 
 
@@ -43,16 +43,20 @@ def combine_scrubbers(*scrubbers):
 
 
 def templates_regex_scrubber_with_lambda() -> Scrubber:
-    '''
-     This method exists as a convenient way to get an example scrubber for you to use.
-     To use this template, simply inline the method in your IDE.
-    '''
-    return create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", lambda t: f"<your replacement_{t}>")
+    """
+    This method exists as a convenient way to get an example scrubber for you to use.
+    To use this template, simply inline the method in your IDE.
+    """
+    return create_regex_scrubber(
+        "your pattern here: [a-zA-Z]+/d{4}", lambda t: f"<your replacement_{t}>"
+    )
 
 
 def templates_regex_scrubber_with_replacement() -> Scrubber:
-    '''
-     This method exists as a convient way to get an example scrubber for you to use.
-     To use this template, simply inline the method in your IDE.
-    '''
-    return create_regex_scrubber("your pattern here: [a-zA-Z]+/d{4}", "<your replacement>")
+    """
+    This method exists as a convient way to get an example scrubber for you to use.
+    To use this template, simply inline the method in your IDE.
+    """
+    return create_regex_scrubber(
+        "your pattern here: [a-zA-Z]+/d{4}", "<your replacement>"
+    )

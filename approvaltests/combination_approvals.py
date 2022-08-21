@@ -13,16 +13,22 @@ CombinationsOfParameters = Sequence[Sequence[Any]]
 
 def calculate_total_size(input_arguments):
     from functools import reduce
-    return reduce(lambda current_size, arguments: len(arguments) * current_size, input_arguments, 1)
+
+    return reduce(
+        lambda current_size, arguments: len(arguments) * current_size,
+        input_arguments,
+        1,
+    )
 
 
 def verify_best_covering_pairs(
-        function_under_test: Callable,
-        input_arguments: VariationForEachParameter,
-        formatter: Optional[Callable] = None,
-        reporter: Optional[ReporterForTesting] = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None) -> None:
+    function_under_test: Callable,
+    input_arguments: VariationForEachParameter,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[ReporterForTesting] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
+) -> None:
 
     combinations = get_best_covering_pairs(input_arguments)
     count = len(combinations)
@@ -36,12 +42,12 @@ def verify_best_covering_pairs(
 
 
 def verify_all_combinations(
-        function_under_test: Callable,
-        input_arguments: VariationForEachParameter,
-        formatter: Optional[Callable] = None,
-        reporter: Optional[ReporterForTesting] = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    function_under_test: Callable,
+    input_arguments: VariationForEachParameter,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[ReporterForTesting] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -64,12 +70,12 @@ def verify_all_combinations(
 
 
 def verify_all_combinations_with_namer(
-        function_under_test: Callable,
-        input_arguments: VariationForEachParameter,
-        formatter: Optional[Callable] = None,
-        reporter: Optional[Reporter] = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    function_under_test: Callable,
+    input_arguments: VariationForEachParameter,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[Reporter] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -92,9 +98,9 @@ def verify_all_combinations_with_namer(
 
 
 def print_combinations(
-        formatter: Optional[Callable],
-        function_under_test: Callable,
-        parameter_combinations: CombinationsOfParameters
+    formatter: Optional[Callable],
+    function_under_test: Callable,
+    parameter_combinations: CombinationsOfParameters,
 ) -> str:
     if formatter is None:
         formatter = args_and_result_formatter

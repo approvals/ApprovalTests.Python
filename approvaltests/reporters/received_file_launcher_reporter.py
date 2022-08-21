@@ -22,6 +22,6 @@ class ReceivedFileLauncherReporter(Reporter):
         return ["cmd", "/C", "start", received_path, "/B"]
 
     def report(self, received_path: str, approved_path: str) -> bool:
-        command_array = self.get_command( received_path)
+        command_array = self.get_command(received_path)
         call(command_array)
         return True

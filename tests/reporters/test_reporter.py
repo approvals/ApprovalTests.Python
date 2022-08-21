@@ -2,7 +2,10 @@
 
 from approvaltests import verify_all
 from approvaltests.reporters import GenericDiffReporterFactory, get_command_text
-from approvaltests.reporters.default_reporter_factory import get_default_reporter, set_default_reporter
+from approvaltests.reporters.default_reporter_factory import (
+    get_default_reporter,
+    set_default_reporter,
+)
 from approvaltests.reporters.received_file_launcher_reporter import (
     ReceivedFileLauncherReporter,
 )
@@ -15,7 +18,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
 class ReporterTests(unittest.TestCase):
     def test_file_launcher(self):
         reporter = ReceivedFileLauncherReporter()
-        command = reporter.get_command( "b.txt")
+        command = reporter.get_command("b.txt")
         self.assertEqual(command, ["cmd", "/C", "start", "b.txt", "/B"])
 
     def test_different_ways_of_creating_reporter(self):
@@ -34,5 +37,5 @@ class ReporterTests(unittest.TestCase):
         new = get_default_reporter()
 
         assert "ReportWithBeyondCompare" == new.__class__.__name__
-        assert  old != new
+        assert old != new
         set_default_reporter(old)

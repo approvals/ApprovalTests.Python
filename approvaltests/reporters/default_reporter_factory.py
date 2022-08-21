@@ -2,6 +2,7 @@ from threading import local
 from typing import Optional
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.core.reporter import Reporter
+
 DEFAULT_REPORTER = local()
 
 

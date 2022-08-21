@@ -10,10 +10,12 @@ class FileOptions:
     def __init__(self, fields: Dict):
         self.fields = fields
 
-    def with_extension(self, extension_with_dot: str,
-                       *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
-                       no_override=False
-                       ) -> "Options":
+    def with_extension(
+        self,
+        extension_with_dot: str,
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
+        no_override=False
+    ) -> "Options":
         if not extension_with_dot.startswith("."):
             extension_with_dot = "." + extension_with_dot
         if no_override and "extension_with_dot" in self.fields:
@@ -27,7 +29,9 @@ class Options:
 
     @property
     def reporter(self) -> Reporter:
-        from approvaltests.reporters.default_reporter_factory import get_default_reporter
+        from approvaltests.reporters.default_reporter_factory import (
+            get_default_reporter,
+        )
 
         return self.fields.get("reporter", get_default_reporter())
 
@@ -62,7 +66,8 @@ class Options:
     @property
     def namer(self) -> Namer:
         from approvaltests.namer.default_name import get_default_namer
+
         namer = self.fields.get("namer", get_default_namer())
-        if hasattr(namer, 'set_extension'):
+        if hasattr(namer, "set_extension"):
             namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
         return namer

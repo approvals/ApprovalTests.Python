@@ -1,7 +1,10 @@
 import inspect
 from typing import Sequence, Any, Dict
 
-from approvaltests.combination_approvals import verify_all_combinations, verify_best_covering_pairs
+from approvaltests.combination_approvals import (
+    verify_all_combinations,
+    verify_best_covering_pairs,
+)
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 
 
@@ -27,8 +30,9 @@ def get_all_pairs_count(inputs: Sequence[Sequence[Any]]) -> Dict[str, int]:
     return pairCount
 
 
-def assert_all_pairs_present_between_lists(input1: Sequence[Any], input2: Sequence[Any],
-                                           all_pairs_with_index: Dict[str, int]) -> None:
+def assert_all_pairs_present_between_lists(
+    input1: Sequence[Any], input2: Sequence[Any], all_pairs_with_index: Dict[str, int]
+) -> None:
     for i1 in input1:
         for i2 in input2:
             key = get_key(i1, i2)
@@ -36,10 +40,14 @@ def assert_all_pairs_present_between_lists(input1: Sequence[Any], input2: Sequen
                 raise Exception(f"could not find pair {key}")
 
 
-def assert_all_pairs_present(all_pairs_with_index: Dict[str, int], inputs: Sequence[Sequence[Any]]) -> None:
+def assert_all_pairs_present(
+    all_pairs_with_index: Dict[str, int], inputs: Sequence[Sequence[Any]]
+) -> None:
     for i1 in range(len(inputs) - 1):
         for i2 in range(i1 + 1, len(inputs)):
-            assert_all_pairs_present_between_lists(inputs[i1], inputs[i2], all_pairs_with_index)
+            assert_all_pairs_present_between_lists(
+                inputs[i1], inputs[i2], all_pairs_with_index
+            )
 
 
 def assert_pairwise_combinations(inputs: Sequence[Sequence[Any]]) -> None:
@@ -65,10 +73,36 @@ def test_reduction() -> None:
     inputs7 = list(range(61, 70))
     inputs8 = list(range(71, 80))
     inputs9 = list(range(81, 90))
-    assert_pairwise_combinations([inputs1, inputs2, inputs3, inputs4, inputs5, inputs6, inputs7, inputs8, inputs9])
-    verify_best_covering_pairs(lambda *args: sum(args),
-                               [inputs1, inputs2, inputs3, inputs4, inputs5, inputs6, inputs7, inputs8, inputs9])
+    assert_pairwise_combinations(
+        [
+            inputs1,
+            inputs2,
+            inputs3,
+            inputs4,
+            inputs5,
+            inputs6,
+            inputs7,
+            inputs8,
+            inputs9,
+        ]
+    )
+    verify_best_covering_pairs(
+        lambda *args: sum(args),
+        [
+            inputs1,
+            inputs2,
+            inputs3,
+            inputs4,
+            inputs5,
+            inputs6,
+            inputs7,
+            inputs8,
+            inputs9,
+        ],
+    )
 
 
 def test_signature_equality() -> None:
-    assert inspect.signature(verify_all_combinations) == inspect.signature(verify_best_covering_pairs)
+    assert inspect.signature(verify_all_combinations) == inspect.signature(
+        verify_best_covering_pairs
+    )

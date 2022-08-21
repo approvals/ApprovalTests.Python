@@ -7,7 +7,6 @@ from approvaltests.core.namer import Namer
 
 
 class NamerBase(Namer):
-
     def __init__(self, extension: Optional[str] = None) -> None:
         self.extension_with_dot = extension or ".txt"
         self.config_loaded = False
@@ -22,7 +21,7 @@ class NamerBase(Namer):
         raise Exception("This class is abstract, override this method in a subclass")
 
     def config_directory(self) -> str:
-        #pylint:disable=no-self-use
+        # pylint:disable=no-self-use
         return None
 
     def get_config(self) -> Dict[str, str]:
@@ -32,7 +31,7 @@ class NamerBase(Namer):
                 self.config_directory(), "approvaltests_config.json"
             )
             if os.path.exists(config_file):
-                with open(config_file, "r", encoding='utf8') as file:
+                with open(config_file, "r", encoding="utf8") as file:
                     self.config = json.load(file)
             else:
                 self.config = {}

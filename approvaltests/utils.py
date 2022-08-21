@@ -14,7 +14,7 @@ def write_to_temporary_file(expected: str, name: str):
     import tempfile
 
     with tempfile.NamedTemporaryFile(
-            mode="w+b", suffix=".txt", prefix=name, delete=False
+        mode="w+b", suffix=".txt", prefix=name, delete=False
     ) as temp:
         temp.write(expected.encode("utf-8-sig"))
         return temp.name
@@ -34,7 +34,7 @@ def to_json(object_to_verify) -> str:
 def deserialize_json_fields(a_dict: dict) -> dict:
     a_dict = deepcopy(a_dict)
     for key, val in a_dict.items():
-        if isinstance(val, str) and val.startswith('{'):
+        if isinstance(val, str) and val.startswith("{"):
             try:
                 deserialized_val = json.loads(val)
             except BaseException:
@@ -53,6 +53,7 @@ def is_windows_os() -> bool:
 
 def create_empty_file(file_path: str) -> None:
     import empty_files.empty_files
+
     empty_files.empty_files.create_empty_file(file_path)
 
 

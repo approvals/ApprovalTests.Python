@@ -23,15 +23,19 @@ from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.utilities.exceptions.exception_utils import to_string
-from approvaltests.verifiable_objects.formatter_of_argparse_namespace import FormatterOfArgparseNamespace, \
-    FormatterWrapperOfArgparseNamespace
+from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
+    FormatterOfArgparseNamespace,
+    FormatterWrapperOfArgparseNamespace,
+)
 
 __unittest = True
 __tracebackhide__ = True
 
 
 def set_default_reporter(reporter: Reporter) -> None:
-    return approvaltests.reporters.default_reporter_factory.set_default_reporter(reporter)
+    return approvaltests.reporters.default_reporter_factory.set_default_reporter(
+        reporter
+    )
 
 
 def get_default_reporter() -> Reporter:
@@ -47,14 +51,14 @@ def get_default_namer(extension: Optional[str] = None) -> StackFrameNamer:
 
 
 def verify(
-        data: Any,
-        reporter: Optional[Reporter] = None,
-        namer: Optional[Namer] = None,
-        encoding: Optional[str] = None,
-        errors: Optional[str] = None,
-        newline: Optional[str] = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    data: Any,
+    reporter: Optional[Reporter] = None,
+    namer: Optional[Namer] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+    newline: Optional[str] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -107,7 +111,6 @@ def verify(
     )
 
 
-
 format_wrappers = [FormatterWrapperOfArgparseNamespace(), AlwaysMatch()]
 
 
@@ -122,23 +125,26 @@ def find_formatter_for_specified_class(data: Any) -> Any:
     wrapper = first(format_wrappers, lambda f: f.is_match(data))
     return wrapper.wrap(data)
 
+
 def verify_binary(
-        data: ByteString,
-        file_extension_with_dot: str,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    data: ByteString,
+    file_extension_with_dot: str,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
-    options = initialize_options(options, None).for_file.with_extension(file_extension_with_dot)
+    options = initialize_options(options, None).for_file.with_extension(
+        file_extension_with_dot
+    )
     verify_with_namer_and_writer(
         options.namer,
         BinaryWriter(data, file_extension_with_dot),
         None,
-        options=options
+        options=options,
     )
 
 
 def initialize_options(
-        options: Optional[Options], reporter: Optional[Reporter] = None
+    options: Optional[Options], reporter: Optional[Reporter] = None
 ) -> Options:
     if options is None:
         options = Options()
@@ -148,14 +154,14 @@ def initialize_options(
 
 
 def verify_with_namer(
-        data: Any,
-        namer: Namer,
-        reporter: Optional[Reporter] = None,
-        encoding: Optional[str] = None,
-        errors: Optional[str] = None,
-        newline: Optional[str] = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    data: Any,
+    namer: Namer,
+    reporter: Optional[Reporter] = None,
+    encoding: Optional[str] = None,
+    errors: Optional[str] = None,
+    newline: Optional[str] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -199,11 +205,11 @@ def verify_with_namer(
 
 
 def verify_with_namer_and_writer(
-        namer: Namer,
-        writer: Writer,
-        reporter: Optional[Reporter] = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    namer: Namer,
+    writer: Writer,
+    reporter: Optional[Reporter] = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, reporter)
     error = FileApprover.verify(namer, writer, options.reporter, options.comparator)
@@ -213,11 +219,11 @@ def verify_with_namer_and_writer(
 
 # begin-snippet: verify_as_json
 def verify_as_json(
-        object_to_verify,
-        reporter=None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        deserialize_json_fields=False,
-        options: Optional[Options] = None
+    object_to_verify,
+    reporter=None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    deserialize_json_fields=False,
+    options: Optional[Options] = None
 ):
     if deserialize_json_fields:
         object_to_verify = approvaltests.utils.deserialize_json_fields(object_to_verify)
@@ -230,11 +236,11 @@ def verify_as_json(
 
 
 def verify_xml(
-        xml_string: str,
-        reporter: None = None,
-        namer: Namer = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    xml_string: str,
+    reporter: None = None,
+    namer: Namer = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options, reporter)
     try:
@@ -247,14 +253,15 @@ def verify_xml(
 
 
 def verify_html(
-        html_string: str,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    html_string: str,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     options = initialize_options(options)
     try:
         from bs4 import BeautifulSoup
-        pretty_html = BeautifulSoup(html_string, 'html.parser').prettify()
+
+        pretty_html = BeautifulSoup(html_string, "html.parser").prettify()
     except Exception:
         pretty_html = html_string
 
@@ -262,10 +269,10 @@ def verify_html(
 
 
 def verify_file(
-        file_name: str,
-        reporter: Reporter = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    file_name: str,
+    reporter: Reporter = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     """Verify the contents of a text file against previously approved contents.
 
@@ -291,15 +298,15 @@ def verify_file(
 
 
 def verify_all(
-        header: str,
-        alist: List[str],
-        formatter: Optional[Callable] = None,
-        reporter: Optional[DiffReporter] = None,
-        encoding: None = None,
-        errors: None = None,
-        newline: None = None,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    header: str,
+    alist: List[str],
+    formatter: Optional[Callable] = None,
+    reporter: Optional[DiffReporter] = None,
+    encoding: None = None,
+    errors: None = None,
+    newline: None = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 
@@ -345,9 +352,9 @@ def verify_all(
 
 
 def verify_exception(
-        code_that_throws_exception: Callable,
-        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-        options: Optional[Options] = None
+    code_that_throws_exception: Callable,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
 ):
     result = ""
     try:

@@ -38,8 +38,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         for reporter in reporters:
             markdown += f"* { reporter}\n"
 
-        verify(markdown,options=Options().for_file.with_extension(".md"))
-
+        verify(markdown, options=Options().for_file.with_extension(".md"))
 
     def test_get_reporter(self) -> None:
         verify(str(self.factory.get("BeyondCompare4")))
@@ -81,7 +80,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
         reporter = self.factory.get("BeyondCompare4")
 
-        setattr(reporter, "run_command",  lambda command_array: None)
+        setattr(reporter, "run_command", lambda command_array: None)
         setattr(reporter, "is_working", lambda: True)
         reporter.report(received, approved)
         self.assertEqual(0, os.stat(approved).st_size)

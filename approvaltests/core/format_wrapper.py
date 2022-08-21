@@ -11,6 +11,7 @@ class FormatWrapper(abc.ABC):
     def is_match(self, data: typing.Any) -> bool:
         pass
 
+
 class AlwaysMatch(FormatWrapper):
     def wrap(self, data: typing.Any) -> typing.Any:
         return data

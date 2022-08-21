@@ -16,29 +16,28 @@ class FileApproverTests(unittest.TestCase):
         writer = StringWriter("a")
         writer.write_received_file("a.txt")
         shutil.copy("a.txt", "a_same.txt")
-        FileApprover.verify_files("a.txt", "a_same.txt", None,Options().comparator)
+        FileApprover.verify_files("a.txt", "a_same.txt", None, Options().comparator)
 
     def test_compare_different_files(self):
         reporter = ReporterForTesting()
-        FileApprover.verify_files("a.txt", "b.txt", reporter,Options().comparator)
+        FileApprover.verify_files("a.txt", "b.txt", reporter, Options().comparator)
         self.assertTrue(reporter.called)
 
     def test_scrubbed_files(self):
-        verify_file("a.txt",options=Options().with_scrubber(lambda t : "<scrubbed>"  ))
-
+        verify_file("a.txt", options=Options().with_scrubber(lambda t: "<scrubbed>"))
 
     def test_full(self):
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
-        FileApprover.verify(namer, writer, reporter,Options().comparator)
+        FileApprover.verify(namer, writer, reporter, Options().comparator)
         self.assertTrue(reporter.called)
 
     def test_returns_error_when_files_are_different(self):
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
-        error = FileApprover.verify(namer, writer, reporter,Options().comparator)
+        error = FileApprover.verify(namer, writer, reporter, Options().comparator)
         import re
 
         replaced = re.sub("ved: .*approved_files.", "ved: <rootdir>/", error)
@@ -49,7 +48,7 @@ class FileApproverTests(unittest.TestCase):
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = GenericDiffReporterFactory().get_first_working()
-        error = FileApprover.verify(namer, writer, reporter,Options().comparator)
+        error = FileApprover.verify(namer, writer, reporter, Options().comparator)
         self.assertEqual(None, error)
 
 

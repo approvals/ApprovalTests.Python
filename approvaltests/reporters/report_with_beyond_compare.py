@@ -2,7 +2,9 @@ from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
 )
-from approvaltests.reporters.generic_diff_reporter_config import GenericDiffReporterConfig
+from approvaltests.reporters.generic_diff_reporter_config import (
+    GenericDiffReporterConfig,
+)
 
 
 class ReportWithBeyondCompareLinux(GenericDiffReporter):
@@ -32,6 +34,7 @@ class ReportWithBeyondCompareWindows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithWinMerge(GenericDiffReporter):
     def __init__(self):
         super().__init__(
@@ -40,6 +43,8 @@ class ReportWithWinMerge(GenericDiffReporter):
                 path="{ProgramFiles}/WinMerge/WinMergeU.exe",
             )
         )
+
+
 class ReportWithPycharm(GenericDiffReporter):
     def __init__(self):
         super().__init__(
