@@ -1,4 +1,4 @@
-name: update-markdown-snippets
+name: format
 on:
   push:
   workflow_dispatch:
