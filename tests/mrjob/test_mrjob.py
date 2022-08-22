@@ -28,7 +28,7 @@ def test_word_count():
 
 # end-snippet
 
-# begin-snippet:verify_templated_map_reduce
+# begin-snippet: verify_templated_map_reduce
 def test_word_count_combinations():
     animals = ["fish", "dog", "cat"]
     colors = ["aqua", "red", "blue"]
