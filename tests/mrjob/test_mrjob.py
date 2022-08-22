@@ -1,8 +1,6 @@
-from pathlib import Path
-
-from approvaltests import verify
-
 from mrjob.job import MRJob
+
+from approvaltests.mrjob.mrjob_approvals import verify_map_reduce
 
 
 class MRWordFrequencyCount(MRJob):
@@ -15,22 +13,7 @@ class MRWordFrequencyCount(MRJob):
         yield key, sum(values)
 
 
-def verify_map_reduce(map_reduction, test_data):
-    storyboard = f"{ Path(test_data).read_text()}\n"
-    storyboard += "\nMap reduces to:\n\n"
-
-    with open(test_data, "rb") as test_data_file:
-        map_reduction.sandbox(stdin=test_data_file)
-
-        with map_reduction.make_runner() as runner:
-            runner.run()
-            for key, value in map_reduction.parse_output(runner.cat_output()):
-                storyboard += f"{key}:{value}\n"
-
-    verify(storyboard)
-
-
 def test_word_count():
-    test_data = "test.data"
+    test_data = "one fish two fish red fish blue fish"
     map_reduction = MRWordFrequencyCount(["--no-conf"])
     verify_map_reduce(map_reduction, test_data)
