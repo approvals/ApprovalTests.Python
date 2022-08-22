@@ -1,0 +1,7 @@
+one fish two fish red fish blue fish
+
+Map reduces to:
+
+chars:36
+lines:1
+words:8
