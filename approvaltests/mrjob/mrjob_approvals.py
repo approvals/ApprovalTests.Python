@@ -20,7 +20,7 @@ def print_map_reduce_job(mr_job_under_test: MRJob, test_data: str) -> str:
     return storyboard
 
 
-def verify_templated_map_reduction(map_reduction, input_creator, params):
+def verify_templated_map_reduce(map_reduction, input_creator, params):
     inputs = product(*params)
     storyboard = ""
     for input in inputs:

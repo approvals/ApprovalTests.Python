@@ -2,7 +2,7 @@ from mrjob.job import MRJob
 
 from approvaltests.mrjob.mrjob_approvals import (
     verify_map_reduce,
-    verify_templated_map_reduction,
+    verify_templated_map_reduce,
 )
 
 
@@ -19,18 +19,16 @@ class MRWordFrequencyCount(MRJob):
         yield key, sum(values)
 
 
+# begin-snippet: verify_map_reduce
 def test_word_count():
     test_data = "one fish two fish red fish blue fish"
     map_reduction = MRWordFrequencyCount()
     verify_map_reduce(map_reduction, test_data)
 
 
-def test_word_count():
-    test_data = "one fish two fish red fish blue fish"
-    map_reduction = MRWordFrequencyCount()
-    verify_map_reduce(map_reduction, test_data)
+# end-snippet
 
-
+# begin-snippet:verify_templated_map_reduce
 def test_word_count_combinations():
     animals = ["fish", "dog", "cat"]
     colors = ["aqua", "red", "blue"]
@@ -39,6 +37,7 @@ def test_word_count_combinations():
     def input_creator(animal, color1, color2):
         return f"one {animal} two {animal} {color1} {animal} {color2} {animal}"
 
-    verify_templated_map_reduction(
-        map_reduction, input_creator, [animals, colors, colors]
-    )
+    verify_templated_map_reduce(map_reduction, input_creator, [animals, colors, colors])
+
+
+# end-snippet
