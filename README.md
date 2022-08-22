@@ -258,8 +258,9 @@ If you want the bare minimum you can use the pypi project
 pyperclip>=1.5.29     # For Clipboard Reporter
 beautifulsoup4>=4.4.0 # For verify_html
 allpairspy>=2.1.0     # For PairwiseCombinations
+mrjob>=0.7.4          # For MrJob
 ```
-<sup><a href='/requirements.prod.extras.txt#L1-L3' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/requirements.prod.extras.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## For developers
