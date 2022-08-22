@@ -15,7 +15,8 @@ def print_map_reduce_job(mr_job_under_test: MRJob, test_data: str) -> str:
     mr_job_under_test.sandbox(stdin=BytesIO(test_data.encode("utf-8")))
     with mr_job_under_test.make_runner() as runner:
         runner.run()
-        for key, value in mr_job_under_test.parse_output(runner.cat_output()):
+        results = mr_job_under_test.parse_output(runner.cat_output())
+        for key, value in sorted(results):
             storyboard += f"{key}:{value}\n"
     return storyboard
 
