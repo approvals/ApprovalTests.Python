@@ -2,7 +2,7 @@ from mrjob.job import MRJob
 
 from approvaltests.mrjob.mrjob_approvals import (
     verify_map_reduce,
-    verify_map_reduction_for_combinations_of,
+    verify_templated_map_reduction,
 )
 
 
@@ -31,6 +31,6 @@ def test_word_count_combinations():
     def input_creator(animal, color1, color2):
         return f"one {animal} two {animal} {color1} {animal} {color2} {animal}"
 
-    verify_map_reduction_for_combinations_of(
+    verify_templated_map_reduction(
         map_reduction, input_creator, [animals, colors, colors]
     )
