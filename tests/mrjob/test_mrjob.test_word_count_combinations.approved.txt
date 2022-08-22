@@ -1,137 +1,5 @@
 ===================
 
-('fish', 'magenta', 'magenta') =>
-one fish two fish magenta fish magenta fish
-
-Map reduces to:
-
-chars:43
-lines:1
-words:8
-
-===================
-
-('fish', 'magenta', 'chartreuse') =>
-one fish two fish magenta fish chartreuse fish
-
-Map reduces to:
-
-chars:46
-lines:1
-words:8
-
-===================
-
-('fish', 'magenta', 'aqua') =>
-one fish two fish magenta fish aqua fish
-
-Map reduces to:
-
-chars:40
-lines:1
-words:8
-
-===================
-
-('fish', 'magenta', 'red') =>
-one fish two fish magenta fish red fish
-
-Map reduces to:
-
-chars:39
-lines:1
-words:8
-
-===================
-
-('fish', 'magenta', 'blue') =>
-one fish two fish magenta fish blue fish
-
-Map reduces to:
-
-chars:40
-lines:1
-words:8
-
-===================
-
-('fish', 'chartreuse', 'magenta') =>
-one fish two fish chartreuse fish magenta fish
-
-Map reduces to:
-
-chars:46
-lines:1
-words:8
-
-===================
-
-('fish', 'chartreuse', 'chartreuse') =>
-one fish two fish chartreuse fish chartreuse fish
-
-Map reduces to:
-
-chars:49
-lines:1
-words:8
-
-===================
-
-('fish', 'chartreuse', 'aqua') =>
-one fish two fish chartreuse fish aqua fish
-
-Map reduces to:
-
-chars:43
-lines:1
-words:8
-
-===================
-
-('fish', 'chartreuse', 'red') =>
-one fish two fish chartreuse fish red fish
-
-Map reduces to:
-
-chars:42
-lines:1
-words:8
-
-===================
-
-('fish', 'chartreuse', 'blue') =>
-one fish two fish chartreuse fish blue fish
-
-Map reduces to:
-
-chars:43
-lines:1
-words:8
-
-===================
-
-('fish', 'aqua', 'magenta') =>
-one fish two fish aqua fish magenta fish
-
-Map reduces to:
-
-chars:40
-lines:1
-words:8
-
-===================
-
-('fish', 'aqua', 'chartreuse') =>
-one fish two fish aqua fish chartreuse fish
-
-Map reduces to:
-
-chars:43
-lines:1
-words:8
-
-===================
-
 ('fish', 'aqua', 'aqua') =>
 one fish two fish aqua fish aqua fish
 
@@ -160,28 +28,6 @@ one fish two fish aqua fish blue fish
 Map reduces to:
 
 chars:37
-lines:1
-words:8
-
-===================
-
-('fish', 'red', 'magenta') =>
-one fish two fish red fish magenta fish
-
-Map reduces to:
-
-chars:39
-lines:1
-words:8
-
-===================
-
-('fish', 'red', 'chartreuse') =>
-one fish two fish red fish chartreuse fish
-
-Map reduces to:
-
-chars:42
 lines:1
 words:8
 
@@ -220,28 +66,6 @@ words:8
 
 ===================
 
-('fish', 'blue', 'magenta') =>
-one fish two fish blue fish magenta fish
-
-Map reduces to:
-
-chars:40
-lines:1
-words:8
-
-===================
-
-('fish', 'blue', 'chartreuse') =>
-one fish two fish blue fish chartreuse fish
-
-Map reduces to:
-
-chars:43
-lines:1
-words:8
-
-===================
-
 ('fish', 'blue', 'aqua') =>
 one fish two fish blue fish aqua fish
 
@@ -270,6 +94,204 @@ one fish two fish blue fish blue fish
 Map reduces to:
 
 chars:37
+lines:1
+words:8
+
+===================
+
+('dog', 'aqua', 'aqua') =>
+one dog two dog aqua dog aqua dog
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('dog', 'aqua', 'red') =>
+one dog two dog aqua dog red dog
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('dog', 'aqua', 'blue') =>
+one dog two dog aqua dog blue dog
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('dog', 'red', 'aqua') =>
+one dog two dog red dog aqua dog
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('dog', 'red', 'red') =>
+one dog two dog red dog red dog
+
+Map reduces to:
+
+chars:31
+lines:1
+words:8
+
+===================
+
+('dog', 'red', 'blue') =>
+one dog two dog red dog blue dog
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('dog', 'blue', 'aqua') =>
+one dog two dog blue dog aqua dog
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('dog', 'blue', 'red') =>
+one dog two dog blue dog red dog
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('dog', 'blue', 'blue') =>
+one dog two dog blue dog blue dog
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('cat', 'aqua', 'aqua') =>
+one cat two cat aqua cat aqua cat
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('cat', 'aqua', 'red') =>
+one cat two cat aqua cat red cat
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('cat', 'aqua', 'blue') =>
+one cat two cat aqua cat blue cat
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('cat', 'red', 'aqua') =>
+one cat two cat red cat aqua cat
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('cat', 'red', 'red') =>
+one cat two cat red cat red cat
+
+Map reduces to:
+
+chars:31
+lines:1
+words:8
+
+===================
+
+('cat', 'red', 'blue') =>
+one cat two cat red cat blue cat
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('cat', 'blue', 'aqua') =>
+one cat two cat blue cat aqua cat
+
+Map reduces to:
+
+chars:33
+lines:1
+words:8
+
+===================
+
+('cat', 'blue', 'red') =>
+one cat two cat blue cat red cat
+
+Map reduces to:
+
+chars:32
+lines:1
+words:8
+
+===================
+
+('cat', 'blue', 'blue') =>
+one cat two cat blue cat blue cat
+
+Map reduces to:
+
+chars:33
 lines:1
 words:8
 
