@@ -3,6 +3,7 @@
 <!-- toc -->
 ## Contents
 
+  * [What is MRJob](#what-is-mrjob)
   * [Testing Single Job](#testing-single-job)
   * [Testing for a combination of inputs](#testing-for-a-combination-of-inputs)<!-- endToc -->
 
