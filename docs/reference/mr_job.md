@@ -6,6 +6,13 @@
   * [Testing Single Job](#testing-single-job)
   * [Testing for a combination of inputs](#testing-for-a-combination-of-inputs)<!-- endToc -->
 
+## What is MRJob
+
+[MRJob](https://mrjob.readthedocs.io/en/latest/) is a library to allow testing of Hadoop Map Reduce jobs. 
+Map Redcue jobs take in data and transform it which makes it perfect for use with ApprovalTests.
+
+
+
 ## Testing Single Job
 
 Here's an example of how to test a single MRJob
