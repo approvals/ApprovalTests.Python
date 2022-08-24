@@ -23,10 +23,10 @@ Here's an example of how to test a single MRJob
 ```py
 def test_word_count():
     test_data = "one fish two fish red fish blue fish"
-    map_reduction = MRWordFrequencyCount()
+    map_reduction = MRWordFrequencyCount([])
     verify_map_reduce(map_reduction, test_data)
 ```
-<sup><a href='/tests/mrjob/test_mrjob.py#L22-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_map_reduce' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/mrjob/test_mrjob.py#L26-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_map_reduce' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will produce
@@ -64,7 +64,7 @@ def test_word_count_combinations():
 
     verify_templated_map_reduce(map_reduction, input_creator, [animals, colors, colors])
 ```
-<sup><a href='/tests/mrjob/test_mrjob.py#L31-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_templated_map_reduce' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/mrjob/test_mrjob.py#L35-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_templated_map_reduce' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 [Click here to see the results](../../tests/mrjob/test_mrjob.test_word_count_combinations.approved.txt)
