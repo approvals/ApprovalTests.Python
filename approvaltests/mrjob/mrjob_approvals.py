@@ -21,14 +21,11 @@ def print_map_reduce_job(mr_job_under_test: MRJob, test_data: str) -> str:
     return storyboard
 
 
+
 def verify_templated_map_reduce(map_reduction, input_creator, params):
-    inputs = product(*params)
-    storyboard = ""
-    for input in inputs:
-        storyboard += f"===================\n\n{input} =>\n"
-        data = input_creator(*input)
-        storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
-    verify(storyboard)
+    def map_reducer_creator(*args):
+        return map_reduction
+    verify_templated_map_reduce_with_customized_job(map_reducer_creator, input_creator, params)
 
 def verify_templated_map_reduce_with_customized_job(map_reduce_creator, input_creator, params):
     inputs = product(*params)
