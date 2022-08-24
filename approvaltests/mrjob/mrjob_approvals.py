@@ -55,9 +55,9 @@ def verify_templated_map_reduce_with_customized_job_with_dictionary_args(
 
 
 def verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
-        map_reduce_creator,
-        input_creator,
-        inputs) -> None:
+        map_reduce_creator: Callable[[Any],MRJob],
+        input_creator: Callable[[Any],str],
+        inputs: Dict[str,Any]) -> None:
     storyboard = ""
     for input in inputs:
         storyboard += f"===================\n\n{input} =>\n"
