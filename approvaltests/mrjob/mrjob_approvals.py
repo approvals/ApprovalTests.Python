@@ -1,5 +1,6 @@
 from io import BytesIO
 from itertools import product
+from typing import Callable, List, Sequence, Any
 
 from mrjob.job import MRJob
 from approvaltests import verify, verify_all_combinations
@@ -21,13 +22,17 @@ def print_map_reduce_job(mr_job_under_test: MRJob, test_data: str) -> str:
     return storyboard
 
 
-
-def verify_templated_map_reduce(map_reduction, input_creator, params):
+def verify_templated_map_reduce(map_reduction: MRJob, input_creator: Callable[[Sequence[Any]], str],
+                                params: Sequence[Any]) -> None:
     def map_reducer_creator(*args):
         return map_reduction
+
     verify_templated_map_reduce_with_customized_job(map_reducer_creator, input_creator, params)
 
-def verify_templated_map_reduce_with_customized_job(map_reduce_creator, input_creator, params):
+
+def verify_templated_map_reduce_with_customized_job(map_reduce_creator: Callable[[Sequence[Any]], MRJob],
+                                                    input_creator: Callable[[Sequence[Any]], str],
+                                                    params: Sequence[Any]) -> None:
     inputs = product(*params)
     storyboard = ""
     for input in inputs:
@@ -37,4 +42,3 @@ def verify_templated_map_reduce_with_customized_job(map_reduce_creator, input_cr
 
         storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
     verify(storyboard)
-
