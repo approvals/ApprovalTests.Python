@@ -1,6 +1,7 @@
+import itertools
 from io import BytesIO
 from itertools import product
-from typing import Callable, List, Sequence, Any
+from typing import Callable, List, Sequence, Any, Dict
 
 from mrjob.job import MRJob
 from approvaltests import verify, verify_all_combinations
@@ -32,13 +33,35 @@ def verify_templated_map_reduce(map_reduction: MRJob, input_creator: Callable[[S
 
 def verify_templated_map_reduce_with_customized_job(map_reduce_creator: Callable[[Sequence[Any]], MRJob],
                                                     input_creator: Callable[[Sequence[Any]], str],
-                                                    params: Sequence[Any]) -> None:
+                                                    params: Sequence[Sequence[Any]]) -> None:
     inputs = product(*params)
     storyboard = ""
     for input in inputs:
         storyboard += f"===================\n\n{input} =>\n"
         data = input_creator(*input)
         map_reduction = map_reduce_creator(*input)
+
+        storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
+    verify(storyboard)
+
+
+def verify_templated_map_reduce_with_customized_job_with_dictionary_args(
+        map_reduce_creator: Callable[[Dict[str, Any]], MRJob],
+        input_creator: Callable[[Dict[str, Any]], str],
+        params: Dict[str, Sequence[Any]]) -> None:
+
+    def product_dict(**kwargs):
+        keys = kwargs.keys()
+        vals = kwargs.values()
+        for instance in itertools.product(*vals):
+            yield dict(zip(keys, instance))
+
+    inputs = product_dict(**params)
+    storyboard = ""
+    for input in inputs:
+        storyboard += f"===================\n\n{input} =>\n"
+        data = input_creator(input)
+        map_reduction = map_reduce_creator(input)
 
         storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
     verify(storyboard)

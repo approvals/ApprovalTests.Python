@@ -7,6 +7,7 @@ from approvaltests.mrjob.mrjob_approvals import (
     verify_map_reduce,
     verify_templated_map_reduce,
     print_map_reduce_job, verify_templated_map_reduce_with_customized_job,
+    verify_templated_map_reduce_with_customized_job_with_dictionary_args,
 )
 
 
@@ -77,7 +78,8 @@ class AquaReducer(MRJob):
 
 def test_verify_templated_map_reduce_with_customized_job():
     colors = ["aqua", "blue"]
-    animals = ["cat","dog"]
+    animals = ["cat", "dog"]
+
     def mapreduce_creator(color, _) -> MRJob:
         if color == "blue":
             return BlueReducer()
@@ -88,3 +90,19 @@ def test_verify_templated_map_reduce_with_customized_job():
 
     verify_templated_map_reduce_with_customized_job(mapreduce_creator, input_creator, [colors, animals])
 
+
+def test_verify_templated_map_reduce_with_customized_job_with_dictionary_args():
+    colors = ["aqua", "blue"]
+    animals = ["cat", "dog"]
+
+    def mapreduce_creator(params) -> MRJob:
+        if params["color"] == "blue":
+            return BlueReducer()
+        return AquaReducer()
+
+    def input_creator(params):
+        animal = params["animal"]
+        return f"one {animal} two {animal} red {animal} blue {animal}"
+
+    verify_templated_map_reduce_with_customized_job_with_dictionary_args(mapreduce_creator, input_creator,
+                                                                         {"color": colors, "animal": animals})
