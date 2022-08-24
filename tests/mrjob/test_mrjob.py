@@ -6,7 +6,8 @@ from approvaltests import verify
 from approvaltests.mrjob.mrjob_approvals import (
     verify_map_reduce,
     verify_templated_map_reduce,
-    print_map_reduce_job, verify_templated_map_reduce_with_customized_job,
+    print_map_reduce_job,
+    verify_templated_map_reduce_with_customized_job,
     verify_templated_map_reduce_with_customized_job_with_dictionary_args,
 )
 
@@ -88,7 +89,9 @@ def test_verify_templated_map_reduce_with_customized_job():
     def input_creator(_, animal):
         return f"one {animal} two {animal} red {animal} blue {animal}"
 
-    verify_templated_map_reduce_with_customized_job(mapreduce_creator, input_creator, [colors, animals])
+    verify_templated_map_reduce_with_customized_job(
+        mapreduce_creator, input_creator, [colors, animals]
+    )
 
 
 def test_verify_templated_map_reduce_with_customized_job_with_dictionary_args():
@@ -104,5 +107,6 @@ def test_verify_templated_map_reduce_with_customized_job_with_dictionary_args():
         animal = params["animal"]
         return f"one {animal} two {animal} red {animal} blue {animal}"
 
-    verify_templated_map_reduce_with_customized_job_with_dictionary_args(mapreduce_creator, input_creator,
-                                                                         {"color": colors, "animal": animals})
+    verify_templated_map_reduce_with_customized_job_with_dictionary_args(
+        mapreduce_creator, input_creator, {"color": colors, "animal": animals}
+    )
