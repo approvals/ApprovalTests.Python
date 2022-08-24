@@ -47,15 +47,15 @@ def test_word_count_combinations():
 # end-snippet
 
 
-def verify_created_map_reduce(map_reduce_creator, input_data, params):
+def verify_created_map_reduce(map_reduce_creator, input_creator, params):
     inputs = product(*params)
     storyboard = ""
     for input in inputs:
         storyboard += f"===================\n\n{input} =>\n"
-        # data = input_creator(*input)
+        data = input_creator(*input)
         map_reduction = map_reduce_creator(*input)
 
-        storyboard += f"{print_map_reduce_job(map_reduction, input_data)}\n"
+        storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
     verify(storyboard)
 
 
@@ -88,19 +88,15 @@ class AquaReducer(MRJob):
 
 
 def test_command_line_arguements():
-    # Make a set of inputs to use: ["aqua", "blue"]
-    inputs = ["aqua", "blue"]
-    # Make a mapreduce creator that uses those inputs to create a map reducer for each input
-    def mapreduce_creator(color: str) -> MRJob:
+    colors = ["aqua", "blue"]
+    animals = ["cat","dog"]
+    def mapreduce_creator(color: str, _ ) -> MRJob:
         if color == "blue":
             return BlueReducer()
         return AquaReducer()
 
-    def input_creator(color):
-        return "one fish two fish red fish blue fish"
+    def input_creator(_,animal ):
+        return f"one {animal} two {animal} red {animal} blue {animal}"
 
-    verify_created_map_reduce(mapreduce_creator, input_creator(""), [inputs])
-
-    # When a aqua mapreducer is run it behaves as normal, but adds aqua as a new key value pair in the mapper
-    # When a blue mapreducer is run it behaves as normal, but adds blue as a new key value pair in the mapper
-    # Test all of our mapreducers against a set input
+    verify_created_map_reduce(mapreduce_creator, input_creator, [colors, animals])
+    # for each mapreducor created by the
