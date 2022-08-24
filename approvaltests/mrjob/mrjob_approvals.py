@@ -35,28 +35,29 @@ def verify_templated_map_reduce_with_customized_job(map_reduce_creator: Callable
                                                     input_creator: Callable[[Sequence[Any]], str],
                                                     params: Sequence[Sequence[Any]]) -> None:
     inputs = product(*params)
-    storyboard = ""
-    for input in inputs:
-        storyboard += f"===================\n\n{input} =>\n"
-        data = input_creator(*input)
-        map_reduction = map_reduce_creator(*input)
+    verify_templated_map_reduce_with_customized_job_with_dictionary_args2(lambda i: map_reduce_creator(*i),
+                                                                          lambda i: input_creator(*i), inputs)
 
-        storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
-    verify(storyboard)
+
+def product_dict(**kwargs):
+    keys = kwargs.keys()
+    vals = kwargs.values()
+    for instance in itertools.product(*vals):
+        yield dict(zip(keys, instance))
 
 
 def verify_templated_map_reduce_with_customized_job_with_dictionary_args(
         map_reduce_creator: Callable[[Dict[str, Any]], MRJob],
         input_creator: Callable[[Dict[str, Any]], str],
         params: Dict[str, Sequence[Any]]) -> None:
-
-    def product_dict(**kwargs):
-        keys = kwargs.keys()
-        vals = kwargs.values()
-        for instance in itertools.product(*vals):
-            yield dict(zip(keys, instance))
-
     inputs = product_dict(**params)
+    verify_templated_map_reduce_with_customized_job_with_dictionary_args2(map_reduce_creator, input_creator, inputs)
+
+
+def verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
+        map_reduce_creator,
+        input_creator,
+        inputs) -> None:
     storyboard = ""
     for input in inputs:
         storyboard += f"===================\n\n{input} =>\n"
