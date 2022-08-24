@@ -75,7 +75,7 @@ class AquaReducer(MRJob):
         yield key, sum(values)
 
 
-def test_command_line_arguments_with_sequence():
+def test_verify_templated_map_reduce_with_customized_job():
     colors = ["aqua", "blue"]
     animals = ["cat","dog"]
     def mapreduce_creator(color, _) -> MRJob:
