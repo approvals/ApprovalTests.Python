@@ -1,0 +1,24 @@
+===================
+
+('aqua',) =>
+one fish two fish red fish blue fish
+
+Map reduces to:
+
+aqua:1
+chars:36
+lines:1
+words:8
+
+===================
+
+('blue',) =>
+one fish two fish red fish blue fish
+
+Map reduces to:
+
+blue:1
+chars:36
+lines:1
+words:8
+
