@@ -6,7 +6,7 @@ from approvaltests import verify
 from approvaltests.mrjob.mrjob_approvals import (
     verify_map_reduce,
     verify_templated_map_reduce,
-    print_map_reduce_job,
+    print_map_reduce_job, verify_templated_map_reduce_with_customized_job,
 )
 
 
@@ -47,18 +47,6 @@ def test_word_count_combinations():
 # end-snippet
 
 
-def verify_created_map_reduce(map_reduce_creator, input_creator, params):
-    inputs = product(*params)
-    storyboard = ""
-    for input in inputs:
-        storyboard += f"===================\n\n{input} =>\n"
-        data = input_creator(*input)
-        map_reduction = map_reduce_creator(*input)
-
-        storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
-    verify(storyboard)
-
-
 class BlueReducer(MRJob):
     def __init__(self, args=["--no-conf"]):
         super().__init__(args)
@@ -90,13 +78,13 @@ class AquaReducer(MRJob):
 def test_command_line_arguements():
     colors = ["aqua", "blue"]
     animals = ["cat","dog"]
-    def mapreduce_creator(color: str, _ ) -> MRJob:
+    def mapreduce_creator(color, _) -> MRJob:
         if color == "blue":
             return BlueReducer()
         return AquaReducer()
 
-    def input_creator(_,animal ):
+    def input_creator(_, animal):
         return f"one {animal} two {animal} red {animal} blue {animal}"
 
-    verify_created_map_reduce(mapreduce_creator, input_creator, [colors, animals])
-    # for each mapreducor created by the
+    verify_templated_map_reduce_with_customized_job(mapreduce_creator, input_creator, [colors, animals])
+

@@ -1,24 +1,48 @@
 ===================
 
-('aqua',) =>
-one fish two fish red fish blue fish
+('aqua', 'cat') =>
+one cat two cat red cat blue cat
 
 Map reduces to:
 
 aqua:1
-chars:36
+chars:32
 lines:1
 words:8
 
 ===================
 
-('blue',) =>
-one fish two fish red fish blue fish
+('aqua', 'dog') =>
+one dog two dog red dog blue dog
+
+Map reduces to:
+
+aqua:1
+chars:32
+lines:1
+words:8
+
+===================
+
+('blue', 'cat') =>
+one cat two cat red cat blue cat
 
 Map reduces to:
 
 blue:1
-chars:36
+chars:32
+lines:1
+words:8
+
+===================
+
+('blue', 'dog') =>
+one dog two dog red dog blue dog
+
+Map reduces to:
+
+blue:1
+chars:32
 lines:1
 words:8
 

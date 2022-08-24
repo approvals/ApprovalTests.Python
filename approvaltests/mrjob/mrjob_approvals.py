@@ -29,3 +29,15 @@ def verify_templated_map_reduce(map_reduction, input_creator, params):
         data = input_creator(*input)
         storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
     verify(storyboard)
+
+def verify_templated_map_reduce_with_customized_job(map_reduce_creator, input_creator, params):
+    inputs = product(*params)
+    storyboard = ""
+    for input in inputs:
+        storyboard += f"===================\n\n{input} =>\n"
+        data = input_creator(*input)
+        map_reduction = map_reduce_creator(*input)
+
+        storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
+    verify(storyboard)
+
