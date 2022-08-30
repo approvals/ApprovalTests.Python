@@ -21,3 +21,7 @@
 
 ## Links
  * [How to Contribute](Contribute.md)
+
+
+
+**Note:** We are following [Daniele Procida's theory of documentation](https://documentation.divio.com)
