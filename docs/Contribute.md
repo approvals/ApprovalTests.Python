@@ -23,5 +23,9 @@ You can add our [google calendar here](https://calendar.google.com/calendar/u/0?
 
 You can join the [zoom here](https://us02web.zoom.us/j/89022110958?pwd=RDBTNDQrblNoc2FMTTdOc01QNVYwdz09)
 
+### Anydesk
+
+We will use [anydesk](https://anydesk.com/en) to screen share & controll the development machine. Please download ahead of time.
+
 ## Solo Developement
 If you prefer solo development, check out [How To Setup a Dev Machine](./how_to/setting_up_a_dev_machine.md)
