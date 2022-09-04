@@ -52,7 +52,9 @@ class GenericDiffReporterFactory:
         return clazz and clazz()
 
     def get_from_json_config(self, reporter_name: str) -> Reporter:
-        config = next((r for r in self.reporter_configs if r.name == reporter_name), None)
+        config = next(
+            (r for r in self.reporter_configs if r.name == reporter_name), None
+        )
         if not config:
             return NoConfigReporter()
         return self._create_reporter(config)
@@ -87,4 +89,6 @@ class GenericDiffReporterFactory:
         return instances
 
     def remove(self, reporter_name: str) -> None:
-        self.reporter_configs = [r for r in self.reporter_configs if r.name != reporter_name]
+        self.reporter_configs = [
+            r for r in self.reporter_configs if r.name != reporter_name
+        ]
