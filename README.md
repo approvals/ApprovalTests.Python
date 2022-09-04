@@ -51,7 +51,7 @@ You can just clone this and go. It's great for exercises, katas, and green field
 
 #### Minimal Example Tutorial
 
-If this is first time approvaltesting in python, consider starting here: [Minmal Example Tutorial](docs/tutorial/minimal-example.md)
+If this is first time approvaltesting in python, consider starting here: [Minimal Example Tutorial](docs/tutorial/minimal-example.md)
 
 ###  Adding to Existing Projects 
 
