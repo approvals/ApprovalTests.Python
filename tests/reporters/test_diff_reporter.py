@@ -37,5 +37,6 @@ def test_default_reporter_chain() -> None:
     printed_reporter = str(reporter)
     verify(printed_reporter)
 
+
 # print the chain
 # verify the chain
