@@ -32,11 +32,6 @@ def test_get_diff_file_name() -> None:
 
 
 def test_default_reporter_chain() -> None:
-    # get default reporter
     reporter = DiffReporter()
     printed_reporter = str(reporter)
     verify(printed_reporter)
-
-
-# print the chain
-# verify the chain
