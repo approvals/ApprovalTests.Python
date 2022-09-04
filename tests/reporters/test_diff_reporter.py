@@ -2,6 +2,7 @@ from typing import List
 
 from approvaltests import verify
 from approvaltests.core.reporter import Reporter
+from approvaltests.reporters import PythonNativeReporter
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.introduction_reporter import IntroductionReporter
 
@@ -20,7 +21,7 @@ def test_fallback_reporter() -> None:
     empty_reporter_factory = FakeFactory()
     reporter = DiffReporter(empty_reporter_factory)
     # Testing implementation detail, not great but good enough for now
-    assert isinstance(reporter.reporters[-1], IntroductionReporter)
+    assert isinstance(reporter.reporters[-1], PythonNativeReporter)
 
 
 def test_get_diff_file_name() -> None:
@@ -32,7 +33,7 @@ def test_get_diff_file_name() -> None:
 
 def test_default_reporter_chain() -> None:
     # get default reporter
-    reporter = Options().reporter
+    reporter = DiffReporter()
     printed_reporter = str(reporter)
     verify(printed_reporter)
 
