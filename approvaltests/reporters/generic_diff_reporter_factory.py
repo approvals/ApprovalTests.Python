@@ -23,25 +23,25 @@ class NoConfigReporter(Reporter):
 
 
 class GenericDiffReporterFactory:
-    reporters: List[GenericDiffReporterConfig] = []
+    reporter_configs: List[GenericDiffReporterConfig] = []
 
     def __init__(self) -> None:
         self.load(get_adjacent_file("reporters.json"))
 
     def add_default_reporter_config(self, config):
-        self.reporters.insert(0, create_config(config))
+        self.reporter_configs.insert(0, create_config(config))
 
     def list(self) -> List[str]:
-        return [r.name for r in self.reporters]
+        return [r.name for r in self.reporter_configs]
 
     def get(self, reporter_name: str) -> Reporter:
-        reporter = GenericDiffReporterFactory.get_reporter_programmmatically(
+        reporter = GenericDiffReporterFactory.get_reporter_programmatically(
             reporter_name
         )
         return reporter or self.get_from_json_config(reporter_name)
 
     @staticmethod
-    def get_reporter_programmmatically(reporter_name: str) -> Optional[Reporter]:
+    def get_reporter_programmatically(reporter_name: str) -> Optional[Reporter]:
         reporters = {
             "BeyondCompare": ReportWithBeyondCompare,
             "WinMerge": ReportWithWinMerge,
@@ -52,7 +52,7 @@ class GenericDiffReporterFactory:
         return clazz and clazz()
 
     def get_from_json_config(self, reporter_name: str) -> Reporter:
-        config = next((r for r in self.reporters if r.name == reporter_name), None)
+        config = next((r for r in self.reporter_configs if r.name == reporter_name), None)
         if not config:
             return NoConfigReporter()
         return self._create_reporter(config)
@@ -64,7 +64,7 @@ class GenericDiffReporterFactory:
     def save(self, file_name: str) -> str:
         with open(file_name, "w", encoding="utf8") as file:
             json.dump(
-                [reporter.serialize() for reporter in self.reporters],
+                [reporter.serialize() for reporter in self.reporter_configs],
                 file,
                 sort_keys=True,
                 indent=2,
@@ -75,16 +75,16 @@ class GenericDiffReporterFactory:
     def load(self, file_name: str) -> List[GenericDiffReporterConfig]:
         with open(file_name, "r", encoding="utf8") as file:
             configs = json.load(file)
-        self.reporters = [create_config(config) for config in configs]
-        return self.reporters
+        self.reporter_configs = [create_config(config) for config in configs]
+        return self.reporter_configs
 
     def get_first_working(self) -> Optional[GenericDiffReporter]:
         working = (i for i in self.get_all_reporters() if i.is_working())
         return next(working, None)
 
     def get_all_reporters(self) -> Iterator[GenericDiffReporter]:
-        instances = (self._create_reporter(r) for r in self.reporters)
+        instances = (self._create_reporter(r) for r in self.reporter_configs)
         return instances
 
     def remove(self, reporter_name: str) -> None:
-        self.reporters = [r for r in self.reporters if r.name != reporter_name]
+        self.reporter_configs = [r for r in self.reporter_configs if r.name != reporter_name]
