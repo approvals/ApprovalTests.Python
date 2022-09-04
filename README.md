@@ -7,6 +7,7 @@
   * [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
   * [Getting Started](#getting-started)
     * [New Projects](#new-projects)
+      * [Minimal Example Tutorial](#minimal-example-tutorial)
     * [Adding to Existing Projects](#adding-to-existing-projects)
   * [Overview](#overview)
     * [Example using pytest](#example-using-pytest)
