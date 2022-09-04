@@ -1,6 +1,20 @@
 # Getting Started with a Mimimal Example
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Steps](#steps)
+    * [1. Install Dependencies](#1-install-dependencies)
+    * [2. Create the test file](#2-create-the-test-file)
+    * [3. Run the test](#3-run-the-test)
+      * [Section 1: Run Information](#section-1-run-information)
+      * [Section 2: ApprovalTests diff report](#section-2-approvaltests-diff-report)
+      * [Section 3: How to approve the new result](#section-3-how-to-approve-the-new-result)
+      * [Section 4: Summary](#section-4-summary)
+    * [4. Approve the results](#4-approve-the-results)
+      * [Unix](#unix)
+      * [Windows](#windows)
+    * [5. Rerun the tests](#5-rerun-the-tests)<!-- endToc -->
 
 ## Steps
 
