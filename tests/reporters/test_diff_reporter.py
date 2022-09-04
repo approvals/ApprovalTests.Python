@@ -1,4 +1,6 @@
 from typing import List
+
+from approvaltests import verify
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.introduction_reporter import IntroductionReporter
@@ -6,6 +8,7 @@ from approvaltests.reporters.introduction_reporter import IntroductionReporter
 from approvaltests.reporters.report_by_creating_diff_file import (
     ReportByCreatingDiffFile,
 )
+from approvaltests.core import Options
 
 
 class FakeFactory:
@@ -25,3 +28,13 @@ def test_get_diff_file_name() -> None:
         "VerifyTests.test_verify_html.received.html"
     )
     assert diff_file == "VerifyTests.test_verify_html.diff"
+
+
+def test_default_reporter_chain() -> None:
+    # get default reporter
+    reporter = Options().reporter
+    printed_reporter = str(reporter)
+    verify(printed_reporter)
+
+# print the chain
+# verify the chain

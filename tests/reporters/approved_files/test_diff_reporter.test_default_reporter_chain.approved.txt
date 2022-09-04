@@ -1,0 +1,40 @@
+FirstWorkingReporter({
+    "name": "BeyondCompare4x64",
+    "path": "C:/Program Files/Beyond Compare 4/BCompare.exe"
+}, {
+    "name": "BeyondCompare4",
+    "path": "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
+}, {
+    "name": "BeyondCompare4Mac",
+    "path": "/usr/local/bin/bcompare"
+}, {
+    "name": "BeyondCompare3",
+    "path": "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
+}, {
+    "name": "AraxisMergeWin",
+    "path": "C:/Program Files/Araxis/Araxis Merge/Merge.exe"
+}, {
+    "name": "AraxisMergeMac",
+    "path": "/Applications/Araxis Merge.app/Contents/Utilities/compare"
+}, {
+    "name": "kdiff3",
+    "path": "/usr/bin/kdiff3"
+}, {
+    "name": "meld",
+    "path": "meld"
+}, {
+    "name": "DiffMerge",
+    "path": "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
+}, {
+    "arguments": [
+        "diff"
+    ],
+    "name": "PyCharm",
+    "path": "/Applications/PyCharm CE.app/Contents/MacOS/pycharm"
+}, {
+    "arguments": [
+        "-u"
+    ],
+    "name": "diff",
+    "path": "diff"
+}, PythonNativeReporter)
