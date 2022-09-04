@@ -1,4 +1,4 @@
-# Getting Started with a Mimimal Example
+# Getting Started with a Minimal Example
 
 <!-- toc -->
 ## Contents
