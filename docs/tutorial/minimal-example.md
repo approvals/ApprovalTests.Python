@@ -48,7 +48,7 @@ Run the test in the terminal:
 python -m pytest . --approvaltests-use-reporter='PythonNativeReporter' 
 ```
 
-You should simular output to the following (paths, times, and versions might differ) :
+You should similar output to the following (paths, times, and versions might differ) :
 ```bash
 ========================================================================================================= test session starts ========================================================================================================= 
 platform win32 -- Python 3.6.7, pytest-7.0.1, pluggy-1.0.0 
@@ -81,7 +81,7 @@ plugins: approvaltests-0.2.4
 collected 1 item                                                                                                                                                                                                                        
 ```
 
-This section states what is being run. Which tools and with directories, it also states that pytest found  `1 item` meaning 1 test th
+This section states what is being run. Which tools and with directories, it also states that pytest found  `1 item` meaning 1 test was run.
 
 #### Section 2: ApprovalTests diff report
 ```bash
@@ -91,12 +91,11 @@ This section states what is being run. Which tools and with directories, it also
 +Hello World
 ```
 
-This is the result of the `verify("Hello World")` call. It has failed, and there is reporting the difference between this run and what it was expecting (The `approved` version).
+This is the result of the `verify("Hello World")` call. It has failed, and there it reports the difference between this run ("received") and what it was expecting ("approved").
 The `approved` version is saved in the `test_with_approvals.test_with_approvals.approved.txt` file. 
 Which is current empty, because this is the first time the test has ever been run and the results has **never** been approved.
 
- 
-The current results of what was passed to the `verify` method have been saved to the `recieved` file: `test_with_approvals.test_with_approvals.received.txt`
+The current results of what was passed to the `verify` method have been saved to the "received" file: `test_with_approvals.test_with_approvals.received.txt`
 
 The difference (diff) is being displayed with the pluses and minuses. 
 All the changes have a `+` next to them showing that all the changes are added lines.
@@ -110,9 +109,9 @@ to approve this result:
 move "C:\Code\approvaltests.minimal.example\test_with_approvals.test_with_approvals.received.txt" "C:\Code\approvaltests.minimal.example\test_with_approvals.test_with_approvals.approved.txt"
 ```
 
-Once you are seeing the results you want, to `approve` them they must be copied into the `.approved.` file. One way to do this is via the command line. 
+Once you are seeing the results you want, to "approve`" them they must be copied into the `.approved.` file. One way to do this is via the command line. 
 The exact command needed for your os will appear here. 
-Copy, paste, and running it will `approve` the result. Doing this should make the test pass the next time it is run.
+Copy, paste, and run the command to "approve" the result. Doing this should make the test pass the next time it is run.
 
 #### Section 4: Summary
 ```bash
@@ -125,7 +124,7 @@ The above summarizes the results of all (1) of the tests run in the session.
 
 ### 4. Approve the results
 
-Copy the `.recieved` to the `.approved.`
+Copy the `.received.` to the `.approved.`
 
 #### Unix
 
