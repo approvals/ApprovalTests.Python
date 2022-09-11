@@ -1,4 +1,4 @@
-from approvaltests.reporters import GenericDiffReporter, create_config
+from .generic_diff_reporter import GenericDiffReporter, create_config
 
 
 class ReportWithVSCode(GenericDiffReporter):

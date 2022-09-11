@@ -37,4 +37,10 @@ FirstWorkingReporter({
     ],
     "name": "diff",
     "path": "diff"
+}, {
+    "arguments": [
+        "-d"
+    ],
+    "name": "ReportWithVSCode",
+    "path": "code"
 }, PythonNativeReporter)
