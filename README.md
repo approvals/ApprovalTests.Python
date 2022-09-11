@@ -7,6 +7,7 @@
   * [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
   * [Getting Started](#getting-started)
     * [New Projects](#new-projects)
+      * [Minimal Example Tutorial](#minimal-example-tutorial)
     * [Adding to Existing Projects](#adding-to-existing-projects)
   * [Overview](#overview)
     * [Example using pytest](#example-using-pytest)
@@ -48,6 +49,10 @@ utilities.
 
 If you are starting a new project, we suggest you use the [Starter Project](https://github.com/approvals/ApprovalTests.Python.StarterProject).
 You can just clone this and go. It's great for exercises, katas, and green field projects.
+
+#### Minimal Example Tutorial
+
+If this is first time approvaltesting in python, consider starting here: [Minimal Example Tutorial](docs/tutorial/minimal-example.md)
 
 ###  Adding to Existing Projects 
 
