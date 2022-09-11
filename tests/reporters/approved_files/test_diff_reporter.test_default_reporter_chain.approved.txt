@@ -33,14 +33,14 @@ FirstWorkingReporter({
     "path": "/Applications/PyCharm CE.app/Contents/MacOS/pycharm"
 }, {
     "arguments": [
-        "-u"
-    ],
-    "name": "diff",
-    "path": "diff"
-}, {
-    "arguments": [
         "-d"
     ],
     "name": "ReportWithVSCode",
     "path": "code"
+}, {
+    "arguments": [
+        "-u"
+    ],
+    "name": "ReportWithDiffCommandLine",
+    "path": "diff"
 }, PythonNativeReporter)

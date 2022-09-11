@@ -7,6 +7,5 @@
     "AraxisMergeMac",
     "kdiff3",
     "DiffMerge",
-    "PyCharm",
-    "diff"
+    "PyCharm"
 ]

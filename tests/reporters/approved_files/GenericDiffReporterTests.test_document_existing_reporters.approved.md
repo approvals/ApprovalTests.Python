@@ -6,6 +6,5 @@
 * BeyondCompare4x64
 * DiffMerge
 * PyCharm
-* diff
 * kdiff3
 * meld

@@ -3,6 +3,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 from .python_native_reporter import PythonNativeReporter
 from .first_working_reporter import FirstWorkingReporter
+from .report_with_diff_command_line import ReportWithDiffCommandLine
 from .report_with_vscode import ReportWithVSCode
 
 
@@ -22,5 +23,6 @@ class DiffReporter(FirstWorkingReporter):
 
         reporters = list(factory.get_all_reporters())
         reporters.append(ReportWithVSCode())
+        reporters.append(ReportWithDiffCommandLine())
         reporters.append(PythonNativeReporter())
         super(__class__, self).__init__(*reporters)

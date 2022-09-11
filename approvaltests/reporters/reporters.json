@@ -39,10 +39,5 @@
     "PyCharm",
     "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
     ["diff"]
-  ],
-  [
-    "diff",
-    "diff",
-    ["-u"]
   ]
 ]
