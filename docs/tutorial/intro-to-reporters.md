@@ -25,7 +25,6 @@ The default reporter will search your machine for any installed diff tool.
 * BeyondCompare4x64
 * DiffMerge
 * PyCharm
-* diff
 * kdiff3
 * meld <!-- endInclude -->
 
