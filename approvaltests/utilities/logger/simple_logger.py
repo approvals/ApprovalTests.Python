@@ -7,7 +7,7 @@ from approvaltests.namer import StackFrameNamer
 
 
 class SimpleLogger:
-    logger = print
+    logger = lambda t: print(t, end="")
     tabbing = 0
     counter = 0
 
