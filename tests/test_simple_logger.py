@@ -1,21 +1,11 @@
 import inspect
-from collections.abc import MutableSequence
 from contextlib import contextmanager
 from typing import Iterator
 
 from approvaltests import verify
+from approvaltests.utilities.string_wrapper import StringWrapper
 from build.lib.approvaltests.namer import StackFrameNamer
 
-
-class StringWrapper():
-    def __init__(self):
-        self.string = ""
-
-    def append(self, text):
-        self.string += text
-
-    def __str__(self):
-        return self.string
 
 class SimpleLogger:
     logger = print
