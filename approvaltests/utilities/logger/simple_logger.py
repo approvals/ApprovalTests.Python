@@ -33,7 +33,7 @@ class SimpleLogger:
 
     @staticmethod
     def log(log_output):
-        tabbing = '  ' * SimpleLogger.tabbing
+        tabbing = "  " * SimpleLogger.tabbing
         SimpleLogger.logger(f"{tabbing}{log_output}\n")
 
     @staticmethod
