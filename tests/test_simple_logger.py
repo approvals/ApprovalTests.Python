@@ -1,8 +1,11 @@
+import inspect
 from collections.abc import MutableSequence
 from contextlib import contextmanager
 from typing import Iterator
 
 from approvaltests import verify
+from build.lib.approvaltests.namer import StackFrameNamer
+
 
 class StringWrapper():
     def __init__(self):
@@ -29,10 +32,14 @@ class SimpleLogger:
     @staticmethod
     @contextmanager
     def use_markers() -> Iterator[None]:
-        expected = "-> in: test_standard_logger()test_simple_logger.py"
+        stack = inspect.stack(1)[2]
+        method_name = stack[3]
+        filename = StackFrameNamer.get_class_name_for_frame(stack)
+        #filename = "test_simple_logger.py"
+        expected = f"-> in: {method_name}(){filename}"
         SimpleLogger.log(expected)
         yield
-        expected = "<- out: test_standard_logger()test_simple_logger.py"
+        expected = f"<- out: {method_name}(){filename}"
         SimpleLogger.log(expected)
         pass
 
