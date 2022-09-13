@@ -10,6 +10,7 @@ class SimpleLogger:
     logger = print
     tabbing = 0
     counter = 0
+
     @staticmethod
     def log_to_string():
         buffer = StringWrapper()
@@ -50,17 +51,17 @@ class SimpleLogger:
         if SimpleLogger.counter == 1:
             SimpleLogger.logger(f"{SimpleLogger.get_tabs()}.")
         elif SimpleLogger.counter == 100:
-            SimpleLogger.logger('10\n')
+            SimpleLogger.logger("10\n")
             SimpleLogger.counter = 0
         elif SimpleLogger.counter % 10 == 0:
             digit = int(SimpleLogger.counter / 10)
             SimpleLogger.logger(f"{digit}")
         else:
-            SimpleLogger.logger('.')
+            SimpleLogger.logger(".")
 
     @staticmethod
     def get_tabs():
-        return '  ' * SimpleLogger.tabbing
+        return "  " * SimpleLogger.tabbing
 
     @staticmethod
     def increment_hour_glass_counter():
