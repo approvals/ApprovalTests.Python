@@ -6,6 +6,7 @@ from approvaltests.core.options import Options
 
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 from approvaltests.reporters.testing_reporter import ReporterForTesting
+from approvaltests.utilities.logger.simple_logger import SimpleLogger
 
 VariationForEachParameter = Sequence[Sequence[Any]]
 CombinationsOfParameters = Sequence[Sequence[Any]]

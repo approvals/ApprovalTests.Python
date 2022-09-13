@@ -35,3 +35,8 @@ class SimpleLogger:
     def log(log_output):
         tabbing = '  ' * SimpleLogger.tabbing
         SimpleLogger.logger(f"{tabbing}{log_output}\n")
+
+    @staticmethod
+    def variable(type: str, value):
+        display_variable = f"variable: {type} = {value}"
+        SimpleLogger.log(display_variable)
