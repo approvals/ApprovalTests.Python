@@ -8,10 +8,6 @@ def log_from_inner_method():
         SimpleLogger.variable("name", name)
 
 
-def variable():
-    pass
-
-
 def test_standard_logger():
     """
     SimpleLogger.printLineNumber()
