@@ -3,7 +3,7 @@ from contextlib import contextmanager
 from typing import Iterator
 
 from approvaltests.utilities.string_wrapper import StringWrapper
-from build.lib.approvaltests.namer import StackFrameNamer
+from approvaltests.namer import StackFrameNamer
 
 
 class SimpleLogger:
