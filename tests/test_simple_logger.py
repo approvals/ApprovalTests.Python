@@ -23,10 +23,7 @@ class SimpleLogger:
     @staticmethod
     def log_to_string():
         buffer = StringWrapper()
-        def string_logger(text):
-            nonlocal buffer
-            buffer.append(text)
-        SimpleLogger.logger =  string_logger
+        SimpleLogger.logger =  buffer.append
         return buffer
 
     @staticmethod
@@ -35,7 +32,6 @@ class SimpleLogger:
         stack = inspect.stack(1)[2]
         method_name = stack[3]
         filename = StackFrameNamer.get_class_name_for_frame(stack)
-        #filename = "test_simple_logger.py"
         expected = f"-> in: {method_name}(){filename}"
         SimpleLogger.log(expected)
         yield
