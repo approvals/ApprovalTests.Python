@@ -37,8 +37,7 @@ class SimpleLogger:
             SimpleLogger.logger("\n")
             SimpleLogger.counter = 0
 
-        tabbing = '  ' * SimpleLogger.tabbing
-        SimpleLogger.logger(f"{tabbing}{log_output}\n")
+        SimpleLogger.logger(f"{SimpleLogger.get_tabs()}{log_output}\n")
 
     @staticmethod
     def variable(type: str, value):
@@ -47,16 +46,22 @@ class SimpleLogger:
 
     @staticmethod
     def hour_glass():
-        SimpleLogger.counter = SimpleLogger.counter + 1
+        SimpleLogger.increment_hour_glass_counter()
         if SimpleLogger.counter == 1:
-            tabbing = '  ' * SimpleLogger.tabbing
-            SimpleLogger.logger(f"{tabbing}")
-
-        if SimpleLogger.counter % 10 == 0:
-            SimpleLogger.logger(f"{int(SimpleLogger.counter/10)}")
+            SimpleLogger.logger(f"{SimpleLogger.get_tabs()}.")
+        elif SimpleLogger.counter == 100:
+            SimpleLogger.logger('10\n')
+            SimpleLogger.counter = 0
+        elif SimpleLogger.counter % 10 == 0:
+            digit = int(SimpleLogger.counter / 10)
+            SimpleLogger.logger(f"{digit}")
         else:
             SimpleLogger.logger('.')
 
-        if SimpleLogger.counter == 100:
-            SimpleLogger.logger('\n')
-            SimpleLogger.counter = 0
+    @staticmethod
+    def get_tabs():
+        return '  ' * SimpleLogger.tabbing
+
+    @staticmethod
+    def increment_hour_glass_counter():
+        SimpleLogger.counter = SimpleLogger.counter + 1
