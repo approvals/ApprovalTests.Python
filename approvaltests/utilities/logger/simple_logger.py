@@ -32,5 +32,6 @@ class SimpleLogger:
         pass
 
     @staticmethod
-    def log(expected):
-        SimpleLogger.logger(f"{'  '*SimpleLogger.tabbing}{expected}\n")
+    def log(log_output):
+        tabbing = '  ' * SimpleLogger.tabbing
+        SimpleLogger.logger(f"{tabbing}{log_output}\n")
