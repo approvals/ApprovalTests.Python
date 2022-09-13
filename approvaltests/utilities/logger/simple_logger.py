@@ -50,11 +50,13 @@ class SimpleLogger:
         SimpleLogger.counter = SimpleLogger.counter + 1
         if SimpleLogger.counter == 1:
             tabbing = '  ' * SimpleLogger.tabbing
-            SimpleLogger.logger(f"{tabbing}.")
-        elif SimpleLogger.counter == 100:
-            SimpleLogger.logger('10\n')
-            SimpleLogger.counter = 0
-        elif SimpleLogger.counter % 10 == 0:
+            SimpleLogger.logger(f"{tabbing}")
+
+        if SimpleLogger.counter % 10 == 0:
             SimpleLogger.logger(f"{int(SimpleLogger.counter/10)}")
         else:
             SimpleLogger.logger('.')
+
+        if SimpleLogger.counter == 100:
+            SimpleLogger.logger('\n')
+            SimpleLogger.counter = 0
