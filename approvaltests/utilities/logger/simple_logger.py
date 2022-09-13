@@ -8,6 +8,7 @@ from approvaltests.namer import StackFrameNamer
 
 class SimpleLogger:
     logger = print
+    tabbing = 0
 
     @staticmethod
     def log_to_string():
@@ -23,11 +24,13 @@ class SimpleLogger:
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         expected = f"-> in: {method_name}(){filename}"
         SimpleLogger.log(expected)
+        SimpleLogger.tabbing = SimpleLogger.tabbing + 1
         yield
+        SimpleLogger.tabbing = SimpleLogger.tabbing - 1
         expected = f"<- out: {method_name}(){filename}"
         SimpleLogger.log(expected)
         pass
 
     @staticmethod
     def log(expected):
-        SimpleLogger.logger(f"{expected}\n")
+        SimpleLogger.logger(f"{'  '*SimpleLogger.tabbing}{expected}\n")

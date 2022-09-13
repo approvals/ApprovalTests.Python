@@ -1,2 +1,4 @@
 -> in: test_standard_logger()test_simple_logger
+  -> in: log_from_inner_method()test_simple_logger
+  <- out: log_from_inner_method()test_simple_logger
 <- out: test_standard_logger()test_simple_logger
