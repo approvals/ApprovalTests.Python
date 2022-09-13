@@ -1,0 +1,2 @@
+-> in: test_standard_logger()test_simple_logger.py
+<- out: test_standard_logger()test_simple_logger.py
