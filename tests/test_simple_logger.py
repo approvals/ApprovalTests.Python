@@ -14,5 +14,5 @@ def test_standard_logger():
     output = SimpleLogger.log_to_string()
     with SimpleLogger.use_markers() as m:
         log_from_inner_method()
-        
+
     verify(output)
