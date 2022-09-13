@@ -12,7 +12,7 @@ class SimpleLogger:
     @staticmethod
     def log_to_string():
         buffer = StringWrapper()
-        SimpleLogger.logger =  buffer.append
+        SimpleLogger.logger = buffer.append
         return buffer
 
     @staticmethod
