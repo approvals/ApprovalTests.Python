@@ -24,5 +24,5 @@ class SimpleLogger:
         SimpleLogger.logger.hour_glass()
 
     @staticmethod
-    def event(input):
-        SimpleLogger.logger.event(input)
+    def event(event_name):
+        SimpleLogger.logger.event(event_name)
