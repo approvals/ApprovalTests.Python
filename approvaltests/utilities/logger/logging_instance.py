@@ -1,14 +1,14 @@
 import datetime
 import inspect
 from contextlib import contextmanager
-from typing import Iterator, Callable
+from typing import Iterator, Callable, Any
 
 from approvaltests.utilities.string_wrapper import StringWrapper
 from approvaltests.namer import StackFrameNamer
 
 
 class LoggingInstance:
-    
+
     def __init__(self):
         self.previous_timestamp = None
         self.logger = lambda t: print(t, end="")
@@ -16,17 +16,17 @@ class LoggingInstance:
         self.counter = 0
         self.timestamp = True
         self.timer: Callable[[], datetime.datetime] = datetime.datetime.now
-    
-    def log_to_string(self):
+
+    def log_to_string(self) -> StringWrapper:
         buffer = StringWrapper()
         self.logger = buffer.append
         self.timestamp = False
         return buffer
 
-    
     @contextmanager
-    def use_markers(self, additional_stack=0) -> Iterator[None]:
-        stack = inspect.stack(1+additional_stack)[2]
+    def use_markers(self, additional_stack: int = 0) -> Iterator[None]:
+        stack_position = 1 + additional_stack
+        stack = inspect.stack(stack_position)[2]
         method_name = stack[3]
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         expected = f"-> in: {method_name}(){filename}"
@@ -38,15 +38,14 @@ class LoggingInstance:
         self.log(expected)
         pass
 
-    
-    def log(self, log_output):
+    def log(self, text: str) -> None:
         if self.counter != 0:
             self.logger("\n")
             self.counter = 0
         timestamp = self.get_timestamp()
-        self.logger(f"{timestamp}{self.get_tabs()}{log_output}\n")
+        self.logger(f"{timestamp}{self.get_tabs()}{text}\n")
 
-    def get_timestamp(self):
+    def get_timestamp(self) -> str:
         timestamp = ""
         if self.timestamp:
             time1: datetime.datetime = self.timer()
@@ -61,12 +60,11 @@ class LoggingInstance:
             self.previous_timestamp = time1
         return timestamp
 
-    def variable(self, type: str, value):
-        display_variable = f"variable: {type} = {value}"
+    def variable(self, name: str, value: Any) -> None:
+        display_variable = f"variable: {name} = {value}"
         self.log(display_variable)
 
-    
-    def hour_glass(self):
+    def hour_glass(self) -> None:
         self.increment_hour_glass_counter()
         if self.counter == 1:
             self.logger(f"{self.get_tabs()}.")
@@ -79,14 +77,11 @@ class LoggingInstance:
         else:
             self.logger(".")
 
-    
-    def get_tabs(self):
+    def get_tabs(self) -> str:
         return "  " * self.tabbing
 
-    
-    def increment_hour_glass_counter(self):
+    def increment_hour_glass_counter(self) -> None:
         self.counter = self.counter + 1
 
-    
-    def event(self, event_name):
+    def event(self, event_name: str) -> None:
         self.log(f"event: {event_name}")
