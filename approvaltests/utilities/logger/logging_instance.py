@@ -85,5 +85,5 @@ class LoggingInstance:
         self.counter = self.counter + 1
 
     
-    def event(self, input):
-        self.log(f"event: {input}")
+    def event(self, event_name):
+        self.log(f"event: {event_name}")
