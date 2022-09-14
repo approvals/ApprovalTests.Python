@@ -1,5 +1,7 @@
 import datetime
 
+import pytest
+
 from approvaltests import verify
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
 
@@ -42,3 +44,14 @@ def test_timestamps():
     SimpleLogger.event("3")
     SimpleLogger.event("4")
     verify(output)
+
+
+
+def test_switching() -> None:
+    output = SimpleLogger.log_to_string()
+    SimpleLogger.query("Select * from people")
+    #log everything
+    #toggle all
+    # query, warning, message, variable, event, hourglass, markers
+    #cycle through the switches and log everything
+    verify("""Sql: Select * from people""")
