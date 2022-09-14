@@ -43,6 +43,10 @@ class LoggingInstance:
         if self.counter != 0:
             self.logger("\n")
             self.counter = 0
+        timestamp = self.get_timestamp()
+        self.logger(f"{timestamp}{self.get_tabs()}{log_output}\n")
+
+    def get_timestamp(self):
         timestamp = ""
         if self.timestamp:
             time1: datetime.datetime = self.timer()
@@ -55,9 +59,8 @@ class LoggingInstance:
             diff_display = f" ~{diff:06}ms"
             timestamp = f"[{time} {diff_display}] "
             self.previous_timestamp = time1
-        self.logger(f"{timestamp}{self.get_tabs()}{log_output}\n")
+        return timestamp
 
-    
     def variable(self, type: str, value):
         display_variable = f"variable: {type} = {value}"
         self.log(display_variable)
