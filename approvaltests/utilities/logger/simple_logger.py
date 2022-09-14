@@ -1,4 +1,3 @@
-from contextlib import contextmanager
 from typing import Iterator
 
 from approvaltests.utilities.logger.logging_instance import LoggingInstance
