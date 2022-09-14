@@ -27,7 +27,7 @@ class LoggingInstance:
     def use_markers(self, additional_stack: int = 0) -> Iterator[None]:
         stack_position = 1 + additional_stack
         stack = inspect.stack(stack_position)[2]
-        method_name = stack[3]
+        method_name = stack.function
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         expected = f"-> in: {method_name}(){filename}"
         self.log(expected)
