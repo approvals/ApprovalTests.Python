@@ -1,7 +1,6 @@
 import datetime
-import time
 
-from approvaltests import verify, args_and_result_formatter
+from approvaltests import verify
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
 
 
@@ -20,9 +19,11 @@ def test_standard_logger():
 
     verify(output)
 
+
 def test_timestamps():
     output = SimpleLogger.log_to_string()
     count = -1
+
     def create_applesauce_timer():
         dates = [
             datetime.datetime.fromtimestamp(0.0),
@@ -34,28 +35,10 @@ def test_timestamps():
         count = count + 1
         return dates[count]
 
-    SimpleLogger.timer = create_applesauce_timer
-    SimpleLogger.timestamp = True
+    SimpleLogger.logger.timer = create_applesauce_timer
+    SimpleLogger.logger.timestamp = True
     SimpleLogger.event("1")
     SimpleLogger.event("2")
     SimpleLogger.event("3")
     SimpleLogger.event("4")
     verify(output)
-"""
- func test_timestamps() throws {
-        let output = SimpleLogger.logToString()
-        SimpleLogger.timestamp = true
-        var dates: [Date] = [
-            Date(timeIntervalSince1970: 0),
-            Date(timeIntervalSince1970: 0.5),
-        ]
-        SimpleLogger.timer = {
-            let first = dates.first
-            dates = Array(dates.dropFirst())
-            return first!
-        }
-        SimpleLogger.event("1")
-        SimpleLogger.event("2")
-        try Approvals.verify(output)
-    }
-"""
