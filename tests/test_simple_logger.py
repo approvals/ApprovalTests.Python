@@ -1,3 +1,6 @@
+import datetime
+import time
+
 from approvaltests import verify, args_and_result_formatter
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
 
@@ -16,3 +19,43 @@ def test_standard_logger():
         log_from_inner_method()
 
     verify(output)
+
+def test_timestamps():
+    output = SimpleLogger.log_to_string()
+    count = -1
+    def create_applesauce_timer():
+        dates = [
+            datetime.datetime.fromtimestamp(0.0),
+            datetime.datetime.fromtimestamp(0.5),
+            datetime.datetime.fromtimestamp(2.0),
+            datetime.datetime.fromtimestamp(1050),
+        ]
+        nonlocal count
+        count = count + 1
+        return dates[count]
+
+    SimpleLogger.timer = create_applesauce_timer
+    SimpleLogger.timestamp = True
+    SimpleLogger.event("1")
+    SimpleLogger.event("2")
+    SimpleLogger.event("3")
+    SimpleLogger.event("4")
+    verify(output)
+"""
+ func test_timestamps() throws {
+        let output = SimpleLogger.logToString()
+        SimpleLogger.timestamp = true
+        var dates: [Date] = [
+            Date(timeIntervalSince1970: 0),
+            Date(timeIntervalSince1970: 0.5),
+        ]
+        SimpleLogger.timer = {
+            let first = dates.first
+            dates = Array(dates.dropFirst())
+            return first!
+        }
+        SimpleLogger.event("1")
+        SimpleLogger.event("2")
+        try Approvals.verify(output)
+    }
+"""

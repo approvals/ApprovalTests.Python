@@ -1,20 +1,25 @@
+import datetime
 import inspect
 from contextlib import contextmanager
-from typing import Iterator
+from typing import Iterator, Callable
 
 from approvaltests.utilities.string_wrapper import StringWrapper
 from approvaltests.namer import StackFrameNamer
 
 
 class SimpleLogger:
+    previous_timestamp = None
     logger = lambda t: print(t, end="")
     tabbing = 0
     counter = 0
+    timestamp = True
+    timer: Callable[[],datetime.datetime] = datetime.datetime.now
 
     @staticmethod
     def log_to_string():
         buffer = StringWrapper()
         SimpleLogger.logger = buffer.append
+        SimpleLogger.timestamp = False
         return buffer
 
     @staticmethod
@@ -37,8 +42,19 @@ class SimpleLogger:
         if SimpleLogger.counter != 0:
             SimpleLogger.logger("\n")
             SimpleLogger.counter = 0
-
-        SimpleLogger.logger(f"{SimpleLogger.get_tabs()}{log_output}\n")
+        timestamp = ""
+        if SimpleLogger.timestamp:
+            time1: datetime.datetime = SimpleLogger.timer()
+            time = time1.strftime("%Y-%m-%dT%H:%M:%SZ")
+            diff_millseconds = 0
+            if SimpleLogger.previous_timestamp != None:
+                delta = time1 - SimpleLogger.previous_timestamp
+                diff_millseconds = int((delta).total_seconds() * 1000)
+            diff = diff_millseconds
+            diff_display = f" ~{diff:06}ms"
+            timestamp = f"[{time} {diff_display}] "
+            SimpleLogger.previous_timestamp = time1
+        SimpleLogger.logger(f"{timestamp}{SimpleLogger.get_tabs()}{log_output}\n")
 
     @staticmethod
     def variable(type: str, value):
@@ -66,3 +82,7 @@ class SimpleLogger:
     @staticmethod
     def increment_hour_glass_counter():
         SimpleLogger.counter = SimpleLogger.counter + 1
+
+    @staticmethod
+    def event(input):
+        SimpleLogger.log(f"event: {input}")
