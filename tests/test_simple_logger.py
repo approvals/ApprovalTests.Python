@@ -36,7 +36,7 @@ def test_timestamps():
         return dates[count]
 
     SimpleLogger.logger.timer = create_applesauce_timer
-    SimpleLogger.logger.timestamp = True
+    SimpleLogger.show_timestamps(True)
     SimpleLogger.event("1")
     SimpleLogger.event("2")
     SimpleLogger.event("3")

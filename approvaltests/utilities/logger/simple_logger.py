@@ -25,3 +25,7 @@ class SimpleLogger:
     @staticmethod
     def event(event_name):
         SimpleLogger.logger.event(event_name)
+
+    @staticmethod
+    def show_timestamps(display):
+        SimpleLogger.logger.timestamp = display
