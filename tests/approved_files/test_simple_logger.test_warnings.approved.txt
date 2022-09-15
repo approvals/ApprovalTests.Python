@@ -1,0 +1,18 @@
+*******************************************************************************************
+Message:EVERYTHING IS AWFUL!!!!!!
+*******************************************************************************************
+*******************************************************************************************
+Traceback (most recent call last):
+  File "<directory>test_simple_logger.py", line 19, in test_warnings
+    raise Exception("EVERYTHING IS exceptionally AWFUL!!!!!!")
+Exception: EVERYTHING IS exceptionally AWFUL!!!!!!
+
+*******************************************************************************************
+*******************************************************************************************
+Message:EVERYTHING IS AWFUL!!!!!!
+Traceback (most recent call last):
+  File "<directory>test_simple_logger.py", line 19, in test_warnings
+    raise Exception("EVERYTHING IS exceptionally AWFUL!!!!!!")
+Exception: EVERYTHING IS exceptionally AWFUL!!!!!!
+
+*******************************************************************************************

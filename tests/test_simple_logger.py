@@ -1,9 +1,26 @@
 import datetime
+import os
+from pathlib import Path
 
-import pytest
-
-from approvaltests import verify
+from approvaltests import verify, Options
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
+
+
+def test_warnings():
+    def scrubber(text: str) -> str:
+        return text.replace(__file__, "test_simple_logger.py")
+
+    output = SimpleLogger.log_to_string()
+    SimpleLogger.logger.log_stack_traces = True
+    text = "EVERYTHING IS AWFUL!!!!!!"
+    try:
+        raise Exception("EVERYTHING IS exceptionally AWFUL!!!!!!")
+    except Exception as e:
+        exception = e
+    SimpleLogger.warning(text)
+    SimpleLogger.warning(exception)
+    SimpleLogger.warning(text, exception)
+    verify(output, options=Options().with_scrubber(scrubber))
 
 
 def log_from_inner_method():
@@ -44,18 +61,16 @@ def test_timestamps():
     SimpleLogger.event("2")
     SimpleLogger.event("3")
     SimpleLogger.event("4")
-    SimpleLogger.warning(Exception("Oh no you didn't!"))
+    SimpleLogger.warning(exception=Exception("Oh no you didn't!"))
     verify(output)
 
-def test_warnings():
-    #Messages and Exceptions
-    pass
 
 def test_variable():
     names = ["Jacqueline", "Llewellyn"]
     output = SimpleLogger.log_to_string()
     SimpleLogger.variable("names", names)
     verify(output)
+
 
 def verify_toggle(toggle_name, toggle):
     SimpleLogger.show_all(True)
@@ -90,4 +105,4 @@ def log_everything() -> None:
         try:
             infinity = 1 / 0
         except Exception as e:
-            SimpleLogger.warning(e)
+            SimpleLogger.warning(exception=e)

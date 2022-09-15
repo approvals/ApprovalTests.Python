@@ -4,6 +4,7 @@ from approvaltests.core.reporter import Reporter
 from approvaltests.core.comparator import Comparator
 from approvaltests.file_approver import FileComparator
 from approvaltests.core.namer import Namer
+from approvaltests.scrubbers import combine_scrubbers
 
 
 class FileOptions:
@@ -50,6 +51,12 @@ class Options:
     def with_scrubber(self, scrubber_func: Callable[[str], str]) -> "Options":
         return Options({**self.fields, **{"scrubber_func": scrubber_func}})
 
+    def add_scrubber(self, scrubber) -> "Options":
+        if self.has_scrubber():
+            scrubber = combine_scrubbers(self.fields["scrubber_func"], scrubber)
+        return self.with_scrubber(scrubber)
+
+
     def has_scrubber(self):
         return "scrubber_func" in self.fields
 
@@ -71,3 +78,4 @@ class Options:
         if hasattr(namer, "set_extension"):
             namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
         return namer
+

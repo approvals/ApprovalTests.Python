@@ -6,12 +6,12 @@ event: Toggle Off None
   message: Something random
   .........1..
   *******************************************************************************************
-  division by zero
+  ZeroDivisionError: division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
 event: Toggle Off All
 *******************************************************************************************
-division by zero
+ZeroDivisionError: division by zero
 *******************************************************************************************
 event: Toggle Off Query
 -> in: log_everything()test_simple_logger
@@ -20,7 +20,7 @@ event: Toggle Off Query
   message: Something random
   .........1..
   *******************************************************************************************
-  division by zero
+  ZeroDivisionError: division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
 event: Toggle Off Message
@@ -30,7 +30,7 @@ event: Toggle Off Message
   event: Testing
   .........1..
   *******************************************************************************************
-  division by zero
+  ZeroDivisionError: division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
 event: Toggle Off Variable
@@ -40,7 +40,7 @@ event: Toggle Off Variable
   message: Something random
   .........1..
   *******************************************************************************************
-  division by zero
+  ZeroDivisionError: division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
 event: Toggle Off Hour Glass
@@ -50,7 +50,7 @@ event: Toggle Off Hour Glass
   event: Testing
   message: Something random
   *******************************************************************************************
-  division by zero
+  ZeroDivisionError: division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
 event: Toggle Off Markers
@@ -60,7 +60,7 @@ event: Testing
 message: Something random
 .........1..
 *******************************************************************************************
-division by zero
+ZeroDivisionError: division by zero
 *******************************************************************************************
 event: Toggle Off Events
 -> in: log_everything()test_simple_logger
@@ -69,6 +69,6 @@ event: Toggle Off Events
   message: Something random
   .........1..
   *******************************************************************************************
-  division by zero
+  ZeroDivisionError: division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger

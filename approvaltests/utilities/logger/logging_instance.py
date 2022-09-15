@@ -1,11 +1,14 @@
 import datetime
 import inspect
+import sys
+import traceback
 import types
 from contextlib import contextmanager
 from typing import Iterator, Callable, Any, Iterable
 
 import six
 
+from approvaltests import to_string
 from approvaltests.utilities.string_wrapper import StringWrapper
 from approvaltests.namer import StackFrameNamer
 
@@ -29,6 +32,7 @@ def _is_iterable(arg):
 
 class LoggingInstance:
     def __init__(self):
+        self.log_stack_traces = True
         self.toggles = Toggles(True)
         self.previous_timestamp = None
         self.logger = lambda t: print(t, end="")
@@ -41,6 +45,7 @@ class LoggingInstance:
         buffer = StringWrapper()
         self.logger = buffer.append
         self.log_with_timestamps = False
+        self.log_stack_traces = False
         return buffer
 
     @contextmanager
@@ -132,12 +137,27 @@ class LoggingInstance:
             return
         self.log_line(f"message: {message}")
 
-    def warning(self, exception: Exception) -> None:
+    def warning(self, text: str = "", exception: Exception = None) -> None:
+        if isinstance(text, Exception):
+            temp = ""
+            if exception:
+                temp = str(exception)
+            exception = text
+            text = temp
+
         warning_stars = "*" * 91
         self.log_line(warning_stars, use_timestamps=False)
         if self.log_with_timestamps:
             self.log_line("", use_timestamps=True)
-        self.log_line(str(exception), use_timestamps=False)
+        if text:
+            self.log_line(f"Message:{text}", use_timestamps=False)
+        if exception:
+            if self.log_stack_traces:
+                format_exception = traceback.format_exception(None, exception, exception.__traceback__)
+                stack_trace = "".join(format_exception)
+            else:
+                stack_trace = to_string(exception)
+            self.log_line(stack_trace, use_timestamps=False)
         self.log_line(warning_stars, use_timestamps=False)
 
     def show_queries(self, show):

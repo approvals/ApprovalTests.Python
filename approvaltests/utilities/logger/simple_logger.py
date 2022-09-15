@@ -40,8 +40,8 @@ class SimpleLogger:
         SimpleLogger.logger.message(message)
 
     @staticmethod
-    def warning(exception: Exception) -> None:
-        SimpleLogger.logger.warning(exception)
+    def warning(text: str = "", exception: Exception = None) -> None:
+        SimpleLogger.logger.warning(text, exception)
 
     @staticmethod
     def show_queries(show: bool):
