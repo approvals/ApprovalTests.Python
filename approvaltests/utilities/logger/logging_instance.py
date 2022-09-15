@@ -112,10 +112,8 @@ class LoggingInstance:
 
         if _is_iterable(value):
             self.log_line(f"variable: {name}.length = {len(value)}")
-            i = 0
-            for v in value:
+            for (i, v) in enumerate(value):
                 self.logger(f"{name}[{i}] = {v}\n")
-                i += 1
         else:
             self.log_line(f"variable: {name} = {value}")
 
