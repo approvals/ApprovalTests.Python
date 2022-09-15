@@ -56,7 +56,6 @@ class Options:
             scrubber = combine_scrubbers(self.fields["scrubber_func"], scrubber)
         return self.with_scrubber(scrubber)
 
-
     def has_scrubber(self):
         return "scrubber_func" in self.fields
 
@@ -78,4 +77,3 @@ class Options:
         if hasattr(namer, "set_extension"):
             namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
         return namer
-

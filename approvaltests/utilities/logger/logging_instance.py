@@ -24,10 +24,7 @@ class Toggles:
 
 
 def _is_iterable(arg):
-    return (
-            isinstance(arg, Iterable)
-            and not isinstance(arg, six.string_types)
-    )
+    return isinstance(arg, Iterable) and not isinstance(arg, six.string_types)
 
 
 class LoggingInstance:
@@ -153,7 +150,9 @@ class LoggingInstance:
             self.log_line(f"Message:{text}", use_timestamps=False)
         if exception:
             if self.log_stack_traces:
-                format_exception = traceback.format_exception(None, exception, exception.__traceback__)
+                format_exception = traceback.format_exception(
+                    None, exception, exception.__traceback__
+                )
                 stack_trace = "".join(format_exception)
             else:
                 stack_trace = to_string(exception)
