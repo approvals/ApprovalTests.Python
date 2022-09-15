@@ -58,7 +58,7 @@ def test_switching() -> None:
         ("Message", SimpleLogger.show_message),
         ("Variable", SimpleLogger.show_variable),
         ("Hour Glass", SimpleLogger.show_hour_glass),
-        # ("Markers", SimpleLogger.show_markers),
+        ("Markers", SimpleLogger.show_markers),
         # ("Events", SimpleLogger.show_events),
         ]
     for toggle_name, toggle in toggles:

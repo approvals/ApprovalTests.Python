@@ -49,3 +49,12 @@ event: Toggle Off Hour Glass
   division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
+event: Toggle Off Markers
+Sql: Select * from people
+variable: Nonsense = foo
+event: Testing
+message: Something random
+.........1..
+*******************************************************************************************
+division by zero
+*******************************************************************************************

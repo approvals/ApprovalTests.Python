@@ -13,7 +13,7 @@ class Toggles:
         self.message = show
         self.variable = show
         self.hour_glass = show
-
+        self.markers = show
 
 
 class LoggingInstance:
@@ -34,6 +34,9 @@ class LoggingInstance:
 
     @contextmanager
     def use_markers(self, additional_stack: int = 0) -> Iterator[None]:
+        if not self.toggles.markers:
+            yield
+            return
         stack_position = 1 + additional_stack
         stack = inspect.stack(stack_position)[2]
         method_name = stack.function
@@ -133,4 +136,7 @@ class LoggingInstance:
 
     def show_hour_glass(self, show):
         self.toggles.hour_glass = show
+
+    def show_markers(self, show):
+        self.toggles.markers = show
 

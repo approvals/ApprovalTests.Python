@@ -61,3 +61,7 @@ class SimpleLogger:
     @staticmethod
     def show_hour_glass(show: bool):
         SimpleLogger.logger.show_hour_glass(show)
+
+    @staticmethod
+    def show_markers(show: bool):
+        SimpleLogger.logger.show_markers(show)
