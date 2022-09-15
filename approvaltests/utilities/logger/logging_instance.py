@@ -12,6 +12,7 @@ class Toggles:
         self.query = show
         self.message = show
         self.variable = show
+        self.hour_glass = show
 
 
 
@@ -71,6 +72,9 @@ class LoggingInstance:
 
 
     def hour_glass(self) -> None:
+        if not self.toggles.hour_glass:
+            return
+
         self.increment_hour_glass_counter()
         if self.counter == 1:
             self.logger(f"{self.get_tabs()}.")
@@ -126,3 +130,7 @@ class LoggingInstance:
 
     def show_variable(self, show):
         self.toggles.variable = show
+
+    def show_hour_glass(self, show):
+        self.toggles.hour_glass = show
+

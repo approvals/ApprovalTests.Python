@@ -57,7 +57,7 @@ def test_switching() -> None:
         ("Query", SimpleLogger.show_query),
         ("Message", SimpleLogger.show_message),
         ("Variable", SimpleLogger.show_variable),
-        # ("Hour Glass", SimpleLogger.show_hour_glass),
+        ("Hour Glass", SimpleLogger.show_hour_glass),
         # ("Markers", SimpleLogger.show_markers),
         # ("Events", SimpleLogger.show_events),
         ]
