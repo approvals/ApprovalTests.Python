@@ -13,7 +13,6 @@ class Toggles:
 
 
 class LoggingInstance:
-
     def __init__(self):
         self.toggles = Toggles(True)
         self.previous_timestamp = None
@@ -93,14 +92,13 @@ class LoggingInstance:
     def event(self, event_name: str) -> None:
         self.log_line(f"event: {event_name}")
 
-    def query(self, query_text:str) -> None:
+    def query(self, query_text: str) -> None:
         if not self.toggles.query:
             return
         self.log_line(f"Sql: {query_text}")
 
     def message(self, message):
         self.log_line(f"message: {message}")
-
 
     def warning(self, exception: Exception) -> None:
         warning_stars = "*" * 91

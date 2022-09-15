@@ -36,7 +36,7 @@ class SimpleLogger:
         SimpleLogger.logger.query(query_text)
 
     @staticmethod
-    def message(message:str) -> None:
+    def message(message: str) -> None:
         SimpleLogger.logger.message(message)
 
     @staticmethod
@@ -48,5 +48,5 @@ class SimpleLogger:
         SimpleLogger.logger.show_query(show)
 
     @staticmethod
-    def show_all(show:bool):
+    def show_all(show: bool):
         SimpleLogger.logger.show_all(show)

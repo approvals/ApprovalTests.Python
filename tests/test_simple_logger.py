@@ -48,7 +48,6 @@ def test_timestamps():
     verify(output)
 
 
-
 def test_switching() -> None:
     output = SimpleLogger.log_to_string()
     log_everything("None")
@@ -59,7 +58,7 @@ def test_switching() -> None:
         SimpleLogger.show_all(True)
         eval(f"SimpleLogger.show_{toggle}(False)")
         log_everything(toggles[0])
-    #cycle through the switches and log everything
+    # cycle through the switches and log everything
     verify(output)
 
 
@@ -73,6 +72,6 @@ def log_everything(message_type: str) -> None:
         for a in range(1, 13):
             SimpleLogger.hour_glass()
         try:
-            infinity = 1/0
-        except Exception as e :
+            infinity = 1 / 0
+        except Exception as e:
             SimpleLogger.warning(e)
