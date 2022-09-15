@@ -48,29 +48,29 @@ def test_timestamps():
     verify(output)
 
 
+def verify_toggle(toggle_name, toggle):
+    SimpleLogger.show_all(True)
+    SimpleLogger.event(f"Toggle Off {toggle_name}")
+    toggle(False)
+    log_everything()
+
+
 def test_switching() -> None:
     output = SimpleLogger.log_to_string()
-    log_everything("None")
 
-    # switches , message, variable, event, hourglass, markers
-    toggles = [
-        ("Query", SimpleLogger.show_query),
-        ("Message", SimpleLogger.show_message),
-        ("Variable", SimpleLogger.show_variable),
-        ("Hour Glass", SimpleLogger.show_hour_glass),
-        ("Markers", SimpleLogger.show_markers),
-        # ("Events", SimpleLogger.show_events),
-        ]
-    for toggle_name, toggle in toggles:
-        SimpleLogger.show_all(True)
-        toggle(False)
-        log_everything(toggle_name)
-    # cycle through the switches and log everything
+    verify_toggle("None", lambda a: SimpleLogger.show_all(True)),
+    verify_toggle("All", SimpleLogger.show_all),
+    verify_toggle("Query", SimpleLogger.show_query),
+    verify_toggle("Message", SimpleLogger.show_message),
+    verify_toggle("Variable", SimpleLogger.show_variable),
+    verify_toggle("Hour Glass", SimpleLogger.show_hour_glass),
+    verify_toggle("Markers", SimpleLogger.show_markers),
+    verify_toggle("Events", SimpleLogger.show_events),
+
     verify(output)
 
 
-def log_everything(message_type: str) -> None:
-    SimpleLogger.event(f"Toggle Off {message_type}")
+def log_everything() -> None:
     with SimpleLogger.use_markers() as m:
         SimpleLogger.query("Select * from people")
         SimpleLogger.variable("Nonsense", "foo")

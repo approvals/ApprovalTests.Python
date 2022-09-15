@@ -9,11 +9,13 @@ from approvaltests.namer import StackFrameNamer
 
 class Toggles:
     def __init__(self, show: bool):
-        self.query = show
-        self.message = show
-        self.variable = show
+        self.queries = show
+        self.messages = show
+        self.variables = show
         self.hour_glass = show
         self.markers = show
+        self.events = show
+
 
 
 class LoggingInstance:
@@ -97,20 +99,22 @@ class LoggingInstance:
         self.counter = self.counter + 1
 
     def variable(self, name: str, value: Any) -> None:
-        if not self.toggles.variable:
+        if not self.toggles.variables:
             return
         self.log_line(f"variable: {name} = {value}")
 
     def event(self, event_name: str) -> None:
+        if not self.toggles.events:
+            return
         self.log_line(f"event: {event_name}")
 
     def query(self, query_text: str) -> None:
-        if not self.toggles.query:
+        if not self.toggles.queries:
             return
         self.log_line(f"Sql: {query_text}")
 
     def message(self, message):
-        if not self.toggles.message:
+        if not self.toggles.messages:
             return
         self.log_line(f"message: {message}")
 
@@ -122,21 +126,25 @@ class LoggingInstance:
         self.log_line(str(exception), use_timestamps=False)
         self.log_line(warning_stars, use_timestamps=False)
 
-    def show_query(self, show):
-        self.toggles.query = show
+    def show_queries(self, show):
+        self.toggles.queries = show
 
     def show_all(self, show: bool) -> None:
         self.toggles = Toggles(show)
 
-    def show_message(self, show):
-        self.toggles.message = show
+    def show_messages(self, show):
+        self.toggles.messages = show
 
-    def show_variable(self, show):
-        self.toggles.variable = show
+    def show_variables(self, show):
+        self.toggles.variables = show
 
     def show_hour_glass(self, show):
         self.toggles.hour_glass = show
 
     def show_markers(self, show):
         self.toggles.markers = show
+
+    def show_events(self, show):
+        self.toggles.events = show
+
 

@@ -45,7 +45,7 @@ class SimpleLogger:
 
     @staticmethod
     def show_query(show: bool):
-        SimpleLogger.logger.show_query(show)
+        SimpleLogger.logger.show_queries(show)
 
     @staticmethod
     def show_all(show: bool):
@@ -53,11 +53,11 @@ class SimpleLogger:
 
     @staticmethod
     def show_message(show: bool):
-        SimpleLogger.logger.show_message(show)
+        SimpleLogger.logger.show_messages(show)
 
     @staticmethod
     def show_variable(show: bool):
-        SimpleLogger.logger.show_variable(show)
+        SimpleLogger.logger.show_variables(show)
     @staticmethod
     def show_hour_glass(show: bool):
         SimpleLogger.logger.show_hour_glass(show)
@@ -65,3 +65,7 @@ class SimpleLogger:
     @staticmethod
     def show_markers(show: bool):
         SimpleLogger.logger.show_markers(show)
+
+    @staticmethod
+    def show_events(show: bool):
+        SimpleLogger.logger.show_events(show)

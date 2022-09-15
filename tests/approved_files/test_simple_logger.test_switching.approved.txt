@@ -9,6 +9,10 @@ event: Toggle Off None
   division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
+event: Toggle Off All
+*******************************************************************************************
+division by zero
+*******************************************************************************************
 event: Toggle Off Query
 -> in: log_everything()test_simple_logger
   variable: Nonsense = foo
@@ -58,3 +62,13 @@ message: Something random
 *******************************************************************************************
 division by zero
 *******************************************************************************************
+event: Toggle Off Events
+-> in: log_everything()test_simple_logger
+  Sql: Select * from people
+  variable: Nonsense = foo
+  message: Something random
+  .........1..
+  *******************************************************************************************
+  division by zero
+  *******************************************************************************************
+<- out: log_everything()test_simple_logger
