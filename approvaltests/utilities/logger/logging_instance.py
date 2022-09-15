@@ -17,7 +17,6 @@ class Toggles:
         self.events = show
 
 
-
 class LoggingInstance:
     def __init__(self):
         self.toggles = Toggles(True)
@@ -74,7 +73,6 @@ class LoggingInstance:
             timestamp = f"[{time} {diff_display}] "
             self.previous_timestamp = time1
         return timestamp
-
 
     def hour_glass(self) -> None:
         if not self.toggles.hour_glass:
@@ -146,5 +144,3 @@ class LoggingInstance:
 
     def show_events(self, show):
         self.toggles.events = show
-
-
