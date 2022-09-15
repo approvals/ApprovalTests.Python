@@ -46,3 +46,7 @@ class SimpleLogger:
     @staticmethod
     def show_query(show: bool):
         SimpleLogger.logger.show_query(show)
+
+    @staticmethod
+    def show_all(show:bool):
+        SimpleLogger.logger.show_all(show)

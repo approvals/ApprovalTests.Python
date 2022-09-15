@@ -53,9 +53,12 @@ def test_switching() -> None:
     output = SimpleLogger.log_to_string()
     log_everything("None")
 
-    # switches query, warning, message, variable, event, hourglass, markers
-    SimpleLogger.show_query(False)
-    log_everything("Query")
+    # switches warning, message, variable, event, hourglass, markers
+    toggles = ["query"]
+    for toggle in toggles:
+        SimpleLogger.show_all(True)
+        eval(f"SimpleLogger.show_{toggle}(False)")
+        log_everything(toggles[0])
     #cycle through the switches and log everything
     verify(output)
 

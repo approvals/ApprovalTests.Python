@@ -8,14 +8,14 @@ from approvaltests.namer import StackFrameNamer
 
 
 class Toggles:
-    def __init__(self):
-        self.query = True
+    def __init__(self, show: bool):
+        self.query = show
 
 
 class LoggingInstance:
 
     def __init__(self):
-        self.toggles = Toggles()
+        self.toggles = Toggles(True)
         self.previous_timestamp = None
         self.logger = lambda t: print(t, end="")
         self.tabbing = 0
@@ -112,3 +112,6 @@ class LoggingInstance:
 
     def show_query(self, show):
         self.toggles.query = show
+
+    def show_all(self, show: bool) -> None:
+        self.toggles = Toggles(show)

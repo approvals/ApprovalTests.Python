@@ -9,7 +9,7 @@ event: Toggle Off None
   division by zero
   *******************************************************************************************
 <- out: log_everything()test_simple_logger
-event: Toggle Off Query
+event: Toggle Off query
 -> in: log_everything()test_simple_logger
   variable: Nonsense = foo
   event: Testing
