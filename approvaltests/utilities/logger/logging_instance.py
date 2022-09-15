@@ -95,9 +95,9 @@ class LoggingInstance:
 
 
     def warning(self, exception: Exception) -> None:
-        warning_text = "*" * 91
-        self.log_line(warning_text, use_timestamps=False)
+        warning_stars = "*" * 91
+        self.log_line(warning_stars, use_timestamps=False)
         if self.log_with_timestamps:
             self.log_line("", use_timestamps=True)
         self.log_line(str(exception), use_timestamps=False)
-        self.log_line(warning_text, use_timestamps=False)
+        self.log_line(warning_stars, use_timestamps=False)
