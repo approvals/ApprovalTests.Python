@@ -10,6 +10,9 @@ from approvaltests.namer import StackFrameNamer
 class Toggles:
     def __init__(self, show: bool):
         self.query = show
+        self.message = show
+        self.variable = show
+
 
 
 class LoggingInstance:
@@ -66,9 +69,6 @@ class LoggingInstance:
             self.previous_timestamp = time1
         return timestamp
 
-    def variable(self, name: str, value: Any) -> None:
-        display_variable = f"variable: {name} = {value}"
-        self.log_line(display_variable)
 
     def hour_glass(self) -> None:
         self.increment_hour_glass_counter()
@@ -89,6 +89,11 @@ class LoggingInstance:
     def increment_hour_glass_counter(self) -> None:
         self.counter = self.counter + 1
 
+    def variable(self, name: str, value: Any) -> None:
+        if not self.toggles.variable:
+            return
+        self.log_line(f"variable: {name} = {value}")
+
     def event(self, event_name: str) -> None:
         self.log_line(f"event: {event_name}")
 
@@ -98,6 +103,8 @@ class LoggingInstance:
         self.log_line(f"Sql: {query_text}")
 
     def message(self, message):
+        if not self.toggles.message:
+            return
         self.log_line(f"message: {message}")
 
     def warning(self, exception: Exception) -> None:
@@ -113,3 +120,9 @@ class LoggingInstance:
 
     def show_all(self, show: bool) -> None:
         self.toggles = Toggles(show)
+
+    def show_message(self, show):
+        self.toggles.message = show
+
+    def show_variable(self, show):
+        self.toggles.variable = show

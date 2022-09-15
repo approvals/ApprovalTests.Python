@@ -50,3 +50,11 @@ class SimpleLogger:
     @staticmethod
     def show_all(show: bool):
         SimpleLogger.logger.show_all(show)
+
+    @staticmethod
+    def show_message(show: bool):
+        SimpleLogger.logger.show_message(show)
+
+    @staticmethod
+    def show_variable(show: bool):
+        SimpleLogger.logger.show_variable(show)
