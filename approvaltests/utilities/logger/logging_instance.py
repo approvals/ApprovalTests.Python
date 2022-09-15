@@ -14,13 +14,13 @@ class LoggingInstance:
         self.logger = lambda t: print(t, end="")
         self.tabbing = 0
         self.counter = 0
-        self.timestamp = True
+        self.log_with_timestamps = True
         self.timer: Callable[[], datetime.datetime] = datetime.datetime.now
 
     def log_to_string(self) -> StringWrapper:
         buffer = StringWrapper()
         self.logger = buffer.append
-        self.timestamp = False
+        self.log_with_timestamps = False
         return buffer
 
     @contextmanager
@@ -47,7 +47,7 @@ class LoggingInstance:
 
     def get_timestamp(self) -> str:
         timestamp = ""
-        if self.timestamp:
+        if self.log_with_timestamps:
             time1: datetime.datetime = self.timer()
             time = time1.strftime("%Y-%m-%dT%H:%M:%SZ")
             diff_millseconds = 0
@@ -94,14 +94,14 @@ class LoggingInstance:
 
 
     def warning(self, exception: Exception) -> None:
-        t = self.timestamp
-        self.timestamp = False
+        t = self.log_with_timestamps
+        self.log_with_timestamps = False
         warning_text = "*" * 91
         self.log(warning_text)
         if t:
-            self.timestamp = True
+            self.log_with_timestamps = True
             self.log("")
-            self.timestamp = False
+            self.log_with_timestamps = False
         self.log(str(exception))
         self.log(warning_text)
-        self.timestamp = t
+        self.log_with_timestamps = t

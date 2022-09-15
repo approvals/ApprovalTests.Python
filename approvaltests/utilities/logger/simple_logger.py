@@ -29,7 +29,7 @@ class SimpleLogger:
 
     @staticmethod
     def show_timestamps(display: bool) -> None:
-        SimpleLogger.logger.timestamp = display
+        SimpleLogger.logger.log_with_timestamps = display
 
     @staticmethod
     def query(query_text: str) -> None:
