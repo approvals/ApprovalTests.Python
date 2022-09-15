@@ -85,3 +85,23 @@ class LoggingInstance:
 
     def event(self, event_name: str) -> None:
         self.log(f"event: {event_name}")
+
+    def query(self, query_text:str) -> None:
+        self.log(f"Sql: {query_text}")
+
+    def message(self, message):
+        self.log(f"message: {message}")
+
+
+    def warning(self, exception: Exception) -> None:
+        t = self.timestamp
+        self.timestamp = False
+        warning_text = "*" * 91
+        self.log(warning_text)
+        if t:
+            self.timestamp = True
+            self.log("")
+            self.timestamp = False
+        self.log(str(exception))
+        self.log(warning_text)
+        self.timestamp = t

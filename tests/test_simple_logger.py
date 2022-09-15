@@ -32,6 +32,7 @@ def test_timestamps():
             datetime.datetime.fromtimestamp(0.5),
             datetime.datetime.fromtimestamp(2.0),
             datetime.datetime.fromtimestamp(1050),
+            datetime.datetime.fromtimestamp(1052),
         ]
         nonlocal count
         count = count + 1
@@ -43,15 +44,30 @@ def test_timestamps():
     SimpleLogger.event("2")
     SimpleLogger.event("3")
     SimpleLogger.event("4")
+    SimpleLogger.warning(Exception("Oh no you didn't!"))
     verify(output)
 
 
 
 def test_switching() -> None:
     output = SimpleLogger.log_to_string()
-    SimpleLogger.query("Select * from people")
     #log everything
+    log_everything()
     #toggle all
-    # query, warning, message, variable, event, hourglass, markers
+    # switches query, warning, message, variable, event, hourglass, markers
     #cycle through the switches and log everything
-    verify("""Sql: Select * from people""")
+    verify(output)
+
+
+def log_everything():
+    with SimpleLogger.use_markers() as m:
+        SimpleLogger.query("Select * from people")
+        SimpleLogger.variable("Nonsense", "foo")
+        SimpleLogger.event("Testing")
+        SimpleLogger.message("Something random")
+        for a in range(1, 13):
+            SimpleLogger.hour_glass()
+        try:
+            infinity = 1/0
+        except Exception as e :
+            SimpleLogger.warning(e)

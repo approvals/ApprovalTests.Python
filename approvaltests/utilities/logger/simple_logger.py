@@ -32,5 +32,13 @@ class SimpleLogger:
         SimpleLogger.logger.timestamp = display
 
     @staticmethod
-    def query(query_text: str):
-        pass
+    def query(query_text: str) -> None:
+        SimpleLogger.logger.query(query_text)
+
+    @staticmethod
+    def message(message:str) -> None:
+        SimpleLogger.logger.message(message)
+
+    @staticmethod
+    def warning(exception: Exception) -> None:
+        SimpleLogger.logger.warning(exception)
