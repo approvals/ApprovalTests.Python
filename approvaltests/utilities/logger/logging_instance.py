@@ -30,20 +30,21 @@ class LoggingInstance:
         method_name = stack.function
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         expected = f"-> in: {method_name}(){filename}"
-        self.log(expected)
+        self.log_and_add_timestamps_if_needed(expected)
         self.tabbing = self.tabbing + 1
         yield
         self.tabbing = self.tabbing - 1
         expected = f"<- out: {method_name}(){filename}"
-        self.log(expected)
+        self.log_and_add_timestamps_if_needed(expected)
         pass
 
-    def log(self, text: str) -> None:
+    def log_and_add_timestamps_if_needed(self, text: str, use_timestamps=True) -> None:
         if self.counter != 0:
             self.logger("\n")
             self.counter = 0
-        timestamp = self.get_timestamp()
-        self.logger(f"{timestamp}{self.get_tabs()}{text}\n")
+        timestamp = self.get_timestamp() if use_timestamps else ""
+        output_message = f"{timestamp}{self.get_tabs()}{text}\n"
+        self.logger(output_message)
 
     def get_timestamp(self) -> str:
         timestamp = ""
@@ -62,7 +63,7 @@ class LoggingInstance:
 
     def variable(self, name: str, value: Any) -> None:
         display_variable = f"variable: {name} = {value}"
-        self.log(display_variable)
+        self.log_and_add_timestamps_if_needed(display_variable)
 
     def hour_glass(self) -> None:
         self.increment_hour_glass_counter()
@@ -84,24 +85,19 @@ class LoggingInstance:
         self.counter = self.counter + 1
 
     def event(self, event_name: str) -> None:
-        self.log(f"event: {event_name}")
+        self.log_and_add_timestamps_if_needed(f"event: {event_name}")
 
     def query(self, query_text:str) -> None:
-        self.log(f"Sql: {query_text}")
+        self.log_and_add_timestamps_if_needed(f"Sql: {query_text}")
 
     def message(self, message):
-        self.log(f"message: {message}")
+        self.log_and_add_timestamps_if_needed(f"message: {message}")
 
 
     def warning(self, exception: Exception) -> None:
-        t = self.log_with_timestamps
-        self.log_with_timestamps = False
         warning_text = "*" * 91
-        self.log(warning_text)
-        if t:
-            self.log_with_timestamps = True
-            self.log("")
-            self.log_with_timestamps = False
-        self.log(str(exception))
-        self.log(warning_text)
-        self.log_with_timestamps = t
+        self.log_and_add_timestamps_if_needed(warning_text, use_timestamps=False)
+        if self.log_with_timestamps:
+            self.log_and_add_timestamps_if_needed("")
+        self.log_and_add_timestamps_if_needed(str(exception), use_timestamps=False)
+        self.log_and_add_timestamps_if_needed(warning_text, use_timestamps=False)
