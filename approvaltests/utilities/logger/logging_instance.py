@@ -30,15 +30,15 @@ class LoggingInstance:
         method_name = stack.function
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         expected = f"-> in: {method_name}(){filename}"
-        self.log_and_add_timestamps_if_needed(expected)
+        self.log_line(expected)
         self.tabbing = self.tabbing + 1
         yield
         self.tabbing = self.tabbing - 1
         expected = f"<- out: {method_name}(){filename}"
-        self.log_and_add_timestamps_if_needed(expected)
+        self.log_line(expected)
         pass
 
-    def log_and_add_timestamps_if_needed(self, text: str, use_timestamps=True) -> None:
+    def log_line(self, text: str, use_timestamps=True) -> None:
         if self.counter != 0:
             self.logger("\n")
             self.counter = 0
@@ -63,7 +63,7 @@ class LoggingInstance:
 
     def variable(self, name: str, value: Any) -> None:
         display_variable = f"variable: {name} = {value}"
-        self.log_and_add_timestamps_if_needed(display_variable)
+        self.log_line(display_variable)
 
     def hour_glass(self) -> None:
         self.increment_hour_glass_counter()
@@ -85,19 +85,19 @@ class LoggingInstance:
         self.counter = self.counter + 1
 
     def event(self, event_name: str) -> None:
-        self.log_and_add_timestamps_if_needed(f"event: {event_name}")
+        self.log_line(f"event: {event_name}")
 
     def query(self, query_text:str) -> None:
-        self.log_and_add_timestamps_if_needed(f"Sql: {query_text}")
+        self.log_line(f"Sql: {query_text}")
 
     def message(self, message):
-        self.log_and_add_timestamps_if_needed(f"message: {message}")
+        self.log_line(f"message: {message}")
 
 
     def warning(self, exception: Exception) -> None:
         warning_text = "*" * 91
-        self.log_and_add_timestamps_if_needed(warning_text, use_timestamps=False)
+        self.log_line(warning_text, use_timestamps=False)
         if self.log_with_timestamps:
-            self.log_and_add_timestamps_if_needed("")
-        self.log_and_add_timestamps_if_needed(str(exception), use_timestamps=False)
-        self.log_and_add_timestamps_if_needed(warning_text, use_timestamps=False)
+            self.log_line("", use_timestamps=True)
+        self.log_line(str(exception), use_timestamps=False)
+        self.log_line(warning_text, use_timestamps=False)
