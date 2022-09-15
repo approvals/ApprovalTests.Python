@@ -60,9 +60,9 @@ def test_switching() -> None:
 
     verify_toggle("None", lambda a: SimpleLogger.show_all(True)),
     verify_toggle("All", SimpleLogger.show_all),
-    verify_toggle("Query", SimpleLogger.show_query),
-    verify_toggle("Message", SimpleLogger.show_message),
-    verify_toggle("Variable", SimpleLogger.show_variable),
+    verify_toggle("Query", SimpleLogger.show_queries),
+    verify_toggle("Message", SimpleLogger.show_messages),
+    verify_toggle("Variable", SimpleLogger.show_variables),
     verify_toggle("Hour Glass", SimpleLogger.show_hour_glass),
     verify_toggle("Markers", SimpleLogger.show_markers),
     verify_toggle("Events", SimpleLogger.show_events),

@@ -44,7 +44,7 @@ class SimpleLogger:
         SimpleLogger.logger.warning(exception)
 
     @staticmethod
-    def show_query(show: bool):
+    def show_queries(show: bool):
         SimpleLogger.logger.show_queries(show)
 
     @staticmethod
@@ -52,11 +52,11 @@ class SimpleLogger:
         SimpleLogger.logger.show_all(show)
 
     @staticmethod
-    def show_message(show: bool):
+    def show_messages(show: bool):
         SimpleLogger.logger.show_messages(show)
 
     @staticmethod
-    def show_variable(show: bool):
+    def show_variables(show: bool):
         SimpleLogger.logger.show_variables(show)
     @staticmethod
     def show_hour_glass(show: bool):
