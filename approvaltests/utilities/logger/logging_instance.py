@@ -1,7 +1,10 @@
 import datetime
 import inspect
+import types
 from contextlib import contextmanager
-from typing import Iterator, Callable, Any
+from typing import Iterator, Callable, Any, Iterable
+
+import six
 
 from approvaltests.utilities.string_wrapper import StringWrapper
 from approvaltests.namer import StackFrameNamer
@@ -15,6 +18,13 @@ class Toggles:
         self.hour_glass = show
         self.markers = show
         self.events = show
+
+
+def _is_iterable(arg):
+    return (
+            isinstance(arg, Iterable)
+            and not isinstance(arg, six.string_types)
+    )
 
 
 class LoggingInstance:
@@ -99,7 +109,15 @@ class LoggingInstance:
     def variable(self, name: str, value: Any) -> None:
         if not self.toggles.variables:
             return
-        self.log_line(f"variable: {name} = {value}")
+
+        if _is_iterable(value):
+            self.log_line(f"variable: {name}.length = {len(value)}")
+            i = 0
+            for v in value:
+                self.logger(f"{name}[{i}] = {v}\n")
+                i += 1
+        else:
+            self.log_line(f"variable: {name} = {value}")
 
     def event(self, event_name: str) -> None:
         if not self.toggles.events:

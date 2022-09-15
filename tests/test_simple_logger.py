@@ -47,6 +47,15 @@ def test_timestamps():
     SimpleLogger.warning(Exception("Oh no you didn't!"))
     verify(output)
 
+def test_warnings():
+    #Messages and Exceptions
+    pass
+
+def test_variable():
+    names = ["Jacqueline", "Llewellyn"]
+    output = SimpleLogger.log_to_string()
+    SimpleLogger.variable("names", names)
+    verify(output)
 
 def verify_toggle(toggle_name, toggle):
     SimpleLogger.show_all(True)
