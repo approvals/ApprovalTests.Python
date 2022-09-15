@@ -7,9 +7,15 @@ from approvaltests.utilities.string_wrapper import StringWrapper
 from approvaltests.namer import StackFrameNamer
 
 
+class Toggles:
+    def __init__(self):
+        self.query = True
+
+
 class LoggingInstance:
 
     def __init__(self):
+        self.toggles = Toggles()
         self.previous_timestamp = None
         self.logger = lambda t: print(t, end="")
         self.tabbing = 0
@@ -88,6 +94,8 @@ class LoggingInstance:
         self.log_line(f"event: {event_name}")
 
     def query(self, query_text:str) -> None:
+        if not self.toggles.query:
+            return
         self.log_line(f"Sql: {query_text}")
 
     def message(self, message):
@@ -101,3 +109,6 @@ class LoggingInstance:
             self.log_line("", use_timestamps=True)
         self.log_line(str(exception), use_timestamps=False)
         self.log_line(warning_stars, use_timestamps=False)
+
+    def show_query(self, show):
+        self.toggles.query = show

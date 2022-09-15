@@ -42,3 +42,7 @@ class SimpleLogger:
     @staticmethod
     def warning(exception: Exception) -> None:
         SimpleLogger.logger.warning(exception)
+
+    @staticmethod
+    def show_query(show: bool):
+        SimpleLogger.logger.show_query(show)

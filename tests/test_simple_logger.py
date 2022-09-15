@@ -51,15 +51,17 @@ def test_timestamps():
 
 def test_switching() -> None:
     output = SimpleLogger.log_to_string()
-    #log everything
-    log_everything()
-    #toggle all
+    log_everything("None")
+
     # switches query, warning, message, variable, event, hourglass, markers
+    SimpleLogger.show_query(False)
+    log_everything("Query")
     #cycle through the switches and log everything
     verify(output)
 
 
-def log_everything():
+def log_everything(message_type: str) -> None:
+    SimpleLogger.event(f"Toggle Off {message_type}")
     with SimpleLogger.use_markers() as m:
         SimpleLogger.query("Select * from people")
         SimpleLogger.variable("Nonsense", "foo")
