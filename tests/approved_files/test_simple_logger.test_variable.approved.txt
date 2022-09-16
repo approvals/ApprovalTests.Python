@@ -1,3 +1,4 @@
 variable: names.length = 2
 names[0] = Jacqueline
 names[1] = Llewellyn
+variable: dalmatians = 101 <int>

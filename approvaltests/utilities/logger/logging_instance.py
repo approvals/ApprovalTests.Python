@@ -108,7 +108,7 @@ class LoggingInstance:
     def increment_hour_glass_counter(self) -> None:
         self.counter = self.counter + 1
 
-    def variable(self, name: str, value: Any) -> None:
+    def variable(self, name: str, value: Any, show_types:bool=False) -> None:
         if not self.toggles.variables:
             return
 
@@ -117,7 +117,10 @@ class LoggingInstance:
             for (i, v) in enumerate(value):
                 self.logger(f"{name}[{i}] = {v}\n")
         else:
-            self.log_line(f"variable: {name} = {value}")
+            type_text = ""
+            if show_types:
+                type_text = f" <{type(value).__name__}>"
+            self.log_line(f"variable: {name} = {value}{type_text}")
 
     def event(self, event_name: str) -> None:
         if not self.toggles.events:

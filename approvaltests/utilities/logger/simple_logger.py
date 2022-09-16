@@ -16,8 +16,8 @@ class SimpleLogger:
         return SimpleLogger.logger.use_markers(additional_stack=1)
 
     @staticmethod
-    def variable(name: str, value: Any) -> None:
-        SimpleLogger.logger.variable(name, value)
+    def variable(name: str, value: Any, show_types:bool=False) -> None:
+        SimpleLogger.logger.variable(name, value, show_types = show_types)
 
     @staticmethod
     def hour_glass() -> None:
