@@ -108,7 +108,7 @@ class LoggingInstance:
     def increment_hour_glass_counter(self) -> None:
         self.counter = self.counter + 1
 
-    def variable(self, name: str, value: Any, show_types:bool=False) -> None:
+    def variable(self, name: str, value: Any, show_types: bool = False) -> None:
         if not self.toggles.variables:
             return
 

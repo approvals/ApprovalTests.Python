@@ -69,7 +69,7 @@ def test_variable():
     names = ["Jacqueline", "Llewellyn"]
     output = SimpleLogger.log_to_string()
     SimpleLogger.variable("names", names)
-    SimpleLogger.variable("dalmatians", 101, show_types = True)
+    SimpleLogger.variable("dalmatians", 101, show_types=True)
     verify(output)
 
 
