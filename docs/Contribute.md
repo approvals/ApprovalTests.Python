@@ -27,7 +27,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/89022110958?pwd=RDBTNDQrb
 
 ### Openning Notice
 
-include: openning_notice.md
+include: opening_notice.md
 
 ### Anydesk
 
