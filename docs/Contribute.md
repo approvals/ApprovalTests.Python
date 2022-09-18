@@ -20,9 +20,14 @@ Every Sunday [10:00am MST](https://www.timeanddate.com/worldclock/fixedtime.html
 
 You can add our [google calendar here](https://calendar.google.com/calendar/u/0?cid=cHBnZ2wycWI3bGttOWlwbWI3aTIyMDI0dDhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ)
 
+
 ### Zoom Link
 
 You can join the [zoom here](https://us02web.zoom.us/j/89022110958?pwd=RDBTNDQrblNoc2FMTTdOc01QNVYwdz09)
+
+### Openning Notice
+
+include: openning_notice.md
 
 ### Anydesk
 
