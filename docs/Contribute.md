@@ -26,7 +26,7 @@ You can add our [google calendar here](https://calendar.google.com/calendar/u/0?
 
 You can join the [zoom here](https://us02web.zoom.us/j/89022110958?pwd=RDBTNDQrblNoc2FMTTdOc01QNVYwdz09)
 
-### Openning Notice
+### Opening Notice
 
 # Values <!-- include: opening_notice.md -->
 
