@@ -1,5 +1,6 @@
 from itertools import product
 from typing import Any, Callable, Optional, List, Sequence
+
 from approvaltests.core.reporter import Reporter
 from approvaltests.approvals import verify, initialize_options
 from approvaltests.core.options import Options
@@ -128,3 +129,17 @@ def print_combinations(
 
 def args_and_result_formatter(args: List[Any], result: int) -> str:
     return f"args: {repr(args)} => {repr(result)}\n"
+
+
+def verify_logging_for_all_combinations(function_to_run,
+                                        input_arguments: VariationForEachParameter,
+                                        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+                                        options: Optional[Options] = None,
+                                        ):
+    def printer(* args):
+        SimpleLogger._logger.log_line(f"Running inputs {args} => ")
+        with SimpleLogger._logger.indent():
+            function_to_run(*args)
+    output = SimpleLogger.log_to_string()
+    run_all_combinations(printer, input_arguments)
+    verify(output, options=options)
