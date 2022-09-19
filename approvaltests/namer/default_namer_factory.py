@@ -6,13 +6,15 @@ from approvaltests.namer.default_name import get_default_namer
 
 
 def is_ci():
-    possible = ["CI",
-            "CONTINUOUS_INTEGRATION",
-            "GITHUB_ACTIONS",
-            "GO_SERVER_URL",
-            "JENKINS_URL",
-            "TEAMCITY_VERSION",
-            "TF_BUILD"]
+    possible = [
+        "CI",
+        "CONTINUOUS_INTEGRATION",
+        "GITHUB_ACTIONS",
+        "GO_SERVER_URL",
+        "JENKINS_URL",
+        "TEAMCITY_VERSION",
+        "TF_BUILD",
+    ]
     return any(os.environ.get(possibile_ci) for possibile_ci in possible)
 
 
