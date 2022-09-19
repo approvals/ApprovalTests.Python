@@ -71,5 +71,3 @@ class GenericDiffReporter(Reporter):
             if Command.executable(possible):
                 return possible
         return path.replace(PROGRAM_FILES, "C:/Program Files")
-
-

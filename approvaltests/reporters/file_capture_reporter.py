@@ -15,9 +15,9 @@ def run(*args: str) -> None:
 
 class FileCaptureReporter(Reporter):
     def __init__(
-            self,
-            message: str = "*** adding received file via FileCaptureReporter for further inspection",
-            is_git_registration_needed: Callable[[], bool] = is_git_registration_needed,
+        self,
+        message: str = "*** adding received file via FileCaptureReporter for further inspection",
+        is_git_registration_needed: Callable[[], bool] = is_git_registration_needed,
     ):
         self.message = message
         self.is_git_registration_needed = is_git_registration_needed
