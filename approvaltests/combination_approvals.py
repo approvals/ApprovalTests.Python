@@ -22,6 +22,7 @@ def calculate_total_size(input_arguments):
         1,
     )
 
+
 def verify_best_covering_pairs(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
@@ -41,11 +42,12 @@ def verify_best_covering_pairs(
     header = f"Testing an optimized {count}/{total} scenarios:\n\n"
     verify(header + text, options=options)
 
+
 def run_all_combinations(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    exception_handler: Callable[[BaseException],None] = SimpleLogger.warning
+    exception_handler: Callable[[BaseException], None] = SimpleLogger.warning,
 ) -> None:
     parameter_combinations = product(*input_arguments)
     for args in parameter_combinations:
@@ -53,6 +55,7 @@ def run_all_combinations(
             function_under_test(*args)
         except BaseException as exception:
             exception_handler(exception)
+
 
 def verify_all_combinations(
     function_under_test: Callable,
@@ -131,15 +134,17 @@ def args_and_result_formatter(args: List[Any], result: int) -> str:
     return f"args: {repr(args)} => {repr(result)}\n"
 
 
-def verify_logging_for_all_combinations(function_to_run,
-                                        input_arguments: VariationForEachParameter,
-                                        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-                                        options: Optional[Options] = None,
-                                        ):
-    def printer(* args):
+def verify_logging_for_all_combinations(
+    function_to_run,
+    input_arguments: VariationForEachParameter,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
+):
+    def printer(*args):
         SimpleLogger._logger.log_line(f"Running inputs {args} => ")
         with SimpleLogger._logger.indent():
             function_to_run(*args)
+
     output = SimpleLogger.log_to_string()
     run_all_combinations(printer, input_arguments)
     verify(output, options=options)

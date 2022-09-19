@@ -42,8 +42,6 @@ class LoggingInstance:
         self.log_with_timestamps = True
         self.timer: Callable[[], datetime.datetime] = datetime.datetime.now
 
-
-
     def log_to_string(self) -> StringWrapper:
         buffer = StringWrapper()
         self.logger = buffer.append
@@ -52,18 +50,20 @@ class LoggingInstance:
         return buffer
 
     def indent(self) -> ContextManager:
-        class Indent():
+        class Indent:
             def __init__(self, log):
                 self.log = log
+
             def __enter__(self):
-                self.log.tabbing +=1
+                self.log.tabbing += 1
 
             def __exit__(self, exc_type, exc_val, exc_tb):
                 self.log.tabbing -= 1
+
         return Indent(self)
 
     def use_markers(self, additional_stack: int = 0) -> ContextManager:
-        class Nothing():
+        class Nothing:
             def __enter__(self):
                 pass
 
@@ -72,12 +72,12 @@ class LoggingInstance:
 
         if not self.toggles.markers:
             return Nothing()
-        class Markers():
+
+        class Markers:
             def __init__(self, log, method_name, filename):
                 self.log = log
                 self.method_name = method_name
                 self.filename = filename
-
 
             def __enter__(self):
 
@@ -86,16 +86,15 @@ class LoggingInstance:
                 self.log.tabbing = self.log.tabbing + 1
 
             def __exit__(self, exc_type, exc_val, exc_tb):
-               self.log.tabbing = self.log.tabbing - 1
-               expected = f"<- out: {self.method_name}(){self.filename}"
-               self.log.log_line(expected)
+                self.log.tabbing = self.log.tabbing - 1
+                expected = f"<- out: {self.method_name}(){self.filename}"
+                self.log.log_line(expected)
 
         stack_position = 1 + additional_stack
         stack = inspect.stack(stack_position)[2]
         method_name = stack.function
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         return Markers(self, method_name, filename)
-
 
     def log_line(self, text: str, use_timestamps=True) -> None:
         if self.counter != 0:
@@ -150,7 +149,9 @@ class LoggingInstance:
             return f"{spacing}{print_type(value)}" if show_types else ""
 
         if _is_iterable(value):
-            self.log_line(f"variable: {name}{to_type(value, spacing='')}.length = {len(value)}")
+            self.log_line(
+                f"variable: {name}{to_type(value, spacing='')}.length = {len(value)}"
+            )
             with self.indent():
                 for (i, v) in enumerate(value):
                     self.logger(f"{self.get_tabs()}{name}[{i}] = {v}{to_type(v)}\n")

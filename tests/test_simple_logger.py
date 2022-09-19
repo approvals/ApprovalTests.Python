@@ -1,6 +1,11 @@
 import datetime
 
-from approvaltests import verify, Options, run_all_combinations, verify_logging_for_all_combinations
+from approvaltests import (
+    verify,
+    Options,
+    run_all_combinations,
+    verify_logging_for_all_combinations,
+)
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
 
 
@@ -120,7 +125,7 @@ def function_to_run(color, number) -> None:
     with SimpleLogger.use_markers():
         SimpleLogger.variable("color", color)
         SimpleLogger.variable("number", number)
-        if (number == "brie"):
+        if number == "brie":
             raise Exception("AHHHHHH!")
 
 
@@ -144,4 +149,6 @@ def test_run_combinations() -> None:
 
 
 def test_verify_logging_for_all_combinations() -> None:
-    verify_logging_for_all_combinations(function_to_run, [["red", "blue"], ["one", "two", "brie"]])
+    verify_logging_for_all_combinations(
+        function_to_run, [["red", "blue"], ["one", "two", "brie"]]
+    )
