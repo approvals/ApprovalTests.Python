@@ -66,10 +66,16 @@ def test_timestamps():
 
 
 def test_variable():
-    names = ["Jacqueline", "Llewellyn"]
     output = SimpleLogger.log_to_string()
-    SimpleLogger.variable("names", names)
-    SimpleLogger.variable("dalmatians", 101, show_types=True)
+    with SimpleLogger.use_markers():
+        SimpleLogger.variable("dalmatians", 101, show_types=True)
+    verify(output)
+
+def test_variable_with_list():
+    output = SimpleLogger.log_to_string()
+    with SimpleLogger.use_markers():
+        names = ["Jacqueline", "Llewellyn"]
+        SimpleLogger.variable("names", names)
     verify(output)
 
 

@@ -114,8 +114,10 @@ class LoggingInstance:
 
         if _is_iterable(value):
             self.log_line(f"variable: {name}.length = {len(value)}")
+            self.tabbing += 1
             for (i, v) in enumerate(value):
-                self.logger(f"{name}[{i}] = {v}\n")
+                self.logger(f"{self.get_tabs()}{name}[{i}] = {v}\n")
+            self.tabbing -= 1
         else:
             type_text = ""
             if show_types:
