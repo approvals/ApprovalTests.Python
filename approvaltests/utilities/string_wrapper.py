@@ -7,3 +7,6 @@ class StringWrapper:
 
     def __str__(self):
         return self.string
+
+    def __repr__(self):
+        return self.string
