@@ -1,6 +1,7 @@
 import subprocess
 from typing import List
 
+from approvaltests.utilities.os_utilities import run_command
 from approvaltests.utils import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
@@ -41,9 +42,8 @@ class GenericDiffReporter(Reporter):
         return to_json(config)
 
     @staticmethod
-    def run_command(command_array):
-        with subprocess.Popen(command_array):
-            pass
+    def run_command(command_array: List[str]) -> None:
+        run_command(command_array)
 
     def get_command(self, received: str, approved: str) -> List[str]:
         return [self.path] + self.extra_args + [received, approved]
