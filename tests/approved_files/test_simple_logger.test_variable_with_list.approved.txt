@@ -1,4 +1,7 @@
 -> in: test_variable_with_list()test_simple_logger
+  variable: names<list>.length = 2
+    names[0] = Jacqueline <str>
+    names[1] = Llewellyn <str>
   variable: names.length = 2
     names[0] = Jacqueline
     names[1] = Llewellyn

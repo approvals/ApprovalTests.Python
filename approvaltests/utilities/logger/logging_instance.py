@@ -27,6 +27,10 @@ def _is_iterable(arg):
     return isinstance(arg, Iterable) and not isinstance(arg, six.string_types)
 
 
+def print_type(value):
+    return f"<{type(value).__name__}>"
+
+
 class LoggingInstance:
     def __init__(self):
         self.log_stack_traces = True
@@ -112,17 +116,17 @@ class LoggingInstance:
         if not self.toggles.variables:
             return
 
+        def to_type(value: Any, spacing=" ") -> str:
+            return f"{spacing}{print_type(value)}" if show_types else ""
+
         if _is_iterable(value):
-            self.log_line(f"variable: {name}.length = {len(value)}")
+            self.log_line(f"variable: {name}{to_type(value, spacing='')}.length = {len(value)}")
             self.tabbing += 1
             for (i, v) in enumerate(value):
-                self.logger(f"{self.get_tabs()}{name}[{i}] = {v}\n")
+                self.logger(f"{self.get_tabs()}{name}[{i}] = {v}{to_type(v)}\n")
             self.tabbing -= 1
         else:
-            type_text = ""
-            if show_types:
-                type_text = f" <{type(value).__name__}>"
-            self.log_line(f"variable: {name} = {value}{type_text}")
+            self.log_line(f"variable: {name} = {value}{to_type(value)}")
 
     def event(self, event_name: str) -> None:
         if not self.toggles.events:

@@ -1,3 +1,4 @@
 -> in: test_variable()test_simple_logger
   variable: dalmatians = 101 <int>
+  variable: dalmatians = 101
 <- out: test_variable()test_simple_logger

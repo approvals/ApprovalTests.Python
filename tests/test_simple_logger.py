@@ -69,13 +69,15 @@ def test_variable():
     output = SimpleLogger.log_to_string()
     with SimpleLogger.use_markers():
         SimpleLogger.variable("dalmatians", 101, show_types=True)
+        SimpleLogger.variable("dalmatians", 101, show_types=False)
     verify(output)
 
 def test_variable_with_list():
     output = SimpleLogger.log_to_string()
     with SimpleLogger.use_markers():
         names = ["Jacqueline", "Llewellyn"]
-        SimpleLogger.variable("names", names)
+        SimpleLogger.variable("names", names, show_types=True)
+        SimpleLogger.variable("names", names, show_types=False)
     verify(output)
 
 
