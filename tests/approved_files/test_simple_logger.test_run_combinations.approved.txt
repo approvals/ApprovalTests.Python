@@ -1,0 +1,30 @@
+-> in: function_to_run()test_simple_logger
+  variable: color = red
+  variable: number = one
+<- out: function_to_run()test_simple_logger
+-> in: function_to_run()test_simple_logger
+  variable: color = red
+  variable: number = two
+<- out: function_to_run()test_simple_logger
+-> in: function_to_run()test_simple_logger
+  variable: color = red
+  variable: number = brie
+<- out: function_to_run()test_simple_logger
+*******************************************************************************************
+Exception: AHHHHHH!
+*******************************************************************************************
+-> in: function_to_run()test_simple_logger
+  variable: color = blue
+  variable: number = one
+<- out: function_to_run()test_simple_logger
+-> in: function_to_run()test_simple_logger
+  variable: color = blue
+  variable: number = two
+<- out: function_to_run()test_simple_logger
+-> in: function_to_run()test_simple_logger
+  variable: color = blue
+  variable: number = brie
+<- out: function_to_run()test_simple_logger
+*******************************************************************************************
+Exception: AHHHHHH!
+*******************************************************************************************

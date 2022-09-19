@@ -21,7 +21,6 @@ def calculate_total_size(input_arguments):
         1,
     )
 
-
 def verify_best_covering_pairs(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
@@ -41,6 +40,18 @@ def verify_best_covering_pairs(
     header = f"Testing an optimized {count}/{total} scenarios:\n\n"
     verify(header + text, options=options)
 
+def run_all_combinations(
+    function_under_test: Callable,
+    input_arguments: VariationForEachParameter,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    exception_handler: Callable[[BaseException],None] = SimpleLogger.warning
+) -> None:
+    parameter_combinations = product(*input_arguments)
+    for args in parameter_combinations:
+        try:
+            function_under_test(*args)
+        except BaseException as exception:
+            exception_handler(exception)
 
 def verify_all_combinations(
     function_under_test: Callable,
@@ -109,7 +120,7 @@ def print_combinations(
     for args in parameter_combinations:
         try:
             result = function_under_test(*args)
-        except Exception as exception:
+        except BaseException as exception:
             result = exception
         approval_strings.append(formatter(args, result))
     return "".join(approval_strings)

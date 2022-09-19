@@ -4,7 +4,7 @@ import sys
 import traceback
 import types
 from contextlib import contextmanager
-from typing import Iterator, Callable, Any, Iterable
+from typing import Iterator, Callable, Any, Iterable, ContextManager
 
 import six
 
@@ -49,23 +49,40 @@ class LoggingInstance:
         self.log_stack_traces = False
         return buffer
 
-    @contextmanager
-    def use_markers(self, additional_stack: int = 0) -> Iterator[None]:
+    def use_markers(self, additional_stack: int = 0) -> ContextManager:
+        class Nothing():
+            def __enter__(self):
+                pass
+
+            def __exit__(self, exc_type, exc_val, exc_tb):
+                pass
+
         if not self.toggles.markers:
-            yield
-            return
+            return Nothing()
+        class Markers():
+            def __init__(self, log, method_name, filename):
+                self.log = log
+                self.method_name = method_name
+                self.filename = filename
+
+
+            def __enter__(self):
+
+                expected = f"-> in: {self.method_name}(){self.filename}"
+                self.log.log_line(expected)
+                self.log.tabbing = self.log.tabbing + 1
+
+            def __exit__(self, exc_type, exc_val, exc_tb):
+               self.log.tabbing = self.log.tabbing - 1
+               expected = f"<- out: {self.method_name}(){self.filename}"
+               self.log.log_line(expected)
+
         stack_position = 1 + additional_stack
         stack = inspect.stack(stack_position)[2]
         method_name = stack.function
         filename = StackFrameNamer.get_class_name_for_frame(stack)
-        expected = f"-> in: {method_name}(){filename}"
-        self.log_line(expected)
-        self.tabbing = self.tabbing + 1
-        yield
-        self.tabbing = self.tabbing - 1
-        expected = f"<- out: {method_name}(){filename}"
-        self.log_line(expected)
-        pass
+        return Markers(self, method_name, filename)
+
 
     def log_line(self, text: str, use_timestamps=True) -> None:
         if self.counter != 0:
@@ -143,7 +160,7 @@ class LoggingInstance:
             return
         self.log_line(f"message: {message}")
 
-    def warning(self, text: str = "", exception: Exception = None) -> None:
+    def warning(self, text: str = "", exception: BaseException = None) -> None:
         if isinstance(text, Exception):
             temp = ""
             if exception:

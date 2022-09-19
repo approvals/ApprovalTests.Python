@@ -44,7 +44,7 @@ class SimpleLogger:
         SimpleLogger._logger.message(message)
 
     @staticmethod
-    def warning(text: str = "", exception: Exception = None) -> None:
+    def warning(text: str = "", exception: BaseException = None) -> None:
         SimpleLogger._logger.warning(text, exception)
 
     @staticmethod

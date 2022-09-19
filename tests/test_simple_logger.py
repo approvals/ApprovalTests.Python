@@ -1,8 +1,6 @@
 import datetime
-import os
-from pathlib import Path
 
-from approvaltests import verify, Options
+from approvaltests import verify, Options, run_all_combinations
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
 
 
@@ -72,6 +70,7 @@ def test_variable():
         SimpleLogger.variable("dalmatians", 101, show_types=False)
     verify(output)
 
+
 def test_variable_with_list():
     output = SimpleLogger.log_to_string()
     with SimpleLogger.use_markers():
@@ -115,3 +114,31 @@ def log_everything() -> None:
             infinity = 1 / 0
         except Exception as e:
             SimpleLogger.warning(exception=e)
+
+
+def function_to_run(color, number) -> None:
+    with SimpleLogger.use_markers():
+        SimpleLogger.variable("color", color)
+        SimpleLogger.variable("number", number)
+        if (number == "brie"):
+            raise Exception("AHHHHHH!")
+
+
+def test_use_markers_with_raised_exception() -> None:
+
+    def throw_exception():
+        with SimpleLogger.use_markers():
+            raise Exception("Everything is awflu!!?")
+
+    output = SimpleLogger.log_to_string()
+    try:
+        throw_exception()
+    except BaseException as e:
+        SimpleLogger.warning(e)
+    verify(output)
+
+
+def test_run_combinations() -> None:
+    output = SimpleLogger.log_to_string()
+    run_all_combinations(function_to_run, [["red", "blue"], ["one", "two", "brie"]])
+    verify(output)
