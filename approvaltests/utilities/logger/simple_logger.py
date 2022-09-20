@@ -16,8 +16,8 @@ class SimpleLogger:
         return SimpleLogger._logger.log_to_string()
 
     @staticmethod
-    def use_markers() -> Iterator[None]:
-        return SimpleLogger._logger.use_markers(additional_stack=1)
+    def use_markers(parameter_text: [str, Callable[[], str]] = None) -> Iterator[None]:
+        return SimpleLogger._logger.use_markers(parameter_text, additional_stack=1)
 
     @staticmethod
     def variable(name: str, value: Any, show_types: bool = False) -> None:

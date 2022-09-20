@@ -152,3 +152,20 @@ def test_verify_logging_for_all_combinations() -> None:
     verify_logging_for_all_combinations(
         function_to_run, [["red", "blue"], ["one", "two", "brie"]]
     )
+
+
+def method_with_inputs(number, name):
+    with SimpleLogger.use_markers(f"number = {number}, name = {name}"):
+        pass
+
+
+def method_with_inputs_and_outputs(number, announcement):
+    with SimpleLogger.use_markers(lambda: f"number = {number}, announcement = {announcement}"):
+        number = 0
+
+
+def test_markers_with_signature() -> None:
+    output = SimpleLogger.log_to_string()
+    method_with_inputs(1, "Susan")
+    method_with_inputs_and_outputs(10, "Blast off")
+    verify(output)

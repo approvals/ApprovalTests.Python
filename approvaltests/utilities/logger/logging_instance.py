@@ -62,7 +62,7 @@ class LoggingInstance:
 
         return Indent(self)
 
-    def use_markers(self, additional_stack: int = 0) -> ContextManager:
+    def use_markers(self, parameter_text: [str, Callable[[], str]] = None, additional_stack: int = 0) -> ContextManager:
         class Nothing:
             def __enter__(self):
                 pass
@@ -74,27 +74,36 @@ class LoggingInstance:
             return Nothing()
 
         class Markers:
-            def __init__(self, log, method_name, filename):
+            def __init__(self, log, method_name, filename, parameter_text):
                 self.log = log
                 self.method_name = method_name
                 self.filename = filename
+                self.parameter_text = parameter_text
 
             def __enter__(self):
 
-                expected = f"-> in: {self.method_name}(){self.filename}"
+                expected = f"-> in: {self.method_name}({self.get_parameters(False)}){self.filename}"
                 self.log.log_line(expected)
                 self.log.tabbing = self.log.tabbing + 1
 
             def __exit__(self, exc_type, exc_val, exc_tb):
                 self.log.tabbing = self.log.tabbing - 1
-                expected = f"<- out: {self.method_name}(){self.filename}"
+                expected = f"<- out: {self.method_name}({self.get_parameters(True)}){self.filename}"
                 self.log.log_line(expected)
+
+            def get_parameters(self, is_exit: bool):
+                if isinstance(self.parameter_text, Callable):
+                    return parameter_text()
+                elif self.parameter_text is None or is_exit:
+                    return ""
+                else:
+                    return str(parameter_text)
 
         stack_position = 1 + additional_stack
         stack = inspect.stack(stack_position)[2]
         method_name = stack.function
         filename = StackFrameNamer.get_class_name_for_frame(stack)
-        return Markers(self, method_name, filename)
+        return Markers(self, method_name, filename, parameter_text)
 
     def log_line(self, text: str, use_timestamps=True) -> None:
         if self.counter != 0:
