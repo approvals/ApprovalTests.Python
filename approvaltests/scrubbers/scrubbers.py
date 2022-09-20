@@ -1,27 +1,27 @@
 import re
 from collections import defaultdict, abc
+from functools import partial
 from typing import Callable, Union, DefaultDict
 
 Scrubber = Callable[[str], str]
 
 
-def create_regex_scrubber(
-    regex: str, function_or_replace_string: Union[Callable[[int], str], str]
-) -> Scrubber:
-
+def create_regex_scrubber(regex: str, function_or_replace_string: Union[Callable[[int], str], str]) -> Scrubber:
     if isinstance(function_or_replace_string, str):
-        replace_string = function_or_replace_string
-        def scrub_replace_text(text):
-            return re.sub(regex, replace_string, text)
-        return scrub_replace_text
+        return partial(_scrub_re_simple, regex, function_or_replace_string)
     elif isinstance(function_or_replace_string, abc.Callable):
-        replace_function = function_or_replace_string
-        def scrub_replace_fun(text):
-            matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
-            return re.sub(regex, lambda m: replace_function(matches[m.group(0)]), text)
-        return scrub_replace_fun
+        return partial(_scrub_match_count, regex, function_or_replace_string)
     else:
         raise TypeError(f"No scrubber found for replacer {function_or_replace_string}")
+
+
+def _scrub_re_simple(regex: str, replace: str, text: str) -> str:
+    return re.sub(regex, replace, text)
+
+
+def _scrub_match_count(regex, replace_fun: Callable[[int], str], text):
+    matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
+    return re.sub(regex, lambda m: replace_fun(matches[m.group(0)]), text)
 
 
 def scrub_all_dates(date: str) -> str:
