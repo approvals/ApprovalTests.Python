@@ -1,4 +1,2 @@
--> in: method_with_inputs(number = 1, name = Susan)test_simple_logger
-<- out: method_with_inputs()test_simple_logger
--> in: method_with_inputs_and_outputs(number = 10, announcement = Blast off)test_simple_logger
-<- out: method_with_inputs_and_outputs(number = 0, announcement = Blast off)test_simple_logger
+-> in: method_with_inputs(number = 1, name = Susan) in test_simple_logger
+<- out: method_with_inputs()

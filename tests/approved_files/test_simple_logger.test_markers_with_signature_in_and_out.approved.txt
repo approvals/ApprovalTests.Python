@@ -1,0 +1,2 @@
+-> in: method_with_inputs_and_outputs(number = 10, announcement = Blast off) in test_simple_logger
+<- out: method_with_inputs_and_outputs(number = 1, announcement = Blast off)

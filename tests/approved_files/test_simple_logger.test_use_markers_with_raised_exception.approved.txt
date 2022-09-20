@@ -1,5 +1,5 @@
--> in: throw_exception()test_simple_logger
-<- out: throw_exception()test_simple_logger
+-> in: throw_exception() in test_simple_logger
+<- out: throw_exception()
 *******************************************************************************************
 Exception: Everything is awflu!!?
 *******************************************************************************************

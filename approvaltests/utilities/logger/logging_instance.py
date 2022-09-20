@@ -82,13 +82,13 @@ class LoggingInstance:
 
             def __enter__(self):
 
-                expected = f"-> in: {self.method_name}({self.get_parameters(False)}){self.filename}"
+                expected = f"-> in: {self.method_name}({self.get_parameters(False)}) in {self.filename}"
                 self.log.log_line(expected)
                 self.log.tabbing = self.log.tabbing + 1
 
             def __exit__(self, exc_type, exc_val, exc_tb):
                 self.log.tabbing = self.log.tabbing - 1
-                expected = f"<- out: {self.method_name}({self.get_parameters(True)}){self.filename}"
+                expected = f"<- out: {self.method_name}({self.get_parameters(True)})"
                 self.log.log_line(expected)
 
             def get_parameters(self, is_exit: bool):

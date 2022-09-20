@@ -9,12 +9,14 @@
 * [Approve multiple files in one test](how_to/multiple_approvals_per_test.md)
 * Test a [combination of inputs](how_to/test_combinations_of_inputs.md)
 * [Verify binary data](how_to/verify-binary.md)
+* [Log method parameter values](how_to/log_method_parameter_values.md)
 
 ## Reference
 * [Options](reference/options.md)
 * [Storyboard](reference/storyboard.md)
 * [MarkdownTables](reference/markdown_table.md)
 * [MRJobs](reference/mr_job.md)
+* [SimpleLogger](reference/simple_logger.md)
 
 ## Tutorial
 * [Intro to reporters](tutorial/intro-to-reporters.md)

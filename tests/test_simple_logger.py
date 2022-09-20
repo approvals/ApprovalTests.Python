@@ -154,18 +154,28 @@ def test_verify_logging_for_all_combinations() -> None:
     )
 
 
+# begin-snippet: method_with_inputs
 def method_with_inputs(number, name):
     with SimpleLogger.use_markers(f"number = {number}, name = {name}"):
-        pass
+        # end-snippet
+        print(f"{number}) {name}")
 
-
-def method_with_inputs_and_outputs(number, announcement):
-    with SimpleLogger.use_markers(lambda: f"number = {number}, announcement = {announcement}"):
-        number = 0
 
 
 def test_markers_with_signature() -> None:
     output = SimpleLogger.log_to_string()
     method_with_inputs(1, "Susan")
+    verify(output)
+
+#begin-snippet: method_with_inputs_and_outputs
+def method_with_inputs_and_outputs(number, announcement):
+    with SimpleLogger.use_markers(lambda: f"number = {number}, announcement = {announcement}"):
+        # end-snippet
+        for number in range(number, 0, -1):
+            print(number)
+        print(announcement)
+
+def test_markers_with_signature_in_and_out() -> None:
+    output = SimpleLogger.log_to_string()
     method_with_inputs_and_outputs(10, "Blast off")
     verify(output)

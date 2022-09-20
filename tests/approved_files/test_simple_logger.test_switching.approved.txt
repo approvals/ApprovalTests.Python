@@ -1,5 +1,5 @@
 event: Toggle Off None
--> in: log_everything()test_simple_logger
+-> in: log_everything() in test_simple_logger
   Sql: Select * from people
   variable: Nonsense = foo
   event: Testing
@@ -8,13 +8,13 @@ event: Toggle Off None
   *******************************************************************************************
   ZeroDivisionError: division by zero
   *******************************************************************************************
-<- out: log_everything()test_simple_logger
+<- out: log_everything()
 event: Toggle Off All
 *******************************************************************************************
 ZeroDivisionError: division by zero
 *******************************************************************************************
 event: Toggle Off Query
--> in: log_everything()test_simple_logger
+-> in: log_everything() in test_simple_logger
   variable: Nonsense = foo
   event: Testing
   message: Something random
@@ -22,9 +22,9 @@ event: Toggle Off Query
   *******************************************************************************************
   ZeroDivisionError: division by zero
   *******************************************************************************************
-<- out: log_everything()test_simple_logger
+<- out: log_everything()
 event: Toggle Off Message
--> in: log_everything()test_simple_logger
+-> in: log_everything() in test_simple_logger
   Sql: Select * from people
   variable: Nonsense = foo
   event: Testing
@@ -32,9 +32,9 @@ event: Toggle Off Message
   *******************************************************************************************
   ZeroDivisionError: division by zero
   *******************************************************************************************
-<- out: log_everything()test_simple_logger
+<- out: log_everything()
 event: Toggle Off Variable
--> in: log_everything()test_simple_logger
+-> in: log_everything() in test_simple_logger
   Sql: Select * from people
   event: Testing
   message: Something random
@@ -42,9 +42,9 @@ event: Toggle Off Variable
   *******************************************************************************************
   ZeroDivisionError: division by zero
   *******************************************************************************************
-<- out: log_everything()test_simple_logger
+<- out: log_everything()
 event: Toggle Off Hour Glass
--> in: log_everything()test_simple_logger
+-> in: log_everything() in test_simple_logger
   Sql: Select * from people
   variable: Nonsense = foo
   event: Testing
@@ -52,7 +52,7 @@ event: Toggle Off Hour Glass
   *******************************************************************************************
   ZeroDivisionError: division by zero
   *******************************************************************************************
-<- out: log_everything()test_simple_logger
+<- out: log_everything()
 event: Toggle Off Markers
 Sql: Select * from people
 variable: Nonsense = foo
@@ -63,7 +63,7 @@ message: Something random
 ZeroDivisionError: division by zero
 *******************************************************************************************
 event: Toggle Off Events
--> in: log_everything()test_simple_logger
+-> in: log_everything() in test_simple_logger
   Sql: Select * from people
   variable: Nonsense = foo
   message: Something random
@@ -71,4 +71,4 @@ event: Toggle Off Events
   *******************************************************************************************
   ZeroDivisionError: division by zero
   *******************************************************************************************
-<- out: log_everything()test_simple_logger
+<- out: log_everything()

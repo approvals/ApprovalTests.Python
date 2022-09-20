@@ -1,36 +1,36 @@
 Running inputs ('red', 'one') => 
-  -> in: function_to_run()test_simple_logger
+  -> in: function_to_run() in test_simple_logger
     variable: color = red
     variable: number = one
-  <- out: function_to_run()test_simple_logger
+  <- out: function_to_run()
 Running inputs ('red', 'two') => 
-  -> in: function_to_run()test_simple_logger
+  -> in: function_to_run() in test_simple_logger
     variable: color = red
     variable: number = two
-  <- out: function_to_run()test_simple_logger
+  <- out: function_to_run()
 Running inputs ('red', 'brie') => 
-  -> in: function_to_run()test_simple_logger
+  -> in: function_to_run() in test_simple_logger
     variable: color = red
     variable: number = brie
-  <- out: function_to_run()test_simple_logger
+  <- out: function_to_run()
 *******************************************************************************************
 Exception: AHHHHHH!
 *******************************************************************************************
 Running inputs ('blue', 'one') => 
-  -> in: function_to_run()test_simple_logger
+  -> in: function_to_run() in test_simple_logger
     variable: color = blue
     variable: number = one
-  <- out: function_to_run()test_simple_logger
+  <- out: function_to_run()
 Running inputs ('blue', 'two') => 
-  -> in: function_to_run()test_simple_logger
+  -> in: function_to_run() in test_simple_logger
     variable: color = blue
     variable: number = two
-  <- out: function_to_run()test_simple_logger
+  <- out: function_to_run()
 Running inputs ('blue', 'brie') => 
-  -> in: function_to_run()test_simple_logger
+  -> in: function_to_run() in test_simple_logger
     variable: color = blue
     variable: number = brie
-  <- out: function_to_run()test_simple_logger
+  <- out: function_to_run()
 *******************************************************************************************
 Exception: AHHHHHH!
 *******************************************************************************************
