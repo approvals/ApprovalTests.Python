@@ -10,12 +10,13 @@ def create_regex_scrubber(
 ) -> Scrubber:
 
     if isinstance(function_or_replace_string, str):
+        replace_string = function_or_replace_string
         def scrub_replace_text(text):
-            return re.sub(regex, function_or_replace_string, text)
+            return re.sub(regex, replace_string, text)
         return scrub_replace_text
     elif isinstance(function_or_replace_string, abc.Callable):
+        replace_function = function_or_replace_string
         def scrub_replace_fun(text):
-            replace_function = function_or_replace_string
             matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
             return re.sub(regex, lambda m: replace_function(matches[m.group(0)]), text)
         return scrub_replace_fun
