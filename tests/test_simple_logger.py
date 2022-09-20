@@ -161,19 +161,22 @@ def method_with_inputs(number, name):
         print(f"{number}) {name}")
 
 
-
 def test_markers_with_signature() -> None:
     output = SimpleLogger.log_to_string()
     method_with_inputs(1, "Susan")
     verify(output)
 
-#begin-snippet: method_with_inputs_and_outputs
+
+# begin-snippet: method_with_inputs_and_outputs
 def method_with_inputs_and_outputs(number, announcement):
-    with SimpleLogger.use_markers(lambda: f"number = {number}, announcement = {announcement}"):
+    with SimpleLogger.use_markers(
+        lambda: f"number = {number}, announcement = {announcement}"
+    ):
         # end-snippet
         for number in range(number, 0, -1):
             print(number)
         print(announcement)
+
 
 def test_markers_with_signature_in_and_out() -> None:
     output = SimpleLogger.log_to_string()

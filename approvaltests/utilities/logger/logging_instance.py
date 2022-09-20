@@ -62,7 +62,9 @@ class LoggingInstance:
 
         return Indent(self)
 
-    def use_markers(self, parameter_text: [str, Callable[[], str]] = None, additional_stack: int = 0) -> ContextManager:
+    def use_markers(
+        self, parameter_text: [str, Callable[[], str]] = None, additional_stack: int = 0
+    ) -> ContextManager:
         class Nothing:
             def __enter__(self):
                 pass
