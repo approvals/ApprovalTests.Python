@@ -1,5 +1,5 @@
 import re
-from collections import defaultdict
+from collections import defaultdict, abc
 from typing import Callable, Union, DefaultDict
 
 Scrubber = Callable[[str], str]
@@ -8,16 +8,19 @@ Scrubber = Callable[[str], str]
 def create_regex_scrubber(
     regex: str, function_or_replace_string: Union[Callable[[int], str], str]
 ) -> Scrubber:
-    def scrub(text: str) -> str:
-        if isinstance(function_or_replace_string, str):
-            replacement_function = lambda _: function_or_replace_string
-        else:
-            replacement_function = function_or_replace_string
 
-        matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
-        return re.sub(regex, lambda m: replacement_function(matches[m.group(0)]), text)
-
-    return scrub
+    if isinstance(function_or_replace_string, str):
+        def scrub_replace_text(text):
+            return re.sub(regex, function_or_replace_string, text)
+        return scrub_replace_text
+    elif isinstance(function_or_replace_string, abc.Callable):
+        def scrub_replace_fun(text):
+            replace_function = function_or_replace_string
+            matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
+            return re.sub(regex, lambda m: replace_function(matches[m.group(0)]), text)
+        return scrub_replace_fun
+    else:
+        raise TypeError(f"No scrubber found for replacer {function_or_replace_string}")
 
 
 def scrub_all_dates(date: str) -> str:
