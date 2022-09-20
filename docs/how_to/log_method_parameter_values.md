@@ -36,7 +36,7 @@ It will produce:
 <!-- endSnippet -->
 
 ## Logging Inputs and Outputs
-To log the values at both entrance to the method and exit from the method, you can pass in a formatted **in a lambda**.  
+To log the values at both entrance to the method and exit from the method, you can pass in a formatted string **in a lambda**.  
 Here is an example:
 
 <!-- snippet: method_with_inputs_and_outputs -->
