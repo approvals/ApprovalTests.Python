@@ -1,10 +1,8 @@
-from itertools import chain
-
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
-from .python_native_reporter import PythonNativeReporter
 from .first_working_reporter import FirstWorkingReporter
+from .python_native_reporter import PythonNativeReporter
 from .report_with_diff_command_line import ReportWithDiffCommandLine
 from .report_with_vscode import ReportWithVSCode
 
