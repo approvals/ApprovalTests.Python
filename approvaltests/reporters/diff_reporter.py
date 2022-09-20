@@ -1,3 +1,5 @@
+from itertools import chain
+
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
@@ -22,7 +24,9 @@ class DiffReporter(FirstWorkingReporter):
         factory = reporter_factory or GenericDiffReporterFactory()
 
         reporters = list(factory.get_all_reporters())
-        reporters.append(ReportWithVSCode())
-        reporters.append(ReportWithDiffCommandLine())
-        reporters.append(PythonNativeReporter())
+        reporters.extend([
+            ReportWithVSCode(),
+            ReportWithDiffCommandLine(),
+            PythonNativeReporter(),
+        ])
         super(__class__, self).__init__(*reporters)
