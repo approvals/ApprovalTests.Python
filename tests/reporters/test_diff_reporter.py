@@ -4,12 +4,9 @@ from approvaltests import verify
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters import PythonNativeReporter
 from approvaltests.reporters.diff_reporter import DiffReporter
-from approvaltests.reporters.introduction_reporter import IntroductionReporter
-
 from approvaltests.reporters.report_by_creating_diff_file import (
     ReportByCreatingDiffFile,
 )
-from approvaltests.core import Options
 
 
 class FakeFactory:
