@@ -39,7 +39,7 @@ def log_from_inner_method():
 def test_standard_logger():
     with verify_simple_logger():
         with SimpleLogger.use_markers() as m:
-          log_from_inner_method()
+            log_from_inner_method()
 
 
 def test_timestamps():
@@ -73,6 +73,8 @@ def test_variable():
     with verify_simple_logger():
         SimpleLogger.variable("dalmatians", 101, show_types=True)
         SimpleLogger.variable("dalmatians", 101, show_types=False)
+
+
 # end-snippet
 
 # begin-snippet: verify_simple_logger_long_example
@@ -81,6 +83,8 @@ def test_variable_explict():
     SimpleLogger.variable("dalmatians", 101, show_types=True)
     SimpleLogger.variable("dalmatians", 101, show_types=False)
     verify(output)
+
+
 # end-snippet
 
 

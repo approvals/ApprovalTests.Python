@@ -3,9 +3,10 @@
 <!-- toc -->
 ## Contents
 
-  * [Problem](#problem)
-  * [Logging Inputs](#logging-inputs)
-  * [Logging Inputs and Outputs](#logging-inputs-and-outputs)<!-- endToc -->
+  * [Why Test via Logs?](#why-test-via-logs)
+  * [Testing Logs](#testing-logs)
+    * [1. with](#1-with)
+    * [2. Log To String](#2-log-to-string)<!-- endToc -->
 
 ## Why Test via Logs?
 
@@ -24,11 +25,27 @@ capture everything logged in the follow context and verify it.
 
 Example:
 
-snippet: verify_simple_logger_example
+<!-- snippet: verify_simple_logger_example -->
+<a id='snippet-verify_simple_logger_example'></a>
+```py
+def test_variable():
+    with verify_simple_logger():
+        SimpleLogger.variable("dalmatians", 101, show_types=True)
+        SimpleLogger.variable("dalmatians", 101, show_types=False)
+```
+<sup><a href='/tests/test_simple_logger.py#L71-L78' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_example' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 which produces:
 
-snippet: test_simple_logger.test_variable.approved.txt
+<!-- snippet: test_simple_logger.test_variable.approved.txt -->
+<a id='snippet-test_simple_logger.test_variable.approved.txt'></a>
+```txt
+variable: dalmatians = 101 <int>
+variable: dalmatians = 101
+```
+<sup><a href='/tests/approved_files/test_simple_logger.test_variable.approved.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_simple_logger.test_variable.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### 2. Log To String
 
@@ -36,4 +53,14 @@ Alternatively, you can achive the same result by logging to a string and then ve
 
 Example:
 
-snippet: verify_simple_logger_long_example
+<!-- snippet: verify_simple_logger_long_example -->
+<a id='snippet-verify_simple_logger_long_example'></a>
+```py
+def test_variable_explict():
+    output = SimpleLogger.log_to_string()
+    SimpleLogger.variable("dalmatians", 101, show_types=True)
+    SimpleLogger.variable("dalmatians", 101, show_types=False)
+    verify(output)
+```
+<sup><a href='/tests/test_simple_logger.py#L80-L88' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_long_example' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
