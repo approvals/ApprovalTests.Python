@@ -1,4 +1,4 @@
-# How to log method parameters values
+# How to test logs
 
 <!-- toc -->
 ## Contents
@@ -7,56 +7,33 @@
   * [Logging Inputs](#logging-inputs)
   * [Logging Inputs and Outputs](#logging-inputs-and-outputs)<!-- endToc -->
 
-## Problem
+## Why Test via Logs?
 
-You want to log what the parameters are that a method receives at the method start (and end)
+Sometimes code can be hard to test because it doesn't return anything.
+If you can run the code, adding logging is a relatively safe thing to do. 
+Then if you can capture those logs in your tests, you can start to safely refactor and even modify existing behavior with confidence.
 
-## Logging Inputs
-To log the input values, you can pass in a formatted string to SimpleLogger.use_markers.  
-Here is an example:
 
-<!-- snippet: method_with_inputs -->
-<a id='snippet-method_with_inputs'></a>
-```py
-def method_with_inputs(number, name):
-    with SimpleLogger.use_markers(f"number = {number}, name = {name}"):
-```
-<sup><a href='/tests/test_simple_logger.py#L157-L160' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+## Testing Logs
 
-It will produce:  
+There are 2 apis for testing logs, although they both work in the same manner.
+### 1. with
 
-<!-- snippet: test_simple_logger.test_markers_with_signature.approved.txt -->
-<a id='snippet-test_simple_logger.test_markers_with_signature.approved.txt'></a>
-```txt
--> in: method_with_inputs(number = 1, name = Susan) in test_simple_logger
-<- out: method_with_inputs()
-```
-<sup><a href='/tests/approved_files/test_simple_logger.test_markers_with_signature.approved.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_simple_logger.test_markers_with_signature.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+This easiest way to test with simple logger is to use the  `with verify_simple_logger:` which will
+capture everything logged in the follow context and verify it. 
 
-## Logging Inputs and Outputs
-To log the values at both entrance to the method and exit from the method, you can pass in a formatted string **in a lambda**.  
-Here is an example:
+Example:
 
-<!-- snippet: method_with_inputs_and_outputs -->
-<a id='snippet-method_with_inputs_and_outputs'></a>
-```py
-def method_with_inputs_and_outputs(number, announcement):
-    with SimpleLogger.use_markers(
-        lambda: f"number = {number}, announcement = {announcement}"
-    ):
-```
-<sup><a href='/tests/test_simple_logger.py#L170-L175' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+snippet: verify_simple_logger_example
 
-It will produce:  
+which produces:
 
-<!-- snippet: test_simple_logger.test_markers_with_signature_in_and_out.approved.txt -->
-<a id='snippet-test_simple_logger.test_markers_with_signature_in_and_out.approved.txt'></a>
-```txt
--> in: method_with_inputs_and_outputs(number = 10, announcement = Blast off) in test_simple_logger
-<- out: method_with_inputs_and_outputs(number = 1, announcement = Blast off)
-```
-<sup><a href='/tests/approved_files/test_simple_logger.test_markers_with_signature_in_and_out.approved.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_simple_logger.test_markers_with_signature_in_and_out.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+snippet: test_simple_logger.test_variable.approved.txt
+
+### 2. Log To String
+
+Alternatively, you can achive the same result by logging to a string and then verifing the result
+
+Example:
+
+snippet: verify_simple_logger_long_example

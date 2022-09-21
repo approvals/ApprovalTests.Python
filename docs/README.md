@@ -10,7 +10,8 @@
 * Test a [combination of inputs](how_to/test_combinations_of_inputs.md)
 * [Verify binary data](how_to/verify-binary.md)
 * [Log method parameter values](how_to/log_method_parameter_values.md)
-
+* [test logs](how_to/test_logs.md)
+* 
 ## Reference
 * [Options](reference/options.md)
 * [Storyboard](reference/storyboard.md)

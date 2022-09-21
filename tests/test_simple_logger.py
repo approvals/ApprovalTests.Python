@@ -7,6 +7,8 @@ from approvaltests import (
     verify_logging_for_all_combinations,
 )
 from approvaltests.utilities.logger.simple_logger import SimpleLogger
+from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
+from approvaltests.utilities.time_utilities import use_utc_timezone
 
 
 def test_warnings():
@@ -35,45 +37,51 @@ def log_from_inner_method():
 
 
 def test_standard_logger():
-    output = SimpleLogger.log_to_string()
-    with SimpleLogger.use_markers() as m:
-        log_from_inner_method()
-
-    verify(output)
+    with verify_simple_logger():
+        with SimpleLogger.use_markers() as m:
+          log_from_inner_method()
 
 
 def test_timestamps():
-    output = SimpleLogger.log_to_string()
-    count = -1
+    with use_utc_timezone():
+        with verify_simple_logger():
+            count = -1
 
-    def create_applesauce_timer():
-        dates = [
-            datetime.datetime.fromtimestamp(0.0),
-            datetime.datetime.fromtimestamp(0.5),
-            datetime.datetime.fromtimestamp(2.0),
-            datetime.datetime.fromtimestamp(1050),
-            datetime.datetime.fromtimestamp(1052),
-        ]
-        nonlocal count
-        count = count + 1
-        return dates[count]
+            def create_applesauce_timer():
+                dates = [
+                    datetime.datetime.fromtimestamp(0.0),
+                    datetime.datetime.fromtimestamp(0.5),
+                    datetime.datetime.fromtimestamp(2.0),
+                    datetime.datetime.fromtimestamp(1050),
+                    datetime.datetime.fromtimestamp(1052),
+                ]
+                nonlocal count
+                count = count + 1
+                return dates[count]
 
-    SimpleLogger._logger.timer = create_applesauce_timer
-    SimpleLogger.show_timestamps(True)
-    SimpleLogger.event("1")
-    SimpleLogger.event("2")
-    SimpleLogger.event("3")
-    SimpleLogger.event("4")
-    SimpleLogger.warning(exception=Exception("Oh no you didn't!"))
-    verify(output)
+            SimpleLogger._logger.timer = create_applesauce_timer
+            SimpleLogger.show_timestamps(True)
+            SimpleLogger.event("1")
+            SimpleLogger.event("2")
+            SimpleLogger.event("3")
+            SimpleLogger.event("4")
+            SimpleLogger.warning(exception=Exception("Oh no you didn't!"))
 
 
+# begin-snippet: verify_simple_logger_example
 def test_variable():
-    output = SimpleLogger.log_to_string()
-    with SimpleLogger.use_markers():
+    with verify_simple_logger():
         SimpleLogger.variable("dalmatians", 101, show_types=True)
         SimpleLogger.variable("dalmatians", 101, show_types=False)
+# end-snippet
+
+# begin-snippet: verify_simple_logger_long_example
+def test_variable_explict():
+    output = SimpleLogger.log_to_string()
+    SimpleLogger.variable("dalmatians", 101, show_types=True)
+    SimpleLogger.variable("dalmatians", 101, show_types=False)
     verify(output)
+# end-snippet
 
 
 def test_variable_with_list():
