@@ -155,9 +155,9 @@ def test_use_markers_with_raised_exception() -> None:
 
 
 def test_run_combinations() -> None:
-    output = SimpleLogger.log_to_string()
-    run_all_combinations(function_to_run, [["red", "blue"], ["one", "two", "brie"]])
-    verify(output)
+    with verify_simple_logger():
+        run_all_combinations(function_to_run, [["red", "blue"], ["one", "two", "brie"]])
+
 
 
 def test_verify_logging_for_all_combinations() -> None:
