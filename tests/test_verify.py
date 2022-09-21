@@ -80,7 +80,6 @@ class GameOfLife:
         return self.dead
 
 
-
 class VerifyTests(unittest.TestCase):
     def setUp(self) -> None:
         self.reporter = ReporterByCopyMoveCommandForEverythingToClipboard()
