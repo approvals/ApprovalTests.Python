@@ -63,3 +63,4 @@ virtualenv
 venv
 *.sqlite3
 .mypy_cache
+.DS_Store
