@@ -1,11 +1,24 @@
 from typing import Any, Callable, Optional, Collection
 
+from approvaltests import verify
+from approvaltests.core.options import Options
 
 class Storyboard:
-    def __init__(self) -> None:
+    def __init__(self,    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+                 verify_on_exit: bool =  False,
+                options: Optional[Options] = None) -> None:
         self.frame_number = 0
         self.story = ""
         self.add_new_line = False
+        self.verify_on_exit = verify_on_exit
+        self.options = options
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.verify_on_exit :
+            verify(self, options=self.options)
 
     def add_frame(self, data: Any, title: Optional[str] = None) -> "Storyboard":
         if self.add_new_line:
@@ -57,3 +70,7 @@ class Storyboard:
 
 
 StoryBoard = Storyboard
+
+def verify_storyboard(    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None):
+    return Storyboard(verify_on_exit=True, options=options)

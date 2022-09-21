@@ -27,7 +27,7 @@ from approvaltests.reporters.reporter_that_automatically_approves import (
     ReporterThatAutomaticallyApproves,
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approvaltests.storyboard import Storyboard
+from approvaltests.storyboard import Storyboard, verify_storyboard
 from approvaltests.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests.utils import get_adjacent_file, is_windows_os
 
@@ -78,6 +78,7 @@ class GameOfLife:
     def set_dead_cell(self, dead):
         self.dead = dead
         return self.dead
+
 
 
 class VerifyTests(unittest.TestCase):
@@ -205,6 +206,12 @@ class VerifyTests(unittest.TestCase):
             "There should be a blank line underneath this",
             options=Options().with_reporter(ReportWithPycharm()),
         )
+
+    def test_verify_storyboard(self) -> None:
+        with verify_storyboard() as b:
+            game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
+            b.add_frame(game_of_life)
+            b.add_frames(2, lambda _: game_of_life.advance())
 
     def test_storyboard(self) -> None:
         game_of_life = GameOfLife(lambda x, y: 2 <= x <= 4 and y == 2)
