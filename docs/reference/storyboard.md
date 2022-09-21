@@ -4,7 +4,8 @@
 ## Contents
 
   * [Why Use Storyboards](#why-use-storyboards)
-  * [How To Use Storyboards](#how-to-use-storyboards)<!-- endToc -->
+  * [How To Use Storyboards](#how-to-use-storyboards)
+  * [verify_storyboard](#verify_storyboard)<!-- endToc -->
 
 ## Why Use Storyboards
  
