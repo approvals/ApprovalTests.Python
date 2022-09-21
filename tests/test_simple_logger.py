@@ -159,7 +159,6 @@ def test_run_combinations() -> None:
         run_all_combinations(function_to_run, [["red", "blue"], ["one", "two", "brie"]])
 
 
-
 def test_verify_logging_for_all_combinations() -> None:
     verify_logging_for_all_combinations(
         function_to_run, [["red", "blue"], ["one", "two", "brie"]]
