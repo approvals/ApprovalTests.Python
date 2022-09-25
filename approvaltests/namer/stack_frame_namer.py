@@ -5,6 +5,7 @@ from typing import Optional, Dict, List
 
 from approvaltests.namer.namer_base import NamerBase
 from approvaltests.approval_exception import FrameNotFound
+from approvaltests.utilities.stack_frame_utilities import get_class_name_for_frame
 
 
 class StackFrameNamer(NamerBase):
@@ -22,16 +23,8 @@ class StackFrameNamer(NamerBase):
         frame = self.get_test_frame(caller)
         stacktrace = caller[frame]
         self.method_name = stacktrace[3]
-        self.class_name = self.get_class_name_for_frame(stacktrace)
+        self.class_name = get_class_name_for_frame(stacktrace)
         self.directory = os.path.dirname(stacktrace[1])
-
-    @staticmethod
-    def get_class_name_for_frame(stacktrace: FrameInfo) -> str:
-        if "self" not in stacktrace[0].f_locals:
-            name = os.path.splitext(os.path.basename(stacktrace[1]))[0]
-        else:
-            name = f"{stacktrace[0].f_locals['self'].__class__.__name__}"
-        return name
 
     def get_test_frame(self, caller: List[FrameInfo]) -> int:
         tmp_array = []

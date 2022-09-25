@@ -10,6 +10,7 @@ import six
 
 from approvaltests.utilities.exceptions.exception_utils import to_string
 from approvaltests.utilities.string_wrapper import StringWrapper
+from approvaltests.utilities.stack_frame_utilities import get_class_name_for_frame
 
 
 class Toggles:
@@ -103,9 +104,8 @@ class LoggingInstance:
         stack_position = 1 + additional_stack
         stack = inspect.stack(stack_position)[2]
         method_name = stack.function
-        from approvaltests.namer import StackFrameNamer
 
-        filename = StackFrameNamer.get_class_name_for_frame(stack)
+        filename = get_class_name_for_frame(stack)
         return Markers(self, method_name, filename, parameter_text)
 
     def log_line(self, text: str, use_timestamps=True) -> None:
