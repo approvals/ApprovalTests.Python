@@ -8,17 +8,14 @@ Scrubber = Callable[[str], str]
 def create_regex_scrubber(
     regex: str, function_or_replace_string: Union[Callable[[int], str], str]
 ) -> Scrubber:
-    def scrub(text: str) -> str:
-        if isinstance(function_or_replace_string, str):
-            replacement_function = lambda _: function_or_replace_string
-        else:
-            replacement_function = function_or_replace_string
+    if isinstance(function_or_replace_string, str):
+        return lambda t: _replace_regex(t, regex, lambda _: function_or_replace_string)
+    else:
+        return lambda t: _replace_regex(t, regex, function_or_replace_string)
 
-        matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
-        return re.sub(regex, lambda m: replacement_function(matches[m.group(0)]), text)
-
-    return scrub
-
+def _replace_regex(text: str, regex: str, replacement: Callable[[int],str]) -> str:
+    matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
+    return re.sub(regex, lambda m: replacement(matches[m.group(0)]), text)
 
 def scrub_all_dates(date: str) -> str:
     return create_regex_scrubber(
