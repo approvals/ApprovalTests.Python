@@ -22,9 +22,7 @@ class DiffReporter(FirstWorkingReporter):
         factory = reporter_factory or GenericDiffReporterFactory()
 
         reporters = list(factory.get_all_reporters_from_config())
-        reporters.extend([
-            ReportWithVSCode(), 
-            ReportWithDiffCommandLine(), 
-            PythonNativeReporter()
-        ])
+        reporters.extend(
+            [ReportWithVSCode(), ReportWithDiffCommandLine(), PythonNativeReporter()]
+        )
         super(__class__, self).__init__(*reporters)
