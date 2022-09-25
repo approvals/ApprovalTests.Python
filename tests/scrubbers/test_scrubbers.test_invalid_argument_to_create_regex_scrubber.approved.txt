@@ -1,0 +1,1 @@
+TypeError: Parameter function_or_replace_string expects a string or callable, but got <int>

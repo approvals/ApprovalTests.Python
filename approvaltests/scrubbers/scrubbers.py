@@ -1,17 +1,22 @@
 import re
-from collections import defaultdict
+from collections import defaultdict, abc
 from typing import Callable, Union, DefaultDict
+from approvaltests.utilities.logger.logging_instance  import print_type
+
 
 Scrubber = Callable[[str], str]
 
-
+# def print_type(value):
+#     return f"<{type(value).__name__}>"
 def create_regex_scrubber(
     regex: str, function_or_replace_string: Union[Callable[[int], str], str]
 ) -> Scrubber:
     if isinstance(function_or_replace_string, str):
         return lambda t: _replace_regex(t, regex, lambda _: function_or_replace_string)
-    else:
+    elif isinstance(function_or_replace_string, abc.Callable):
         return lambda t: _replace_regex(t, regex, function_or_replace_string)
+    else:
+        raise TypeError(f"Parameter function_or_replace_string expects a string or callable, but got {print_type(function_or_replace_string)}")
 
 def _replace_regex(text: str, regex: str, replacement: Callable[[int],str]) -> str:
     matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
