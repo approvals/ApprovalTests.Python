@@ -11,7 +11,7 @@ from approvaltests.reporters.report_by_creating_diff_file import (
 from approvaltests.core import Options
 
 
-class FakeFactory:      
+class FakeFactory:
     def get_all_reporters_from_config(self) -> List[Reporter]:
         return []
 
