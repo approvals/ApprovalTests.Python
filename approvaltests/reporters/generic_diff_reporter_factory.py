@@ -82,14 +82,14 @@ class GenericDiffReporterFactory:
         return self.reporter_configs
 
     def get_first_working(self) -> Optional[GenericDiffReporter]:
-        working = (i for i in self.get_all_reporters_from_json() if i.is_working())
+        working = (i for i in self.get_all_reporters_from_config() if i.is_working())
         return next(working, None)
 
     @deprecated(reason="Please use get_all_reporters_from_json()")
     def get_all_reporters(self) -> Iterator[GenericDiffReporter]:
-        return self.get_all_reporters_from_json()
+        return self.get_all_reporters_from_config()
 
-    def get_all_reporters_from_json(self) -> Iterator[GenericDiffReporter]:
+    def get_all_reporters_from_config(self) -> Iterator[GenericDiffReporter]:
         instances = (self._create_reporter(r) for r in self.reporter_configs)
         return instances
 
