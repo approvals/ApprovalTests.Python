@@ -1,5 +1,0 @@
-
-        Welcome to ApprovalTests!
-        No DiffReporters have been detected on this system.
-        To learn more, visit [Introduction to Reporters](https://github.com/approvals/ApprovalTests.Python/blob/main/docs/tutorial/intro-to-reporters.md)
-        
