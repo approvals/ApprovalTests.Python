@@ -39,11 +39,10 @@ def test_invalid_argument_to_create_regex_scrubber():
     verify_exception(
         lambda: verify(
             'and then jane said "blah blah blah "',
-            options=Options().with_scrubber(
-                create_regex_scrubber("(blah )+", 1)
-            ),
+            options=Options().with_scrubber(create_regex_scrubber("(blah )+", 1)),
         )
     )
+
 
 def test_regex_by_lambda():
     verify(

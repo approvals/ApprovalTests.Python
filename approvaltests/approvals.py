@@ -359,7 +359,7 @@ def verify_exception(
     result = ""
     try:
         code_that_throws_exception()
-        result="No exception was thrown"
+        result = "No exception was thrown"
     except BaseException as exception:
         result = to_string(exception)
     verify(result, options=options)

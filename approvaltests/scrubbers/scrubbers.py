@@ -1,7 +1,7 @@
 import re
 from collections import defaultdict, abc
 from typing import Callable, Union, DefaultDict
-from approvaltests.utilities.logger.logging_instance  import print_type
+from approvaltests.utilities.logger.logging_instance import print_type
 
 
 Scrubber = Callable[[str], str]
@@ -16,11 +16,15 @@ def create_regex_scrubber(
     elif isinstance(function_or_replace_string, abc.Callable):
         return lambda t: _replace_regex(t, regex, function_or_replace_string)
     else:
-        raise TypeError(f"Parameter function_or_replace_string expects a string or callable, but got {print_type(function_or_replace_string)}")
+        raise TypeError(
+            f"Parameter function_or_replace_string expects a string or callable, but got {print_type(function_or_replace_string)}"
+        )
 
-def _replace_regex(text: str, regex: str, replacement: Callable[[int],str]) -> str:
+
+def _replace_regex(text: str, regex: str, replacement: Callable[[int], str]) -> str:
     matches = defaultdict(lambda: len(matches))  # type: DefaultDict[str, int]
     return re.sub(regex, lambda m: replacement(matches[m.group(0)]), text)
+
 
 def scrub_all_dates(date: str) -> str:
     return create_regex_scrubber(

@@ -12,7 +12,6 @@ from approvaltests.utilities.exceptions.exception_utils import to_string
 from approvaltests.utilities.string_wrapper import StringWrapper
 
 
-
 class Toggles:
     def __init__(self, show: bool):
         self.queries = show
@@ -105,6 +104,7 @@ class LoggingInstance:
         stack = inspect.stack(stack_position)[2]
         method_name = stack.function
         from approvaltests.namer import StackFrameNamer
+
         filename = StackFrameNamer.get_class_name_for_frame(stack)
         return Markers(self, method_name, filename, parameter_text)
 
