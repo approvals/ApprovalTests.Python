@@ -21,7 +21,7 @@ class DiffReporter(FirstWorkingReporter):
     def __init__(self, reporter_factory=None):
         factory = reporter_factory or GenericDiffReporterFactory()
 
-        reporters = list(factory.get_all_reporters())
+        reporters = list(factory.get_all_reporters_from_json())
         reporters.append(ReportWithVSCode())
         reporters.append(ReportWithDiffCommandLine())
         reporters.append(PythonNativeReporter())

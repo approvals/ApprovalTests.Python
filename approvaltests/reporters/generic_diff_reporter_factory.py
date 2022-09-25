@@ -15,6 +15,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithWinMerge,
 )
 from approvaltests.utils import get_adjacent_file
+from approvaltests.utilities.deprecated import deprecated
 
 
 class NoConfigReporter(Reporter):
@@ -84,7 +85,11 @@ class GenericDiffReporterFactory:
         working = (i for i in self.get_all_reporters() if i.is_working())
         return next(working, None)
 
+    @deprecated(reason="Please use get_all_reporters_from_json()")
     def get_all_reporters(self) -> Iterator[GenericDiffReporter]:
+        return self.get_all_reporters_from_json()
+
+    def get_all_reporters_from_json(self) -> Iterator[GenericDiffReporter]:
         instances = (self._create_reporter(r) for r in self.reporter_configs)
         return instances
 
