@@ -12,7 +12,7 @@ def is_ci():
         "GITHUB_ACTIONS",
         "GO_SERVER_URL",
         "JENKINS_URL",
-        "TEAMCITY_VERSION",
+        # "TEAMCITY_VERSION",
         "TF_BUILD",
     ]
     return any(os.environ.get(possibile_ci) for possibile_ci in possible)
