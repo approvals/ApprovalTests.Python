@@ -14,9 +14,13 @@ def is_ci():
         "JENKINS_URL",
         "TF_BUILD",
     ]
+    return is_team_city() or any(os.environ.get(possibile_ci) for possibile_ci in possible)
+
+
+def is_team_city():
     team_city_version = os.environ.get("TEAMCITY_VERSION")
     team_city = team_city_version and team_city_version != "LOCAL"
-    return team_city or any(os.environ.get(possibile_ci) for possibile_ci in possible)
+    return team_city
 
 
 class NamerFactory:
