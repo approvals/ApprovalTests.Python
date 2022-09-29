@@ -14,10 +14,12 @@ def is_ci(environment_loader: Callable[[str], str] = os.environ.get):
         "JENKINS_URL",
         "TF_BUILD",
     ]
-    return is_team_city(environment_loader) or any(environment_loader(possibile_ci) for possibile_ci in possible)
+    return is_team_city(environment_loader) or any(
+        environment_loader(possibile_ci) for possibile_ci in possible
+    )
 
 
-def is_team_city(environment_loader: Callable[[str],str] = os.environ.get):
+def is_team_city(environment_loader: Callable[[str], str] = os.environ.get):
     team_city_version = environment_loader("TEAMCITY_VERSION")
     team_city = team_city_version and team_city_version != "LOCAL"
     return team_city
