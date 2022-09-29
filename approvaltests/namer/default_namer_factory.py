@@ -12,10 +12,11 @@ def is_ci():
         "GITHUB_ACTIONS",
         "GO_SERVER_URL",
         "JENKINS_URL",
-        # "TEAMCITY_VERSION",
         "TF_BUILD",
     ]
-    return any(os.environ.get(possibile_ci) for possibile_ci in possible)
+    team_city_version = os.environ.get("TEAMCITY_VERSION")
+    team_city = team_city_version and team_city_version != "LOCAL"
+    return team_city or any(os.environ.get(possibile_ci) for possibile_ci in possible)
 
 
 class NamerFactory:
