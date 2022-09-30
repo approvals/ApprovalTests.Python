@@ -1,10 +1,17 @@
+from abc import ABC, abstractmethod
 from typing import Iterator, Any, Callable
 
 from approvaltests.utilities.logger.logging_instance import LoggingInstance
 from approvaltests.utilities.string_wrapper import StringWrapper
 
 
-class SingleWrapper:
+class Wrapper(ABC):
+    @abstractmethod
+    def get(self):
+        pass
+
+
+class SingleWrapper(Wrapper):
     def __init__(self, instance):
         self.instance = instance
 
