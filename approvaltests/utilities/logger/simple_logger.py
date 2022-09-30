@@ -1,3 +1,4 @@
+import threading
 from abc import ABC, abstractmethod
 from typing import Iterator, Any, Callable
 
@@ -18,6 +19,17 @@ class SingleWrapper(Wrapper):
     def get(self):
         return self.instance
 
+class ThreadedWrapper(Wrapper):
+    def __init__(self, generator):
+        self.generator = generator
+        self.local = threading.local()
+        self.local.value = None
+
+    def get(self):
+        if not self.local.value:
+            self.local.value = self.generator()
+        return self.local.value
+
 
 class SimpleLogger:
     _wrapper = SingleWrapper(LoggingInstance())
@@ -28,6 +40,13 @@ class SimpleLogger:
 
     @staticmethod
     def log_to_string() -> StringWrapper:
+        # assign a new wrapper to SimpleLogger
+        # pass a generator into that wrapper that creates a logging instance
+        def generator() -> LoggingInstance:
+            return LoggingInstance()
+
+
+        SimpleLogger._wrapper = ThreadedWrapper(generator)
         return SimpleLogger._wrapper.get().log_to_string()
 
     @staticmethod
