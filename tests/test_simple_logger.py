@@ -1,4 +1,7 @@
 import datetime
+import threading
+
+from decorator import contextmanager
 
 from approvaltests import (
     verify,
@@ -181,7 +184,7 @@ def test_markers_with_signature() -> None:
 # begin-snippet: method_with_inputs_and_outputs
 def method_with_inputs_and_outputs(number, announcement):
     with SimpleLogger.use_markers(
-        lambda: f"number = {number}, announcement = {announcement}"
+            lambda: f"number = {number}, announcement = {announcement}"
     ):
         # end-snippet
         for number in range(number, 0, -1):
@@ -193,3 +196,39 @@ def test_markers_with_signature_in_and_out() -> None:
     output = SimpleLogger.log_to_string()
     method_with_inputs_and_outputs(10, "Blast off")
     verify(output)
+
+
+def test_race_condition() -> None:
+    whose_turn = 0
+    @contextmanager
+    def wait_for(number):
+        nonlocal  whose_turn
+        while whose_turn < number:
+            pass
+        yield
+        whose_turn += 1
+    log1 = "Log1"
+    def thread_1():
+        nonlocal log1
+        with wait_for(0):
+            log1 = SimpleLogger.log_to_string(True)
+        with wait_for(2):
+            SimpleLogger.event("event_a")
+        with wait_for(4):
+            SimpleLogger.event("event_b")
+
+    log2 = "Log2"
+    def thread_2():
+        nonlocal log2
+        with wait_for(1):
+            log2 = SimpleLogger.log_to_string(True)
+        with wait_for(3):
+            SimpleLogger.event("event_a")
+        with wait_for(5):
+            SimpleLogger.event("event_b")
+
+    threading.Thread(target=thread_1).start()
+    threading.Thread(target=thread_2).start()
+
+    with wait_for(6):
+        assert f"'{log1}'" == f"'{log2}'"

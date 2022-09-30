@@ -20,9 +20,8 @@ class ThreadedWrapper(Wrapper):
     def __init__(self, generator):
         self.generator = generator
         self.local = threading.local()
-        self.local.value = None
 
     def get(self):
-        if not self.local.value:
+        if not hasattr(self.local, "value"):
             self.local.value = self.generator()
         return self.local.value
