@@ -39,14 +39,10 @@ class SimpleLogger:
         SimpleLogger._wrapper.get().logger = log_method
 
     @staticmethod
-    def log_to_string() -> StringWrapper:
-        # assign a new wrapper to SimpleLogger
-        # pass a generator into that wrapper that creates a logging instance
-        def generator() -> LoggingInstance:
-            return LoggingInstance()
-
-
-        SimpleLogger._wrapper = ThreadedWrapper(generator)
+    def log_to_string(log_separate_threads=True) -> StringWrapper:
+        with threading.Lock():
+            if log_separate_threads and not isinstance(SimpleLogger._wrapper, ThreadedWrapper):
+                SimpleLogger._wrapper = ThreadedWrapper(lambda: LoggingInstance())
         return SimpleLogger._wrapper.get().log_to_string()
 
     @staticmethod
