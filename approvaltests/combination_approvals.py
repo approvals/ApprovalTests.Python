@@ -141,8 +141,8 @@ def verify_logging_for_all_combinations(
     options: Optional[Options] = None,
 ):
     def printer(*args):
-        SimpleLogger._logger.log_line(f"Running inputs {args} => ")
-        with SimpleLogger._logger.indent():
+        SimpleLogger._wrapper.get().log_line(f"Running inputs {args} => ")
+        with SimpleLogger._wrapper.get().indent():
             function_to_run(*args)
 
     output = SimpleLogger.log_to_string()

@@ -16,7 +16,7 @@ def test_warnings():
         return text.replace(__file__, "test_simple_logger.py")
 
     output = SimpleLogger.log_to_string()
-    SimpleLogger._logger.log_stack_traces = True
+    SimpleLogger._wrapper.get().log_stack_traces = True
     text = "EVERYTHING IS AWFUL!!!!!!"
     try:
         raise Exception("EVERYTHING IS exceptionally AWFUL!!!!!!")
@@ -59,7 +59,7 @@ def test_timestamps():
                 count = count + 1
                 return dates[count]
 
-            SimpleLogger._logger.timer = create_applesauce_timer
+            SimpleLogger._wrapper.get().timer = create_applesauce_timer
             SimpleLogger.show_timestamps(True)
             SimpleLogger.event("1")
             SimpleLogger.event("2")
