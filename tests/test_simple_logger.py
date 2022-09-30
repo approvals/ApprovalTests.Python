@@ -1,7 +1,7 @@
 import datetime
 import threading
 
-from decorator import contextmanager
+from contextlib import contextmanager
 
 from approvaltests import (
     verify,
