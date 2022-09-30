@@ -16,13 +16,17 @@ class SimpleLogger:
     @staticmethod
     def log_to_string(log_separate_threads=True) -> StringWrapper:
         with threading.Lock():
-            if log_separate_threads and not isinstance(SimpleLogger._wrapper, ThreadedWrapper):
+            if log_separate_threads and not isinstance(
+                SimpleLogger._wrapper, ThreadedWrapper
+            ):
                 SimpleLogger._wrapper = ThreadedWrapper(lambda: LoggingInstance())
         return SimpleLogger._wrapper.get().log_to_string()
 
     @staticmethod
     def use_markers(parameter_text: [str, Callable[[], str]] = None) -> Iterator[None]:
-        return SimpleLogger._wrapper.get().use_markers(parameter_text, additional_stack=1)
+        return SimpleLogger._wrapper.get().use_markers(
+            parameter_text, additional_stack=1
+        )
 
     @staticmethod
     def variable(name: str, value: Any, show_types: bool = False) -> None:
