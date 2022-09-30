@@ -184,7 +184,7 @@ def test_markers_with_signature() -> None:
 # begin-snippet: method_with_inputs_and_outputs
 def method_with_inputs_and_outputs(number, announcement):
     with SimpleLogger.use_markers(
-            lambda: f"number = {number}, announcement = {announcement}"
+        lambda: f"number = {number}, announcement = {announcement}"
     ):
         # end-snippet
         for number in range(number, 0, -1):
@@ -200,14 +200,17 @@ def test_markers_with_signature_in_and_out() -> None:
 
 def test_race_condition() -> None:
     whose_turn = 0
+
     @contextmanager
     def wait_for(number):
-        nonlocal  whose_turn
+        nonlocal whose_turn
         while whose_turn < number:
             pass
         yield
         whose_turn += 1
+
     log1 = "Log1"
+
     def thread_1():
         nonlocal log1
         with wait_for(0):
@@ -218,6 +221,7 @@ def test_race_condition() -> None:
             SimpleLogger.event("event_b")
 
     log2 = "Log2"
+
     def thread_2():
         nonlocal log2
         with wait_for(1):
