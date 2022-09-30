@@ -1,34 +1,9 @@
 import threading
-from abc import ABC, abstractmethod
 from typing import Iterator, Any, Callable
 
 from approvaltests.utilities.logger.logging_instance import LoggingInstance
 from approvaltests.utilities.string_wrapper import StringWrapper
-
-
-class Wrapper(ABC):
-    @abstractmethod
-    def get(self):
-        pass
-
-
-class SingleWrapper(Wrapper):
-    def __init__(self, instance):
-        self.instance = instance
-
-    def get(self):
-        return self.instance
-
-class ThreadedWrapper(Wrapper):
-    def __init__(self, generator):
-        self.generator = generator
-        self.local = threading.local()
-        self.local.value = None
-
-    def get(self):
-        if not self.local.value:
-            self.local.value = self.generator()
-        return self.local.value
+from approvaltests.utilities.wrapper import SingleWrapper, ThreadedWrapper
 
 
 class SimpleLogger:
