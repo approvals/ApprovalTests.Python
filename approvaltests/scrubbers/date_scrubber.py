@@ -56,7 +56,6 @@ class DateScrubber:
         ]
 
     def __init__(self, date_regex: str):
-        self.supported_formats = []
         self.date_regex = date_regex
 
     def scrub(self, date_str: str):
