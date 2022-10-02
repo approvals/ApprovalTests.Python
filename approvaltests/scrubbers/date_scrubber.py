@@ -1,4 +1,5 @@
 from approvaltests.scrubbers import create_regex_scrubber
+from approvaltests.scrubbers.scrubbers import Scrubber
 
 
 class DateScrubber:
@@ -25,3 +26,15 @@ class DateScrubber:
     def scrub(self, date_str: str):
         return create_regex_scrubber(
             self.date_regex, lambda t: f"<date{t}>")(date_str)
+
+    @staticmethod
+    def get_scrubber_for(example: str) -> Scrubber:
+        supported = ""
+        for date_regex, examples in DateScrubber.get_supported_formats():
+            supported += f"    {examples[0]} | {date_regex} \n"
+            scrubber = DateScrubber(date_regex)
+            if scrubber.scrub(example) == "<date0>":
+                return lambda d: scrubber.scrub(d)
+
+        raise Exception(
+        f"No match found for '{example}'.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 \n Current supported formats are: \n{supported}")
