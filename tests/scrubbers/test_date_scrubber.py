@@ -10,12 +10,19 @@ def test_supported_formats():
 
 
 def test_supported_formats_arbitrary_string():
-    assert DateScrubber("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}").scrub(
-        "arbitrary string") == "arbitrary string"
+    assert (
+        DateScrubber("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}").scrub(
+            "arbitrary string"
+        )
+        == "arbitrary string"
+    )
 
 
 def test_supported_format_example() -> None:
-    verify("created at 03:14:15", options=Options().with_scrubber(DateScrubber.get_scrubber_for("00:00:00")))
+    verify(
+        "created at 03:14:15",
+        options=Options().with_scrubber(DateScrubber.get_scrubber_for("00:00:00")),
+    )
 
 
 def test_unsupported_format() -> None:
