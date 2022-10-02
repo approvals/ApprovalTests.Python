@@ -1,6 +1,12 @@
-2. Next Week:
+1. separate approvalutilities
+2. Logging decorator
+3. Date scrubbing
+
+
+
+5. 
+6. Next Week:
    1. do clean up:
-   remove intro reporter, 
    clean up chain, 
    get all reporters is incomplete, 
    rename diffReporter to default diffReporter
@@ -8,30 +14,30 @@
    3. create intro to reporters docs
       2. do a safeguarding for this
       3. clean up branch
-3. Python Minimal 
+7. Python Minimal 
    1. fix pypi key issues - Start here
    2. python parse requirements.prod.extras in minimal.py
    3. Figure out how to reference the two pypi projects in readme
    4. handle UNKNOWN VERSION situation in setup_utils.py better
-4. In the start project should we have a test that confers that the extras are being loaded directly 
+8. In the start project should we have a test that confers that the extras are being loaded directly 
    1. What should that test be ? Pairwise, bs4
-5. markdown snippets - regex (?<!(a>.*\n))```py
-6. cached property for Namer.get_config 
-7. setup github action to lint
-   1. Do we make a github action whose sole purpose is to lint? 
-   2. Options: Lint passes/fails or autocorrects? 
-   3. Actions work well when simple. Make a lint.bat and go from there
-8. linter - add flake8 to pycharm and tox
-9. check all uses of default reporter in tests
-10. Fail test if there are duplicate names - pylint ?
-11. add checks to twine in github actions
-12. make code more pythonic (method overloads vs default parameters)
-13. _Have_ Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
-14. templated namer
+9. markdown snippets - regex (?<!(a>.*\n))```py
+10. cached property for Namer.get_config 
+11. setup github action to lint
+    1. Do we make a github action whose sole purpose is to lint? 
+    2. Options: Lint passes/fails or autocorrects? 
+    3. Actions work well when simple. Make a lint.bat and go from there
+12. linter - add flake8 to pycharm and tox
+13. check all uses of default reporter in tests
+14. Fail test if there are duplicate names - pylint ?
+15. add checks to twine in github actions
+16. make code more pythonic (method overloads vs default parameters)
+17. _Have_ Oliver and Emily talk about pytest plugin is intergrated in hypoethesis
+18. templated namer
     1. docs on implementing Approvaltests in CI
     2. file commiter reporter
     3. squence to animated gif writer
-15. Property Tests
+19. Property Tests
     1. eval(any.__repr__) == any
 ```python
 
