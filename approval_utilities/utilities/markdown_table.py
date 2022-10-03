@@ -1,7 +1,6 @@
 from typing import Any, Callable, Iterable
 
 from approval_utilities.approvaltests.core.verifiable import Verifiable
-from approvaltests.core.options import Options
 from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
 
 
@@ -9,7 +8,7 @@ class MarkdownTable(Verifiable):
     def __init__(self):
         self.markdown = ""
 
-    def get_verify_parameters(self, options: Options) -> VerifyParameters:
+    def get_verify_parameters(self, options: "Options") -> VerifyParameters:
         return VerifyParameters(options.for_file.with_extension(".md"))
 
     @staticmethod

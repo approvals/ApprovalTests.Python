@@ -10,7 +10,7 @@ from approvaltests import (
     verify_logging_for_all_combinations,
 )
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
-from approval_utilities.utilities.logger.simple_logger_approvals import verify_simple_logger
+from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.time_utilities import use_utc_timezone
 
 
