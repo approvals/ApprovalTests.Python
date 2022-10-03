@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from approvaltests.utils import ensure_file_exists
+from approval_utilities.utils import ensure_file_exists
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.python_native_reporter import calculate_diff
 

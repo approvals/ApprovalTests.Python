@@ -14,7 +14,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithWinMerge,
 )
-from approvaltests.utils import get_adjacent_file
+from approval_utilities.utils import get_adjacent_file
 from approvaltests.utilities.deprecated import deprecated
 
 

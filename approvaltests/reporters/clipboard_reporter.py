@@ -1,5 +1,5 @@
 from approvaltests.utilities.clipboard_utilities import copy_to_clipboard
-from approvaltests.utils import is_windows_os
+from approval_utilities.utils import is_windows_os
 from approvaltests.core.reporter import Reporter
 
 

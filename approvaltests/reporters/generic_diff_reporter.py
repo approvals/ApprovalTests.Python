@@ -1,15 +1,14 @@
-import subprocess
 from typing import List
 
 from approvaltests.utilities.os_utilities import run_command
-from approvaltests.utils import ensure_file_exists
+from approval_utilities.utils import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
     create_config,
 )
-from approvaltests.utils import to_json
+from approval_utilities.utils import to_json
 
 PROGRAM_FILES = "{ProgramFiles}"
 
