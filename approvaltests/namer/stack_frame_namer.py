@@ -5,7 +5,7 @@ from typing import Optional, Dict, List
 
 from approvaltests.namer.namer_base import NamerBase
 from approvaltests.approval_exception import FrameNotFound
-from approvaltests.utilities.stack_frame_utilities import get_class_name_for_frame
+from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 
 
 class StackFrameNamer(NamerBase):

@@ -1,6 +1,6 @@
 from typing import Callable, Sequence, Any
 
-from approvaltests.utilities.exceptions.multiple_exceptions import MultipleExceptions
+from approval_utilities.utilities.exceptions.multiple_exceptions import MultipleExceptions
 
 
 class ExceptionCollector:

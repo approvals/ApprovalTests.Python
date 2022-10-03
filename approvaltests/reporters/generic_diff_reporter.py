@@ -1,6 +1,6 @@
 from typing import List
 
-from approvaltests.utilities.os_utilities import run_command
+from approval_utilities.utilities.os_utilities import run_command
 from approval_utilities.utils import ensure_file_exists
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter

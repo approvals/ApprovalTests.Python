@@ -15,7 +15,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithWinMerge,
 )
 from approval_utilities.utils import get_adjacent_file
-from approvaltests.utilities.deprecated import deprecated
+from approval_utilities.utilities.deprecated import deprecated
 
 
 class NoConfigReporter(Reporter):

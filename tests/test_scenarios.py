@@ -1,8 +1,7 @@
 import pytest
 from approvaltests import verify, get_scenario_namer
 from approvaltests.namer import NamerFactory
-from approvaltests.utilities.exceptions.exception_collector import (
-    gather_all_exceptions,
+from approval_utilities.utilities.exceptions.exception_collector import (
     gather_all_exceptions_and_throw,
 )
 

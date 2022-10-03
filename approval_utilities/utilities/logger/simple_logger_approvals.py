@@ -1,6 +1,6 @@
 from typing import ContextManager, Optional
 
-from approvaltests.utilities.logger.simple_logger import SimpleLogger
+from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approvaltests.approvals import verify
 from approvaltests.core.options import Options
 

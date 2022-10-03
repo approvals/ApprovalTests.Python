@@ -7,7 +7,7 @@ import approvaltests.reporters.default_reporter_factory
 from approval_utilities import utils
 from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
 from approvaltests.core.verifiable import Verifiable
-from approvaltests.utilities.map_reduce import first
+from approval_utilities.utilities.map_reduce import first
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
@@ -20,7 +20,7 @@ from approvaltests.file_approver import FileApprover
 from approvaltests.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
-from approvaltests.utilities.exceptions.exception_utils import to_string
+from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
     FormatterWrapperOfArgparseNamespace,
 )
