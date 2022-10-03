@@ -17,7 +17,7 @@ from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
-from approvaltests.list_utils import format_list
+from approval_utilities.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
 from approval_utilities.utilities.exceptions.exception_utils import to_string
