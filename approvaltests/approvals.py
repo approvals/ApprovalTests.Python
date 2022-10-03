@@ -6,7 +6,7 @@ from typing import Callable, List, Optional, Any, ByteString, Iterator
 import approvaltests.reporters.default_reporter_factory
 from approval_utilities import utils
 from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
-from approvaltests.core.verifiable import Verifiable
+from approval_utilities.approvaltests.core.verifiable import Verifiable
 from approval_utilities.utilities.map_reduce import first
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter

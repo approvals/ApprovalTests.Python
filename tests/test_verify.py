@@ -17,8 +17,8 @@ from approvaltests.approvals import (
     verify_exception,
 )
 from approvaltests.core.comparator import Comparator
-from approvaltests.core.verifiable import Verifiable
-from approvaltests.core.verify_parameters import VerifyParameters
+from approval_utilities.approvaltests.core.verifiable import Verifiable
+from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
