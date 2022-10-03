@@ -23,6 +23,7 @@ def get_requirements_from_file(file):
 
 
 def do_the_setup(package_name, package_description, required, extra_requires):
+    required.append("approval-utilities")
     setup(
         name=package_name,
         version=get_version(),
@@ -31,7 +32,7 @@ def do_the_setup(package_name, package_description, required, extra_requires):
         author_email="llewellyn.falco@gmail.com",
         url="https://github.com/approvals/ApprovalTests.Python",
         python_requires=">=3.6.1",
-        packages=find_packages(exclude=["tests*"]),
+        packages=find_packages(include=["approvaltests*"]),
         package_data={"approvaltests": ["reporters/reporters.json"]},
         install_requires=required,
         extras_require=extra_requires,

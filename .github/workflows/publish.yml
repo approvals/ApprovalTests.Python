@@ -2,7 +2,7 @@ name: Upload Python Package
 
 on:
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   deploy:
@@ -26,17 +26,25 @@ jobs:
           echo version_number = \"${{ steps.version.outputs.tag }}\" > ./approvaltests/version.py
       - name: Push changes
         run: |
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git commit -m "${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
-            git checkout -b temp
-            git fetch
-            git checkout main
-            git merge temp
-            remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
-            branch="main"
-            git push "${remote}" ${branch} || echo "nothing to push"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
+          git checkout -b temp
+          git fetch
+          git checkout main
+          git merge temp
+          remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+          branch="main"
+          git push "${remote}" ${branch} || echo "nothing to push"
         shell: bash
+      - name: Build and publish approval_utilities
+        env:
+            TWINE_USERNAME: __token__
+            TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
+        run: |
+            python setup.approval_utilities.py sdist bdist_wheel
+            twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+            rm -r dist
       - name: Build and publish
         env:
           TWINE_USERNAME: __token__
