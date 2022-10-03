@@ -250,7 +250,7 @@ These dependencies are always required for approvaltests
 pytest>=4.0.0
 empty-files>=0.0.3
 ```
-<sup><a href='/requirements.prod.required.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.required.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/requirements.prod.required.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.required.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 #### Extra dependencies
 These dependencies are required if you are going to use the related functionality
