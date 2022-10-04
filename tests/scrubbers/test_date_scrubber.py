@@ -20,15 +20,17 @@ def test_supported_formats_arbitrary_string():
 
 
 def test_supported_format_example() -> None:
-    #begin-snippet: scrub-date-example
+    # begin-snippet: scrub-date-example
     verify(
         "created at 03:14:15",
         options=Options().with_scrubber(DateScrubber.get_scrubber_for("00:00:00")),
     )
-    #end-snippet
+    # end-snippet
+
 
 def test_unsupported_format() -> None:
     verify_exception(lambda: DateScrubber.get_scrubber_for("an unsupported format"))
+
 
 def test_supported_formats() -> None:
     table = markdown_table.MarkdownTable.with_headers("Example Date", "Regex Pattern")
