@@ -3,9 +3,8 @@
 <!-- toc -->
 ## Contents
 
-    * [How to do it](#how-to-do-it)
-    * [Supported formats](#supported-formats)
-  * [Scrubbing multiple parts of a string](#scrubbing-multiple-parts-of-a-string)<!-- endToc -->
+  * [How to do it](#how-to-do-it)
+  * [Supported formats](#supported-formats)<!-- endToc -->
 
 ## How to do it
 
