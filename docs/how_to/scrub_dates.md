@@ -7,7 +7,7 @@
     * [Supported formats](#supported-formats)
   * [Scrubbing multiple parts of a string](#scrubbing-multiple-parts-of-a-string)<!-- endToc -->
 
-### How to do it
+## How to do it
 
 The easiest way to scrub a date is by calling 
 <!-- snippet: scrub-date-example -->
@@ -31,7 +31,7 @@ created at <date0>
 <sup><a href='/tests/scrubbers/test_date_scrubber.test_supported_format_example.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_date_scrubber.test_supported_format_example.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-### Supported formats
+## Supported formats
 
 <!-- include: test_date_scrubber.test_supported_formats.approved.md -->
 | Example Date | Regex Pattern |
@@ -49,7 +49,3 @@ created at <date0>
 | 2020-09-10T01:23:45.678Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z |
 | 20210505T091112Z | \d{8}T\d{6}Z |
 <!-- endInclude -->
-
-## Scrubbing multiple parts of a string
-
-If you need to do scrubbing of multiple things, the easiest way is to create multiple scrubbers and then combine them.
