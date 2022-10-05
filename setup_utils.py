@@ -1,3 +1,4 @@
+import os
 import re
 from pathlib import Path
 
@@ -23,7 +24,6 @@ def get_requirements_from_file(file):
 
 
 def do_the_setup(package_name, package_description, required, extra_requires):
-    required.append("approval-utilities")
     setup(
         name=package_name,
         version=get_version(),
