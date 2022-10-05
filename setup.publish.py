@@ -1,10 +1,10 @@
-from setup_utils import get_requirements_from_file, do_the_setup
+from setup_utils import get_requirements_from_file, do_the_setup, get_version
 
 from setuptools import setup, find_packages  # type: ignore
 
 required = get_requirements_from_file("requirements.prod.required.txt")
 required += get_requirements_from_file("requirements.prod.extras.txt")
-required += "approval_utilities"
+required += f"approval_utilities=={get_version()}"
 do_the_setup(
     package_name="approvaltests",
     package_description="Assertion/verification library to aid testing",
