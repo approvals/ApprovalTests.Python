@@ -1,9 +1,9 @@
 import threading
 from typing import Iterator, Any, Callable
 
-from approvaltests.utilities.logger.logging_instance import LoggingInstance
-from approvaltests.utilities.string_wrapper import StringWrapper
-from approvaltests.utilities.wrapper import SingleWrapper, ThreadedWrapper
+from approval_utilities.utilities.logger.logging_instance import LoggingInstance
+from approval_utilities.utilities.string_wrapper import StringWrapper
+from approval_utilities.utilities.wrapper import SingleWrapper, ThreadedWrapper
 
 
 class SimpleLogger:

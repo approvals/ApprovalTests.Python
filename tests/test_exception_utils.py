@@ -1,5 +1,5 @@
 from approvaltests import verify_exception
-from approvaltests.utilities.exceptions.exception_collector import (
+from approval_utilities.utilities.exceptions.exception_collector import (
     ExceptionCollector,
     gather_all_exceptions,
 )

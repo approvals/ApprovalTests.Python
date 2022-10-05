@@ -2,7 +2,7 @@ from typing import Optional
 
 from approvaltests.approvals import get_default_namer
 from approvaltests.approvals import verify_with_namer
-from approvaltests.utils import write_to_temporary_file
+from approval_utilities.utils import write_to_temporary_file
 from approvaltests.reporters.default_reporter_factory import get_reporter
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 

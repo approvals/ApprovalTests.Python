@@ -2,7 +2,7 @@ import os
 from typing import Callable
 
 from approvaltests import Reporter
-from approvaltests.utilities.os_utilities import run_command
+from approval_utilities.utilities.os_utilities import run_command
 
 
 def is_git_registration_needed() -> bool:

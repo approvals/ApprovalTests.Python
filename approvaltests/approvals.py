@@ -1,15 +1,13 @@
-import argparse
-import typing
 import xml.dom.minidom
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Callable, List, Optional, Any, ByteString, Iterator, Sequence
+from typing import Callable, List, Optional, Any, ByteString, Iterator
 
 import approvaltests.reporters.default_reporter_factory
+from approval_utilities import utils
 from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
-from approvaltests.core.verifiable import Verifiable
-from approvaltests.utilities.map_reduce import first
-from approvaltests.utils import to_json
+from approval_utilities.approvaltests.core.verifiable import Verifiable
+from approval_utilities.utilities.map_reduce import first
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
@@ -19,12 +17,11 @@ from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
-from approvaltests.list_utils import format_list
+from approval_utilities.list_utils import format_list
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
-from approvaltests.utilities.exceptions.exception_utils import to_string
+from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
-    FormatterOfArgparseNamespace,
     FormatterWrapperOfArgparseNamespace,
 )
 
@@ -226,9 +223,9 @@ def verify_as_json(
     options: Optional[Options] = None
 ):
     if deserialize_json_fields:
-        object_to_verify = approvaltests.utils.deserialize_json_fields(object_to_verify)
+        object_to_verify = utils.deserialize_json_fields(object_to_verify)
     options = initialize_options(options, reporter)
-    json_text = to_json(object_to_verify) + "\n"
+    json_text = utils.to_json(object_to_verify) + "\n"
     verify(json_text, None, encoding="utf-8", newline="\n", options=options)
 
 

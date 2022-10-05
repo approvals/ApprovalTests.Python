@@ -15,7 +15,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
 from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare
-from approvaltests.utils import to_json, is_windows_os
+from approval_utilities.utils import to_json, is_windows_os
 
 
 class GenericDiffReporterTests(unittest.TestCase):

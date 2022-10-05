@@ -1,4 +1,3 @@
-import codecs
 import unittest
 from pathlib import Path
 
@@ -6,7 +5,7 @@ from approvaltests.approval_exception import ApprovalException
 from approvaltests import assert_against_file, assert_equal_with_reporter
 from approvaltests.core import Reporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approvaltests.utils import get_adjacent_file
+from approval_utilities.utils import get_adjacent_file
 
 
 class TestAssertEqualWithReporter(unittest.TestCase):

@@ -17,8 +17,8 @@ from approvaltests.approvals import (
     verify_exception,
 )
 from approvaltests.core.comparator import Comparator
-from approvaltests.core.verifiable import Verifiable
-from approvaltests.core.verify_parameters import VerifyParameters
+from approval_utilities.approvaltests.core.verifiable import Verifiable
+from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
@@ -28,8 +28,8 @@ from approvaltests.reporters.reporter_that_automatically_approves import (
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.storyboard import Storyboard, verify_storyboard
-from approvaltests.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests.utils import get_adjacent_file, is_windows_os
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
+from approval_utilities.utils import get_adjacent_file, is_windows_os
 
 
 def print_grid(width, height, cell_print_func):

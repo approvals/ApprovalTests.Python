@@ -6,7 +6,7 @@ from difflib import unified_diff
 
 from approvaltests.reporters.clipboard_reporter import get_command_text
 from approvaltests.core.reporter import Reporter
-from approvaltests.utils import ensure_file_exists
+from approval_utilities.utils import ensure_file_exists
 
 
 class PythonNativeReporter(Reporter):

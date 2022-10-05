@@ -16,6 +16,6 @@ class FormatterOfArgparseNamespace:
         self.result = result
 
     def __str__(self):
-        from approvaltests import to_json
+        from approval_utilities.utils import to_json
 
         return to_json(vars(self.result))

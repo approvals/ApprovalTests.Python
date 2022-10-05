@@ -1,6 +1,6 @@
 from typing import Sequence
 
-from approvaltests.utilities.exceptions.exception_utils import to_string
+from approval_utilities.utilities.exceptions.exception_utils import to_string
 
 
 class MultipleExceptions(Exception):

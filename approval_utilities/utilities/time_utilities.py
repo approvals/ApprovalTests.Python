@@ -1,9 +1,6 @@
 import os
-from datetime import timezone
 
 from typing_extensions import ContextManager
-
-from approvaltests import SimpleLogger
 
 
 def use_utc_timezone() -> ContextManager:

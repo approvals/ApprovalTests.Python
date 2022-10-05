@@ -1,5 +1,5 @@
 from approvaltests import verify
-from approvaltests.utilities.multiline_string_utils import remove_indentation_from
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 
 
 def test_remove_indentation_from_works_perfectly() -> None:

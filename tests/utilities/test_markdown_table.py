@@ -1,5 +1,5 @@
 from approvaltests import verify
-from approvaltests.utilities.markdown_table import MarkdownTable
+from approval_utilities.utilities.markdown_table import MarkdownTable
 
 
 def test_markdown_table():

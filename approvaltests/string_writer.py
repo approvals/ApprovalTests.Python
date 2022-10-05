@@ -1,7 +1,7 @@
 import io
 from typing import Optional
 
-from approvaltests.utils import create_directory_if_needed
+from approval_utilities.utils import create_directory_if_needed
 from approvaltests.core.writer import Writer
 
 

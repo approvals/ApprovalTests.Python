@@ -1,16 +1,13 @@
 import datetime
 import inspect
-import sys
 import traceback
-import types
-from contextlib import contextmanager
-from typing import Iterator, Callable, Any, Iterable, ContextManager
+from typing import Callable, Any, Iterable, ContextManager
 
 import six
 
-from approvaltests.utilities.exceptions.exception_utils import to_string
-from approvaltests.utilities.string_wrapper import StringWrapper
-from approvaltests.utilities.stack_frame_utilities import get_class_name_for_frame
+from approval_utilities.utilities.exceptions.exception_utils import to_string
+from approval_utilities.utilities.string_wrapper import StringWrapper
+from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 
 
 class Toggles:
