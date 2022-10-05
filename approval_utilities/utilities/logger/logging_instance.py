@@ -3,7 +3,6 @@ import inspect
 import traceback
 from typing import Callable, Any, Iterable, ContextManager
 
-import six
 
 from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approval_utilities.utilities.string_wrapper import StringWrapper
@@ -21,7 +20,7 @@ class Toggles:
 
 
 def _is_iterable(arg):
-    return isinstance(arg, Iterable) and not isinstance(arg, six.string_types)
+    return isinstance(arg, Iterable) and not isinstance(arg, str)
 
 
 def print_type(value):
