@@ -8,11 +8,15 @@ from approvaltests import (
     combination_approvals,
 )
 from approvaltests.core.options import Options
+from approvaltests.utilities import command_line_approvals
+from approvaltests.utilities.logger import simple_logger_approvals
 
 
 def test_every_function_in_approvals_with_verify_has_an_options():
     assert_verify_methods_have_options(approvals)
     assert_verify_methods_have_options(combination_approvals)
+    assert_verify_methods_have_options(simple_logger_approvals)
+    assert_verify_methods_have_options(command_line_approvals)
 
 
 def assert_verify_methods_have_options(module):
