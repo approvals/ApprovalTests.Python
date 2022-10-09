@@ -3,29 +3,19 @@ from typing import Sequence
 from approvaltests import verify
 import subprocess
 
-# Future:  have a default joiner  character  like "\n"
-# takes an iterable and turns it into a list
-# verify_command_line_for_inputs(command, inputs)
-# verify_command_line(command, input: str)
-# verify_command_line(command)
 
-def test_fizzbuzz_verify_range_1_to_5():
-    # verify(command.run(
-    #     ["bash", "-c", "jaq -n 'range(100) | .+1' | jaq -f fizzbuzz.jq"]).output.decode("utf8"))
-    verify_command_line('jq -n -f test_fizzbuzz.jq')
-    verify_command_line('jq -n "range(5) | .+1" | jq -f fizzbuzz.jq')
+def test_verify_command_line():
+    verify_command_line('echo "hello world!"')
 
+def test_verify_command_line_with_input():
+    verify_command_line('python -c "import sys; print(sys.stdin.read())"', input="input")
 
-def verify_command_line_with_inputs(command, input: Sequence[any]):
-    input_string="\n".join(map(lambda a: f"{a}", input))
+def test_verify_command_line_with_inputs():
+    verify_command_line_with_inputs('python -c "import sys; print(sys.stdin.read())"', inputs=range(3,7))
+
+def verify_command_line_with_inputs(command, inputs: Sequence[any]):
+    input_string="\n".join(map(lambda a: f"{a}", inputs))
     verify_command_line(command, input=input_string)
-
-
-def test_command_line_with_input():
-    verify_command_line("jq -f fizzbuzz.jq", input="3")
-
-def test_command_line_with_inputs():
-    verify_command_line_with_inputs(command="jq -f fizzbuzz.jq", input=range(1, 6))
 
 def verify_command_line(command_line,
                         *  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
