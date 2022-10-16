@@ -1,1 +1,1 @@
-Test Passed: tests/utilities/hello
+Test Passed: tests/utilities/passing_command_line_verify

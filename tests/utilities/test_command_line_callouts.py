@@ -18,7 +18,7 @@ def test_verify_command_line_with_input():
 
 def test_command_line_verify():
     verify_command_line(
-        f"python approvaltests/commandline_interface.py -t tests/utilities/hello",
+        f"python approvaltests/commandline_interface.py -t tests/utilities/passing_command_line_verify",
         input="hello world",
         current_working_directory=Path(__file__).parents[2],
         additional_environment_variables={"PYTHONPATH": "."},
