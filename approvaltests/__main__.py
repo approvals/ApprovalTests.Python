@@ -1,3 +1,3 @@
-from .verify import verify_using_commandline_arguments
+from .commandline_interface import verify_using_commandline_arguments
 
 verify_using_commandline_arguments()
