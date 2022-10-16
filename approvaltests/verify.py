@@ -3,11 +3,11 @@ from approvaltests import verify
 import argparse
 from sys import stdin
 
-parser = argparse.ArgumentParser(description='verify')
-parser.add_argument('--test-id', '-t', dest='id', required=True,
-                    type=str, help='test id')
-parser.add_argument('--received', '-r', type=str,
-                    required=False, help='received')
+parser = argparse.ArgumentParser(description="verify")
+parser.add_argument(
+    "--test-id", "-t", dest="id", required=True, type=str, help="test id"
+)
+parser.add_argument("--received", "-r", type=str, required=False, help="received")
 
 args = parser.parse_args()
 
