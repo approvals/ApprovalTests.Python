@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from approvaltests.utilities.command_line_approvals import (
     verify_command_line_with_inputs,
     verify_command_line,
@@ -15,7 +17,9 @@ def test_verify_command_line_with_input():
 
 def test_command_line_verify():
     verify_command_line(
-        'python ../../approvaltests/verify.py -t hello', input="hello world"
+        f'python approvaltests/verify.py -t tests/utilities/hello', input="hello world",
+        cwd = Path(__file__).parents[2],
+        additional_env= {'PYTHONPATH': '.'}
     )
 
 
