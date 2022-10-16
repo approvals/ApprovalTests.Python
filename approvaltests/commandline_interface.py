@@ -3,11 +3,11 @@ from approvaltests import verify
 import argparse
 from sys import stdin
 
-parser = argparse.ArgumentParser(description='verify')
-parser.add_argument('--test-id', '-t', dest='id', required=True,
-                    type=str, help='test id')
-parser.add_argument('--received', '-r', type=str,
-                    required=False, help='received')
+parser = argparse.ArgumentParser(description="verify")
+parser.add_argument(
+    "--test-id", "-t", dest="id", required=True, type=str, help="test id"
+)
+parser.add_argument("--received", "-r", type=str, required=False, help="received")
 
 args = parser.parse_args()
 
@@ -30,9 +30,11 @@ received = args.received
 if args.received == None:
     received = stdin.read()
 
+
 def verify_using_commandline_arguments():
     verify(received, namer=CliNamer(test_id=args.id))
     print(f"Test Passed: {args.id}")
+
 
 if __name__ == "__main__":
     verify_using_commandline_arguments()
