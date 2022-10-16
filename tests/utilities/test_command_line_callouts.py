@@ -15,7 +15,7 @@ def test_verify_command_line_with_input():
 
 def test_command_line_verify():
     verify_command_line(
-        'python verify.py -t hello', input="hello world"
+        'python ../../approvaltests/verify.py -t hello', input="hello world"
     )
 
 
