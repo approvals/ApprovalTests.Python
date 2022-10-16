@@ -30,5 +30,9 @@ received = args.received
 if args.received == None:
     received = stdin.read()
 
-verify(received, namer=CliNamer(test_id=args.id))
-print(f"Test Passed: {args.id}")
+def verify_using_commandline_arguments():
+    verify(received, namer=CliNamer(test_id=args.id))
+    print(f"Test Passed: {args.id}")
+
+if __name__ == "__main__":
+    verify_using_commandline_arguments()
