@@ -18,8 +18,8 @@ def test_verify_command_line_with_input():
 def test_command_line_verify():
     verify_command_line(
         f'python approvaltests/verify.py -t tests/utilities/hello', input="hello world",
-        cwd = Path(__file__).parents[2],
-        additional_env= {'PYTHONPATH': '.'}
+        current_working_directory= Path(__file__).parents[2],
+        additional_environment_variables= {'PYTHONPATH': '.'}
     )
 
 

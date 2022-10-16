@@ -17,15 +17,15 @@ def verify_command_line(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     input: str = None,
     options: Options = None,
-    cwd = ".",
-    additional_env = None
+    current_working_directory =".",
+    additional_environment_variables = None
 ):
     my_env = None
-    if additional_env:
-        my_env = {**os.environ, **additional_env}
+    if additional_environment_variables:
+        my_env = {**os.environ, **additional_environment_variables}
     verify(
         subprocess.check_output(
-            command_line, shell=True, universal_newlines=True, input=input, cwd=cwd, env=my_env
+            command_line, shell=True, universal_newlines=True, input=input, cwd=current_working_directory, env=my_env
         ),
         options=options,
     )
