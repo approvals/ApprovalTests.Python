@@ -13,6 +13,12 @@ def test_verify_command_line_with_input():
         'python -c "import sys; print(sys.stdin.read())"', input="input"
     )
 
+def test_command_line_verify():
+    verify_command_line(
+        'python verify.py -t hello', input="hello world"
+    )
+
+
 
 def test_verify_command_line_with_inputs():
     verify_command_line_with_inputs(
