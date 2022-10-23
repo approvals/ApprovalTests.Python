@@ -1,4 +1,17 @@
-2. Logging decorator
+2. cyber-dojo bug - received file not being deleted 3
+3. Continuing work on approvals-cli: 5
+   4. Documentation
+   5. Adding a binary
+   6. Smarter namer
+   7. test improvements - do we have all the tests we need?
+4. Create a self-sufficient mob. 
+   5. Need a reproducible anydesk machine
+      6. Create other EC2 instances
+      7. gitpod
+      8. Llewellyn starts an instance and then someone joins with RDP
+      9. Less comfortable -Github action that spins up an EC2 instance to launch the existing machine-
+   6. Need a zoom that anyone can connect to
+3. Logging decorator
 3. Date scrubbing
 
 

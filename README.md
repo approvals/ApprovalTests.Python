@@ -118,6 +118,34 @@ if __name__ == "__main__":
 
 This example has the same behaviour as the pytest version, but uses the built-in test framework `unittest` instead.
 
+### Example using CLI
+
+You can invoke a verify() call from the command line. This allows invoking python approvals from any other stack via subprocesses.
+
+#### Usage
+
+```
+python -m approvaltests --test-id hello --received "hello world!"
+```
+or
+```
+python -m approvaltests -t hello -r "hello world!"
+```
+
+or 
+
+```
+echo "hello world!" | python -m approvaltests -t hello
+```
+
+#### Argument Definitions
+
+- __`--test-id`__ or __`-t`__: Test identifier used to name the `approved.txt` and `received.txt` files for the test.
+
+- __`--received`__ or __`-r`__: The output of the program under test (a string) that is passed to the verify method.
+
+  - __`stdin`__: Instead of providing a `received` argument, you may use `stdin`.
+
 
 ## Reporters
 
