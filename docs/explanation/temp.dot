@@ -1,0 +1,15 @@
+digraph G { node [style=filled, shape=rect]
+
+"Running approvals" -> run -> "captures snapshot" -> "Compares snapshot" -> {passes, "fails"}
+"fails" -> "open reporter(diff tool)"
+"Add behavior to approval" -> "Modify Code" -> "run test" -> "Fail (Expected)"  -> "Diff Tool" -> {"Change Wanted", "Unwanted Change"}
+"New approval" -> "Write test" -> "write code" -> "run test2" -> "Fail (Forced)"  -> "Diff Tool2" -> {"Feature Complete", "Feature incomplete"}
+"Feature incomplete" -> "write code"
+"Feature Complete" -> "Approve New File2"
+"Unwanted Change" -> "Modify Code"
+"Change Wanted" -> "Approve New File"
+
+"Change Wanted" [color=green]
+
+"Unwanted Change" [color=red]
+}
