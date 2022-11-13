@@ -1,6 +1,12 @@
 # Approval Testing Concepts
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Developer Workflow](#developer-workflow)
+  * [TDD](#tdd)
+  * [Tactics](#tactics)
+    * [Approving Files](#approving-files)<!-- endToc -->
 
 For Intention Only:
 Diagram representing the workflow of a dev using approval tests
