@@ -31,7 +31,9 @@ def assert_verify_methods_have_options(module):
 
         argspec = inspect.getfullargspec(obj)
         has_options = "options" in argspec.kwonlyargs
-        assert has_options, f"Missing Keyword only parameter `options` in {function_name}:\n\t{argspec}"
+        assert (
+            has_options
+        ), f"Missing Keyword only parameter `options` in {function_name}:\n\t{argspec}"
 
 
 def test_empty_options_has_default_reporter():
