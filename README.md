@@ -280,7 +280,7 @@ These dependencies are always required for approvaltests
 ```txt
 pytest>=4.0.0
 empty-files>=0.0.3
-typing_extensions>=4.4.0
+typing_extensions>=3.6.2
 ```
 <sup><a href='/requirements.prod.required.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.required.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
