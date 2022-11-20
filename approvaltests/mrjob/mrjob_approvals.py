@@ -7,13 +7,10 @@ from mrjob.job import MRJob
 from approvaltests import verify, verify_all_combinations, Options
 
 
-# we can compare to other place that pass options to verify
-# pass in the options object as an optional parameter
 def verify_map_reduce(
     mr_job_under_test: MRJob, test_data: str, *, options: Optional[Options] = None
 ) -> None:
     storyboard = print_map_reduce_job(mr_job_under_test, test_data)
-    # pass into the verify call an options object
     verify(storyboard, options=options)
 
 
