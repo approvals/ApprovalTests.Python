@@ -31,7 +31,7 @@ def assert_verify_methods_have_options(module):
 
         argspec = inspect.getfullargspec(obj)
         print(f"{function_name}: {argspec}")
-        has_options = "options" in argspec.kwonlyargs # Diana want could have said got_options ? like got_milk ?
+        has_options = "options" in argspec.kwonlyargs
         assert (has_options), f"In {function_name}"
 
 
