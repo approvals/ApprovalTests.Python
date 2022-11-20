@@ -53,5 +53,5 @@ If you want to set the extension of the approval file, you can now do it through
 ```py
 verify(content, options=Options().for_file.with_extension(".md"))
 ```
-<sup><a href='/tests/test_options.py#L63-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_with_file_extension' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_options.py#L64-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_with_file_extension' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
