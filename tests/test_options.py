@@ -8,6 +8,7 @@ from approvaltests import (
     combination_approvals,
 )
 from approvaltests.core.options import Options
+from approvaltests.mrjob import mrjob_approvals
 from approvaltests.utilities import command_line_approvals
 from approvaltests.utilities.logger import simple_logger_approvals
 
@@ -17,6 +18,7 @@ def test_every_function_in_approvals_with_verify_has_an_options():
     assert_verify_methods_have_options(combination_approvals)
     assert_verify_methods_have_options(simple_logger_approvals)
     assert_verify_methods_have_options(command_line_approvals)
+    assert_verify_methods_have_options(mrjob_approvals)
 
 
 def assert_verify_methods_have_options(module):
@@ -28,8 +30,9 @@ def assert_verify_methods_have_options(module):
             continue
 
         argspec = inspect.getfullargspec(obj)
-        print(argspec)
-        assert "options" in argspec.kwonlyargs
+        print(f"{function_name}: {argspec}")
+        has_options = "options" in argspec.kwonlyargs # Diana want could have said got_options ? like got_milk ?
+        assert (has_options), f"In {function_name}"
 
 
 def test_empty_options_has_default_reporter():

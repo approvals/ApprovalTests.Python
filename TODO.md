@@ -1,4 +1,6 @@
-2. cyber-dojo bug - received file not being deleted 3
+2. Mr job - need to be able to test against more than one line in a file.
+   3. Can we change the paradigm for how we do combinations with data and MRJob?
+3. cyber-dojo bug - received file not being deleted 3
 3. Continuing work on approvals-cli: 5
    4. Documentation
    5. Adding a binary
