@@ -9,7 +9,9 @@ from approvaltests import verify, verify_all_combinations, Options
 
 # we can compare to other place that pass options to verify
 # pass in the options object as an optional parameter
-def verify_map_reduce(mr_job_under_test: MRJob, test_data: str, *, options:Optional[Options] = None) -> None:
+def verify_map_reduce(
+    mr_job_under_test: MRJob, test_data: str, *, options: Optional[Options] = None
+) -> None:
     storyboard = print_map_reduce_job(mr_job_under_test, test_data)
     # pass into the verify call an options object
     verify(storyboard, options=options)
@@ -30,8 +32,8 @@ def verify_templated_map_reduce(
     map_reduction: MRJob,
     input_creator: Callable[[Sequence[Any]], str],
     params: Sequence[Any],
-        *,
-        options: Optional[Options] = None
+    *,
+    options: Optional[Options] = None,
 ) -> None:
     def map_reducer_creator(*args):
         return map_reduction
@@ -45,12 +47,15 @@ def verify_templated_map_reduce_with_customized_job(
     map_reduce_creator: Callable[[Sequence[Any]], MRJob],
     input_creator: Callable[[Sequence[Any]], str],
     params: Sequence[Sequence[Any]],
-        *,
-        options: Optional[Options] = None
+    *,
+    options: Optional[Options] = None,
 ) -> None:
     inputs = product(*params)
     verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
-        lambda i: map_reduce_creator(*i), lambda i: input_creator(*i), inputs, options=options
+        lambda i: map_reduce_creator(*i),
+        lambda i: input_creator(*i),
+        inputs,
+        options=options,
     )
 
 
@@ -65,8 +70,8 @@ def verify_templated_map_reduce_with_customized_job_with_dictionary_args(
     map_reduce_creator: Callable[[Dict[str, Any]], MRJob],
     input_creator: Callable[[Dict[str, Any]], str],
     params: Dict[str, Sequence[Any]],
-        *,
-        options: Optional[Options] = None
+    *,
+    options: Optional[Options] = None,
 ) -> None:
     inputs = product_dict(**params)
     verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
@@ -79,7 +84,7 @@ def verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
     input_creator: Callable[[Any], str],
     inputs: Dict[str, Any],
     *,
-    options: Optional[Options]=None
+    options: Optional[Options] = None,
 ) -> None:
     storyboard = ""
     for input in inputs:

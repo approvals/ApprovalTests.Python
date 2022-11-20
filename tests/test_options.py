@@ -32,7 +32,7 @@ def assert_verify_methods_have_options(module):
         argspec = inspect.getfullargspec(obj)
         print(f"{function_name}: {argspec}")
         has_options = "options" in argspec.kwonlyargs
-        assert (has_options), f"In {function_name}"
+        assert has_options, f"In {function_name}"
 
 
 def test_empty_options_has_default_reporter():
