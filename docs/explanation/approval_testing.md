@@ -4,6 +4,9 @@
 ## Contents
 
   * [Developer Workflow](#developer-workflow)
+  * [Running Approvals](#running-approvals)
+  * [Add Behavior to Existing Approval](#add-behavior-to-existing-approval)
+  * [New Approval](#new-approval)
   * [TDD](#tdd)
   * [Tactics](#tactics)
     * [Approving Files](#approving-files)<!-- endToc -->
