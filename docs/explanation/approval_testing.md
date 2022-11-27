@@ -23,13 +23,36 @@ User would do:
 - approvaltests already installed
 - user does: write new test -> run the test
 
+## Running Approvals
 ```mermaid
-digraph G { node [style=filled, shape=rect]
-
-Verify(object) -> 
-
-}
+flowchart
+Run --> capture(Captures Snapshot) --> comp(Compares Snapshot) --> Passes 
+comp --> Fails
+Fails --> reporter["Open Reporter (Diff Tool)"]
 ```
+
+## Add Behavior to Existing Approval
+```mermaid
+flowchart
+mod(Modify Code) --> run(Run Test) --> fail["Fail (Expected)"]  --> diff(Diff Tool) 
+diff-->wanted[Wanted Change]
+style wanted fill:#0f0
+diff --> unwanted(Unwanted Change)
+style unwanted fill:#f00
+unwanted --> mod
+wanted --> approve(Approve New File)
+```
+
+## New Approval
+```mermaid
+flowchart
+write(Write Test) --> code(Write Code) --> runt(Run Test) --> fail["Fail(Forced)"] --> diff(Diff Tool)
+diff --> complete(Feature Complete)
+diff --> incomplete(Feature Incomplete)
+complete --> approve(Approve New File)
+incomplete --> code
+```
+
 
 ## TDD 
 
