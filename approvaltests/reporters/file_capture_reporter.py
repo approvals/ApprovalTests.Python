@@ -17,7 +17,9 @@ class FileCaptureReporter(Reporter):
     def __init__(
         self,
         message: str = "*** adding received file via FileCaptureReporter for further inspection",
-        is_git_registration_needed: Callable[[], bool] = is_git_registration_needed_for_github,
+        is_git_registration_needed: Callable[
+            [], bool
+        ] = is_git_registration_needed_for_github,
     ):
         self.message = message
         self.is_git_registration_needed = is_git_registration_needed
