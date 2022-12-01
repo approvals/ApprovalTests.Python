@@ -5,7 +5,7 @@ from approvaltests import Reporter
 from approval_utilities.utilities.os_utilities import run_command
 
 
-def is_git_registration_needed() -> bool:
+def is_git_registration_needed_for_github() -> bool:
     return os.environ.get("GITHUB_ACTIONS") is not None
 
 
@@ -17,7 +17,7 @@ class FileCaptureReporter(Reporter):
     def __init__(
         self,
         message: str = "*** adding received file via FileCaptureReporter for further inspection",
-        is_git_registration_needed: Callable[[], bool] = is_git_registration_needed,
+        is_git_registration_needed: Callable[[], bool] = is_git_registration_needed_for_github,
     ):
         self.message = message
         self.is_git_registration_needed = is_git_registration_needed

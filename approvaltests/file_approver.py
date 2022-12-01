@@ -34,7 +34,7 @@ class FileComparator(Comparator):
             return False
 
 
-class FileApprover(object):
+class FileApprover:
     @staticmethod
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator

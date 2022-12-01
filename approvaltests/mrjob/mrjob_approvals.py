@@ -33,7 +33,7 @@ def verify_templated_map_reduce(
     *,
     options: Optional[Options] = None,
 ) -> None:
-    def map_reducer_creator(*args):
+    def map_reducer_creator(*_):
         return map_reduction
 
     verify_templated_map_reduce_with_customized_job(

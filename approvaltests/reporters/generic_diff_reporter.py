@@ -2,13 +2,13 @@ from typing import List
 
 from approval_utilities.utilities.os_utilities import run_command
 from approval_utilities.utils import ensure_file_exists
+from approval_utilities.utils import to_json
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
     create_config,
 )
-from approval_utilities.utils import to_json
 
 PROGRAM_FILES = "{ProgramFiles}"
 

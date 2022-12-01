@@ -1,6 +1,6 @@
-from approvaltests import verify
 import argparse
 from sys import stdin
+from approvaltests import verify
 
 from approvaltests.namer.cli_namer import CliNamer
 
@@ -13,7 +13,7 @@ def parse_arguments():
     parser.add_argument("--received", "-r", type=str, required=False, help="received")
     args = parser.parse_args()
     received = args.received
-    if args.received == None:
+    if args.received is None:
         received = stdin.read()
     return (args.id, received)
 

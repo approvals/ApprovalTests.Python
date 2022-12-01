@@ -5,22 +5,22 @@ from typing import Callable, List, Optional, Any, ByteString, Iterator
 
 import approvaltests.reporters.default_reporter_factory
 from approval_utilities import utils
-from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
 from approval_utilities.approvaltests.core.verifiable import Verifiable
+from approval_utilities.list_utils import format_list
+from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approval_utilities.utilities.map_reduce import first
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
+from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
 from approvaltests.core.namer import Namer
-from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
-from approval_utilities.list_utils import format_list
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.string_writer import StringWriter
-from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
     FormatterWrapperOfArgparseNamespace,
 )
