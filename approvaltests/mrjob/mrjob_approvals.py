@@ -85,10 +85,10 @@ def verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
     options: Optional[Options] = None,
 ) -> None:
     storyboard = ""
-    for input in inputs:
-        storyboard += f"===================\n\n{input} =>\n"
-        data = input_creator(input)
-        map_reduction = map_reduce_creator(input)
+    for input1 in inputs:
+        storyboard += f"===================\n\n{input1} =>\n"
+        data = input_creator(input1)
+        map_reduction = map_reduce_creator(input1)
 
         storyboard += f"{print_map_reduce_job(map_reduction, data)}\n"
     verify(storyboard, options=options)

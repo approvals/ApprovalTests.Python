@@ -12,14 +12,14 @@ def test_verify_command_line():
 
 def test_verify_command_line_with_input():
     verify_command_line(
-        'python -c "import sys; print(sys.stdin.read())"', input="input"
+        'python -c "import sys; print(sys.stdin.read())"', input_string="input"
     )
 
 
 def test_command_line_verify():
     verify_command_line(
         f"python approvaltests/commandline_interface.py -t tests/utilities/passing_command_line_verify",
-        input="hello from command line interface",
+        input_string="hello from command line interface",
         current_working_directory=Path(__file__).parents[2],
         additional_environment_variables={"PYTHONPATH": "."},
     )

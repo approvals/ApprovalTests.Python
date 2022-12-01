@@ -68,7 +68,7 @@ class DateScrubber:
             supported += f"    {examples[0]} | {date_regex} \n"
             scrubber = DateScrubber(date_regex)
             if scrubber.scrub(example) == "<date0>":
-                return lambda d: scrubber.scrub(d)
+                return scrubber.scrub
 
         raise Exception(
             f"No match found for '{example}'.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 \n Current supported formats are: \n{supported}"
