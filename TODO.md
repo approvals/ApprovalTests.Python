@@ -1,6 +1,6 @@
-2. Mr job - need to be able to test against more than one line in a file.
+3. Mr job - need to be able to test against more than one line in a file.
    3. Can we change the paradigm for how we do combinations with data and MRJob?
-3. cyber-dojo bug - received file not being deleted 3
+1. cyber-dojo bug - received file not being deleted 3
 3. Continuing work on approvals-cli: 5
    4. Documentation
    5. Adding a binary
@@ -14,7 +14,6 @@
       9. Less comfortable -Github action that spins up an EC2 instance to launch the existing machine-
    6. Need a zoom that anyone can connect to
 3. Logging decorator
-3. Date scrubbing
 
 
 
@@ -29,9 +28,7 @@
       2. do a safeguarding for this
       3. clean up branch
 7. Python Minimal 
-   1. fix pypi key issues - Start here
    2. python parse requirements.prod.extras in minimal.py
-   3. Figure out how to reference the two pypi projects in readme
    4. handle UNKNOWN VERSION situation in setup_utils.py better
 8. In the start project should we have a test that confers that the extras are being loaded directly 
    1. What should that test be ? Pairwise, bs4

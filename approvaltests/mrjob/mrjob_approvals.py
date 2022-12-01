@@ -1,10 +1,11 @@
 import itertools
 from io import BytesIO
 from itertools import product
-from typing import Callable, List, Sequence, Any, Dict, Optional
+from typing import Callable, Sequence, Any, Dict, Optional
 
 from mrjob.job import MRJob
-from approvaltests import verify, verify_all_combinations, Options
+
+from approvaltests import verify, Options
 
 
 def verify_map_reduce(
