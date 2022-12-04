@@ -57,10 +57,10 @@ incomplete --> code
 ```
 
 
-## TDD vs ApprovalTests
+## TDD and ApprovalTests
 
-### TDD
-Test Driven Development usually follows the path:
+### TDD using Asserts
+Test Driven Development usually follows this path:
 ```mermaid
 flowchart
 write("Write Test\n(with Expected Result)") --> 
@@ -73,12 +73,13 @@ style red fill:#f00
 style green fill:#0f0
 ```
 
-### ApprovalTests
-The ApprovalTests loop is slightly different:
-
+### TDD using ApprovalTests
+The ApprovalTests loop is slightly different than traditional TDD.
 It splits the writing of the test into 2 parts:
-1. Write Arange/Act part
-1. Do the Assert part (Approve it)
+1. Writing the Test 
+1. Capturing the Expected Result
+
+And moves the capturing of the expected result to after the code is written.
 
 ```mermaid
 flowchart
@@ -90,14 +91,9 @@ assess --> code
 style approve fill:#0f0
 ```
 
+### TDD 
 
-These part get seperated to create the full cycle
-1. Write Arange/Act
-1. See it fail
-1. Write Code
-1. See it produce the desired output
-1. Approve it
-1. See it pass
+<extra notes here>
 
 ## Tactics
 
