@@ -57,20 +57,38 @@ incomplete --> code
 ```
 
 
-## TDD 
+## TDD vs ApprovalTests
 
-Test Driven Development usually follow the path 
+### TDD
+Test Driven Development usually follows the path:
+```mermaid
+flowchart
+write("Write Test\n(with Expected Result)") --> 
+red(See it Fail) --> 
+code(Write Code) --> 
+green(See it Pass) --> 
+refactor(Refactor) --> write
+code --> red
+style red fill:#f00
+style green fill:#0f0
+```
 
-1. Write Arange/Act/Assert Test
-1. See it fail
-1. Write Code
-1. See it pass
-
-Approvaltests loop is slightly different.
+### ApprovalTests
+The ApprovalTests loop is slightly different:
 
 It splits the writing of the test into 2 parts:
 1. Write Arange/Act part
 1. Do the Assert part (Approve it)
+
+```mermaid
+flowchart
+write(Write Arange/Act) --> red(See It Fail) --> code(Write Code)
+code --> approve(See It Produce \nThe Desired Output)
+approve --> green(Approve It) --> refactor(Refactor) --> write
+style red fill:#f00
+style green fill:#0f0
+```
+
 
 These part get seperated to create the full cycle
 1. Write Arange/Act
