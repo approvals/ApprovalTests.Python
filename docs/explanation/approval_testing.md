@@ -82,11 +82,12 @@ It splits the writing of the test into 2 parts:
 
 ```mermaid
 flowchart
-write(Write Arange/Act) --> red(See It Fail) --> code(Write Code)
-code --> approve(See It Produce \nThe Desired Output)
-approve --> green(Approve It) --> refactor(Refactor) --> write
-style red fill:#f00
-style green fill:#0f0
+write("Write Test\n(without Expected Result)") -->
+code(Write Code) -->
+assess(Assess the Result) -->
+approve(Approve it:\n Capture Expected Result) --> refactor(Refactor) --> write
+assess --> code
+style approve fill:#0f0
 ```
 
 
