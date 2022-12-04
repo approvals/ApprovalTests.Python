@@ -37,10 +37,13 @@ Fails --> reporter["Open Reporter (Diff Tool)"]
 ## Add Behavior to Existing Approval
 ```mermaid
 flowchart
-mod(Modify Code) --> run(Run Test) --> fail["Fail (Expected)"]  --> diff(Diff Tool) 
-diff-->wanted[Wanted Change]
+mod(Modify Code) --> run(Run Test)
+--> fail["Fail (Expected)"]  
+--> diff(Diff Tool)  
+--> compare(Review Changes)
+-->wanted[Wanted Change]
 style wanted fill:#0f0
-diff --> unwanted(Unwanted Change)
+compare --> unwanted(Unwanted Change)
 style unwanted fill:#f00
 unwanted --> mod
 wanted --> approve(Approve New File)
@@ -49,11 +52,18 @@ wanted --> approve(Approve New File)
 ## New Approval
 ```mermaid
 flowchart
-write(Write Test) --> code(Write Code) --> runt(Run Test) --> fail["Fail(Forced)"] --> diff(Diff Tool)
-diff --> complete(Feature Complete)
-diff --> incomplete(Feature Incomplete)
+write(Write Test) 
+--> code(Write Code) 
+--> runt(Run Test) 
+--> fail["Fail(Forced)"]
+--> diff(Diff Tool)
+--> review(Review Result)
+--> complete(Feature Complete)
+review --> incomplete(Feature Incomplete)
 complete --> approve(Approve New File)
 incomplete --> code
+style incomplete fill:#f00
+style complete fill:#0f0
 ```
 
 
