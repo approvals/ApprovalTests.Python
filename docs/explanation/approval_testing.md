@@ -1,15 +1,7 @@
 # Approval Testing Concepts
 
-<!-- toc -->
-## Contents
 
-  * [Developer Workflow](#developer-workflow)
-  * [Running Approvals](#running-approvals)
-  * [Add Behavior to Existing Approval](#add-behavior-to-existing-approval)
-  * [New Approval](#new-approval)
-  * [TDD](#tdd)
-  * [Tactics](#tactics)
-    * [Approving Files](#approving-files)<!-- endToc -->
+toc
 
 For Intention Only:
 Diagram representing the workflow of a dev using approval tests
