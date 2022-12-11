@@ -20,6 +20,7 @@ from approval_utilities.utils import to_json, is_windows_os
 
 class GenericDiffReporterTests(unittest.TestCase):
     def setUp(self) -> None:
+        GenericDiffReporter.reset_hit_count()
         self.factory = GenericDiffReporterFactory()
         if os.path.exists(self.tmp_dir):
             shutil.rmtree(self.tmp_dir)
@@ -86,6 +87,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(0, os.stat(approved).st_size)
 
     def test_approved_file_not_changed_when_one_exists_already(self) -> None:
+
         namer = get_default_namer()
         approved = namer.get_approved_filename()
         os.remove(approved)
@@ -181,7 +183,6 @@ class GenericDiffReporterTests(unittest.TestCase):
         verify(str(self.factory.get("PyCharm")))
 
     def test_diff_throttling(self) -> None:
-        GenericDiffReporter.reset_hit_count()
         reporter = self.instantiate_reporter_for_test()
         for i in range(0,7):
             reporter.report("a.txt","b.txt")
