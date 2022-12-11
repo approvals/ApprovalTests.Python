@@ -19,6 +19,10 @@ class GenericDiffReporter(Reporter):
     an external diff tool given by config.
     """
 
+    throttle_count = 0
+    throttling_threshold = 5
+    hit_count = 0
+
     @staticmethod
     def create(diff_tool_path: str) -> "GenericDiffReporter":
         return GenericDiffReporter(create_config(["custom", diff_tool_path]))
@@ -50,6 +54,12 @@ class GenericDiffReporter(Reporter):
     def report(self, received_path: str, approved_path: str) -> bool:
         if not self.is_working():
             return False
+        GenericDiffReporter.hit_count += 1
+        if GenericDiffReporter.throttling_threshold < GenericDiffReporter.hit_count:
+            GenericDiffReporter.throttle_count += 1
+            return True
+        # do stuff
+
         ensure_file_exists(approved_path)
         command_array = self.get_command(received_path, approved_path)
         self.run_command(command_array)
@@ -60,6 +70,9 @@ class GenericDiffReporter(Reporter):
         if found:
             self.path = found
         return found
+
+    def get_throttle_count(self) -> int:
+        return GenericDiffReporter.throttle_count
 
     @staticmethod
     def expand_program_files(path: str) -> str:
@@ -75,3 +88,7 @@ class GenericDiffReporter(Reporter):
             if Command.executable(possible):
                 return possible
         return path.replace(PROGRAM_FILES, "C:/Program Files")
+
+    @staticmethod
+    def reset_hit_count():
+        GenericDiffReporter.hit_count = 0

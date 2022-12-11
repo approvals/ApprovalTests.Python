@@ -1,2 +1,4 @@
 [MESSAGES CONTROL]
 disable=R0903, C0114, C0115, C0116, C0301
+[MASTER]
+init-hook='import sys; sys.path.append("C:\\Code\\ApprovalTests.Python\\")'

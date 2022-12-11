@@ -2,6 +2,7 @@ import os
 import re
 import shutil
 import unittest
+from sre_constants import RANGE
 from typing import cast
 
 from approvaltests import Options
@@ -179,6 +180,17 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_get_pycharm_reporter(self) -> None:
         verify(str(self.factory.get("PyCharm")))
+    def test_diff_throttling(self) -> None:
+        # reset hit count
+        GenericDiffReporter.reset_hit_count()
+        # create reporter
+        reporter = self.instantiate_reporter_for_test()
+        # call 7 times
+        for i in range(0,7):
+            reporter.report("a.txt","b.txt")
+        assert 7 == GenericDiffReporter.hit_count
+        assert 2 == reporter.get_throttle_count()
+        # except 2 throttlings
 
     def test_non_working_reporter_does_not_report(self) -> None:
         self.assertFileDoesNotExist(self.approved_file_path)
