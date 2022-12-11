@@ -1,15 +1,7 @@
 # Approval Testing Concepts
 
-<!-- toc -->
-## Contents
 
-  * [Developer Workflow](#developer-workflow)
-  * [Running Approvals](#running-approvals)
-  * [Add Behavior to Existing Approval](#add-behavior-to-existing-approval)
-  * [New Approval](#new-approval)
-  * [TDD](#tdd)
-  * [Tactics](#tactics)
-    * [Approving Files](#approving-files)<!-- endToc -->
+toc
 
 For Intention Only:
 Diagram representing the workflow of a dev using approval tests
@@ -37,10 +29,13 @@ Fails --> reporter["Open Reporter (Diff Tool)"]
 ## Add Behavior to Existing Approval
 ```mermaid
 flowchart
-mod(Modify Code) --> run(Run Test) --> fail["Fail (Expected)"]  --> diff(Diff Tool) 
-diff-->wanted[Wanted Change]
+mod(Modify Code) --> run(Run Test)
+--> fail["Fail (Expected)"]  
+--> diff(Diff Tool)  
+--> compare(Review Changes)
+-->wanted[Wanted Change]
 style wanted fill:#0f0
-diff --> unwanted(Unwanted Change)
+compare --> unwanted(Unwanted Change)
 style unwanted fill:#f00
 unwanted --> mod
 wanted --> approve(Approve New File)
@@ -49,36 +44,58 @@ wanted --> approve(Approve New File)
 ## New Approval
 ```mermaid
 flowchart
-write(Write Test) --> code(Write Code) --> runt(Run Test) --> fail["Fail(Forced)"] --> diff(Diff Tool)
-diff --> complete(Feature Complete)
-diff --> incomplete(Feature Incomplete)
+write(Write Test) 
+--> code(Write Code) 
+--> runt(Run Test) 
+--> fail["Fail(Forced)"]
+--> diff(Diff Tool)
+--> review(Review Result)
+--> complete(Feature Complete)
+review --> incomplete(Feature Incomplete)
 complete --> approve(Approve New File)
 incomplete --> code
+style incomplete fill:#f00
+style complete fill:#0f0
 ```
 
 
-## TDD 
+## TDD and ApprovalTests
 
-Test Driven Development usually follow the path 
+### TDD using Asserts
+Test Driven Development usually follows this path:
+```mermaid
+flowchart
+write("Write Test\n(with Expected Result)") --> 
+red(See it Fail) --> 
+code(Write Code) --> 
+green(See it Pass) --> 
+refactor(Refactor) --> write
+code --> red
+style red fill:#f00
+style green fill:#0f0
+```
 
-1. Write Arange/Act/Assert Test
-1. See it fail
-1. Write Code
-1. See it pass
-
-Approvaltests loop is slightly different.
-
+### TDD using ApprovalTests
+The ApprovalTests loop is slightly different than traditional TDD.
 It splits the writing of the test into 2 parts:
-1. Write Arange/Act part
-1. Do the Assert part (Approve it)
+1. Writing the Test 
+1. Capturing the Expected Result
 
-These part get seperated to create the full cycle
-1. Write Arange/Act
-1. See it fail
-1. Write Code
-1. See it produce the desired output
-1. Approve it
-1. See it pass
+And moves the capturing of the expected result to after the code is written.
+
+```mermaid
+flowchart
+write("Write Test\n(without Expected Result)") -->
+code(Write Code) -->
+assess(Assess the Result) -->
+approve(Approve it:\n Capture Expected Result) --> refactor(Refactor) --> write
+assess --> code
+style approve fill:#0f0
+```
+
+### TDD 
+
+<extra notes here>
 
 ## Tactics
 
