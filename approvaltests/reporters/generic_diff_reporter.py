@@ -54,11 +54,13 @@ class GenericDiffReporter(Reporter):
     def report(self, received_path: str, approved_path: str) -> bool:
         if not self.is_working():
             return False
+
         GenericDiffReporter.hit_count += 1
+
         if GenericDiffReporter.throttling_threshold < GenericDiffReporter.hit_count:
             GenericDiffReporter.throttle_count += 1
+            print("Skipping the diff because the throttling threshold has been exceeded.")
             return True
-        # do stuff
 
         ensure_file_exists(approved_path)
         command_array = self.get_command(received_path, approved_path)
@@ -92,3 +94,4 @@ class GenericDiffReporter(Reporter):
     @staticmethod
     def reset_hit_count():
         GenericDiffReporter.hit_count = 0
+        GenericDiffReporter.throttle_count = 0
