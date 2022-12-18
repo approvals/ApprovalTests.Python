@@ -1,4 +1,3 @@
-import os
 import re
 from pathlib import Path
 
@@ -31,7 +30,7 @@ def do_the_setup(package_name, package_description, required, extra_requires):
         author="ApprovalTests Contributors",
         author_email="llewellyn.falco@gmail.com",
         url="https://github.com/approvals/ApprovalTests.Python",
-        python_requires=">=3.6.1",
+        python_requires=">=3.7",
         packages=find_packages(include=["approvaltests*"]),
         package_data={"approvaltests": ["reporters/reporters.json"]},
         install_requires=required,

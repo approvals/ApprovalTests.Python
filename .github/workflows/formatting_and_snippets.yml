@@ -2,7 +2,7 @@ name: Formatting and Snippets
 on:
   push:
 jobs:
-  release:
+  format_and_snippets:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

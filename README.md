@@ -272,7 +272,7 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 
 ### Dependencies
 
-ApprovalTests require Python 3.6 or greater and the following dependencies:
+ApprovalTests require Python 3.7 or greater and the following dependencies:
 #### Required dependencies
 These dependencies are always required for approvaltests
 <!-- snippet: requirements.prod.required.txt -->
@@ -312,7 +312,7 @@ To run the self-tests, install pytest and tox, then execute
 
     python -m tox
 
-This will run the self-tests on several python versions. We support python 3.6 and above. 
+This will run the self-tests on several python versions. We support python 3.7 and above. 
 
 All pull requests will be pre-checked using GitHub actions to execute all these tests. You can see the [results of test
 runs here](https://github.com/approvals/ApprovalTests.Python/actions).
