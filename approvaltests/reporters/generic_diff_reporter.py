@@ -19,9 +19,9 @@ class GenericDiffReporter(Reporter):
     an external diff tool given by config.
     """
 
-    throttle_count = 0
-    throttling_threshold = 5
-    hit_count = 0
+    limit_count = 0
+    diff_tool_limit = 5
+    opened_diff_tool_count = 0
 
     @staticmethod
     def create(diff_tool_path: str) -> "GenericDiffReporter":
@@ -55,11 +55,13 @@ class GenericDiffReporter(Reporter):
         if not self.is_working():
             return False
 
-        GenericDiffReporter.hit_count += 1
+        GenericDiffReporter.opened_diff_tool_count += 1
 
-        if GenericDiffReporter.throttling_threshold < GenericDiffReporter.hit_count:
-            GenericDiffReporter.throttle_count += 1
-            print("Skipping the diff because the throttling threshold has been exceeded.")
+        if GenericDiffReporter.diff_tool_limit < GenericDiffReporter.opened_diff_tool_count:
+            GenericDiffReporter.limit_count += 1
+            print(f"Skipping the diff because the limit[{GenericDiffReporter.diff_tool_limit}]"
+                  f" of opened diff reporters has been exceeded.\n"
+                  f"You can configure this with GenericDiffReporter.diff_tool_limit")
             return True
 
         ensure_file_exists(approved_path)
@@ -73,8 +75,8 @@ class GenericDiffReporter(Reporter):
             self.path = found
         return found
 
-    def get_throttle_count(self) -> int:
-        return GenericDiffReporter.throttle_count
+    def get_limit_count(self) -> int:
+        return GenericDiffReporter.limit_count
 
     @staticmethod
     def expand_program_files(path: str) -> str:
@@ -92,6 +94,6 @@ class GenericDiffReporter(Reporter):
         return path.replace(PROGRAM_FILES, "C:/Program Files")
 
     @staticmethod
-    def reset_hit_count():
-        GenericDiffReporter.hit_count = 0
-        GenericDiffReporter.throttle_count = 0
+    def reset_opened_diff_tool_count():
+        GenericDiffReporter.opened_diff_tool_count = 0
+        GenericDiffReporter.limit_count = 0
