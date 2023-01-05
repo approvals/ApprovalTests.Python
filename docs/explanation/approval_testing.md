@@ -27,6 +27,8 @@ Fails --> reporter["Open Reporter (Diff Tool)"]
 ```
 
 ## Add Behavior to Existing Approval
+If you are fixing a bug (or adding a feature), this will change the expected behavior. Therefore when you run the test, it will fail.
+
 ```mermaid
 flowchart
 mod(Modify Code) --> run(Run Test)
@@ -42,6 +44,8 @@ wanted --> approve(Approve New File)
 ```
 
 ## New Approval
+Because the `.approved` file does not exist when writing a new test, the test will always fail the first time you run it.
+
 ```mermaid
 flowchart
 write(Write Test) 
@@ -101,7 +105,7 @@ style approve fill:#0f0
 
 ### Approving Files
 
-Coping from the recieved into the appproved. This can be done on the file system or directly in the diff tool.
+Copying from the recieved into the appproved. This can be done on the file system or directly in the diff tool.
 
 "Expected Failure"  -> {"failure2", "Pass (unexpected)"} 
 GOAL:  capture the Expected result
