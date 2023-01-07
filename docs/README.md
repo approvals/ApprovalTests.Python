@@ -19,6 +19,10 @@
 * [MRJobs](reference/mr_job.md)
 * [SimpleLogger](reference/simple_logger.md)
 
+## Explanations 
+* [Place to modify output](explanation/creating_output.md)
+* [Approval Testing Concepts](explanation/approval_testing.md)
+
 ## Tutorial
 * [Intro to reporters](tutorial/intro-to-reporters.md)
 
