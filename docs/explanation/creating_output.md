@@ -32,9 +32,9 @@ Let's say you have an object
 
 ```json
 {
-  first_name: "Llewellyn"
-  last_name:"Falco"
-  age: "infinite"
+  "first_name" : "Llewellyn"
+  "last_name" :"Falco"
+  "age" : "infinite"
 }
 ```
 The default ToString rendering will look as above, but you don't want that, you want it to look like 
@@ -55,6 +55,7 @@ Will scrub the logs indivually, instead of the combined results
 ## Place 3 - Scrub the full resulting file
 
 After all is said and done, there is still the final step of scrubbing which apply to the full `.approved.` file.
+
 Find out more about [scrubbers here](../reference/scrubbers.md)
 
 
