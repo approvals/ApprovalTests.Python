@@ -2,8 +2,9 @@ from pathlib import Path
 
 
 def test_init_present():
-    assert_directories_have_inits(Path("../approvaltests"))
-    assert_directories_have_inits(Path("../approval_utilities"))
+    current_working_directory=Path(__file__).parents[1],
+    assert_directories_have_inits(current_working_directory / "approvaltests")
+    assert_directories_have_inits(current_working_directory / "approval_utilities")
 
 
 def is_generated_code(directory_name: str):
