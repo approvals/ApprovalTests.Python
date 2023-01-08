@@ -11,9 +11,9 @@
 
 # Agenda
 
-  1. Choose item to work on (  15 minutes or less )
+  1. Choose item to work on ( 15 minutes or less)
   2. Do item (1-2 hours)
-  3. Retro ( As long as needed, has been taking 2-3 hours)
+  3. Retrospective (As long as needed, has been taking 2-3 hours)
 
 **You can leave at any time** - and people do.
 
