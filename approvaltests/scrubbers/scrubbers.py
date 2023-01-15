@@ -67,13 +67,13 @@ def templates_regex_scrubber_with_replacement() -> Scrubber:
     )
 
 
-def create_line_scrubber(text_to_remove:str) -> Scrubber:
-    return lambda t:scrub_lines_containing(text_to_remove,t)
+def create_line_scrubber(remove_lines_containing:str) -> Scrubber:
+    return lambda t:scrub_lines_containing(remove_lines_containing, t)
 
 
-def scrub_lines_containing(text_to_remove, text):
+def scrub_lines_containing(remove_lines_containing, text):
     lines = text.splitlines()
     for line in lines:
-        if text_to_remove in line:
+        if remove_lines_containing in line:
             lines.remove(line)
     return "\n".join(lines)
