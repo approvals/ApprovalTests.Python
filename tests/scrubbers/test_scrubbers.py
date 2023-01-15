@@ -6,7 +6,7 @@ from approvaltests.scrubbers import combine_scrubbers
 from approvaltests.scrubbers.scrubbers import (
     scrub_all_dates,
     create_regex_scrubber,
-    scrub_all_guids,
+    scrub_all_guids, create_line_scrubber,
 )
 
 
@@ -75,3 +75,16 @@ def test_combine_scrubbers():
             )
         ),
     )
+
+
+def test_line_scrubber():
+    text = """
+    line 1
+    remove me
+    line 2
+    also remove me
+    line 3
+    """
+    text_to_remove = "remove"
+
+    verify(text, options=Options().with_scrubber(create_line_scrubber(text_to_remove)))

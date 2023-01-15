@@ -3,7 +3,6 @@ from collections import defaultdict, abc
 from typing import Callable, Union, DefaultDict
 from approval_utilities.utilities.logger.logging_instance import print_type
 
-
 Scrubber = Callable[[str], str]
 
 # def print_type(value):
@@ -66,3 +65,15 @@ def templates_regex_scrubber_with_replacement() -> Scrubber:
     return create_regex_scrubber(
         "your pattern here: [a-zA-Z]+/d{4}", "<your replacement>"
     )
+
+
+def create_line_scrubber(text_to_remove:str) -> Scrubber:
+    return lambda t:scrub_lines_containing(text_to_remove,t)
+
+
+def scrub_lines_containing(text_to_remove, text):
+    lines = text.splitlines()
+    for line in lines:
+        if text_to_remove in line:
+            lines.remove(line)
+    return "\n".join(lines)
