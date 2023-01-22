@@ -37,7 +37,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         reporters.sort()
         markdown = ""
         for reporter in reporters:
-            markdown += f"* { reporter}\n"
+            markdown += f"* {reporter}\n"
 
         verify(markdown, options=Options().for_file.with_extension(".md"))
 
@@ -184,10 +184,11 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_diff_tool_limiting(self) -> None:
         reporter = self.instantiate_reporter_for_test()
-        for i in range(0,7):
-            reporter.report("a.txt","b.txt")
+        for i in range(0, 7):
+            reporter.report("a.txt", "b.txt")
         assert 7 == GenericDiffReporter.opened_diff_tool_count
         assert 2 == reporter.get_limit_count()
+        os.remove("b.txt")
 
     def test_non_working_reporter_does_not_report(self) -> None:
         self.assertFileDoesNotExist(self.approved_file_path)
