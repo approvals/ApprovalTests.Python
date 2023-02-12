@@ -21,18 +21,21 @@ class TestAssertEqualWithReporter(unittest.TestCase):
             def __init__(self):
                 self.received = None
                 self.approved = None
+                self.extention = None
 
             def report(self, received_path, approved_path):
                 self.received = Path(received_path).read_text(encoding="utf-8-sig")
                 self.approved = Path(approved_path).read_text(encoding="utf-8-sig")
+                self.extention = Path(received_path).suffix
 
         reporter = LocalReporter()
         try:
-            assert_equal_with_reporter("expected", "actual",reporter)
+            assert_equal_with_reporter("expected", "actual",options=Options().with_reporter(reporter).for_file.with_extension(".md"))
         except AssertionError:
             pass
         self.assertEqual(reporter.received, "actual")
         self.assertEqual(reporter.approved, "expected")
+        self.assertEqual(reporter.extention,".md")
 
 
 class TestAsserts(unittest.TestCase):
