@@ -2,13 +2,20 @@ import unittest
 from pathlib import Path
 
 from approvaltests.approval_exception import ApprovalException
-from approvaltests import assert_against_file, assert_equal_with_reporter
+from approvaltests import assert_against_file, assert_equal_with_reporter, Options
 from approvaltests.core import Reporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approval_utilities.utils import get_adjacent_file
+from approvaltests.scrubbers import scrub_all_guids
 
 
 class TestAssertEqualWithReporter(unittest.TestCase):
+
+    def test_assert_with_scrubbing_and_options(self):
+        actuals = "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"
+        expected = "<guid_0> and text"
+        assert_equal_with_reporter(expected, actuals, options=Options().with_scrubber(scrub_all_guids).for_file.with_extension(".md"))
+
     def test_text_reporter_called_on_failure(self) -> None:
         class LocalReporter(Reporter):
             def __init__(self):
@@ -21,7 +28,7 @@ class TestAssertEqualWithReporter(unittest.TestCase):
 
         reporter = LocalReporter()
         try:
-            assert_equal_with_reporter("expected", "actual", reporter)
+            assert_equal_with_reporter("expected", "actual",reporter)
         except AssertionError:
             pass
         self.assertEqual(reporter.received, "actual")

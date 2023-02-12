@@ -10,7 +10,9 @@ from approvaltests.scrubbers import combine_scrubbers
 class FileOptions:
     def __init__(self, fields: Dict):
         self.fields = fields
-
+    @property
+    def file_extention(self)->str:
+        return self.fields.get("extension_with_dot", ".txt")
     def with_extension(
         self,
         extension_with_dot: str,
@@ -75,5 +77,5 @@ class Options:
 
         namer = self.fields.get("namer", get_default_namer())
         if hasattr(namer, "set_extension"):
-            namer.set_extension(self.fields.get("extension_with_dot", ".txt"))
+            namer.set_extension(self.for_file.file_extention)
         return namer

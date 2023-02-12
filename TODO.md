@@ -1,5 +1,8 @@
-3. Mr job - need to be able to test against more than one line in a file.
-   3. Can we change the paradigm for how we do combinations with data and MRJob?
+
+How to connect a Jetbrains product to a remote workspace.
+5. Mr job - need to be able to test against more than one line in a file.
+1. PR to mobti.me to make ding the default
+   4. Can we change the paradigm for how we do combinations with data and MRJob?
 1. cyber-dojo bug - received file not being deleted 3
 3. Continuing work on approvals-cli: 5
    4. Documentation
@@ -11,7 +14,7 @@
       6. Create other EC2 instances
       7. gitpod
       8. Llewellyn starts an instance and then someone joins with RDP
-      9. Less comfortable -Github action that spins up an EC2 instance to launch the existing machine-
+         9. Less comfortable -Github action that spins up an EC2 instance to launch the existing machine-
    6. Need a zoom that anyone can connect to
 3. Logging decorator
 

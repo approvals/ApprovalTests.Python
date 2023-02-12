@@ -1,7 +1,10 @@
-from typing import Optional
+from typing import Optional, Any
+
+from approvaltests.core import Reporter
 
 from approval_utilities.utils import write_to_temporary_file
-from approvaltests.approvals import get_default_namer
+from approvaltests.core.options import Options
+from approvaltests.approvals import get_default_namer, initialize_options
 from approvaltests.approvals import verify_with_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.default_reporter_factory import get_reporter
@@ -24,14 +27,22 @@ def assert_against_file(
     verify_with_namer(actual, namer, reporter)
 
 
-def assert_equal_with_reporter(expected, actual, reporter=None):
+def assert_equal_with_reporter(expected:str,
+                               actual:Any,
+                               reporter:Reporter=None,
+                               *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+                               options: Optional[Options] = None
+    )->None:
+    actual = options.scrub(actual)
     if actual == expected:
         return
+    options = initialize_options(options, reporter)
 
     name = get_default_namer().get_file_name()
-    expected_file = write_to_temporary_file(expected, name + ".expected.")
-    actual_file = write_to_temporary_file(actual, name + ".actual.")
-    get_reporter(reporter).report(actual_file, expected_file)
+    extention = options.for_file.file_extention
+    expected_file = write_to_temporary_file(expected, name + ".expected.", extention)
+    actual_file = write_to_temporary_file(actual, name + ".actual.", extention)
+    options.reporter.report(actual_file, expected_file)
     raise AssertionError(
         f'expected != actual\n  actual: "{actual}"\nexpected: "{expected}"'
     )
