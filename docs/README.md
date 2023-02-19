@@ -19,6 +19,9 @@
 * [MRJobs](reference/mr_job.md)
 * [SimpleLogger](reference/simple_logger.md)
 
+### Missing Documentation?
+If there is documentation you wish existed, please add a `page request` to [this issue](https://github.com/approvals/ApprovalTests.Python/issues/135).
+
 ## Explanations 
 * [Place to modify output](explanation/creating_output.md)
 * [Approval Testing Concepts](explanation/approval_testing.md)

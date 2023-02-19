@@ -270,6 +270,10 @@ Of course, if you have some interesting new reporters in `myreporters.json` then
 
 * ApprovalTests Homepage: [http://www.approvaltests.com](http://www.approvaltests.com)
 
+### Missing Documentation?
+If there is documentation you wish existed, please add a `page request` to [this issue](https://github.com/approvals/ApprovalTests.Python/issues/135).
+
+
 ### Dependencies
 
 ApprovalTests require Python 3.7 or greater and the following dependencies:
