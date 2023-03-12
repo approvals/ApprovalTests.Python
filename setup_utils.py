@@ -10,7 +10,7 @@ def get_parent_directory():
 
 def get_version():
     _version_file_contents = (
-        get_parent_directory() / "approvaltests" / "version.py"
+        get_parent_directory() / "version.py"
     ).read_text()
     matched = re.search(r'"(.*)"', _version_file_contents)
     return matched.group(1) if matched is not None else "UNKNOWN VERSION"
