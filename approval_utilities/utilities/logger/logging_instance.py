@@ -79,7 +79,6 @@ class LoggingInstance:
                 self.parameter_text = parameter_text
 
             def __enter__(self):
-
                 expected = f"-> in: {self.method_name}({self.get_parameters(False)}) in {self.filename}"
                 self.log.log_line(expected)
                 self.log.tabbing = self.log.tabbing + 1
@@ -161,7 +160,7 @@ class LoggingInstance:
                 f"variable: {name}{to_type(value, spacing='')}.length = {len(value)}"
             )
             with self.indent():
-                for (i, v) in enumerate(value):
+                for i, v in enumerate(value):
                     self.logger(f"{self.get_tabs()}{name}[{i}] = {v}{to_type(v)}\n")
 
         else:

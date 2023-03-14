@@ -64,7 +64,7 @@ def test_word_count_combinations():
 
     verify_templated_map_reduce(map_reduction, input_creator, [animals, colors, colors])
 ```
-<sup><a href='/tests/mrjob/test_mrjob.py#L37-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_templated_map_reduce' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/mrjob/test_mrjob.py#L38-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_templated_map_reduce' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 [Click here to see the results](../../tests/mrjob/test_mrjob.test_word_count_combinations.approved.txt)

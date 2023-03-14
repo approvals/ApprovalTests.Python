@@ -6,7 +6,8 @@ from approvaltests.scrubbers import combine_scrubbers
 from approvaltests.scrubbers.scrubbers import (
     scrub_all_dates,
     create_regex_scrubber,
-    scrub_all_guids, create_line_scrubber,
+    scrub_all_guids,
+    create_line_scrubber,
 )
 
 

@@ -21,6 +21,7 @@ class TestSelectReporter(unittest.TestCase):
 
 # end-snippet
 
+
 # begin-snippet: select_reporter_from_class
 class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
@@ -28,6 +29,7 @@ class TestSelectReporterFromClass(unittest.TestCase):
 
 
 # end-snippet
+
 
 # begin-snippet: custom_generic_diff_reporter
 class GettingStartedTest(unittest.TestCase):

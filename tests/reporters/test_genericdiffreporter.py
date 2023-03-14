@@ -87,7 +87,6 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(0, os.stat(approved).st_size)
 
     def test_approved_file_not_changed_when_one_exists_already(self) -> None:
-
         namer = get_default_namer()
         approved = namer.get_approved_filename()
         os.remove(approved)

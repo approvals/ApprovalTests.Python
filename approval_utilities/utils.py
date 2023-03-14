@@ -10,8 +10,9 @@ def get_adjacent_file(name: str) -> str:
     return os.path.join(directory, name)
 
 
-def write_to_temporary_file(text: str, name: str, file_extention_with_dot:str=None):
+def write_to_temporary_file(text: str, name: str, file_extention_with_dot: str = None):
     import tempfile
+
     file_extention_with_dot = file_extention_with_dot or ".txt"
     with tempfile.NamedTemporaryFile(
         mode="w+b", suffix=file_extention_with_dot, prefix=name, delete=False

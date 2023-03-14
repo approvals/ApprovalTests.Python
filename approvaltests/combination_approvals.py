@@ -31,7 +31,6 @@ def verify_best_covering_pairs(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
 ) -> None:
-
     combinations = get_best_covering_pairs(input_arguments)
     count = len(combinations)
 

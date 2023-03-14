@@ -80,6 +80,7 @@ def test_variable():
 
 # end-snippet
 
+
 # begin-snippet: verify_simple_logger_long_example
 def test_variable_explict():
     output = SimpleLogger.log_to_string()

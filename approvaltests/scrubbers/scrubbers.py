@@ -5,6 +5,7 @@ from approval_utilities.utilities.logger.logging_instance import print_type
 
 Scrubber = Callable[[str], str]
 
+
 # def print_type(value):
 #     return f"<{type(value).__name__}>"
 def create_regex_scrubber(
@@ -67,8 +68,8 @@ def templates_regex_scrubber_with_replacement() -> Scrubber:
     )
 
 
-def create_line_scrubber(remove_lines_containing:str) -> Scrubber:
-    return lambda t:scrub_lines_containing(remove_lines_containing, t)
+def create_line_scrubber(remove_lines_containing: str) -> Scrubber:
+    return lambda t: scrub_lines_containing(remove_lines_containing, t)
 
 
 def scrub_lines_containing(remove_lines_containing, text):

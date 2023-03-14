@@ -7,7 +7,6 @@ class ReporterByCopyMoveCommandForEverythingToClipboard(Reporter):
     text = ""
 
     def report(self, received_path, approved_path):
-
         ReporterByCopyMoveCommandForEverythingToClipboard.text = (
             ReporterByCopyMoveCommandForEverythingToClipboard.text
             + get_command_text(received_path, approved_path)

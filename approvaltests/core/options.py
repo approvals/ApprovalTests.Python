@@ -10,9 +10,11 @@ from approvaltests.scrubbers import combine_scrubbers
 class FileOptions:
     def __init__(self, fields: Dict):
         self.fields = fields
+
     @property
-    def file_extention(self)->str:
+    def file_extention(self) -> str:
         return self.fields.get("extension_with_dot", ".txt")
+
     def with_extension(
         self,
         extension_with_dot: str,

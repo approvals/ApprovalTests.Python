@@ -2,7 +2,7 @@ from pathlib import Path
 
 
 def test_init_present():
-    current_working_directory=Path(Path(__file__).parents[1])
+    current_working_directory = Path(Path(__file__).parents[1])
     assert_directories_have_inits(current_working_directory / "approvaltests")
     assert_directories_have_inits(current_working_directory / "approval_utilities")
 

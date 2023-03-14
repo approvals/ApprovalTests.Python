@@ -5,6 +5,7 @@ from approvaltests.reporters.report_all_to_clipboard import (
 
 my_preferred_reporter = None
 
+
 # begin-snippet: configure_approvaltests
 def configure_approvaltests():
     set_default_reporter(my_preferred_reporter)

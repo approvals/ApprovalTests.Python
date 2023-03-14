@@ -57,11 +57,16 @@ class GenericDiffReporter(Reporter):
 
         GenericDiffReporter.opened_diff_tool_count += 1
 
-        if GenericDiffReporter.diff_tool_limit < GenericDiffReporter.opened_diff_tool_count:
+        if (
+            GenericDiffReporter.diff_tool_limit
+            < GenericDiffReporter.opened_diff_tool_count
+        ):
             GenericDiffReporter.limit_count += 1
-            print(f"Skipping the diff because the limit[{GenericDiffReporter.diff_tool_limit}]"
-                  f" of opened diff reporters has been exceeded.\n"
-                  f"You can configure this with GenericDiffReporter.diff_tool_limit")
+            print(
+                f"Skipping the diff because the limit[{GenericDiffReporter.diff_tool_limit}]"
+                f" of opened diff reporters has been exceeded.\n"
+                f"You can configure this with GenericDiffReporter.diff_tool_limit"
+            )
             return True
 
         ensure_file_exists(approved_path)

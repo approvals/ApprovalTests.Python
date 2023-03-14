@@ -27,12 +27,13 @@ def assert_against_file(
     verify_with_namer(actual, namer, reporter)
 
 
-def assert_equal_with_reporter(expected:str,
-                               actual:Any,
-                               reporter:Reporter=None,
-                               *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-                               options: Optional[Options] = None
-    )->None:
+def assert_equal_with_reporter(
+    expected: str,
+    actual: Any,
+    reporter: Reporter = None,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
+) -> None:
     actual = options.scrub(actual)
     if actual == expected:
         return

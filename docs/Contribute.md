@@ -6,6 +6,7 @@
   * [Join our Weekly Mobbing sessions](#join-our-weekly-mobbing-sessions)
     * [Calendar Invite](#calendar-invite)
     * [Zoom Link](#zoom-link)
+    * [Requirements](#requirements)
     * [Opening Notice](#opening-notice)
     * [Anydesk](#anydesk)
   * [Solo Developement](#solo-developement)<!-- endToc -->
@@ -43,18 +44,17 @@ You can join the [zoom here](https://us02web.zoom.us/j/89022110958?pwd=RDBTNDQrb
   * Mobbing: This is a social event, group work, meet people, deal with conflicts/feelings, other human stuff
   * Learning: You are invited to join just to learn
 
-  We strive to make this a safe environment
+  We strive to make this a **safe environment**. In order to achieve this, we agree to these responsibilities:
+  * As an individual, I am responsible for asking for what I need. 
+  * As participants in an ensemble, we are responsible for making this a safe place to do so
 
 # Agenda
 
-  1. Choose item to work on (  15 minutes or less )
+  1. Choose item to work on (15 minutes or less)
   2. Do item (1-2 hours)
-  3. Retro ( As long as needed, has been taking 2-3 hours)
+  3. Retrospective (As long as needed, has been taking 2-3 hours)
 
-**You can leave at any time** - and people do.
-
-
- <!-- endInclude -->
+**You can leave at any time** - and people do. <!-- endInclude -->
 
 ### Anydesk
 

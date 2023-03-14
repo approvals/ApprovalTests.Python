@@ -39,7 +39,6 @@ class FileApprover:
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
     ) -> Optional[str]:
-
         base = namer.get_basename()
         approved = namer.get_approved_filename(base)
         received = namer.get_received_filename(base)

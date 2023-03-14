@@ -10,11 +10,16 @@ from approvaltests.scrubbers import scrub_all_guids
 
 
 class TestAssertEqualWithReporter(unittest.TestCase):
-
     def test_assert_with_scrubbing_and_options(self):
         actuals = "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"
         expected = "<guid_0> and text"
-        assert_equal_with_reporter(expected, actuals, options=Options().with_scrubber(scrub_all_guids).for_file.with_extension(".md"))
+        assert_equal_with_reporter(
+            expected,
+            actuals,
+            options=Options()
+            .with_scrubber(scrub_all_guids)
+            .for_file.with_extension(".md"),
+        )
 
     def test_text_reporter_called_on_failure(self) -> None:
         class LocalReporter(Reporter):
@@ -30,12 +35,18 @@ class TestAssertEqualWithReporter(unittest.TestCase):
 
         reporter = LocalReporter()
         try:
-            assert_equal_with_reporter("expected", "actual",options=Options().with_reporter(reporter).for_file.with_extension(".md"))
+            assert_equal_with_reporter(
+                "expected",
+                "actual",
+                options=Options()
+                .with_reporter(reporter)
+                .for_file.with_extension(".md"),
+            )
         except AssertionError:
             pass
         self.assertEqual(reporter.received, "actual")
         self.assertEqual(reporter.approved, "expected")
-        self.assertEqual(reporter.extention,".md")
+        self.assertEqual(reporter.extention, ".md")
 
 
 class TestAsserts(unittest.TestCase):
