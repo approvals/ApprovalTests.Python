@@ -42,8 +42,12 @@ jobs:
             TWINE_USERNAME: __token__
             TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
         run: |
-            python setup.approval_utilities.py sdist bdist_wheel
+            mv setup.py setup.approvaltests.py
+            cp setup.approval_utilities.py setup.py
+            python setup.py sdist bdist_wheel
             twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+            rm setup.py
+            mv setup.approvaltests.py setup.py
             rm -r dist
       - name: Build and publish approvaltests
         env:
