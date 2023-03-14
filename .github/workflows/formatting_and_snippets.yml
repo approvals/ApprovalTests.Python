@@ -22,5 +22,6 @@ jobs:
         commit-message: "d updated markdown snippets"
         rebase: 'true'
         push-branch: 'main'
+        name: github actions
+        email: actions@github.com 
 
-    
