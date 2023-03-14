@@ -24,6 +24,7 @@ jobs:
         run: |
           rm ./version.py
           echo version_number = \"${{ steps.version.outputs.tag }}\" > ./version.py
+          cp ./version.py ./approvaltests/version.py
       - name: Push changes
         run: |
           git config --local user.email "action@github.com"

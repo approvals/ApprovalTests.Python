@@ -1,5 +1,5 @@
 """Approvaltests module."""
-from ..version import *
+from version import *
 from .approvals import *
 from .asserts import *
 from .combination_approvals import *
