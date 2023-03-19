@@ -25,7 +25,7 @@ You can add our [google calendar here](https://calendar.google.com/calendar/u/0?
 
 ### Zoom Link
 
-You can join the [zoom here](https://us02web.zoom.us/j/89022110958?pwd=RDBTNDQrblNoc2FMTTdOc01QNVYwdz09)
+You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNbVJFbTR6UmIxd0FwWWx5UT09)
 
 ### Requirements
 * A laptop with a web browser, keyboard & mouse [required]
