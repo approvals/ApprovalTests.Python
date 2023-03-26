@@ -2,7 +2,7 @@ import os
 from typing import Optional
 
 
-class Command(object):
+class Command():
     def __init__(self, cmd: str) -> None:
         self.command = cmd
 
