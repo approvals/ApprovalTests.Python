@@ -1,5 +1,6 @@
 class ReporterMissingException(BaseException):
     def __init__(self, key):
+        super().__init__(self)
         self.value = key
 
     def __str__(self):
