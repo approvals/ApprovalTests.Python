@@ -1,7 +1,6 @@
 from typing import Optional
 
-from approvaltests import Namer
-
+from approvaltests.core.namer import Namer
 
 class CliNamer(Namer):
     def __init__(self, test_id: str) -> None:

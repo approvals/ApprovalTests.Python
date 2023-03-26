@@ -235,7 +235,6 @@ def verify_as_json(
 def verify_xml(
     xml_string: str,
     reporter: None = None,
-    namer: Namer = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
 ) -> None:

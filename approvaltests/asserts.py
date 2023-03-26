@@ -16,7 +16,7 @@ class FilePathNamer(StackFrameNamer):
         StackFrameNamer.__init__(self, extension)
         self.file_path = file_path
 
-    def get_approved_filename(self, basename: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.file_path
 
 

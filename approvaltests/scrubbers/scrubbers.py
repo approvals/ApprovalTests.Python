@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict, abc
-from typing import Callable, Union, DefaultDict
+from typing import Callable, Union
 from approval_utilities.utilities.logger.logging_instance import print_type
 
 Scrubber = Callable[[str], str]
