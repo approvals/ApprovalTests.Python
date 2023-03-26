@@ -7,6 +7,4 @@ pylint approvaltests --disable=C0103,W0703,C0415,W1514,R0913,R1705,E0401,W0212
 
 
 
-
-W0707
 R0201

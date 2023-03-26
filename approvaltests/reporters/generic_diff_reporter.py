@@ -80,7 +80,8 @@ class GenericDiffReporter(Reporter):
             self.path = found
         return found
 
-    def get_limit_count(self) -> int:
+    @staticmethod
+    def get_limit_count() -> int:
         return GenericDiffReporter.limit_count
 
     @staticmethod
