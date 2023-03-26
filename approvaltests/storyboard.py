@@ -56,7 +56,7 @@ class Storyboard:
             try:
                 number_of_frames = len(data)
             except Exception as ex:
-                raise RuntimeError (
+                raise RuntimeError(
                     "You must pass in the number of frames for this iterable."
                 ) from ex
         for _, frame in zip(range(number_of_frames), data):
