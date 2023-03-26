@@ -14,8 +14,6 @@ class Command(object):
         path, _ = os.path.split(self.command)
         if path and self.executable(self.command):
             return self.command
-        if True:  # use 'where' to find the executable so it finds python and python.exe
-            pass
 
         for path in os.environ["PATH"].split(os.pathsep):
             path = path.strip('"')

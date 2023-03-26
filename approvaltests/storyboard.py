@@ -55,10 +55,10 @@ class Storyboard:
         if number_of_frames == -1:
             try:
                 number_of_frames = len(data)
-            except:
-                raise RuntimeError(
+            except Exception as ex:
+                raise RuntimeError (
                     "You must pass in the number of frames for this iterable."
-                )
+                ) from ex
         for _, frame in zip(range(number_of_frames), data):
             self.add_frame(frame)
         return self

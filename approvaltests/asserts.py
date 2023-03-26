@@ -1,13 +1,11 @@
 from typing import Optional, Any
 
-from approvaltests.core import Reporter
-
 from approval_utilities.utils import write_to_temporary_file
+from approvaltests.core import Reporter
 from approvaltests.core.options import Options
 from approvaltests.approvals import get_default_namer, initialize_options
 from approvaltests.approvals import verify_with_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
-from approvaltests.reporters.default_reporter_factory import get_reporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
