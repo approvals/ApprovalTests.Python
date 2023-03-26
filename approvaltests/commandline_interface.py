@@ -1,6 +1,7 @@
 import argparse
 from sys import stdin
 from approvaltests import verify
+
 # pylint: disable = no-name-in-module
 from approvaltests.namer.cli_namer import CliNamer
 

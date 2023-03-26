@@ -2,6 +2,7 @@ from typing import Optional
 
 from approvaltests.core.namer import Namer
 
+
 class CliNamer(Namer):
     def __init__(self, test_id: str) -> None:
         self.test_id = test_id
