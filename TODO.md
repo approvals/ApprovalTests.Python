@@ -1,3 +1,11 @@
+1. [ ] Need loaders and savers with generic types T
+1. [ ] Need to install mariaDB
+   1. [ ] Heidi and Scalia database
+1. [ ] Create executable command
+1. [ ] Need executable command reporter
+1. [ ] Create loader of people
+1. [ ] Test loader
+
 
 How to connect a Jetbrains product to a remote workspace.
 5. Mr job - need to be able to test against more than one line in a file.
