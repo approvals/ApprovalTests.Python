@@ -8,4 +8,4 @@ class IntegerLoader(Loader[int]):
 
 def test_load():
     loader = IntegerLoader()
-    assert (42 == loader.load())
+    assert 42 == loader.load()
