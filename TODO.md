@@ -1,10 +1,11 @@
-1. [ ] Need loaders and savers with generic types T
-1. [ ] Need to install mariaDB
+1. [X] Need loaders with generic types T
+2. [ ] Need savers with generic types T
+3. [ ] Need to install mariaDB
    1. [ ] Heidi and Scalia database
-1. [ ] Create executable command
-1. [ ] Need executable command reporter
-1. [ ] Create loader of people
-1. [ ] Test loader
+4. [ ] Create executable command
+5. [ ] Need executable command reporter
+6. [ ] Create loader of people
+7. [ ] Test loader
 
 
 How to connect a Jetbrains product to a remote workspace.
