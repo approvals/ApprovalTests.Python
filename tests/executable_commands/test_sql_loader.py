@@ -21,8 +21,14 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]] ):
 
 
 class ExecutableCommandReporter(Reporter):
+    def __init__(self, command: ExecutableCommand, reporter:Reporter):
+        self.command = command
+        self.reporter = reporter
+
     def report(self, received_path: str, approved_path: str) -> bool:
-        pass
+        self.reporter.report(received_path,approved_path)
+        # todo run the content of the file against the executable command
+
 
 
 def verify_executable_command(command: ExecutableCommand,
@@ -30,7 +36,7 @@ def verify_executable_command(command: ExecutableCommand,
                               options: Optional[Options] = None
                               ):
     options = initialize_options(options)
-    verify(command.get_command(), options=options.with_reporter(ExecutableCommandReporter.create(command, options.reporter)))
+    verify(command.get_command(), options=options.with_reporter(ExecutableCommandReporter(command, options.reporter)))
 
 
 def test_new_lines_with_empty_string():
