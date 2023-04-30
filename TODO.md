@@ -1,8 +1,8 @@
 1. [X] Need loaders with generic types T
-2. [ ] Need savers with generic types T
-3. [ ] Need to install mariaDB
-   1. [ ] Heidi and Scalia database
-4. [ ] Create executable command
+2. [X] Need savers with generic types T
+3. [X] Need to install mariaDB
+   1. [X] Heidi and Sakalia database
+4. [X] Create executable command
 5. [ ] Need executable command reporter
 6. [ ] Create loader of people
 7. [ ] Test loader
