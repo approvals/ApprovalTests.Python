@@ -9,39 +9,42 @@ class Country:
     pass
 
 
-class CountryLoader(ExecutableCommand, Loader[List[Country]] ):
+class CountryLoader(ExecutableCommand, Loader[List[Country]]):
     def load(self) -> T:
         pass
 
     def get_command(self) -> str:
-        return 'select * from Country' 
+        return "select * from Country"
 
     def execute_command(self, command: str) -> str:
         pass
 
 
 class ExecutableCommandReporter(Reporter):
-    def __init__(self, command: ExecutableCommand, reporter:Reporter):
+    def __init__(self, command: ExecutableCommand, reporter: Reporter):
         self.command = command
         self.reporter = reporter
 
     def report(self, received_path: str, approved_path: str) -> bool:
-        self.reporter.report(received_path,approved_path)
+        self.reporter.report(received_path, approved_path)
         # todo run the content of the file against the executable command
 
 
-
-def verify_executable_command(command: ExecutableCommand,
-                              *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-                              options: Optional[Options] = None
-                              ):
+def verify_executable_command(
+    command: ExecutableCommand,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None
+):
     options = initialize_options(options)
-    verify(command.get_command(), options=options.with_reporter(ExecutableCommandReporter(command, options.reporter)))
+    verify(
+        command.get_command(),
+        options=options.with_reporter(
+            ExecutableCommandReporter(command, options.reporter)
+        ),
+    )
 
 
 def test_new_lines_with_empty_string():
-
     # verify that the two are the same using a special reporter:
     # use the executable_command command reporter -> to be created
     verify_executable_command(CountryLoader())
-
