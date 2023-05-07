@@ -48,3 +48,29 @@ def test_new_lines_with_empty_string():
     # verify that the two are the same using a special reporter:
     # use the executable_command command reporter -> to be created
     verify_executable_command(CountryLoader())
+
+''' 
+Sample recieved.executed_results.txt
+
+        Do NOT approve
+        This File will be Deleted
+        it is for feedback purposes only
+
+query: select * from Country
+
+result:
+| country_id | country | last_update |
+| --- | --- | --- |
+| 1 | Afghanistan | 2006-02-15 04:44:00 |
+| 2 | Algeria | 2006-02-15 04:44:00 |
+| 3 | American Samoa | 2006-02-15 04:44:00 |
+| 4 | Angola | 2006-02-15 04:44:00 |
+| 5 | Anguilla | 2006-02-15 04:44:00 |
+
+'''
+
+''' 
+Sample recieved.txt
+select * from Country
+
+'''
