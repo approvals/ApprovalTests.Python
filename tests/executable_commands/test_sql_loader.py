@@ -1,8 +1,10 @@
 from typing import List, Optional
+
+from approvaltests.reporters.executable_command_reporter import ExecutableCommandReporter
 from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.utilities.persistence.loader import Loader, T
-from approvaltests import verify, Options, Reporter, initialize_options
+from approvaltests import verify, Options, initialize_options
 
 
 class Country:
@@ -26,17 +28,6 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 | 2 | Algeria | 2006-02-15 04:44:00 |        
         """
         pass
-
-
-class ExecutableCommandReporter(Reporter):
-    def __init__(self, command: ExecutableCommand, reporter: Reporter):
-        self.command = command
-        self.reporter = reporter
-
-    def report(self, received_path: str, approved_path: str) -> bool:
-        self.reporter.report(received_path, approved_path)
-        return True
-        # todo run the content of the file against the executable command
 
 
 def verify_executable_command(
@@ -63,7 +54,7 @@ def test_to_compare_execute_command():
     # 2. execute both commands - 1. received_command 2. approved_command
     # 3. show a diff of their results : received.executed_results vs. approved.executed_results
     verify_executable_command(
-        CountryLoader(), options=Options().with_reporter(PythonNativeReporter()))
+        CountryLoader())
 
 
 """ 
@@ -90,4 +81,13 @@ result:
 Sample recieved.txt
 select * from Country
 
+"""
+
+
+"""
+1. file name is wron. remove extension out of it.
+2. disclaimer - do not approve
+3. Reporter handle empty approved commands
+4. actually query database from country loader
+5. refactor duplication
 """
