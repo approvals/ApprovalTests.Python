@@ -17,14 +17,14 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return "select * from Country"
 
     def execute_command(self, command: str) -> str:
-        return f'''
+        return f"""
         Results for {command}
         
 | country_id | country | last_update |
 | --- | --- | --- |
 | 1 | Afghanistan | 2006-02-15 04:44:00 |
 | 2 | Algeria | 2006-02-15 04:44:00 |        
-        '''
+        """
         pass
 
 
@@ -41,7 +41,7 @@ class ExecutableCommandReporter(Reporter):
 def verify_executable_command(
     command: ExecutableCommand,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ):
     options = initialize_options(options)
     verify(
