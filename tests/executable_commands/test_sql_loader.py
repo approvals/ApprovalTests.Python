@@ -1,6 +1,8 @@
 from typing import List, Optional
 
-from approvaltests.reporters.executable_command_reporter import ExecutableCommandReporter
+from approvaltests.reporters.executable_command_reporter import (
+    ExecutableCommandReporter,
+)
 from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.utilities.persistence.loader import Loader, T
@@ -53,8 +55,7 @@ def test_to_compare_execute_command():
     # 1. show a diff of the commands
     # 2. execute both commands - 1. received_command 2. approved_command
     # 3. show a diff of their results : received.executed_results vs. approved.executed_results
-    verify_executable_command(
-        CountryLoader())
+    verify_executable_command(CountryLoader())
 
 
 """ 
