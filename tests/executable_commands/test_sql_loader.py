@@ -63,7 +63,8 @@ def test_to_compare_execute_command():
     # 2. execute both commands - 1. received_command 2. approved_command
     # 3. show a diff of their results : received.executed_results vs. approved.executed_results
     verify_executable_command(
-        CountryLoader(), options=Options().with_reporter(PythonNativeReporter()))
+        CountryLoader(), options=Options().with_reporter(PythonNativeReporter())
+    )
 
 
 """ 
