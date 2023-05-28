@@ -57,7 +57,8 @@ def test_new_lines_with_empty_string():
     # use the executable_command command reporter -> to be created
     verify_executable_command(CountryLoader())
 
-''' 
+
+""" 
 Sample recieved.executed_results.txt
 
         Do NOT approve
@@ -75,10 +76,10 @@ result:
 | 4 | Angola | 2006-02-15 04:44:00 |
 | 5 | Anguilla | 2006-02-15 04:44:00 |
 
-'''
+"""
 
-''' 
+""" 
 Sample recieved.txt
 select * from Country
 
-'''
+"""
