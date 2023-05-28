@@ -1,5 +1,5 @@
 from typing import List, Optional
-
+from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.utilities.persistence.loader import Loader, T
 from approvaltests import verify, Options, Reporter, initialize_options
@@ -35,6 +35,7 @@ class ExecutableCommandReporter(Reporter):
 
     def report(self, received_path: str, approved_path: str) -> bool:
         self.reporter.report(received_path, approved_path)
+        return True
         # todo run the content of the file against the executable command
 
 
@@ -52,10 +53,17 @@ def verify_executable_command(
     )
 
 
-def test_new_lines_with_empty_string():
+def test_to_compare_execute_command():
     # verify that the two are the same using a special reporter:
     # use the executable_command command reporter -> to be created
-    verify_executable_command(CountryLoader())
+    # if same:
+    #    test passes
+    # if not the same:
+    # 1. show a diff of the commands
+    # 2. execute both commands - 1. received_command 2. approved_command
+    # 3. show a diff of their results : received.executed_results vs. approved.executed_results
+    verify_executable_command(
+        CountryLoader(), options=Options().with_reporter(PythonNativeReporter()))
 
 
 """ 
