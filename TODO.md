@@ -3,10 +3,11 @@
 3. [X] Need to install mariaDB
    1. [X] Heidi and Sakalia database
 4. [X] Create executable command
-5. [ ] Need executable command reporter
-6. [ ] Create loader of people
-7. [ ] Test loader
-
+5. [-] Need executable command reporter
+6. [-] Create loader of people
+7. [-] Test loader
+8. [ ] write some docs
+Key x = done, - = started
 
 How to connect a Jetbrains product to a remote workspace.
 5. Mr job - need to be able to test against more than one line in a file.

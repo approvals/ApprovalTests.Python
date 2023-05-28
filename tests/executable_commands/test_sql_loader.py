@@ -17,6 +17,14 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return "select * from Country"
 
     def execute_command(self, command: str) -> str:
+        return f'''
+        Results for {command}
+        
+| country_id | country | last_update |
+| --- | --- | --- |
+| 1 | Afghanistan | 2006-02-15 04:44:00 |
+| 2 | Algeria | 2006-02-15 04:44:00 |        
+        '''
         pass
 
 
