@@ -1,0 +1,8 @@
+        Do NOT approve
+        This File will be Deleted
+        it is for feedback purposes only
+
+command: select * from foo
+
+result:
+result of the query

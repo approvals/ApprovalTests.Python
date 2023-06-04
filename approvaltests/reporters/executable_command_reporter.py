@@ -1,6 +1,7 @@
 import pathlib
 
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests import Reporter
 
 
@@ -24,12 +25,26 @@ class ExecutableCommandReporter(Reporter):
     def execute_result(self, filename):
         path = pathlib.Path(filename)
         command = path.read_text()
-        if command:
-            result = self.command.execute_command(command)
-        else:
-            result = ""
+        result = self.applesauce(command)
         approved_executed_result_file = (
             f"{path.name[:-len(path.suffix)]}.executed_results.txt"
         )
         pathlib.Path(approved_executed_result_file).write_text(result)
         return approved_executed_result_file
+
+    @staticmethod
+    def format_executable_command_result(my_command:str, executor:ExecutableCommand):
+        if not my_command:
+            return ""
+
+        result = executor.execute_command(my_command)
+        return remove_indentation_from(f"""
+                Do NOT approve
+                This File will be Deleted
+                it is for feedback purposes only
+        
+        command: {my_command}
+        
+        result:
+        {result}
+        """)
