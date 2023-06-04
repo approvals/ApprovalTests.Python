@@ -80,7 +80,6 @@ def test_result_formatting_for_non_empty_command():
     executed_command = "select * from foo"
 
     class DummyExecutableCommand(ExecutableCommand):
-
         def get_command(self) -> str:
             return None
 
@@ -96,4 +95,3 @@ def test_result_formatting_for_non_empty_command():
 1. actually query database from country loader
 1. refactor duplication
 """
-
