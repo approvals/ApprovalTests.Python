@@ -6,8 +6,8 @@ from approvaltests import Reporter
 
 
 class ExecutableCommandReporter(Reporter):
-    def __init__(self, command: ExecutableCommand, reporter: Reporter):
-        self.command = command
+    def __init__(self, executor: ExecutableCommand, reporter: Reporter):
+        self.executor = executor
         self.reporter = reporter
 
     def report(self, received_filename: str, approved_filename: str) -> bool:
@@ -24,8 +24,8 @@ class ExecutableCommandReporter(Reporter):
 
     def execute_result(self, filename):
         path = pathlib.Path(filename)
-        command = path.read_text()
-        result = self.applesauce(command)
+        command_string = path.read_text()
+        result = ExecutableCommandReporter.execute_command_and_format_result(command_string, self.executor)
         approved_executed_result_file = (
             f"{path.name[:-len(path.suffix)]}.executed_results.txt"
         )
@@ -33,7 +33,7 @@ class ExecutableCommandReporter(Reporter):
         return approved_executed_result_file
 
     @staticmethod
-    def format_executable_command_result(my_command:str, executor:ExecutableCommand):
+    def execute_command_and_format_result(my_command:str, executor:ExecutableCommand):
         if not my_command:
             return ""
 
@@ -46,5 +46,4 @@ class ExecutableCommandReporter(Reporter):
         command: {my_command}
         
         result:
-        {result}
-        """)
+        """) + result

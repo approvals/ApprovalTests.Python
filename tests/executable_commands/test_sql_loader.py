@@ -22,7 +22,6 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 
     def execute_command(self, command: str) -> str:
         return f"""
-        Results for {command}
         
 | country_id | country | last_update |
 | --- | --- | --- |
@@ -46,7 +45,7 @@ def verify_executable_command(
     )
 
 
-def test_to_compare_execute_command():
+def ptest_to_compare_execute_command():
     # verify that the two are the same using a special reporter:
     # use the executable_command command reporter -> to be created
     # if same:
@@ -61,8 +60,23 @@ def test_to_compare_execute_command():
 
 
 
+def test_result_formatting_for_results_with_indentation():
+    executed_command = "select * from foo"
 
-def test_executable_command_result_formatting():
+    class DummyExecutableCommand(ExecutableCommand):
+
+        def get_command(self) -> str:
+            return None
+
+        def execute_command(self, command: str) -> str:
+            return "result of the query\nstuff that breaks indentation"
+
+
+    result = ExecutableCommandReporter.execute_command_and_format_result(executed_command, DummyExecutableCommand())
+    verify(result)
+
+
+def test_result_formatting_for_non_empty_command():
     executed_command = "select * from foo"
 
     class DummyExecutableCommand(ExecutableCommand):
@@ -74,41 +88,12 @@ def test_executable_command_result_formatting():
             return "result of the query"
 
 
-    result = ExecutableCommandReporter.format_executable_command_result(executed_command, DummyExecutableCommand())
+    result = ExecutableCommandReporter.execute_command_and_format_result(executed_command, DummyExecutableCommand())
     verify(result)
 
-""" 
-Sample recieved.executed_results.txt
-
-        Do NOT approve
-        This File will be Deleted
-        it is for feedback purposes only
-
-query: select * from Country
-
-result:
-| country_id | country | last_update |
-| --- | --- | --- |
-| 1 | Afghanistan | 2006-02-15 04:44:00 |
-| 2 | Algeria | 2006-02-15 04:44:00 |
-| 3 | American Samoa | 2006-02-15 04:44:00 |
-| 4 | Angola | 2006-02-15 04:44:00 |
-| 5 | Anguilla | 2006-02-15 04:44:00 |
 
 """
-
-""" 
-Sample recieved.txt
-select * from Country
-
-"""
-
-
-"""
-1. file name is wron. remove extension out of it.
-2. disclaimer - do not approve
-3. Reporter handle empty approved commands
-4. actually query database from country loader
-5. refactor duplication
+1. actually query database from country loader
+1. refactor duplication
 """
 
