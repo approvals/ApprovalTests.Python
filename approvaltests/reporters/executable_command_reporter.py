@@ -24,7 +24,7 @@ class ExecutableCommandReporter(Reporter):
 
     def execute_result(self, filename):
         path = pathlib.Path(filename)
-        command_string = path.read_text()
+        command_string = path.read_text() #bug, handle missing file
         result = ExecutableCommandReporter.execute_command_and_format_result(command_string, self.executor)
         approved_executed_result_file = (
             f"{path.name[:-len(path.suffix)]}.executed_results.txt"
