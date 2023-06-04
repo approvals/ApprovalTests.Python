@@ -33,12 +33,13 @@ class ExecutableCommandReporter(Reporter):
         return approved_executed_result_file
 
     @staticmethod
-    def format_executable_command_result(my_command:str, executor:ExecutableCommand):
+    def format_executable_command_result(my_command: str, executor: ExecutableCommand):
         if not my_command:
             return ""
 
         result = executor.execute_command(my_command)
-        return remove_indentation_from(f"""
+        return remove_indentation_from(
+            f"""
                 Do NOT approve
                 This File will be Deleted
                 it is for feedback purposes only
@@ -47,4 +48,5 @@ class ExecutableCommandReporter(Reporter):
         
         result:
         {result}
-        """)
+        """
+        )

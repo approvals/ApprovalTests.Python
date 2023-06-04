@@ -59,23 +59,21 @@ def test_to_compare_execute_command():
     verify_executable_command(CountryLoader())
 
 
-
-
-
 def test_executable_command_result_formatting():
     executed_command = "select * from foo"
 
     class DummyExecutableCommand(ExecutableCommand):
-
         def get_command(self) -> str:
             return None
 
         def execute_command(self, command: str) -> str:
             return "result of the query"
 
-
-    result = ExecutableCommandReporter.format_executable_command_result(executed_command, DummyExecutableCommand())
+    result = ExecutableCommandReporter.format_executable_command_result(
+        executed_command, DummyExecutableCommand()
+    )
     verify(result)
+
 
 """ 
 Sample recieved.executed_results.txt
@@ -111,4 +109,3 @@ select * from Country
 4. actually query database from country loader
 5. refactor duplication
 """
-
