@@ -38,8 +38,9 @@ class ExecutableCommandReporter(Reporter):
             return ""
 
         result = executor.execute_command(my_command)
-        return remove_indentation_from(
-            f"""
+        return (
+            remove_indentation_from(
+                f"""
                 Do NOT approve
                 This File will be Deleted
                 it is for feedback purposes only
@@ -47,4 +48,7 @@ class ExecutableCommandReporter(Reporter):
         command: {my_command}
         
         result:
-        """) + result
+        """
+            )
+            + result
+        )
