@@ -33,6 +33,9 @@ except mariadb.Error as e:
 
 # Get Cursor
 cur = conn.cursor()
+cur.execute(
+    "SELECT first_name,last_name FROM employees WHERE first_name=?", 
+    (some_name,))
 """
 class CountryLoader(ExecutableCommand, Loader[List[Country]]):
     def load(self) -> T:
@@ -42,35 +45,26 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return "select * from Country"
 
     def execute_command(self, command: str) -> str:
-        # DOING
-        # 1. connect to db
-        # 2. verify connection happened
-        # > TODO
-        # 3. query("select * from ...
-        # 4. return result set
-        # 5. turn result set into text
+        def format_table_row( column_names):
+            return "| " + " | ".join(map(str,column_names)) + " |"
         import mariadb
-        import sys
 
-        # Connect to MariaDB Platform
-        # try:
         conn = mariadb.connect(
             user="root",
             password="",
-            # host="192.0.2.1",
-            # maybe "127.0.0.1""
             port=3306,
             database="sakila"
         )
-
-        return f"""
-        
-| country_id | country | last_update |
-| --- | --- | --- |
-| 1 | Afghanistan | 2006-02-15 04:44:00 |
-| 2 | Algeria | 2006-02-15 04:44:00 |        
-        """
-        pass
+        cursor=conn.cursor()
+        cursor.execute(command, ())
+        column_names = [i[0] for i in cursor.description]
+        headers = format_table_row(column_names)
+        dashes = format_table_row(map(lambda a: "---", column_names))
+        rows = cursor.fetchall()
+        data = "\n".join(map(format_table_row,rows))
+        return f"""{headers}
+{dashes}
+{data}"""
 
 
 
