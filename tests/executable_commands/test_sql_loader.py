@@ -45,28 +45,35 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return "select * from Country"
 
     def execute_command(self, command: str) -> str:
-        def format_table_row( column_names):
-            return "| " + " | ".join(map(str,column_names)) + " |"
-        import mariadb
 
+        cursor, connection = self.connect_to_database()
+        cursor.execute(command, ())
+        column_names = [i[0] for i in cursor.description]
+        rows = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        return self.format_data_as_markdown_table(column_names, rows)
+
+    def format_data_as_markdown_table(self, column_names, rows):
+        def format_table_row(values):
+            return "| " + " | ".join(map(str, values)) + " |"
+        headers = format_table_row(column_names)
+        dashes = format_table_row(map(lambda a: "---", column_names))
+        data = "\n".join(map(format_table_row, rows))
+        return f"""{headers}
+{dashes}
+{data}"""
+
+    def connect_to_database(self):
+        import mariadb
         conn = mariadb.connect(
             user="root",
             password="",
             port=3306,
             database="sakila"
         )
-        cursor=conn.cursor()
-        cursor.execute(command, ())
-        column_names = [i[0] for i in cursor.description]
-        headers = format_table_row(column_names)
-        dashes = format_table_row(map(lambda a: "---", column_names))
-        rows = cursor.fetchall()
-        data = "\n".join(map(format_table_row,rows))
-        return f"""{headers}
-{dashes}
-{data}"""
-
-
+        cursor = conn.cursor()
+        return (cursor, conn)
 
 
 def verify_executable_command(
