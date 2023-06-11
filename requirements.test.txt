@@ -2,3 +2,4 @@ numpy
 pylint
 pytest-asyncio
 pytest-xdist
+mariadb

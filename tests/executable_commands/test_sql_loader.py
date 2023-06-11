@@ -12,7 +12,28 @@ from approvaltests import verify, Options, initialize_options
 class Country:
     pass
 
+"""
+# Module Imports
+import mariadb
+import sys
 
+# Connect to MariaDB Platform
+try:
+    conn = mariadb.connect(
+        user="db_user",
+        password="db_user_passwd",
+        host="192.0.2.1",
+        port=3306,
+        database="employees"
+
+    )
+except mariadb.Error as e:
+    print(f"Error connecting to MariaDB Platform: {e}")
+    sys.exit(1)
+
+# Get Cursor
+cur = conn.cursor()
+"""
 class CountryLoader(ExecutableCommand, Loader[List[Country]]):
     def load(self) -> T:
         pass
@@ -21,6 +42,27 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return "select * from Country"
 
     def execute_command(self, command: str) -> str:
+        # DOING
+        # 1. connect to db
+        # 2. verify connection happened
+        # > TODO
+        # 3. query("select * from ...
+        # 4. return result set
+        # 5. turn result set into text
+        import mariadb
+        import sys
+
+        # Connect to MariaDB Platform
+        # try:
+        conn = mariadb.connect(
+            user="root",
+            password="",
+            # host="192.0.2.1",
+            # maybe "127.0.0.1""
+            port=3306,
+            database="sakila"
+        )
+
         return f"""
         
 | country_id | country | last_update |
@@ -29,6 +71,8 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 | 2 | Algeria | 2006-02-15 04:44:00 |        
         """
         pass
+
+
 
 
 def verify_executable_command(

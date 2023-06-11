@@ -35,7 +35,7 @@ nosetests.xml
 .pydevproject
 
 *.received.*
-
+*.executed_results.*
 *.swp
 .ropeproject/*
 .idea/*
