@@ -35,7 +35,9 @@ class ExecutableCommandReporter(Reporter):
         return approved_executed_result_file
 
     @staticmethod
-    def execute_command_and_format_result(my_command:str, executor:ExecutableCommand)-> str:
+    def execute_command_and_format_result(
+        my_command: str, executor: ExecutableCommand
+    ) -> str:
         if not my_command:
             return ""
 
