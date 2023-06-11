@@ -11,38 +11,12 @@ from approvaltests import verify, Options, initialize_options
 
 class Country:
     pass
-
-"""
-# Module Imports
-import mariadb
-import sys
-
-# Connect to MariaDB Platform
-try:
-    conn = mariadb.connect(
-        user="db_user",
-        password="db_user_passwd",
-        host="192.0.2.1",
-        port=3306,
-        database="employees"
-
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB Platform: {e}")
-    sys.exit(1)
-
-# Get Cursor
-cur = conn.cursor()
-cur.execute(
-    "SELECT first_name,last_name FROM employees WHERE first_name=?", 
-    (some_name,))
-"""
 class CountryLoader(ExecutableCommand, Loader[List[Country]]):
     def load(self) -> T:
         pass
 
     def get_command(self) -> str:
-        return "select * from Country"
+        return "SELECT c.* FROM Country c"
 
     def execute_command(self, command: str) -> str:
 
