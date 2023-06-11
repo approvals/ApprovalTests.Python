@@ -11,6 +11,8 @@ from approvaltests import verify, Options, initialize_options
 
 class Country:
     pass
+
+
 class CountryLoader(ExecutableCommand, Loader[List[Country]]):
     def load(self) -> T:
         pass
@@ -19,7 +21,6 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return "SELECT c.* FROM Country c"
 
     def execute_command(self, command: str) -> str:
-
         cursor, connection = self.connect_to_database()
         cursor.execute(command, ())
         column_names = [i[0] for i in cursor.description]
@@ -31,6 +32,7 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
     def format_data_as_markdown_table(self, column_names, rows):
         def format_table_row(values):
             return "| " + " | ".join(map(str, values)) + " |"
+
         headers = format_table_row(column_names)
         dashes = format_table_row(map(lambda a: "---", column_names))
         data = "\n".join(map(format_table_row, rows))
@@ -40,12 +42,8 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 
     def connect_to_database(self):
         import mariadb
-        conn = mariadb.connect(
-            user="root",
-            password="",
-            port=3306,
-            database="sakila"
-        )
+
+        conn = mariadb.connect(user="root", password="", port=3306, database="sakila")
         cursor = conn.cursor()
         return (cursor, conn)
 
