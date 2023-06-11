@@ -22,7 +22,7 @@ class ExecutableCommandReporter(Reporter):
         self.reporter.report(received_filename, approved_filename)
         return True
 
-    def execute_result(self, filename):
+    def execute_result(self, filename) -> str:
         path = pathlib.Path(filename)
         command_string = path.read_text() #bug, handle missing file
         result = ExecutableCommandReporter.execute_command_and_format_result(command_string, self.executor)
@@ -33,7 +33,7 @@ class ExecutableCommandReporter(Reporter):
         return approved_executed_result_file
 
     @staticmethod
-    def execute_command_and_format_result(my_command:str, executor:ExecutableCommand):
+    def execute_command_and_format_result(my_command:str, executor:ExecutableCommand)-> str:
         if not my_command:
             return ""
 
