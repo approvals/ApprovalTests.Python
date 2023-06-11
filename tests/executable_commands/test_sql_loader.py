@@ -48,6 +48,7 @@ def verify_executable_command(
 def test_to_compare_execute_command():
     verify_executable_command(CountryLoader())
 
+
 def test_to_compare_execute_command_where_we_see_the_failure():
     # verify that the two are the same using a special reporter:
     # use the executable_command command reporter -> to be created
@@ -92,9 +93,11 @@ def test_result_formatting_for_non_empty_command():
     )
     verify(result)
 
+
 def test_result_formatting_for_empty():
     # ApprovalTests doesn't try to execute empty commands
     assert "" == ExecutableCommandReporter.execute_command_and_format_result(None, None)
+
 
 """
 1. actually query database from country loader
