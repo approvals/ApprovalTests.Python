@@ -1,14 +1,32 @@
-1. [X] Need loaders with generic types T
-2. [X] Need savers with generic types T
-3. [X] Need to install mariaDB
-   1. [X] Heidi and Sakalia database
-4. [X] Create executable command
-5. [-] Need executable command reporter
-6. [-] Create loader of people
-7. [-] Test loader
-8. [ ] write some docs
+1. [ ] run the test
+2. [ ] Review what we have done
+3. [ ] Clean up so things are ready for production
+   1. [ ] extract SQL utils
+4. [ ] write some docs
+5. [ ] use it (as the users will )   Manual regression test
+6. [ ] ship the code
+   1. [ ] explore additional test that will Re-test the way other will use it
+7. [ ] copmarison after VCR (video recorder) hybrid of Executable Command 
+   1. executatble ALONE
+   2. VCR (python version of executable command )
+   3. use both Executable command and VCR
+8. to consider:
+9. [ ] do we want to SPLIT up the Command Executer from the Command Generator 
 Key x = done, - = started
 
+notes: 
+Possible problem:
+we have linked the Execute command and the _____
+when you run it
+ there is the part oabout how to execute
+ and there is ANOTHER part
+that shows you the specific command that you ar trying to verify
+it is not obvious how they are used
+REALIZATION: 
+Executatlbe command class is an Executable COmmand class    and
+_____ (put it in the chat Lev)
+
+QUESTIO
 How to connect a Jetbrains product to a remote workspace.
 5. Mr job - need to be able to test against more than one line in a file.
 1. PR to mobti.me to make ding the default
