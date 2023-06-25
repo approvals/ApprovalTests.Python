@@ -1,1 +1,1 @@
-select * from Country
+SELECT c.* FROM Country c
