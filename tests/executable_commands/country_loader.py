@@ -33,7 +33,7 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 {data}"""
 
     def connect_to_database(self):
-        import mariadb # you need to uncomment this in the requirements.tests.txt
+        import mariadb  # you need to uncomment this in the requirements.tests.txt
 
         conn = mariadb.connect(user="root", password="", port=3306, database="sakila")
         cursor = conn.cursor()
