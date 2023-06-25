@@ -1,4 +1,7 @@
-1. [ ] run the test
+Test are running on all CI machine
+Test fail if mariadb is in the requirements for linux
+
+2. [ ] run the test
 2. [ ] Review what we have done
 3. [ ] Clean up so things are ready for production
    1. [ ] extract SQL utils
