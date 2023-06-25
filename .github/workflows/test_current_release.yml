@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         python-version: ["3.11"]
         os: [macos-latest, ubuntu-latest, windows-latest]
