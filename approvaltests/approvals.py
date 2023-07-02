@@ -10,7 +10,6 @@ from approval_utilities.approvaltests.core.verifiable import Verifiable
 from approval_utilities.list_utils import format_list
 from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approval_utilities.utilities.map_reduce import first
-from approvaltests import Options
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
