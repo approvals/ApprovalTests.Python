@@ -5,10 +5,12 @@ from typing import Callable, List, Optional, Any, ByteString, Iterator
 
 import approvaltests.reporters.default_reporter_factory
 from approval_utilities import utils
+from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.approvaltests.core.verifiable import Verifiable
 from approval_utilities.list_utils import format_list
 from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approval_utilities.utilities.map_reduce import first
+from approvaltests import Options
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
@@ -20,6 +22,7 @@ from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
+from approvaltests.reporters.executable_command_reporter import ExecutableCommandReporter
 from approvaltests.string_writer import StringWriter
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
     FormatterWrapperOfArgparseNamespace,
@@ -369,3 +372,17 @@ def delete_approved_file():
     filename = Path(get_default_namer().get_approved_filename())
     if filename.exists():
         filename.unlink()
+
+
+def verify_executable_command(
+    command: ExecutableCommand,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
+):
+    options = initialize_options(options)
+    verify(
+        command.get_command(),
+        options=options.with_reporter(
+            ExecutableCommandReporter(command, options.reporter)
+        ),
+    )
