@@ -5,7 +5,7 @@ import unittest
 from typing import cast
 
 from approvaltests import Options
-from approvaltests.approvals import verify, get_default_namer
+from approvaltests.approvals import verify, get_default_namer, delete_approved_file
 from approvaltests.reporters import MultiReporter
 from approvaltests.reporters.generic_diff_reporter import (
     GenericDiffReporter,
@@ -72,11 +72,11 @@ class GenericDiffReporterTests(unittest.TestCase):
         self.assertEqual(command, expected_command)
 
     def test_empty_approved_file_created_when_one_does_not_exist(self) -> None:
+        delete_approved_file()
+        
         namer = get_default_namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
-        if os.path.isfile(approved):
-            os.remove(approved)
         self.assertFalse(os.path.isfile(approved))
 
         reporter = self.factory.get("BeyondCompare4")
@@ -85,6 +85,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         setattr(reporter, "is_working", lambda: True)
         reporter.report(received, approved)
         self.assertEqual(0, os.stat(approved).st_size)
+        delete_approved_file()
 
     def test_approved_file_not_changed_when_one_exists_already(self) -> None:
         namer = get_default_namer()
