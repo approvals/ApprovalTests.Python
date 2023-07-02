@@ -73,7 +73,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_empty_approved_file_created_when_one_does_not_exist(self) -> None:
         delete_approved_file()
-        
+
         namer = get_default_namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
