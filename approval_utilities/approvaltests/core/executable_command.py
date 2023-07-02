@@ -1,11 +1,14 @@
 from abc import abstractmethod, ABC
 
-
-class ExecutableCommand(ABC):
+class CommandGetter(ABC):
     @abstractmethod
     def get_command(self) -> str:
-        raise Exception("Interface member not implemented")
+        raise NotImplementedError("Interface member not implemented")
 
+class CommandExecutor(ABC):
     @abstractmethod
     def execute_command(self, command: str) -> str:
-        raise Exception("Interface member not implemented")
+        raise NotImplementedError("Interface member not implemented")
+
+class ExecutableCommand(CommandGetter, CommandExecutor):
+    pass
