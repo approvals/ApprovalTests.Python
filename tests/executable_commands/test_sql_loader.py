@@ -49,6 +49,3 @@ def test_result_formatting_for_non_empty_command():
 def test_result_formatting_for_empty():
     # ApprovalTests doesn't try to execute empty commands
     assert "" == ExecutableCommandReporter.execute_command_and_format_result(None, None)
-
-
-
