@@ -22,7 +22,9 @@ from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
-from approvaltests.reporters.executable_command_reporter import ExecutableCommandReporter
+from approvaltests.reporters.executable_command_reporter import (
+    ExecutableCommandReporter,
+)
 from approvaltests.string_writer import StringWriter
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
     FormatterWrapperOfArgparseNamespace,
@@ -58,7 +60,7 @@ def verify(
     errors: Optional[str] = None,
     newline: Optional[str] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -130,7 +132,7 @@ def verify_binary(
     data: ByteString,
     file_extension_with_dot: str,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     options = initialize_options(options, None).for_file.with_extension(
         file_extension_with_dot
@@ -161,7 +163,7 @@ def verify_with_namer(
     errors: Optional[str] = None,
     newline: Optional[str] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     """Verify string data against a previously approved version of the string.
 
@@ -209,7 +211,7 @@ def verify_with_namer_and_writer(
     writer: Writer,
     reporter: Optional[Reporter] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     options = initialize_options(options, reporter)
     error = FileApprover.verify(namer, writer, options.reporter, options.comparator)
@@ -223,7 +225,7 @@ def verify_as_json(
     reporter=None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     deserialize_json_fields=False,
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ):
     if deserialize_json_fields:
         object_to_verify = utils.deserialize_json_fields(object_to_verify)
@@ -239,7 +241,7 @@ def verify_xml(
     xml_string: str,
     reporter: None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     options = initialize_options(options, reporter)
     try:
@@ -254,7 +256,7 @@ def verify_xml(
 def verify_html(
     html_string: str,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     options = initialize_options(options)
     try:
@@ -271,7 +273,7 @@ def verify_file(
     file_name: str,
     reporter: Reporter = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     """Verify the contents of a text file against previously approved contents.
 
@@ -305,7 +307,7 @@ def verify_all(
     errors: None = None,
     newline: None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> None:
     """Verify a collection of items against a previously approved collection.
 
@@ -353,7 +355,7 @@ def verify_all(
 def verify_exception(
     code_that_throws_exception: Callable,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ):
     result = ""
     try:
