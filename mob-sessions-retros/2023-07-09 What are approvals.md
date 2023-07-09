@@ -93,3 +93,7 @@ Approvals Retro
 				now I know
 		python ternary if else
 ```
+
+## chat gpt summary
+
+https://chat.openai.com/share/cb8855c9-c902-4b33-a2ce-32f6dfdb2b8c
