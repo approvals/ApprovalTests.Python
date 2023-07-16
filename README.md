@@ -1,35 +1,31 @@
 # ApprovalTests.Python
 
 <!-- toc -->
-
 ## Contents
 
-- [ApprovalTests.Python](#approvaltestspython)
-  - [Contents](#contents)
-  - [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
-  - [Getting Started](#getting-started)
-    - [What Are Approvals](#what-are-approvals)
-    - [New Projects](#new-projects)
-      - [Minimal Example Tutorial](#minimal-example-tutorial)
-    - [Adding to Existing Projects](#adding-to-existing-projects)
-  - [Overview](#overview)
-    - [Example using pytest](#example-using-pytest)
-    - [Example using unittest](#example-using-unittest)
-    - [Example using CLI](#example-using-cli)
-      - [Usage](#usage)
-      - [Argument Definitions](#argument-definitions)
-  - [Reporters](#reporters)
-    - [Selecting a Reporter](#selecting-a-reporter)
-    - [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
-  - [Support and Documentation](#support-and-documentation)
-    - [Missing Documentation?](#missing-documentation)
-    - [Dependencies](#dependencies)
-      - [Required dependencies](#required-dependencies)
-      - [Extra dependencies](#extra-dependencies)
-  - [For developers](#for-developers)
-    - [Weekly Ensemble](#weekly-ensemble)
-    - [Pull Requests](#pull-requests)
-<!-- endToc -->
+  * [What can I use ApprovalTests for?](#what-can-i-use-approvaltests-for)
+  * [Getting Started](#getting-started)
+    * [What Are Approvals](#what-are-approvals)
+    * [New Projects](#new-projects)
+      * [Minimal Example Tutorial](#minimal-example-tutorial)
+    * [Adding to Existing Projects](#adding-to-existing-projects)
+  * [Overview](#overview)
+    * [Example using pytest](#example-using-pytest)
+    * [Example using unittest](#example-using-unittest)
+    * [Example using CLI](#example-using-cli)
+      * [Usage](#usage)
+      * [Argument Definitions](#argument-definitions)
+  * [Reporters](#reporters)
+    * [Selecting a Reporter](#selecting-a-reporter)
+    * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
+  * [Support and Documentation](#support-and-documentation)
+    * [Missing Documentation?](#missing-documentation)
+    * [Dependencies](#dependencies)
+      * [Required dependencies](#required-dependencies)
+      * [Extra dependencies](#extra-dependencies)
+  * [For developers](#for-developers)
+    * [Weekly Ensemble](#weekly-ensemble)
+    * [Pull Requests](#pull-requests)<!-- endToc -->
 
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid testing.  
 `approvaltests` is the ApprovalTests port for Python.
@@ -83,9 +79,7 @@ golden master.
 ### Example using pytest
 
 <!-- snippet: getting_started_with_pytest.py -->
-
 <a id='snippet-getting_started_with_pytest.py'></a>
-
 ```py
 from approvaltests.approvals import verify
 
@@ -94,9 +88,7 @@ def test_simple():
     result = "Hello ApprovalTests"
     verify(result)
 ```
-
 <sup><a href='/tests/examples/getting_started_with_pytest.py#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_pytest.py' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 Install the plugin pytest-approvaltests and use it to select a reporter:
@@ -111,9 +103,7 @@ reporters see [the documentation](https://github.com/approvals/ApprovalTests.Pyt
 ### Example using unittest
 
 <!-- snippet: getting_started_with_unittest.py -->
-
 <a id='snippet-getting_started_with_unittest.py'></a>
-
 ```py
 import unittest
 
@@ -128,9 +118,7 @@ class GettingStartedTest(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 ```
-
 <sup><a href='/tests/examples/getting_started_with_unittest.py#L1-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_unittest.py' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 This example has the same behaviour as the pytest version, but uses the built-in test framework `unittest` instead.
@@ -176,17 +164,13 @@ ApprovalTests.Python comes with a few reporters configured, supporting Linux, Ma
 In the example shown below, we pass in an options with a reporter we're selecting directly:
 
 <!-- snippet: select_reporter_from_class -->
-
 <a id='snippet-select_reporter_from_class'></a>
-
 ```py
 class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
         verify("Hello", options=Options().with_reporter(report_with_beyond_compare()))
 ```
-
 <sup><a href='/tests/samples/test_getting_started.py#L25-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 You can also use the `GenericDiffReporterFactory` to find and select the first diff utility that exists on our system.
@@ -194,9 +178,7 @@ You can also use the `GenericDiffReporterFactory` to find and select the first d
 An advantage of this method is you can modify the reporters.json file directly to handle your unique system.
 
 <!-- snippet: select_reporter_from_factory -->
-
 <a id='snippet-select_reporter_from_factory'></a>
-
 ```py
 class TestSelectReporter(unittest.TestCase):
     def setUp(self):
@@ -207,17 +189,13 @@ class TestSelectReporter(unittest.TestCase):
             "Hello", options=Options().with_reporter(self.factory.get("BeyondCompare"))
         )
 ```
-
 <sup><a href='/tests/samples/test_getting_started.py#L11-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 Or you can build your own GenericDiffReporter on the fly
 
 <!-- snippet: custom_generic_diff_reporter -->
-
 <a id='snippet-custom_generic_diff_reporter'></a>
-
 ```py
 class GettingStartedTest(unittest.TestCase):
     def test_simple(self):
@@ -228,9 +206,7 @@ class GettingStartedTest(unittest.TestCase):
             ),
         )
 ```
-
 <sup><a href='/tests/samples/test_getting_started.py#L34-L45' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2`
@@ -299,17 +275,13 @@ ApprovalTests require Python 3.7 or greater and the following dependencies:
 These dependencies are always required for approvaltests
 
 <!-- snippet: requirements.prod.required.txt -->
-
 <a id='snippet-requirements.prod.required.txt'></a>
-
 ```txt
 pytest>=4.0.0
 empty-files>=0.0.3
 typing_extensions>=3.6.2
 ```
-
 <sup><a href='/requirements.prod.required.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.required.txt' title='Start of snippet'>anchor</a></sup>
-
 <!-- endSnippet -->
 
 #### Extra dependencies
@@ -319,18 +291,16 @@ If you want the bare minimum you can use the pypi project
 [approvaltests-minimal](https://pypi.org/project/approvaltests-minimal/)
 
 <!-- snippet: requirements.prod.extras.txt -->
-
 <a id='snippet-requirements.prod.extras.txt'></a>
-
 ```txt
 pyperclip>=1.5.29     # For Clipboard Reporter
 beautifulsoup4>=4.4.0 # For verify_html
 allpairspy>=2.1.0     # For PairwiseCombinations
 mrjob>=0.7.4          # For MrJob
+testfixtures >= 7.1.0 # For verify_logging
+mock >= 5.1.0         # For verify_logging
 ```
-
-<sup><a href='/requirements.prod.extras.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
-
+<sup><a href='/requirements.prod.extras.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## For developers
