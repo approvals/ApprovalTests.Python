@@ -25,7 +25,7 @@ def verify_logging(
 
         def __exit__(self, exc_type, exc_val, exc_tb):
             self.l.__exit__(exc_type, exc_val, exc_tb)
-            self.options = self.options.with_scrubber(
+            self.options = self.options.add_scrubber(
                 DateScrubber.get_scrubber_for("2023-07-16 17:39:03.293919")
             )
             verify(self.l, options=self.options)
