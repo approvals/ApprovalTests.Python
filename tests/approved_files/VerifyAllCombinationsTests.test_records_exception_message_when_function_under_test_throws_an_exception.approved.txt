@@ -1,4 +1,4 @@
-args: (1, 2) => Exception((1, 2),)
-args: (1, 4) => Exception((1, 4),)
-args: (3, 2) => Exception((3, 2),)
-args: (3, 4) => Exception((3, 4),)
+args: (1, 2) => Exception((1, 2))
+args: (1, 4) => Exception((1, 4))
+args: (3, 2) => Exception((3, 2))
+args: (3, 4) => Exception((3, 4))

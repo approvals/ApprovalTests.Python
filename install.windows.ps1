@@ -11,7 +11,7 @@ iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/windows
 iwr -useb cin.st | iex
 choco feature enable --name=allowGlobalConfirmation
 choco install beyondcompare
-choco install python --version=3.7
+choco install python --version=3.8
 choco install pip
 choco install pycharm
 choco install ditto

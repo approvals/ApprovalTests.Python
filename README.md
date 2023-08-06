@@ -268,7 +268,7 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ### Dependencies
 
-ApprovalTests require Python 3.7 or greater and the following dependencies:
+ApprovalTests require Python 3.8 or greater and the following dependencies:
 
 #### Required dependencies
 
@@ -317,7 +317,7 @@ To run the self-tests, install pytest and tox, then execute
 
     python -m tox
 
-This will run the self-tests on several python versions. We support python 3.7 and above.
+This will run the self-tests on several python versions. We support python 3.8 and above.
 
 All pull requests will be pre-checked using GitHub actions to execute all these tests. You can see the [results of test
 runs here](https://github.com/approvals/ApprovalTests.Python/actions).

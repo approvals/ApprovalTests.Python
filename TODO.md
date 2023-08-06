@@ -102,7 +102,7 @@ How to connect a Jetbrains product to a remote workspace.
 1. Randomize order of tests in pytest plugin
 ```.ini
 [mypy]
-python_version = 3.7
+python_version = 3.8
 pretty = True
 no_incremental = True
 ignore_missing_imports = True
