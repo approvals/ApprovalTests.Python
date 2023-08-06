@@ -35,7 +35,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 ### Opening Notice
 
-# Values <!-- include: opening_notice.md -->
+# Values<!-- include: opening_notice.md -->
 
   We value having fun while
   Coding >> Mobbing >> Learning 
@@ -54,7 +54,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
   2. Do item (1-2 hours)
   3. Retrospective (As long as needed, has been taking 2-3 hours)
 
-**You can leave at any time** - and people do. <!-- endInclude -->
+**You can leave at any time** - and people do.<!-- endInclude -->
 
 ### Team Viewer
 
