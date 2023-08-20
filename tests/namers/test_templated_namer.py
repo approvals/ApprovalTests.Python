@@ -40,7 +40,7 @@ class TemplatedCustomNamer(Namer):
             file_extension='txt')
 
 
-def test_string_templates():
+def test_get_received_filename():
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
