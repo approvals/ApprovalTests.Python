@@ -25,17 +25,18 @@ class TemplatedCustomNamer(Namer):
     def __init__(self, template: str):
         self.template = template
     def get_received_filename(self, base: Optional[str] = None) -> str:
-        #build up this string and return it
-        #/my/source/directory/received/test_templated_namer.test_string_templates.txt
-        # return "/my/source/directory/received/test_templated_namer.test_string_templates.txt"
-        return self.template.format(ApprovedOrReceived="received",TestFileName="test_templated_namer",TestCaseName="test_string_templates",FileExtension='txt')
+        return self.template.format(
+            approved_or_received="received",
+            test_file_name="test_templated_namer",
+            test_case_name="test_string_templates",
+            file_extension='txt')
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         pass
 
 
 def test_string_templates():
-    namer = TemplatedCustomNamer( "/my/source/directory/{ApprovedOrReceived}/{TestFileName}.{TestCaseName}.{FileExtension}")
+    namer = TemplatedCustomNamer( "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}")
     assert(namer.get_received_filename() == "/my/source/directory/received/"
           "test_templated_namer.test_string_templates.txt")
 
