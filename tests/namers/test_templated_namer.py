@@ -33,7 +33,11 @@ class TemplatedCustomNamer(Namer):
             file_extension='txt')
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
-        pass
+        return self.template.format(
+            approved_or_received="approved",
+            test_file_name="test_templated_namer",
+            test_case_name="test_string_templates",
+            file_extension='txt')
 
 
 def test_string_templates():
@@ -41,4 +45,15 @@ def test_string_templates():
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
     assert (namer.get_received_filename() == "/my/source/directory/received/"
+                                             "test_templated_namer.test_string_templates.txt")
+
+def test_get_approved_filename():
+    # CHECK(namer.getApprovedFileAsPath(".txt").toString("/") ==
+    #       "/my/source/directory/approved/"
+    #       "TemplatedCustomNamerExamples.Test_StringTemplates.txt");
+    "TemplatedCustomNamerExamples.Test_StringTemplates.txt"
+    namer = TemplatedCustomNamer(
+        "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
+    )
+    assert (namer.get_approved_filename() == "/my/source/directory/approved/" 
                                              "test_templated_namer.test_string_templates.txt")
