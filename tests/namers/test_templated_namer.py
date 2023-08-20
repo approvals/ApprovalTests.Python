@@ -36,7 +36,9 @@ class TemplatedCustomNamer(Namer):
 
 
 def test_string_templates():
-    namer = TemplatedCustomNamer( "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}")
+    namer = TemplatedCustomNamer(
+        "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
+    )
     assert(namer.get_received_filename() == "/my/source/directory/received/"
           "test_templated_namer.test_string_templates.txt")
 
