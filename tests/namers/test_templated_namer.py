@@ -28,7 +28,7 @@ class TemplatedCustomNamer(Namer):
         #build up this string and return it
         #/my/source/directory/received/test_templated_namer.test_string_templates.txt
         # return "/my/source/directory/received/test_templated_namer.test_string_templates.txt"
-        return self.template.format(ApprovedOrReceived="received",TestFileName="test_templated_namer")
+        return self.template.format(ApprovedOrReceived="received",TestFileName="test_templated_namer",TestCaseName="test_string_templates",FileExtension='txt')
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         pass
