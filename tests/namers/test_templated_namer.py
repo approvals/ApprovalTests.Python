@@ -24,6 +24,7 @@ from approvaltests import get_default_namer, verify, Namer
 class TemplatedCustomNamer(Namer):
     def __init__(self, template: str):
         self.template = template
+
     def get_received_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
             approved_or_received="received",
@@ -39,8 +40,5 @@ def test_string_templates():
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
-    assert(namer.get_received_filename() == "/my/source/directory/received/"
-          "test_templated_namer.test_string_templates.txt")
-
-
-
+    assert (namer.get_received_filename() == "/my/source/directory/received/"
+                                             "test_templated_namer.test_string_templates.txt")
