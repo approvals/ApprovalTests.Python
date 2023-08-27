@@ -1,24 +1,6 @@
-'''
-
-TEST_CASE("Test StringTemplates")
-{
-    // begin-snippet: templated_custom_namer_example
-    ApprovalTests::TemplatedCustomNamer namer(
-        "/my/source/directory/{ApprovedOrReceived}/"
-        "{TestFileName}.{TestCaseName}.{FileExtension}");
-    // end-snippet
-
-    CHECK(namer.getApprovedFileAsPath(".txt").toString("/") ==
-          "/my/source/directory/approved/"
-          "TemplatedCustomNamerExamples.Test_StringTemplates.txt");
-    CHECK(namer.getReceivedFileAsPath(".txt").toString("/") ==
-          "/my/source/directory/received/"
-          "TemplatedCustomNamerExamples.Test_StringTemplates.txt");
-}
-'''
 from typing import Optional
 
-from approvaltests import get_default_namer, verify, Namer, StackFrameNamer, verify_as_json, Options
+from approvaltests import Namer, StackFrameNamer, verify_as_json, Options
 
 # make the relative test work when running solo (not with all tests)
 # extract duplication
@@ -38,14 +20,14 @@ class TemplatedCustomNamer(Namer):
 
     def get_received_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
-            approved_or_received=self.stacktracenamer.RECEIVED[1:],
+            approved_or_received=self.RECEIVED_WITHOUT_DOT,
             test_file_name=self.stacktracenamer.get_class_name(),
             test_case_name=self.stacktracenamer.get_method_name(),
             file_extension=self.stacktracenamer.get_extension_without_dot())
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
-            approved_or_received=self.stacktracenamer.APPROVED[1:],
+            approved_or_received=self.APPROVED_WITHOUT_DOT,
             test_file_name=self.stacktracenamer.get_class_name(),
             test_case_name=self.stacktracenamer.get_method_name(),
             file_extension=self.stacktracenamer.get_extension_without_dot())
