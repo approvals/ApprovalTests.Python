@@ -137,7 +137,7 @@ class VerifyTests(unittest.TestCase):
 
         o = Bag()
         o.json = {"a": 0, "z": 26}
-        verify_as_json(o, self.reporter)
+        verify_as_json(o)
 
     def test_verify_as_json_raises_type_error_for_non_renderable_types(self):
         with self.assertRaises(AttributeError):

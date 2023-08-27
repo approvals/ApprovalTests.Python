@@ -71,5 +71,5 @@ class StackFrameNamer(NamerBase):
         class_name = "" if (self.class_name is None) else (self.class_name + ".")
         return class_name + self.method_name
 
-    def get_extension(self):
+    def get_extension_with_dot(self):
         return self.extension_with_dot
