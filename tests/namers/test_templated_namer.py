@@ -22,24 +22,23 @@ from approvaltests import get_default_namer, verify, Namer, StackFrameNamer
 
 
 class TemplatedCustomNamer(Namer):
-    def __init__(self, template: str):
+    def __init__(self, template: str, extension: Optional[str] = None) -> None:
         self.template = template
-
-        self.stacktracenamer = StackFrameNamer()
+        self.stacktracenamer = StackFrameNamer(extension)
 
     def get_received_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
-            approved_or_received="received",
+            approved_or_received=self.stacktracenamer.RECEIVED[1:],
             test_file_name=self.stacktracenamer.get_class_name(),
             test_case_name=self.stacktracenamer.get_method_name(),
-            file_extension='txt')
+            file_extension=self.stacktracenamer.get_extension()[1:])
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
-            approved_or_received="approved",
+            approved_or_received=self.stacktracenamer.APPROVED[1:],
             test_file_name=self.stacktracenamer.get_class_name(),
             test_case_name=self.stacktracenamer.get_method_name(),
-            file_extension='txt')
+            file_extension=self.stacktracenamer.get_extension()[1:])
 
 
 def test_get_received_filename():
