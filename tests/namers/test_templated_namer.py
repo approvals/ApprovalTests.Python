@@ -1,6 +1,7 @@
 from typing import Optional
 
-from approvaltests import Namer, StackFrameNamer, verify_as_json, Options
+from approval_utilities.utilities.markdown_table import MarkdownTable
+from approvaltests import Namer, StackFrameNamer, verify_as_json, Options, verify
 
 
 # make the relative test work when running solo (not with all tests)
@@ -15,6 +16,7 @@ class TemplateFields:
     test_file_name = "test_file_name"
     test_case_name = "test_case_name"
     file_extension = "file_extension"
+    # TODO - the following are not supported yet
     test_source_directory = "test_source_directory"
     relative_test_source_directory = "relative_test_source_directory"
     approvals_subdirectory = "approvals_subdirectory"
@@ -41,6 +43,13 @@ class TemplatedCustomNamer(Namer):
              TemplateFields.test_case_name: self.namer_parts.get_method_name(),
              TemplateFields.file_extension: self.namer_parts.get_extension_without_dot()})
 
+
+def test_template_fields():
+    table = MarkdownTable().with_headers("template", "usage")
+    for fields in dir(TemplateFields):
+        if not fields.startswith("__"):
+            table.add_rows(fields,f"{{{fields}}}")
+    verify(table)
 
 def test_get_received_filename():
     namer = TemplatedCustomNamer(
