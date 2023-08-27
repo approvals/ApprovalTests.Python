@@ -73,3 +73,6 @@ class StackFrameNamer(NamerBase):
 
     def get_extension_with_dot(self):
         return self.extension_with_dot
+
+    def get_extension_without_dot(self):
+        return self.extension_with_dot[1:]

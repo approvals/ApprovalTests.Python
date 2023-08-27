@@ -20,10 +20,7 @@ from typing import Optional
 
 from approvaltests import get_default_namer, verify, Namer, StackFrameNamer, verify_as_json, Options
 
-# add set extension
-# remove parameter
-# figure out what is going on with basename
-# separate the tests to do an approval
+# make the relative test work when running solo (not with all tests)
 # extract duplication
 # more test coverage
 # support all 7 tags (4/7)
@@ -44,14 +41,14 @@ class TemplatedCustomNamer(Namer):
             approved_or_received=self.stacktracenamer.RECEIVED[1:],
             test_file_name=self.stacktracenamer.get_class_name(),
             test_case_name=self.stacktracenamer.get_method_name(),
-            file_extension=self.stacktracenamer.get_extension_with_dot()[1:])
+            file_extension=self.stacktracenamer.get_extension_without_dot())
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
             approved_or_received=self.stacktracenamer.APPROVED[1:],
             test_file_name=self.stacktracenamer.get_class_name(),
             test_case_name=self.stacktracenamer.get_method_name(),
-            file_extension=self.stacktracenamer.get_extension_with_dot()[1:])
+            file_extension=self.stacktracenamer.get_extension_without_dot())
 
 
 def test_get_received_filename():
