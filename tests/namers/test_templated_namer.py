@@ -34,8 +34,6 @@ class TemplatedCustomNamer(Namer):
         self.template = template
         self.stacktracenamer = StackFrameNamer()
 
-    def get_basename(self):
-        return ""
 
     def set_extension(self, extension_with_dot: str) -> None:
         self.stacktracenamer.set_extension(extension_with_dot)
