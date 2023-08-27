@@ -29,18 +29,17 @@ class TemplatedCustomNamer(Namer):
         self.namer_parts.set_extension(extension_with_dot)
 
     def get_received_filename(self, base: Optional[str] = None) -> str:
+        return self.format_filename(self.RECEIVED_WITHOUT_DOT)
+
+    def get_approved_filename(self, base: Optional[str] = None) -> str:
+        return self.format_filename(self.APPROVED_WITHOUT_DOT)
+
+    def format_filename(self, approved_or_received):
         return self.template.format_map(
-            {TemplateFields.approved_or_received: self.RECEIVED_WITHOUT_DOT,
+            {TemplateFields.approved_or_received: approved_or_received,
              TemplateFields.test_file_name: self.namer_parts.get_class_name(),
              TemplateFields.test_case_name: self.namer_parts.get_method_name(),
              TemplateFields.file_extension: self.namer_parts.get_extension_without_dot()})
-
-    def get_approved_filename(self, base: Optional[str] = None) -> str:
-        return self.template.format(
-            approved_or_received=self.APPROVED_WITHOUT_DOT,
-            test_file_name=self.namer_parts.get_class_name(),
-            test_case_name=self.namer_parts.get_method_name(),
-            file_extension=self.namer_parts.get_extension_without_dot())
 
 
 def test_get_received_filename():
