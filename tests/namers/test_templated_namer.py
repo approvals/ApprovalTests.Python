@@ -31,14 +31,14 @@ class TemplatedCustomNamer(Namer):
         return self.template.format(
             approved_or_received="received",
             test_file_name=self.stacktracenamer.get_class_name(),
-            test_case_name="test_get_received_filename",
+            test_case_name=self.stacktracenamer.get_method_name(),
             file_extension='txt')
 
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.template.format(
             approved_or_received="approved",
             test_file_name=self.stacktracenamer.get_class_name(),
-            test_case_name="test_get_approved_filename",
+            test_case_name=self.stacktracenamer.get_method_name(),
             file_extension='txt')
 
 
