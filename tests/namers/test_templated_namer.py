@@ -4,7 +4,6 @@ from approval_utilities.utilities.markdown_table import MarkdownTable
 from approvaltests import Namer, StackFrameNamer, verify_as_json, Options, verify
 
 
-
 class TemplateFields:
     approved_or_received = "approved_or_received"
     test_file_name = "test_file_name"
@@ -32,11 +31,14 @@ class TemplatedCustomNamer(Namer):
 
     def format_filename(self, approved_or_received):
         return self.template.format_map(
-            {TemplateFields.approved_or_received: approved_or_received,
-             TemplateFields.test_file_name: self.namer_parts.get_class_name(),
-             TemplateFields.test_case_name: self.namer_parts.get_method_name(),
-             TemplateFields.file_extension: self.namer_parts.get_extension_without_dot(),
-             TemplateFields.test_source_directory: self.namer_parts.directory})
+            {
+                TemplateFields.approved_or_received: approved_or_received,
+                TemplateFields.test_file_name: self.namer_parts.get_class_name(),
+                TemplateFields.test_case_name: self.namer_parts.get_method_name(),
+                TemplateFields.file_extension: self.namer_parts.get_extension_without_dot(),
+                TemplateFields.test_source_directory: self.namer_parts.directory,
+            }
+        )
 
 
 def test_template_fields():
