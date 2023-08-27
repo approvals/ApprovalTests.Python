@@ -26,9 +26,15 @@ def verify_as_json(
         object_to_verify = utils.deserialize_json_fields(object_to_verify)
     options = initialize_options(options, reporter)
     json_text = utils.to_json(object_to_verify) + "\n"
-    verify(json_text, None, encoding="utf-8", newline="\n", options=options)
+    verify(
+        json_text,
+        None,
+        encoding="utf-8",
+        newline="\n",
+        options=options.for_file.with_extension(".json"),
+    )
 ```
-<sup><a href='/approvaltests/approvals.py#L221-L236' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L221-L242' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
