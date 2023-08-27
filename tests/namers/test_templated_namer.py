@@ -4,20 +4,14 @@ from approval_utilities.utilities.markdown_table import MarkdownTable
 from approvaltests import Namer, StackFrameNamer, verify_as_json, Options, verify
 
 
-# make the relative test work when running solo (not with all tests)
-# extract duplication
-# more test coverage
-# support all 7 tags (4/7)
-# renames
-
 
 class TemplateFields:
     approved_or_received = "approved_or_received"
     test_file_name = "test_file_name"
     test_case_name = "test_case_name"
     file_extension = "file_extension"
-    # TODO - the following are not supported yet
     test_source_directory = "test_source_directory"
+    # TODO - the following are not supported yet
     relative_test_source_directory = "relative_test_source_directory"
     approvals_subdirectory = "approvals_subdirectory"
 
@@ -41,7 +35,8 @@ class TemplatedCustomNamer(Namer):
             {TemplateFields.approved_or_received: approved_or_received,
              TemplateFields.test_file_name: self.namer_parts.get_class_name(),
              TemplateFields.test_case_name: self.namer_parts.get_method_name(),
-             TemplateFields.file_extension: self.namer_parts.get_extension_without_dot()})
+             TemplateFields.file_extension: self.namer_parts.get_extension_without_dot(),
+             TemplateFields.test_source_directory: self.namer_parts.directory})
 
 
 def test_template_fields():
@@ -61,10 +56,8 @@ def test_get_received_filename():
 
 def test_approved_file_extension():
     namer = TemplatedCustomNamer(
-        "sub/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
+        "{test_source_directory}/sub/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
-    # assert (namer.get_received_filename() == "/my/source/directory/received/"
-    #                                         "test_templated_namer.test_get_received_filename.txt")
     verify_as_json("This should be a .json file", options=Options().with_namer(namer))
 
 
