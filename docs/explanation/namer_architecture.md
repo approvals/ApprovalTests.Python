@@ -1,10 +1,6 @@
   ```mermaid
 classDiagram
     class Namer {
-        +APPROVED_WITHOUT_DOT: str
-        +RECEIVED_WITHOUT_DOT: str
-        +APPROVED: str
-        +RECEIVED: str
         +get_received_filename(base: Optional[str]): str
         +get_approved_filename(base: Optional[str]): str
     }
@@ -53,5 +49,5 @@ classDiagram
         +format_filename(approved_or_received: str): str
     }
     Namer <|-- TemplatedCustomNamer
-
+    TemplatedCustomNamer ..> StackFrameNamer : uses
 ```
