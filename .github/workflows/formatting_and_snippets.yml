@@ -5,7 +5,7 @@ jobs:
   format_and_snippets:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Run black
       run: |
         pip install black
