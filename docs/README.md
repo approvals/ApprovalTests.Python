@@ -13,6 +13,7 @@
 -   [Log method parameter values](how_to/log_method_parameter_values.md)
 -   [test logs](how_to/test_logs.md)
 -   [Scrub Dates](how_to/scrub_dates.md)
+-   [Verify Both Logs and Results](how_to/verify_both_logs_and_results.md)
 
 ## Reference
 

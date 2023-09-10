@@ -1,0 +1,12 @@
+root INFO
+  connecting to the database
+root INFO
+  querying a table
+root INFO
+  closing the database
+root INFO
+  result = {
+    "first_name":"Britney",
+    "last_name": "Spears",
+    "profession":"Singer"    
+}

@@ -1,0 +1,6 @@
+root INFO
+  connecting to the database
+root INFO
+  querying a table
+root INFO
+  closing the database
