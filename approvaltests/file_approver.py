@@ -35,12 +35,22 @@ class FileComparator(Comparator):
 
 
 class FileApprover:
+    previous_approved = ""
+    do_raise_error_on_mutiple_calls_to_verify = False
+
     @staticmethod
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
     ) -> Optional[str]:
         approved = namer.get_approved_filename()
         received = namer.get_received_filename()
+
+        if FileApprover.do_raise_error_on_mutiple_calls_to_verify and approved == FileApprover.previous_approved:
+            return (
+                f"We noticed that you called verify more than once in the same test. Is that what you want to do?\n"
+                f"\tApproved file name is: {approved}\n"
+            )
+        FileApprover.previous_approved = approved
 
         # The writer has the ability to change the name of the received file
         received = writer.write_received_file(received)
@@ -69,3 +79,8 @@ class FileApprover:
         if not worked:
             raise ReporterNotWorkingException(reporter)
         return False
+
+
+def error_on_multiple_verify_calls(do_error: bool):
+    FileApprover.do_raise_error_on_mutiple_calls_to_verify = do_error
+
