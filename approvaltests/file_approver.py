@@ -45,7 +45,10 @@ class FileApprover:
         approved = namer.get_approved_filename()
         received = namer.get_received_filename()
 
-        if FileApprover.do_raise_error_on_mutiple_calls_to_verify and approved == FileApprover.previous_approved:
+        if (
+            FileApprover.do_raise_error_on_mutiple_calls_to_verify
+            and approved == FileApprover.previous_approved
+        ):
             return (
                 f"We noticed that you called verify more than once in the same test. Is that what you want to do?\n"
                 f"\tApproved file name is: {approved}\n"
@@ -83,4 +86,3 @@ class FileApprover:
 
 def error_on_multiple_verify_calls(do_error: bool):
     FileApprover.do_raise_error_on_mutiple_calls_to_verify = do_error
-
