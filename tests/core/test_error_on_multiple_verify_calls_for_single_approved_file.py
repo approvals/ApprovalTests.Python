@@ -25,12 +25,12 @@ def test_single_call_to_verify():
     error_on_multiple_verify_calls(False)
 
 
-class multiple_verify_calls_permitted():
+class multiple_verify_calls_permitted:
     save_variable = None
+
     def __enter__(self):
         # self.save_variable = current_value
         error_on_multiple_verify_calls(False)
-
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         error_on_multiple_verify_calls(True)
