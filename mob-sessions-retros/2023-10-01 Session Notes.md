@@ -63,3 +63,30 @@ Book: how to take great notes
 N ## TODO: 
 ## NTODO: 
 ## 
+
+## Retro
+
+When Nitsan was helping capture the links - got nervous
+What I was trying to do was to make sure we documented all the relevant links that Llewellyn had pointed out.
+Nitsan started to do a search in one of the tabs before I was certain we had captured the link for that tab.
+When I don't understand - it's hard to know if the most important part is being captured.
+
+GTD  Getting things done
+ capture well
+vs
+  when you are more familiar with a domain 
+you only capture the things that get your attention
+  one type of capture 
+I would like to understand this later
+ I realize: i dont understand it now, and later I will take the time to 'uyes'  undetstand it
+ there is a balance
+ a proportion 
+ how much of the things we captuer do we understand
+
+more skeptical of capturing the things that I do not undetrstand
+ because maybe later I will search it online and read about it. 
+ that cannt be very much of those types of hnotes
+because we do not have much capcity of time to dig into that type of note
+
+the notes N takes:  most of their notes they thought / said  
+
