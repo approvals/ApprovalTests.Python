@@ -1,10 +1,7 @@
 import pytest
 
-from approvaltests import verify, ApprovalException
+from approvaltests import verify, ApprovalException, settings
 from approvaltests.file_approver import error_on_multiple_verify_calls
-
-
-#
 
 
 def test_multiple_calls_to_verify():
@@ -16,7 +13,9 @@ def test_multiple_calls_to_verify():
 
 
 def test_old_way():
-    error_on_multiple_verify_calls(False)
+    error_on_multiple_verify_calls(True)
+    settings().allow_multiple_verify_calls_for_this_method()
+    # TODO: start here
     verify("call to verify")
     verify("call to verify")
     error_on_multiple_verify_calls(False)

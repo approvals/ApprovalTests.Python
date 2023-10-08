@@ -32,7 +32,8 @@ from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
 __unittest = True
 __tracebackhide__ = True
 
-
+def settings() -> Settings:
+    return Setting()
 def set_default_reporter(reporter: Reporter) -> None:
     return approvaltests.reporters.default_reporter_factory.set_default_reporter(
         reporter

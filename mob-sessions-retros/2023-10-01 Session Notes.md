@@ -5,7 +5,7 @@ The feature we are working (which is: raising an error if a user puts multiple v
 ## Decisions with Llewellyn
 
 - Remove the Feature Toggle
-- the tests can pass by Expecting an exception
+- ~~the tests can pass by Expecting an exception~~
 - draw inspiration from Java Approval Tests
 - take the text from Java Approval Tests for consistency
 - keep WIP at one; iow don't work on more than one thing at once
