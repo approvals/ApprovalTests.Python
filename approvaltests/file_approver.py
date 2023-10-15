@@ -46,7 +46,7 @@ class FileApprover:
         approved = namer.get_approved_filename()
         received = namer.get_received_filename()
 
-        if (FileApprover.is_this_a_multiple_verify(approved) ):
+        if FileApprover.is_this_a_multiple_verify(approved):
             return FileApprover.get_duplicate_verify_error_message(approved)
         FileApprover.previous_approved.append(approved)
 
@@ -64,7 +64,7 @@ class FileApprover:
 
     @staticmethod
     def get_duplicate_verify_error_message(approved):
-        return  remove_indentation_from(
+        return remove_indentation_from(
             f"""
             We noticed that you called verify more than once in the same test. 
             This is the second call to verify:

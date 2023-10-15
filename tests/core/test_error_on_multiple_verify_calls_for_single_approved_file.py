@@ -36,6 +36,6 @@ def test_allow_multiple_verifies_by_lambda():
 def test_single_call_to_verify():
     verify("call to verify")
 
+
 def test_help_message():
     verify(FileApprover.get_duplicate_verify_error_message("<approved_file>"))
-
