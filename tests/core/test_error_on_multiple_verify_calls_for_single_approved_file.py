@@ -1,12 +1,14 @@
 import pytest
 
-from approvaltests import verify, ApprovalException, settings, approvals
+from approvaltests import verify, ApprovalException, settings, approvals, Options
 from approvaltests.file_approver import error_on_multiple_verify_calls, FileApprover
+from tests.namers.test_templated_namer import TemplatedCustomNamer
 
 
 def test_multiple_calls_to_verify():
     error_on_multiple_verify_calls(True)
     verify("call to verify")
+    verify("# call to verify",options= Options().with_namer(TemplatedCustomNamer("{test_source_directory}/differenttest.{approved_or_received}.txt")))
     with pytest.raises(ApprovalException):
         verify("call to verify")
     error_on_multiple_verify_calls(False)
@@ -15,7 +17,6 @@ def test_multiple_calls_to_verify():
 def test_allow_multiple_verifies_per_method():
     error_on_multiple_verify_calls(True)
     settings().allow_multiple_verify_calls_for_this_method()
-    # TODO: start here
     verify("call to verify")
     verify("call to verify")
     error_on_multiple_verify_calls(False)

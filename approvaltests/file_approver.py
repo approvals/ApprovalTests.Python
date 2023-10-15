@@ -35,7 +35,7 @@ class FileComparator(Comparator):
 
 
 class FileApprover:
-    previous_approved = ""
+    previous_approved = []
     do_raise_error_on_mutiple_calls_to_verify = False
     allowed_duplicates = None
 
@@ -51,7 +51,7 @@ class FileApprover:
                 f"We noticed that you called verify more than once in the same test. Is that what you want to do?\n"
                 f"\tApproved file name is: {approved}\n"
             )
-        FileApprover.previous_approved = approved
+        FileApprover.previous_approved.append(approved)
 
         # The writer has the ability to change the name of the received file
         received = writer.write_received_file(received)
@@ -67,8 +67,11 @@ class FileApprover:
 
     @staticmethod
     def is_this_a_multiple_verify(approved):
+        # Bugs: Threading issues - This only holds the last state instead of all states.
+        # Needs to hold all the files that have been called and all the errors that are allowed
+
         return FileApprover.do_raise_error_on_mutiple_calls_to_verify \
-            and approved == FileApprover.previous_approved \
+            and approved in FileApprover.previous_approved \
             and not FileApprover.is_duplicate_allowed(approved)
 
     @staticmethod
