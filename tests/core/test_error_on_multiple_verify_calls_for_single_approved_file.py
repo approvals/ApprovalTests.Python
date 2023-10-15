@@ -7,16 +7,14 @@ from tests.namers.test_templated_namer import TemplatedCustomNamer
 
 def test_multiple_calls_to_verify():
     verify("call to verify")
-    verify(
-        "# call to verify",
-        options=Options().with_namer(
-            TemplatedCustomNamer(
-                "{test_source_directory}/differenttest.{approved_or_received}.txt"
-            )
-        ),
-    )
+    interceeding_verify()
     with pytest.raises(ApprovalException):
         verify("call to verify")
+
+
+def interceeding_verify():
+    namer = TemplatedCustomNamer("{test_source_directory}/differenttest.{approved_or_received}.txt")
+    verify("# call to verify", options=Options().with_namer(namer))
 
 
 def test_allow_multiple_verifies_per_method():
