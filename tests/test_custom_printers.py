@@ -2,7 +2,12 @@ import argparse
 import typing
 from abc import ABC
 
-from approvaltests import verify, register_formatter, find_formatter_for_specified_class, approvals
+from approvaltests import (
+    verify,
+    register_formatter,
+    find_formatter_for_specified_class,
+    approvals,
+)
 from approvaltests.core.format_wrapper import FormatWrapper
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
     FormatterOfArgparseNamespace,

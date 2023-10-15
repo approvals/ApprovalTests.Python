@@ -23,7 +23,7 @@ def assert_against_file(
     actual: str, file_path: str, reporter: Optional[ReporterForTesting] = None
 ) -> None:
     namer = FilePathNamer(file_path)
-    FileApprover.add_allowed_duplicates(lambda n: n==namer.get_approved_filename())
+    FileApprover.add_allowed_duplicates(lambda n: n == namer.get_approved_filename())
     verify_with_namer(actual, namer, reporter)
 
 

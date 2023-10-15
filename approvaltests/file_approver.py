@@ -45,7 +45,7 @@ class FileApprover:
         approved = namer.get_approved_filename()
         received = namer.get_received_filename()
 
-        if (FileApprover.is_this_a_multiple_verify(approved) ):
+        if FileApprover.is_this_a_multiple_verify(approved):
             return (
                 f"We noticed that you called verify more than once in the same test. Is that what you want to do?\n"
                 f"\tApproved file name is: {approved}\n"
@@ -66,8 +66,10 @@ class FileApprover:
 
     @staticmethod
     def is_this_a_multiple_verify(approved):
-        return approved in FileApprover.previous_approved \
+        return (
+            approved in FileApprover.previous_approved
             and not FileApprover.is_duplicate_allowed(approved)
+        )
 
     @staticmethod
     def is_duplicate_allowed(approved):
@@ -93,5 +95,5 @@ class FileApprover:
         return False
 
     @staticmethod
-    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str],bool]):
+    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str], bool]):
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
