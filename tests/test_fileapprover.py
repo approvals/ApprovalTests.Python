@@ -1,7 +1,7 @@
 ﻿import shutil
 import unittest
 
-from approvaltests import get_default_namer, verify, Options, verify_file
+from approvaltests import get_default_namer, verify, Options, verify_file, approvals
 from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
@@ -34,6 +34,7 @@ class FileApproverTests(unittest.TestCase):
         self.assertTrue(reporter.called)
 
     def test_returns_error_when_files_are_different(self):
+        approvals.settings().allow_multiple_verify_calls_for_this_method()
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()

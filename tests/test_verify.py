@@ -5,7 +5,7 @@ import unittest
 
 import pytest
 
-from approvaltests import Options, delete_approved_file
+from approvaltests import Options, delete_approved_file, approvals
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import (
     verify,
@@ -244,6 +244,7 @@ class VerifyTests(unittest.TestCase):
         # end-snippet
 
     def test_storyboard_of_iterable(self) -> None:
+        approvals.settings().allow_multiple_verify_calls_for_this_method()
         spinning_wheel = ["-", "\\", "|", "/"] * 3
         verify(Storyboard().iterate_frames(spinning_wheel, 5))
 
@@ -291,6 +292,7 @@ class VerifyTests(unittest.TestCase):
         verify(1)
 
     def test_verify_automatic_approval(self):
+        approvals.settings().allow_multiple_verify_calls_for_this_method()
         delete_approved_file()
         with pytest.raises(ApprovalException):
             verify(

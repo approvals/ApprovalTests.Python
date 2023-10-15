@@ -60,6 +60,7 @@ def test_setting_reporter():
 
 
 def test_file_extensions():
+    approvals.settings().allow_multiple_verify_calls_for_this_method()
     content = "# This is a markdown header\n"
     # begin-snippet: options_with_file_extension
     verify(content, options=Options().for_file.with_extension(".md"))

@@ -2,7 +2,7 @@ import argparse
 import typing
 from abc import ABC
 
-from approvaltests import verify, register_formatter, find_formatter_for_specified_class
+from approvaltests import verify, register_formatter, find_formatter_for_specified_class, approvals
 from approvaltests.core.format_wrapper import FormatWrapper
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
     FormatterOfArgparseNamespace,
@@ -10,6 +10,7 @@ from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
 
 
 def test_argparse_namespace() -> None:
+    approvals.settings().allow_multiple_verify_calls_for_this_method()
     args = argparse.ArgumentParser()
     args.add_argument("foo")
     args.add_argument("--foo2")

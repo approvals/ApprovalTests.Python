@@ -1,6 +1,7 @@
 from typing import Optional, Any
 
 from approval_utilities.utils import write_to_temporary_file
+from approvaltests import FileApprover
 from approvaltests.core import Reporter
 from approvaltests.core.options import Options
 from approvaltests.approvals import get_default_namer, initialize_options
@@ -22,6 +23,7 @@ def assert_against_file(
     actual: str, file_path: str, reporter: Optional[ReporterForTesting] = None
 ) -> None:
     namer = FilePathNamer(file_path)
+    FileApprover.add_allowed_duplicates(lambda n: n==namer.get_approved_filename())
     verify_with_namer(actual, namer, reporter)
 
 

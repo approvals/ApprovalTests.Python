@@ -1,7 +1,7 @@
 import filecmp
 import os
 import pathlib
-from typing import Optional
+from typing import Optional, Callable
 
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
@@ -36,8 +36,7 @@ class FileComparator(Comparator):
 
 class FileApprover:
     previous_approved = []
-    do_raise_error_on_mutiple_calls_to_verify = False
-    allowed_duplicates = None
+    allowed_duplicates = []
 
     @staticmethod
     def verify(
@@ -67,16 +66,15 @@ class FileApprover:
 
     @staticmethod
     def is_this_a_multiple_verify(approved):
-        # Bugs: Threading issues - This only holds the last state instead of all states.
-        # Needs to hold all the files that have been called and all the errors that are allowed
-
-        return FileApprover.do_raise_error_on_mutiple_calls_to_verify \
-            and approved in FileApprover.previous_approved \
+        return approved in FileApprover.previous_approved \
             and not FileApprover.is_duplicate_allowed(approved)
 
     @staticmethod
     def is_duplicate_allowed(approved):
-        return FileApprover.allowed_duplicates and FileApprover.allowed_duplicates(approved)
+        for allowed in FileApprover.allowed_duplicates:
+            if allowed(approved):
+                return True
+        return False
 
     @staticmethod
     def verify_files(
@@ -95,10 +93,5 @@ class FileApprover:
         return False
 
     @staticmethod
-    def add_allowed_duplicates(param):
-        FileApprover.allowed_duplicates = param
-
-
-
-def error_on_multiple_verify_calls(do_error: bool):
-    FileApprover.do_raise_error_on_mutiple_calls_to_verify = do_error
+    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str],bool]):
+        FileApprover.allowed_duplicates.append(is_duplicate_allowed)
