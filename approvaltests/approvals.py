@@ -32,8 +32,14 @@ from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
 __unittest = True
 __tracebackhide__ = True
 
+
+class Settings:
+    def allow_multiple_verify_calls_for_this_method(self):
+        pass
+
+
 def settings() -> Settings:
-    return Setting()
+    return Settings()
 def set_default_reporter(reporter: Reporter) -> None:
     return approvaltests.reporters.default_reporter_factory.set_default_reporter(
         reporter

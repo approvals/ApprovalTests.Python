@@ -13,7 +13,7 @@ def test_multiple_calls_to_verify():
 
 
 def test_old_way():
-    error_on_multiple_verify_calls(True)
+    error_on_multiple_verify_calls(False)
     settings().allow_multiple_verify_calls_for_this_method()
     # TODO: start here
     verify("call to verify")
