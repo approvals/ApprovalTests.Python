@@ -36,16 +36,18 @@ __tracebackhide__ = True
 class Settings:
     def allow_multiple_verify_calls_for_this_method(self):
         class_and_method = get_default_namer().get_file_name()
-        def allow_method(filename: str)-> bool:
+
+        def allow_method(filename: str) -> bool:
             return class_and_method in filename
 
         # make it so we do not raise an eerror if someonee calls it twice
         FileApprover.add_allowed_duplicates(allow_method)
 
 
-
 def settings() -> Settings:
     return Settings()
+
+
 def set_default_reporter(reporter: Reporter) -> None:
     return approvaltests.reporters.default_reporter_factory.set_default_reporter(
         reporter

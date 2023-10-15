@@ -34,7 +34,7 @@ def verify_as_json(
         options=options.for_file.with_extension(".json"),
     )
 ```
-<sup><a href='/approvaltests/approvals.py#L221-L242' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L236-L257' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
@@ -73,6 +73,6 @@ def test_verifiable(self):
         MarkdownParagraph("Paragraph Title", "This is where the paragraph text is.")
     )
 ```
-<sup><a href='/tests/test_verify.py#L311-L333' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L313-L335' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   

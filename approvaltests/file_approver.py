@@ -83,8 +83,10 @@ class FileApprover:
 
     @staticmethod
     def is_this_a_multiple_verify(approved):
-        return approved in FileApprover.previous_approved \
+        return (
+            approved in FileApprover.previous_approved
             and not FileApprover.is_duplicate_allowed(approved)
+        )
 
     @staticmethod
     def is_duplicate_allowed(approved):
@@ -110,5 +112,5 @@ class FileApprover:
         return False
 
     @staticmethod
-    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str],bool]):
+    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str], bool]):
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
