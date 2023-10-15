@@ -3,6 +3,7 @@ import os
 import pathlib
 from typing import Optional, Callable
 
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
@@ -46,10 +47,7 @@ class FileApprover:
         received = namer.get_received_filename()
 
         if (FileApprover.is_this_a_multiple_verify(approved) ):
-            return (
-                f"We noticed that you called verify more than once in the same test. Is that what you want to do?\n"
-                f"\tApproved file name is: {approved}\n"
-            )
+            return FileApprover.get_duplicate_verify_error_message(approved)
         FileApprover.previous_approved.append(approved)
 
         # The writer has the ability to change the name of the received file
@@ -63,6 +61,25 @@ class FileApprover:
                 f"\tReceived: {received} "
             )
         return None
+
+    @staticmethod
+    def get_duplicate_verify_error_message(approved):
+        return  remove_indentation_from(
+            f"""
+            We noticed that you called verify more than once in the same test. 
+            This is the second call to verify:
+                approved_file: {approved}
+    
+            By default, ApprovalTests only allows one verify() call per test.
+            To find out more, visit: 
+            https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/multiple_approvals_per_test.md
+            
+            # Possible Fixes
+            1. Separate your test into two tests
+            2. In your verify call, add `options=NamerFactory.with_parameters("your_paramater")`
+            3. In your test, call `approvals.settings().allow_multiple_verify_calls_for_this_method()`
+            """
+        )
 
     @staticmethod
     def is_this_a_multiple_verify(approved):

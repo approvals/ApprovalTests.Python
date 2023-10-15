@@ -1,0 +1,12 @@
+We noticed that you called verify more than once in the same test. 
+This is the second call to verify:
+    approved_file: <approved_file>
+
+By default, ApprovalTests only allows one verify() call per test.
+To find out more, visit: 
+https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/multiple_approvals_per_test.md
+
+# Possible Fixes
+1. Separate your test into two tests
+2. In your verify call, add `options=NamerFactory.with_parameters("your_paramater")`
+3. In your test, call `approvals.settings().allow_multiple_verify_calls_for_this_method()`
