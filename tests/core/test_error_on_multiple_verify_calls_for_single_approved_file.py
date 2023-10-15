@@ -1,7 +1,7 @@
 import pytest
 
-from approvaltests import verify, ApprovalException, settings
-from approvaltests.file_approver import error_on_multiple_verify_calls
+from approvaltests import verify, ApprovalException, settings, approvals
+from approvaltests.file_approver import error_on_multiple_verify_calls, FileApprover
 
 
 def test_multiple_calls_to_verify():
@@ -12,10 +12,18 @@ def test_multiple_calls_to_verify():
     error_on_multiple_verify_calls(False)
 
 
-def test_old_way():
-    error_on_multiple_verify_calls(False)
+def test_allow_multiple_verifies_per_method():
+    error_on_multiple_verify_calls(True)
     settings().allow_multiple_verify_calls_for_this_method()
     # TODO: start here
+    verify("call to verify")
+    verify("call to verify")
+    error_on_multiple_verify_calls(False)
+
+def test_allow_multiple_verifies_by_lambda():
+    error_on_multiple_verify_calls(True)
+    filename = approvals.get_default_namer().get_approved_filename()
+    FileApprover.add_allowed_duplicates(lambda n: n == filename)
     verify("call to verify")
     verify("call to verify")
     error_on_multiple_verify_calls(False)

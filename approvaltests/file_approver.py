@@ -37,6 +37,7 @@ class FileComparator(Comparator):
 class FileApprover:
     previous_approved = ""
     do_raise_error_on_mutiple_calls_to_verify = False
+    allowed_duplicates = None
 
     @staticmethod
     def verify(
@@ -45,10 +46,7 @@ class FileApprover:
         approved = namer.get_approved_filename()
         received = namer.get_received_filename()
 
-        if (
-            FileApprover.do_raise_error_on_mutiple_calls_to_verify
-            and approved == FileApprover.previous_approved
-        ):
+        if (FileApprover.is_this_a_multiple_verify(approved) ):
             return (
                 f"We noticed that you called verify more than once in the same test. Is that what you want to do?\n"
                 f"\tApproved file name is: {approved}\n"
@@ -68,6 +66,16 @@ class FileApprover:
         return None
 
     @staticmethod
+    def is_this_a_multiple_verify(approved):
+        return FileApprover.do_raise_error_on_mutiple_calls_to_verify \
+            and approved == FileApprover.previous_approved \
+            and not FileApprover.is_duplicate_allowed(approved)
+
+    @staticmethod
+    def is_duplicate_allowed(approved):
+        return FileApprover.allowed_duplicates and FileApprover.allowed_duplicates(approved)
+
+    @staticmethod
     def verify_files(
         approved_file: str,
         received_file: str,
@@ -82,6 +90,11 @@ class FileApprover:
         if not worked:
             raise ReporterNotWorkingException(reporter)
         return False
+
+    @staticmethod
+    def add_allowed_duplicates(param):
+        FileApprover.allowed_duplicates = param
+
 
 
 def error_on_multiple_verify_calls(do_error: bool):
