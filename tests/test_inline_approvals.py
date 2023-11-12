@@ -42,17 +42,12 @@ from approvaltests import verify, StackFrameNamer
 
 
 def print_docstring():
-    import inspect
-    stack_frame_namer = StackFrameNamer()
-    stack = inspect.stack(1)
-    frame = stack_frame_namer.get_test_frame(stack)
-    caller = stack[frame]
-    return print_caller_docstring(caller)
+    return print_caller_docstring(StackFrameNamer.get_calling_test_frame())
 
 def print_caller_docstring(caller_frame):
     import inspect
-    caller_function = caller_frame.function
     caller_info = inspect.getmembers(caller_frame.frame)
+    caller_code = None
     for name, data in caller_info:
         if name == 'f_code':
             caller_code = data

@@ -26,10 +26,11 @@ class StackFrameNamer(NamerBase):
         self.class_name = get_class_name_for_frame(stacktrace)
         self.directory = os.path.dirname(stacktrace[1])
 
-    def get_test_frame(self, caller: List[FrameInfo]) -> int:
+    @staticmethod
+    def get_test_frame(caller: List[FrameInfo]) -> int:
         tmp_array = []
         for index, frame in enumerate(caller):
-            if self.is_test_method(frame):
+            if StackFrameNamer.is_test_method(frame):
                 tmp_array.append(index)
         if tmp_array:
             return tmp_array[-1]
@@ -76,3 +77,9 @@ class StackFrameNamer(NamerBase):
 
     def get_extension_without_dot(self):
         return self.extension_with_dot[1:]
+
+    @classmethod
+    def get_calling_test_frame(cls):
+        calling_stack = inspect.stack(1)
+        frame = StackFrameNamer.get_test_frame(calling_stack)
+        return calling_stack[frame]
