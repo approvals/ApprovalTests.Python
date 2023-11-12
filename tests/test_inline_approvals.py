@@ -41,27 +41,21 @@
 from approvaltests import verify, StackFrameNamer
 
 
-def print_docstring():
-    return print_caller_docstring(StackFrameNamer.get_calling_test_frame())
+def get_test_method_docstring():
+    method = get_caller_method(StackFrameNamer.get_calling_test_frame())
+    return method.__doc__
 
-def print_caller_docstring(caller_frame):
-    import inspect
-    caller_info = inspect.getmembers(caller_frame.frame)
-    caller_code = None
-    for name, data in caller_info:
-        if name == 'f_code':
-            caller_code = data
-            break
-    caller_function_name = caller_code.co_name
+def get_caller_method(caller_frame):
+    caller_function_name = caller_frame[3]
     caller_function_object = caller_frame.frame.f_globals.get(caller_function_name, None)
-    return caller_function_object.__doc__
+    return caller_function_object
 
 
 def test_docstrings():
     '''
     hello x world
     '''
-    verify(print_docstring())
+    verify(get_test_method_docstring())
 
 #
 #
