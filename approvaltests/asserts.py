@@ -34,10 +34,10 @@ def assert_equal_with_reporter(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
 ) -> None:
+    options = initialize_options(options, reporter)
     actual = options.scrub(actual)
     if actual == expected:
         return
-    options = initialize_options(options, reporter)
 
     name = get_default_namer().get_file_name()
     extention = options.for_file.file_extention

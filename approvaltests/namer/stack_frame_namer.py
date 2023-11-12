@@ -20,14 +20,14 @@ class StackFrameNamer(NamerBase):
         self.config_loaded = False
 
     def set_for_stack(self, caller: List[FrameInfo]) -> None:
-        frame = self.get_test_frame(caller)
+        frame = self.get_test_frame_index(caller)
         stacktrace = caller[frame]
         self.method_name = stacktrace[3]
         self.class_name = get_class_name_for_frame(stacktrace)
         self.directory = os.path.dirname(stacktrace[1])
 
     @staticmethod
-    def get_test_frame(caller: List[FrameInfo]) -> int:
+    def get_test_frame_index(caller: List[FrameInfo]) -> int:
         tmp_array = []
         for index, frame in enumerate(caller):
             if StackFrameNamer.is_test_method(frame):
@@ -72,14 +72,14 @@ class StackFrameNamer(NamerBase):
         class_name = "" if (self.class_name is None) else (self.class_name + ".")
         return class_name + self.method_name
 
-    def get_extension_with_dot(self):
+    def get_extension_with_dot(self)-> str:
         return self.extension_with_dot
 
-    def get_extension_without_dot(self):
+    def get_extension_without_dot(self) -> str:
         return self.extension_with_dot[1:]
 
     @classmethod
-    def get_calling_test_frame(cls):
+    def get_test_frame(cls) -> FrameInfo:
         calling_stack = inspect.stack(1)
-        frame = StackFrameNamer.get_test_frame(calling_stack)
+        frame = StackFrameNamer.get_test_frame_index(calling_stack)
         return calling_stack[frame]

@@ -1,61 +1,43 @@
-# # important to still include usage of a diff tool
-# # also important to only write the verify and it populates the approved text for you
-# import pytest
-#
-#
-# def test_inline_approvals_before_running():
-#     verify_inline("Hello World")
-#
-# def test_inline_approvals_after_approving():
-#     verify_inline("Hello World","Hello World") <---
-#
-# def test_inline_approvals_after_approving_with_docstring():
-#     '''
-#     approved: "GATCCCATACGGGATTTTATATATATACCCCC"
-#     '''
-#     verify_inline("Hello World")
-#
-# def test_inline_approvals_after_approving_with_docstring():
-#     expected = '''
-#     "GATCCCATACGGGATTTTATATATATACCCCC"
-#     '''
-#     verify_inline("Hello World", expected) <---
-#
-# def test_inline_approvals_after_approving_with_docstring():
-#     verify_inline(
-#         result(),
-#         """
-#         GATCCCATACGGGATTTTATATATATACCCCC
-#         """
-#         ) <----
-#
-# def test_inline_approvals_after_approving_with_docstring():
-#     verify_inline(
-#         result()
-#     ).matches_inline_approved(
-#         """
-#         GATCCCATACGGGATTTTATATATATACCCCC
-#         """
-#     )
-#
-from approvaltests import verify, StackFrameNamer
+from inspect import FrameInfo
+from pathlib import Path
+from typing import Callable, Any
+
+from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
+from approvaltests import StackFrameNamer, assert_equal_with_reporter, Options, Reporter
+from approvaltests.reporters import MultiReporter
 
 
-def get_test_method_docstring():
-    method = get_caller_method(StackFrameNamer.get_calling_test_frame())
-    return method.__doc__
+def get_approved_via_doc_string():
+    test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
+    method: Callable[..., Any] = get_caller_method(test_stack_frame)
+    return remove_indentation_from(method.__doc__)
 
-def get_caller_method(caller_frame):
-    caller_function_name = caller_frame[3]
+def get_caller_method(caller_frame)-> Callable:
+    caller_function_name: str = caller_frame[3]
     caller_function_object = caller_frame.frame.f_globals.get(caller_function_name, None)
     return caller_function_object
 
 
 def test_docstrings():
     '''
-    hello x world
+    hello world
     '''
-    verify(get_test_method_docstring())
+    verify_inline("hello world")
+
+
+class InlineReporter(Reporter):
+    def report(self, received_path: str, approved_path: str) -> bool:
+        received = Path(received_path).read_text()
+        copy_to_clipboard(f"'''\n{received}\n'''")
+
+
+def verify_inline(actual):
+    options = Options()
+    options = options.with_reporter(MultiReporter(options.reporter, InlineReporter()))
+    if actual[-1] != "\n":
+        actual += "\n"
+    assert_equal_with_reporter(get_approved_via_doc_string(), actual, options=options)
 
 #
 #
