@@ -13,7 +13,9 @@ def test_multiple_calls_to_verify():
 
 
 def interceeding_verify():
-    namer = TemplatedCustomNamer("{test_source_directory}/differenttest.{approved_or_received}.txt")
+    namer = TemplatedCustomNamer(
+        "{test_source_directory}/differenttest.{approved_or_received}.txt"
+    )
     verify("# call to verify", options=Options().with_namer(namer))
 
 
