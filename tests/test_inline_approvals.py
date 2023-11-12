@@ -13,16 +13,19 @@ def get_approved_via_doc_string():
     method: Callable[..., Any] = get_caller_method(test_stack_frame)
     return remove_indentation_from(method.__doc__)
 
-def get_caller_method(caller_frame)-> Callable:
+
+def get_caller_method(caller_frame) -> Callable:
     caller_function_name: str = caller_frame[3]
-    caller_function_object = caller_frame.frame.f_globals.get(caller_function_name, None)
+    caller_function_object = caller_frame.frame.f_globals.get(
+        caller_function_name, None
+    )
     return caller_function_object
 
 
 def test_docstrings():
-    '''
+    """
     hello world
-    '''
+    """
     verify_inline("hello world")
 
 
@@ -41,6 +44,7 @@ def verify_inline(actual):
     if actual[-1] != "\n":
         actual += "\n"
     assert_equal_with_reporter(get_approved_via_doc_string(), actual, options=options)
+
 
 #
 #
