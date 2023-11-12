@@ -27,6 +27,9 @@ def test_docstrings():
 
 
 class InlineReporter(Reporter):
+    # TODO: Start here - Make this report create a temp file of the fixed source,
+    #  and compare it with the existing source.
+    # if there are mulitple failures, they each get there on reporter
     def report(self, received_path: str, approved_path: str) -> bool:
         received = Path(received_path).read_text()
         copy_to_clipboard(f"'''\n{received}\n'''")
