@@ -67,3 +67,12 @@ def create_directory_if_needed(received_file: str) -> None:
     directory = os.path.dirname(received_file)
     if directory and not os.path.exists(directory):
         os.makedirs(directory)
+
+
+def print_grid(width, height, cell_print_func):
+    result = ""
+    for y in range(height):
+        for x in range(width):
+            result += cell_print_func(x, y)
+        result += "\n"
+    return result
