@@ -4,7 +4,13 @@ from typing import Callable, Any
 
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests import StackFrameNamer, assert_equal_with_reporter, Options, Reporter, verify
+from approvaltests import (
+    StackFrameNamer,
+    assert_equal_with_reporter,
+    Options,
+    Reporter,
+    verify,
+)
 from approvaltests.reporters import MultiReporter
 
 
@@ -33,11 +39,9 @@ def test_docstrings():
     """
     hello world
     """
-    #verify_inline(greetting())
-    verify(greetting(), options=Options().inline(show_code= False))
-    #verify(greetting(), options = Options().inline())
-
-
+    # verify_inline(greetting())
+    verify(greetting(), options=Options().inline(show_code=False))
+    # verify(greetting(), options = Options().inline())
 
 
 def greetting():
