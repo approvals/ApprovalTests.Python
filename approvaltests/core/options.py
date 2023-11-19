@@ -81,3 +81,7 @@ class Options:
         if hasattr(namer, "set_extension"):
             namer.set_extension(self.for_file.file_extention)
         return namer
+
+    def inline(self) -> "Options":
+        from approvaltests.namer.inline_comparator import InlineComparator
+        return InlineComparator().register(self)

@@ -4,7 +4,7 @@ from typing import Callable, Any
 
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests import StackFrameNamer, assert_equal_with_reporter, Options, Reporter
+from approvaltests import StackFrameNamer, assert_equal_with_reporter, Options, Reporter, verify
 from approvaltests.reporters import MultiReporter
 
 
@@ -22,11 +22,26 @@ def get_caller_method(caller_frame) -> Callable:
     return caller_function_object
 
 
+# Todo:
+#  use options
+#  diff results or code
+#  use reporter
+#  use reporter with options
+
+
 def test_docstrings():
     """
     hello world
     """
-    verify_inline("hello world")
+    #verify_inline(greetting())
+    verify(greetting(), options = Options().inline())
+    #verify(greetting(), Options().inline(show_code = False))
+
+
+
+
+def greetting():
+    return "hello world"
 
 
 class InlineReporter(Reporter):
