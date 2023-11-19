@@ -9,19 +9,13 @@ from approvaltests import Namer, StackFrameNamer
 
 class InlineComparator(Namer):
     def get_approved_filename(self, base: Optional[str] = None) -> str:
-        file = tempfile.NamedTemporaryFile(suffix=".approved.txt", delete=False)
-        # talk away....
-        # get test method doc string
+        file = tempfile.NamedTemporaryFile(suffix=".approved.txt", delete=False).name
         docs = self.get_test_method_doc_string()
-
-        # write to file
-        #file.write(docs.encode("utf-8"))
-        Path(file.name).write_text(docs)
-        return file.name
+        Path(file).write_text(docs)
+        return file
 
     def get_received_filename(self, base: Optional[str] = None) -> str:
-        file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False)
-        return file.name
+        return tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
     def get_test_method_doc_string(self):
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
         method: Callable[..., Any] = self.get_caller_method(test_stack_frame)
