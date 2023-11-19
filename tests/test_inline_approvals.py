@@ -34,8 +34,8 @@ def test_docstrings():
     hello world
     """
     #verify_inline(greetting())
-    verify(greetting(), options = Options().inline())
-    #verify(greetting(), Options().inline(show_code = False))
+    verify(greetting(), options=Options().inline(show_code= False))
+    #verify(greetting(), options = Options().inline())
 
 
 

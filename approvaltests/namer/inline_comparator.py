@@ -29,4 +29,4 @@ class InlineComparator(Namer):
         return caller_function_object
 
     def register(self, options: "Options"):
-        return options.with_namer(self)
+        return options.with_namer(self) # .with_reporter(InlineReporter())
