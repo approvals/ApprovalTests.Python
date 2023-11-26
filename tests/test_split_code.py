@@ -14,5 +14,9 @@ def test_splitting_code():
             Received:test_inline_approvals.recieved.txt
             """
             verify(greeting(), options = Options().inline())
+            
+        def greeting():
+            # start of greeting() method
+            return "hello world"
         ''');
     verify(SplitCode.on_method(code, "testy_mctest"))

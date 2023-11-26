@@ -29,29 +29,26 @@ def get_caller_method(caller_frame) -> Callable:
 
 
 # Todo:
-#  use options
-#  diff results or code
-#  use reporter
-#  use reporter with options
+# detect the actual tab
+# detect if the quote type used in the docstring  (i.e. " or ')
+# indent the received text
 
 
 def test_docstrings():
     """
-    Approved: test_inline_approvals.py
-    Received:test_inline_approvals.recieved.txt
-    the python code ...
-    hello world
-    ... the rest of the python code
+    hello 
+     world
     """
     # verify_inline(greetting())
     # verify(greetting(), options=Options().inline(show_code= False))
-    verify(greeting(), options = Options().inline())
+    verify(greeting(), options = Options().inline(show_code= True))
 
 
 
 
 def greeting():
-    return "hello world"
+    return "hello \n world"
+
 
 
 class InlineReporter(Reporter):

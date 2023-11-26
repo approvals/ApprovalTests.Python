@@ -1,47 +1,47 @@
 class SplitCode:
-    def __init__(self, before_method, after_method):
+    def __init__(self, before_method, after_method, tab):
         self.before_method = before_method
         self.after_method = after_method
+        self.tab = tab
     def __str__(self):
         return f"before:\n{self.before_method}\nafter:\n{self.after_method}"
     @staticmethod
-    def on_method(code, method_name):
+    def on_method(code, method_name) -> 'SplitCode':
         lines = code.split('\n')
         before = []
         after = []
         inside_method = False
         inside_doc_string = False
+        tab = "    "
+        after_method = False
+        state = 0
 
         for line in lines:
             stripped_line = line.strip()
 
-            # Detect the start of a method
-            if stripped_line.startswith('def ') and stripped_line.endswith('):'):
-                current_method = stripped_line.split(' ')[1].split('(')[0]
 
-                if current_method == method_name:
-                    inside_method = True
-                    before.append(line)  # Include method signature in 'before'
-                    continue
-                elif inside_method:
-                    # Exit the method and start 'after'
-                    inside_method = False
-                    after.append(line)
-                    continue
-
-            if inside_method:
-                # Detect and skip the docstring
-                if stripped_line.startswith('"""'):
-                    if not inside_doc_string:  # Start of docstring
-                        inside_doc_string = True
-                    else:  # End of docstring
-                        inside_doc_string = False
-                    continue
-
-                if not inside_doc_string:
-                    after.append(line)  # Include other contents of the method in 'after'
-                continue
-
-            if not inside_method:
+            if state == 0:
                 before.append(line)
-        return SplitCode('\n'.join(before), '\n'.join(after))
+            if stripped_line.startswith(f'def {method_name}('):
+                state = 1
+                continue
+            if state == 1:
+                if stripped_line.startswith('"""'):
+                    state = 2
+                else:
+                    state = 3
+                continue
+            if state == 2:
+                if stripped_line.startswith('"""'):
+                    state = 3
+                continue
+            if state == 3:
+                after.append(line)
+
+        return SplitCode('\n'.join(before), '\n'.join(after),tab)
+
+    def indent(self, received_text):
+        lines = received_text.split('\n')
+        indented_lines = [f'{self.tab}{line}' for line in lines]
+        return '\n'.join(indented_lines)
+
