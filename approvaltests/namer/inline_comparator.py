@@ -8,7 +8,6 @@ from approvaltests import Namer, StackFrameNamer, Reporter, DiffReporter
 
 
 class InlinePythonReporter(Reporter):
-
     def __init__(self):
         self.test_source_file = self.get_test_source_file()
         self.diffReporter = DiffReporter()
@@ -19,6 +18,7 @@ class InlinePythonReporter(Reporter):
     def get_test_source_file(self):
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
         return test_stack_frame.filename
+
 
 class InlineComparator(Namer):
     def get_approved_filename(self, base: Optional[str] = None) -> str:
@@ -41,7 +41,6 @@ class InlineComparator(Namer):
             caller_function_name, None
         )
         return caller_function_object
-
 
     def register(self, options: "Options"):
         return options.with_namer(self).with_reporter(InlinePythonReporter())

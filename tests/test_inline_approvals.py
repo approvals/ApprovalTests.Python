@@ -45,9 +45,7 @@ def test_docstrings():
     """
     # verify_inline(greetting())
     # verify(greetting(), options=Options().inline(show_code= False))
-    verify(greeting(), options = Options().inline())
-
-
+    verify(greeting(), options=Options().inline())
 
 
 def greeting():
