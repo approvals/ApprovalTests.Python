@@ -17,11 +17,13 @@ class SplitCode:
         before = []
         after = []
         tab = "    "
+
         class State(Enum):
             BEFORE = 0
             FIRST_LINE_OF_METHOD_BODY = 1
             IN_DOCSTRING = 2
             AFTER_DOCTSTRING = 3
+
         state = State.BEFORE
 
         for line in lines:
@@ -32,7 +34,7 @@ class SplitCode:
             elif state == State.BEFORE:
                 before.append(line)
             elif state == State.FIRST_LINE_OF_METHOD_BODY:
-                tab = re.compile(r'^\s*').match(line).group()
+                tab = re.compile(r"^\s*").match(line).group()
                 if stripped_line.startswith('"""'):
                     state = State.IN_DOCSTRING
                 else:
