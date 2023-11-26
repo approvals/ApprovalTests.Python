@@ -26,11 +26,12 @@ class SplitCode:
                 state = 1
                 continue
             if state == 1:
+                tab = line[:line.find(stripped_line)]
                 if stripped_line.startswith('"""'):
                     state = 2
+                    continue
                 else:
                     state = 3
-                continue
             if state == 2:
                 if stripped_line.startswith('"""'):
                     state = 3

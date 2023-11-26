@@ -31,9 +31,34 @@ def get_caller_method(caller_frame) -> Callable:
 # Todo:
 # detect the actual tab
 # detect if the quote type used in the docstring  (i.e. " or ')
-# indent the received text
 
 
+def fizz_buzz(param):
+    return_string = ""
+    for i in range(1, param + 1):
+        if i % 15 == 0:
+            return_string += "FizzBuzz\n"
+        elif i % 3 == 0:
+            return_string +=  "Fizz\n"
+        elif i % 5 == 0:
+            return_string +=  "Buzz\n"
+        else:
+            return_string +=  str(i) + "\n"
+    return return_string
+
+
+def test_fizz_buzz_to_15():
+    """
+    1
+    2
+    Fizz
+    4
+    Buzz
+    Fizz
+    7
+    8
+    """
+    verify(fizz_buzz(8), options=Options().inline())
 def test_docstrings():
     """
     hello 
