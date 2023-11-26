@@ -4,7 +4,13 @@ from typing import Callable, Any
 
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests import StackFrameNamer, assert_equal_with_reporter, Options, Reporter, verify
+from approvaltests import (
+    StackFrameNamer,
+    assert_equal_with_reporter,
+    Options,
+    Reporter,
+    verify,
+)
 from approvaltests.reporters import MultiReporter
 
 

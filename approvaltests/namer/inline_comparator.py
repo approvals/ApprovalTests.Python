@@ -16,6 +16,7 @@ class InlineComparator(Namer):
 
     def get_received_filename(self, base: Optional[str] = None) -> str:
         return tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
+
     def get_test_method_doc_string(self):
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
         method: Callable[..., Any] = self.get_caller_method(test_stack_frame)
@@ -29,4 +30,4 @@ class InlineComparator(Namer):
         return caller_function_object
 
     def register(self, options: "Options"):
-        return options.with_namer(self) # .with_reporter(InlineReporter())
+        return options.with_namer(self)  # .with_reporter(InlineReporter())
