@@ -1,0 +1,6 @@
+<before>
+def other_code():
+   pass
+def testy_mctest():
+<after>
+    verify(greeting(), options = Options().inline())
