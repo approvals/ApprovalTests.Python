@@ -47,7 +47,7 @@ def fizz_buzz(param):
     return return_string
 
 
-def test_fizz_buzz_to_15():
+def test_fizz_buzz():
     """
     1
     2
@@ -64,7 +64,7 @@ def test_fizz_buzz_to_15():
 def test_docstrings():
     """
     hello
-     world
+    world
     """
     # verify_inline(greetting())
     # verify(greetting(), options=Options().inline(show_code= False))
@@ -72,7 +72,7 @@ def test_docstrings():
 
 
 def greeting():
-    return "hello \n world"
+    return "hello\nworld"
 
 
 class InlineReporter(Reporter):
