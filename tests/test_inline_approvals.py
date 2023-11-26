@@ -11,7 +11,7 @@ from approvaltests import (
     Reporter,
     verify,
 )
-from approvaltests.reporters import MultiReporter
+from approvaltests.reporters import MultiReporter, ReporterThatAutomaticallyApproves
 
 
 def get_approved_via_doc_string():

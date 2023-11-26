@@ -33,5 +33,5 @@ class InlineComparator(Namer):
     def register(self, options: "Options", show_code: bool):
         options2 = options.with_namer(self)
         if show_code:
-            options2 = options2.with_reporter(InlinePythonReporter())
+            options2 = options2.with_reporter(InlinePythonReporter(options.reporter))
         return options2
