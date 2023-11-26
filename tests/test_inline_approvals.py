@@ -39,11 +39,11 @@ def fizz_buzz(param):
         if i % 15 == 0:
             return_string += "FizzBuzz\n"
         elif i % 3 == 0:
-            return_string +=  "Fizz\n"
+            return_string += "Fizz\n"
         elif i % 5 == 0:
-            return_string +=  "Buzz\n"
+            return_string += "Buzz\n"
         else:
-            return_string +=  str(i) + "\n"
+            return_string += str(i) + "\n"
     return return_string
 
 
@@ -59,21 +59,20 @@ def test_fizz_buzz_to_15():
     8
     """
     verify(fizz_buzz(8), options=Options().inline())
+
+
 def test_docstrings():
     """
-    hello 
+    hello
      world
     """
     # verify_inline(greetting())
     # verify(greetting(), options=Options().inline(show_code= False))
-    verify(greeting(), options = Options().inline(show_code= True))
-
-
+    verify(greeting(), options=Options().inline(show_code=True))
 
 
 def greeting():
     return "hello \n world"
-
 
 
 class InlineReporter(Reporter):

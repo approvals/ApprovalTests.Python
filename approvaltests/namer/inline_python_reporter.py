@@ -7,7 +7,6 @@ from approvaltests.inline.split_code import SplitCode
 
 
 class InlinePythonReporter(Reporter):
-
     def __init__(self):
         self.test_source_file = self.get_test_source_file()
         self.diffReporter = DiffReporter()

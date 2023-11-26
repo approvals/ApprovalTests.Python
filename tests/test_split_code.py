@@ -4,8 +4,8 @@ from approvaltests.inline.split_code import SplitCode
 
 
 def test_splitting_code():
-    code = \
-    remove_indentation_from('''
+    code = remove_indentation_from(
+        '''
         def other_code():
            pass
         def testy_mctest():
@@ -18,5 +18,6 @@ def test_splitting_code():
         def greeting():
             # start of greeting() method
             return "hello world"
-        ''');
+        '''
+    )
     verify(SplitCode.on_method(code, "testy_mctest"))
