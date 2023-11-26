@@ -9,13 +9,16 @@ from approvaltests import Namer, StackFrameNamer, Reporter, DiffReporter
 
 class InlinePythonReporter(Reporter):
 
-    def __init__(self, test_source_file: str = None):
-        self.test_source_file = test_source_file
+    def __init__(self):
+        self.test_source_file = self.get_test_source_file()
         self.diffReporter = DiffReporter()
 
     def report(self, received_path: str, approved_path: str) -> bool:
         self.diffReporter.report(received_path, self.test_source_file)
 
+    def get_test_source_file(self):
+        test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
+        return test_stack_frame.filename
 
 class InlineComparator(Namer):
     def get_approved_filename(self, base: Optional[str] = None) -> str:
@@ -39,9 +42,6 @@ class InlineComparator(Namer):
         )
         return caller_function_object
 
-    def get_test_source_file(self):
-        test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
-        return test_stack_frame.filename
 
     def register(self, options: "Options"):
-        return options.with_namer(self).with_reporter(InlinePythonReporter(self.get_test_source_file()))
+        return options.with_namer(self).with_reporter(InlinePythonReporter())
