@@ -31,11 +31,15 @@ def get_caller_method(caller_frame) -> Callable:
 
 def test_docstrings():
     """
+    Approved: test_inline_approvals.py
+    Received:test_inline_approvals.recieved.txt
+    the python code ...
     hello world
+    ... the rest of the python code
     """
     #verify_inline(greetting())
-    verify(greetting(), options=Options().inline(show_code= False))
-    #verify(greetting(), options = Options().inline())
+    # verify(greetting(), options=Options().inline(show_code= False))
+    verify(greetting(), options = Options().inline())
 
 
 
