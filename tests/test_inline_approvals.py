@@ -43,11 +43,9 @@ def test_docstrings():
     hello world
     ... the rest of the python code
     """
-    #verify_inline(greetting())
+    # verify_inline(greetting())
     # verify(greetting(), options=Options().inline(show_code= False))
-    verify(greetting(), options = Options().inline())
-
-
+    verify(greetting(), options=Options().inline())
 
 
 def greetting():
