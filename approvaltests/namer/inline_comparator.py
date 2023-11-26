@@ -4,7 +4,17 @@ from pathlib import Path
 from typing import Optional, Callable, Any
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests import Namer, StackFrameNamer
+from approvaltests import Namer, StackFrameNamer, Reporter, DiffReporter
+
+
+class InlinePythonReporter(Reporter):
+
+    def __init__(self, test_source_file: str = None):
+        self.test_source_file = test_source_file
+        self.diffReporter = DiffReporter()
+
+    def report(self, received_path: str, approved_path: str) -> bool:
+        self.diffReporter.report(received_path, self.test_source_file)
 
 
 class InlineComparator(Namer):
@@ -29,5 +39,9 @@ class InlineComparator(Namer):
         )
         return caller_function_object
 
+    def get_test_source_file(self):
+        test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
+        return test_stack_frame.filename
+
     def register(self, options: "Options"):
-        return options.with_namer(self)  # .with_reporter(InlineReporter())
+        return options.with_namer(self).with_reporter(InlinePythonReporter(self.get_test_source_file()))
