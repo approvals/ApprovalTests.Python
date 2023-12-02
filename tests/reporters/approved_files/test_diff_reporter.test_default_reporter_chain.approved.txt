@@ -39,6 +39,12 @@ FirstWorkingReporter({
     "path": "code"
 }, {
     "arguments": [
+        "-d"
+    ],
+    "name": "ReportWithVSCode",
+    "path": "/Applications/Visual Studio Code.app/contents/Resources/app/bin/code"
+}, {
+    "arguments": [
         "-u"
     ],
     "name": "ReportWithDiffCommandLine",
