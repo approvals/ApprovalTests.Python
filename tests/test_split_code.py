@@ -3,8 +3,9 @@ from approvaltests import verify, verify_all
 from approvaltests.inline.split_code import SplitCode
 
 # [x] Switch this to verifyAll
-# Add things that use spaces instead of tabs
-# use things that use double quotes
+# [x] Add things that use spaces instead of tabs
+# [ ] no docstring
+# [ ] use things that use double quotes
 def test_splitting_code():
     code_list = [
         '''
@@ -34,6 +35,16 @@ def test_splitting_code():
         def greeting():
             # start of greeting() method
             return "using spaces instead of tabs"
+        ''',
+        '''
+        def other_code():
+            pass
+        def testy_mctest():
+            verify(greeting(), options = Options().inline())
+
+        def greeting():
+            # start of greeting() method
+            return "not using docstring"
         '''
     ]
     verify_all("splitting code", code_list, lambda code: str(SplitCode.on_method(remove_indentation_from(code), "testy_mctest")))

@@ -26,3 +26,16 @@ def greeting():
 
 tab: '    '
 
+before:
+def other_code():
+    pass
+def testy_mctest():
+after:
+    verify(greeting(), options = Options().inline())
+
+def greeting():
+    # start of greeting() method
+    return "not using docstring"
+
+tab: '    '
+
