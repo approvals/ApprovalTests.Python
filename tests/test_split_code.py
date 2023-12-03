@@ -2,6 +2,7 @@ from approval_utilities.utilities.multiline_string_utils import remove_indentati
 from approvaltests import verify, verify_all
 from approvaltests.inline.split_code import SplitCode
 
+
 def test_splitting_code():
     code_list = [
         '''
@@ -18,7 +19,6 @@ def test_splitting_code():
         \t# start of greeting() method
         \treturn "using tabs"
         ''',
-
         """
         def other_code():
         \tpass
@@ -47,7 +47,7 @@ def test_splitting_code():
             # start of greeting() method
             return "using spaces instead of tabs"
         ''',
-        '''
+        """
         def other_code():
             pass
         def testy_mctest():
@@ -56,6 +56,12 @@ def test_splitting_code():
         def greeting():
             # start of greeting() method
             return "not using docstring"
-        '''
+        """,
     ]
-    verify_all("splitting code", code_list, lambda code: str(SplitCode.on_method(remove_indentation_from(code), "testy_mctest")))
+    verify_all(
+        "splitting code",
+        code_list,
+        lambda code: str(
+            SplitCode.on_method(remove_indentation_from(code), "testy_mctest")
+        ),
+    )
