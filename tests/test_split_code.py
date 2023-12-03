@@ -2,10 +2,6 @@ from approval_utilities.utilities.multiline_string_utils import remove_indentati
 from approvaltests import verify, verify_all
 from approvaltests.inline.split_code import SplitCode
 
-# [x] Switch this to verifyAll
-# [x] Add things that use spaces instead of tabs
-# [x] no docstring
-# [ ] use things that use single quotes
 def test_splitting_code():
     code_list = [
         '''
