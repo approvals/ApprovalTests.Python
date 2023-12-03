@@ -37,11 +37,15 @@ class SplitCode:
                 tab = re.compile(r"^\s*").match(line).group()
                 if stripped_line.startswith('"""'):
                     state = State.IN_DOCSTRING
+                    doc_string_quotes = '"""'
+                elif stripped_line.startswith("'''"):
+                    state = State.IN_DOCSTRING
+                    doc_string_quotes = "'''"
                 else:
                     state = State.AFTER_DOCTSTRING
                     after.append(line)
             elif state == State.IN_DOCSTRING:
-                if stripped_line.startswith('"""'):
+                if stripped_line.startswith(doc_string_quotes):
                     state = State.AFTER_DOCTSTRING
             elif state == State.AFTER_DOCTSTRING:
                 after.append(line)

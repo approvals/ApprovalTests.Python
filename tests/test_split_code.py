@@ -4,8 +4,8 @@ from approvaltests.inline.split_code import SplitCode
 
 # [x] Switch this to verifyAll
 # [x] Add things that use spaces instead of tabs
-# [ ] no docstring
-# [ ] use things that use double quotes
+# [x] no docstring
+# [ ] use things that use single quotes
 def test_splitting_code():
     code_list = [
         '''
@@ -22,6 +22,21 @@ def test_splitting_code():
         \t# start of greeting() method
         \treturn "using tabs"
         ''',
+
+        """
+        def other_code():
+        \tpass
+        def testy_mctest():
+        \t'''
+        \tApproved: test_inline_approvals.py
+        \tReceived:test_inline_approvals.recieved.txt
+        \t'''
+        \tverify(greeting(), options = Options().inline())
+
+        def greeting():
+        \t# start of greeting() method
+        \treturn "using tabs"
+        """,
         '''
         def other_code():
             pass
