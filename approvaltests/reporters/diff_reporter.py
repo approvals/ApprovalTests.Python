@@ -23,6 +23,11 @@ class DiffReporter(FirstWorkingReporter):
 
         reporters = list(factory.get_all_reporters_from_config())
         reporters.extend(
-            [ReportWithVSCode(), ReportWithVSCodeMacOS(), ReportWithDiffCommandLine(), PythonNativeReporter()]
+            [
+                ReportWithVSCode(),
+                ReportWithVSCodeMacOS(),
+                ReportWithDiffCommandLine(),
+                PythonNativeReporter(),
+            ]
         )
         super(__class__, self).__init__(*reporters)
