@@ -1,5 +1,5 @@
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests import verify, verify_all
+from approvaltests import verify_all
 from approvaltests.inline.split_code import SplitCode
 
 def test_splitting_code():
