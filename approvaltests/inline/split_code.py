@@ -9,7 +9,7 @@ class SplitCode:
         self.tab = tab
 
     def __str__(self):
-        return f"before:\n{self.before_method}\nafter:\n{self.after_method}"
+        return f"before:\n{self.before_method}\nafter:\n{self.after_method}\ntab: '{self.tab}'\n"
 
     @staticmethod
     def on_method(code, method_name) -> "SplitCode":

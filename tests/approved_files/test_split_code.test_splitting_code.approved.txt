@@ -1,10 +1,28 @@
+splitting code
+
 before:
 def other_code():
-   pass
+	pass
+def testy_mctest():
+after:
+	verify(greeting(), options = Options().inline())
+
+def greeting():
+	# start of greeting() method
+	return "using tabs"
+
+tab: '	'
+
+before:
+def other_code():
+    pass
 def testy_mctest():
 after:
     verify(greeting(), options = Options().inline())
 
 def greeting():
     # start of greeting() method
-    return "hello world"
+    return "using spaces instead of tabs"
+
+tab: '    '
+
