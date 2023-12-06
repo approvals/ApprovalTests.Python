@@ -21,7 +21,7 @@ notes:
 Possible problem:
 we have linked the Execute command and the _____
 when you run it
- there is the part oabout how to execute
+ there is the part about how to execute
  and there is ANOTHER part
 that shows you the specific command that you ar trying to verify
 it is not obvious how they are used
@@ -29,7 +29,7 @@ REALIZATION:
 Executatlbe command class is an Executable COmmand class    and
 _____ (put it in the chat Lev)
 
-QUESTIO
+QUESTION
 How to connect a Jetbrains product to a remote workspace.
 5. Mr job - need to be able to test against more than one line in a file.
 1. PR to mobti.me to make ding the default

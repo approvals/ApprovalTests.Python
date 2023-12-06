@@ -20,9 +20,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          # begin-snippet: install_prereqs
           python -m pip install --upgrade pip
           pip install tox
-          pip install pytest
+          pip install pytest 
+          # end-snippet
       - name: Test
         run: |
+        # begin-snippet: run_tests
           tox -e py  # Run tox using the version of Python in `PATH`
+        # end-snippet
