@@ -27,6 +27,6 @@ jobs:
           # end-snippet
       - name: Test
         run: |
-        # begin-snippet: run_tests
+          # begin-snippet: run_tests
           tox -e py  # Run tox using the version of Python in `PATH`
-        # end-snippet
+          # end-snippet
