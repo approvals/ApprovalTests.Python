@@ -315,13 +315,7 @@ The best way to contribute is to [join our weekly mob/ensemble](./docs/Contribut
 Pull requests are welcomed, particularly those accompanied by automated tests.
 
 To run the self-tests:
-#### 1. setup
-
- snippet: install_prereqs
-
- #### 2. run 
- 
- snippet: run_tests
+`./run_tests.sh`
 
 This will run the self-tests on several python versions. We support python 3.8 and above.
 

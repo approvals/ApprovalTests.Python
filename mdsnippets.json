@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/SimonCropp/MarkdownSnippets/master/schema.json",
   "ExcludeDirectories": [ "target" ],
+  "include": [ ".github/workflows" ],
   "Convention": "InPlaceOverwrite",
   "TocLevel": 5
 }
