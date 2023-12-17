@@ -1,11 +1,14 @@
 
         please rename the name foo to smthg better
 
-                ---
+        ---
 
-                ```
-                function foo(a,b) {
-                return a +b
-                }
-                ```
-                
+        ```
+        function foo(a,b) {
+        return a +b
+        }
+        ```
+
+        output format:
+        suggested name - <name here>
+        

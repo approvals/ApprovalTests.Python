@@ -8,34 +8,34 @@ from openai import OpenAI
 client = OpenAI()
 
 
-
-
-
 def call_llm(prompt: str) -> str:
     pass
 
 
 class CallLlm(ExecutableCommand):
     def get_command(self) -> str:
-        return '''
+        return """
         please rename the name foo to smthg better
 
-                ---
+        ---
 
-                ```
-                function foo(a,b) {
-                return a +b
-                }
-                ```
-                '''
+        ```
+        function foo(a,b) {
+        return a +b
+        }
+        ```
+
+        output format:
+        suggested name - <name here>
+        """
 
     def execute_command(self, command: str) -> str:
         completion = client.chat.completions.create(
             model="gpt-4-1106-preview",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": command}
-            ]
+                {"role": "user", "content": command},
+            ],
         )
         return completion.choices[0].message.content
 
