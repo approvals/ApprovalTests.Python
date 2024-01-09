@@ -1,10 +1,10 @@
 class PytestConfig:
-    test_naming_pattern = "test_*"
+    test_naming_patterns = ["test_*"]
 
     @staticmethod
     def set_config(config):
-        PytestConfig.test_naming_pattern = config.getini("python_functions")
+        PytestConfig.test_naming_patterns = config.getini("python_functions")
 
 
-def pytest_config(config):
+def set_pytest_config(config):
     PytestConfig.set_config(config)

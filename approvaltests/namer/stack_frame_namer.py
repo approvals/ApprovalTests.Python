@@ -43,18 +43,19 @@ class StackFrameNamer(NamerBase):
 
     @staticmethod
     def is_pytest_test(method_name: str) -> bool:
-        pattern = PytestConfig.test_naming_pattern
+        patterns = PytestConfig.test_naming_patterns
         
         # taken from pytest/python.py (class PyCollector)
-        if method_name.startswith(pattern):
-            return True
-            # Check that name looks like a glob-string before calling fnmatch
-            # because this is called for every name in each collected module,
-            # and fnmatch is somewhat expensive to call.
-        elif ("*" in pattern or "?" in pattern or "[" in pattern) and fnmatch.fnmatch(
-            method_name, pattern
-        ):
-            return True
+        for pattern in patterns:
+            if method_name.startswith(pattern):
+                return True
+                # Check that name looks like a glob-string before calling fnmatch
+                # because this is called for every name in each collected module,
+                # and fnmatch is somewhat expensive to call.
+            elif ("*" in pattern or "?" in pattern or "[" in pattern) and fnmatch.fnmatch(
+                method_name, pattern
+            ):
+                return True
         
         return False
 
