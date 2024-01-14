@@ -41,22 +41,25 @@ class StackFrameNamer(NamerBase):
 2) your test framework is not supported by ApprovalTests (unittest and pytest are currently supported)."""
         raise FrameNotFound(message)
 
+    # change parameter from method_name to pass in the frame
     @staticmethod
-    def is_pytest_test(method_name: str) -> bool:
+    def is_pytest_test(frame: FrameInfo) -> bool:
+        #  def is_pytest_test(method_name: str) -> bool:
+
         patterns = PytestConfig.test_naming_patterns
-        
+
         # taken from pytest/python.py (class PyCollector)
         for pattern in patterns:
-            if method_name.startswith(pattern):
+            if frame[3].startswith(pattern):
                 return True
                 # Check that name looks like a glob-string before calling fnmatch
                 # because this is called for every name in each collected module,
                 # and fnmatch is somewhat expensive to call.
-            elif ("*" in pattern or "?" in pattern or "[" in pattern) and fnmatch.fnmatch(
-                method_name, pattern
-            ):
+            elif (
+                "*" in pattern or "?" in pattern or "[" in pattern
+            ) and fnmatch.fnmatch(frame[3], pattern):
                 return True
-        
+
         return False
 
     @staticmethod
@@ -75,11 +78,11 @@ class StackFrameNamer(NamerBase):
 
     @staticmethod
     def is_test_method(frame: FrameInfo) -> bool:
-        method_name = frame[3]
+        # method_name = frame[3]
 
         return StackFrameNamer.is_unittest_test(
             frame
-        ) or StackFrameNamer.is_pytest_test(method_name)
+        ) or StackFrameNamer.is_pytest_test(frame)
 
     def get_class_name(self) -> str:
         return self.class_name
