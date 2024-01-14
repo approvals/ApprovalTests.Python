@@ -30,11 +30,11 @@ class StackFrameNamer(NamerBase):
 
     @staticmethod
     def get_test_frame_index(caller: List[FrameInfo]) -> int:
-        tmp_array = []
-        for index, frame in enumerate(caller):
-            if StackFrameNamer.is_test_method(frame):
-                tmp_array.append(index)
-        if tmp_array:
+        if tmp_array := [
+            index
+            for index, frame in enumerate(caller)
+            if StackFrameNamer.is_test_method(frame)
+        ]:
             return tmp_array[-1]
         message = """Could not find test method/function. Possible reasons could be:
 1) approvaltests is not being used inside a test function
@@ -64,7 +64,7 @@ class StackFrameNamer(NamerBase):
     def is_unittest_test(frame: FrameInfo) -> bool:
         method_name = frame[3]
         local_attributes = frame[0].f_locals
-        is_unittest_test = (
+        return (
             "self" in local_attributes
             and hasattr(local_attributes["self"], "__dict__")
             and "_testMethodName" in vars(local_attributes["self"])
@@ -72,7 +72,6 @@ class StackFrameNamer(NamerBase):
             and method_name != "_callTestMethod"
             and method_name != "run"
         )
-        return is_unittest_test
 
     @staticmethod
     def is_test_method(frame: FrameInfo) -> bool:
@@ -93,7 +92,7 @@ class StackFrameNamer(NamerBase):
         return self.directory
 
     def get_file_name(self) -> str:
-        class_name = "" if (self.class_name is None) else (self.class_name + ".")
+        class_name = "" if self.class_name is None else f"{self.class_name}."
         return class_name + self.method_name
 
     def get_extension_with_dot(self) -> str:
