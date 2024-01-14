@@ -41,11 +41,8 @@ class StackFrameNamer(NamerBase):
 2) your test framework is not supported by ApprovalTests (unittest and pytest are currently supported)."""
         raise FrameNotFound(message)
 
-    # change parameter from method_name to pass in the frame
     @staticmethod
     def is_pytest_test(frame: FrameInfo) -> bool:
-        #  def is_pytest_test(method_name: str) -> bool:
-
         patterns = PytestConfig.test_naming_patterns
 
         # taken from pytest/python.py (class PyCollector)
@@ -78,8 +75,6 @@ class StackFrameNamer(NamerBase):
 
     @staticmethod
     def is_test_method(frame: FrameInfo) -> bool:
-        # method_name = frame[3]
-
         return StackFrameNamer.is_unittest_test(
             frame
         ) or StackFrameNamer.is_pytest_test(frame)
