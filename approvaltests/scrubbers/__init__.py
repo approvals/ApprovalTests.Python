@@ -1,4 +1,5 @@
 """Approvaltests.scrubbers module."""
+
 from .scrubbers import (
     create_regex_scrubber,
     scrub_all_dates,
