@@ -31,6 +31,11 @@ def do_the_setup(package_name, package_description, required, extra_requires):
         python_requires=">=3.8",
         packages=find_packages(include=["approvaltests*"]),
         package_data={"approvaltests": ["reporters/reporters.json"]},
+        entry_points={
+            'pytest11': [
+                'approvaltests_pytest = approvaltests.pytest.pytest_plugin',
+            ],
+        },
         install_requires=required,
         extras_require=extra_requires,
         long_description=(get_parent_directory() / "README.md").read_text(),

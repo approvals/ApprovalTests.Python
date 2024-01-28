@@ -2,10 +2,12 @@ import inspect
 import os
 from inspect import FrameInfo
 from typing import Optional, Dict, List
+import fnmatch
 
 from approvaltests.namer.namer_base import NamerBase
 from approvaltests.approval_exception import FrameNotFound
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
+from approvaltests.pytest.pytest_config import PytestConfig
 
 
 class StackFrameNamer(NamerBase):
@@ -40,7 +42,26 @@ class StackFrameNamer(NamerBase):
         raise FrameNotFound(message)
 
     @staticmethod
-    def is_test_method(frame: FrameInfo) -> bool:
+    def is_pytest_test(frame: FrameInfo) -> bool:
+        method_name = frame[3]
+        patterns = PytestConfig.test_naming_patterns
+
+        # taken from pytest/python.py (class PyCollector)
+        for pattern in patterns:
+            if method_name.startswith(pattern):
+                return True
+                # Check that name looks like a glob-string before calling fnmatch
+                # because this is called for every name in each collected module,
+                # and fnmatch is somewhat expensive to call.
+            elif (
+                "*" in pattern or "?" in pattern or "[" in pattern
+            ) and fnmatch.fnmatch(method_name, pattern):
+                return True
+
+        return False
+
+    @staticmethod
+    def is_unittest_test(frame: FrameInfo) -> bool:
         method_name = frame[3]
         local_attributes = frame[0].f_locals
         is_unittest_test = (
@@ -51,10 +72,13 @@ class StackFrameNamer(NamerBase):
             and method_name != "_callTestMethod"
             and method_name != "run"
         )
+        return is_unittest_test
 
-        is_pytest_test = method_name.startswith("test_")
-
-        return is_unittest_test or is_pytest_test
+    @staticmethod
+    def is_test_method(frame: FrameInfo) -> bool:
+        return StackFrameNamer.is_unittest_test(
+            frame
+        ) or StackFrameNamer.is_pytest_test(frame)
 
     def get_class_name(self) -> str:
         return self.class_name
