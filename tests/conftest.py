@@ -10,3 +10,7 @@ def set_default_reporter_for_all_tests():
 
 
 # end-snippet
+
+def pytest_configure(config):
+    from approvaltests.pytest.pytest_plugin import pytest_configure
+    pytest_configure(config)
