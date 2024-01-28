@@ -8,6 +8,7 @@ import pytest
 def set_default_reporter_for_all_tests():
     configure_approvaltests()
 
+
 # end-snippet
 
 
