@@ -1,4 +1,5 @@
 """Approvaltests.core module."""
+
 from .reporter import *
 from .writer import *
 from .options import *

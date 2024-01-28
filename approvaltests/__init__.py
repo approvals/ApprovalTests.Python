@@ -1,4 +1,5 @@
 """Approvaltests module."""
+
 from .version import version_number
 from .approvals import *
 from .asserts import *
