@@ -1,6 +1,11 @@
 Test are running on all CI machine
 Test fail if mariadb is in the requirements for linux
 
+1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
+2. [ ] put an example of inline approvals into cyber-dojo
+3. [ ] add JQ (nitsan created repo and submitted an issue)
+
+-----  older stuff below ----
 2. [ ] run the test
 2. [ ] Review what we have done
 3. [ ] Clean up so things are ready for production
