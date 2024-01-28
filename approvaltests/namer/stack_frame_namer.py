@@ -46,6 +46,7 @@ class StackFrameNamer(NamerBase):
         method_name = frame[3]
         patterns = PytestConfig.test_naming_patterns
         return StackFrameNamer._is_match_for_pytest(method_name, patterns)
+
     @staticmethod
     def _is_match_for_pytest(method_name: str, patterns: List[str]) -> bool:
         # Do not modify this method, so we can compare with original code
@@ -57,12 +58,12 @@ class StackFrameNamer(NamerBase):
                 # because this is called for every name in each collected module,
                 # and fnmatch is somewhat expensive to call.
             elif (
-                    "*" in pattern or "?" in pattern or "[" in pattern
+                "*" in pattern or "?" in pattern or "[" in pattern
             ) and fnmatch.fnmatch(method_name, pattern):
                 return True
 
         return False
-    
+
     @staticmethod
     def is_unittest_test(frame: FrameInfo) -> bool:
         method_name = frame[3]
@@ -110,5 +111,3 @@ class StackFrameNamer(NamerBase):
         calling_stack = inspect.stack(1)
         frame = StackFrameNamer.get_test_frame_index(calling_stack)
         return calling_stack[frame]
-
-
