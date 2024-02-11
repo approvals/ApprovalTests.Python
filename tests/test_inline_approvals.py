@@ -106,3 +106,12 @@ def test_docstring_parsing():
     8
     """
     verify_all("inputs", parse_docstring())
+
+
+def test_uppercase():
+    """
+    a -> A
+    b -> B
+    c -> C
+    """
+    verify("\n".join([ f"{a} -> {a.upper()}" for a in parse_docstring()]), options=Options().inline())
