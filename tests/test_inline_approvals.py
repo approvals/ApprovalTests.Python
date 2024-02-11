@@ -9,7 +9,8 @@ from approvaltests import (
     assert_equal_with_reporter,
     Options,
     Reporter,
-    verify, verify_all,
+    verify,
+    verify_all,
 )
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters import MultiReporter
@@ -104,5 +105,4 @@ def test_docstring_parsing():
     7
     8
     """
-    verify_all('inputs', parse_docstring())
-
+    verify_all("inputs", parse_docstring())

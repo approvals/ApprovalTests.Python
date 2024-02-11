@@ -21,7 +21,9 @@ class InlineComparator(Namer):
     @staticmethod
     def get_test_method_doc_string():
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
-        method: Callable[..., Any] = InlineComparator.get_caller_method(test_stack_frame)
+        method: Callable[..., Any] = InlineComparator.get_caller_method(
+            test_stack_frame
+        )
         return remove_indentation_from(method.__doc__)
 
     @staticmethod
