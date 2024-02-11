@@ -1,6 +1,15 @@
 Test are running on all CI machine
 Test fail if mariadb is in the requirements for linux
 
+1. [ ] Improve verify_all for no header
+1. [ ] expand functionality of parse_doc_string
+   2. [ ] =>, :
+   3. [ ] maybe not only docstring but any text or approved file?
+   4. [ ] multiple parameters 1, 2, 3 -> 
+   5. [ ] converter parse(to_integer)
+   6. [ ] some relationship between the output formatter and the parser
+
+
 1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
    a. [x] verify which version of approval tests is in the new image that we just created
 2. [ ] put an example of inline approvals into cyber-dojo
