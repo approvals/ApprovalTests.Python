@@ -2,6 +2,7 @@ Test are running on all CI machine
 Test fail if mariadb is in the requirements for linux
 
 1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
+   a. [x] verify which version of approval tests is in the new image that we just created
 2. [ ] put an example of inline approvals into cyber-dojo
 3. [ ] add JQ (nitsan created repo and submitted an issue)
 
@@ -23,6 +24,17 @@ Test fail if mariadb is in the requirements for linux
 Key x = done, - = started
 
 notes: 
+1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
+
+What have we learned?
+- How does approvals work in cyber-dojo?
+- There are two docker images with python approvals: 1. pytest 2. unittest
+- is the version number important?
+- Does it use the pytest plugin at all? Or just pytest?
+- set up Gitpod
+- 
+
+
 Possible problem:
 we have linked the Execute command and the _____
 when you run it

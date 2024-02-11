@@ -9,9 +9,10 @@ from approvaltests import (
     assert_equal_with_reporter,
     Options,
     Reporter,
-    verify,
+    verify, verify_all,
 )
-from approvaltests.reporters import MultiReporter, ReporterThatAutomaticallyApproves
+from approvaltests.inline.parse_docstring import parse_docstring
+from approvaltests.reporters import MultiReporter
 
 
 def get_approved_via_doc_string():
@@ -92,5 +93,16 @@ def verify_inline(actual):
     assert_equal_with_reporter(get_approved_via_doc_string(), actual, options=options)
 
 
-#
-#
+def test_docstring_parsing():
+    """
+    1
+    2 -> 2
+    Fizz
+    4
+    Buzz
+    Fizz
+    7
+    8
+    """
+    verify_all('inputs', parse_docstring())
+

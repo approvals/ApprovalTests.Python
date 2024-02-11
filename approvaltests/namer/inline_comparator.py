@@ -18,12 +18,14 @@ class InlineComparator(Namer):
     def get_received_filename(self, base: Optional[str] = None) -> str:
         return tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
 
-    def get_test_method_doc_string(self):
+    @staticmethod
+    def get_test_method_doc_string():
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
-        method: Callable[..., Any] = self.get_caller_method(test_stack_frame)
+        method: Callable[..., Any] = InlineComparator.get_caller_method(test_stack_frame)
         return remove_indentation_from(method.__doc__)
 
-    def get_caller_method(self, caller_frame) -> Callable:
+    @staticmethod
+    def get_caller_method(caller_frame) -> Callable:
         caller_function_name: str = caller_frame[3]
         caller_function_object = caller_frame.frame.f_globals.get(
             caller_function_name, None
