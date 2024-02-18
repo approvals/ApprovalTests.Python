@@ -1,8 +1,13 @@
 Test are running on all CI machine
 Test fail if mariadb is in the requirements for linux
 
-1. [ ] Improve verify_all for no header
-1. [ ] expand functionality of parse_doc_string
+1. [ ] make it so that approvals works with Python 12
+2. [ ] Improve verify_all for no header
+        Expects VerifyAll to have a header
+        this is mandatory For PYthon Approval Tests
+        added an example to Test_inline_approvals.py
+        see: def test_uppercase_with_verify_all():
+3. [ ] expand functionality of parse_doc_string
    2. [ ] =>, :
    3. [ ] maybe not only docstring but any text or approved file?
    4. [ ] multiple parameters 1, 2, 3 -> 
@@ -10,7 +15,8 @@ Test fail if mariadb is in the requirements for linux
    6. [ ] some relationship between the output formatter and the parser
 
 
-1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
+1. disable the CMD key in this Any Desk  (Nitsan suggested)
+2. [x] update Cyber-dojo to have latest version of approvaltests.py and
    a. [x] verify which version of approval tests is in the new image that we just created
 2. [ ] put an example of inline approvals into cyber-dojo
 3. [ ] add JQ (nitsan created repo and submitted an issue)
