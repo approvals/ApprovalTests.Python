@@ -10,7 +10,7 @@ T2 = TypeVar("T2")
 class Parse(Generic[T]):
     def __init__(self, text: str, transformer: Callable[[str], T]) -> None:
         self.text = text
-        self.transformer = transformer
+        self._transformer = transformer
 
     @staticmethod
     def doc_string() -> 'Parse[str]':
@@ -20,12 +20,12 @@ class Parse(Generic[T]):
         lines = self.text.split("\n")
         lines = list(filter(lambda line: line.strip(), lines))
         inputs = [line.split("->")[0].strip() for line in lines]
-        return [self.transformer(i) for i in inputs]
+        return [self._transformer(i) for i in inputs]
     def verify_all(self, transform: Callable[[T], Any]):
         verify_all("", self.get_inputs(), lambda s: f"{s} -> {transform(s)}", options=Options().inline())
 
     def transform(self, transform: Callable[[T], T2]) -> 'Parse[T2]':
-        return Parse(self.text, lambda s: transform(self.transformer(s)))
+        return Parse(self.text, lambda s: transform(self._transformer(s)))
 
 
 def test_single_strings():
@@ -46,4 +46,4 @@ def test_with_types_transformers_and_both():
     parse = Parse.doc_string()
     verify_all("", parse.get_inputs(), lambda s: f"{s} -> {bin(int(s))}", options=Options().inline())
     parse.transform(int).verify_all(lambda i: bin(i))
-    parse.transform(int).verify_all(lambda i: bin(i))
+    parse.transform(int).transform(str).transform(int).verify_all(lambda i: bin(i))
