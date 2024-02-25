@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Callable
 
 from approvaltests import Options, verify_all
 from approvaltests.namer.inline_comparator import InlineComparator
@@ -17,11 +17,15 @@ class Parse:
         lines = list(filter(lambda line: line.strip(), lines))
         return [line.split("->")[0].strip() for line in lines]
 
+    def verify_all(self, transform: Callable[[str], str]):
+        verify_all("", self.get_inputs(), lambda s: f"{s} -> {transform(s)}", options=Options().inline())
+
 
 def test_single_strings():
     """
-    Sam
-    Llewellyn
+    Sam -> SAM
+    Llewellyn -> LLEWELLYN
     """
-    inputs = Parse.doc_string().get_inputs()
-    verify_all("", inputs, lambda s: s, options=Options().inline())
+    parse = Parse.doc_string()
+    verify_all("", parse.get_inputs(), lambda s: f"{s} -> {s.upper()}", options=Options().inline())
+    parse.verify_all(lambda s: s.upper())
