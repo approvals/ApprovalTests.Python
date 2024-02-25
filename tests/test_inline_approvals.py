@@ -114,4 +114,7 @@ def test_uppercase():
     b -> B
     c -> C
     """
-    verify("\n".join([ f"{a} -> {a.upper()}" for a in parse_docstring()]), options=Options().inline())
+    verify(
+        "\n".join([f"{a} -> {a.upper()}" for a in parse_docstring()]),
+        options=Options().inline(),
+    )
