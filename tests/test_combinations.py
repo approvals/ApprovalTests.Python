@@ -1,11 +1,12 @@
 import unittest
 
+from approvaltests import Options
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.combination_approvals import (
     verify_all_combinations,
-    verify_all_combinations_with_namer,
+    verify_all_combinations_with_namer, verify_all_combinations_with_labeled_input,
 )
-from approvaltests.reporters import CommandLineReporter
+from approvaltests.reporters import CommandLineReporter, ReporterThatAutomaticallyApproves
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
@@ -121,6 +122,20 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             reporter=self.reporter,
         )
 
+    def test_2_uses_user_specified_formatter_when_supplied(self) -> None:
+        """
+        (arg1: 1, arg2: 2) => 4
+        (arg1: 1, arg2: 4) => 6
+        (arg1: 3, arg2: 2) => 6
+        (arg1: 3, arg2: 4) => 8
+        """
+        verify_all_combinations_with_labeled_input(
+            self.func,
+            arg1=(1, 3),
+            arg2=(2, 4),
+        )
+    def applesauce(self,*, options = None,**kwargs):
+        return kwargs
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
     def setUp(self) -> None:

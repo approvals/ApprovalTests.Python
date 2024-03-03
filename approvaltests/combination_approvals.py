@@ -55,6 +55,19 @@ def run_all_combinations(
         except BaseException as exception:
             exception_handler(exception)
 
+def verify_all_combinations_with_labeled_input(
+    function_under_test: Callable,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
+    **kwargs
+) -> None:
+    labels = list(kwargs.keys())
+    input_arguments = [kwargs[key] for key in kwargs]
+    def formatter(args, output):
+        text = ", ".join([f"{label}: {arg}" for label, arg in zip(labels, args)])
+        return f"({text}) => {output}\n"
+    verify_all_combinations(function_under_test, input_arguments, formatter=formatter, options=options)
+
 
 def verify_all_combinations(
     function_under_test: Callable,
@@ -63,7 +76,9 @@ def verify_all_combinations(
     reporter: Optional[ReporterForTesting] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
+    **kwargs
 ) -> None:
+
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
     Args:

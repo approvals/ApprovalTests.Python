@@ -5,6 +5,8 @@ from approvaltests.namer.inline_comparator import InlineComparator
 
 from typing import TypeVar, Generic
 
+from build.lib.approvaltests.reporters import ReporterThatAutomaticallyApproves
+
 T = TypeVar("T")
 T2 = TypeVar("T2")
 
@@ -64,4 +66,17 @@ def test_with_types_transformers_and_both():
         options=Options().inline(),
     )
     parse.transform(int).verify_all(lambda i: bin(i))
-    parse.transform(int).transform(str).transform(int).verify_all(lambda i: bin(i))
+    parse.transform(lambda a: int(a)).verify_all(lambda i: bin(i))
+
+   # parse.transform(int).transform(str).transform(int).verify_all(lambda i: bin(i), options= Options().with_reporter(ReporterThatAutomaticallyApproves())
+
+
+
+def test_with_2_types_transformers_and_both():
+    """
+    1, 2.2 -> 2.2
+    4, 0.5 -> 2
+    """
+    s = "2.2"
+    parse = Parse.doc_string()
+   # parse.transform2(int, float).verify_all(lambda i,f: i * f)
