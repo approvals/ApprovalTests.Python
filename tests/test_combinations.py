@@ -122,11 +122,13 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         )
 
     def test_with_labeled_input(self) -> None:
+        # begin-snippet: named_combinations
         verify_all_combinations_with_labeled_input(
             self.func,
             arg1=(1, 3),
             arg2=(2, 4),
         )
+        # end-snippet
 
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):

@@ -78,6 +78,14 @@ args: ('input1.value2', 'input2.value3') => 'placeholder'
 
 For advice on effective formatting, see [Tips for Designing Strings](https://github.com/approvals/ApprovalTests.cpp/blob/master/doc/explanations/TipsForDesigningStrings.md#top). As you write out larger volumes of data in your approval files, experience has shown that the choice of layout of text in approval files can make a big difference to maintainability of tests, when failures occur.
 
+
+## Named Inputs
+
+You can also use named inputs, which can make your tests more readable. Here is an example:
+snippet: named_combinations
+
+which will produce the following output:
+snippet: VerifyAllCombinationsTests.test_with_labeled_input.approved.txt
 ---
 
 [Back to User Guide](/doc/README.md#top)
