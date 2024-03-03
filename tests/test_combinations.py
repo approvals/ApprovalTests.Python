@@ -1,12 +1,11 @@
 import unittest
 
-from approvaltests import Options
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.combination_approvals import (
     verify_all_combinations,
     verify_all_combinations_with_namer, verify_all_combinations_with_labeled_input,
 )
-from approvaltests.reporters import CommandLineReporter, ReporterThatAutomaticallyApproves
+from approvaltests.reporters import CommandLineReporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
@@ -16,7 +15,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         self.func = lambda *args: sum(args) + 1
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_one_arg(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1,)
         all_args_combinations = (arg1_combinations,)
@@ -33,7 +32,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         )
 
     def test_fails_for_mismatch_with_for_func_accepting_one_arg_and_combination_of_two_args(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
@@ -43,7 +42,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             )
 
     def test_passes_for_func_accepting_one_arg_and_combination_of_two_args(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1, 2)
         all_args_combinations = (arg1_combinations,)
@@ -52,7 +51,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         )
 
     def test_fails_for_mismatch_with_for_func_accepting_two_args_and_combination_of_one_arg(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
@@ -63,7 +62,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             )
 
     def test_passes_for_func_accepting_two_args_and_combination_of_one_arg(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1,)
         arg2_combinations = (2,)
@@ -71,7 +70,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
     def test_fails_for_mismatch_with_for_func_accepting_two_args_and_combination_of_two_args(
-        self,
+            self,
     ) -> None:
         arg1_combinations = (1, 3)
         arg2_combinations = (2, 4)
@@ -95,7 +94,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         verify_all_combinations(self.func, arg_combinations, reporter=self.reporter)
 
     def test_records_exception_message_when_function_under_test_throws_an_exception(
-        self,
+            self,
     ) -> None:
         def function_that_raises_exceptions(*args):
             raise Exception(args)
@@ -115,27 +114,20 @@ class VerifyAllCombinationsTests(unittest.TestCase):
             self.func,
             arg_combinations,
             formatter=lambda args, output: "inputs="
-            + str(args)
-            + ", outputs="
-            + str(output)
-            + "\n",
+                                           + str(args)
+                                           + ", outputs="
+                                           + str(output)
+                                           + "\n",
             reporter=self.reporter,
         )
 
-    def test_2_uses_user_specified_formatter_when_supplied(self) -> None:
-        """
-        (arg1: 1, arg2: 2) => 4
-        (arg1: 1, arg2: 4) => 6
-        (arg1: 3, arg2: 2) => 6
-        (arg1: 3, arg2: 4) => 8
-        """
+    def test_with_labeled_input(self) -> None:
         verify_all_combinations_with_labeled_input(
             self.func,
             arg1=(1, 3),
             arg2=(2, 4),
         )
-    def applesauce(self,*, options = None,**kwargs):
-        return kwargs
+
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
     def setUp(self) -> None:

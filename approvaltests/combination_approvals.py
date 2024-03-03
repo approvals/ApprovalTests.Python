@@ -63,9 +63,9 @@ def verify_all_combinations_with_labeled_input(
 ) -> None:
     labels = list(kwargs.keys())
     input_arguments = [kwargs[key] for key in kwargs]
-    def formatter(args, output):
-        text = ", ".join([f"{label}: {arg}" for label, arg in zip(labels, args)])
-        return f"({text}) => {output}\n"
+    def formatter(inputs, output):
+        labeled_inputs = ", ".join([f"{label}: {input}" for label, input in zip(labels, inputs)])
+        return f"({labeled_inputs}) => {output}\n"
     verify_all_combinations(function_under_test, input_arguments, formatter=formatter, options=options)
 
 
@@ -75,8 +75,7 @@ def verify_all_combinations(
     formatter: Optional[Callable] = None,
     reporter: Optional[ReporterForTesting] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
-    **kwargs
+    options: Optional[Options] = None
 ) -> None:
 
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
