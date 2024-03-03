@@ -7,7 +7,8 @@
 
   * [What is Combination Testing](#what-is-combination-testing)
   * [When to use Combinations](#when-to-use-combinations)
-  * [Steps](#steps)<!-- endToc -->
+  * [Steps](#steps)
+  * [Named Inputs](#named-inputs)<!-- endToc -->
 
 ## What is Combination Testing
 
@@ -31,7 +32,7 @@ If you wanted to test this matrix combination approvals can do it with a single 
 ```py
 verify_all_combinations(is_awake, [["Monday", "Sunday"], ["7:00", "9:00", "11:00"]])
 ```
-<sup><a href='/tests/test_combinations.py#L147-L149' title='Snippet source file'>snippet source</a> | <a href='#snippet-combination_introduction' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_combinations.py#L149-L151' title='Snippet source file'>snippet source</a> | <a href='#snippet-combination_introduction' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## When to use Combinations
@@ -51,7 +52,7 @@ inputs1 = ["input1.value1", "input1.value2"]
 inputs2 = ["input2.value1", "input2.value2", "input2.value3"]
 verify_all_combinations(lambda a, b: "placeholder", [inputs1, inputs2])
 ```
-<sup><a href='/tests/test_combinations.py#L153-L157' title='Snippet source file'>snippet source</a> | <a href='#snippet-combinations_starting_point' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_combinations.py#L155-L159' title='Snippet source file'>snippet source</a> | <a href='#snippet-combinations_starting_point' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.
@@ -82,10 +83,29 @@ For advice on effective formatting, see [Tips for Designing Strings](https://git
 ## Named Inputs
 
 You can also use named inputs, which can make your tests more readable. Here is an example:
-snippet: named_combinations
+<!-- snippet: named_combinations -->
+<a id='snippet-named_combinations'></a>
+```py
+verify_all_combinations_with_labeled_input(
+    self.func,
+    arg1=(1, 3),
+    arg2=(2, 4),
+)
+```
+<sup><a href='/tests/test_combinations.py#L126-L132' title='Snippet source file'>snippet source</a> | <a href='#snippet-named_combinations' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 which will produce the following output:
-snippet: VerifyAllCombinationsTests.test_with_labeled_input.approved.txt
+<!-- snippet: VerifyAllCombinationsTests.test_with_labeled_input.approved.txt -->
+<a id='snippet-VerifyAllCombinationsTests.test_with_labeled_input.approved.txt'></a>
+```txt
+(arg1: 1, arg2: 2) => 4
+(arg1: 1, arg2: 4) => 6
+(arg1: 3, arg2: 2) => 6
+(arg1: 3, arg2: 4) => 8
+```
+<sup><a href='/tests/approved_files/VerifyAllCombinationsTests.test_with_labeled_input.approved.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-VerifyAllCombinationsTests.test_with_labeled_input.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 ---
 
 [Back to User Guide](/doc/README.md#top)
