@@ -31,7 +31,7 @@ If you wanted to test this matrix combination approvals can do it with a single 
 ```py
 verify_all_combinations(is_awake, [["Monday", "Sunday"], ["7:00", "9:00", "11:00"]])
 ```
-<sup><a href='/tests/test_combinations.py#L139-L141' title='Snippet source file'>snippet source</a> | <a href='#snippet-combination_introduction' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_combinations.py#L147-L149' title='Snippet source file'>snippet source</a> | <a href='#snippet-combination_introduction' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## When to use Combinations
@@ -51,7 +51,7 @@ inputs1 = ["input1.value1", "input1.value2"]
 inputs2 = ["input2.value1", "input2.value2", "input2.value3"]
 verify_all_combinations(lambda a, b: "placeholder", [inputs1, inputs2])
 ```
-<sup><a href='/tests/test_combinations.py#L145-L149' title='Snippet source file'>snippet source</a> | <a href='#snippet-combinations_starting_point' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_combinations.py#L153-L157' title='Snippet source file'>snippet source</a> | <a href='#snippet-combinations_starting_point' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.

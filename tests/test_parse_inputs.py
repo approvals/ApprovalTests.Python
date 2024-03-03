@@ -68,8 +68,8 @@ def test_with_types_transformers_and_both():
     parse.transform(int).verify_all(lambda i: bin(i))
     parse.transform(lambda a: int(a)).verify_all(lambda i: bin(i))
 
-   # parse.transform(int).transform(str).transform(int).verify_all(lambda i: bin(i), options= Options().with_reporter(ReporterThatAutomaticallyApproves())
 
+# parse.transform(int).transform(str).transform(int).verify_all(lambda i: bin(i), options= Options().with_reporter(ReporterThatAutomaticallyApproves())
 
 
 def test_with_2_types_transformers_and_both():
@@ -79,4 +79,6 @@ def test_with_2_types_transformers_and_both():
     """
     s = "2.2"
     parse = Parse.doc_string()
-   # parse.transform2(int, float).verify_all(lambda i,f: i * f)
+
+
+# parse.transform2(int, float).verify_all(lambda i,f: i * f)
