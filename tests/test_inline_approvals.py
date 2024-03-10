@@ -130,13 +130,6 @@ class InlineTests(unittest.TestCase):
         (arg1: 3, arg2: 2) => 5
         (arg1: 3, arg2: 4) => 7
         """
-        test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
-        caller_frame = test_stack_frame
-        caller_function_name: str = caller_frame[3]
-        caller_function_object = caller_frame.frame.f_globals.get(
-            caller_function_name, None
-        )
-
         verify_all_combinations_with_labeled_input(
             lambda a,b: a + b,
             arg1=(1, 3),

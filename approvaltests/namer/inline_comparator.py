@@ -30,16 +30,15 @@ class InlineComparator(Namer):
     @staticmethod
     def get_caller_method(caller_frame) -> Callable:
         caller_function_name: str = caller_frame[3]
-        caller_function_object = caller_frame.frame.f_globals.get(
-            caller_function_name, None
-        )
+        caller_function_object = caller_frame.frame.f_globals.get(caller_function_name)
         if caller_function_object:
+            # pytest function
             return caller_function_object
         else:
+            # unittest class function
             className = get_class_name_for_frame(caller_frame)
-            caller_function_object = caller_frame.frame.f_globals.get(
-                className, None
-            ).__dict__.get(caller_function_name, None)
+            clazz = caller_frame.frame.f_globals.get(className)
+            caller_function_object = clazz.__dict__.get(caller_function_name)
             return caller_function_object
 
     def register(self, options: "Options", show_code: bool):
