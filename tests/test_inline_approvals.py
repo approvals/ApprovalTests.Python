@@ -12,7 +12,8 @@ from approvaltests import (
     Options,
     Reporter,
     verify,
-    verify_all, verify_all_combinations_with_labeled_input,
+    verify_all,
+    verify_all_combinations_with_labeled_input,
 )
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.namer.inline_comparator import InlineComparator
@@ -122,6 +123,7 @@ def test_uppercase():
         options=Options().inline(),
     )
 
+
 class InlineTests(unittest.TestCase):
     def test_with_labeled_input_inline(self) -> None:
         """
@@ -131,8 +133,8 @@ class InlineTests(unittest.TestCase):
         (arg1: 3, arg2: 4) => 7
         """
         verify_all_combinations_with_labeled_input(
-            lambda a,b: a + b,
+            lambda a, b: a + b,
             arg1=(1, 3),
             arg2=(2, 4),
-            options=Options().inline(show_code=False)
+            options=Options().inline(show_code=False),
         )
