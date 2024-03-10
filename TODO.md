@@ -1,4 +1,8 @@
 Test are running on all CI machine
+
+> How do we know that everything works in both Pytest and Unittests?
+> 
+
 Test fail if mariadb is in the requirements for linux
 1. [x] fix inline bug (maybe related to unittests) 
 2. [] fix inline bug with whitespace (trailing and leading as well as blank lines)
