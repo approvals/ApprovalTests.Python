@@ -1,5 +1,9 @@
 Test are running on all CI machine
 Test fail if mariadb is in the requirements for linux
+1. [] fix inline bug (maybe related to unittests) 
+2. [] fix inline bug with whitespace (trailing and leading as well as blank lines)
+3. [] fix bux with inline and options (cannot instantiate an Options object with inline outside of a test)
+
 
 1. [ ] make it so that approvals works with Python 12
 2. [ ] Improve verify_all for no header

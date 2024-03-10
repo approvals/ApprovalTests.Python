@@ -1,18 +1,21 @@
+import unittest
 from inspect import FrameInfo
 from pathlib import Path
 from typing import Callable, Any
 
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
+from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests import (
     StackFrameNamer,
     assert_equal_with_reporter,
     Options,
     Reporter,
     verify,
-    verify_all,
+    verify_all, verify_all_combinations_with_labeled_input,
 )
 from approvaltests.inline.parse_docstring import parse_docstring
+from approvaltests.namer.inline_comparator import InlineComparator
 from approvaltests.reporters import MultiReporter
 
 
@@ -118,3 +121,25 @@ def test_uppercase():
         "\n".join([f"{a} -> {a.upper()}" for a in parse_docstring()]),
         options=Options().inline(),
     )
+
+class InlineTests(unittest.TestCase):
+    def test_with_labeled_input_inline(self) -> None:
+        """
+        (arg1: 1, arg2: 2) => 3
+        (arg1: 1, arg2: 4) => 5
+        (arg1: 3, arg2: 2) => 5
+        (arg1: 3, arg2: 4) => 7
+        """
+        test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
+        caller_frame = test_stack_frame
+        caller_function_name: str = caller_frame[3]
+        caller_function_object = caller_frame.frame.f_globals.get(
+            caller_function_name, None
+        )
+
+        verify_all_combinations_with_labeled_input(
+            lambda a,b: a + b,
+            arg1=(1, 3),
+            arg2=(2, 4),
+            options=Options().inline(show_code=False)
+        )
