@@ -14,7 +14,8 @@ from approvaltests import (
     Reporter,
     verify,
     verify_all,
-    verify_all_combinations_with_labeled_input, ApprovalException,
+    verify_all_combinations_with_labeled_input,
+    ApprovalException,
 )
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters import MultiReporter, ReportWithBeyondCompare
@@ -124,7 +125,10 @@ def test_uppercase():
         options=Options().inline(),
     )
 
+
 options = Options().inline()
+
+
 def test_when_options_is_created_outside_of_test():
     """
     hello
@@ -132,12 +136,13 @@ def test_when_options_is_created_outside_of_test():
     """
     verify(greeting(), options=options)
 
+
 def test_exception_on_failure():
     """
     this string should not match
     """
     with pytest.raises(ApprovalException):
-      verify(greeting(), options=Options().with_reporter(ReportQuietly()).inline())
+        verify(greeting(), options=Options().with_reporter(ReportQuietly()).inline())
 
 
 class InlineTests(unittest.TestCase):
