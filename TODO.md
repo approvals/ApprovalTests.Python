@@ -5,18 +5,17 @@ Test are running on all CI machine
 [ ] Test fail if mariadb is in the requirements for linux
 
 Inline Approvals Bugs
-1. [x] fix inline bug (maybe related to unittests) 
-2. [] fix inline bug with whitespace (trailing and leading as well as blank lines)
-3. [] fix bux with inline and options (cannot instantiate an Options object with inline outside of a test)
-
-
-1. [ ] make it so that approvals works with Python 12
-2. [ ] Improve verify_all for no header
+1. [ ] fix inline bug with whitespace (trailing and leading as well as blank lines)
+2. [ ] rename all of the reporters to start with the word report
+3. [ ] check all reporters return True or False
+    4. [ ] add mypy to the CI (type hints exist and they are being inforced)
+4. [ ] make it so that approvals works with Python 12
+5. [ ] Improve verify_all for no header
         Expects VerifyAll to have a header
         this is mandatory For PYthon Approval Tests
         added an example to Test_inline_approvals.py
         see: def test_uppercase_with_verify_all():
-3. [ ] expand functionality of parse_doc_string     NOTE: this is WIP from 3/3/24 parse inputs
+6. [ ] expand functionality of parse_doc_string     NOTE: this is WIP from 3/3/24 parse inputs
    2. [ ] =>, :
    3. [ ] maybe not only docstring but any text or approved file?
    4. [ ] multiple parameters 1, 2, 3 -> 
