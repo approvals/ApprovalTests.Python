@@ -18,7 +18,7 @@ from approvaltests import (
 )
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters import MultiReporter, ReportWithBeyondCompare
-from approvaltests.reporters.quiet_reporter import QuietReport
+from approvaltests.reporters.report_quietly import ReportQuietly
 
 
 def get_approved_via_doc_string():
@@ -137,7 +137,7 @@ def test_exception_on_failure():
     this string should not match
     """
     with pytest.raises(ApprovalException):
-      verify(greeting(), options=Options().with_reporter(QuietReport()).inline())
+      verify(greeting(), options=Options().with_reporter(ReportQuietly()).inline())
 
 
 class InlineTests(unittest.TestCase):
