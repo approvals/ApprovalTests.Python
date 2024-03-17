@@ -2,8 +2,9 @@ Test are running on all CI machine
 
 > How do we know that everything works in both Pytest and Unittests?
 > 
+[ ] Test fail if mariadb is in the requirements for linux
 
-Test fail if mariadb is in the requirements for linux
+Inline Approvals Bugs
 1. [x] fix inline bug (maybe related to unittests) 
 2. [] fix inline bug with whitespace (trailing and leading as well as blank lines)
 3. [] fix bux with inline and options (cannot instantiate an Options object with inline outside of a test)
@@ -15,7 +16,7 @@ Test fail if mariadb is in the requirements for linux
         this is mandatory For PYthon Approval Tests
         added an example to Test_inline_approvals.py
         see: def test_uppercase_with_verify_all():
-3. [ ] expand functionality of parse_doc_string
+3. [ ] expand functionality of parse_doc_string     NOTE: this is WIP from 3/3/24 parse inputs
    2. [ ] =>, :
    3. [ ] maybe not only docstring but any text or approved file?
    4. [ ] multiple parameters 1, 2, 3 -> 

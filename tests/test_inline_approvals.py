@@ -3,9 +3,10 @@ from inspect import FrameInfo
 from pathlib import Path
 from typing import Callable, Any
 
+import pytest
+
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests import (
     StackFrameNamer,
     assert_equal_with_reporter,
@@ -13,11 +14,11 @@ from approvaltests import (
     Reporter,
     verify,
     verify_all,
-    verify_all_combinations_with_labeled_input,
+    verify_all_combinations_with_labeled_input, ApprovalException,
 )
 from approvaltests.inline.parse_docstring import parse_docstring
-from approvaltests.namer.inline_comparator import InlineComparator
-from approvaltests.reporters import MultiReporter
+from approvaltests.reporters import MultiReporter, ReportWithBeyondCompare
+from approvaltests.reporters.quiet_reporter import QuietReport
 
 
 def get_approved_via_doc_string():
@@ -122,6 +123,21 @@ def test_uppercase():
         "\n".join([f"{a} -> {a.upper()}" for a in parse_docstring()]),
         options=Options().inline(),
     )
+
+options = Options().inline()
+def test_when_options_is_created_outside_of_test():
+    """
+    hello
+    world
+    """
+    verify(greeting(), options=options)
+
+def test_exception_on_failure():
+    """
+    this string should not match
+    """
+    with pytest.raises(ApprovalException):
+      verify(greeting(), options=Options().with_reporter(QuietReport()).inline())
 
 
 class InlineTests(unittest.TestCase):
