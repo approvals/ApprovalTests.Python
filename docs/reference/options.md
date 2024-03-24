@@ -3,7 +3,9 @@
 <!-- toc -->
 ## Contents
 
-  * [Configuriation for verify](#configuriation-for-verify)<!-- endToc -->
+  * [Configuriation for verify](#configuriation-for-verify)
+  * [Inline Approvals](#inline-approvals)
+    * [Known Issues](#known-issues)<!-- endToc -->
 
 ## Configuriation for verify
 All verify methods take an optional options parameter. This allows you to configure 
