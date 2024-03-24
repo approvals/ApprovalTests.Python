@@ -164,24 +164,24 @@ class InlineTests(unittest.TestCase):
 def get_preceding_whitespace():
     return "    4 whitespaces"
 
-
+# fmt: off
 def test_preceding_whitespace():
     """
-    4 whitespaces
+        4 whitespaces
     """
     verify(get_preceding_whitespace(), options=Options().inline(show_code=True))
 
 
 def test_trailing_whitespace():
     """
-    4 trailing whitespaces
+    4 trailing whitespaces    
     """
     # Note: Pycharm will remove the trailing whitespaces, to disable this go to:
     # File -> Settings -> Editor -> General -> On Save -> [ ] Remove trailing spaces
     verify("4 trailing whitespaces    ", options=Options().inline(show_code=False))
 
+# fmt: on
 
-# 2. [ ] fix inline bug with blank lines <- from todo list
 def test_bug_blank_lines():
     """
 
