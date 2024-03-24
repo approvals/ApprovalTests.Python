@@ -19,3 +19,10 @@ def test_remove_indentation_from_works_perfectly() -> None:
         """
     )
     verify("remove_indentation_from\n" + text)
+
+
+def test_remove_indentation_uses_the_last_line_as_max_whitespace():
+    input = """
+        4 whitespaces
+    """
+    assert "    4 whitespaces\n" == remove_indentation_from(input)
