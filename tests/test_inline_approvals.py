@@ -178,3 +178,16 @@ def test_trailing_whitespace():
     # Note: Pycharm will remove the trailing whitespaces, to disable this go to:
     # File -> Settings -> Editor -> General -> On Save -> [ ] Remove trailing spaces
     verify("4 trailing whitespaces    ", options=Options().inline(show_code=False))
+    
+# 2. [ ] fix inline bug with blank lines <- from todo list
+def test_bug_blank_lines(): 
+    """
+    
+    
+    test bug with blank lines
+    
+    
+    
+    """
+    verify("\n\ntest bug with blank lines\n\n\n\n", options=Options().inline(show_code=True))
+
