@@ -4,6 +4,10 @@ Test are running on all CI machine
 > 
 [ ] Test fail if mariadb is in the requirements for linux
 
+Ping-Pong Pairing
+Try to make the smallest change possible, then rotate
+
+
 Inline Approvals Bugs
 1. [ ] fix inline bug with whitespace (trailing and leading as well as blank lines)
 2. [ ] rename all of the reporters to start with the word report

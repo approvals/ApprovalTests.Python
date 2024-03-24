@@ -159,3 +159,14 @@ class InlineTests(unittest.TestCase):
             arg2=(2, 4),
             options=Options().inline(show_code=False),
         )
+
+
+def get_preceding_whitespace():
+    return "    4 whitespaces"
+
+
+def test_preceding_whitespace():
+    """
+        4 whitespaces
+    """
+    verify(get_preceding_whitespace(), options=Options().inline(show_code=True))
