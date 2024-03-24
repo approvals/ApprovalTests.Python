@@ -164,6 +164,7 @@ class InlineTests(unittest.TestCase):
 def get_preceding_whitespace():
     return "    4 whitespaces"
 
+
 # fmt: off
 def test_preceding_whitespace():
     """
@@ -181,6 +182,7 @@ def test_trailing_whitespace():
     verify("4 trailing whitespaces    ", options=Options().inline(show_code=False))
 
 # fmt: on
+
 
 def test_bug_blank_lines():
     """
