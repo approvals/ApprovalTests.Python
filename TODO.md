@@ -1,5 +1,10 @@
 Test are running on all CI machine
 
+diana
+susan
+Llewellyn
+Joss
+
 > How do we know that everything works in both Pytest and Unittests?
 > 
 [ ] Test fail if mariadb is in the requirements for linux
@@ -9,7 +14,8 @@ Try to make the smallest change possible, then rotate
 
 
 Inline Approvals Bugs
-1. [ ] fix inline bug with whitespace (trailing and leading as well as blank lines)
+1. [? ] fix inline bug with whitespace (trailing and leading as well as blank lines)
+2. [ ] fix inline bug with blank lines
 2. [ ] rename all of the reporters to start with the word report
 3. [ ] check all reporters return True or False
     4. [ ] add mypy to the CI (type hints exist and they are being inforced)
