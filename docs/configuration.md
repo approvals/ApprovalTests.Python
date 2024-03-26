@@ -10,7 +10,7 @@
     * [Pytest](#pytest)<!-- endToc -->
 
 You can create directory level configuration for approvals.
-To do this create a file named 'approvaltests_config.json' and place it in the same directory as your test.
+To do this create a file named `approvaltests_config.json` and place it in the same directory as your test.
 As of right now, the only configuration that you can do is to add subdirectories where the approved and received files will show up.
 There is nothing that you need to do in the tests themselves to use this.
 
@@ -20,7 +20,7 @@ You can find a [sample configuration here](/tests/configuration/approvaltests_co
 
 ## Examples
 
-A sample approvaltests_config.json:
+A sample `approvaltests_config.json`:
 
 ```
 {
