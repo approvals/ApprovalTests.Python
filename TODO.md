@@ -29,6 +29,7 @@ Inline Approvals Bugs
    4. [ ] multiple parameters 1, 2, 3 -> 
    5. [ ] converter parse(to_integer)
    6. [ ] some relationship between the output formatter and the parser
+7. [ ] Move explainations to ApprovalTests.Documentation
 
 
 1. disable the CMD key in this Any Desk  (Nitsan suggested)

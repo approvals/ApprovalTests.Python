@@ -8,7 +8,30 @@ from typing import TypeVar, Generic
 from build.lib.approvaltests.reporters import ReporterThatAutomaticallyApproves
 
 T = TypeVar("T")
+T1 = TypeVar("T1")
 T2 = TypeVar("T2")
+
+
+class Parse2(Generic[T1, T2]):
+    def __init__(self, text: str, transformer1: Callable[[str], T1], transformer2: Callable[[str], T2]) -> None:
+        self.text = text
+        self._transformer1 = transformer1
+        self._transformer2 = transformer2
+        
+        def transformer(s: str):
+            parts = s.split(",")
+            parts = list(map(lambda p: p.strip(), parts))
+            return [transformer1(parts[0]), transformer2(parts[1])]
+
+        self._transformer = transformer
+        
+    def verify_all(self, transform: Callable[[T1, T2], Any]):
+        verify_all(
+            "",
+            Parse.parse_inputs(self.text, self._transformer),
+            lambda s: f"{s} -> {transform(s[0], s[1])}",
+            options=Options().inline(),
+        )
 
 
 class Parse(Generic[T]):
@@ -21,10 +44,14 @@ class Parse(Generic[T]):
         return Parse(InlineComparator.get_test_method_doc_string(), lambda s: s)
 
     def get_inputs(self) -> List[T]:
-        lines = self.text.split("\n")
+        return Parse.parse_inputs(self.text, self._transformer)
+
+    @staticmethod
+    def parse_inputs(text, transformer):
+        lines = text.split("\n")
         lines = list(filter(lambda line: line.strip(), lines))
         inputs = [line.split("->")[0].strip() for line in lines]
-        return [self._transformer(i) for i in inputs]
+        return [transformer(i) for i in inputs]
 
     def verify_all(self, transform: Callable[[T], Any]):
         verify_all(
@@ -36,6 +63,9 @@ class Parse(Generic[T]):
 
     def transform(self, transform: Callable[[T], T2]) -> "Parse[T2]":
         return Parse(self.text, lambda s: transform(self._transformer(s)))
+
+    def transform2(self, transform1: Callable[[str], T1], transform2: Callable[[str], T2]) -> "Parse2[T1, T2]":
+        return Parse2(self.text, transform1, transform2)
 
 
 def test_single_strings():
@@ -74,11 +104,9 @@ def test_with_types_transformers_and_both():
 
 def test_with_2_types_transformers_and_both():
     """
-    1, 2.2 -> 2.2
-    4, 0.5 -> 2
+    [1, 2.2] -> 2.2
+    [4, 0.5] -> 2.0
     """
     s = "2.2"
     parse = Parse.doc_string()
-
-
-# parse.transform2(int, float).verify_all(lambda i,f: i * f)
+    parse.transform2(int, float).verify_all(lambda i,f: i * f)
