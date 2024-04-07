@@ -18,8 +18,10 @@ class Parse(Generic[T]):
         options = Options()
         if auto_approve:
             options = options.with_reporter(ReporterThatAutomaticallyApproves())
-            
-        return Parse(InlineComparator.get_test_method_doc_string(), lambda s: s, options=options)
+
+        return Parse(
+            InlineComparator.get_test_method_doc_string(), lambda s: s, options=options
+        )
 
     def get_inputs(self) -> List[T]:
         return Parse.parse_inputs(self.text, self._transformer)
@@ -42,10 +44,12 @@ class Parse(Generic[T]):
     def transform(self, transform: Callable[[T], T2]) -> "Parse[T2]":
         return Parse(self.text, lambda s: transform(self._transformer(s)), self.options)
 
-    def transform2(self, transform1: Callable[[str], T1], transform2: Callable[[str], T2]) -> "Parse2[T1, T2]":
+    def transform2(
+        self, transform1: Callable[[str], T1], transform2: Callable[[str], T2]
+    ) -> "Parse2[T1, T2]":
         def transformer(s: str) -> Tuple[T1, T2]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
             return (transform1(parts[0]), transform2(parts[1]))
-        
+
         return Parse2(self.text, transformer, self.options)

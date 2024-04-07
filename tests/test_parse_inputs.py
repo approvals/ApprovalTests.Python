@@ -1,6 +1,7 @@
 from approvaltests import Options, verify_all
 from approvaltests.inline.parse import Parse
 
+
 def test_single_strings():
     """
     Sam -> SAM
@@ -40,27 +41,31 @@ def test_with_2_types_transformers_and_both():
     4, 0.5 -> 2.0
     """
     parse = Parse.doc_string(auto_approve=True)
-    parse.transform2(int, float).verify_all(lambda i,f: i * f)
-    parse.transform2(str, str).transform2(int, float).verify_all(lambda i,f: i * f)
+    parse.transform2(int, float).verify_all(lambda i, f: i * f)
+    parse.transform2(str, str).transform2(int, float).verify_all(lambda i, f: i * f)
+
 
 def test_example_step_1():
     # begin-snippet: parse_input_step_2
     """
     Kody -> 0
     """
+
     # end-snippet
     # begin-snippet: parse_input_step_1
     def count_vowels(s: str) -> int:
         return 0
-    
+
     def test_count_vowels():
         """
         Kody
         """
         parse = Parse.doc_string(auto_approve=True)
         parse.verify_all(count_vowels)
+
     # end-snippet
     test_count_vowels()
+
 
 # begin-snippet: parse_input_transformation
 def test_with_transformation():
@@ -70,7 +75,10 @@ def test_with_transformation():
     """
     parse = Parse.doc_string(auto_approve=True)
     parse.transform(int).verify_all(bin)
+
+
 # end-snippet
+
 
 # begin-snippet: parse_input_two_parameters
 def test_with_two_parameters():
@@ -79,5 +87,7 @@ def test_with_two_parameters():
     !, 7 -> !!!!!!!
     """
     parse = Parse.doc_string(auto_approve=True)
-    parse.transform2(str, int).verify_all(lambda s,i: s * i)
+    parse.transform2(str, int).verify_all(lambda s, i: s * i)
+
+
 # end-snippet
