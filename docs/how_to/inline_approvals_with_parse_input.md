@@ -1,8 +1,19 @@
 # How to have tight feedback loops with inline approvals and parse_input
 
+toc
+
 ## Problem
 You are doing TDD on a pure function that takes some parameters and returns a result.
 You want to just program and see the results of running it with as little in the way of that as possible.
+
+## Solution
+Use a combination of: 
+1. Inline Approvals
+2. Parse Input
+3. Auto-Approver
+
+This allows you to easily give inputs and see the output.
+This will remove the repoter and diff tools and feel more like a REPL.
 
 ## Handling 1 Parameter
 
@@ -39,8 +50,14 @@ Kody -> 0
 <sup><a href='/tests/test_parse_inputs.py#L49-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-### Step 3: Implement the Function
+### Step 3: Implement and rerun 
 Everytime you run the tests, you automatically see the result at the top in the docstring.
+As you want more test cases just add more lines to the docstring.
+Here's an exmaple of where we have handled O, E, & A.
+snippet: parse_input_step_3     
+
+### Step 4: Commit
+
 When you finally get the answer you want, remove the `auto_approve=True` and commit the code.
 
 

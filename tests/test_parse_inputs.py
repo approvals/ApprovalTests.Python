@@ -65,6 +65,27 @@ def test_example_step_1():
 
     # end-snippet
     test_count_vowels()
+def test_example_step_2():
+    """
+    Kody -> 1
+    Teresa -> 3
+    Green -> 2
+    """
+    # begin-snippet: parse_input_step_3
+    def count_vowels(s: str) -> int:
+       return sum(1 for c in s if c in "aeo")
+
+    def test_count_vowels():
+        """
+        Kody -> 1
+        Teresa -> 3
+        Green -> 2
+        """
+        parse = Parse.doc_string(auto_approve=True)
+        parse.verify_all(count_vowels)
+
+    # end-snippet
+    test_count_vowels()
 
 
 # begin-snippet: parse_input_transformation
