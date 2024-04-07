@@ -10,14 +10,13 @@ from build.lib.approvaltests.reporters import ReporterThatAutomaticallyApproves
 T = TypeVar("T")
 T1 = TypeVar("T1")
 T2 = TypeVar("T2")
+NT1 = TypeVar("NT1")
+NT2 = TypeVar("NT2")
 
 
 class Parse2(Generic[T1, T2]):
     def __init__(self, text: str, transformer1: Callable[[str], T1], transformer2: Callable[[str], T2]) -> None:
         self.text = text
-        self._transformer1 = transformer1
-        self._transformer2 = transformer2
-        
         def transformer(s: str):
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
@@ -29,10 +28,12 @@ class Parse2(Generic[T1, T2]):
         verify_all(
             "",
             Parse.parse_inputs(self.text, self._transformer),
-            lambda s: f"{s} -> {transform(s[0], s[1])}",
+            lambda s: f"{s[0]}, {s[1]} -> {transform(s[0], s[1])}",
             options=Options().inline(),
         )
 
+    def transform2(self, transform1: Callable[[T1], NT1], transform2: Callable[[T2], NT2]) -> "Parse2[NT1, NT2]":
+        return Parse2(self.text, transform1, transform2)
 
 class Parse(Generic[T]):
     def __init__(self, text: str, transformer: Callable[[str], T]) -> None:
@@ -104,9 +105,9 @@ def test_with_types_transformers_and_both():
 
 def test_with_2_types_transformers_and_both():
     """
-    [1, 2.2] -> 2.2
-    [4, 0.5] -> 2.0
+    1, 2.2 -> 2.2
+    4, 0.5 -> 2.0
     """
-    s = "2.2"
     parse = Parse.doc_string()
     parse.transform2(int, float).verify_all(lambda i,f: i * f)
+    # parse.transform2(str, str).transform2(int, float).verify_all(lambda i,f: i * f)
