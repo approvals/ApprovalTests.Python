@@ -1,4 +1,4 @@
-from typing import List, Callable, Any
+from typing import List, Callable, Any, Tuple
 
 from approvaltests import Options, verify_all
 from approvaltests.namer.inline_comparator import InlineComparator
@@ -15,13 +15,8 @@ NT2 = TypeVar("NT2")
 
 
 class Parse2(Generic[T1, T2]):
-    def __init__(self, text: str, transformer1: Callable[[str], T1], transformer2: Callable[[str], T2]) -> None:
+    def __init__(self, text: str, transformer: Callable[[str], Tuple[T1, T2]]) -> None:
         self.text = text
-        def transformer(s: str):
-            parts = s.split(",")
-            parts = list(map(lambda p: p.strip(), parts))
-            return [transformer1(parts[0]), transformer2(parts[1])]
-
         self._transformer = transformer
         
     def verify_all(self, transform: Callable[[T1, T2], Any]):
@@ -33,7 +28,11 @@ class Parse2(Generic[T1, T2]):
         )
 
     def transform2(self, transform1: Callable[[T1], NT1], transform2: Callable[[T2], NT2]) -> "Parse2[NT1, NT2]":
-        return Parse2(self.text, transform1, transform2)
+        def transformer(s: str) -> Tuple[NT1, NT2]:
+            t1, t2 = self._transformer(s)
+            return (transform1(t1), transform2(t2))
+        
+        return Parse2(self.text, transformer)
 
 class Parse(Generic[T]):
     def __init__(self, text: str, transformer: Callable[[str], T]) -> None:
@@ -66,7 +65,12 @@ class Parse(Generic[T]):
         return Parse(self.text, lambda s: transform(self._transformer(s)))
 
     def transform2(self, transform1: Callable[[str], T1], transform2: Callable[[str], T2]) -> "Parse2[T1, T2]":
-        return Parse2(self.text, transform1, transform2)
+        def transformer(s: str) -> Tuple[T1, T2]:
+            parts = s.split(",")
+            parts = list(map(lambda p: p.strip(), parts))
+            return (transform1(parts[0]), transform2(parts[1]))
+        
+        return Parse2(self.text, transformer)
 
 
 def test_single_strings():
@@ -110,4 +114,4 @@ def test_with_2_types_transformers_and_both():
     """
     parse = Parse.doc_string()
     parse.transform2(int, float).verify_all(lambda i,f: i * f)
-    # parse.transform2(str, str).transform2(int, float).verify_all(lambda i,f: i * f)
+    parse.transform2(str, str).transform2(int, float).verify_all(lambda i,f: i * f)
