@@ -8,7 +8,7 @@
     * [Zoom Link](#zoom-link)
     * [Requirements](#requirements)
     * [Opening Notice](#opening-notice)
-    * [Team Viewer](#team-viewer)
+    * [Anydesk](#anydesk)
   * [Solo Developement](#solo-developement)<!-- endToc -->
 
 ## Join our Weekly Mobbing sessions
