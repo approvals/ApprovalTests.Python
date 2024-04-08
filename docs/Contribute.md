@@ -56,9 +56,9 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 **You can leave at any time** - and people do.<!-- endInclude -->
 
-### Team Viewer
+### Anydesk
 
-We using [Team Viewer Remote](https://www.teamviewer.com/en-us/download) to connect to the shared machine. You will have to create an account (it's free). 
+We will use [anydesk](https://anydesk.com/en) to screen share & controll the development machine. Please download ahead of time.
 
 ## Solo Developement
 If you prefer solo development, check out [How To Setup a Dev Machine](./how_to/setting_up_a_dev_machine.md)
