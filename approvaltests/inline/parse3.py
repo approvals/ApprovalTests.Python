@@ -3,6 +3,7 @@ from typing import Generic, Callable, Tuple, Any
 from approvaltests import verify_all
 from approvaltests.inline.types import T1, T2, T3, NT1, NT2, NT3
 
+
 class Parse3(Generic[T1, T2, T3]):
     def __init__(
         self, text: str, transformer: Callable[[str], Tuple[T1, T2, T3]], options
@@ -22,7 +23,10 @@ class Parse3(Generic[T1, T2, T3]):
         )
 
     def transform3(
-        self, transform1: Callable[[T1], NT1], transform2: Callable[[T2], NT2], transform3: Callable[[T3], NT3]
+        self,
+        transform1: Callable[[T1], NT1],
+        transform2: Callable[[T2], NT2],
+        transform3: Callable[[T3], NT3],
     ) -> "Parse3[NT1, NT2, NT3]":
         def transformer(s: str) -> Tuple[NT1, NT2, NT3]:
             t1, t2, t3 = self._transformer(s)

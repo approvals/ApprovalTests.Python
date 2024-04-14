@@ -116,27 +116,30 @@ def test_with_two_parameters():
 
 # end-snippet
 
+
 # long-term intention: get the test to fail, randomSauce is incorrect
 def test_with_3_parameters():
     """
     a, 3, 1 -> aaaa
     """
 
-
     counter = 0
+
     def to(tin: type, tout: type):
         def wrapped(input):
             nonlocal counter
             counter += 1
             assert type(input) is tin
             return tout(input)
+
         return wrapped
 
     parse = Parse.doc_string(auto_approve=True)
-    parse.transform3( to(str, str), to(str, str), to(str, str))\
-        .transform3( to(str, str), to(str, int), to(str, int))\
-        .verify_all(lambda a, b, c: to(str, str)(a) * (to(int, int)(b) + to(int, int)(c)))
-    
+    parse.transform3(to(str, str), to(str, str), to(str, str)).transform3(
+        to(str, str), to(str, int), to(str, int)
+    ).verify_all(lambda a, b, c: to(str, str)(a) * (to(int, int)(b) + to(int, int)(c)))
+
     assert counter == 9
+
 
 # assert on all the paramaters
