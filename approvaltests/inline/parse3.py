@@ -12,7 +12,7 @@ class Parse3(Generic[T1, T2, T3]):
         self._transformer = transformer
         self.options = options
 
-    def verify_all(self, transform: Callable[[T1, T2,T3], Any]):
+    def verify_all(self, transform: Callable[[T1, T2, T3], Any]):
         from approvaltests.inline.parse import Parse
         
         verify_all(
