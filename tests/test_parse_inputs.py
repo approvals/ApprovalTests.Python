@@ -121,5 +121,12 @@ def test_with_3_parameters():
     """
     a, 3, 1 -> aaaa
     """
+
+    def to_int(s: str, t: type = str):
+        assert type(s) is t
+        return int(s)
+
     parse = Parse.doc_string(auto_approve=True)
-    parse.transform3(str, int, int).verify_all(lambda s, i1, i2: s * (i1 + i2))
+    parse.transform3(str, int, int).verify_all(lambda s, i1, i2: s * (to_int(i1, int) + to_int(i2, int)))
+    parse.transform3(str, str, str).verify_all(lambda s, i1, i2: s * (to_int(i1,) + to_int(i2)))
+

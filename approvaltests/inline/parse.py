@@ -64,6 +64,6 @@ class Parse(Generic[T]):
         def transformer(s: str) -> Tuple[T1, T2, int]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
-            return (transform1(parts[0]), transform2(parts[1]), int(parts[2]))
+            return (transform1(parts[0]), transform2(parts[1]), int1(parts[2]))
         
         return Parse3(self.text, transformer, self.options)

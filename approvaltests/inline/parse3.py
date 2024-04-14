@@ -1,6 +1,6 @@
 from typing import Generic, Callable, Tuple, Any
 
-from approvaltests import verify_all, verify
+from approvaltests import verify_all
 from approvaltests.inline.types import T1, T2, T3, NT1, NT2
 
 
