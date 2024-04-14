@@ -65,15 +65,18 @@ def test_example_step_1():
 
     # end-snippet
     test_count_vowels()
+
+
 def test_example_step_2():
     """
     Kody -> 1
     Teresa -> 3
     Green -> 2
     """
+
     # begin-snippet: parse_input_step_3
     def count_vowels(s: str) -> int:
-       return sum(1 for c in s if c in "aeo")
+        return sum(1 for c in s if c in "aeo")
 
     def test_count_vowels():
         """
@@ -109,12 +112,14 @@ def test_with_two_parameters():
     """
     parse = Parse.doc_string(auto_approve=True)
     parse.transform2(str, int).verify_all(lambda s, i: s * i)
-    
+
+
 # end-snippet
 
+# long-term intention: get the test to fail, randomSauce is incorrect
 def test_with_3_parameters():
     """
-    a, 3, 1 -> randomSauce
+    a, 3, 1 -> aaaa
     """
     parse = Parse.doc_string(auto_approve=True)
-    parse.transform3(str, int, int).verify_all(lambda s, i1, i2: s * (i1+i2))
+    parse.transform3(str, int, int).verify_all(lambda s, i1, i2: s * (i1 + i2))

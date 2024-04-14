@@ -1,10 +1,15 @@
 Test are running on all CI machine
 
-diana
-susan
-Teresa
+Typing -> Talking -> Next
+Susan
 Llewellyn
+Teresa
 Nitsan
+Diana
+
+We're doing "ping pong style" rotation
+Rotate on each successful test run, after **any** smallest improvement to the code
+in the direction of te agreed upon intention.
 
 > How do we know that everything works in both Pytest and Unittests?
 > 

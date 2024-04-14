@@ -55,10 +55,14 @@ class Parse(Generic[T]):
 
         return Parse2(self.text, transformer, self.options)
 
+    # intention: find "cheating" parts in this code
+    # make all hard-coded stuff be more generic
+    # use the transformer
+    # verify_all signature is incorrect
     def transform3(self, str, int, int1):
-        def transformer(s: str) -> Tuple[str,str, str]:
+        def transformer(s: str) -> Tuple[str, int, int]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
-            return (parts[0], parts[1], parts[2])
+            return (parts[0], int(parts[1]), int(parts[2]))
         
         return Parse3(self.text, transformer, self.options)
