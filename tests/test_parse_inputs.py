@@ -125,8 +125,19 @@ def test_with_3_parameters():
     def to_int(s: str, t: type = str):
         assert type(s) is t
         return int(s)
+    
+    counter = 0
+    def to(tin: type, tout: type):
+        def wrapped(input):
+            nonlocal counter
+            counter += 1
+            assert type(input) is tin
+            return tout(input)
+        return wrapped
 
     parse = Parse.doc_string(auto_approve=True)
-    parse.transform3(str, int, int).verify_all(lambda s, i1, i2: s * (to_int(i1, int) + to_int(i2, int)))
-    parse.transform3(str, str, str).verify_all(lambda s, i1, i2: s * (to_int(i1,) + to_int(i2)))
+    parse.transform3( to(str, str), to(str, int), to(str, int)).verify_all(lambda a, b, c: to(str, str)(a) * (to(int, int)(b) + to(int, int)(c)))
+    
+    assert counter == 6
 
+# assert on all the paramaters
