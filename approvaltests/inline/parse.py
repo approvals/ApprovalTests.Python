@@ -57,7 +57,6 @@ class Parse(Generic[T]):
 
     # intention: find "cheating" parts in this code
     # make all hard-coded stuff be more generic
-    # use the transformer
     # verify_all signature is incorrect
     def transform3(self, str, int, int1):
         def transformer(s: str) -> Tuple[str, int, int]:

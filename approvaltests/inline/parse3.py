@@ -1,10 +1,10 @@
 from typing import Generic, Callable, Tuple, Any
 
 from approvaltests import verify_all, verify
-from approvaltests.inline.types import T1, T2, NT1, NT2
+from approvaltests.inline.types import T1, T2, T3, NT1, NT2
 
 
-class Parse3(Generic[T1, T2]):
+class Parse3(Generic[T1, T2, T3]):
     def __init__(
         self, text: str, transformer: Callable[[str], Tuple[T1, T2, int]], options
     ) -> None:
@@ -12,7 +12,7 @@ class Parse3(Generic[T1, T2]):
         self._transformer = transformer
         self.options = options
 
-    def verify_all(self, transform: Callable[[T1, T2], Any]):
+    def verify_all(self, transform: Callable[[T1, T2,T3], Any]):
         from approvaltests.inline.parse import Parse
         
         verify_all(
