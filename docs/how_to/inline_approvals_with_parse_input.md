@@ -1,6 +1,18 @@
 # How to have tight feedback loops with inline approvals and parse_input
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Problem](#problem)
+  * [Solution](#solution)
+  * [Handling 1 Parameter](#handling-1-parameter)
+    * [Scenario - Counting Vowels](#scenario---counting-vowels)
+    * [Step 1: Write the Test](#step-1-write-the-test)
+    * [Step 2: Run the Test](#step-2-run-the-test)
+    * [Step 3: Implement and rerun](#step-3-implement-and-rerun)
+    * [Step 4: Commit](#step-4-commit)
+  * [Handling 1 Parameter that is not a string](#handling-1-parameter-that-is-not-a-string)
+  * [Handling 2 Parameters](#handling-2-parameters)<!-- endToc -->
 
 ## Problem
 You are doing TDD on a pure function that takes some parameters and returns a result.
@@ -53,8 +65,24 @@ Kody -> 0
 ### Step 3: Implement and rerun 
 Everytime you run the tests, you automatically see the result at the top in the docstring.
 As you want more test cases just add more lines to the docstring.
-Here's an exmaple of where we have handled O, E, & A.
-snippet: parse_input_step_3     
+Here's an example of where we have handled O, E, & A.
+<!-- snippet: parse_input_step_3 -->
+<a id='snippet-parse_input_step_3'></a>
+```py
+def count_vowels(s: str) -> int:
+    return sum(1 for c in s if c in "aeo")
+
+def test_count_vowels():
+    """
+    Kody -> 1
+    Teresa -> 3
+    Green -> 2
+    """
+    parse = Parse.doc_string(auto_approve=True)
+    parse.verify_all(count_vowels)
+```
+<sup><a href='/tests/test_parse_inputs.py#L77-L90' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_3' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### Step 4: Commit
 
@@ -77,7 +105,7 @@ def test_with_transformation():
     parse = Parse.doc_string(auto_approve=True)
     parse.transform(int).verify_all(bin)
 ```
-<sup><a href='/tests/test_parse_inputs.py#L70-L80' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_transformation' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L94-L104' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_transformation' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Handling 2 Parameters
@@ -95,5 +123,5 @@ def test_with_two_parameters():
     parse = Parse.doc_string(auto_approve=True)
     parse.transform2(str, int).verify_all(lambda s, i: s * i)
 ```
-<sup><a href='/tests/test_parse_inputs.py#L83-L93' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_two_parameters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L107-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_two_parameters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
