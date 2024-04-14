@@ -65,7 +65,7 @@ Kody -> 0
 ### Step 3: Implement and rerun 
 Everytime you run the tests, you automatically see the result at the top in the docstring.
 As you want more test cases just add more lines to the docstring.
-Here's an exmaple of where we have handled O, E, & A.
+Here's an example of where we have handled O, E, & A.
 <!-- snippet: parse_input_step_3 -->
 <a id='snippet-parse_input_step_3'></a>
 ```py
