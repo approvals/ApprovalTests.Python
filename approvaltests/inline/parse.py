@@ -58,11 +58,12 @@ class Parse(Generic[T]):
     # intention: find "cheating" parts in this code
     # TODO: make all hard-coded stuff be more generic
     # 'int1' is not used, let's start use it
+    # add in callable
     # done: verify_all signature is incorrect
-    def transform3(self, str, transform2, int1) -> "Parse3[str, int, int]":
+    def transform3(self, transform1, transform2, int1) -> "Parse3[str, int, int]":
         def transformer(s: str) -> Tuple[str, int, int]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
-            return (parts[0], transform2(parts[1]), int(parts[2]))
+            return (transform1(parts[0]), transform2(parts[1]), int(parts[2]))
         
         return Parse3(self.text, transformer, self.options)
