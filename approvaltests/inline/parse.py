@@ -60,8 +60,8 @@ class Parse(Generic[T]):
     # 'int1' is not used, let's start use it
     # add in callable
     # done: verify_all signature is incorrect
-    def transform3(self, transform1: Callable[[str], T1], transform2, int1) -> "Parse3[T1, int, int]":
-        def transformer(s: str) -> Tuple[T1, int, int]:
+    def transform3(self, transform1: Callable[[str], T1], transform2: Callable[[str], T2], int1) -> "Parse3[T1, int, int]":
+        def transformer(s: str) -> Tuple[T1, T2, int]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
             return (transform1(parts[0]), transform2(parts[1]), int(parts[2]))
