@@ -1,6 +1,6 @@
 from typing import Generic, Callable, Tuple, Any
 
-from approvaltests import verify_all
+from approvaltests import verify_all, verify
 from approvaltests.inline.types import T1, T2, NT1, NT2
 
 
@@ -14,6 +14,7 @@ class Parse3(Generic[T1, T2]):
 
     def verify_all(self, transform: Callable[[T1, T2], Any]):
         from approvaltests.inline.parse import Parse
+        verify(self.text, options=self.options.inline())
 
         # verify_all(
         #     "",
