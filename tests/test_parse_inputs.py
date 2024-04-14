@@ -109,6 +109,12 @@ def test_with_two_parameters():
     """
     parse = Parse.doc_string(auto_approve=True)
     parse.transform2(str, int).verify_all(lambda s, i: s * i)
-
-
+    
 # end-snippet
+
+def test_with_3_parameters():
+    """
+    a, 3, 1 -> randomSauce
+    """
+    parse = Parse.doc_string(auto_approve=True)
+    parse.transform3(str, int, int).verify_all(lambda s, i1, i2: s * (i1+i2))

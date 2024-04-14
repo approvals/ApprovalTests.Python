@@ -2,8 +2,9 @@ Test are running on all CI machine
 
 diana
 susan
+Teresa
 Llewellyn
-Joss
+Nitsan
 
 > How do we know that everything works in both Pytest and Unittests?
 > 

@@ -2,6 +2,7 @@ from typing import Generic, Callable, List, Any, Tuple
 
 from approvaltests import Options, verify_all
 from approvaltests.inline.parse2 import Parse2
+from approvaltests.inline.parse3 import Parse3
 from approvaltests.namer.inline_comparator import InlineComparator
 from build.lib.approvaltests.reporters import ReporterThatAutomaticallyApproves
 from approvaltests.inline.types import T, T2, T1
@@ -53,3 +54,11 @@ class Parse(Generic[T]):
             return (transform1(parts[0]), transform2(parts[1]))
 
         return Parse2(self.text, transformer, self.options)
+
+    def transform3(self, str, int, int1):
+        def transformer(s: str) -> Tuple[str,str, str]:
+            parts = s.split(",")
+            parts = list(map(lambda p: p.strip(), parts))
+            return (parts[0], parts[1], parts[2])
+        
+        return Parse3(self.text, transformer, self.options)
