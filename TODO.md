@@ -1,11 +1,10 @@
 Test are running on all CI machine
 
 Typing -> Talking -> Next
-Teresa
-Nitsan
 Diana
-Susan
-Llewellyn
+Teresa
+Joss
+
 
 We're doing "ping pong style" rotation
 Rotate on each successful test run, after **any** smallest improvement to the code

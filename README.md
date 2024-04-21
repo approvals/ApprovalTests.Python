@@ -50,7 +50,7 @@ utilities.
 
 ### What Are Approvals
 
-If you need to gain a better understanding or are new to this concept, start [here](docs/explanation/what_are_approvals.md).
+If you need to gain a better understanding or are new to this concept, start [here](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/what_are_approvals.md).
 
 ### New Projects
 
