@@ -36,7 +36,10 @@ Inline Approvals Bugs
    4. [ ] multiple parameters 1, 2, 3 -> 
    5. [ ] converter parse(to_integer)
    6. [ ] some relationship between the output formatter and the parser
-7. [ ] Move explainations to ApprovalTests.Documentation
+      7. [X ] Move explainations to ApprovalTests.Documentation 
+      Please note: we found this broken link [Capture .received. files from CI]
+8.   * [ ]  this link: [Capture .received. files from CI](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/explanations/how_to/CaptureFilesFromCI.md)
+  
 
 
 1. disable the CMD key in this Any Desk  (Nitsan suggested)
