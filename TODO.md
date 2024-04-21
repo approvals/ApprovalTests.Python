@@ -25,6 +25,7 @@ Inline Approvals Bugs
 2. [ ] check all reporters return True or False
     4. [ ] add mypy to the CI (type hints exist and they are being inforced)
 3. [ ] make it so that approvals works with Python 12
+   4. 2024-04-21 - The issue is in MRJob. Need probably need to move to spark. this should probably be done with Jacqueline present
 4. [ ] Improve verify_all for no header
         Expects VerifyAll to have a header
         this is mandatory For PYthon Approval Tests
