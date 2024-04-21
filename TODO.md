@@ -33,7 +33,7 @@ Inline Approvals Bugs
         see: def test_uppercase_with_verify_all():
 5. [ ] expand functionality of parse_doc_string     NOTE: this is WIP from 3/3/24 parse inputs
    2. [ ] =>, :
-   3. [ ] maybe not only docstring but any text or approved file?
+      3. [ ] maybe not only docstring but any text or approved file?
    4. [ ] multiple parameters 1, 2, 3 -> 
    5. [ ] converter parse(to_integer)
    6. [ ] some relationship between the output formatter and the parser
