@@ -29,7 +29,7 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ## Explanations
 
--   [Place to modify output](explanation/creating_output.md)
+-   [Place to modify output](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanation/creating_output.md)
 -   [Approval Testing Concepts](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/approval_testing.md)
 -   [What are Approvals](explanation/what_are_approvals.md)
 
