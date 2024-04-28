@@ -79,11 +79,6 @@ def greeting():
     return "hello\nworld"
 
 
-
-
-
-
-
 def test_docstring_parsing():
     """
     1
@@ -177,7 +172,4 @@ def test_bug_blank_lines():
 
 
     """
-    verify(
-        "\n\ntest bug with blank lines\n\n\n\n",
-        options=Options().inline()
-    )    
+    verify("\n\ntest bug with blank lines\n\n\n\n", options=Options().inline())

@@ -44,7 +44,9 @@ class InlineComparator(Namer):
             return caller_function_object
 
     def register(self, options: "Options", inline_options: InlineOptions = None):
-        inline_options = InlineOptions.show_code() if inline_options is None else inline_options
+        inline_options = (
+            InlineOptions.show_code() if inline_options is None else inline_options
+        )
         options2 = options.with_namer(self)
         options2 = inline_options.apply(options2)
 
