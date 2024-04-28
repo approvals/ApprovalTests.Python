@@ -18,6 +18,18 @@ Rotate on green was designed for git handoff, each commit is green
 Ping-Pong Pairing
 Try to make the smallest change possible, then rotate
 
+Support inline on CyberDojo
+IF it is in CyberDojo AND inline approvals, 
+ THEN we need to do a deep compare
+
+how could we fix this?
+option 1: we can use the automatic approver
+             not there is a bug in the automatic approver
+option 2: Llewellyns idea
+
+POssible FEATURE  
+Create an API to add a REPORTER.
+    now we have a combined reporter  and then ?? only the last one works? 
 
 Inline Approvals Bugs
 1. [ ] rename all of the reporters to start with the word report
@@ -38,7 +50,8 @@ Inline Approvals Bugs
    6. [ ] some relationship between the output formatter and the parser
       7. [X ] Move explainations to ApprovalTests.Documentation 
       Please note: we found this broken link [Capture .received. files from CI]
-8.   * [ ]  this link: [Capture .received. files from CI](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/explanations/how_to/CaptureFilesFromCI.md)
+8.   * [ ]  this link: 
+   * [Capture .received. files from CI](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/explanations/how_to/CaptureFilesFromCI.md)
   
 
 

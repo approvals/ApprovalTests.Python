@@ -23,7 +23,7 @@ class FileComparator(Comparator):
     def compare(self, received_path: str, approved_path: str) -> bool:
         if not exists(approved_path) or not exists(received_path):
             return False
-        if filecmp.cmp(approved_path, received_path):
+        if filecmp.cmp(approved_path, received_path, shallow=False):
             return True
         try:
             approved_raw = pathlib.Path(approved_path).read_text()
