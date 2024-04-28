@@ -20,7 +20,7 @@ class FileOptions:
         self,
         extension_with_dot: str,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
-        no_override=False
+        no_override=False,
     ) -> "Options":
         if not extension_with_dot.startswith("."):
             extension_with_dot = "." + extension_with_dot
@@ -85,6 +85,6 @@ class Options:
 
     def inline(self, inline_options: InlineOptions = None) -> "Options":
         from approvaltests.namer.inline_comparator import InlineComparator
-        print(f'inline_options = {inline_options.__class__.__name__}')
-        return InlineComparator().register(self, inline_options)
 
+        print(f"inline_options = {inline_options.__class__.__name__}")
+        return InlineComparator().register(self, inline_options)

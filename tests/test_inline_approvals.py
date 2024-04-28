@@ -79,11 +79,6 @@ def greeting():
     return "hello\nworld"
 
 
-
-
-
-
-
 def test_docstring_parsing():
     """
     1
@@ -177,41 +172,35 @@ def test_bug_blank_lines():
 
 
     """
-    verify(
-        "\n\ntest bug with blank lines\n\n\n\n",
-        options=Options().inline()
-    )
-
-
-
+    verify("\n\ntest bug with blank lines\n\n\n\n", options=Options().inline())
 
 
 def test_semi_automatic_inline_reporter():
     """
     1
     2
-    
+
     """
-    #verify("1\n2\n5", options=Options().inline(InlineOptions.semi_automatic()))
-    #verify("1\n2\n5", options=Options().inline(InlineOptions.automatic()))
-   # verify("1\n2\n5", options=Options().inline(InlineOptions.applesauce())) # when it is false
-    #verify("1\n2\n5", options=Options().inline(InlineOptions.show_code())) 
-    verify("1\n2\n5", options=Options().inline(InlineOptions.show_code())) 
-    
+    # verify("1\n2\n5", options=Options().inline(InlineOptions.semi_automatic()))
+    # verify("1\n2\n5", options=Options().inline(InlineOptions.automatic()))
+    # verify("1\n2\n5", options=Options().inline(InlineOptions.applesauce())) # when it is false
+    # verify("1\n2\n5", options=Options().inline(InlineOptions.show_code()))
+    verify("1\n2\n5", options=Options().inline(InlineOptions.show_code()))
+
     # show_code
     #  keep show_code becase we only want to change one thing at time
-    
+
     # reports contents only
     # report contents without showing code
     # compare full source code
-    # report on 
+    # report on
     # inline only on test resutls
-    #report docstring only   only report the docstring
+    # report docstring only   only report the docstring
     # report results only
     # report results and docstring
-    #use diffcompare in traditional way
+    # use diffcompare in traditional way
     # use diffcompare in inline way
-    #only report the results
+    # only report the results
     # report results only
     # report results without surrounding code
     # report results no  surrounding code
@@ -220,4 +209,4 @@ def test_semi_automatic_inline_reporter():
     # diffcompare in inline way
     # ---
     # showcode = false
-    # 
+    #
