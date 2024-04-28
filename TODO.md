@@ -27,8 +27,15 @@ option 1: we can use the automatic approver
              not there is a bug in the automatic approver
 option 2: Llewellyns idea
 
+make semi automatic 
+original plan modify auto reporter
+ instead we will make this work 
+then Come back and impement this in an API
+and that will depend on what the implementation looks like
+Add an extra line for this specific case 
+
 POssible FEATURE  
-Create an API to add a REPORTER.
+Create an API to add a REPORTER.[test_inline_approvals.py](tests%2Ftest_inline_approvals.p[ok.approved.txt](ok.approved.txt)y)
     now we have a combined reporter  and then ?? only the last one works? 
 
 Inline Approvals Bugs

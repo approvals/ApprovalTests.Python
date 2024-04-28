@@ -1,24 +1,20 @@
 import unittest
 from inspect import FrameInfo
-from pathlib import Path
 from typing import Callable, Any
 
 import pytest
 
-from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests import (
     StackFrameNamer,
-    assert_equal_with_reporter,
     Options,
-    Reporter,
     verify,
     verify_all,
     verify_all_combinations_with_labeled_input,
     ApprovalException,
 )
+from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.parse_docstring import parse_docstring
-from approvaltests.reporters import MultiReporter, ReportWithBeyondCompare
 from approvaltests.reporters.report_quietly import ReportQuietly
 
 
@@ -76,28 +72,16 @@ def test_docstrings():
     """
     # verify_inline(greetting())
     # verify(greetting(), options=Options().inline(show_code= False))
-    verify(greeting(), options=Options().inline(show_code=True))
+    verify(greeting(), options=Options().inline())
 
 
 def greeting():
     return "hello\nworld"
 
 
-class InlineReporter(Reporter):
-    # TODO: Start here - Make this report create a temp file of the fixed source,
-    #  and compare it with the existing source.
-    # if there are mulitple failures, they each get there on reporter
-    def report(self, received_path: str, approved_path: str) -> bool:
-        received = Path(received_path).read_text()
-        copy_to_clipboard(f"'''\n{received}\n'''")
 
 
-def verify_inline(actual):
-    options = Options()
-    options = options.with_reporter(MultiReporter(options.reporter, InlineReporter()))
-    if actual[-1] != "\n":
-        actual += "\n"
-    assert_equal_with_reporter(get_approved_via_doc_string(), actual, options=options)
+
 
 
 def test_docstring_parsing():
@@ -157,7 +141,7 @@ class InlineTests(unittest.TestCase):
             lambda a, b: a + b,
             arg1=(1, 3),
             arg2=(2, 4),
-            options=Options().inline(show_code=False),
+            options=Options().inline(),
         )
 
 
@@ -170,7 +154,7 @@ def test_preceding_whitespace():
     """
         4 whitespaces
     """
-    verify(get_preceding_whitespace(), options=Options().inline(show_code=True))
+    verify(get_preceding_whitespace(), options=Options().inline())
 
 
 def test_trailing_whitespace():
@@ -179,7 +163,7 @@ def test_trailing_whitespace():
     """
     # Note: Pycharm will remove the trailing whitespaces, to disable this go to:
     # File -> Settings -> Editor -> General -> On Save -> [ ] Remove trailing spaces
-    verify("4 trailing whitespaces    ", options=Options().inline(show_code=False))
+    verify("4 trailing whitespaces    ", options=Options().inline())
 
 # fmt: on
 
@@ -195,5 +179,45 @@ def test_bug_blank_lines():
     """
     verify(
         "\n\ntest bug with blank lines\n\n\n\n",
-        options=Options().inline(show_code=True),
+        options=Options().inline()
     )
+
+
+
+
+
+def test_semi_automatic_inline_reporter():
+    """
+    1
+    2
+    
+    """
+    #verify("1\n2\n5", options=Options().inline(InlineOptions.semi_automatic()))
+    #verify("1\n2\n5", options=Options().inline(InlineOptions.automatic()))
+   # verify("1\n2\n5", options=Options().inline(InlineOptions.applesauce())) # when it is false
+    #verify("1\n2\n5", options=Options().inline(InlineOptions.show_code())) 
+    verify("1\n2\n5", options=Options().inline(InlineOptions.show_code())) 
+    
+    # show_code
+    #  keep show_code becase we only want to change one thing at time
+    
+    # reports contents only
+    # report contents without showing code
+    # compare full source code
+    # report on 
+    # inline only on test resutls
+    #report docstring only   only report the docstring
+    # report results only
+    # report results and docstring
+    #use diffcompare in traditional way
+    # use diffcompare in inline way
+    #only report the results
+    # report results only
+    # report results without surrounding code
+    # report results no  surrounding code
+    # results only
+    # no surrounding code
+    # diffcompare in inline way
+    # ---
+    # showcode = false
+    # 

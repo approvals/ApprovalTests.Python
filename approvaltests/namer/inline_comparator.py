@@ -6,7 +6,9 @@ from typing import Optional, Callable, Any
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests import Namer, StackFrameNamer
+from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.namer.inline_python_reporter import InlinePythonReporter
+from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
 
 class InlineComparator(Namer):
@@ -41,8 +43,11 @@ class InlineComparator(Namer):
             caller_function_object = clazz.__dict__.get(caller_function_name)
             return caller_function_object
 
-    def register(self, options: "Options", show_code: bool):
+#return InlineComparator().register(self, inline_options)
+    def register(self, options: "Options", inline_options: InlineOptions = None):
+        inline_options = InlineOptions() if inline_options is None else inline_options
         options2 = options.with_namer(self)
-        if show_code:
-            options2 = options2.with_reporter(InlinePythonReporter(options.reporter))
+        print(f'inline_options = {inline_options.__class__.__name__}')
+        options2 = inline_options.apply(options2)
+
         return options2

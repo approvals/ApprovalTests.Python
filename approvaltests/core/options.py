@@ -4,6 +4,7 @@ from approvaltests.core.reporter import Reporter
 from approvaltests.core.comparator import Comparator
 from approvaltests.file_approver import FileComparator
 from approvaltests.core.namer import Namer
+from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.scrubbers import combine_scrubbers
 
 
@@ -82,7 +83,8 @@ class Options:
             namer.set_extension(self.for_file.file_extention)
         return namer
 
-    def inline(self, show_code: bool = True) -> "Options":
+    def inline(self, inline_options: InlineOptions = None) -> "Options":
         from approvaltests.namer.inline_comparator import InlineComparator
+        print(f'inline_options = {inline_options.__class__.__name__}')
+        return InlineComparator().register(self, inline_options)
 
-        return InlineComparator().register(self, show_code)

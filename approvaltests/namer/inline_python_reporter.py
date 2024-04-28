@@ -7,8 +7,9 @@ from approvaltests.inline.split_code import SplitCode
 
 
 class InlinePythonReporter(Reporter):
-    def __init__(self, reporter):
+    def __init__(self, reporter, add_approval_line=False):
         self.diffReporter = reporter
+        self.semi_automatic_extra_line = "\n***** DELETE ME TO APPROVE *****" if add_approval_line else ""
 
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
@@ -21,7 +22,7 @@ class InlinePythonReporter(Reporter):
 
     def create_received_file(self, received_path: str, test_source_file: str):
         code = Path(test_source_file).read_text()
-        received_text = Path(received_path).read_text()[:-1]
+        received_text = Path(received_path).read_text()[:-1] + self.semi_automatic_extra_line
         method_name = StackFrameNamer.get_test_frame().function
         new_code = self.swap(received_text, code, method_name)
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
