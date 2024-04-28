@@ -1,7 +1,5 @@
-
-
 class InlineOptions:
-   
+
     @staticmethod
     def automatic():
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
@@ -9,7 +7,10 @@ class InlineOptions:
 
         class AutomaticInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
-                return options.with_reporter(InlinePythonReporter(ReporterThatAutomaticallyApproves()))
+                return options.with_reporter(
+                    InlinePythonReporter(ReporterThatAutomaticallyApproves())
+                )
+
         return AutomaticInlineOptions()
 
     @staticmethod
@@ -19,14 +20,20 @@ class InlineOptions:
 
         class SemiAutomaticInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
-                return options.with_reporter(InlinePythonReporter(ReporterThatAutomaticallyApproves(), add_approval_line=True))
+                return options.with_reporter(
+                    InlinePythonReporter(
+                        ReporterThatAutomaticallyApproves(), add_approval_line=True
+                    )
+                )
+
         return SemiAutomaticInlineOptions()
 
-    @staticmethod 
+    @staticmethod
     def applesauce():
         return InlineOptions()
+
     def apply(self, options: "Options") -> "Options":
-        
+
         return options
 
     @staticmethod
@@ -36,9 +43,9 @@ class InlineOptions:
         class ShowCodeInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(InlinePythonReporter(options.reporter))
+
         class DoNotShowCodeInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options
-        
+
         return ShowCodeInlineOptions() if do_show_code else DoNotShowCodeInlineOptions()
-        
