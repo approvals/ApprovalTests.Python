@@ -43,7 +43,6 @@ class InlineComparator(Namer):
             caller_function_object = clazz.__dict__.get(caller_function_name)
             return caller_function_object
 
-#return InlineComparator().register(self, inline_options)
     def register(self, options: "Options", inline_options: InlineOptions = None):
         inline_options = InlineOptions.show_code() if inline_options is None else inline_options
         options2 = options.with_namer(self)
