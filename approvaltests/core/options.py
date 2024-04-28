@@ -85,6 +85,6 @@ class Options:
 
     def inline(self, inline_options: InlineOptions = None) -> "Options":
         from approvaltests.namer.inline_comparator import InlineComparator
-        print(f'inline_options = {inline_options.__class__.__name__}')
+
         return InlineComparator().register(self, inline_options)
 
