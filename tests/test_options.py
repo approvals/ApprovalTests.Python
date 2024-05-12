@@ -9,6 +9,8 @@ from approvaltests import (
 )
 from approvaltests.core.options import Options
 from approvaltests.mrjob import mrjob_approvals
+from approvaltests.reporters import ReportByCreatingDiffFile, MultiReporter
+from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.utilities import command_line_approvals
 from approvaltests.utilities.logger import simple_logger_approvals
 
@@ -66,3 +68,16 @@ def test_file_extensions():
     verify(content, options=Options().for_file.with_extension(".md"))
     # end-snippet
     verify(content, options=Options().for_file.with_extension("md"))
+
+def test_add_reporter():
+    # current behaviour, override
+    options0 = Options().with_reporter(ReportByCreatingDiffFile()).with_reporter(ReportWithPycharm())
+    assert type(options0.reporter) == ReportWithPycharm
+    
+    # current work around, create a MultiReporter
+    options_multi = Options().with_reporter(MultiReporter(ReportByCreatingDiffFile(), ReportWithPycharm()))
+    assert str(options_multi.reporter) == 'MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)'
+    
+    # new behaviour, append
+    options0 = Options().with_reporter(ReportByCreatingDiffFile()).add_reporter(ReportWithPycharm())
+    assert str(options_multi.reporter) == 'MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)'

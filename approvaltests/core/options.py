@@ -87,3 +87,7 @@ class Options:
         from approvaltests.namer.inline_comparator import InlineComparator
 
         return InlineComparator().register(self, inline_options)
+
+    def add_reporter(self, additional_reporter: Reporter) -> "Options":
+        from approvaltests.reporters import MultiReporter
+        return self.with_reporter(MultiReporter(self.reporter, additional_reporter))

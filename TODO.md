@@ -1,3 +1,6 @@
+- [ ] docs: point to new architecture docs from python repo
+
+
 Test are running on all CI machine
 
 Typing -> Talking -> Next
@@ -17,22 +20,6 @@ Rotate on green was designed for git handoff, each commit is green
 
 Ping-Pong Pairing
 Try to make the smallest change possible, then rotate
-
-Support inline on CyberDojo
-IF it is in CyberDojo AND inline approvals, 
- THEN we need to do a deep compare
-
-how could we fix this?
-option 1: we can use the automatic approver
-             not there is a bug in the automatic approver
-option 2: Llewellyns idea
-
-make semi automatic 
-original plan modify auto reporter
- instead we will make this work 
-then Come back and impement this in an API
-and that will depend on what the implementation looks like
-Add an extra line for this specific case 
 
 POssible FEATURE  
 Create an API to add a REPORTER.[test_inline_approvals.py](tests%2Ftest_inline_approvals.p[ok.approved.txt](ok.approved.txt)y)
