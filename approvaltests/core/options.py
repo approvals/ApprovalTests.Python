@@ -90,4 +90,5 @@ class Options:
 
     def add_reporter(self, additional_reporter: Reporter) -> "Options":
         from approvaltests.reporters import MultiReporter
+
         return self.with_reporter(MultiReporter(self.reporter, additional_reporter))

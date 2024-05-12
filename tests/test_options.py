@@ -69,15 +69,32 @@ def test_file_extensions():
     # end-snippet
     verify(content, options=Options().for_file.with_extension("md"))
 
+
 def test_add_reporter():
     # current behaviour, override
-    options0 = Options().with_reporter(ReportByCreatingDiffFile()).with_reporter(ReportWithPycharm())
+    options0 = (
+        Options()
+        .with_reporter(ReportByCreatingDiffFile())
+        .with_reporter(ReportWithPycharm())
+    )
     assert type(options0.reporter) == ReportWithPycharm
-    
+
     # current work around, create a MultiReporter
-    options_multi = Options().with_reporter(MultiReporter(ReportByCreatingDiffFile(), ReportWithPycharm()))
-    assert str(options_multi.reporter) == 'MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)'
-    
+    options_multi = Options().with_reporter(
+        MultiReporter(ReportByCreatingDiffFile(), ReportWithPycharm())
+    )
+    assert (
+        str(options_multi.reporter)
+        == "MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)"
+    )
+
     # new behaviour, append
-    options0 = Options().with_reporter(ReportByCreatingDiffFile()).add_reporter(ReportWithPycharm())
-    assert str(options_multi.reporter) == 'MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)'
+    options0 = (
+        Options()
+        .with_reporter(ReportByCreatingDiffFile())
+        .add_reporter(ReportWithPycharm())
+    )
+    assert (
+        str(options_multi.reporter)
+        == "MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)"
+    )

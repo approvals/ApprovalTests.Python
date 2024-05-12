@@ -16,6 +16,6 @@ class MultiReporter(Reporter):
     def report(self, received_path, approved_path):
         for reporter in self.reporters:
             reporter.report(received_path, approved_path)
-    
+
     def __str__(self):
         return f"MultiReporter({', '.join([r.__class__.__name__ for r in self.reporters])})"

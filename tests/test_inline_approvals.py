@@ -16,7 +16,10 @@ from approvaltests import (
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters.report_quietly import ReportQuietly
-from build.lib.approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm, ReportWithBeyondCompare
+from build.lib.approvaltests.reporters.report_with_beyond_compare import (
+    ReportWithPycharm,
+    ReportWithBeyondCompare,
+)
 
 
 def get_approved_via_doc_string():
@@ -181,4 +184,7 @@ def test_inline_with_additional_reporter():
     hello
     world
     """
-    verify("hello\nworld", options=(Options().inline().add_reporter(ReportWithBeyondCompare())))
+    verify(
+        "hello\nworld",
+        options=(Options().inline().add_reporter(ReportWithBeyondCompare())),
+    )
