@@ -20,14 +20,8 @@ class InlinePythonReporter(Reporter):
 
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
-        def applesauce():
-            approved_text = Path(approved_path).read_text()
-            approved_text = approved_text.rsplit("\n", 1)[0]
-            approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
-            previous_result_stuff = lambda: "\n" + PREVIOUS_RESULT_ + approved_text
-            return DELETE_ME_TO_APPROVE_ + previous_result_stuff()
         if self.previous_result:
-            self.semi_automatic_extra_line = applesauce()
+            self.semi_automatic_extra_line = self.previous_result(approved_path)
         received_path = self.create_received_file(received_path, test_source_file)
         return self.diffReporter.report(received_path, test_source_file)
 

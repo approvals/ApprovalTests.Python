@@ -1,3 +1,9 @@
+from pathlib import Path
+
+PREVIOUS_RESULT_ = "vvvvv PREVIOUS RESULT vvvvv\n"
+
+DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
+
 class InlineOptions:
 
     @staticmethod
@@ -55,11 +61,17 @@ class InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
+        def applesauce(approved_path):
+            approved_text = Path(approved_path).read_text()
+            approved_text = approved_text.rsplit("\n", 1)[0]
+            approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
+            previous_result_stuff = lambda: "\n" + PREVIOUS_RESULT_ + approved_text
+            return DELETE_ME_TO_APPROVE_ + previous_result_stuff()
         class SemiAutomaticInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
                     InlinePythonReporter(
-                        ReporterThatAutomaticallyApproves(), add_approval_line=False, previous_result=True
+                        ReporterThatAutomaticallyApproves(), add_approval_line=False, previous_result=applesauce
                     )
                 )
 
