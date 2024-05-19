@@ -45,8 +45,11 @@ class InlineOptions:
             approved_text = Path(approved_path).read_text()
             approved_text = approved_text.rsplit("\n", 1)[0]
             approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
-            previous_result_stuff = lambda: "\n" + PREVIOUS_RESULT_ + approved_text
-            return DELETE_ME_TO_APPROVE_ + previous_result_stuff()
+            received_text = Path(received_path).read_text().rsplit("\n", 1)[0]
+            
+            if received_text != approved_text:
+                return DELETE_ME_TO_APPROVE_ + "\n" + PREVIOUS_RESULT_ + approved_text
+            return ""
 
         class PreviousCaptureInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
