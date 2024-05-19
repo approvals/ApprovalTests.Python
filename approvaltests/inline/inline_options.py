@@ -30,7 +30,7 @@ class InlineOptions:
                 return options.with_reporter(
                     InlinePythonReporter(
                         ReporterThatAutomaticallyApproves(),
-                        create_footer_function=lambda __: DELETE_ME_TO_APPROVE_,
+                        create_footer_function=lambda __,___: DELETE_ME_TO_APPROVE_,
                     )
                 )
 
@@ -41,7 +41,7 @@ class InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
-        def create_previous_capture_footer(approved_path):
+        def create_previous_capture_footer(received_path, approved_path):
             approved_text = Path(approved_path).read_text()
             approved_text = approved_text.rsplit("\n", 1)[0]
             approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]

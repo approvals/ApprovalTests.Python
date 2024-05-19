@@ -9,15 +9,15 @@ from approvaltests.inline.split_code import SplitCode
 
 class InlinePythonReporter(Reporter):
     def __init__(
-        self, reporter: Reporter, create_footer_function: Callable[[str], str] = None
+        self, reporter: Reporter, create_footer_function: Callable[[str, str], str] = None
     ):
         self.diffReporter = reporter
-        self.footer_function = create_footer_function or (lambda __: "")
+        self.footer_function = create_footer_function or (lambda __,___: "")
         self.footer = ""
 
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
-        self.footer = self.footer_function(approved_path)
+        self.footer = self.footer_function(received_path, approved_path)
         received_path = self.create_received_file(received_path, test_source_file)
         return self.diffReporter.report(received_path, test_source_file)
 
