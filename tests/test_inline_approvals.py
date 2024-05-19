@@ -196,7 +196,7 @@ def test_inline_with_preserved_approved_text():
     vvvvv PREVIOUS RESULT vvvvv
     41
     """
-    options = Options().inline(InlineOptions.previous_capture())
+    options = Options().inline(InlineOptions.semi_automatic_with_previous_approved())
     try:
         verify("42", options=options)
     except ApprovalException:

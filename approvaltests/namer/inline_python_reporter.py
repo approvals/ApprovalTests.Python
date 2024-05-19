@@ -1,25 +1,20 @@
 import tempfile
 from inspect import FrameInfo
 from pathlib import Path
+from typing import Callable
 
 from approvaltests import Reporter, StackFrameNamer
 from approvaltests.inline.split_code import SplitCode
 
-PREVIOUS_RESULT_ = "vvvvv PREVIOUS RESULT vvvvv\n"
-
-DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
-
-
 class InlinePythonReporter(Reporter):
-    def __init__(self, reporter, footer=None):
+    def __init__(self, reporter: Reporter, create_footer_function: Callable[[str],str]=None):
         self.diffReporter = reporter
-        self.footer = footer
-        self.semi_automatic_extra_line = ""
+        self.footer_function = create_footer_function or (lambda __: "")
+        self.footer = ""
 
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
-        if self.footer:
-            self.semi_automatic_extra_line = self.footer(approved_path)
+        self.footer = self.footer_function(approved_path)
         received_path = self.create_received_file(received_path, test_source_file)
         return self.diffReporter.report(received_path, test_source_file)
 
@@ -31,7 +26,7 @@ class InlinePythonReporter(Reporter):
         code = Path(test_source_file).read_text()
 
         received_text = (
-            Path(received_path).read_text()[:-1] + self.semi_automatic_extra_line
+            Path(received_path).read_text()[:-1] + self.footer
         )
         method_name = StackFrameNamer.get_test_frame().function
         new_code = self.swap(received_text, code, method_name)

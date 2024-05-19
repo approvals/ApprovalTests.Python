@@ -28,14 +28,31 @@ class InlineOptions:
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
                     InlinePythonReporter(ReporterThatAutomaticallyApproves(),
-                                         footer=lambda __: DELETE_ME_TO_APPROVE_)
+                                         create_footer_function=lambda __: DELETE_ME_TO_APPROVE_)
                 )
 
         return SemiAutomaticInlineOptions()
 
     @staticmethod
-    def applesauce():
-        return InlineOptions()
+    def semi_automatic_with_previous_approved():
+        from approvaltests.namer.inline_python_reporter import InlinePythonReporter
+        from approvaltests.reporters import ReporterThatAutomaticallyApproves
+
+        def create_previous_capture_footer(approved_path):
+            approved_text = Path(approved_path).read_text()
+            approved_text = approved_text.rsplit("\n", 1)[0]
+            approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
+            previous_result_stuff = lambda: "\n" + PREVIOUS_RESULT_ + approved_text
+            return DELETE_ME_TO_APPROVE_ + previous_result_stuff()
+
+        class PreviousCaptureInlineOptions(InlineOptions):
+            def apply(self, options: "Options") -> "Options":
+                return options.with_reporter(
+                    InlinePythonReporter(ReporterThatAutomaticallyApproves(),
+                                         create_footer_function=create_previous_capture_footer)
+                )
+
+        return PreviousCaptureInlineOptions()
 
     def apply(self, options: "Options") -> "Options":
 
@@ -55,22 +72,4 @@ class InlineOptions:
 
         return ShowCodeInlineOptions() if do_show_code else DoNotShowCodeInlineOptions()
 
-    @staticmethod
-    def previous_capture():
-        from approvaltests.namer.inline_python_reporter import InlinePythonReporter
-        from approvaltests.reporters import ReporterThatAutomaticallyApproves
-
-        def create_previous_capture_suffix(approved_path):
-            approved_text = Path(approved_path).read_text()
-            approved_text = approved_text.rsplit("\n", 1)[0]
-            approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
-            previous_result_stuff = lambda: "\n" + PREVIOUS_RESULT_ + approved_text
-            return DELETE_ME_TO_APPROVE_ + previous_result_stuff()
-        class PreviousCaptureInlineOptions(InlineOptions):
-            def apply(self, options: "Options") -> "Options":
-                return options.with_reporter(
-                    InlinePythonReporter(ReporterThatAutomaticallyApproves(),
-                                         footer=create_previous_capture_suffix)
-                )
-
-        return PreviousCaptureInlineOptions()
+    
