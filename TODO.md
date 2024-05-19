@@ -1,4 +1,5 @@
 - [ ] docs: point to new architecture docs from python repo
+- 
 
 
 Test are running on all CI machine
@@ -26,6 +27,7 @@ Create an API to add a REPORTER.[test_inline_approvals.py](tests%2Ftest_inline_a
     now we have a combined reporter  and then ?? only the last one works? 
 
 Inline Approvals Bugs
+0. [ ] InlineOptions to show diffs
 1. [ ] rename all of the reporters to start with the word report
 2. [ ] check all reporters return True or False
     4. [ ] add mypy to the CI (type hints exist and they are being inforced)
