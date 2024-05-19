@@ -30,7 +30,7 @@ class InlineOptions:
                 return options.with_reporter(
                     InlinePythonReporter(
                         ReporterThatAutomaticallyApproves(),
-                        create_footer_function=lambda __,___: DELETE_ME_TO_APPROVE_,
+                        create_footer_function=lambda __, ___: DELETE_ME_TO_APPROVE_,
                     )
                 )
 
@@ -46,7 +46,7 @@ class InlineOptions:
             approved_text = approved_text.rsplit("\n", 1)[0]
             approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
             received_text = Path(received_path).read_text().rsplit("\n", 1)[0]
-            
+
             if received_text != approved_text:
                 return DELETE_ME_TO_APPROVE_ + "\n" + PREVIOUS_RESULT_ + approved_text
             return ""
