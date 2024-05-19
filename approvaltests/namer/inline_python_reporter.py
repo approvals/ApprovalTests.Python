@@ -11,17 +11,15 @@ DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
 
 
 class InlinePythonReporter(Reporter):
-    def __init__(self, reporter, add_approval_line=False, previous_result=None):
+    def __init__(self, reporter, footer=None):
         self.diffReporter = reporter
-        self.semi_automatic_extra_line = (
-            DELETE_ME_TO_APPROVE_ if add_approval_line else ""
-        )
-        self.previous_result = previous_result
+        self.footer = footer
+        self.semi_automatic_extra_line = ""
 
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
-        if self.previous_result:
-            self.semi_automatic_extra_line = self.previous_result(approved_path)
+        if self.footer:
+            self.semi_automatic_extra_line = self.footer(approved_path)
         received_path = self.create_received_file(received_path, test_source_file)
         return self.diffReporter.report(received_path, test_source_file)
 

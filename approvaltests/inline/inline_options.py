@@ -27,9 +27,8 @@ class InlineOptions:
         class SemiAutomaticInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
-                    InlinePythonReporter(
-                        ReporterThatAutomaticallyApproves(), add_approval_line=False, previous_result=lambda __: DELETE_ME_TO_APPROVE_
-                    )
+                    InlinePythonReporter(ReporterThatAutomaticallyApproves(),
+                                         footer=lambda __: DELETE_ME_TO_APPROVE_)
                 )
 
         return SemiAutomaticInlineOptions()
@@ -70,9 +69,8 @@ class InlineOptions:
         class PreviousCaptureInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
-                    InlinePythonReporter(
-                        ReporterThatAutomaticallyApproves(), add_approval_line=False, previous_result=create_previous_capture_suffix
-                    )
+                    InlinePythonReporter(ReporterThatAutomaticallyApproves(),
+                                         footer=create_previous_capture_suffix)
                 )
 
         return PreviousCaptureInlineOptions()
