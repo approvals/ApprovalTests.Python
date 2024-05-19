@@ -5,6 +5,8 @@ from pathlib import Path
 from approvaltests import Reporter, StackFrameNamer
 from approvaltests.inline.split_code import SplitCode
 
+PREVIOUS_RESULT_ = "vvvvv PREVIOUS RESULT vvvvv\n"
+
 DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
 
 
@@ -18,8 +20,12 @@ class InlinePythonReporter(Reporter):
 
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
+       
         if self.previous_result:
-            previous_result_stuff = lambda: "\n" + "vvvvv PREVIOUS RESULT vvvvv" + "\n" + "41"
+            approved_text = Path(approved_path).read_text()
+            approved_text = approved_text.rsplit("\n", 1)[0]
+            approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]
+            previous_result_stuff = lambda: "\n" + PREVIOUS_RESULT_ + approved_text
             self.semi_automatic_extra_line = DELETE_ME_TO_APPROVE_ + previous_result_stuff()
         received_path = self.create_received_file(received_path, test_source_file)
         return self.diffReporter.report(received_path, test_source_file)
