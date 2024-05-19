@@ -188,7 +188,8 @@ def test_inline_with_additional_reporter():
         "hello\nworld",
         options=(Options().inline().add_reporter(ReportWithBeyondCompare())),
     )
-    
+
+
 def test_inline_with_preserved_approved_text():
     """
     42
@@ -202,7 +203,8 @@ def test_inline_with_preserved_approved_text():
     except ApprovalException:
         pass
     verify(get_approved_via_doc_string())
-    
+
+
 def test_inline_with_semi_automatic_inline():
     """
     42

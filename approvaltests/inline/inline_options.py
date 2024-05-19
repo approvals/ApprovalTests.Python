@@ -4,6 +4,7 @@ PREVIOUS_RESULT_ = "vvvvv PREVIOUS RESULT vvvvv\n"
 
 DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
 
+
 class InlineOptions:
 
     @staticmethod
@@ -27,8 +28,10 @@ class InlineOptions:
         class SemiAutomaticInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
-                    InlinePythonReporter(ReporterThatAutomaticallyApproves(),
-                                         create_footer_function=lambda __: DELETE_ME_TO_APPROVE_)
+                    InlinePythonReporter(
+                        ReporterThatAutomaticallyApproves(),
+                        create_footer_function=lambda __: DELETE_ME_TO_APPROVE_,
+                    )
                 )
 
         return SemiAutomaticInlineOptions()
@@ -48,8 +51,10 @@ class InlineOptions:
         class PreviousCaptureInlineOptions(InlineOptions):
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
-                    InlinePythonReporter(ReporterThatAutomaticallyApproves(),
-                                         create_footer_function=create_previous_capture_footer)
+                    InlinePythonReporter(
+                        ReporterThatAutomaticallyApproves(),
+                        create_footer_function=create_previous_capture_footer,
+                    )
                 )
 
         return PreviousCaptureInlineOptions()
@@ -71,5 +76,3 @@ class InlineOptions:
                 return options
 
         return ShowCodeInlineOptions() if do_show_code else DoNotShowCodeInlineOptions()
-
-    

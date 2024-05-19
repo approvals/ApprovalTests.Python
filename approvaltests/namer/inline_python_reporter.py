@@ -6,8 +6,11 @@ from typing import Callable
 from approvaltests import Reporter, StackFrameNamer
 from approvaltests.inline.split_code import SplitCode
 
+
 class InlinePythonReporter(Reporter):
-    def __init__(self, reporter: Reporter, create_footer_function: Callable[[str],str]=None):
+    def __init__(
+        self, reporter: Reporter, create_footer_function: Callable[[str], str] = None
+    ):
         self.diffReporter = reporter
         self.footer_function = create_footer_function or (lambda __: "")
         self.footer = ""
@@ -25,9 +28,7 @@ class InlinePythonReporter(Reporter):
     def create_received_file(self, received_path: str, test_source_file: str):
         code = Path(test_source_file).read_text()
 
-        received_text = (
-            Path(received_path).read_text()[:-1] + self.footer
-        )
+        received_text = Path(received_path).read_text()[:-1] + self.footer
         method_name = StackFrameNamer.get_test_frame().function
         new_code = self.swap(received_text, code, method_name)
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
