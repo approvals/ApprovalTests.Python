@@ -49,3 +49,18 @@ class InlineOptions:
                 return options
 
         return ShowCodeInlineOptions() if do_show_code else DoNotShowCodeInlineOptions()
+
+    @staticmethod
+    def previous_capture():
+        from approvaltests.namer.inline_python_reporter import InlinePythonReporter
+        from approvaltests.reporters import ReporterThatAutomaticallyApproves
+
+        class SemiAutomaticInlineOptions(InlineOptions):
+            def apply(self, options: "Options") -> "Options":
+                return options.with_reporter(
+                    InlinePythonReporter(
+                        ReporterThatAutomaticallyApproves(), add_approval_line=False, previous_result=True
+                    )
+                )
+
+        return SemiAutomaticInlineOptions()

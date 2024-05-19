@@ -188,3 +188,30 @@ def test_inline_with_additional_reporter():
         "hello\nworld",
         options=(Options().inline().add_reporter(ReportWithBeyondCompare())),
     )
+    
+def test_inline_with_preserved_approved_text():
+    """
+    42
+    ***** DELETE ME TO APPROVE *****
+    vvvvv PREVIOUS RESULT vvvvv
+    41
+    """
+    this_is_the_docstring_we_want = remove_indentation_from("""
+    42
+    ***** DELETE ME TO APPROVE *****
+    vvvvv PREVIOUS RESULT vvvvv
+    41
+    """)
+    
+    
+    # 1. Run a failing inline approval with a new configuration
+    # 2. Capture whatever we've overwriting the docstring with
+    # 3. Capture the last docstring so we can write it to previous result 
+    # 4. Check that the overwriting string is equal to the docstring we want
+    options = Options().inline(InlineOptions.previous_capture())
+    try:
+        verify("42", options=options)
+    except ApprovalException:
+        pass
+    # assert that the docstring is equal to the string we want
+    assert get_approved_via_doc_string() == this_is_the_docstring_we_want
