@@ -202,3 +202,15 @@ def test_inline_with_preserved_approved_text():
     except ApprovalException:
         pass
     verify(get_approved_via_doc_string())
+    
+def test_inline_with_semi_automatic_inline():
+    """
+    42
+    ***** DELETE ME TO APPROVE *****
+    """
+    options = Options().inline(InlineOptions.semi_automatic())
+    try:
+        verify("42", options=options)
+    except ApprovalException:
+        pass
+    verify(get_approved_via_doc_string())
