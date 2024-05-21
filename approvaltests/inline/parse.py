@@ -4,7 +4,7 @@ from approvaltests import Options, verify_all
 from approvaltests.inline.parse2 import Parse2
 from approvaltests.inline.parse3 import Parse3
 from approvaltests.namer.inline_comparator import InlineComparator
-from build.lib.approvaltests.reporters import ReporterThatAutomaticallyApproves
+from approvaltests.reporters import ReporterThatAutomaticallyApproves
 from approvaltests.inline.types import T, T2, T1
 
 
