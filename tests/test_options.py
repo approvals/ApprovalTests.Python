@@ -8,7 +8,7 @@ from approvaltests import (
     combination_approvals,
 )
 from approvaltests.core.options import Options
-from approvaltests.mrjob import mrjob_approvals
+from approvaltests.integrations.mrjob import mrjob_approvals
 from approvaltests.reporters import ReportByCreatingDiffFile, MultiReporter
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.utilities import command_line_approvals

@@ -1,12 +1,8 @@
-from itertools import product
-
 from mrjob.job import MRJob
 
-from approvaltests import verify
-from approvaltests.mrjob.mrjob_approvals import (
+from approvaltests.integrations.mrjob.mrjob_approvals import (
     verify_map_reduce,
     verify_templated_map_reduce,
-    print_map_reduce_job,
     verify_templated_map_reduce_with_customized_job,
     verify_templated_map_reduce_with_customized_job_with_dictionary_args,
 )
