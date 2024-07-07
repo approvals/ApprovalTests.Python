@@ -33,7 +33,7 @@ def do_the_setup(package_name, package_description, required, extra_requires):
         package_data={"approvaltests": ["reporters/reporters.json"]},
         entry_points={
             "pytest11": [
-                "approvaltests_pytest = approvaltests.pytest.pytest_plugin",
+                "approvaltests_pytest = approvaltests.integrations.pytest.pytest_plugin",
             ],
         },
         install_requires=required,

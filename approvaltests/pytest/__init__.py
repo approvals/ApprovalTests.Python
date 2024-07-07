@@ -1,1 +1,0 @@
-"""Approvaltests.pytest module."""

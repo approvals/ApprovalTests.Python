@@ -7,7 +7,7 @@ import fnmatch
 from approvaltests.namer.namer_base import NamerBase
 from approvaltests.approval_exception import FrameNotFound
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
-from approvaltests.pytest.pytest_config import PytestConfig
+from approvaltests.integrations.pytest.pytest_config import PytestConfig
 
 
 class StackFrameNamer(NamerBase):

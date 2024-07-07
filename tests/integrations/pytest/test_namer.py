@@ -1,7 +1,7 @@
 import os
 
 from approvaltests.approvals import get_default_namer, verify
-from approvaltests.pytest.py_test_namer import PyTestNamer
+from approvaltests.integrations.pytest.py_test_namer import PyTestNamer
 
 
 def test_basic_approval():
