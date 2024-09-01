@@ -26,20 +26,17 @@ sequenceDiagram
     ApprovalTest->>TestRunner: Pass-or-Fail Test 1
 
     %% Test 2
-    note over TestRunner,LogFile: Test 2
-    TestRunner->>ApprovalTest: Run Test 2..n
-    ApprovalTest->>ApprovalTest_Class: approve()
+    note over TestRunner,LogFile: Test 2..n
+    loop Remaining Tests
+      TestRunner->>ApprovalTest: Run Test 2..n
+      ApprovalTest->>ApprovalTest_Class: approve()
 
-    create participant ApprovedFile_2..n
-    ApprovalTest_Class->>ApprovedFile_2..n: open/truncate
-    ApprovalTest_Class->>ApprovedFile_2..n: write
-    ApprovalTest_Class->>LogFile: write()   
-    ApprovalTest->>TestRunner: Pass-or-Fail Test 2
- 
-    %% Test ...n
-    note over TestRunner,LogFile: Test ...n
-    ApprovalTest->>TestRunner: Pass-or-Fail Test ...
-    ApprovalTest->>TestRunner: Pass-or-Fail Test n
+      create participant ApprovedFile_2..n
+      ApprovalTest_Class->>ApprovedFile_2..n: open/truncate
+      ApprovalTest_Class->>ApprovedFile_2..n: write
+      ApprovalTest_Class->>LogFile: write()
+      ApprovalTest->>TestRunner: Pass-or-Fail Test 2..n
+    end
 
     note over TestRunner,LogFile: End all tests
 
