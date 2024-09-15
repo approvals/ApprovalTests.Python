@@ -56,9 +56,13 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 **You can leave at any time** - and people do.<!-- endInclude -->
 
+### Startup Checklist
+  1. Start mob timer
+  1. Run all tests
+
 ### Anydesk
 
-We will use [anydesk](https://anydesk.com/en) to screen share & controll the development machine. Please download ahead of time.
+We might use [anydesk](https://anydesk.com/en) to screen share & controll the development machine. Please download ahead of time.
 
 ## Solo Developement
 If you prefer solo development, check out [How To Setup a Dev Machine](./how_to/setting_up_a_dev_machine.md)

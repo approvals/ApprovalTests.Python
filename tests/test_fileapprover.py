@@ -19,6 +19,10 @@ from file_approver import APPROVED_FILE_LOG
 # overall intention: prune abandoned approved files
 
 # TODO:
+# We broke things because we imported from build/lib. We need to write a test to check that we do not import from build/lib
+# Started writing new test and adding English to tests/test_build.py
+
+# TODO:
 #  TO Learn: How the "build" directory is created, used, populated....
 #  Confirm that we should be using `parse_arguments()` from `commandline_interface.py` in `build`
 
