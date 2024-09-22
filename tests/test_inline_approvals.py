@@ -16,7 +16,7 @@ from approvaltests import (
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters.report_quietly import ReportQuietly
-from build.lib.approvaltests.reporters.report_with_beyond_compare import (
+from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithPycharm,
     ReportWithBeyondCompare,
 )
