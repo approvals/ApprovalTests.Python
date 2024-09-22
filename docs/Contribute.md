@@ -59,6 +59,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 ### Startup Checklist
   1. Start mob timer
   1. Run all tests
+  1. review pending changes 
 
 ### Anydesk
 
