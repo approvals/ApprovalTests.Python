@@ -3,6 +3,13 @@
 - [ ] docs: point to new architecture docs from python repo
 
 
+# 9/22/24
+todo: 
+failure we saw was from a task from a few weeks ago
+the failure we see is:
+problem of how do we kknow if a .approved file was used in a run 
+so we can remove the STALE (abandonded) approved files
+
 # Roles
 From https://github.com/willemlarsen/mobprogrammingrpg/blob/master/rpg_roles_plain_text.md
 
