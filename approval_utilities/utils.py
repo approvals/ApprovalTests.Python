@@ -55,12 +55,14 @@ def is_windows_os() -> bool:
 
 
 def create_empty_file(file_path: str) -> None:
-    import empty_files.empty_files
-
-    empty_files.empty_files.create_empty_file(file_path)
-
-
+    try:
+        import empty_files.empty_files
+        empty_files.empty_files.create_empty_file(file_path)
+    except ImportError as e:
+        print("Error importing empty_files", e)
+        raise
 def ensure_file_exists(approved_path: str) -> None:
+    print("approved_path check", approved_path)
     if not os.path.isfile(approved_path):
         create_empty_file(approved_path)
 
