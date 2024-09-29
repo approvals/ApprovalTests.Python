@@ -9,8 +9,6 @@ from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
 
-# use an env var to allow injection for self-testing purposes
-APPROVED_FILE_LOG = os.environ.get("APPROVED_FILE_LOG", ".approved_file_log" )
 
 def exists(path: str) -> bool:
     return os.path.isfile(path)
@@ -42,21 +40,10 @@ class FileApprover:
     allowed_duplicates = []
 
     @staticmethod
-    def clear_log_file():
-        pathlib.Path(APPROVED_FILE_LOG).write_text("")
-
-    @staticmethod
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
     ) -> Optional[str]:
         approved = namer.get_approved_filename()
-
-        # Append approved file name to log
-        pathlib.Path(APPROVED_FILE_LOG).write_text(
-            pathlib.Path(APPROVED_FILE_LOG).read_text() + f"{approved}\n"
-        )
-
-        # consider only using the filename, not full path
         received = namer.get_received_filename()
 
         if FileApprover.is_this_a_multiple_verify(approved):
@@ -127,6 +114,3 @@ class FileApprover:
     @staticmethod
     def add_allowed_duplicates(is_duplicate_allowed: Callable[[str], bool]):
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
-
-
-FileApprover.clear_log_file()

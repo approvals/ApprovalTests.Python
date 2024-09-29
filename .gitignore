@@ -65,6 +65,4 @@ venv
 .mypy_cache
 .DS_Store
 tests/approved_files/VerifyTests.test_verify_automatic_approval.approved.txt
-tests/.approved_file_log
-.approved_file_log
-tests/.test_approved_file_log
+tests/approved_files/VerifyTests.test_verify_automatic_approval.approved.txt

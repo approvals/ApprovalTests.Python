@@ -37,20 +37,6 @@ From https://github.com/willemlarsen/mobprogrammingrpg/blob/master/rpg_roles_pla
 
 
 
-<<<<<<< Updated upstream
-=======
-- [ ] notify people if they have a potentially abandond file
-- [ ] explicity request to see the list of abandond files
-## abandond files,   how we did it 
-[Design Notes](https://atlas.mindmup.com/2024/08/8427fa10529211ef9a0a8f6b3d292b02/abandoned_files/index.html)
-
-Determine if a file is abandoned or not
-find all the approved files
-create a list of the abandoned files
-if the list is size zero then we assume it is done
-
-Utility that could be used in multiple Approval test
->>>>>>> Stashed changes
 
 Test are running on all CI machine
 
