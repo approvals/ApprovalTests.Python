@@ -33,11 +33,10 @@ class GenericDiffReporter(Reporter):
         self.extra_args = config.extra_args
 
     def __str__(self) -> str:
-        config = filter_values(lambda v: bool(v), {
-            "name": self.name,
-            "path": self.path,
-            "arguments": self.extra_args
-        })
+        config = filter_values(
+            lambda v: bool(v),
+            {"name": self.name, "path": self.path, "arguments": self.extra_args},
+        )
         return to_json(config)
 
     @staticmethod

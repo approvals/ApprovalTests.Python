@@ -58,10 +58,13 @@ def is_windows_os() -> bool:
 def create_empty_file(file_path: str) -> None:
     try:
         import empty_files.empty_files
+
         empty_files.empty_files.create_empty_file(file_path)
     except ImportError as e:
         print("Error importing empty_files", e)
         raise
+
+
 def ensure_file_exists(approved_path: str) -> None:
     print("approved_path check", approved_path)
     if not os.path.isfile(approved_path):
@@ -82,7 +85,10 @@ def print_grid(width, height, cell_print_func):
         result += "\n"
     return result
 
+
 _V = TypeVar("_V")
 _K = TypeVar("_K")
-def filter_values(filter: Callable[[_V],bool], a_dict: Dict[_K,_V]) -> Dict[_K,_V]:
+
+
+def filter_values(filter: Callable[[_V], bool], a_dict: Dict[_K, _V]) -> Dict[_K, _V]:
     return {k: v for k, v in a_dict.items() if filter(v)}

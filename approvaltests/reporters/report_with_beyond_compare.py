@@ -20,7 +20,8 @@ class ReportWithBeyondCompareMac(GenericDiffReporter):
     def __init__(self):
         super().__init__(
             config=GenericDiffReporterConfig(
-                name=self.__class__.__name__, path='/Applications/Beyond Compare.app/Contents/MacOS/BCompare'
+                name=self.__class__.__name__,
+                path="/Applications/Beyond Compare.app/Contents/MacOS/BCompare",
             )
         )
 
