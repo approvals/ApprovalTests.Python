@@ -1,9 +1,10 @@
 import inspect
 import json
 import os
-from collections.abc import Callable
+
 from copy import deepcopy
-from typing import TypeVar
+
+from typing import Callable, Dict, TypeVar
 
 
 def get_adjacent_file(name: str) -> str:
@@ -83,5 +84,5 @@ def print_grid(width, height, cell_print_func):
 
 _V = TypeVar("_V")
 _K = TypeVar("_K")
-def filter_values(filter: Callable[[_V],bool], a_dict: dict[_K,_V]) -> dict[_K,_V]:
+def filter_values(filter: Callable[[_V],bool], a_dict: Dict[_K,_V]) -> Dict[_K,_V]:
     return {k: v for k, v in a_dict.items() if filter(v)}
