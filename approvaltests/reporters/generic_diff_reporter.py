@@ -1,7 +1,7 @@
 from typing import List
 
 from approval_utilities.utilities.os_utilities import run_command
-from approval_utilities.utils import ensure_file_exists
+from approval_utilities.utils import ensure_file_exists, filter_values
 from approval_utilities.utils import to_json
 from approvaltests.command import Command
 from approvaltests.core.reporter import Reporter
@@ -33,15 +33,11 @@ class GenericDiffReporter(Reporter):
         self.extra_args = config.extra_args
 
     def __str__(self) -> str:
-        if self.extra_args:
-            config = {
-                "name": self.name,
-                "path": self.path,
-                "arguments": self.extra_args,
-            }
-        else:
-            config = {"name": self.name, "path": self.path}
-
+        config = filter_values(lambda v: bool(v), {
+            "name": self.name,
+            "path": self.path,
+            "arguments": self.extra_args
+        })
         return to_json(config)
 
     @staticmethod

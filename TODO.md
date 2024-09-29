@@ -1,6 +1,41 @@
+- [ ] 2024-09-22 discuss access to repo beyond just Llewellyn's user
 - [ ] clean-up old PRs (there are 3 from Dec 2023)
 - [ ] docs: point to new architecture docs from python repo
-- 
+FUTURE TODO
+Fix this timer 
+1) show all three roles
+Typer: talker and Next
+2) label the roles to match what we like
+Instead of ____’s Turn
+Show
+Talker: _____
+And in lower right:
+Talker: __<talker name>
+Next: <next>
+
+
+
+# 9/22/24
+todo: 
+failure we saw was from a task from a few weeks ago
+the failure we see is:
+problem of how do we kknow if a .approved file was used in a run 
+so we can remove the STALE (abandonded) approved files
+
+# Roles
+From https://github.com/willemlarsen/mobprogrammingrpg/blob/master/rpg_roles_plain_text.md
+
+| Name | Role           |
+| --- |----------------|
+| Matt | Dr Feelgood    |
+| Diana | Anthropologist | 
+| Jay | The Nose       |
+| Jacqueline | Nostaligist    |
+| Michael | Archivist      | 
+| Llewellyn | Major Pain     |
+| Nitsan | Automationist  |
+
+
 
 <<<<<<< Updated upstream
 =======

@@ -1,7 +1,10 @@
 import inspect
 import json
 import os
+
 from copy import deepcopy
+
+from typing import Callable, Dict, TypeVar
 
 
 def get_adjacent_file(name: str) -> str:
@@ -53,12 +56,14 @@ def is_windows_os() -> bool:
 
 
 def create_empty_file(file_path: str) -> None:
-    import empty_files.empty_files
-
-    empty_files.empty_files.create_empty_file(file_path)
-
-
+    try:
+        import empty_files.empty_files
+        empty_files.empty_files.create_empty_file(file_path)
+    except ImportError as e:
+        print("Error importing empty_files", e)
+        raise
 def ensure_file_exists(approved_path: str) -> None:
+    print("approved_path check", approved_path)
     if not os.path.isfile(approved_path):
         create_empty_file(approved_path)
 
@@ -76,3 +81,8 @@ def print_grid(width, height, cell_print_func):
             result += cell_print_func(x, y)
         result += "\n"
     return result
+
+_V = TypeVar("_V")
+_K = TypeVar("_K")
+def filter_values(filter: Callable[[_V],bool], a_dict: Dict[_K,_V]) -> Dict[_K,_V]:
+    return {k: v for k, v in a_dict.items() if filter(v)}

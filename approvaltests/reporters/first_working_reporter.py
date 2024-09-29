@@ -30,8 +30,8 @@ class FirstWorkingReporter(Reporter):
         return False
 
     def __str__(self):
-        reporters = ", ".join(str(s) for s in self.reporters)
-        return f"FirstWorkingReporter({reporters})"
+        reporters_string = ", ".join(str(s) for s in self.reporters)
+        return f"FirstWorkingReporter({reporters_string})"
 
     __repr__ = __str__
 
