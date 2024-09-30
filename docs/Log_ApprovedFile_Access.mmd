@@ -1,0 +1,45 @@
+sequenceDiagram
+    actor User
+    participant TestRunner
+    participant ApprovalTest
+    participant ApprovalTest_Class
+
+    User->>TestRunner: Start
+    ApprovalTest->>ApprovalTest_Class: implicit class-level setup
+    create participant LogFile
+    ApprovalTest_Class->>LogFile: open/truncate
+
+
+    %% Test 1
+    note over TestRunner,LogFile: Test 1
+    TestRunner->>ApprovalTest: Run Test 1
+
+    note right of ApprovalTest: Arrange
+    note right of ApprovalTest: Act
+    note right of ApprovalTest: Assert
+    ApprovalTest->>ApprovalTest_Class: approve()
+
+    create participant ApprovedFile
+    ApprovalTest_Class->>ApprovedFile: open/truncate
+    ApprovalTest_Class->>ApprovedFile: write()  
+    ApprovalTest_Class->>LogFile: write()   
+    ApprovalTest->>TestRunner: Pass-or-Fail Test 1
+
+    %% Test 2
+    note over TestRunner,LogFile: Test 2..n
+    loop Remaining Tests
+      TestRunner->>ApprovalTest: Run Test 2..n
+      ApprovalTest->>ApprovalTest_Class: approve()
+
+      create participant ApprovedFile_2..n
+      ApprovalTest_Class->>ApprovedFile_2..n: open/truncate
+      ApprovalTest_Class->>ApprovedFile_2..n: write
+      ApprovalTest_Class->>LogFile: write()
+      ApprovalTest->>TestRunner: Pass-or-Fail Test 2..n
+    end
+
+    note over TestRunner,LogFile: End all tests
+
+    TestRunner->>User: Pass-or-Fail SESSION
+
+    Note over ApprovedFile_2..n,LogFile: Files persists after test session
