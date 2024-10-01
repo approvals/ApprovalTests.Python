@@ -1,12 +1,11 @@
 # Options
 
 <!-- toc -->
-
 ## Contents
 
-- [Configuriation for verify](#configuriation-for-verify)
-- [Inline Approvals](#inline-approvals)
-  - [Known Issues](#known-issues)<!-- endToc -->
+  * [Configuration for verify](#configuration-for-verify)
+  * [Inline Approvals](#inline-approvals)
+    * [Known Issues](#known-issues)<!-- endToc -->
 
 ## Configuration for verify
 
