@@ -8,7 +8,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
-from file_approver import ApprovedFilesLog
+from approved_file_log import ApprovedFilesLog
 
 
 class FileApproverTests(unittest.TestCase):

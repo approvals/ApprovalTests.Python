@@ -1,7 +1,6 @@
 import filecmp
 import os
 import pathlib
-from pathlib import Path
 from typing import Optional, Callable
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
@@ -9,20 +8,8 @@ from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
+from approved_file_log import ApprovedFilesLog
 
-class ApprovedFilesLog:
-    @staticmethod
-    def clear_log_file() -> None:
-        ApprovedFilesLog.get_approved_files_log().unlink(missing_ok=True)
-
-    @staticmethod
-    def get_approved_files_log() -> Path:
-        return Path(".approved_files.log")
-
-    @staticmethod
-    def log(approved_file):
-        with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
-            file.write(f"{approved_file}\n")
 
 def exists(path: str) -> bool:
     return os.path.isfile(path)
@@ -132,4 +119,3 @@ class FileApprover:
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
 
 
-ApprovedFilesLog.clear_log_file()
