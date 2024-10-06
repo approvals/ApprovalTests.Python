@@ -1,5 +1,6 @@
 ﻿import shutil
 import unittest
+from pathlib import Path
 
 from approvaltests import get_default_namer, verify, Options, verify_file, approvals
 from approvaltests.file_approver import FileApprover
@@ -8,6 +9,10 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
+
+
+def get_approved_files_log() -> Path:
+    return Path(".approved_files.log")
 
 
 class FileApproverTests(unittest.TestCase):
@@ -52,6 +57,14 @@ class FileApproverTests(unittest.TestCase):
         error = FileApprover.verify(namer, writer, reporter, Options().comparator)
         self.assertEqual(None, error)
 
+    def test_approved_file_is_logged(self):
+        # touch approved file
+        verify("a")
+        # read the log
+        log = get_approved_files_log()
+        # assert that the approved file is logged
+        name = approvals.get_default_namer().get_approved_filename()
+        self.assertIn(name, log.read_text())
 
-if __name__ == "__main__":
-    unittest.main()
+
+

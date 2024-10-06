@@ -102,6 +102,10 @@ class FileApprover:
         reporter: Reporter,
         comparator: Comparator,
     ) -> bool:
+        # append f"approved_file\n" to .approved_files.log
+        pathlib.Path(".approved_files.log").write_text(f"{approved_file}\n")
+
+
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)
             return True
