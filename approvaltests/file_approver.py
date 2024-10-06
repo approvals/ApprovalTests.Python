@@ -1,6 +1,7 @@
 import filecmp
 import os
 import pathlib
+from pathlib import Path
 from typing import Optional, Callable
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
@@ -102,9 +103,7 @@ class FileApprover:
         reporter: Reporter,
         comparator: Comparator,
     ) -> bool:
-        # append f"approved_file\n" to .approved_files.log
-        pathlib.Path(".approved_files.log").write_text(f"{approved_file}\n")
-
+        get_approved_files_log().write_text(f"{approved_file}\n")
 
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)
@@ -118,3 +117,7 @@ class FileApprover:
     @staticmethod
     def add_allowed_duplicates(is_duplicate_allowed: Callable[[str], bool]):
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
+
+
+def get_approved_files_log() -> Path:
+    return Path(".approved_files.log")

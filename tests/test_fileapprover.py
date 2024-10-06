@@ -1,6 +1,5 @@
 ﻿import shutil
 import unittest
-from pathlib import Path
 
 from approvaltests import get_default_namer, verify, Options, verify_file, approvals
 from approvaltests.file_approver import FileApprover
@@ -9,10 +8,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
-
-
-def get_approved_files_log() -> Path:
-    return Path(".approved_files.log")
+from file_approver import get_approved_files_log
 
 
 class FileApproverTests(unittest.TestCase):
