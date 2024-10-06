@@ -19,6 +19,11 @@ class ApprovedFilesLog:
     def get_approved_files_log() -> Path:
         return Path(".approved_files.log")
 
+    @staticmethod
+    def log(approved_file):
+        with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
+            file.write(f"{approved_file}\n")
+
 def exists(path: str) -> bool:
     return os.path.isfile(path)
 
@@ -111,8 +116,7 @@ class FileApprover:
         reporter: Reporter,
         comparator: Comparator,
     ) -> bool:
-        with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
-            file.write(f"{approved_file}\n")
+        ApprovedFilesLog.log(approved_file)
 
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)
