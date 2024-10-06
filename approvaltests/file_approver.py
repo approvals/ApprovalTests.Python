@@ -11,6 +11,11 @@ from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
 
 
+def clear_log_file() -> None:
+    get_approved_files_log().unlink(missing_ok=True)
+def get_approved_files_log() -> Path:
+    return Path(".approved_files.log")
+
 def exists(path: str) -> bool:
     return os.path.isfile(path)
 
@@ -120,5 +125,4 @@ class FileApprover:
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
 
 
-def get_approved_files_log() -> Path:
-    return Path(".approved_files.log")
+clear_log_file()

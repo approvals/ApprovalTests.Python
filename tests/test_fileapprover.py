@@ -63,6 +63,8 @@ class FileApproverTests(unittest.TestCase):
         name = approvals.get_default_namer().get_approved_filename()
         self.assertIn(name.replace(".txt", ".txt1"), log.read_text())
         self.assertIn(name.replace(".txt", ".txt2"), log.read_text())
+        # verify there are no duplicates
+        self.assertEqual(len(log.read_text().split("\n")), len(set(log.read_text().split("\n"))))
 
 
 
