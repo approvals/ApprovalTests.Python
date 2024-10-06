@@ -10,11 +10,14 @@ from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
 
+class ApprovedFilesLog:
+    @staticmethod
+    def clear_log_file() -> None:
+        ApprovedFilesLog.get_approved_files_log().unlink(missing_ok=True)
 
-def clear_log_file() -> None:
-    get_approved_files_log().unlink(missing_ok=True)
-def get_approved_files_log() -> Path:
-    return Path(".approved_files.log")
+    @staticmethod
+    def get_approved_files_log() -> Path:
+        return Path(".approved_files.log")
 
 def exists(path: str) -> bool:
     return os.path.isfile(path)
@@ -108,7 +111,7 @@ class FileApprover:
         reporter: Reporter,
         comparator: Comparator,
     ) -> bool:
-        with get_approved_files_log().open(mode="a") as file:
+        with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
             file.write(f"{approved_file}\n")
 
         if comparator.compare(received_file, approved_file):
@@ -125,4 +128,4 @@ class FileApprover:
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)
 
 
-clear_log_file()
+ApprovedFilesLog.clear_log_file()

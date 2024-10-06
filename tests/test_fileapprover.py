@@ -8,7 +8,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
-from file_approver import get_approved_files_log
+from file_approver import ApprovedFilesLog
 
 
 class FileApproverTests(unittest.TestCase):
@@ -58,7 +58,7 @@ class FileApproverTests(unittest.TestCase):
         verify("a", options=Options().for_file.with_extension(".txt1"))
         verify("a", options=Options().for_file.with_extension(".txt2"))
         # read the log
-        log = get_approved_files_log()
+        log = ApprovedFilesLog.get_approved_files_log()
         # assert that the approved file is logged
         name = approvals.get_default_namer().get_approved_filename()
         log_lines = log.read_text().split("\n")
