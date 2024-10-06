@@ -1,6 +1,8 @@
 - [ ] 2024-09-22 discuss access to repo beyond just Llewellyn's user
 - [ ] clean-up old PRs (there are 3 from Dec 2023)
 - [ ] docs: point to new architecture docs from python repo
+- [ ] mypy in the build
+- [ ] fix Namer and NamerBase
 FUTURE TODO
 Fix this timer 
 1) show all three roles
@@ -12,6 +14,7 @@ Talker: _____
 And in lower right:
 Talker: __<talker name>
 Next: <next>
+3) 
 
 
 
