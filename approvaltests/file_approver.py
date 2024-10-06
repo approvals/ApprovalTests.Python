@@ -103,7 +103,8 @@ class FileApprover:
         reporter: Reporter,
         comparator: Comparator,
     ) -> bool:
-        get_approved_files_log().write_text(f"{approved_file}\n")
+        with get_approved_files_log().open(mode="a") as file:
+            file.write(f"{approved_file}\n")
 
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)

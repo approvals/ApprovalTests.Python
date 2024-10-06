@@ -55,12 +55,14 @@ class FileApproverTests(unittest.TestCase):
 
     def test_approved_file_is_logged(self):
         # touch approved file
-        verify("a")
+        verify("a", options=Options().for_file.with_extension(".txt1"))
+        verify("a", options=Options().for_file.with_extension(".txt2"))
         # read the log
         log = get_approved_files_log()
         # assert that the approved file is logged
         name = approvals.get_default_namer().get_approved_filename()
-        self.assertIn(name, log.read_text())
+        self.assertIn(name.replace(".txt", ".txt1"), log.read_text())
+        self.assertIn(name.replace(".txt", ".txt2"), log.read_text())
 
 
 
