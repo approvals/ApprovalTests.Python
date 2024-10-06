@@ -57,6 +57,7 @@ atlassian-ide-plugin.xml
 # caches
 .cache/
 .pytest_cache
+.approval_tests_temp/
 
 # virtual environments
 virtualenv
@@ -66,4 +67,3 @@ venv
 .DS_Store
 tests/approved_files/VerifyTests.test_verify_automatic_approval.approved.txt
 tests/approved_files/VerifyTests.test_verify_automatic_approval.approved.txt
-.approved_files.log
