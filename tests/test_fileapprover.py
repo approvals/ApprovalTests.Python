@@ -57,8 +57,12 @@ class FileApproverTests(unittest.TestCase):
         name = approvals.get_default_namer().get_approved_filename()
         log = ApprovedFilesLog.get_approved_files_log()
         log_lines = log.read_text().split("\n")
-        self.assertNotIn(name.replace(".txt", ".txt1"), log_lines)
-        self.assertNotIn(name.replace(".txt", ".txt2"), log_lines)
+        name1 = name.replace(".txt", ".txt1")
+        name2 = name.replace(".txt", ".txt2")
+
+        # check log is cleared
+        self.assertNotIn(name1, log_lines)
+        self.assertNotIn(name2, log_lines)
 
         # touch approved file
         verify("a", options=Options().for_file.with_extension(".txt1"))
@@ -66,8 +70,7 @@ class FileApproverTests(unittest.TestCase):
 
         # assert that the approved file is logged
         log_lines = log.read_text().split("\n")
-        self.assertIn(name.replace(".txt", ".txt1"), log_lines)
-        self.assertIn(name.replace(".txt", ".txt2"), log_lines)
-
+        self.assertIn(name1, log_lines)
+        self.assertIn(name2, log_lines)
 
 
