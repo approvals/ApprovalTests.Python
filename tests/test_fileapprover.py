@@ -61,10 +61,11 @@ class FileApproverTests(unittest.TestCase):
         log = get_approved_files_log()
         # assert that the approved file is logged
         name = approvals.get_default_namer().get_approved_filename()
-        self.assertIn(name.replace(".txt", ".txt1"), log.read_text())
-        self.assertIn(name.replace(".txt", ".txt2"), log.read_text())
+        log_text = log.read_text()
+        self.assertIn(name.replace(".txt", ".txt1"), log_text)
+        self.assertIn(name.replace(".txt", ".txt2"), log_text)
         # verify there are no duplicates
-        self.assertEqual(len(log.read_text().split("\n")), len(set(log.read_text().split("\n"))))
+        self.assertEqual(len(log_text.split("\n")), len(set(log_text.split("\n"))))
 
 
 
