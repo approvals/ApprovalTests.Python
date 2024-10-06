@@ -72,5 +72,3 @@ class FileApproverTests(unittest.TestCase):
         log_lines = log.read_text().split("\n")
         self.assertIn(name1, log_lines)
         self.assertIn(name2, log_lines)
-
-

@@ -18,4 +18,5 @@ class ApprovedFilesLog:
         with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
             file.write(f"{approved_file}\n")
 
+
 ApprovedFilesLog.clear_log_file()
