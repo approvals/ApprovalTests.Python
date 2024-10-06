@@ -58,9 +58,12 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 **You can leave at any time** - and people do.<!-- endInclude -->
 
 ### Startup Checklist
+  1. change screen resolution to 1900X1080 
+       *note*: Preferences -> display (requires only 1 person is connected)
   1. Start mob timer
   1. Run all tests
   1. review pending changes 
+
 
 ### Anydesk
 
