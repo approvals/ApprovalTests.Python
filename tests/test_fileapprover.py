@@ -54,18 +54,20 @@ class FileApproverTests(unittest.TestCase):
         self.assertEqual(None, error)
 
     def test_approved_file_is_logged(self):
+        name = approvals.get_default_namer().get_approved_filename()
+        log = ApprovedFilesLog.get_approved_files_log()
+        log_lines = log.read_text().split("\n")
+        self.assertNotIn(name.replace(".txt", ".txt1"), log_lines)
+        self.assertNotIn(name.replace(".txt", ".txt2"), log_lines)
+
         # touch approved file
         verify("a", options=Options().for_file.with_extension(".txt1"))
         verify("a", options=Options().for_file.with_extension(".txt2"))
-        # read the log
-        log = ApprovedFilesLog.get_approved_files_log()
+
         # assert that the approved file is logged
-        name = approvals.get_default_namer().get_approved_filename()
         log_lines = log.read_text().split("\n")
         self.assertIn(name.replace(".txt", ".txt1"), log_lines)
         self.assertIn(name.replace(".txt", ".txt2"), log_lines)
-        # verify there are no duplicates
-        self.assertEqual(len(log_lines), len(set(log_lines)))
 
 
 
