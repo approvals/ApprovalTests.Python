@@ -12,7 +12,7 @@ setup(
     url="https://github.com/approvals/ApprovalTests.Python",
     python_requires=">=3.8",
     packages=find_packages(include=["approval_utilities*"]),
-    package_data={},
+    package_data={"approval_utilities": ["py.typed"]},
     install_requires=[],
     # long_description=(get_parent_directory() / "README.md").read_text(),
     # long_description_content_type="text/markdown",
