@@ -50,4 +50,4 @@ Tasks:
 - [ ] create a diff function that takes two lists and returns the differences
 - [ ] create a function that normalizes paths (relateive to project-root)
 - [ ] create one list from logfile contents
-- [ ] create one list from file system
+- [ ] create one list from file **system**
