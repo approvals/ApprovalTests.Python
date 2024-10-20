@@ -1,4 +1,5 @@
 import os
+import argparse
 
 # Function to recursively find all files with '.approved.' in their name
 def find_approved_files(directory):
@@ -21,13 +22,15 @@ def compare_files(found_files, log_files):
     return not_in_log
 
 def main():
-    # Specify the directory to search and the log file path
-    directory_to_search = '.'  # Adjust if needed
-    log_file_path = 'approvedfiles.log'
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Compare found approved files with log file.")
+    parser.add_argument('directory', type=str, help="Directory to search for approved files")
+    parser.add_argument('log_file', type=str, help="Path to the approved files log")
+    args = parser.parse_args()
 
     # Find approved files and read log file
-    found_files = find_approved_files(directory_to_search)
-    log_files = read_approved_files_log(log_file_path)
+    found_files = find_approved_files(args.directory)
+    log_files = read_approved_files_log(args.log_file)
 
     # Compare the lists and output the result
     missing_files = compare_files(found_files, log_files)
