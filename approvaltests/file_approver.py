@@ -8,7 +8,7 @@ from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
-from approved_file_log import ApprovedFilesLog
+from approvaltests.approved_file_log import ApprovedFilesLog
 
 
 def exists(path: str) -> bool:
