@@ -36,7 +36,11 @@ def create_sandbox(approved_files, log_entries, nested=False):
 
 # Execute the comparison script
 def execute_script(directory, log_file):
-    result = subprocess.run([sys.executable, "find_stale_approved_files.py", directory, log_file], capture_output=True, text=True)
+    result = subprocess.run(
+        [sys.executable, "find_stale_approved_files.py", directory, log_file],
+        capture_output=True,
+        text=True,
+    )
     output = result.stdout
     SimpleLogger.message(output)
 
@@ -64,13 +68,17 @@ def test_find_stale_approved_files():
             "file3.approved.csv",
             "file4.approved.md",
         ]
-        log_entries_2 = approved_files_2[:-1]  # Exclude 'file4.approved.md' from the log
+        log_entries_2 = approved_files_2[
+            :-1
+        ]  # Exclude 'file4.approved.md' from the log
         sandbox_dir_2, log_file_path_2 = create_sandbox(approved_files_2, log_entries_2)
         execute_script(sandbox_dir_2.name, log_file_path_2)
         sandbox_dir_2.cleanup()
 
         # Test Scenario 3: Log contains files that are not in the directory
-        SimpleLogger.message("Test Scenario 3: Log contains files that are not in the directory")
+        SimpleLogger.message(
+            "Test Scenario 3: Log contains files that are not in the directory"
+        )
         approved_files_3 = ["file1.approved.txt", "file2.approved.doc"]
         log_entries_3 = approved_files_3 + [
             "file3.approved.csv"
@@ -88,7 +96,9 @@ def test_find_stale_approved_files():
         sandbox_dir_4.cleanup()
 
         # Test Scenario 5: Directory has files but none are in the log
-        SimpleLogger.message("Test Scenario 5: Directory has files but none are in the log")
+        SimpleLogger.message(
+            "Test Scenario 5: Directory has files but none are in the log"
+        )
         approved_files_5 = ["file1.approved.txt", "file2.approved.doc"]
         log_entries_5 = []  # No entries in the log
         sandbox_dir_5, log_file_path_5 = create_sandbox(approved_files_5, log_entries_5)
@@ -106,7 +116,9 @@ def test_find_stale_approved_files():
         sandbox_dir_6.cleanup()
 
         # Test Scenario 7: Files that do not match the naming convention
-        SimpleLogger.message("Test Scenario 7: Files that do not match the naming convention")
+        SimpleLogger.message(
+            "Test Scenario 7: Files that do not match the naming convention"
+        )
         approved_files_7 = ["file1.txt", "file2.doc", "file3.csv"]
         log_entries_7 = approved_files_7
         sandbox_dir_7, log_file_path_7 = create_sandbox(approved_files_7, log_entries_7)
