@@ -1,24 +1,70 @@
 message: Test Scenario 1: All approved files are in the log
+variable: Approved Files.length = 3
+file1.approved.txt
+file2.approved.doc
+file3.approved.csv
+variable: Log Entries.length = 3
+file1.approved.txt
+file2.approved.doc
+file3.approved.csv
 message: All found approved files are present in the log.
 
 message: Test Scenario 2: Approved files that are not in the log
+variable: Approved Files.length = 4
+file1.approved.txt
+file2.approved.doc
+file3.approved.csv
+file4.approved.md
+variable: Log Entries.length = 3
+file1.approved.txt
+file2.approved.doc
+file3.approved.csv
 message: The following files are not in the approved log:
-<FULL PATH>file4.approved.md
+file4.approved.md
 
 message: Test Scenario 3: Log contains files that are not in the directory
+variable: Approved Files.length = 2
+file1.approved.txt
+file2.approved.doc
+variable: Log Entries.length = 3
+file1.approved.txt
+file2.approved.doc
+file3.approved.csv
 message: All found approved files are present in the log.
 
 message: Test Scenario 4: No approved files in the directory
+variable: Approved Files.length = 0
+variable: Log Entries.length = 2
+file1.approved.txt
+file2.approved.doc
 message: All found approved files are present in the log.
 
 message: Test Scenario 5: Directory has files but none are in the log
+variable: Approved Files.length = 2
+file1.approved.txt
+file2.approved.doc
+variable: Log Entries.length = 0
 message: The following files are not in the approved log:
-<FULL PATH>file1.approved.txt
-<FULL PATH>file2.approved.doc
+file1.approved.txt
+file2.approved.doc
 
 message: Test Scenario 6: Nested folders with approved files
+variable: Approved Files.length = 2
+file1.approved.txt
+file2.approved.doc
+variable: Log Entries.length = 2
+file1.approved.txt
+file2.approved.doc
 message: All found approved files are present in the log.
 
 message: Test Scenario 7: Files that do not match the naming convention
+variable: Approved Files.length = 3
+file1.txt
+file2.doc
+file3.csv
+variable: Log Entries.length = 3
+file1.txt
+file2.doc
+file3.csv
 message: All found approved files are present in the log.
 

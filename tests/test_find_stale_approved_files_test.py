@@ -47,7 +47,7 @@ def test_create_argument_parser():
     parser.formatter_class = lambda prog: argparse.HelpFormatter(prog, max_help_position=100, width=200)
     verify(parser.format_help())
 def test_find_stale_approved_files():
-    scrubber = create_regex_scrubber(r".+(?=file\d\.)", "<FULL PATH>")
+    scrubber = create_regex_scrubber(r".+(?=file\d\.)", "")
     with verify_simple_logger(options=Options().with_scrubber(scrubber)):
         # Test Scenario 1: All approved files are in the log
         SimpleLogger.message("Test Scenario 1: All approved files are in the log")
@@ -104,6 +104,9 @@ def test_find_stale_approved_files():
 
 
 def verify_files(approved_files, log_entries, nested=False):
+    SimpleLogger.variable("Approved Files", approved_files)
+    SimpleLogger.variable("Log Entries", log_entries)
+
     sandbox_dir, log_file_path = create_sandbox(approved_files, log_entries, nested=nested)
     execute_script(sandbox_dir.name, log_file_path)
     sandbox_dir.cleanup()
