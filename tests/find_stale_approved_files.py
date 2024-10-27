@@ -1,16 +1,12 @@
 import os
 import argparse
+import pathlib
 
 
 # Function to recursively find all files with '.approved.' in their name
 def find_approved_files(directory):
-    approved_files = []
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if ".approved." in file:
-                approved_files.append(os.path.join(root, file))
+    approved_files = [str(file) for file in pathlib.Path(directory).rglob("*.approved.*")]
     return approved_files
-
 
 # Read the contents of approvedfiles.log and create a set of paths
 def read_approved_files_log(log_path):
@@ -50,9 +46,9 @@ def create_argument_parser():
         description="Compare found approved files with log file."
     )
     parser.add_argument(
-        "directory", type=str, help="Directory to search for approved files"
+        "directory", type=pathlib.Path, help="Directory to search for approved files"
     )
-    parser.add_argument("log_file", type=str, help="Path to the approved files log")
+    parser.add_argument("log_file", type=pathlib.Path, help="Path to the approved files log")
     return parser
 
 
