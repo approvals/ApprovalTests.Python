@@ -1,9 +1,12 @@
 import os
+import sys
 import tempfile
 import subprocess
 
+from approvaltests import Options
 from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
+from scrubbers import create_regex_scrubber
 
 
 # Create a temporary sandbox directory and log file
@@ -33,13 +36,14 @@ def create_sandbox(approved_files, log_entries, nested=False):
 
 # Execute the comparison script
 def execute_script(directory, log_file):
-    result = subprocess.run(["python", "find_stale_approved_files.py", directory, log_file], capture_output=True, text=True)
+    result = subprocess.run([sys.executable, "find_stale_approved_files.py", directory, log_file], capture_output=True, text=True)
     output = result.stdout
     SimpleLogger.message(output)
 
 
 def test_find_stale_approved_files():
-    with verify_simple_logger():
+    scrubber = create_regex_scrubber(r".+(?=file\d\.)", "<FULL PATH>")
+    with verify_simple_logger(options=Options().with_scrubber(scrubber)):
         # Test Scenario 1: All approved files are in the log
         SimpleLogger.message("Test Scenario 1: All approved files are in the log")
         approved_files_1 = [
