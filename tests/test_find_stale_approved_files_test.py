@@ -33,7 +33,9 @@ def create_sandbox(approved_files, log_entries, nested=False):
 
 # Execute the comparison script
 def execute_script(directory, log_file):
-    subprocess.run(["python", "find_stale_approved_files.py", directory, log_file])
+    result = subprocess.run(["python", "find_stale_approved_files.py", directory, log_file], capture_output=True, text=True)
+    output = result.stdout
+    SimpleLogger.message(output)
 
 
 def test_find_stale_approved_files():
