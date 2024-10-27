@@ -38,12 +38,14 @@ def main() -> None:
 def create_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog=os.path.basename(__file__),
-        description="Compare found approved files with log file."
+        description="Compare found approved files with log file.",
     )
     parser.add_argument(
         "directory", type=pathlib.Path, help="Directory to search for approved files"
     )
-    parser.add_argument("log_file", type=pathlib.Path, help="Path to the approved files log")
+    parser.add_argument(
+        "log_file", type=pathlib.Path, help="Path to the approved files log"
+    )
     return parser
 
 
