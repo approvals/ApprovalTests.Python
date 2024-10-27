@@ -57,7 +57,10 @@ def test_create_argument_parser():
     parser.formatter_class = lambda prog: argparse.HelpFormatter(
         prog, max_help_position=100, width=200
     )
-    verify(parser.format_help(), options=Options().with_scrubber(create_regex_scrubber(r"option.*", "options:")))
+    verify(
+        parser.format_help(),
+        options=Options().with_scrubber(create_regex_scrubber(r"option.*", "options:")),
+    )
 
 
 def test_find_stale_approved_files():
