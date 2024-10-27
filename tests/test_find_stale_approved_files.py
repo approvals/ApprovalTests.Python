@@ -38,8 +38,13 @@ def create_sandbox(approved_files, log_entries, nested=False):
 
 # Execute the comparison script
 def execute_script(directory, log_file):
+
+    script = "find_stale_approved_files.py"
+    dirname = os.path.dirname(__file__)
+    full_script = os.path.join(dirname, script)
+    print(f"Executing script: {full_script=}")
     result = subprocess.run(
-        [sys.executable, "find_stale_approved_files.py", directory, log_file],
+        [sys.executable, full_script, directory, log_file],
         capture_output=True,
         text=True,
     )
@@ -52,7 +57,7 @@ def test_create_argument_parser():
     parser.formatter_class = lambda prog: argparse.HelpFormatter(
         prog, max_help_position=100, width=200
     )
-    verify(parser.format_help())
+    verify(parser.format_help(), options=Options().with_scrubber(create_regex_scrubber(r"option.*", "options:")))
 
 
 def test_find_stale_approved_files():
