@@ -7,7 +7,7 @@ import subprocess
 from approvaltests import Options, verify
 from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
-from find_stale_approved_files import create_argument_parser
+from tests.find_stale_approved_files import create_argument_parser
 from approvaltests.scrubbers import create_regex_scrubber
 
 
