@@ -26,14 +26,7 @@ def compare_files(found_files, log_files):
 
 
 def main():
-    # Set up argument parser
-    parser = argparse.ArgumentParser(
-        description="Compare found approved files with log file."
-    )
-    parser.add_argument(
-        "directory", type=str, help="Directory to search for approved files"
-    )
-    parser.add_argument("log_file", type=str, help="Path to the approved files log")
+    parser = create_argument_parser()
     args = parser.parse_args()
 
     # Find approved files and read log file
@@ -49,6 +42,19 @@ def main():
             print(file)
     else:
         print("All found approved files are present in the log.")
+
+
+def create_argument_parser():
+    # Set up argument parser
+    parser = argparse.ArgumentParser(
+        prog=os.path.basename(__file__),
+        description="Compare found approved files with log file."
+    )
+    parser.add_argument(
+        "directory", type=str, help="Directory to search for approved files"
+    )
+    parser.add_argument("log_file", type=str, help="Path to the approved files log")
+    return parser
 
 
 if __name__ == "__main__":

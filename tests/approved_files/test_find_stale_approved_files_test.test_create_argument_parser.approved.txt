@@ -1,0 +1,10 @@
+usage: find_stale_approved_files.py [-h] directory log_file
+
+Compare found approved files with log file.
+
+positional arguments:
+  directory   Directory to search for approved files
+  log_file    Path to the approved files log
+
+optional arguments:
+  -h, --help  show this help message and exit

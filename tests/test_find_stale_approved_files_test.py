@@ -1,12 +1,14 @@
+import argparse
 import os
 import sys
 import tempfile
 import subprocess
 
-from approvaltests import Options
+from approvaltests import Options, verify
 from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
-from scrubbers import create_regex_scrubber
+from find_stale_approved_files import create_argument_parser
+from approvaltests.scrubbers import create_regex_scrubber
 
 
 # Create a temporary sandbox directory and log file
@@ -40,7 +42,10 @@ def execute_script(directory, log_file):
     output = result.stdout
     SimpleLogger.message(output)
 
-
+def test_create_argument_parser():
+    parser = create_argument_parser()
+    parser.formatter_class = lambda prog: argparse.HelpFormatter(prog, max_help_position=100, width=200)
+    verify(parser.format_help())
 def test_find_stale_approved_files():
     scrubber = create_regex_scrubber(r".+(?=file\d\.)", "<FULL PATH>")
     with verify_simple_logger(options=Options().with_scrubber(scrubber)):
