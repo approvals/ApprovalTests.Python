@@ -57,9 +57,7 @@ def test_find_stale_approved_files():
             "file3.approved.csv",
         ]
         log_entries_1 = approved_files_1
-        sandbox_dir_1, log_file_path_1 = create_sandbox(approved_files_1, log_entries_1)
-        execute_script(sandbox_dir_1.name, log_file_path_1)
-        sandbox_dir_1.cleanup()
+        verify_files(approved_files_1, log_entries_1)
 
         # Test Scenario 2: Approved files that are not in the log
         SimpleLogger.message("Test Scenario 2: Approved files that are not in the log")
@@ -70,9 +68,7 @@ def test_find_stale_approved_files():
             "file4.approved.md",
         ]
         log_entries_2 = approved_files_2[:-1]  # Exclude 'file4.approved.md' from the log
-        sandbox_dir_2, log_file_path_2 = create_sandbox(approved_files_2, log_entries_2)
-        execute_script(sandbox_dir_2.name, log_file_path_2)
-        sandbox_dir_2.cleanup()
+        verify_files(approved_files_2, log_entries_2)
 
         # Test Scenario 3: Log contains files that are not in the directory
         SimpleLogger.message("Test Scenario 3: Log contains files that are not in the directory")
@@ -80,40 +76,34 @@ def test_find_stale_approved_files():
         log_entries_3 = approved_files_3 + [
             "file3.approved.csv"
         ]  # 'file3.approved.csv' is in the log but not in the directory
-        sandbox_dir_3, log_file_path_3 = create_sandbox(approved_files_3, log_entries_3)
-        execute_script(sandbox_dir_3.name, log_file_path_3)
-        sandbox_dir_3.cleanup()
+        verify_files(approved_files_3, log_entries_3)
 
         # Test Scenario 4: No approved files in the directory
         SimpleLogger.message("Test Scenario 4: No approved files in the directory")
         approved_files_4 = []  # No files in the directory
         log_entries_4 = ["file1.approved.txt", "file2.approved.doc"]
-        sandbox_dir_4, log_file_path_4 = create_sandbox(approved_files_4, log_entries_4)
-        execute_script(sandbox_dir_4.name, log_file_path_4)
-        sandbox_dir_4.cleanup()
+        verify_files(approved_files_4, log_entries_4)
 
         # Test Scenario 5: Directory has files but none are in the log
         SimpleLogger.message("Test Scenario 5: Directory has files but none are in the log")
         approved_files_5 = ["file1.approved.txt", "file2.approved.doc"]
         log_entries_5 = []  # No entries in the log
-        sandbox_dir_5, log_file_path_5 = create_sandbox(approved_files_5, log_entries_5)
-        execute_script(sandbox_dir_5.name, log_file_path_5)
-        sandbox_dir_5.cleanup()
+        verify_files(approved_files_5, log_entries_5)
 
         # Test Scenario 6: Nested folders with approved files
         SimpleLogger.message("Test Scenario 6: Nested folders with approved files")
         approved_files_6 = ["file1.approved.txt", "file2.approved.doc"]
         log_entries_6 = approved_files_6
-        sandbox_dir_6, log_file_path_6 = create_sandbox(
-            approved_files_6, log_entries_6, nested=True
-        )
-        execute_script(sandbox_dir_6.name, log_file_path_6)
-        sandbox_dir_6.cleanup()
+        verify_files(approved_files_6, log_entries_6, nested=True)
 
         # Test Scenario 7: Files that do not match the naming convention
         SimpleLogger.message("Test Scenario 7: Files that do not match the naming convention")
         approved_files_7 = ["file1.txt", "file2.doc", "file3.csv"]
         log_entries_7 = approved_files_7
-        sandbox_dir_7, log_file_path_7 = create_sandbox(approved_files_7, log_entries_7)
-        execute_script(sandbox_dir_7.name, log_file_path_7)
-        sandbox_dir_7.cleanup()
+        verify_files(approved_files_7, log_entries_7)
+
+
+def verify_files(approved_files, log_entries, nested=False):
+    sandbox_dir, log_file_path = create_sandbox(approved_files, log_entries, nested=nested)
+    execute_script(sandbox_dir.name, log_file_path)
+    sandbox_dir.cleanup()
