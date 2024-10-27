@@ -26,8 +26,7 @@ def compare_files(found_files, log_files):
 
 
 def main():
-    parser = create_argument_parser()
-    args = parser.parse_args()
+    args = create_argument_parser().parse_args()
 
     # Find approved files and read log file
     found_files = find_approved_files(args.directory)
