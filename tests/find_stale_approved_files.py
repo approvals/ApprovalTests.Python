@@ -1,21 +1,20 @@
 import os
 import argparse
 import pathlib
+from pathlib import Path
 from typing import List, Set
 
 
-def find_approved_files(directory: pathlib.Path) -> List[str]:
-    approved_files = [str(file) for file in pathlib.Path(directory).rglob("*.approved.*")]
-    return approved_files
+def find_approved_files(directory: pathlib.Path) -> List[Path]:
+    return list(directory.rglob("*.approved.*"))
 
 
-def read_approved_files_log(log_path: pathlib.Path) -> Set[str]:
-    with open(log_path, "r") as f:
-        approved_files_log = set(line.strip() for line in f if line.strip())
-    return approved_files_log
+def read_approved_files_log(log_path: pathlib.Path) -> Set[pathlib.Path]:
+    lines = log_path.read_text().split("\n")
+    return set(map(pathlib.Path, lines))
 
 
-def compare_files(found_files: List[str], log_files: Set[str]) -> List[str]:
+def compare_files(found_files: List[Path], log_files: Set[Path]) -> List[Path]:
     not_in_log = [file for file in found_files if file not in log_files]
     return not_in_log
 

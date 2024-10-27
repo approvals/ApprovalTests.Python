@@ -80,27 +80,29 @@ def test_find_stale_approved_files():
 
         # Test Scenario 4: No approved files in the directory
         SimpleLogger.message("Test Scenario 4: No approved files in the directory")
-        approved_files_4 = []  # No files in the directory
-        log_entries_4 = ["file1.approved.txt", "file2.approved.doc"]
-        verify_files(approved_files_4, log_entries_4)
+        verify_files([], ["file1.approved.txt", "file2.approved.doc"])
 
         # Test Scenario 5: Directory has files but none are in the log
         SimpleLogger.message("Test Scenario 5: Directory has files but none are in the log")
-        approved_files_5 = ["file1.approved.txt", "file2.approved.doc"]
-        log_entries_5 = []  # No entries in the log
-        verify_files(approved_files_5, log_entries_5)
+        verify_files(["file1.approved.txt", "file2.approved.doc"], [])
 
         # Test Scenario 6: Nested folders with approved files
         SimpleLogger.message("Test Scenario 6: Nested folders with approved files")
         approved_files_6 = ["file1.approved.txt", "file2.approved.doc"]
-        log_entries_6 = approved_files_6
-        verify_files(approved_files_6, log_entries_6, nested=True)
+        verify_files(approved_files_6, approved_files_6, nested=True)
 
         # Test Scenario 7: Files that do not match the naming convention
         SimpleLogger.message("Test Scenario 7: Files that do not match the naming convention")
         approved_files_7 = ["file1.txt", "file2.doc", "file3.csv"]
-        log_entries_7 = approved_files_7
-        verify_files(approved_files_7, log_entries_7)
+        verify_files(approved_files_7, approved_files_7)
+
+        SimpleLogger.message("Test Scenario 8: Log contains files that are not in the directory")
+        approved_files = ["custom_name_1.txt"]
+        log_entries = approved_files + [
+            "custom_name_2.txt"
+        ]
+        verify_files(approved_files, log_entries)
+
 
 
 def verify_files(approved_files, log_entries, nested=False):

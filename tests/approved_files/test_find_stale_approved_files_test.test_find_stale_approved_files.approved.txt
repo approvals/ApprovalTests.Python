@@ -68,3 +68,11 @@ file2.doc
 file3.csv
 message: All found approved files are present in the log.
 
+message: Test Scenario 8: Log contains files that are not in the directory
+variable: Approved Files.length = 1
+  Approved Files[0] = custom_name_1.txt
+variable: Log Entries.length = 2
+  Log Entries[0] = custom_name_1.txt
+  Log Entries[1] = custom_name_2.txt
+message: All found approved files are present in the log.
+
