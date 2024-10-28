@@ -6,5 +6,5 @@ positional arguments:
   directory   Directory to search for approved files
   log_file    Path to the approved files log
 
-options:
+<optional header>:
   -h, --help  show this help message and exit

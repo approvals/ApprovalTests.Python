@@ -1,11 +1,9 @@
-import argparse
 import os
 import sys
 import tempfile
 import subprocess
-from typing import Optional
 
-from approvaltests import Options, verify
+from approvaltests import Options, verify_argument_parser
 from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from tests.find_stale_approved_files import create_argument_parser
@@ -54,19 +52,7 @@ def execute_script(directory, log_file):
 
 
 def test_create_argument_parser():
-    parser = create_argument_parser()
-    verify_argument_parser(parser)
-
-
-def verify_argument_parser(parser: argparse.ArgumentParser,
-                           *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-                           options: Optional[Options] = None) -> None:
-    parser.formatter_class = lambda prog: argparse.HelpFormatter(
-        prog, max_help_position=100, width=200
-    )
-    options = options or Options()
-    scrubber = create_regex_scrubber(r"option.*", "options:")
-    verify( parser.format_help(),options=options.with_scrubber(scrubber),)
+    verify_argument_parser(create_argument_parser())
 
 
 def test_find_stale_approved_files():
