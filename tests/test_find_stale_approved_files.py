@@ -54,13 +54,15 @@ def execute_script(directory, log_file):
 
 def test_create_argument_parser():
     parser = create_argument_parser()
+    verify_argument_parser(parser)
+
+
+def verify_argument_parser(parser: argparse.ArgumentParser) -> None:
     parser.formatter_class = lambda prog: argparse.HelpFormatter(
         prog, max_help_position=100, width=200
     )
-    verify(
-        parser.format_help(),
-        options=Options().with_scrubber(create_regex_scrubber(r"option.*", "options:")),
-    )
+    scrubber = create_regex_scrubber(r"option.*", "options:")
+    verify( parser.format_help(),options=Options().with_scrubber(scrubber),)
 
 
 def test_find_stale_approved_files():
