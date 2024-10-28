@@ -411,12 +411,17 @@ def verify_executable_command(
     )
 
 
-def verify_argument_parser(parser: argparse.ArgumentParser,
-                           *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-                           options: Optional[Options] = None) -> None:
+def verify_argument_parser(
+    parser: argparse.ArgumentParser,
+    *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
+    options: Optional[Options] = None,
+) -> None:
     parser.formatter_class = lambda prog: argparse.HelpFormatter(
         prog, max_help_position=100, width=200
     )
     options = options or Options()
     scrubber = lambda t: t.replace("options:", "<optional header>:")
-    verify( parser.format_help(),options=options.with_scrubber(scrubber),)
+    verify(
+        parser.format_help(),
+        options=options.with_scrubber(scrubber),
+    )
