@@ -1,0 +1,14 @@
+usage: my_program.py [-h] [--optional_argument OPTIONAL_ARGUMENT] 1st_argument long_argument
+
+My Description
+
+positional arguments:
+  1st_argument          1st argument help text
+  long_argument         VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery
+                        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery
+                        VeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVeryVery Long message
+
+<optional header>:
+  -h, --help            show this help message and exit
+  --optional_argument OPTIONAL_ARGUMENT
+                        An Optional Argument help text
