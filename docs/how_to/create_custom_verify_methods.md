@@ -34,7 +34,7 @@ def verify_as_json(
         options=options.for_file.with_extension(".json"),
     )
 ```
-<sup><a href='/approvaltests/approvals.py#L236-L257' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L237-L258' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
