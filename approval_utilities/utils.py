@@ -73,8 +73,8 @@ def ensure_file_exists(approved_path: str) -> None:
 
 def create_directory_if_needed(received_file: str) -> None:
     directory = os.path.dirname(received_file)
-    if directory and not os.path.exists(directory):
-        os.makedirs(directory)
+    if directory:
+        os.makedirs(directory, exist_ok=True)
 
 
 def print_grid(width, height, cell_print_func):
