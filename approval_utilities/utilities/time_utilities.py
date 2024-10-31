@@ -10,7 +10,7 @@ def use_utc_timezone() -> ContextManager:
 
         def __enter__(self):
             self.timezone = os.environ.get("TZ")
-            os.environ["TZ"] = "UCT"
+            os.environ["TZ"] = "UTC"
 
         def __exit__(self, exc_type, exc_val, exc_tb):
             if self.timezone is None:
