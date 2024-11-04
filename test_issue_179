@@ -1,0 +1,41 @@
+#! /bin/bash
+set -euo pipefail
+set -xv
+
+
+# script_dir=$(dirname "$0")
+script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+
+
+# Producer of package...
+# Not in venv to create package
+rm -rf dist
+python3 setup.py sdist bdist_wheel
+
+# Consumer of package...
+
+# TODO
+# - Cleanup this directory
+# - cd back to original directory
+
+
+
+temp_dir=$(mktemp --directory)
+cd "$temp_dir"
+
+python3 -m venv .venv
+. ./.venv/bin/activate
+pip install mypy
+
+
+
+pip install "${script_dir}/dist/approvaltests-14.0.0-py3-none-any.whl"
+
+
+# TODO
+# - Import approval utilities
+# - make sub-something works -- 'import approvaltests.xxxxx'
+
+echo "import approvaltests" > test.py
+mypy test.py
