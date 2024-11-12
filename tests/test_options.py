@@ -1,9 +1,12 @@
+import importlib
 import inspect
+import sys
 
 from approvaltests import (
     get_default_reporter,
     approvals,
     verify,
+    verify_all,
     ReporterForTesting,
     combination_approvals,
 )
@@ -13,14 +16,22 @@ from approvaltests.reporters import ReportByCreatingDiffFile, MultiReporter
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.utilities import command_line_approvals
 from approvaltests.utilities.logger import simple_logger_approvals
+from approvaltests.utilities.logging import logging_approvals
+
+
+_approvals_modules = list(sorted(filter(
+    lambda name: name.startswith("approvaltests.") and name.endswith("approvals"),
+    sys.modules.keys(),
+)))
+
+
+def test_list_of_modules():
+    verify_all("", _approvals_modules)
 
 
 def test_every_function_in_approvals_with_verify_has_an_options():
-    assert_verify_methods_have_options(approvals)
-    assert_verify_methods_have_options(combination_approvals)
-    assert_verify_methods_have_options(simple_logger_approvals)
-    assert_verify_methods_have_options(command_line_approvals)
-    assert_verify_methods_have_options(mrjob_approvals)
+    for module_name in _approvals_modules:
+        assert_verify_methods_have_options(importlib.import_module(module_name))
 
 
 def assert_verify_methods_have_options(module):
