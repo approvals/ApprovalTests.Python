@@ -52,7 +52,10 @@ def execute_script(directory, log_file):
 
 
 def test_create_argument_parser():
-    verify_argument_parser(create_argument_parser())
+    scrubber = lambda t: t.replace("options:", "<optional header>:").replace(
+        "optional arguments:", "<optional header>:"
+    )
+    verify_argument_parser(create_argument_parser(), options=Options().with_scrubber(scrubber))
 
 
 def test_find_stale_approved_files():
