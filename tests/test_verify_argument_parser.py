@@ -1,9 +1,6 @@
 import argparse
-import os
 
-from approvaltests import verify_argument_parser
-from tests.find_stale_approved_files import create_argument_parser
-from approvaltests.core.options import Options
+from approvaltests import verify_argument_parser, Options
 
 
 def test_argument_parser():
