@@ -1,6 +1,7 @@
 setuptools
 numpy
 pylint
+mypy
 
 pytest
 pytest-asyncio==0.21.1 # 0.23 has a bug 2023/12/3
