@@ -19,10 +19,15 @@ from approvaltests.utilities.logger import simple_logger_approvals
 from approvaltests.utilities.logging import logging_approvals
 
 
-_approvals_modules = list(sorted(filter(
-    lambda name: name.startswith("approvaltests.") and name.endswith("approvals"),
-    sys.modules.keys(),
-)))
+_approvals_modules = list(
+    sorted(
+        filter(
+            lambda name: name.startswith("approvaltests.")
+            and name.endswith("approvals"),
+            sys.modules.keys(),
+        )
+    )
+)
 
 
 def test_list_of_modules():
