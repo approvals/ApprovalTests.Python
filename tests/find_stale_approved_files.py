@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 import os
 import argparse
 import pathlib
@@ -29,7 +30,7 @@ def main() -> None:
 
     if missing_files:
         print("The following files are not in the approved log:")
-        for file in missing_files:
+        for file in sorted(missing_files):
             print(file)
     else:
         print("All found approved files are present in the log.")
