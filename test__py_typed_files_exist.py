@@ -35,9 +35,7 @@ def main() -> None:
 
         with tempfile.NamedTemporaryFile(suffix=".py") as _test_file:
             test_file = pathlib.Path(_test_file.name)
-            test_file.write_text(
-                f"import {package_name}"
-            )
+            test_file.write_text(f"import {package_name}")
 
             _run_python_checked(
                 ["-m", "mypy", test_file.name],
