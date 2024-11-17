@@ -1,3 +1,5 @@
 -r requirements.prod.txt
 -r requirements.test.txt
 black
+setuptools
+mypy
