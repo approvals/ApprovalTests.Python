@@ -22,3 +22,11 @@ jobs:
         run: |
           python ./generate_prod_min.py
           ./run_tests.sh
+        shell: bash
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v5
+        if: always()
+        with:
+          report_paths: '**/test-reports/*.xml'
+          detailed_summary: true
