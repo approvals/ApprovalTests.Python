@@ -21,6 +21,7 @@ jobs:
       - name: Test
         run: |
           ./run_tests.sh
+        shell: bash
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
