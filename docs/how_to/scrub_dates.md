@@ -32,7 +32,7 @@ created at <date0>
 
 ## Supported formats
 
-<!-- include: test_date_scrubber.test_supported_formats.approved.md -->
+<!-- include: test_date_scrubber.test_supported_formats_as_table.approved.md -->
 | Example Date | Regex Pattern |
 | --- | --- |
 | Tue May 13 16:30:00 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} |
