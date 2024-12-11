@@ -32,7 +32,7 @@ def test_unsupported_format() -> None:
     verify_exception(lambda: DateScrubber.get_scrubber_for("an unsupported format"))
 
 
-def test_supported_formats() -> None:
+def test_supported_formats_as_table() -> None:
     table = markdown_table.MarkdownTable.with_headers("Example Date", "Regex Pattern")
     supported_formats = DateScrubber.get_supported_formats()
     for date_regex, examples in supported_formats:
