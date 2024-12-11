@@ -61,6 +61,10 @@ class DateScrubber:
                 r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s([0-3]?\d)\s([0-1]\d:[0-5]\d:[0-5]\d)\s(\d{4})",
                 ["Tue May 13 16:30:00 2014", "Wed Dec 11 14:59:44 2024"],
             ),
+            (
+                r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}",
+                ["2021-09-10T08:07:00+03:00", "2021-01-01T00:00:00+00:00"],
+            ),
         ]
 
     def __init__(self, date_regex: str):
