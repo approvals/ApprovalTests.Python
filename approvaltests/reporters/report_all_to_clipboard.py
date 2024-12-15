@@ -4,7 +4,7 @@ from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 
 
 class ReporterByCopyMoveCommandForEverythingToClipboard(Reporter):
-    text = ""
+    text: str = ""
 
     def report(self, received_path, approved_path):
         ReporterByCopyMoveCommandForEverythingToClipboard.text = (

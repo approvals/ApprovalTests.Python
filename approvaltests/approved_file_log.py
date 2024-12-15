@@ -1,5 +1,7 @@
 from pathlib import Path
 
+APPROVAL_TESTS_TEMP_DIRECTORY: str = ".approval_tests_temp"
+
 
 class ApprovedFilesLog:
     @staticmethod
@@ -8,7 +10,7 @@ class ApprovedFilesLog:
 
     @staticmethod
     def get_approved_files_log() -> Path:
-        path = Path(".approval_tests_temp/.approved_files.log")
+        path = Path("%s/.approved_files.log" % APPROVAL_TESTS_TEMP_DIRECTORY)
         path.parent.mkdir(parents=True, exist_ok=True)
 
         return path
