@@ -1,6 +1,8 @@
 # use an approval test
 # generate the command file contents and approve that contents
 # two failing tests that use the new reporter
+from pathlib import Path
+
 from approvaltests import Options, verify, Reporter
 from approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY
 from reporters import get_command_text
@@ -13,7 +15,12 @@ from reporters import get_command_text
 
 
 class ReporterThatCreatesAnApprovalScript (Reporter):
+    file = None
     def create_approval_script(self, script:str):
+        if ReporterThatCreatesAnApprovalScript.file==None:
+            ReporterThatCreatesAnApprovalScript.file = Path(APPROVAL_TESTS_TEMP_DIRECTORY)/"approval_script.bat"
+            ReporterThatCreatesAnApprovalScript.file.mkdir(parents=True, exist_ok=True)
+            ReporterThatCreatesAnApprovalScript.file.write_text("")
         dir = APPROVAL_TESTS_TEMP_DIRECTORY
         with open(f"{dir}/approval_script.bat", "a") as f:
             f.write(script)
