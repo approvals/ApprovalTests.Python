@@ -15,8 +15,9 @@ from reporters import get_command_text
 class ReporterThatCreatesAnApprovalScript (Reporter):
     def create_approval_script(self, script:str):
         dir = APPROVAL_TESTS_TEMP_DIRECTORY
-        with open(f"{dir}/approval_script.bat", "w") as f:
+        with open(f"{dir}/approval_script.bat", "a") as f:
             f.write(script)
+            f.write("\n")
 
     def report(self, received_path: str, approved_path: str) -> bool:
         self.create_approval_script( get_command_text(received_path, approved_path))
@@ -27,4 +28,4 @@ def test_first():
     verify("hello first test", options=Options().with_reporter(ReporterThatCreatesAnApprovalScript()))
 
 def test_two():
-    verify("hello first test", options=Options().with_reporter(ReporterThatCreatesAnApprovalScript()))
+    verify("hello second test", options=Options().with_reporter(ReporterThatCreatesAnApprovalScript()))
