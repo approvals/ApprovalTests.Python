@@ -3,6 +3,7 @@ import json
 import os
 
 from copy import deepcopy
+from pathlib import Path
 
 from typing import Callable, Dict, TypeVar
 
@@ -92,3 +93,8 @@ _K = TypeVar("_K")
 
 def filter_values(filter: Callable[[_V], bool], a_dict: Dict[_K, _V]) -> Dict[_K, _V]:
     return {k: v for k, v in a_dict.items() if filter(v)}
+
+
+def append_to_file(file:Path, text:str):
+    with file.open(mode="a") as f:
+        f.write(text)
