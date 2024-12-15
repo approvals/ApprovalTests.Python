@@ -6,9 +6,10 @@ from reporters import get_command_text
 from utils import append_to_file, is_windows_os
 
 
-class ReporterThatCreatesAnApprovalScript (Reporter):
+class ReporterThatCreatesAnApprovalScript(Reporter):
     file = None
-    def create_approval_script(self, script:str):
+
+    def create_approval_script(self, script: str):
         if ReporterThatCreatesAnApprovalScript.file is None:
             if is_windows_os():
                 self.create_script_windows()
@@ -31,5 +32,5 @@ class ReporterThatCreatesAnApprovalScript (Reporter):
         ReporterThatCreatesAnApprovalScript.file.write_text("")
 
     def report(self, received_path: str, approved_path: str) -> bool:
-        self.create_approval_script( get_command_text(received_path, approved_path))
+        self.create_approval_script(get_command_text(received_path, approved_path))
         return True

@@ -95,6 +95,6 @@ def filter_values(filter: Callable[[_V], bool], a_dict: Dict[_K, _V]) -> Dict[_K
     return {k: v for k, v in a_dict.items() if filter(v)}
 
 
-def append_to_file(file:Path, text:str):
+def append_to_file(file: Path, text: str):
     with file.open(mode="a") as f:
         f.write(text)
