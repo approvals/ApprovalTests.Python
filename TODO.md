@@ -3,18 +3,21 @@
 - [ ] docs: point to new architecture docs from python repo
 - [ ] mypy in the build
 - [ ] fix Namer and NamerBase
-FUTURE TODO
-Fix this timer 
+- [ ] ReporterThatCreatesAnApprovalScript
+  - [ ] Write unit tests for this (automated)  see the manual tests in this file: test_reporter_that_creates_an_approval_script.py
+  - [ ] Create log and approve_all_failing.sh
+
+- FUTURE TODO
+Fix this timer
 1) show all three roles
 Typer: talker and Next
 2) label the roles to match what we like
-Instead of ____’s Turn
-Show
-Talker: _____
+New Timer will show: 
+Typer: <typer name>
 And in lower right:
-Talker: __<talker name>
-Next: <next>
-3) 
+Talker: <talker name>
+Next: <name of next person>
+
 
 
 
