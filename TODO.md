@@ -8,7 +8,7 @@
   - [ ] Create log and approve_all_failing.sh
 
 - FUTURE TODO
-Fix this timer
+Fix this timer - [see draft of proposed issue](https://docs.google.com/document/d/1avKRVobADSIxXiwRQt0o3Ohawvdbbo4UDlWtyRYhuRo/edit?usp=sharing)
 1) show all three roles
 Typer: talker and Next
 2) label the roles to match what we like
