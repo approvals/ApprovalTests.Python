@@ -19,19 +19,20 @@ def test_verify_command_line_with_input():
 
 def test_command_line_verify():
     import tempfile
-    # create a temporary directory
-    temp_dir: Path = Path(tempfile.TemporaryDirectory().name)
-    temp_dir.mkdir()
-    working_directory: Path = Path(__file__).parents[2]
-    python_script_path = working_directory / "approvaltests/commandline_interface.py"
-    test_script_path = working_directory / "tests/utilities/passing_command_line_verify"
-    working_directory_str = str(working_directory.resolve())
+    temp_directory: Path = Path(tempfile.TemporaryDirectory().name)
+    temp_directory.mkdir()
+
+    project_directory: Path = Path(__file__).parents[2]
+    python_script_path = project_directory / "approvaltests/commandline_interface.py"
+    test_script_path = project_directory / "tests/utilities/passing_command_line_verify"
+    project_directory_str = str(project_directory.resolve())
+    temp_directory_str: str = str(temp_directory.resolve())
     verify_command_line(
         f"python {python_script_path} -t {test_script_path}",
         input_string="hello from command line interface",
-        current_working_directory=str(temp_dir.resolve()),
-        additional_environment_variables={"PYTHONPATH": working_directory_str},
-        options=Options().with_scrubber(lambda s: s.replace(working_directory_str, ".").replace("\\", "/")),
+        current_working_directory=temp_directory_str,
+        additional_environment_variables={"PYTHONPATH": project_directory_str},
+        options=Options().with_scrubber(lambda s: s.replace(project_directory_str, ".").replace("\\", "/")),
     )
 
 
