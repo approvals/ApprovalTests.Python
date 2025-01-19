@@ -19,6 +19,7 @@ def test_verify_command_line_with_input():
 
 def test_command_line_verify():
     import tempfile
+
     temp_directory: Path = Path(tempfile.TemporaryDirectory().name)
     temp_directory.mkdir()
 
@@ -32,7 +33,9 @@ def test_command_line_verify():
         input_string="hello from command line interface",
         current_working_directory=temp_directory_str,
         additional_environment_variables={"PYTHONPATH": project_directory_str},
-        options=Options().with_scrubber(lambda s: s.replace(project_directory_str, ".").replace("\\", "/")),
+        options=Options().with_scrubber(
+            lambda s: s.replace(project_directory_str, ".").replace("\\", "/")
+        ),
     )
 
 

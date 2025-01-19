@@ -17,7 +17,7 @@ def verify_command_line(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     input_string: str = None,
     options: Options = None,
-    current_working_directory: str =".",
+    current_working_directory: str = ".",
     additional_environment_variables=None,
 ):
     my_env = None
