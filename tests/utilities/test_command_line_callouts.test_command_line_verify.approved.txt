@@ -1,1 +1,1 @@
-Test Passed: tests/utilities/passing_command_line_verify
+Test Passed: ./tests/utilities/passing_command_line_verify

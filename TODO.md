@@ -1,3 +1,22 @@
+- [ ] Count the number of verify()s.
+- TIL 194 is proving that we know when the verifies are being called
+- the 194 = 194 shows it works when that test commented out
+- TIL the  test_command_line_verify() test is the problem.   
+  - start the process in a different place
+  - isolate the test
+- [ ] Count the number of `approved` files.
+- [ ] 2025-01-19 - BUG: The log is incomplete
+  - To Repro:
+     1. Run all the tests
+     2. See when we clear the log file
+     1. Observe `.approved-files.log`
+    - Result: The number of tests in the log is far fewer than the number of tests in the project
+  - Hypothesis: this issue affects our repo but not our customers.
+    - We have tests that wipe the log
+    - We have tests that call out to thing that wipe the log
+     - We want to end up with a test. Prefer automated, but manual is acceptable. For now, investigate to understand.
+    - Test plan folder
+    - 
 - [ ] 2024-09-22 discuss access to repo beyond just Llewellyn's user
 - [ ] clean-up old PRs (there are 3 from Dec 2023)
 - [ ] docs: point to new architecture docs from python repo
