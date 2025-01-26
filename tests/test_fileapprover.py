@@ -103,7 +103,12 @@ class FileApproverTests(unittest.TestCase):
 
     def run_a_failing_test(self, extension):
         try:
-            verify("a", options=Options().for_file.with_extension(extension).with_reporter(ReportQuietly()))
+            verify(
+                "a",
+                options=Options()
+                .for_file.with_extension(extension)
+                .with_reporter(ReportQuietly()),
+            )
             self.fail("expected to fail")
         except:
             pass
