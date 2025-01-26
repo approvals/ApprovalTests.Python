@@ -10,7 +10,7 @@ class FailedComparisonLog:
 
     @staticmethod
     def get_failed_comparison_log() -> Path:
-        path = Path("%s/.failed_comparison.log" % APPROVAL_TESTS_TEMP_DIRECTORY)
+        path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / ".failed_comparison.log"
         path.parent.mkdir(parents=True, exist_ok=True)
 
         return path

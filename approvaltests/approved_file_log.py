@@ -10,7 +10,7 @@ class ApprovedFilesLog:
 
     @staticmethod
     def get_approved_files_log() -> Path:
-        path = Path("%s/.approved_files.log" % APPROVAL_TESTS_TEMP_DIRECTORY)
+        path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / ".approved_files.log"
         path.parent.mkdir(parents=True, exist_ok=True)
 
         return path

@@ -59,7 +59,7 @@ class FileApproverTests(unittest.TestCase):
         name = approvals.get_default_namer().get_approved_filename()
         name1 = name.replace(".txt", ".txt1")
         name2 = name.replace(".txt", ".txt2")
-        
+
         log = ApprovedFilesLog.get_approved_files_log()
         log_lines = log.read_text().split("\n")
 
@@ -93,19 +93,17 @@ class FileApproverTests(unittest.TestCase):
         self.assertNotIn(name2, log_lines)
 
         # fail a verify and log it
-        try:
-            verify("a", options=Options().for_file.with_extension(".txt1").with_reporter(ReportQuietly()))
-            self.fail("expected to fail")
-        except:
-            pass
-
-        try:
-            verify("a", options=Options().for_file.with_extension(".txt2").with_reporter(ReportQuietly()))
-            self.fail("expected to fail")
-        except:
-            pass
+        self.run_a_failing_test(".txt1")
+        self.run_a_failing_test(".txt2")
 
         # assert that the approved file is logged
         log_lines = log.read_text().split("\n")
         self.assertIn(name1, log_lines)
         self.assertIn(name2, log_lines)
+
+    def run_a_failing_test(self, extension):
+        try:
+            verify("a", options=Options().for_file.with_extension(extension).with_reporter(ReportQuietly()))
+            self.fail("expected to fail")
+        except:
+            pass

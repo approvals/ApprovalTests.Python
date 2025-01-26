@@ -1,4 +1,6 @@
 
+- [ ] clean up FileApproverTests
+- [ ] Move the failed comparsion test to it's own file
 - [ ] 2025-01-19 Make a long-term fix for the situation where a test has a destructive command
 - [ ] 2025-01-26 Easy "approve all" script
   - Llewellyn says "1. Create the .failed_comparison.log"
