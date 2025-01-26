@@ -9,6 +9,7 @@ from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
 from approvaltests.approved_file_log import ApprovedFilesLog
+from approvaltests.failed_comparison_log import FailedComparisonLog
 
 
 def exists(path: str) -> bool:
@@ -108,7 +109,7 @@ class FileApprover:
         if comparator.compare(received_file, approved_file):
             os.remove(received_file)
             return True
-
+        FailedComparisonLog.log(received_file, approved_file)
         worked = reporter.report(received_file, approved_file)
         if not worked:
             raise ReporterNotWorkingException(reporter)

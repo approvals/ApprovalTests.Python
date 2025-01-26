@@ -6,9 +6,11 @@ from approvaltests.file_approver import FileApprover
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
+from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
 from approvaltests.approved_file_log import ApprovedFilesLog
+from approvaltests.failed_comparison_log import FailedComparisonLog
 
 
 class FileApproverTests(unittest.TestCase):
@@ -67,6 +69,40 @@ class FileApproverTests(unittest.TestCase):
         # touch approved file
         verify("a", options=Options().for_file.with_extension(".txt1"))
         verify("a", options=Options().for_file.with_extension(".txt2"))
+
+        # assert that the approved file is logged
+        log_lines = log.read_text().split("\n")
+        self.assertIn(name1, log_lines)
+        self.assertIn(name2, log_lines)
+
+    def test_failed_comparison_is_logged(self):
+        approved_name = approvals.get_default_namer().get_approved_filename()
+        received_name =  approvals.get_default_namer().get_received_filename()
+        expected_line = f"{received_name} -> {approved_name}"
+
+        name1 = expected_line.replace(".txt", ".txt1")
+        name2 = expected_line.replace(".txt", ".txt2")
+
+        log = FailedComparisonLog.get_failed_comparison_log()
+
+        log_lines = log.read_text().split("\n")
+
+        # check log is cleared
+        self.assertNotIn(name1, log_lines)
+        self.assertNotIn(name2, log_lines)
+
+        # fail a verify and log it
+        try:
+            verify("a", options=Options().for_file.with_extension(".txt1").with_reporter(ReportQuietly()))
+            self.fail("expected to fail")
+        except:
+            pass
+
+        try:
+            verify("a", options=Options().for_file.with_extension(".txt2").with_reporter(ReportQuietly()))
+            self.fail("expected to fail")
+        except:
+            pass
 
         # assert that the approved file is logged
         log_lines = log.read_text().split("\n")
