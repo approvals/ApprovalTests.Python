@@ -4,11 +4,11 @@
   - Llewellyn says "1. Create the .failed_comparison.log"
   - Make a failed_comparison log and an approve_all script, in Python. Model it after ApprovalTests.Java. 
   - Requirements:
-    - [ ] Create the .failed_comparison.log
-      - [ ] Every time you run the tests, it creates a fresh .failed_comparison.log
-      - [ ] failed_comparison.log contains a list of all of the tests that failed, with a "goes-to" arrow for the approval file that it would be saved in, e.g.:
+    - [X] Create the .failed_comparison.log
+      - [X] Every time you run the tests, it creates a fresh .failed_comparison.log
+      - [X] failed_comparison.log contains a list of all of the tests that failed, with a "goes-to" arrow for the approval file that it would be saved in, e.g.:
       -    `C:\path\to\test.received.txt -> C:\path\to\test.approved.txt`
-    - [ ] Load the utility scripts
+    - [ ] Download the utility scripts
       - [ ] approved_all.sh approves all the files that are listed in the failed_comparison.log
       - Tip: start with the files at https://github.com/approvals/ApprovalTests.Java/tree/master/resources
 - [ ] 2024-09-22 discuss access to repo beyond just Llewellyn's user

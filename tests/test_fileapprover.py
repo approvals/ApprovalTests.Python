@@ -57,10 +57,11 @@ class FileApproverTests(unittest.TestCase):
 
     def test_approved_file_is_logged(self):
         name = approvals.get_default_namer().get_approved_filename()
-        log = ApprovedFilesLog.get_approved_files_log()
-        log_lines = log.read_text().split("\n")
         name1 = name.replace(".txt", ".txt1")
         name2 = name.replace(".txt", ".txt2")
+        
+        log = ApprovedFilesLog.get_approved_files_log()
+        log_lines = log.read_text().split("\n")
 
         # check log is cleared
         self.assertNotIn(name1, log_lines)
