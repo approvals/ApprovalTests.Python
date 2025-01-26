@@ -78,7 +78,7 @@ class FileApproverTests(unittest.TestCase):
 
     def test_failed_comparison_is_logged(self):
         approved_name = approvals.get_default_namer().get_approved_filename()
-        received_name =  approvals.get_default_namer().get_received_filename()
+        received_name = approvals.get_default_namer().get_received_filename()
         expected_line = f"{received_name} -> {approved_name}"
 
         name1 = expected_line.replace(".txt", ".txt1")
