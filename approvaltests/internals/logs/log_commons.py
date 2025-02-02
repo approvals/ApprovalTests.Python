@@ -21,3 +21,6 @@ class LogCommons:
         )
         if response.ok:
             script_path.write_text(response.text)
+
+            make_executable = 0o755
+            script_path.chmod(make_executable)
