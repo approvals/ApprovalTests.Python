@@ -22,12 +22,12 @@ class ApprovedFilesLog:
         return path
 
     @staticmethod
-    def log(approved_file):
+    def log(approved_file: str) -> None:
         with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
             file.write(f"{approved_file}\n")
 
     @staticmethod
-    def download_script_if_needed(script_basename):
+    def download_script_if_needed(script_basename: str) -> None:
         suffix = ".bat" if is_windows_os() else ".sh"
         script_name_with_suffix = f"{script_basename}{suffix}"
         script_path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / script_name_with_suffix

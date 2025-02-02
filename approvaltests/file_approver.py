@@ -8,8 +8,8 @@ from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
 from approvaltests.core.reporter import Reporter
 from approvaltests.core.writer import Writer
-from approvaltests.approved_file_log import ApprovedFilesLog
-from approvaltests.failed_comparison_log import FailedComparisonLog
+from approvaltests.internals.logs.approved_file_log import ApprovedFilesLog
+from approvaltests.internals.logs.failed_comparison_log import FailedComparisonLog
 
 
 def exists(path: str) -> bool:

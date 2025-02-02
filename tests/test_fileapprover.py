@@ -9,8 +9,8 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
-from approvaltests.approved_file_log import ApprovedFilesLog
-from approvaltests.failed_comparison_log import FailedComparisonLog
+from approvaltests.internals.logs.approved_file_log import ApprovedFilesLog
+from approvaltests.internals.logs.failed_comparison_log import FailedComparisonLog
 
 
 class FileApproverTests(unittest.TestCase):
