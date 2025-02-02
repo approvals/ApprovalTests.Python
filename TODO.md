@@ -1,10 +1,9 @@
 - [ ] Scripts to clean up approvals
-  1. Write code to download the scripts at test runtime, the first time you verify anything, when it clears the log
-     - Check if there's a Python `Once` facility
-     - from java repo under resources
-  2. If it doesn't have an internet connection, then it doesn't fail (Get failure mode to work)
-     - test the script
-  3. Consider whether this creates an acceptable run-time dependency
+     - [ ] Fix detect_and_remove_abandoned.bat
+     - [ ] Check if there's a Python `Once` facility
+       - Wrap download_if_needed with Once
+     - [ ] test the `approve_all` script
+     - [ ]  Consider whether this creates an acceptable run-time dependency
 - [ ] clean up FileApproverTests
 - [ ] Move the failed comparsion test to it's own file
 - [ ] 2025-01-19 Make a long-term fix for the situation where a test has a destructive command
