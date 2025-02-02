@@ -27,16 +27,13 @@ class ApprovedFilesLog:
             file.write(f"{approved_file}\n")
 
     @staticmethod
-    def download_script_if_needed(script_name):
-        if is_windows_os():
-            script_name += ".bat"
-        else:
-            script_name += ".sh"
-        script_path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / script_name
+    def download_script_if_needed(script_basename):
+        script_name_with_suffix = Path(script_basename).with_suffix(".bat" if is_windows_os() else ".sh")
+        script_path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / script_name_with_suffix
         if script_path.exists():
             return
 
-        response = requests.get(f"https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/resources/{script_name}")
+        response = requests.get(f"https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/resources/{script_name_with_suffix}")
         if response.ok:
             script_path.write_text(response.text)
 
