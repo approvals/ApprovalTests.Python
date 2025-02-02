@@ -3,6 +3,7 @@
      - Check if there's a Python `Once` facility
      - from java repo under resources
   2. If it doesn't have an internet connection, then it doesn't fail (Get failure mode to work)
+     - test the script
   3. Consider whether this creates an acceptable run-time dependency
 - [ ] clean up FileApproverTests
 - [ ] Move the failed comparsion test to it's own file
