@@ -28,7 +28,8 @@ class ApprovedFilesLog:
 
     @staticmethod
     def download_script_if_needed(script_basename):
-        script_name_with_suffix = Path(script_basename).with_suffix(".bat" if is_windows_os() else ".sh")
+        suffix = ".bat" if is_windows_os() else ".sh"
+        script_name_with_suffix = f"{script_basename}{suffix}"
         script_path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / script_name_with_suffix
         if script_path.exists():
             return
