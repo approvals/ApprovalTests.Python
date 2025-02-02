@@ -1,9 +1,10 @@
 from pathlib import Path
 
+from approval_utilities.utils import is_windows_os, append_to_file
 from approvaltests import Reporter
-from approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY
-from reporters import get_command_text
-from utils import append_to_file, is_windows_os
+
+from approvaltests.internals.logs.log_commons import APPROVAL_TESTS_TEMP_DIRECTORY
+from approvaltests.reporters import get_command_text
 
 
 class ReporterThatCreatesAnApprovalScript(Reporter):

@@ -1,13 +1,14 @@
 from pathlib import Path
 
-from approvaltests.internals.logs.approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY, ApprovedFilesLog
+from approvaltests.internals.logs.approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY
+from approvaltests.internals.logs.log_commons import LogCommons
 
 
 class FailedComparisonLog:
     @staticmethod
     def clear_log_file() -> None:
         FailedComparisonLog.get_failed_comparison_log().write_text("")
-        ApprovedFilesLog.download_script_if_needed("approve_all")
+        LogCommons.download_script_if_needed("approve_all")
 
     @staticmethod
     def get_failed_comparison_log() -> Path:
