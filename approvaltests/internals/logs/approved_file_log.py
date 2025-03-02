@@ -15,8 +15,8 @@ class ApprovedFilesLog:
     @staticmethod
     def get_approved_files_log() -> Path:
         path = APPROVAL_TESTS_TEMP_DIRECTORY / ".approved_files.log"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.parent.joinpath(".gitignore").write_text("*")
+        APPROVAL_TESTS_TEMP_DIRECTORY.mkdir(parents=True, exist_ok=True)
+        APPROVAL_TESTS_TEMP_DIRECTORY.joinpath(".gitignore").write_text("*")
 
         return path
 
