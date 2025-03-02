@@ -19,7 +19,7 @@ class ReporterThatCreatesAnApprovalScript(Reporter):
         append_to_file(ReporterThatCreatesAnApprovalScript.file, f"{script}\n")
 
     def create_script_unix(self):
-        dir = Path(APPROVAL_TESTS_TEMP_DIRECTORY)
+        dir = APPROVAL_TESTS_TEMP_DIRECTORY
         dir.mkdir(parents=True, exist_ok=True)
         ReporterThatCreatesAnApprovalScript.file = dir / "approval_script.sh"
         ReporterThatCreatesAnApprovalScript.file.write_text("#!/bin/bash\n")
@@ -27,7 +27,7 @@ class ReporterThatCreatesAnApprovalScript(Reporter):
         ReporterThatCreatesAnApprovalScript.file.chmod(0o755)
 
     def create_script_windows(self):
-        dir = Path(APPROVAL_TESTS_TEMP_DIRECTORY)
+        dir = APPROVAL_TESTS_TEMP_DIRECTORY
         dir.mkdir(parents=True, exist_ok=True)
         ReporterThatCreatesAnApprovalScript.file = dir / "approval_script.bat"
         ReporterThatCreatesAnApprovalScript.file.write_text("")

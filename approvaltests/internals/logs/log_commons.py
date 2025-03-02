@@ -4,7 +4,7 @@ import requests
 
 from approval_utilities.utils import is_windows_os
 
-APPROVAL_TESTS_TEMP_DIRECTORY: str = ".approval_tests_temp"
+APPROVAL_TESTS_TEMP_DIRECTORY = Path(".approval_tests_temp")
 
 
 class LogCommons:
@@ -13,7 +13,7 @@ class LogCommons:
         try:
             suffix = ".bat" if is_windows_os() else ".sh"
             script_name_with_suffix = f"{script_basename}{suffix}"
-            script_path = Path(APPROVAL_TESTS_TEMP_DIRECTORY) / script_name_with_suffix
+            script_path = APPROVAL_TESTS_TEMP_DIRECTORY / script_name_with_suffix
             if script_path.exists():
                 return
 
