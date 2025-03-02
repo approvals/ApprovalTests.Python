@@ -1,3 +1,6 @@
+- [ ] ensure approval test temp always has the .gitignore
+    - there are multiple places that call mkdir, but ONLY one that writes .gitignore
+    
 - [ ] Scripts to clean up approvals
      - [ ] Fix detect_and_remove_abandoned.bat
      - [ ] Check if there's a Python `Once` facility
