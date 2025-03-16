@@ -14,15 +14,13 @@ class ApprovedFilesLog:
 
     @staticmethod
     def get_approved_files_log() -> Path:
-        path = APPROVAL_TESTS_TEMP_DIRECTORY / ".approved_files.log"
-        ApprovedFilesLog.make_directory_with_gitignore_with_text()
-
-        return path
+        return ApprovedFilesLog.get_temp_directory() / ".approved_files.log"
 
     @staticmethod
-    def make_directory_with_gitignore_with_text():
+    def get_temp_directory() -> Path:
         APPROVAL_TESTS_TEMP_DIRECTORY.mkdir(parents=True, exist_ok=True)
         APPROVAL_TESTS_TEMP_DIRECTORY.joinpath(".gitignore").write_text("*")
+        return APPROVAL_TESTS_TEMP_DIRECTORY
 
     @staticmethod
     def log(approved_file: str) -> None:
