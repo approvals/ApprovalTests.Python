@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from approvaltests.internals.logs.approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY
+from approvaltests.internals.logs.approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY, ApprovedFilesLog
 from approvaltests.internals.logs.log_commons import LogCommons
 
 
@@ -12,10 +12,8 @@ class FailedComparisonLog:
 
     @staticmethod
     def get_failed_comparison_log() -> Path:
-        path = APPROVAL_TESTS_TEMP_DIRECTORY / ".failed_comparison.log"
-        APPROVAL_TESTS_TEMP_DIRECTORY.mkdir(parents=True, exist_ok=True)
+        return ApprovedFilesLog.get_temp_directory() / ".failed_comparison.log"
 
-        return path
 
     @staticmethod
     def log(received_file, approved_file):
