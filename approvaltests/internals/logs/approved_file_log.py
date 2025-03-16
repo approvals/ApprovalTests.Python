@@ -15,12 +15,12 @@ class ApprovedFilesLog:
     @staticmethod
     def get_approved_files_log() -> Path:
         path = APPROVAL_TESTS_TEMP_DIRECTORY / ".approved_files.log"
-        ApprovedFilesLog.ensure_applesauce()
+        ApprovedFilesLog.make_directory_with_gitignore_with_text()
 
         return path
 
     @staticmethod
-    def ensure_applesauce():
+    def make_directory_with_gitignore_with_text():
         APPROVAL_TESTS_TEMP_DIRECTORY.mkdir(parents=True, exist_ok=True)
         APPROVAL_TESTS_TEMP_DIRECTORY.joinpath(".gitignore").write_text("*")
 
