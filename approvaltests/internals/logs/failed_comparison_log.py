@@ -8,7 +8,7 @@ class FailedComparisonLog:
     @staticmethod
     def clear_log_file() -> None:
         FailedComparisonLog.get_failed_comparison_log().write_text("")
-        LogCommons.download_script_if_needed("approve_all")
+        LogCommons.download_script_from_common_repo_if_needed("approve_all.py")
 
     @staticmethod
     def get_failed_comparison_log() -> Path:
