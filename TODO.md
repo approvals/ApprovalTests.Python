@@ -1,3 +1,8 @@
+- 2025-03-23 
+  - change the checklist
+  - install update to CoPilot
+  - PR to mobtime app to show the next person (see Susan and Diana's work)
+  - Discussion: what to do about unused imports
 - [ ] ensure approval test temp always has the .gitignore
     - there are multiple places that call mkdir, but ONLY one that writes .gitignore
     
