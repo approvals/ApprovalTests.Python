@@ -14,10 +14,14 @@
 
 ## Join our Weekly Mobbing sessions
 
-The best way to contribute is to join our weekly mobbing sessions,  
-Everyone is welcome:
+The best way to contribute is to join our weekly mobbing sessions.    
+Everyone is welcome. You only need Zoom and a web browser to participate:
 
-Every Sunday [10:00am MST](https://www.timeanddate.com/worldclock/fixedtime.html?msg=Python+Mob&iso=20220508T10&p1=75&ah=1&am=30)
+We meet every Sunday [10:00am MST](https://www.timeanddate.com/worldclock/fixedtime.html?msg=Python+Mob&iso=20220508T10&p1=75&ah=1&am=30)
+
+## Join our Discord
+
+https://discord.gg/XDrgy6x6Se
 
 ### Calendar Invite
 
@@ -29,9 +33,9 @@ You can add our [google calendar here](https://calendar.google.com/calendar/u/0?
 You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNbVJFbTR6UmIxd0FwWWx5UT09)
 
 ### Requirements
-* A laptop with a web browser, keyboard & mouse [required]
-* A webcam [Optional, but strongly suggested]
 
+* A laptop with Zoom, a web browser, keyboard & mouse [required]
+* A webcam [Optional, but strongly suggested]
 
 
 ### Opening Notice
@@ -66,10 +70,6 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
   1. review pending changes
   1. pull `main` 
 
-
-### Anydesk
-
-We might use [anydesk](https://anydesk.com/en) to screen share & controll the development machine. Please download ahead of time.
 
 ## Solo Developement
 If you prefer solo development, check out [How To Setup a Dev Machine](./how_to/setting_up_a_dev_machine.md)

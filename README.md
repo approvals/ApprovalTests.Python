@@ -307,7 +307,7 @@ mock >= 5.1.0         # For verify_logging
 
 ### Weekly Ensemble
 
-The best way to contribute is to [join our weekly mob/ensemble](./docs/Contribute.md)
+The best way to contribute is to [join our weekly mob/ensemble](./docs/Contribute.md).
 
 ### Pull Requests
 
