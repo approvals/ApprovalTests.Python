@@ -51,6 +51,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 # Agenda
 
+  1. Execute the startup checklist
   1. Choose item to work on (15 minutes or less)
   2. Do item (1-2 hours)
   3. Retrospective (As long as needed, has been taking 2-3 hours)
@@ -62,7 +63,8 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
        *note*: Preferences -> display (requires only 1 person is connected)
   1. Start mob timer
   1. Run all tests
-  1. review pending changes 
+  1. review pending changes
+  1. pull `main` 
 
 
 ### Anydesk
