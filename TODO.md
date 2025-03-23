@@ -1,10 +1,20 @@
 - 2025-03-23 
-  - change the checklist
+-  [ ] make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
+- 
+  - [x] change the checklist
   - install update to CoPilot
   - PR to mobtime app to show the next person (see Susan and Diana's work)
   - Discussion: what to do about unused imports
 - [ ] ensure approval test temp always has the .gitignore
     - there are multiple places that call mkdir, but ONLY one that writes .gitignore
+  Possible work for today 2025-3-23
+    - [] 1 does the last feature actually work?  (detecting abandond approve files)
+    - [] 2 make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
+    - [] 3 experiemnt with AI copilot in the editor with the new Agent mode 
+      -         install update to CoPilot
+    - [] 4 add to checklist: review open issues and PRs (at least 1x month )
+    - [] 5 PR to mobtime app to show the next person (see Susan and Diana's work)
+    - 
     
 - [ ] Scripts to clean up approvals
      - [ ] Fix detect_and_remove_abandoned.bat
