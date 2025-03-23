@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from approvaltests.internals.logs.approved_file_log import APPROVAL_TESTS_TEMP_DIRECTORY, ApprovedFilesLog
+from approvaltests.internals.logs.approved_file_log import ApprovedFilesLog
 from approvaltests.internals.logs.log_commons import LogCommons
 
 
