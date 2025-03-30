@@ -4,12 +4,12 @@
 ## Contents
 
   * [Join our Weekly Mobbing sessions](#join-our-weekly-mobbing-sessions)
+  * [Join our Discord](#join-our-discord)
     * [Calendar Invite](#calendar-invite)
     * [Zoom Link](#zoom-link)
     * [Requirements](#requirements)
     * [Opening Notice](#opening-notice)
     * [Startup Checklist](#startup-checklist)
-    * [Anydesk](#anydesk)
   * [Solo Developement](#solo-developement)<!-- endToc -->
 
 ## Join our Weekly Mobbing sessions
@@ -55,7 +55,6 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 # Agenda
 
-  1. Execute the startup checklist
   1. Choose item to work on (15 minutes or less)
   2. Do item (1-2 hours)
   3. Retrospective (As long as needed, has been taking 2-3 hours)

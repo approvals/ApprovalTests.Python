@@ -9,7 +9,9 @@ APPROVAL_TESTS_TEMP_DIRECTORY = Path(".approval_tests_temp")
 
 class LogCommons:
     @staticmethod
-    def download_script_from_common_repo_if_needed(script_name_with_suffix: str) -> None:
+    def download_script_from_common_repo_if_needed(
+        script_name_with_suffix: str,
+    ) -> None:
         try:
             script_path = APPROVAL_TESTS_TEMP_DIRECTORY / script_name_with_suffix
             if script_path.exists():
@@ -25,6 +27,7 @@ class LogCommons:
                 script_path.chmod(make_executable)
         except:
             pass
+
     @staticmethod
     def download_script_if_needed(script_basename: str) -> None:
         try:
