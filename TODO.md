@@ -1,5 +1,15 @@
+2025-04-06
+In `CommonScripts` repo:
+- [ ] move script from detect_and_remove_abandoned.bat -> python
+-  [ ] finish exploratory test 
+    - [ ] Does it actually delete things?
+    - [ ] Showed the wrong files (`str`/`Path` comparison?)
+- [ ] Formatting locally (during the build?)
+- 
 - 2025-03-23 
--  [ ] make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
+-  [x] make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
+  -   Potential Discussion: "Failed comparisons" vs. "Mismatched Files"
+- 
 - 
   - [x] change the checklist
   - install update to CoPilot
