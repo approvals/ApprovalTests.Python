@@ -35,6 +35,7 @@ class ReportWithBeyondCompare4Windows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithBeyondCompare5Windows(GenericDiffReporter):
     def __init__(self):
         super().__init__(
