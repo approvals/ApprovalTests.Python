@@ -55,11 +55,9 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 # Agenda
 
-  1. delete this
-  1. Execute the [Startup Checklist](#startup-checklist)
-  2. Choose item to work on (15 minutes or less)
-  3. Do item (1-2 hours)
-  4. Retrospective (As long as needed, has been taking 2-3 hours)
+  1. Choose item to work on (15 minutes or less)
+  2. Do item (1-2 hours)
+  3. Retrospective (As long as needed, has been taking 2-3 hours)
 
 **You can leave at any time** - and people do.<!-- endInclude -->
 
