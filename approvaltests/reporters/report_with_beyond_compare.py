@@ -26,12 +26,21 @@ class ReportWithBeyondCompareMac(GenericDiffReporter):
         )
 
 
-class ReportWithBeyondCompareWindows(GenericDiffReporter):
+class ReportWithBeyondCompare4Windows(GenericDiffReporter):
     def __init__(self):
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}/Beyond Compare 4/BCompare.exe",
+            )
+        )
+
+class ReportWithBeyondCompare5Windows(GenericDiffReporter):
+    def __init__(self):
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="{ProgramFiles}/Beyond Compare 5/BCompare.exe",
             )
         )
 
@@ -61,7 +70,8 @@ class ReportWithBeyondCompare(FirstWorkingReporter):
     def __init__(self):
         super().__init__(
             ReportWithBeyondCompareMac(),
-            ReportWithBeyondCompareWindows(),
+            ReportWithBeyondCompare4Windows(),
+            ReportWithBeyondCompare5Windows(),
             ReportWithBeyondCompareLinux(),
         )
 
