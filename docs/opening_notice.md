@@ -14,6 +14,7 @@
 
 # Agenda
 
+  1. Execute the [Startup Checklist](./Contribute.md#startup-checklist)
   1. Choose item to work on (15 minutes or less)
   2. Do item (1-2 hours)
   3. Retrospective (As long as needed, has been taking 2-3 hours)
