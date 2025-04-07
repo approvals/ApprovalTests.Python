@@ -43,7 +43,19 @@ FirstWorkingReporter({
     ],
     "name": "ReportWithVSCode",
     "path": "/Applications/Visual Studio Code.app/contents/Resources/app/bin/code"
+}, FirstWorkingReporter(FirstWorkingReporter({
+    "name": "ReportWithBeyondCompareMac",
+    "path": "/Applications/Beyond Compare.app/Contents/MacOS/BCompare"
 }, {
+    "name": "ReportWithBeyondCompare4Windows",
+    "path": "C:/Program Files/Beyond Compare 4/BCompare.exe"
+}, {
+    "name": "ReportWithBeyondCompare5Windows",
+    "path": "C:/Program Files/Beyond Compare 5/BCompare.exe"
+}, {
+    "name": "ReportWithBeyondCompareLinux",
+    "path": "/usr/bin/bcompare"
+})), {
     "arguments": [
         "-u"
     ],

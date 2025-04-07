@@ -1,4 +1,5 @@
-from approvaltests.reporters import FirstWorkingReporter, ReportWithBeyondCompare
+from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
+from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare
 
 
 class ReportWithDiffToolOnWindows(FirstWorkingReporter):
