@@ -10,7 +10,7 @@ class ApprovedFilesLog:
     @staticmethod
     def clear_log_file() -> None:
         ApprovedFilesLog.get_approved_files_log().write_text("")
-        LogCommons.download_script_if_needed("detect_and_remove_abandoned")
+        LogCommons.download_script_from_common_repo_if_needed("remove_abandoned_files.py")
 
     @staticmethod
     def get_approved_files_log() -> Path:
