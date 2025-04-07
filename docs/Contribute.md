@@ -56,10 +56,12 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 # Agenda
 
-  1. Execute the [Startup Checklist](./Contribute.md#startup-checklist)
-  1. Choose item to work on (15 minutes or less)
-  2. Do item (1-2 hours)
-  3. Retrospective (As long as needed, has been taking 2-3 hours)
+  1. Invite everyone to the discord
+  2. Execute the [Startup Checklist](./Contribute.md#startup-checklist)
+  3. review open issues and pull requests
+  4. Choose item to work on (15 minutes or less)
+  5. Do item (1-2 hours)
+  6. Retrospective (As long as needed, has been taking 2-3 hours)
 
 **You can leave at any time** - and people do.<!-- endInclude -->
 
