@@ -8,8 +8,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Run black
       run: |
-        python -m pip install black
-        python -m black .
+        ./format_code.sh
     - name: Run MarkdownSnippets
       run: |
         dotnet tool install --global MarkdownSnippets.Tool
