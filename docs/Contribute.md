@@ -41,7 +41,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 ### Opening Notice
 
 # Values<!-- include: opening_notice.md -->
-  we come together in order to accomplish the following 3 goals in priority order:
+  We come together in order to accomplish the following 3 goals in priority order:
 
   1. Code: We want to get something shipped 
   1. Mobbing: This is a social event, group work, meet people, deal with conflicts/feelings, other human stuff 
