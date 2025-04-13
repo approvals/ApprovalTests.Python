@@ -1,5 +1,5 @@
 # Values
-  we come together in order to accomplish the following 3 goals in priority order:
+  We come together in order to accomplish the following 3 goals in priority order:
 
   1. Code: We want to get something shipped 
   1. Mobbing: This is a social event, group work, meet people, deal with conflicts/feelings, other human stuff 
