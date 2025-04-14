@@ -30,7 +30,7 @@ def do_the_setup(package_name, package_description, required, extra_requires):
         url="https://github.com/approvals/ApprovalTests.Python",
         python_requires=">=3.8",
         packages=find_packages(include=["approvaltests*"]),
-        package_data={"approvaltests": ["reporters/reporters.json"]},
+        package_data={"approvaltests": ["reporters/reporters.json", "py.typed"]},
         entry_points={
             "pytest11": [
                 "approvaltests_pytest = approvaltests.integrations.pytest.pytest_plugin",
