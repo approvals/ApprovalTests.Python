@@ -50,6 +50,7 @@ def verify_templated_map_reduce(
         "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future",
         DeprecationWarning,
     )
+
     def map_reducer_creator(*_):
         return map_reduction
 
