@@ -7,6 +7,7 @@ def test_first():
     assert first([1, 2, 3], lambda x: x == 4) is None
     assert first([], lambda x: x == 4) is None
 
+
 def test_product_dict():
     """
     [

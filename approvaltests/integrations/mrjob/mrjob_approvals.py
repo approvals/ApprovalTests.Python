@@ -10,9 +10,12 @@ from approvaltests import verify, Options
 if sys.version_info <= (3, 12):
     from mrjob.job import MRJob
 else:
-    MRJob = Any # MRJob is not compatible with Python 3.13+
+    MRJob = Any  # MRJob is not compatible with Python 3.13+
 
-@warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
+
+@warnings.deprecated(
+    "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future"
+)
 def verify_map_reduce(
     mr_job_under_test: MRJob, test_data: str, *, options: Optional[Options] = None
 ) -> None:
@@ -20,7 +23,9 @@ def verify_map_reduce(
     verify(storyboard, options=options)
 
 
-@warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
+@warnings.deprecated(
+    "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future"
+)
 def print_map_reduce_job(mr_job_under_test: MRJob, test_data: str) -> str:
     storyboard = f"{test_data}\n\nMap reduces to:\n\n"
     mr_job_under_test.sandbox(stdin=BytesIO(test_data.encode("utf-8")))
@@ -32,7 +37,9 @@ def print_map_reduce_job(mr_job_under_test: MRJob, test_data: str) -> str:
     return storyboard
 
 
-@warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
+@warnings.deprecated(
+    "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future"
+)
 def verify_templated_map_reduce(
     map_reduction: MRJob,
     input_creator: Callable[[Sequence[Any]], str],
@@ -48,7 +55,9 @@ def verify_templated_map_reduce(
     )
 
 
-@warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
+@warnings.deprecated(
+    "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future"
+)
 def verify_templated_map_reduce_with_customized_job(
     map_reduce_creator: Callable[[Sequence[Any]], MRJob],
     input_creator: Callable[[Sequence[Any]], str],
@@ -65,7 +74,9 @@ def verify_templated_map_reduce_with_customized_job(
     )
 
 
-@warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
+@warnings.deprecated(
+    "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future"
+)
 def verify_templated_map_reduce_with_customized_job_with_dictionary_args(
     map_reduce_creator: Callable[[Dict[str, Any]], MRJob],
     input_creator: Callable[[Dict[str, Any]], str],
@@ -79,7 +90,9 @@ def verify_templated_map_reduce_with_customized_job_with_dictionary_args(
     )
 
 
-@warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
+@warnings.deprecated(
+    "MRJob Approvals doesn't work with Python 3.13+, this will be removed in future"
+)
 def verify_templated_map_reduce_with_customized_job_with_dictionary_args2(
     map_reduce_creator: Callable[[Any], MRJob],
     input_creator: Callable[[Any], str],
