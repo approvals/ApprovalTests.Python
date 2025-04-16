@@ -1,6 +1,7 @@
 import unittest
 from inspect import FrameInfo
 from typing import Callable, Any
+import sys
 
 import pytest
 
@@ -149,6 +150,7 @@ def get_preceding_whitespace():
 
 
 # fmt: off
+@unittest.skipIf(sys.version_info >= (3, 13), "__doc__ removes preceding whitespace in Python 3.13+")
 def test_preceding_whitespace():
     """
         4 whitespaces
