@@ -1,9 +1,10 @@
-import itertools
 import sys
 import warnings
 from io import BytesIO
 from itertools import product
 from typing import Callable, Sequence, Any, Dict, Optional
+
+from approval_utilities.utilities.map_reduce import product_dict
 from approvaltests import verify, Options
 
 if sys.version_info <= (3, 12):
@@ -62,13 +63,6 @@ def verify_templated_map_reduce_with_customized_job(
         inputs,
         options=options,
     )
-
-
-def product_dict(**kwargs):
-    keys = kwargs.keys()
-    vals = kwargs.values()
-    for instance in itertools.product(*vals):
-        yield dict(zip(keys, instance))
 
 
 @warnings.deprecated("MRJob Approvals doesn't work with Python 3.13+, this will be removed in future")
