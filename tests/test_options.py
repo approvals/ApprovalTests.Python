@@ -47,6 +47,10 @@ def assert_verify_methods_have_options(module):
         if not callable(obj):
             continue
 
+        # if it has a decorator, we need to get the original function
+        if hasattr(obj, "__wrapped__"):
+            obj = obj.__wrapped__
+
         argspec = inspect.getfullargspec(obj)
         has_options = "options" in argspec.kwonlyargs
         assert (
