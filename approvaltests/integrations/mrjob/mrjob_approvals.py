@@ -1,12 +1,14 @@
 import itertools
+import sys
 from io import BytesIO
 from itertools import product
 from typing import Callable, Sequence, Any, Dict, Optional
-
-from mrjob.job import MRJob
-
 from approvaltests import verify, Options
 
+if sys.version_info <= (3, 12):
+    from mrjob.job import MRJob
+else:
+    MRJob = Any # MRJob is not compatible with Python 3.13+
 
 def verify_map_reduce(
     mr_job_under_test: MRJob, test_data: str, *, options: Optional[Options] = None

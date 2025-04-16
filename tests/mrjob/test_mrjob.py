@@ -1,4 +1,5 @@
-from mrjob.job import MRJob
+import sys
+import pytest
 
 from approvaltests.integrations.mrjob.mrjob_approvals import (
     verify_map_reduce,
@@ -6,6 +7,11 @@ from approvaltests.integrations.mrjob.mrjob_approvals import (
     verify_templated_map_reduce_with_customized_job,
     verify_templated_map_reduce_with_customized_job_with_dictionary_args,
 )
+
+if sys.version_info < (3, 13):
+    from mrjob.job import MRJob
+else:
+    pytest.skip("mrjob tests are skipped for Python 3.13+", allow_module_level=True)
 
 
 class MRWordFrequencyCount(MRJob):
