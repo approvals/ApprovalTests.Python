@@ -18,7 +18,7 @@ jobs:
       uses: github-actions-x/commit@v2.9
       with:
         github-token: "${secrets.GITHUB_TOKEN}"
-        commit-message: ". d updated markdown snippets"
+        commit-message: ". d format and update markdown snippets"
         rebase: 'true'
         push-branch: 'main'
         name: github actions
