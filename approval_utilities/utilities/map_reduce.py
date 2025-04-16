@@ -6,6 +6,7 @@ def first(sequence: Sequence[Any], predicate: Callable[[Any], bool]) -> Any:
     matching = filter(predicate, sequence)
     return next(matching, None)
 
+
 def product_dict(**kwargs):
     """
     Similar to `itertools.product`, but the resulting combinations retain the names.
