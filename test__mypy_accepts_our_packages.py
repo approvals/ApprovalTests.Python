@@ -4,6 +4,7 @@ import subprocess
 import sys
 import time
 import typing
+import os
 
 from version import version_number
 
@@ -33,13 +34,12 @@ def main() -> None:
             ]
         )
 
-        with tempfile.NamedTemporaryFile(suffix=".py") as _test_file:
-            test_file = pathlib.Path(_test_file.name)
-            test_file.write_text(f"import {package_name}")
+        with tempfile.NamedTemporaryFile(suffix=".py", mode="w") as test_file:
+            test_file.write(f"import {package_name}")
 
             _run_python_checked(
                 ["-m", "mypy", test_file.name],
-                cwd=test_file.parent,
+                cwd=os.path.dirname(test_file.name),
             )
 
 
