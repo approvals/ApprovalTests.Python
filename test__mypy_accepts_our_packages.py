@@ -34,7 +34,9 @@ def main() -> None:
             ]
         )
 
-        with tempfile.NamedTemporaryFile(suffix=".py", mode="w", delete=False) as test_file:
+        with tempfile.NamedTemporaryFile(
+            suffix=".py", mode="w", delete=False
+        ) as test_file:
             test_file.write(f"import {package_name}")
             test_file.flush()
             test_file.close()
