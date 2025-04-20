@@ -34,14 +34,14 @@ def main() -> None:
             ]
         )
 
-        with tempfile.TemporaryDirectory() as temp_dir:
-            temp_path = pathlib.Path(temp_dir)
-            test_file_path = temp_path / "test.py"
+        with tempfile.TemporaryDirectory() as _temporary_directory:
+            temporary_directory = pathlib.Path(_temporary_directory)
+            test_file_path = temporary_directory / "test.py"
             test_file_path.write_text(f"import {package_name}")
 
             _run_python_checked(
                 ["-m", "mypy", str(test_file_path)],
-                cwd=temp_path,
+                cwd=temporary_directory,
             )
 
 
