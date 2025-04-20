@@ -34,14 +34,14 @@ def main() -> None:
             ]
         )
 
-        with tempfile.NamedTemporaryFile(suffix=".py", mode="w", delete=False) as test_file:
-            test_file.write(f"import {package_name}")
-            test_file.flush()
-            test_file.close()
+        with tempfile.TemporaryDirectory() as temp_dir:
+            test_file_path = os.path.join(temp_dir, "test.py")
+            with open(test_file_path, "w") as test_file:
+                test_file.write(f"import {package_name}")
 
             _run_python_checked(
-                ["-m", "mypy", test_file.name],
-                cwd=os.path.dirname(test_file.name),
+                ["-m", "mypy", test_file_path],
+                cwd=temp_dir,
             )
 
 
