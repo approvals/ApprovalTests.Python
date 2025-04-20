@@ -1,3 +1,13 @@
+2025-04-20
+- [ ] how we run integration tests
+    - rename tox entry point and the test
+- [ ] in Python: rename run_tests -> build_and_test
+- [ ] mypy in Python
+- [ ] fix disabled test for inline whitespace
+- [ ] mypy in CommonScripts - tox?
+- [ ] setup.approval_utilities.py and setup.py are different but should not be
+- [ ] packaging has deprecation warnings
+ 
 2025-04-06
 In `CommonScripts` repo:
 - [ ] move script from detect_and_remove_abandoned.bat -> python
