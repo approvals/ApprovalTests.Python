@@ -1,5 +1,5 @@
 2025-04-20
-- [ ] how we run integration tests
+- [x] how we run integration tests
     - rename tox entry point and the test
 - [ ] in Python: rename run_tests -> build_and_test
 - [ ] mypy in Python
