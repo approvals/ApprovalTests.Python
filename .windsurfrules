@@ -1,1 +1,3 @@
 Run Tests with .\run_tests.cmd
+
+Run mypy with `tox -e mypy`.
