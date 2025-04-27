@@ -6,7 +6,7 @@ from approvaltests.core.writer import Writer
 
 
 class BinaryWriter(Writer):
-    contents = ""
+    contents: ByteString
 
     def __init__(
         self,
