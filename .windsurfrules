@@ -1,3 +1,5 @@
-Run Tests with .\run_tests.cmd
+Run Tests with `.\run_tests.cmd`
 
-Run mypy with `tox -e mypy`.
+Do not add comments to code unless explicitly instructed to do so.
+
+Only use Unix-style line endings (\n).
