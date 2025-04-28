@@ -30,7 +30,7 @@ def assert_against_file(
 def assert_equal_with_reporter(
     expected: str,
     actual: Any,
-    reporter: Reporter = None,
+    reporter: Optional[Reporter] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
 ) -> None:
