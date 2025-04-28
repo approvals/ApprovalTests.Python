@@ -5,6 +5,7 @@ from approvaltests.core.reporter import Reporter
 
 from typing import Optional
 
+
 def get_command_text(
     received_path: str, approved_path: str, is_windows: Optional[bool] = None
 ) -> str:
