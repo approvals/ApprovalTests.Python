@@ -3,3 +3,4 @@
 black
 setuptools
 mypy
+types-requests
