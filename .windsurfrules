@@ -1,4 +1,4 @@
-Run Tests with `.\run_tests.cmd`
+Run Tests with `.\run_tests.cmd` or `./run_tests.sh`.
 
 Do not add comments to code unless explicitly instructed to do so.
 
