@@ -10,7 +10,7 @@ class NamerBase(Namer):
     def __init__(self, extension: Optional[str] = None) -> None:
         self.extension_with_dot = extension or ".txt"
         self.config_loaded = False
-        self.config = None
+        self.config: Optional[Dict[str, str]] = None
 
     @abstractmethod
     def get_file_name(self):
