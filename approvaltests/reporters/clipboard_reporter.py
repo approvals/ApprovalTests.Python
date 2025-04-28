@@ -3,8 +3,10 @@ from approval_utilities.utils import is_windows_os
 from approvaltests.core.reporter import Reporter
 
 
+from typing import Optional
+
 def get_command_text(
-    received_path: str, approved_path: str, is_windows: bool = None
+    received_path: str, approved_path: str, is_windows: Optional[bool] = None
 ) -> str:
     if is_windows is None:
         is_windows = is_windows_os()
