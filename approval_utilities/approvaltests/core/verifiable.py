@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from approvaltests.core.options import Options
 
 from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
 
