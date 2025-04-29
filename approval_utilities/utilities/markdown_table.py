@@ -1,7 +1,10 @@
-from typing import Any, Callable, Iterable
+from typing import Any, Callable, Iterable, TYPE_CHECKING
 
 from approval_utilities.approvaltests.core.verifiable import Verifiable
 from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
+
+if TYPE_CHECKING:
+    from approvaltests.core.options import Options
 
 
 class MarkdownTable(Verifiable):
