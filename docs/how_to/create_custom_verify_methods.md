@@ -16,12 +16,12 @@ For example, as we use it to handle json:
 <a id='snippet-verify_as_json'></a>
 ```py
 def verify_as_json(
-    object_to_verify,
-    reporter=None,
+    object_to_verify: Any,
+    reporter: Optional[Reporter] = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    deserialize_json_fields=False,
+    deserialize_json_fields: bool = False,
     options: Optional[Options] = None,
-):
+) -> None:
     if deserialize_json_fields:
         object_to_verify = utils.deserialize_json_fields(object_to_verify)
     options = initialize_options(options, reporter)
@@ -34,7 +34,7 @@ def verify_as_json(
         options=options.for_file.with_extension(".json"),
     )
 ```
-<sup><a href='/approvaltests/approvals.py#L237-L258' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L241-L262' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object

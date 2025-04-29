@@ -67,6 +67,7 @@ def get_reporter(reporter: Optional[Reporter]) -> Reporter:
 
 def get_default_namer(extension: Optional[str] = None) -> NamerBase:
     from approvaltests.namer.default_name import get_default_namer as get_namer
+
     return get_namer(extension)
 
 
