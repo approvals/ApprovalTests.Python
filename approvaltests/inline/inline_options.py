@@ -1,4 +1,8 @@
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from approvaltests.core.options import Options
 
 PREVIOUS_RESULT_ = "vvvvv PREVIOUS RESULT vvvvv\n"
 
