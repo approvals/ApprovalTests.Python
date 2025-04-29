@@ -6,7 +6,10 @@ from approvaltests import verify, Options
 
 
 def verify_command_line_with_inputs(
-    command, *, inputs: Optional[Sequence[Any]] = None, options: Optional[Options] = None
+    command,
+    *,
+    inputs: Optional[Sequence[Any]] = None,
+    options: Optional[Options] = None,
 ):
     input_string = "\n".join(map(lambda a: f"{a}", inputs))
     verify_command_line(command, input_string=input_string, options=options)
