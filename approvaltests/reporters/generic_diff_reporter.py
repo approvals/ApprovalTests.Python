@@ -73,7 +73,8 @@ class GenericDiffReporter(Reporter):
         found = Command(self.path).locate()
         if found:
             self.path = found
-        return found
+            return True
+        return False
 
     @staticmethod
     def get_limit_count() -> int:
