@@ -1,13 +1,13 @@
 import threading
-from typing import Iterator, Any, Callable
+from typing import Iterator, Any, Callable, Optional
 
 from approval_utilities.utilities.logger.logging_instance import LoggingInstance
 from approval_utilities.utilities.string_wrapper import StringWrapper
-from approval_utilities.utilities.wrapper import SingleWrapper, ThreadedWrapper
+from approval_utilities.utilities.wrapper import SingleWrapper, ThreadedWrapper, Wrapper
 
 
 class SimpleLogger:
-    _wrapper = SingleWrapper(LoggingInstance())
+    _wrapper: Wrapper = SingleWrapper(LoggingInstance())
 
     @staticmethod
     def register_logger(log_method: Callable[[str], None]) -> None:
@@ -53,7 +53,7 @@ class SimpleLogger:
         SimpleLogger._wrapper.get().message(message)
 
     @staticmethod
-    def warning(text: str = "", exception: BaseException = None) -> None:
+    def warning(text: str = "", exception: Optional[BaseException] = None) -> None:
         SimpleLogger._wrapper.get().warning(text, exception)
 
     @staticmethod
