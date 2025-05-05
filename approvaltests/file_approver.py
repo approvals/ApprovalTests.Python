@@ -1,7 +1,7 @@
 import filecmp
 import os
 import pathlib
-from typing import Optional, Callable
+from typing import Optional, Callable, List
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests.core.comparator import Comparator
@@ -38,8 +38,8 @@ class FileComparator(Comparator):
 
 
 class FileApprover:
-    previous_approved = []
-    allowed_duplicates = []
+    previous_approved: List[str] = []
+    allowed_duplicates: List[Callable[[str], bool]] = []
 
     @staticmethod
     def verify(
@@ -65,7 +65,7 @@ class FileApprover:
         return None
 
     @staticmethod
-    def get_duplicate_verify_error_message(approved):
+    def get_duplicate_verify_error_message(approved: str) -> str:
         return remove_indentation_from(
             f"""
             We noticed that you called verify more than once in the same test. 
