@@ -1,3 +1,5 @@
+from typing import Optional
+
 from approvaltests import verify
 from approvaltests.namer import NamerFactory, is_ci
 
@@ -10,7 +12,7 @@ def test_CI_specific() -> None:
     )
 
 
-def assert_team_city(value: str, expected: bool):
+def assert_team_city(value: Optional[str], expected: bool):
     def loader(key):
         if key == "TEAMCITY_VERSION":
             return value
