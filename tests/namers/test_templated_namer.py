@@ -29,7 +29,7 @@ class TemplatedCustomNamer(Namer):
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
-    def format_filename(self, approved_or_received):
+    def format_filename(self, approved_or_received: str) -> str:
         return self.template.format_map(
             {
                 TemplateFields.approved_or_received: approved_or_received,
