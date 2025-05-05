@@ -31,7 +31,7 @@ class LoggingInstance:
     def __init__(self) -> None:
         self.log_stack_traces = True
         self.toggles = Toggles(True)
-        self.previous_timestamp = None
+        self.previous_timestamp: Optional[datetime.datetime] = None
         self.logger = lambda t: print(t, end="")
         self.tabbing: int = 0
         self.counter = 0
@@ -112,7 +112,7 @@ class LoggingInstance:
         output_message = f"{timestamp}{self.get_tabs()}{text}\n"
         self.logger(output_message)
 
-    def get_timestamp(self):
+    def get_timestamp(self) -> str:
         timestamp = ""
         if self.log_with_timestamps:
             time1: datetime.datetime = self.timer()
