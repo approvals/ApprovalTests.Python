@@ -182,7 +182,7 @@ class LoggingInstance:
             return
         self.log_line(f"message: {message}")
 
-    def warning(self, text: str = "", exception: BaseException = None) -> None:
+    def warning(self, text: Union[str, BaseException] = "", exception: Optional[BaseException] = None) -> None:
         if isinstance(text, Exception):
             temp = ""
             if exception:
