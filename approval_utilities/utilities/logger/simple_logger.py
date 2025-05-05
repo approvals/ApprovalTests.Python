@@ -23,7 +23,9 @@ class SimpleLogger:
         return SimpleLogger._wrapper.get().log_to_string()
 
     @staticmethod
-    def use_markers(parameter_text: Optional[Union[str, Callable[[], str]]] = None) -> Iterator[None]:
+    def use_markers(
+        parameter_text: Optional[Union[str, Callable[[], str]]] = None,
+    ) -> Iterator[None]:
         return SimpleLogger._wrapper.get().use_markers(
             parameter_text, additional_stack=1
         )
