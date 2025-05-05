@@ -171,7 +171,7 @@ class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
         verify("Hello", options=Options().with_reporter(report_with_beyond_compare()))
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L25-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L27-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can also use the `GenericDiffReporterFactory` to find and select the first diff utility that exists on our system.
@@ -182,6 +182,7 @@ An advantage of this method is you can modify the reporters.json file directly t
 <a id='snippet-select_reporter_from_factory'></a>
 ```py
 class TestSelectReporter(unittest.TestCase):
+    @override
     def setUp(self):
         self.factory = GenericDiffReporterFactory()
 
@@ -190,7 +191,7 @@ class TestSelectReporter(unittest.TestCase):
             "Hello", options=Options().with_reporter(self.factory.get("BeyondCompare"))
         )
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L11-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L12-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Or you can build your own GenericDiffReporter on the fly
@@ -207,7 +208,7 @@ class GettingStartedTest(unittest.TestCase):
             ),
         )
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L34-L45' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L36-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2`

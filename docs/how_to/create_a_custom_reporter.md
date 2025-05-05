@@ -16,6 +16,7 @@ def load_ndarray(path):
         return np.load(f)
 
 class NDArrayDiffReporter(Reporter):
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         if not Path(approved_path).is_file():
             self._create_empty_array(approved_path)
@@ -27,5 +28,5 @@ class NDArrayDiffReporter(Reporter):
         print(np.testing.build_err_msg([received, approved], err_msg=to_approve_msg))
         return True
 ```
-<sup><a href='/tests/test_example_numpy.py#L31-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-numpy_custom_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_example_numpy.py#L32-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-numpy_custom_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

@@ -1,4 +1,6 @@
 from typing_extensions import override
+
+
 class ApprovalException(Exception):
     def __init__(self, value: str) -> None:
         super().__init__(self)

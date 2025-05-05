@@ -1,4 +1,6 @@
 from typing_extensions import override
+
+
 class StringWrapper:
     def __init__(self) -> None:
         self.string = ""

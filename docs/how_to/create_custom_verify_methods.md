@@ -58,6 +58,7 @@ def test_verifiable(self):
             self.title = title
             self.text = text
 
+        @override
         def __str__(self) -> str:
             return remove_indentation_from(
                 f""" 
@@ -66,6 +67,7 @@ def test_verifiable(self):
             """
             )
 
+        @override
         def get_verify_parameters(self, options: Options) -> VerifyParameters:
             return VerifyParameters(options.for_file.with_extension(".md"))
 
@@ -73,6 +75,6 @@ def test_verifiable(self):
         MarkdownParagraph("Paragraph Title", "This is where the paragraph text is.")
     )
 ```
-<sup><a href='/tests/test_verify.py#L304-L326' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L310-L334' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   

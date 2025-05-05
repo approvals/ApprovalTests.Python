@@ -1,4 +1,5 @@
 from typing_extensions import override
+
 # -*- coding: utf-8 -*-
 import json
 import random
