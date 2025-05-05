@@ -12,6 +12,9 @@ if sys.version_info < (3, 13):
     from mrjob.job import MRJob
 else:
     pytest.skip("mrjob tests are skipped for Python 3.13+", allow_module_level=True)
+    from typing import Any
+
+    MRJob = Any
 
 
 class MRWordFrequencyCount(MRJob):
