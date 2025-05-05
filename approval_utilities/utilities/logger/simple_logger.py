@@ -1,5 +1,5 @@
 import threading
-from typing import Iterator, Any, Callable, Optional, Union
+from typing import Iterator, Any, Callable, Optional, Union, ContextManager
 
 from approval_utilities.utilities.logger.logging_instance import LoggingInstance
 from approval_utilities.utilities.string_wrapper import StringWrapper
@@ -25,7 +25,7 @@ class SimpleLogger:
     @staticmethod
     def use_markers(
         parameter_text: Optional[Union[str, Callable[[], str]]] = None,
-    ) -> Iterator[None]:
+    ) -> ContextManager[None]:
         return SimpleLogger._wrapper.get().use_markers(
             parameter_text, additional_stack=1
         )
