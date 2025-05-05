@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import Any, Callable, Optional, Collection
 
 from approvaltests import verify
@@ -46,6 +47,7 @@ class Storyboard:
             self.add_frame(function_for_frame(number))
         return self
 
+    @override
     def __str__(self) -> str:
         return self.story
 

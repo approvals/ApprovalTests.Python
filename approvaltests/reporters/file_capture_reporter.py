@@ -1,3 +1,4 @@
+from typing_extensions import override
 import os
 from typing import Callable
 
@@ -24,6 +25,7 @@ class FileCaptureReporter(Reporter):
         self.message = message
         self.is_git_registration_needed = is_git_registration_needed
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         if self.is_git_registration_needed():
             run("git", "config", "--local", "user.email", "action@github.com")

@@ -1,3 +1,4 @@
+from typing_extensions import override
 from approvaltests.core.reporter import Reporter
 
 
@@ -13,9 +14,11 @@ class MultiReporter(Reporter):
     def __init__(self, *reporters) -> None:
         self.reporters = reporters
 
+    @override
     def report(self, received_path, approved_path):
         for reporter in self.reporters:
             reporter.report(received_path, approved_path)
 
+    @override
     def __str__(self):
         return f"MultiReporter({', '.join([r.__class__.__name__ for r in self.reporters])})"

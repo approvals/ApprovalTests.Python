@@ -1,3 +1,4 @@
+from typing_extensions import override
 import tempfile
 from inspect import FrameInfo
 from pathlib import Path
@@ -13,12 +14,14 @@ from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
 
 class InlineComparator(Namer):
+    @override
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         file = tempfile.NamedTemporaryFile(suffix=".approved.txt", delete=False).name
         docs = self.get_test_method_doc_string()
         Path(file).write_text(docs)
         return file
 
+    @override
     def get_received_filename(self, base: Optional[str] = None) -> str:
         return tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
 

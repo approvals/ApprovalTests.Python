@@ -1,3 +1,4 @@
+from typing_extensions import override
 import unittest
 
 from approvaltests import verify, Options
@@ -10,6 +11,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
 
 # begin-snippet: select_reporter_from_factory
 class TestSelectReporter(unittest.TestCase):
+    @override
     def setUp(self):
         self.factory = GenericDiffReporterFactory()
 

@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import Optional
 
 import pathlib
@@ -12,6 +13,7 @@ class ExecutableCommandReporter(Reporter):
         self.executor = executor
         self.reporter = reporter
 
+    @override
     def report(self, received_filename: str, approved_filename: str) -> bool:
         # recieved and approved commands are not the same
         # todo run the content of the file against the executable command

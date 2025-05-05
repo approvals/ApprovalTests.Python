@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import Any, Callable, Iterable, TYPE_CHECKING
 
 from approval_utilities.approvaltests.core.verifiable import Verifiable
@@ -11,6 +12,7 @@ class MarkdownTable(Verifiable):
     def __init__(self) -> None:
         self.markdown: str = ""
 
+    @override
     def get_verify_parameters(self, options: "Options") -> VerifyParameters:
         return VerifyParameters(options.for_file.with_extension(".md"))
 
@@ -26,6 +28,7 @@ class MarkdownTable(Verifiable):
         self.markdown += MarkdownTable.print_row(*column_names)
         return self
 
+    @override
     def __str__(self) -> str:
         return self.markdown
 

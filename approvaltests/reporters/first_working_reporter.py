@@ -1,3 +1,4 @@
+from typing_extensions import override
 from approvaltests.core.reporter import Reporter
 
 
@@ -18,6 +19,7 @@ class FirstWorkingReporter(Reporter):
     def __init__(self, *reporters) -> None:
         self.reporters = reporters
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         for reporter in self.reporters:
             try:
@@ -29,11 +31,13 @@ class FirstWorkingReporter(Reporter):
 
         return False
 
+    @override
     def __str__(self):
         reporters_string = ", ".join(str(s) for s in self.reporters)
         return f"FirstWorkingReporter({reporters_string})"
 
     __repr__ = __str__
 
+    @override
     def __eq__(self, other) -> bool:
         return repr(self) == repr(other)

@@ -1,3 +1,4 @@
+from typing_extensions import override
 import threading
 from abc import ABC, abstractmethod
 
@@ -12,6 +13,7 @@ class SingleWrapper(Wrapper):
     def __init__(self, instance):
         self.instance = instance
 
+    @override
     def get(self):
         return self.instance
 
@@ -21,6 +23,7 @@ class ThreadedWrapper(Wrapper):
         self.generator = generator
         self.local = threading.local()
 
+    @override
     def get(self):
         if not hasattr(self.local, "value"):
             self.local.value = self.generator()

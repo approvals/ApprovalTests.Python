@@ -1,3 +1,4 @@
+from typing_extensions import override
 from approvaltests.reporters.executable_command_reporter import (
     ExecutableCommandReporter,
 )
@@ -18,9 +19,11 @@ def test_result_formatting_for_results_with_indentation():
     executed_command = "select * from foo"
 
     class DummyExecutableCommand(ExecutableCommand):
+        @override
         def get_command(self) -> str:
             return None
 
+        @override
         def execute_command(self, command: str) -> str:
             return "result of the query\nstuff that breaks indentation"
 
@@ -34,9 +37,11 @@ def test_result_formatting_for_non_empty_command():
     executed_command = "select * from foo"
 
     class DummyExecutableCommand(ExecutableCommand):
+        @override
         def get_command(self) -> str:
             return None
 
+        @override
         def execute_command(self, command: str) -> str:
             return "result of the query"
 

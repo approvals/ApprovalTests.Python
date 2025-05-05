@@ -1,3 +1,4 @@
+from typing_extensions import override
 from subprocess import call
 from typing import List
 
@@ -21,6 +22,7 @@ class ReceivedFileLauncherReporter(Reporter):
     def get_command(received_path: str) -> List[str]:
         return ["cmd", "/C", "start", received_path, "/B"]
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         command_array = self.get_command(received_path)
         call(command_array)

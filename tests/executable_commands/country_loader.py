@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import List
 
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
@@ -6,12 +7,15 @@ from tests.executable_commands.country import Country
 
 
 class CountryLoader(ExecutableCommand, Loader[List[Country]]):
+    @override
     def load(self) -> List[Country]:
         pass
 
+    @override
     def get_command(self) -> str:
         return "SELECT c.* FROM Country c"
 
+    @override
     def execute_command(self, command: str) -> str:
         cursor, connection = self.connect_to_database()
         cursor.execute(command, ())

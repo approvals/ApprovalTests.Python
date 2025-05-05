@@ -1,3 +1,4 @@
+from typing_extensions import override
 import os
 import re
 import shutil
@@ -19,6 +20,7 @@ from approval_utilities.utils import to_json, is_windows_os
 
 
 class GenericDiffReporterTests(unittest.TestCase):
+    @override
     def setUp(self) -> None:
         GenericDiffReporter.reset_opened_diff_tool_count()
         self.factory = GenericDiffReporterFactory()
@@ -26,6 +28,7 @@ class GenericDiffReporterTests(unittest.TestCase):
             shutil.rmtree(self.tmp_dir)
         os.mkdir(self.tmp_dir)
 
+    @override
     def tearDown(self) -> None:
         shutil.rmtree(self.tmp_dir)
 

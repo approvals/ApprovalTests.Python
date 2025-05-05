@@ -1,3 +1,4 @@
+from typing_extensions import override
 import json
 from typing import Iterator, List, Optional, Type, Dict, Callable
 
@@ -19,6 +20,7 @@ from approval_utilities.utilities.deprecated import deprecated
 
 
 class NoConfigReporter(Reporter):
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         raise RuntimeError("This machine has no reporter configuration")
 

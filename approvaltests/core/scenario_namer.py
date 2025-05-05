@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import Optional, Any
 
 from approvaltests.core.namer import Namer
@@ -20,10 +21,12 @@ class ScenarioNamer(Namer):
         scenarios = ".".join(map(str, self.scenario_names))
         return f"{basename}.{scenarios}"
 
+    @override
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         base = base or self.get_basename()
         return self.base_namer.get_approved_filename(base)
 
+    @override
     def get_received_filename(self, base: Optional[str] = None) -> str:
         base = base or self.get_basename()
         return self.base_namer.get_received_filename(base)

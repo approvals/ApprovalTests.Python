@@ -1,3 +1,4 @@
+from typing_extensions import override
 from pathlib import Path
 
 from approval_utilities.utils import ensure_file_exists
@@ -6,6 +7,7 @@ from approvaltests.reporters.python_native_reporter import calculate_diff
 
 
 class ReportByCreatingDiffFile(Reporter):
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         ensure_file_exists(approved_path)
         diff = calculate_diff(received_path, approved_path)

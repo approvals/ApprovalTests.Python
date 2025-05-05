@@ -1,3 +1,4 @@
+from typing_extensions import override
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.clipboard_reporter import get_command_text
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
@@ -6,6 +7,7 @@ from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 class ReporterByCopyMoveCommandForEverythingToClipboard(Reporter):
     text: str = ""
 
+    @override
     def report(self, received_path, approved_path):
         ReporterByCopyMoveCommandForEverythingToClipboard.text = (
             ReporterByCopyMoveCommandForEverythingToClipboard.text

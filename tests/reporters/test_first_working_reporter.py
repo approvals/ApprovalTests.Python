@@ -1,3 +1,4 @@
+from typing_extensions import override
 import unittest
 
 from approvaltests.core.reporter import Reporter
@@ -13,11 +14,13 @@ class ReporterForTesting(Reporter):
         self.called = False
         self.success = success
 
+    @override
     def __str__(self):
         return f"{self.__class__.__name__}({self.success})"
 
     __repr__ = __str__
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         self.called = True
         self.additional()

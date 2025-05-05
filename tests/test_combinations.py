@@ -1,3 +1,4 @@
+from typing_extensions import override
 import unittest
 
 from approvaltests.approval_exception import ApprovalException
@@ -11,6 +12,7 @@ from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
 class VerifyAllCombinationsTests(unittest.TestCase):
+    @override
     def setUp(self) -> None:
         self.reporter = None
         self.func = lambda *args: sum(args) + 1
@@ -133,6 +135,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
 
 
 class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
+    @override
     def setUp(self) -> None:
         self.reporter = CommandLineReporter()
         self.func = lambda *args: sum(args) + 1

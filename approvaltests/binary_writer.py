@@ -1,3 +1,4 @@
+from typing_extensions import override
 import io
 from typing import ByteString
 
@@ -16,6 +17,7 @@ class BinaryWriter(Writer):
         self.contents = contents
         self.extension_with_dot = extension
 
+    @override
     def write_received_file(self, received_file: str) -> str:
         create_directory_if_needed(received_file)
         with io.open(received_file, mode="wb") as file:

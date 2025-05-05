@@ -1,3 +1,4 @@
+from typing_extensions import override
 #!/usr/bin/env python
 
 import os
@@ -18,11 +19,13 @@ class PythonNativeReporter(Reporter):
     such as in Continuous Integration systems.
     """
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         ensure_file_exists(approved_path)
         print(calculate_diff_with_approve_instruction(received_path, approved_path))
         return True
 
+    @override
     def __str__(self):
         return self.__class__.__name__
 

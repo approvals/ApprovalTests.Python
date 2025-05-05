@@ -1,3 +1,4 @@
+from typing_extensions import override
 from pathlib import Path
 
 from approval_utilities.utils import is_windows_os, append_to_file
@@ -34,6 +35,7 @@ class ReporterThatCreatesAnApprovalScript(Reporter):
         )
         ReporterThatCreatesAnApprovalScript.file.write_text("")
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         self.create_approval_script(get_command_text(received_path, approved_path))
         return True

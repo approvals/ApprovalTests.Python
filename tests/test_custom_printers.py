@@ -1,3 +1,4 @@
+from typing_extensions import override
 import argparse
 import typing
 from abc import ABC
@@ -26,9 +27,11 @@ def test_argparse_namespace() -> None:
 
 def test_register_formatter() -> None:
     class ExampleFormatterWrapper(FormatWrapper):
+        @override
         def is_match(self, data: typing.Any) -> bool:
             return True
 
+        @override
         def wrap(self, data: typing.Any) -> typing.Any:
             return 42
 

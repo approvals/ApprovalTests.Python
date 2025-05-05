@@ -1,3 +1,4 @@
+from typing_extensions import override
 import tempfile
 from inspect import FrameInfo
 from pathlib import Path
@@ -17,6 +18,7 @@ class InlinePythonReporter(Reporter):
         self.footer_function = create_footer_function or (lambda __, ___: "")
         self.footer = ""
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         test_source_file = self.get_test_source_file()
         self.footer = self.footer_function(received_path, approved_path)

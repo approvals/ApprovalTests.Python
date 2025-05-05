@@ -1,3 +1,4 @@
+from typing_extensions import override
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -17,6 +18,7 @@ class InlineOptions:
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
         class AutomaticInlineOptions(InlineOptions):
+            @override
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
                     InlinePythonReporter(ReporterThatAutomaticallyApproves())
@@ -30,6 +32,7 @@ class InlineOptions:
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
         class SemiAutomaticInlineOptions(InlineOptions):
+            @override
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
                     InlinePythonReporter(
@@ -56,6 +59,7 @@ class InlineOptions:
             return ""
 
         class PreviousCaptureInlineOptions(InlineOptions):
+            @override
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(
                     InlinePythonReporter(
@@ -75,10 +79,12 @@ class InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
 
         class ShowCodeInlineOptions(InlineOptions):
+            @override
             def apply(self, options: "Options") -> "Options":
                 return options.with_reporter(InlinePythonReporter(options.reporter))
 
         class DoNotShowCodeInlineOptions(InlineOptions):
+            @override
             def apply(self, options: "Options") -> "Options":
                 return options
 

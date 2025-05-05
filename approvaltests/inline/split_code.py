@@ -1,3 +1,4 @@
+from typing_extensions import override
 import re
 from enum import Enum
 
@@ -8,6 +9,7 @@ class SplitCode:
         self.after_method = after_method
         self.tab = tab
 
+    @override
     def __str__(self) -> str:
         return f"before:\n{self.before_method}\nafter:\n{self.after_method}\ntab: '{self.tab}'\n"
 

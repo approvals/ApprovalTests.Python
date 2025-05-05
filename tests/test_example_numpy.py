@@ -1,3 +1,4 @@
+from typing_extensions import override
 import io
 from pathlib import Path
 import numpy as np
@@ -37,6 +38,7 @@ def load_ndarray(path):
 
 
 class NDArrayDiffReporter(Reporter):
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         if not Path(approved_path).is_file():
             self._create_empty_array(approved_path)

@@ -1,3 +1,4 @@
+from typing_extensions import override
 # -*- coding: utf-8 -*-
 import json
 import random
@@ -57,6 +58,7 @@ class GameOfLife:
         self.board = my_next
         return self
 
+    @override
     def __str__(self):
         return print_grid(
             5, 5, lambda x, y: f"{self.alive} " if self.board(x, y) else f"{self.dead} "
@@ -72,6 +74,7 @@ class GameOfLife:
 
 
 class VerifyTests(unittest.TestCase):
+    @override
     def setUp(self) -> None:
         self.reporter = ReporterByCopyMoveCommandForEverythingToClipboard()
 
@@ -217,6 +220,7 @@ class VerifyTests(unittest.TestCase):
                 self.steps = ["-", "\\", "|", "/"]
                 self.step = 0
 
+            @override
             def __str__(self):
                 return self.steps[self.step]
 
@@ -296,6 +300,7 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify_custom_comparator_allows_all_inputs(self):
         class EverythingIsTrue(Comparator):
+            @override
             def compare(self, received_path: str, approved_path: str) -> bool:
                 return True
 
@@ -308,6 +313,7 @@ class VerifyTests(unittest.TestCase):
                 self.title = title
                 self.text = text
 
+            @override
             def __str__(self) -> str:
                 return remove_indentation_from(
                     f""" 
@@ -316,6 +322,7 @@ class VerifyTests(unittest.TestCase):
                 """
                 )
 
+            @override
             def get_verify_parameters(self, options: Options) -> VerifyParameters:
                 return VerifyParameters(options.for_file.with_extension(".md"))
 

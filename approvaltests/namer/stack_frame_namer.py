@@ -1,3 +1,4 @@
+from typing_extensions import override
 import inspect
 import os
 from inspect import FrameInfo
@@ -90,12 +91,15 @@ class StackFrameNamer(NamerBase):
     def get_method_name(self) -> str:
         return self.method_name
 
+    @override
     def get_directory(self) -> str:
         return self.directory
 
+    @override
     def config_directory(self) -> str:
         return self.directory
 
+    @override
     def get_file_name(self) -> str:
         class_name = "" if (self.class_name is None) else (self.class_name + ".")
         return class_name + self.method_name

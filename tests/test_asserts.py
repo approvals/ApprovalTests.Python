@@ -1,3 +1,4 @@
+from typing_extensions import override
 import unittest
 from pathlib import Path
 
@@ -28,6 +29,7 @@ class TestAssertEqualWithReporter(unittest.TestCase):
                 self.approved = None
                 self.extention = None
 
+            @override
             def report(self, received_path, approved_path):
                 self.received = Path(received_path).read_text(encoding="utf-8-sig")
                 self.approved = Path(approved_path).read_text(encoding="utf-8-sig")

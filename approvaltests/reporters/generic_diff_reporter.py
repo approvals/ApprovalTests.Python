@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import List
 
 from approval_utilities.utilities.os_utilities import run_command
@@ -32,6 +33,7 @@ class GenericDiffReporter(Reporter):
         self.path = self.expand_program_files(config.path)
         self.extra_args = config.extra_args
 
+    @override
     def __str__(self) -> str:
         config = filter_values(
             lambda v: bool(v),
@@ -46,6 +48,7 @@ class GenericDiffReporter(Reporter):
     def get_command(self, received: str, approved: str) -> List[str]:
         return [self.path] + self.extra_args + [received, approved]
 
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         if not self.is_working():
             return False

@@ -1,3 +1,4 @@
+from typing_extensions import override
 import filecmp
 import os
 import pathlib
@@ -22,6 +23,7 @@ class ReporterNotWorkingException(Exception):
 
 
 class FileComparator(Comparator):
+    @override
     def compare(self, received_path: str, approved_path: str) -> bool:
         if not exists(approved_path) or not exists(received_path):
             return False

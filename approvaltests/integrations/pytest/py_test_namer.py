@@ -1,3 +1,4 @@
+from typing_extensions import override
 import os
 from typing import Dict
 
@@ -20,11 +21,14 @@ class PyTestNamer(NamerBase):
         if subdir:
             self.config["subdirectory"] = subdir
 
+    @override
     def get_file_name(self) -> str:
         return f"{os.path.splitext(self.filename)[0]}.{self.request.node.name}"
 
+    @override
     def get_directory(self) -> str:
         return self.filepath
 
+    @override
     def get_config(self) -> Dict[str, str]:
         return self.config

@@ -1,3 +1,4 @@
+from typing_extensions import override
 import socket
 import json
 
@@ -14,6 +15,7 @@ def send_tcp_socket(host, port, data):
 
 
 class ReportToDiffEngineTray(Reporter):
+    @override
     def report(self, received_path: str, approved_path: str) -> bool:
         payload = {
             "Type": "Move",

@@ -1,3 +1,4 @@
+from typing_extensions import override
 from typing import Optional, Any
 
 from approval_utilities.utils import write_to_temporary_file
@@ -15,6 +16,7 @@ class FilePathNamer(StackFrameNamer):
         StackFrameNamer.__init__(self, extension)
         self.file_path = file_path
 
+    @override
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         return self.file_path
 

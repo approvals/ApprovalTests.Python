@@ -1,3 +1,4 @@
+from typing_extensions import override
 import os
 from unittest import TestCase
 
@@ -9,6 +10,7 @@ from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 
 
 class TestList(TestCase):
+    @override
     def setUp(self) -> None:
         reporter = MultiReporter(
             GenericDiffReporter.create("diff"), CommandLineReporter()

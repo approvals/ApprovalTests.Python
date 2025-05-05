@@ -1,3 +1,4 @@
+from typing_extensions import override
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utils import is_windows_os
 from approvaltests.core.reporter import Reporter
@@ -30,6 +31,7 @@ class ClipboardReporter(Reporter):
     See also CommandLineReporter.
     """
 
+    @override
     def report(self, received_path, approved_path):
         text = get_command_text(received_path, approved_path)
         print(text)
@@ -51,6 +53,7 @@ class CommandLineReporter(Reporter):
     See also ClipboardReporter.
     """
 
+    @override
     def report(self, received_path, approved_path):
         text = get_command_text(received_path, approved_path)
         print(f"\n\n{text}\n\n")
