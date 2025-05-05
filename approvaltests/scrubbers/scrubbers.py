@@ -13,7 +13,7 @@ def create_regex_scrubber(
 ) -> Scrubber:
     if isinstance(function_or_replace_string, str):
         return lambda t: _replace_regex(t, regex, lambda _: function_or_replace_string)
-    elif isinstance(function_or_replace_string, abc.Callable):
+    elif callable(function_or_replace_string):
         return lambda t: _replace_regex(t, regex, function_or_replace_string)
     else:
         raise TypeError(
