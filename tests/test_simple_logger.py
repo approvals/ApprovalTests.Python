@@ -8,6 +8,7 @@ from approvaltests import (
     Options,
     run_all_combinations,
     verify_logging_for_all_combinations,
+    approvals,
 )
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
@@ -161,6 +162,29 @@ def test_use_markers_with_raised_exception() -> None:
 def test_run_combinations() -> None:
     with verify_simple_logger():
         run_all_combinations(function_to_run, [["red", "blue"], ["one", "two", "brie"]])
+
+
+def test_run_combinations_with_exception_handler() -> None:
+    approvals.settings().allow_multiple_verify_calls_for_this_method()
+    
+    with verify_simple_logger():
+        run_all_combinations(
+            function_to_run,
+            [["red"], ["one", "brie"]],
+            exception_handler=lambda e: SimpleLogger.warning(exception = e),
+        )
+    with verify_simple_logger():
+        run_all_combinations(
+            function_to_run,
+            [["red"], ["one", "brie"]],
+            exception_handler=lambda e: SimpleLogger.warning(e),
+        )
+    with verify_simple_logger():
+        run_all_combinations(
+            function_to_run,
+            [["red"], ["one", "brie"]],
+            exception_handler=SimpleLogger.warning,
+        )
 
 
 def test_verify_logging_for_all_combinations() -> None:

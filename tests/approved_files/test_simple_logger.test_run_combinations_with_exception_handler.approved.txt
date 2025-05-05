@@ -1,0 +1,11 @@
+-> in: function_to_run() in test_simple_logger
+  variable: color = red
+  variable: number = one
+<- out: function_to_run()
+-> in: function_to_run() in test_simple_logger
+  variable: color = red
+  variable: number = brie
+<- out: function_to_run()
+*******************************************************************************************
+Exception: AHHHHHH!
+*******************************************************************************************
