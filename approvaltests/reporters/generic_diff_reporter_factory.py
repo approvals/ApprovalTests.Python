@@ -1,5 +1,5 @@
 import json
-from typing import Iterator, List, Optional
+from typing import Iterator, List, Optional, Type, Dict, Callable
 
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.python_native_reporter import PythonNativeReporter
@@ -43,7 +43,7 @@ class GenericDiffReporterFactory:
 
     @staticmethod
     def get_reporter_programmatically(reporter_name: str) -> Optional[Reporter]:
-        reporters = {
+        reporters: Dict[str, Callable[[], Reporter]] = {
             "BeyondCompare": ReportWithBeyondCompare,
             "WinMerge": ReportWithWinMerge,
             "PythonNative": PythonNativeReporter,
