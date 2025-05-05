@@ -6,7 +6,7 @@ from tests.executable_commands.country import Country
 
 
 class CountryLoader(ExecutableCommand, Loader[List[Country]]):
-    def load(self) -> T:
+    def load(self) -> List[Country]:
         pass
 
     def get_command(self) -> str:
