@@ -1,3 +1,5 @@
+from typing import Optional
+
 import pathlib
 
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
@@ -38,7 +40,7 @@ class ExecutableCommandReporter(Reporter):
 
     @staticmethod
     def execute_command_and_format_result(
-        my_command: str, executor: ExecutableCommand
+        my_command: Optional[str], executor: ExecutableCommand
     ) -> str:
         if not my_command:
             return ""
