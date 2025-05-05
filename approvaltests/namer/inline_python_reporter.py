@@ -1,7 +1,7 @@
 import tempfile
 from inspect import FrameInfo
 from pathlib import Path
-from typing import Callable
+from typing import Callable, Optional
 
 from approvaltests import Reporter, StackFrameNamer
 from approvaltests.inline.split_code import SplitCode
@@ -11,7 +11,7 @@ class InlinePythonReporter(Reporter):
     def __init__(
         self,
         reporter: Reporter,
-        create_footer_function: Callable[[str, str], str] = None,
+        create_footer_function: Optional[Callable[[str, str], str]] = None,
     ):
         self.diffReporter = reporter
         self.footer_function = create_footer_function or (lambda __, ___: "")
