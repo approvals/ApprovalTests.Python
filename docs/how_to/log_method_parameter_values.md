@@ -21,7 +21,7 @@ Here is an example:
 def method_with_inputs(number, name):
     with SimpleLogger.use_markers(f"number = {number}, name = {name}"):
 ```
-<sup><a href='/tests/test_simple_logger.py#L172-L175' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L196-L199' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It will produce:  
@@ -47,7 +47,7 @@ def method_with_inputs_and_outputs(number, announcement):
         lambda: f"number = {number}, announcement = {announcement}"
     ):
 ```
-<sup><a href='/tests/test_simple_logger.py#L185-L190' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L209-L214' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It will produce:  

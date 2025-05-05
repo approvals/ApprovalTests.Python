@@ -33,7 +33,7 @@ def test_variable():
         SimpleLogger.variable("dalmatians", 101, show_types=True)
         SimpleLogger.variable("dalmatians", 101, show_types=False)
 ```
-<sup><a href='/tests/test_simple_logger.py#L74-L81' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L75-L82' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which produces:
@@ -62,5 +62,5 @@ def test_variable_explict():
     SimpleLogger.variable("dalmatians", 101, show_types=False)
     verify(output)
 ```
-<sup><a href='/tests/test_simple_logger.py#L84-L92' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_long_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L85-L93' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_long_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

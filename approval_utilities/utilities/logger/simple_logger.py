@@ -55,7 +55,9 @@ class SimpleLogger:
         SimpleLogger._wrapper.get().message(message)
 
     @staticmethod
-    def warning(text: Union[str, BaseException] = "", exception: Optional[BaseException] = None) -> None:
+    def warning(
+        text: Union[str, BaseException] = "", exception: Optional[BaseException] = None
+    ) -> None:
         SimpleLogger._wrapper.get().warning(text, exception)
 
     @staticmethod

@@ -166,12 +166,12 @@ def test_run_combinations() -> None:
 
 def test_run_combinations_with_exception_handler() -> None:
     approvals.settings().allow_multiple_verify_calls_for_this_method()
-    
+
     with verify_simple_logger():
         run_all_combinations(
             function_to_run,
             [["red"], ["one", "brie"]],
-            exception_handler=lambda e: SimpleLogger.warning(exception = e),
+            exception_handler=lambda e: SimpleLogger.warning(exception=e),
         )
     with verify_simple_logger():
         run_all_combinations(
