@@ -26,7 +26,7 @@ def test_word_count():
     map_reduction = MRWordFrequencyCount([])
     verify_map_reduce(map_reduction, test_data)
 ```
-<sup><a href='/tests/mrjob/test_mrjob.py#L30-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_map_reduce' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/mrjob/test_mrjob.py#L33-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_map_reduce' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will produce
@@ -64,7 +64,7 @@ def test_word_count_combinations():
 
     verify_templated_map_reduce(map_reduction, input_creator, [animals, colors, colors])
 ```
-<sup><a href='/tests/mrjob/test_mrjob.py#L40-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_templated_map_reduce' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/mrjob/test_mrjob.py#L43-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_templated_map_reduce' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 [Click here to see the results](../../tests/mrjob/test_mrjob.test_word_count_combinations.approved.txt)
