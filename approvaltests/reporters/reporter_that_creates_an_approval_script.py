@@ -10,7 +10,7 @@ from approvaltests.reporters import get_command_text
 class ReporterThatCreatesAnApprovalScript(Reporter):
     file = None
 
-    def create_approval_script(self, script: str):
+    def create_approval_script(self, script: str) -> None:
         if ReporterThatCreatesAnApprovalScript.file is None:
             if is_windows_os():
                 self.create_script_windows()
@@ -18,7 +18,7 @@ class ReporterThatCreatesAnApprovalScript(Reporter):
                 self.create_script_unix()
         append_to_file(ReporterThatCreatesAnApprovalScript.file, f"{script}\n")
 
-    def create_script_unix(self):
+    def create_script_unix(self) -> None:
         APPROVAL_TESTS_TEMP_DIRECTORY.mkdir(parents=True, exist_ok=True)
         ReporterThatCreatesAnApprovalScript.file = (
             APPROVAL_TESTS_TEMP_DIRECTORY / "approval_script.sh"
@@ -27,7 +27,7 @@ class ReporterThatCreatesAnApprovalScript(Reporter):
         # make executable
         ReporterThatCreatesAnApprovalScript.file.chmod(0o755)
 
-    def create_script_windows(self):
+    def create_script_windows(self) -> None:
         APPROVAL_TESTS_TEMP_DIRECTORY.mkdir(parents=True, exist_ok=True)
         ReporterThatCreatesAnApprovalScript.file = (
             APPROVAL_TESTS_TEMP_DIRECTORY / "approval_script.bat"

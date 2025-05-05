@@ -23,7 +23,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
 )
 
 
-def get_approved_via_doc_string():
+def get_approved_via_doc_string() -> str:
     test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
     method: Callable[..., Any] = get_caller_method(test_stack_frame)
     return remove_indentation_from(method.__doc__)

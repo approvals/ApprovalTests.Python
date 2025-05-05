@@ -23,7 +23,7 @@ class InlinePythonReporter(Reporter):
         received_path = self.create_received_file(received_path, test_source_file)
         return self.diffReporter.report(received_path, test_source_file)
 
-    def get_test_source_file(self):
+    def get_test_source_file(self) -> str:
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
         return test_stack_frame.filename
 

@@ -17,7 +17,7 @@ def test_verify_command_line_with_input():
     )
 
 
-def test_command_line_verify():
+def test_command_line_verify() -> None:
     import tempfile
 
     temp_directory: Path = Path(tempfile.TemporaryDirectory().name)

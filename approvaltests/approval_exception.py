@@ -3,7 +3,7 @@ class ApprovalException(Exception):
         super().__init__(self)
         self.value = value
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value
 
 

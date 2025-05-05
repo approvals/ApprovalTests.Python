@@ -23,7 +23,7 @@ class InlineComparator(Namer):
         return tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
 
     @staticmethod
-    def get_test_method_doc_string():
+    def get_test_method_doc_string() -> str:
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
         method: Callable[..., Any] = InlineComparator.get_caller_method(
             test_stack_frame

@@ -3,16 +3,16 @@ from enum import Enum
 
 
 class SplitCode:
-    def __init__(self, before_method, after_method, tab):
+    def __init__(self, before_method: str, after_method: str, tab: str) -> None:
         self.before_method = before_method
         self.after_method = after_method
         self.tab = tab
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"before:\n{self.before_method}\nafter:\n{self.after_method}\ntab: '{self.tab}'\n"
 
     @staticmethod
-    def on_method(code, method_name) -> "SplitCode":
+    def on_method(code: str, method_name: str) -> "SplitCode":
         lines = code.split("\n")
         before = []
         after = []
@@ -51,7 +51,7 @@ class SplitCode:
                 after.append(line)
         return SplitCode("\n".join(before), "\n".join(after), tab)
 
-    def indent(self, received_text):
+    def indent(self, received_text: str) -> str:
         lines = received_text.split("\n")
         indented_lines = [f"{self.tab}{line}" for line in lines]
         return "\n".join(indented_lines)

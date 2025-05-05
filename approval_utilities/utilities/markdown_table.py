@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class MarkdownTable(Verifiable):
-    def __init__(self):
+    def __init__(self) -> None:
         self.markdown: str = ""
 
     def get_verify_parameters(self, options: "Options") -> VerifyParameters:
