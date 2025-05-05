@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class MarkdownTable(Verifiable):
     def __init__(self):
-        self.markdown = ""
+        self.markdown: str = ""
 
     def get_verify_parameters(self, options: "Options") -> VerifyParameters:
         return VerifyParameters(options.for_file.with_extension(".md"))
