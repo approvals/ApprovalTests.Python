@@ -20,7 +20,7 @@ def add_pair(in1: Any, in2: Any, all_pairs_with_index: Dict[str, int]) -> None:
 def get_all_pairs_count(inputs: Sequence[Sequence[Any]]) -> Dict[str, int]:
     cases = get_best_covering_pairs(inputs)
     print(f"reduce set of {len(cases)} cases")
-    pairCount = {}
+    pairCount: Dict[str, int] = {}
     for params in cases:
         for i1 in range(len(inputs) - 1):
             for i2 in range(i1 + 1, len(inputs)):
