@@ -5,7 +5,7 @@ import os
 from copy import deepcopy
 from pathlib import Path
 
-from typing import Callable, Dict, TypeVar
+from typing import Callable, Dict, TypeVar, Optional
 
 
 def get_adjacent_file(name: str) -> str:
@@ -14,7 +14,7 @@ def get_adjacent_file(name: str) -> str:
     return os.path.join(directory, name)
 
 
-def write_to_temporary_file(text: str, name: str, file_extention_with_dot: str = None):
+def write_to_temporary_file(text: str, name: str, file_extention_with_dot: Optional[str] = None):
     import tempfile
 
     file_extention_with_dot = file_extention_with_dot or ".txt"
