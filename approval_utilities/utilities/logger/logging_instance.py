@@ -88,7 +88,7 @@ class LoggingInstance:
                 self.log.log_line(expected)
 
             def get_parameters(self, is_exit: bool):
-                if isinstance(parameter_text, Callable):
+                if callable(parameter_text):
                     return parameter_text()
                 elif parameter_text is None or is_exit:
                     return ""
