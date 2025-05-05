@@ -72,11 +72,10 @@ class LoggingInstance:
             return Nothing()
 
         class Markers:
-            def __init__(self, log, method_name, filename, parameter_text):
+            def __init__(self, log, method_name, filename):
                 self.log = log
                 self.method_name = method_name
                 self.filename = filename
-                self.parameter_text = parameter_text
 
             def __enter__(self):
                 expected = f"-> in: {self.method_name}({self.get_parameters(False)}) in {self.filename}"
@@ -89,9 +88,9 @@ class LoggingInstance:
                 self.log.log_line(expected)
 
             def get_parameters(self, is_exit: bool):
-                if isinstance(self.parameter_text, Callable):
+                if isinstance(parameter_text, Callable):
                     return parameter_text()
-                elif self.parameter_text is None or is_exit:
+                elif parameter_text is None or is_exit:
                     return ""
                 else:
                     return str(parameter_text)
@@ -101,7 +100,7 @@ class LoggingInstance:
         method_name = stack.function
 
         filename = get_class_name_for_frame(stack)
-        return Markers(self, method_name, filename, parameter_text)
+        return Markers(self, method_name, filename)
 
     def log_line(self, text: str, use_timestamps=True) -> None:
         if self.counter != 0:
