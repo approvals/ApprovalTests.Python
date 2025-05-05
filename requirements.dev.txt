@@ -6,3 +6,4 @@ mypy
 types-requests
 types-setuptools
 types-PyYAML
+types-pyperclip
