@@ -1,7 +1,7 @@
 import datetime
 import inspect
 import traceback
-from typing import Callable, Any, Iterable, ContextManager
+from typing import Callable, Any, Iterable, ContextManager, Optional, Union
 
 
 from approval_utilities.utilities.exceptions.exception_utils import to_string
@@ -59,7 +59,7 @@ class LoggingInstance:
         return Indent(self)
 
     def use_markers(
-        self, parameter_text: [str, Callable[[], str]] = None, additional_stack: int = 0
+        self, parameter_text: Optional[Union[str, Callable[[], str]]] = None, additional_stack: int = 0
     ) -> ContextManager:
         class Nothing:
             def __enter__(self):
