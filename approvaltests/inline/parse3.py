@@ -7,7 +7,10 @@ from approvaltests.core.options import Options
 
 class Parse3(Generic[T1, T2, T3]):
     def __init__(
-        self, text: str, transformer: Callable[[str], Tuple[T1, T2, T3]], options: Options
+        self,
+        text: str,
+        transformer: Callable[[str], Tuple[T1, T2, T3]],
+        options: Options,
     ) -> None:
         self.text = text
         self._transformer = transformer

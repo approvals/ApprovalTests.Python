@@ -1,7 +1,9 @@
 from typing import List
 
 
-def compare_log_and_file_system(log_file_names: List[str], fs_file_names: List[str]) -> List[str]:
+def compare_log_and_file_system(
+    log_file_names: List[str], fs_file_names: List[str]
+) -> List[str]:
     return [file for file in fs_file_names if file not in log_file_names]
 
 

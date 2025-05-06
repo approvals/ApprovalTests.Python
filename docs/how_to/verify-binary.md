@@ -39,7 +39,7 @@ It uses serializers instead of dumping the binary blob directly to disk. In this
 <!-- snippet: verify_numpy_array -->
 <a id='snippet-verify_numpy_array'></a>
 ```py
-def test_simulator_produces_correct_output():
+def test_simulator_produces_correct_output() -> None:
     np_array = np.full(shape=(32, 16), fill_value=42, dtype=np.int64)
     verify_binary(
         serialize_ndarray(np_array),

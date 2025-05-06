@@ -9,13 +9,15 @@ from approvaltests.inline.types import T, T2, T1
 
 
 class Parse(Generic[T]):
-    def __init__(self, text: str, transformer: Callable[[str], T], options: Options) -> None:
+    def __init__(
+        self, text: str, transformer: Callable[[str], T], options: Options
+    ) -> None:
         self.text = text
         self._transformer = transformer
         self.options = options
 
     @staticmethod
-    def doc_string(*, auto_approve: bool =False) -> "Parse[str]":
+    def doc_string(*, auto_approve: bool = False) -> "Parse[str]":
         options = Options()
         if auto_approve:
             options = options.with_reporter(ReporterThatAutomaticallyApproves())
@@ -61,7 +63,10 @@ class Parse(Generic[T]):
     # add in callable
     # done: verify_all signature is incorrect
     def transform3(
-        self, transform1: Callable[[str], T1], transform2: Callable[[str], T2], int1: Callable[[str], int]
+        self,
+        transform1: Callable[[str], T1],
+        transform2: Callable[[str], T2],
+        int1: Callable[[str], int],
     ) -> "Parse3[T1, int, int]":
         def transformer(s: str) -> Tuple[T1, T2, int]:
             parts = s.split(",")

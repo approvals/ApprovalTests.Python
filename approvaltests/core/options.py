@@ -20,7 +20,7 @@ class FileOptions:
         self,
         extension_with_dot: str,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
-        no_override: bool =False,
+        no_override: bool = False,
     ) -> "Options":
         if not extension_with_dot.startswith("."):
             extension_with_dot = "." + extension_with_dot

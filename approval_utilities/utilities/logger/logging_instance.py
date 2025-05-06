@@ -153,7 +153,7 @@ class LoggingInstance:
         if not self.toggles.variables:
             return
 
-        def to_type(value: Any, spacing: str =" ") -> str:
+        def to_type(value: Any, spacing: str = " ") -> str:
             return f"{spacing}{print_type(value)}" if show_types else ""
 
         if _is_iterable(value):

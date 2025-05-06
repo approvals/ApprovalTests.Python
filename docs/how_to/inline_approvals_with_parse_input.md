@@ -47,7 +47,7 @@ def test_count_vowels():
     parse = Parse.doc_string(auto_approve=True)
     parse.verify_all(count_vowels)
 ```
-<sup><a href='/tests/test_parse_inputs.py#L55-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L57-L68' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Step 2: Run the Test
@@ -59,7 +59,7 @@ When you run the test it will fail, but it will automatically update the docstri
 Kody -> 0
 """
 ```
-<sup><a href='/tests/test_parse_inputs.py#L49-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L51-L56' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Step 3: Implement and rerun 
@@ -81,7 +81,7 @@ def test_count_vowels():
     parse = Parse.doc_string(auto_approve=True)
     parse.verify_all(count_vowels)
 ```
-<sup><a href='/tests/test_parse_inputs.py#L77-L90' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_3' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L79-L92' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_3' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Step 4: Commit
@@ -105,7 +105,7 @@ def test_with_transformation():
     parse = Parse.doc_string(auto_approve=True)
     parse.transform(int).verify_all(bin)
 ```
-<sup><a href='/tests/test_parse_inputs.py#L94-L104' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_transformation' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L96-L106' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_transformation' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Handling 2 Parameters
@@ -123,5 +123,5 @@ def test_with_two_parameters():
     parse = Parse.doc_string(auto_approve=True)
     parse.transform2(str, int).verify_all(lambda s, i: s * i)
 ```
-<sup><a href='/tests/test_parse_inputs.py#L107-L117' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_two_parameters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_parse_inputs.py#L109-L119' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_two_parameters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
