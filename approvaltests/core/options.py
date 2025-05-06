@@ -20,7 +20,7 @@ class FileOptions:
         self,
         extension_with_dot: str,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
-        no_override=False,
+        no_override: bool =False,
     ) -> "Options":
         if not extension_with_dot.startswith("."):
             extension_with_dot = "." + extension_with_dot
@@ -56,12 +56,12 @@ class Options:
     def with_scrubber(self, scrubber_func: Callable[[str], str]) -> "Options":
         return Options({**self.fields, **{"scrubber_func": scrubber_func}})
 
-    def add_scrubber(self, scrubber) -> "Options":
+    def add_scrubber(self, scrubber: Callable[[str], str]) -> "Options":
         if self.has_scrubber():
             scrubber = combine_scrubbers(self.fields["scrubber_func"], scrubber)
         return self.with_scrubber(scrubber)
 
-    def has_scrubber(self):
+    def has_scrubber(self) -> bool:
         return "scrubber_func" in self.fields
 
     def with_reporter(self, reporter: "Reporter") -> "Options":

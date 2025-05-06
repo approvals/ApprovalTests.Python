@@ -14,5 +14,5 @@ class GenericDiffReporterConfig:
         return result
 
 
-def create_config(config) -> GenericDiffReporterConfig:
+def create_config(config: List[str]) -> GenericDiffReporterConfig:
     return GenericDiffReporterConfig(*config)

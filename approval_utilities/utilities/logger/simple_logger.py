@@ -14,7 +14,7 @@ class SimpleLogger:
         SimpleLogger._wrapper.get().logger = log_method
 
     @staticmethod
-    def log_to_string(log_separate_threads=True) -> StringWrapper:
+    def log_to_string(log_separate_threads: bool = True) -> StringWrapper:
         with threading.Lock():
             if log_separate_threads and not isinstance(
                 SimpleLogger._wrapper, ThreadedWrapper
@@ -61,29 +61,29 @@ class SimpleLogger:
         SimpleLogger._wrapper.get().warning(text, exception)
 
     @staticmethod
-    def show_queries(show: bool):
+    def show_queries(show: bool) -> None:
         SimpleLogger._wrapper.get().show_queries(show)
 
     @staticmethod
-    def show_all(show: bool):
+    def show_all(show: bool) -> None:
         SimpleLogger._wrapper.get().show_all(show)
 
     @staticmethod
-    def show_messages(show: bool):
+    def show_messages(show: bool) -> None:
         SimpleLogger._wrapper.get().show_messages(show)
 
     @staticmethod
-    def show_variables(show: bool):
+    def show_variables(show: bool) -> None:
         SimpleLogger._wrapper.get().show_variables(show)
 
     @staticmethod
-    def show_hour_glass(show: bool):
+    def show_hour_glass(show: bool) -> None:
         SimpleLogger._wrapper.get().show_hour_glass(show)
 
     @staticmethod
-    def show_markers(show: bool):
+    def show_markers(show: bool) -> None:
         SimpleLogger._wrapper.get().show_markers(show)
 
     @staticmethod
-    def show_events(show: bool):
+    def show_events(show: bool) -> None:
         SimpleLogger._wrapper.get().show_events(show)

@@ -1,3 +1,5 @@
+from typing import Callable
+
 from approvaltests import Options, verify_all
 from approvaltests.inline.parse import Parse
 
@@ -125,7 +127,7 @@ def test_with_3_parameters():
 
     counter = 0
 
-    def to(tin: type, tout: type):
+    def to(tin: type, tout: type) -> Callable:
         def wrapped(input):
             nonlocal counter
             counter += 1

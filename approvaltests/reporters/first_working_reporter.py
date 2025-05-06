@@ -1,4 +1,6 @@
 from typing_extensions import override
+from typing import List
+
 from approvaltests.core.reporter import Reporter
 
 
@@ -16,7 +18,7 @@ class FirstWorkingReporter(Reporter):
     See also MultiReporter.
     """
 
-    def __init__(self, *reporters) -> None:
+    def __init__(self, *reporters: Reporter) -> None:
         self.reporters = reporters
 
     @override

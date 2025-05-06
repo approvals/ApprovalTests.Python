@@ -29,7 +29,7 @@ class InlinePythonReporter(Reporter):
         test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
         return test_stack_frame.filename
 
-    def create_received_file(self, received_path: str, test_source_file: str):
+    def create_received_file(self, received_path: str, test_source_file: str) -> str:
         code = Path(test_source_file).read_text()
 
         received_text = Path(received_path).read_text()[:-1] + self.footer

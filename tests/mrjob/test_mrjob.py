@@ -1,5 +1,6 @@
 import sys
 import pytest
+from typing import Dict, Any
 
 from approvaltests.integrations.mrjob.mrjob_approvals import (
     verify_map_reduce,
@@ -87,12 +88,12 @@ def test_verify_templated_map_reduce_with_customized_job():
     colors = ["aqua", "blue"]
     animals = ["cat", "dog"]
 
-    def mapreduce_creator(color, _) -> MRJob:
+    def mapreduce_creator(color: str, _: Any) -> MRJob:
         if color == "blue":
             return BlueReducer()
         return AquaReducer()
 
-    def input_creator(_, animal):
+    def input_creator(_: Any, animal: str) -> str:
         return f"one {animal} two {animal} red {animal} blue {animal}"
 
     verify_templated_map_reduce_with_customized_job(
@@ -104,12 +105,12 @@ def test_verify_templated_map_reduce_with_customized_job_with_dictionary_args():
     colors = ["aqua", "blue"]
     animals = ["cat", "dog"]
 
-    def mapreduce_creator(params) -> MRJob:
+    def mapreduce_creator(params: Dict[str, str]) -> MRJob:
         if params["color"] == "blue":
             return BlueReducer()
         return AquaReducer()
 
-    def input_creator(params):
+    def input_creator(params: Dict[str, str]) -> str:
         animal = params["animal"]
         return f"one {animal} two {animal} red {animal} blue {animal}"
 

@@ -34,7 +34,7 @@ class InlineComparator(Namer):
         return remove_indentation_from(method.__doc__)
 
     @staticmethod
-    def get_caller_method(caller_frame) -> Callable:
+    def get_caller_method(caller_frame: FrameInfo) -> Callable:
         caller_function_name: str = caller_frame[3]
         caller_function_object = caller_frame.frame.f_globals.get(caller_function_name)
         if caller_function_object:
@@ -49,7 +49,7 @@ class InlineComparator(Namer):
 
     def register(
         self, options: Options, inline_options: Optional[InlineOptions] = None
-    ):
+    ) -> Options:
         inline_options = (
             InlineOptions.show_code() if inline_options is None else inline_options
         )

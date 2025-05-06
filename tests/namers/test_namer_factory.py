@@ -12,7 +12,7 @@ def test_CI_specific() -> None:
     )
 
 
-def assert_team_city(value: Optional[str], expected: bool):
+def assert_team_city(value: Optional[str], expected: bool) -> None:
     def loader(key):
         if key == "TEAMCITY_VERSION":
             return value

@@ -154,11 +154,11 @@ def args_and_result_formatter(args: List[Any], result: int) -> str:
 
 
 def verify_logging_for_all_combinations(
-    function_to_run,
+    function_to_run: Callable,
     input_arguments: VariationForEachParameter,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
-):
+) -> None:
     def printer(*args):
         SimpleLogger._wrapper.get().log_line(f"Running inputs {args} => ")
         with SimpleLogger._wrapper.get().indent():

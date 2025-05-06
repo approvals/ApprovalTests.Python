@@ -1,17 +1,17 @@
 from pathlib import Path
 
 
-def test_init_present():
+def test_init_present() -> None:
     current_working_directory = Path(Path(__file__).parents[1])
     assert_directories_have_inits(current_working_directory / "approvaltests")
     assert_directories_have_inits(current_working_directory / "approval_utilities")
 
 
-def is_generated_code(directory_name: str):
+def is_generated_code(directory_name: str) -> bool:
     return "__" in directory_name
 
 
-def assert_directories_have_inits(directory: Path):
+def assert_directories_have_inits(directory: Path) -> None:
     if not is_generated_code(f"{directory}"):
         if not (directory / "__init__.py").exists():
             assert False, f"__init__.py is missing from {directory}"

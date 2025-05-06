@@ -138,7 +138,7 @@ def log_everything() -> None:
             SimpleLogger.warning(exception=e)
 
 
-def function_to_run(color, number) -> None:
+def function_to_run(color: str, number: str) -> None:
     with SimpleLogger.use_markers():
         SimpleLogger.variable("color", color)
         SimpleLogger.variable("number", number)

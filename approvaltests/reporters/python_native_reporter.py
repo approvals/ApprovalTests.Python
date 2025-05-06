@@ -27,13 +27,13 @@ class PythonNativeReporter(Reporter):
         return True
 
     @override
-    def __str__(self):
+    def __str__(self) -> str:
         return self.__class__.__name__
 
     __repr__ = __str__
 
 
-def calculate_diff_with_approve_instruction(file1: str, file2: str):
+def calculate_diff_with_approve_instruction(file1: str, file2: str) -> str:
     diff_string = calculate_diff(file1, file2)
     if diff_string.strip():
         approve = get_command_text(file1, file2)
@@ -43,7 +43,7 @@ def calculate_diff_with_approve_instruction(file1: str, file2: str):
     return diff_string + approve_cmd
 
 
-def calculate_diff(filename1: str, filename2: str):
+def calculate_diff(filename1: str, filename2: str) -> str:
     with open(filename1, encoding="utf8") as file1:
         with open(filename2, encoding="utf8") as file2:
             diff = unified_diff(

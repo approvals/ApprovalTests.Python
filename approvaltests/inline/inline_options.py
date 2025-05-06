@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing_extensions import override
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -75,7 +77,7 @@ class InlineOptions:
         return options
 
     @staticmethod
-    def show_code(do_show_code: bool = True):
+    def show_code(do_show_code: bool = True) -> InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
 
         class ShowCodeInlineOptions(InlineOptions):

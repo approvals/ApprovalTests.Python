@@ -39,7 +39,7 @@ def scrub_all_guids(data: str) -> str:
     )(data)
 
 
-def combine_scrubbers(*scrubbers):
+def combine_scrubbers(*scrubbers: Scrubber) -> Scrubber:
     def combined(data: str) -> str:
         for scrubber in scrubbers:
             data = scrubber(data)

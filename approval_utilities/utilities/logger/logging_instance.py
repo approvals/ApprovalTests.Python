@@ -19,11 +19,11 @@ class Toggles:
         self.events = show
 
 
-def _is_iterable(arg):
+def _is_iterable(arg: Any) -> bool:
     return isinstance(arg, Iterable) and not isinstance(arg, str)
 
 
-def print_type(value):
+def print_type(value: Any) -> str:
     return f"<{type(value).__name__}>"
 
 
@@ -89,7 +89,7 @@ class LoggingInstance:
                 expected = f"<- out: {self.method_name}({self.get_parameters(True)})"
                 self.log.log_line(expected)
 
-            def get_parameters(self, is_exit: bool):
+            def get_parameters(self, is_exit: bool) -> str:
                 if callable(parameter_text):
                     return parameter_text()
                 elif parameter_text is None or is_exit:
@@ -104,7 +104,7 @@ class LoggingInstance:
         filename = get_class_name_for_frame(stack)
         return Markers(self, method_name, filename)
 
-    def log_line(self, text: str, use_timestamps=True) -> None:
+    def log_line(self, text: str, use_timestamps: bool = True) -> None:
         if self.counter != 0:
             self.logger("\n")
             self.counter = 0
@@ -153,7 +153,7 @@ class LoggingInstance:
         if not self.toggles.variables:
             return
 
-        def to_type(value: Any, spacing=" ") -> str:
+        def to_type(value: Any, spacing: str =" ") -> str:
             return f"{spacing}{print_type(value)}" if show_types else ""
 
         if _is_iterable(value):

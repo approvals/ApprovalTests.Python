@@ -118,5 +118,5 @@ class FileApprover:
         return False
 
     @staticmethod
-    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str], bool]):
+    def add_allowed_duplicates(is_duplicate_allowed: Callable[[str], bool]) -> None:
         FileApprover.allowed_duplicates.append(is_duplicate_allowed)

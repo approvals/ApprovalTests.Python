@@ -70,7 +70,7 @@ class DateScrubber:
     def __init__(self, date_regex: str):
         self.date_regex = date_regex
 
-    def scrub(self, date_str: str):
+    def scrub(self, date_str: str) -> str:
         return create_regex_scrubber(self.date_regex, lambda t: f"<date{t}>")(date_str)
 
     @staticmethod

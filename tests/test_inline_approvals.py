@@ -29,7 +29,7 @@ def get_approved_via_doc_string() -> str:
     return remove_indentation_from(method.__doc__)
 
 
-def get_caller_method(caller_frame) -> Callable:
+def get_caller_method(caller_frame: FrameInfo) -> Callable:
     caller_function_name: str = caller_frame[3]
     caller_function_object = caller_frame.frame.f_globals.get(
         caller_function_name, None

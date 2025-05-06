@@ -81,5 +81,5 @@ StoryBoard = Storyboard
 def verify_storyboard(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
-):
+) -> "Storyboard":
     return Storyboard(verify_on_exit=True, options=options)

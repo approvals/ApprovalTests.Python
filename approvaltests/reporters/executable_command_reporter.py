@@ -26,7 +26,7 @@ class ExecutableCommandReporter(Reporter):
         self.reporter.report(received_filename, approved_filename)
         return True
 
-    def execute_result(self, filename) -> str:
+    def execute_result(self, filename: str) -> str:
         path = pathlib.Path(filename)
         command_string = None
         if path.exists():

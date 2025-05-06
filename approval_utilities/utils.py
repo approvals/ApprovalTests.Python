@@ -5,7 +5,7 @@ import os
 from copy import deepcopy
 from pathlib import Path
 
-from typing import Callable, Dict, TypeVar, Optional
+from typing import Callable, Dict, TypeVar, Optional, Any
 
 
 def get_adjacent_file(name: str) -> str:
@@ -16,7 +16,7 @@ def get_adjacent_file(name: str) -> str:
 
 def write_to_temporary_file(
     text: str, name: str, file_extention_with_dot: Optional[str] = None
-):
+) -> str:
     import tempfile
 
     file_extention_with_dot = file_extention_with_dot or ".txt"
@@ -27,7 +27,7 @@ def write_to_temporary_file(
         return temp.name
 
 
-def to_json(object_to_verify) -> str:
+def to_json(object_to_verify: Any) -> str:
     return json.dumps(
         object_to_verify,
         sort_keys=True,
@@ -97,6 +97,6 @@ def filter_values(filter: Callable[[_V], bool], a_dict: Dict[_K, _V]) -> Dict[_K
     return {k: v for k, v in a_dict.items() if filter(v)}
 
 
-def append_to_file(file: Path, text: str):
+def append_to_file(file: Path, text: str) -> None:
     with file.open(mode="a") as f:
         f.write(text)

@@ -9,13 +9,13 @@ from approvaltests.inline.types import T, T2, T1
 
 
 class Parse(Generic[T]):
-    def __init__(self, text: str, transformer: Callable[[str], T], options) -> None:
+    def __init__(self, text: str, transformer: Callable[[str], T], options: Options) -> None:
         self.text = text
         self._transformer = transformer
         self.options = options
 
     @staticmethod
-    def doc_string(*, auto_approve=False) -> "Parse[str]":
+    def doc_string(*, auto_approve: bool =False) -> "Parse[str]":
         options = Options()
         if auto_approve:
             options = options.with_reporter(ReporterThatAutomaticallyApproves())
@@ -28,13 +28,13 @@ class Parse(Generic[T]):
         return Parse.parse_inputs(self.text, self._transformer)
 
     @staticmethod
-    def parse_inputs(text, transformer):
+    def parse_inputs(text: str, transformer: Callable[[str], T]) -> List[T]:
         lines = text.split("\n")
         lines = list(filter(lambda line: line.strip(), lines))
         inputs = [line.split("->")[0].strip() for line in lines]
         return [transformer(i) for i in inputs]
 
-    def verify_all(self, transform: Callable[[T], Any]):
+    def verify_all(self, transform: Callable[[T], Any]) -> None:
         verify_all(
             "",
             self.get_inputs(),
@@ -61,7 +61,7 @@ class Parse(Generic[T]):
     # add in callable
     # done: verify_all signature is incorrect
     def transform3(
-        self, transform1: Callable[[str], T1], transform2: Callable[[str], T2], int1
+        self, transform1: Callable[[str], T1], transform2: Callable[[str], T2], int1: Callable[[str], int]
     ) -> "Parse3[T1, int, int]":
         def transformer(s: str) -> Tuple[T1, T2, int]:
             parts = s.split(",")
