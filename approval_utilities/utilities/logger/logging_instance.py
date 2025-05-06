@@ -54,7 +54,12 @@ class LoggingInstance:
             def __enter__(self) -> None:
                 self.log.tabbing += 1
 
-            def __exit__(self, exc_type: Optional[Type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
+            def __exit__(
+                self,
+                exc_type: Optional[Type],
+                exc_val: Optional[BaseException],
+                exc_tb: Optional[TracebackType],
+            ) -> None:
                 self.log.tabbing -= 1
 
         return Indent(self)
@@ -68,14 +73,21 @@ class LoggingInstance:
             def __enter__(self) -> None:
                 pass
 
-            def __exit__(self, exc_type: Optional[type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
+            def __exit__(
+                self,
+                exc_type: Optional[type],
+                exc_val: Optional[BaseException],
+                exc_tb: Optional[TracebackType],
+            ) -> None:
                 pass
 
         if not self.toggles.markers:
             return Nothing()
 
         class Markers:
-            def __init__(self, log: "LoggingInstance", method_name: str, filename: str) -> None:
+            def __init__(
+                self, log: "LoggingInstance", method_name: str, filename: str
+            ) -> None:
                 self.log = log
                 self.method_name = method_name
                 self.filename = filename
@@ -85,7 +97,12 @@ class LoggingInstance:
                 self.log.log_line(expected)
                 self.log.tabbing = self.log.tabbing + 1
 
-            def __exit__(self, exc_type: Optional[type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
+            def __exit__(
+                self,
+                exc_type: Optional[type],
+                exc_val: Optional[BaseException],
+                exc_tb: Optional[TracebackType],
+            ) -> None:
                 self.log.tabbing = self.log.tabbing - 1
                 expected = f"<- out: {self.method_name}({self.get_parameters(True)})"
                 self.log.log_line(expected)

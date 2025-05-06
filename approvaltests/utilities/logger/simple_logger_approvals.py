@@ -18,7 +18,12 @@ def verify_simple_logger(
         def __enter__(self) -> None:
             pass
 
-        def __exit__(self, exc_type: Optional[Type[BaseException]], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> bool:
+        def __exit__(
+            self,
+            exc_type: Optional[Type[BaseException]],
+            exc_val: Optional[BaseException],
+            exc_tb: Optional[TracebackType],
+        ) -> bool:
             verify(self.output, options=options)
 
     return VerifySimpleLogger()

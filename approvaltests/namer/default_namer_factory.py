@@ -19,7 +19,9 @@ def is_ci(environment_loader: Callable[[str], Optional[str]] = os.environ.get) -
     )
 
 
-def is_team_city(environment_loader: Callable[[str], Optional[str]] = os.environ.get) -> bool:
+def is_team_city(
+    environment_loader: Callable[[str], Optional[str]] = os.environ.get,
+) -> bool:
     team_city_version = environment_loader("TEAMCITY_VERSION")
     team_city = team_city_version and team_city_version != "LOCAL"
     return team_city

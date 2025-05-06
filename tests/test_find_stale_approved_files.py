@@ -12,7 +12,9 @@ from approvaltests.scrubbers import create_regex_scrubber
 
 
 # Create a temporary sandbox directory and log file
-def create_sandbox(approved_files: List[str], log_entries: List[str], nested: bool = False) -> Tuple[tempfile.TemporaryDirectory, str]:
+def create_sandbox(
+    approved_files: List[str], log_entries: List[str], nested: bool = False
+) -> Tuple[tempfile.TemporaryDirectory, str]:
     sandbox_dir = tempfile.TemporaryDirectory()
     log_file_path = os.path.join(sandbox_dir.name, "approvedfiles.log")
 
@@ -122,7 +124,9 @@ def test_find_stale_approved_files() -> None:
         verify_files(approved_files, log_entries)
 
 
-def verify_files(approved_files: List[str], log_entries: List[str], nested: bool = False) -> None:
+def verify_files(
+    approved_files: List[str], log_entries: List[str], nested: bool = False
+) -> None:
     SimpleLogger.variable("Approved Files", approved_files)
     SimpleLogger.variable("Log Entries", log_entries)
 

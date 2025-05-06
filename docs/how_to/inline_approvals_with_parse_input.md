@@ -97,7 +97,7 @@ Here's an example:
 <!-- snippet: parse_input_transformation -->
 <a id='snippet-parse_input_transformation'></a>
 ```py
-def test_with_transformation():
+def test_with_transformation() -> None:
     """
     1 -> 0b1
     9 -> 0b1001
@@ -115,7 +115,7 @@ Here's an example with two parameters:
 <!-- snippet: parse_input_two_parameters -->
 <a id='snippet-parse_input_two_parameters'></a>
 ```py
-def test_with_two_parameters():
+def test_with_two_parameters() -> None:
     """
     a, 3 -> aaa
     !, 7 -> !!!!!!!

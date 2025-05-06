@@ -25,7 +25,9 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         connection.close()
         return self.format_data_as_markdown_table(column_names, rows)
 
-    def format_data_as_markdown_table(self, column_names: List[str], rows: List[List]) -> str:
+    def format_data_as_markdown_table(
+        self, column_names: List[str], rows: List[List]
+    ) -> str:
         def format_table_row(values: Iterable[Any]) -> str:
             return "| " + " | ".join(map(str, values)) + " |"
 

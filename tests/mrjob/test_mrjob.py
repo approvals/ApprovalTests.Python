@@ -27,7 +27,9 @@ class MRWordFrequencyCount(MRJob):
         yield "words", len(line.split())
         yield "lines", 1
 
-    def reducer(self, key: str, values: Sequence[int]) -> Generator[Tuple[str, int], None, None]:
+    def reducer(
+        self, key: str, values: Sequence[int]
+    ) -> Generator[Tuple[str, int], None, None]:
         yield key, sum(values)
 
 
@@ -66,7 +68,9 @@ class BlueReducer(MRJob):
         yield "lines", 1
         yield "blue", 1
 
-    def reducer(self, key: str, values: Sequence[int]) -> Generator[Tuple[str, int], None, None]:
+    def reducer(
+        self, key: str, values: Sequence[int]
+    ) -> Generator[Tuple[str, int], None, None]:
         yield key, sum(values)
 
 
@@ -80,7 +84,9 @@ class AquaReducer(MRJob):
         yield "lines", 1
         yield "aqua", 1
 
-    def reducer(self, key: str, values: Sequence[int]) -> Generator[Tuple[str, int], None, None]:
+    def reducer(
+        self, key: str, values: Sequence[int]
+    ) -> Generator[Tuple[str, int], None, None]:
         yield key, sum(values)
 
 

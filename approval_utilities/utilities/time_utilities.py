@@ -14,7 +14,12 @@ def use_utc_timezone() -> ContextManager:
             self.timezone = os.environ.get("TZ")
             os.environ["TZ"] = "UTC"
 
-        def __exit__(self, exc_type: Optional[Type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> bool:
+        def __exit__(
+            self,
+            exc_type: Optional[Type],
+            exc_val: Optional[BaseException],
+            exc_tb: Optional[TracebackType],
+        ) -> bool:
             if self.timezone is None:
                 os.environ.pop("TZ")
             else:

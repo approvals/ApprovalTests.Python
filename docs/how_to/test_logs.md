@@ -28,12 +28,12 @@ Example:
 <!-- snippet: verify_simple_logger_example -->
 <a id='snippet-verify_simple_logger_example'></a>
 ```py
-def test_variable():
+def test_variable() -> None:
     with verify_simple_logger():
         SimpleLogger.variable("dalmatians", 101, show_types=True)
         SimpleLogger.variable("dalmatians", 101, show_types=False)
 ```
-<sup><a href='/tests/test_simple_logger.py#L75-L82' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L76-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which produces:
@@ -56,11 +56,11 @@ Example:
 <!-- snippet: verify_simple_logger_long_example -->
 <a id='snippet-verify_simple_logger_long_example'></a>
 ```py
-def test_variable_explict():
+def test_variable_explict() -> None:
     output = SimpleLogger.log_to_string()
     SimpleLogger.variable("dalmatians", 101, show_types=True)
     SimpleLogger.variable("dalmatians", 101, show_types=False)
     verify(output)
 ```
-<sup><a href='/tests/test_simple_logger.py#L85-L93' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_long_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L86-L94' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_simple_logger_long_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

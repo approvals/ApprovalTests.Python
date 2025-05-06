@@ -22,7 +22,12 @@ def verify_logging(
 
             pass
 
-        def __exit__(self, exc_type: Optional[Type[BaseException]], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> bool:
+        def __exit__(
+            self,
+            exc_type: Optional[Type[BaseException]],
+            exc_val: Optional[BaseException],
+            exc_tb: Optional[TracebackType],
+        ) -> bool:
             self.l.__exit__(exc_type, exc_val, exc_tb)
             self.options = self.options.add_scrubber(
                 DateScrubber.get_scrubber_for("2023-07-16 17:39:03.293919")

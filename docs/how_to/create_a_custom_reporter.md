@@ -11,7 +11,7 @@ this allows other reporters to try when the current one is unable to.
 <!-- snippet: numpy_custom_reporter -->
 <a id='snippet-numpy_custom_reporter'></a>
 ```py
-def load_ndarray(path):
+def load_ndarray(path: str):
     with open(path, mode="rb") as f:
         return np.load(f)
 

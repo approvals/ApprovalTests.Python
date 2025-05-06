@@ -18,10 +18,10 @@ Here is an example:
 <!-- snippet: method_with_inputs -->
 <a id='snippet-method_with_inputs'></a>
 ```py
-def method_with_inputs(number, name):
+def method_with_inputs(number: int, name: str) -> None:
     with SimpleLogger.use_markers(f"number = {number}, name = {name}"):
 ```
-<sup><a href='/tests/test_simple_logger.py#L196-L199' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L197-L200' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It will produce:  
@@ -42,12 +42,12 @@ Here is an example:
 <!-- snippet: method_with_inputs_and_outputs -->
 <a id='snippet-method_with_inputs_and_outputs'></a>
 ```py
-def method_with_inputs_and_outputs(number, announcement):
+def method_with_inputs_and_outputs(number: int, announcement: str) -> None:
     with SimpleLogger.use_markers(
         lambda: f"number = {number}, announcement = {announcement}"
     ):
 ```
-<sup><a href='/tests/test_simple_logger.py#L209-L214' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L210-L215' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It will produce:  

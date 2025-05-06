@@ -55,7 +55,7 @@ It also shows the use of a custom reporter, which uses the NumPy testing feature
 <!-- snippet: numpy_custom_reporter -->
 <a id='snippet-numpy_custom_reporter'></a>
 ```py
-def load_ndarray(path):
+def load_ndarray(path: str):
     with open(path, mode="rb") as f:
         return np.load(f)
 

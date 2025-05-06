@@ -40,7 +40,7 @@ class NamerTests(unittest.TestCase):
         filename = StackFrameNamer().get_approved_filename("./stuff")
         self.assertEqual(filename, "./stuff.approved.txt")
 
-    def test_alternative_extension(self)     -> None:
+    def test_alternative_extension(self) -> None:
         n = StackFrameNamer(extension=".html")
         filename = n.get_approved_filename("./stuff")
         self.assertEqual(filename, "./stuff.approved.html")

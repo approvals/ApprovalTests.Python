@@ -50,7 +50,9 @@ class InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
-        def create_previous_capture_footer(received_path: str, approved_path: str) -> str:
+        def create_previous_capture_footer(
+            received_path: str, approved_path: str
+        ) -> str:
             approved_text = Path(approved_path).read_text()
             approved_text = approved_text.rsplit("\n", 1)[0]
             approved_text = approved_text.rsplit(PREVIOUS_RESULT_, 1)[-1]

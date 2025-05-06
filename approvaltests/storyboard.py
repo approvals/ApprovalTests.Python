@@ -22,7 +22,12 @@ class Storyboard:
     def __enter__(self) -> "Storyboard":
         return self
 
-    def __exit__(self, exc_type: Optional[Type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
+    def __exit__(
+        self,
+        exc_type: Optional[Type],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
+    ) -> None:
         if self.verify_on_exit:
             verify(self, options=self.options)
 
