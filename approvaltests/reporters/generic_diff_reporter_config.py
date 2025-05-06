@@ -7,7 +7,7 @@ class GenericDiffReporterConfig:
         self.path = path
         self.extra_args = extra_args or []
 
-    def serialize(self):
+    def serialize(self) -> List[str]:
         result = [self.name, self.path]
         if self.extra_args:
             result.append(self.extra_args)

@@ -48,7 +48,7 @@ class Options:
     def with_comparator(self, comparator: Comparator) -> "Options":
         return Options({**self.fields, **{"comparator": comparator}})
 
-    def scrub(self, data):
+    def scrub(self, data: str) -> str:
         if self.has_scrubber():
             return self.fields["scrubber_func"](data)
         return data

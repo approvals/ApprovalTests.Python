@@ -99,6 +99,6 @@ class GenericDiffReporter(Reporter):
         return path.replace(PROGRAM_FILES, "C:/Program Files")
 
     @staticmethod
-    def reset_opened_diff_tool_count():
+    def reset_opened_diff_tool_count() -> None:
         GenericDiffReporter.opened_diff_tool_count = 0
         GenericDiffReporter.limit_count = 0

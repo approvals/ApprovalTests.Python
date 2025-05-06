@@ -86,14 +86,14 @@ class FileApprover:
         )
 
     @staticmethod
-    def is_this_a_multiple_verify(approved):
+    def is_this_a_multiple_verify(approved: str) -> bool:
         return (
             approved in FileApprover.previous_approved
             and not FileApprover.is_duplicate_allowed(approved)
         )
 
     @staticmethod
-    def is_duplicate_allowed(approved):
+    def is_duplicate_allowed(approved: str) -> bool:
         for allowed in FileApprover.allowed_duplicates:
             if allowed(approved):
                 return True

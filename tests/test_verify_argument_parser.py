@@ -5,7 +5,7 @@ from approvaltests import verify_argument_parser
 from tests.find_stale_approved_files import create_argument_parser
 
 
-def test_argument_parser():
+def test_argument_parser() -> None:
     parser = argparse.ArgumentParser(
         prog="my_program.py",
         description="My Description",

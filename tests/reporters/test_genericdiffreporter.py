@@ -53,7 +53,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_get_araxis(self) -> None:
         self.assert_for_reporter("AraxisMergeWin")
 
-    def assert_for_reporter(self, reporter):
+    def assert_for_reporter(self, reporter: str) -> None:
         the_reporter = self.factory.get(reporter)
         verify(
             str(the_reporter), MultiReporter(ReportWithBeyondCompare(), the_reporter)

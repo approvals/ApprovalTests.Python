@@ -1,4 +1,6 @@
-from typing import ContextManager, Optional
+from typing import ContextManager, Optional, Type
+from types import TracebackType
+
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approvaltests.approvals import verify
@@ -10,13 +12,13 @@ def verify_simple_logger(
     options: Optional[Options] = None
 ) -> ContextManager:
     class VerifySimpleLogger:
-        def __init__(self):
+        def __init__(self) -> None:
             self.output = SimpleLogger.log_to_string()
 
-        def __enter__(self):
+        def __enter__(self) -> None:
             pass
 
-        def __exit__(self, exc_type, exc_val, exc_tb):
+        def __exit__(self, exc_type: Optional[Type[BaseException]], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> bool:
             verify(self.output, options=options)
 
     return VerifySimpleLogger()

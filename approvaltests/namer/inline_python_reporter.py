@@ -39,6 +39,6 @@ class InlinePythonReporter(Reporter):
         Path(file).write_text(new_code)
         return file
 
-    def swap(self, received_text, code, method_name):
+    def swap(self, received_text: str, code: str, method_name: str) -> str:
         split_code = SplitCode.on_method(code, method_name)
         return f'{split_code.before_method}\n{split_code.tab}"""\n{split_code.indent(received_text)}\n{split_code.tab}"""\n{split_code.after_method}'

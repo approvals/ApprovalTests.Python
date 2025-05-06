@@ -7,7 +7,7 @@ from approvaltests.core.writer import Writer
 
 
 class StringWriter(Writer):
-    contents = ""
+    contents: str = ""
 
     def __init__(
         self,
@@ -24,7 +24,7 @@ class StringWriter(Writer):
         self.newline = newline
 
     @staticmethod
-    def sanitize_string(contents):
+    def sanitize_string(contents: Optional[str]) -> str:
         contents = contents or ""
         if len(contents) == 0 or contents[-1] != "\n":
             contents = contents + "\n"

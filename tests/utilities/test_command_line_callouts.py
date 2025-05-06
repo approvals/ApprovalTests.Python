@@ -7,11 +7,11 @@ from approvaltests.utilities.command_line_approvals import (
 )
 
 
-def test_verify_command_line():
+def test_verify_command_line() -> None:
     verify_command_line("echo hello world!")
 
 
-def test_verify_command_line_with_input():
+def test_verify_command_line_with_input() -> None:
     verify_command_line(
         'python -c "import sys; print(sys.stdin.read())"', input_string="input"
     )
@@ -39,7 +39,7 @@ def test_command_line_verify() -> None:
     )
 
 
-def test_verify_command_line_with_inputs():
+def test_verify_command_line_with_inputs() -> None:
     verify_command_line_with_inputs(
         'python -c "import sys; print(sys.stdin.read())"', inputs=range(3, 7)
     )

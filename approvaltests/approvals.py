@@ -37,7 +37,7 @@ __tracebackhide__ = True
 
 
 class Settings:
-    def allow_multiple_verify_calls_for_this_method(self):
+    def allow_multiple_verify_calls_for_this_method(self) -> None:
         class_and_method = get_default_namer().get_file_name()
 
         def allow_method(filename: str) -> bool:

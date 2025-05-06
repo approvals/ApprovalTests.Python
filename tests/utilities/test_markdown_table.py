@@ -2,7 +2,7 @@ from approvaltests import verify
 from approval_utilities.utilities.markdown_table import MarkdownTable
 
 
-def test_markdown_table():
+def test_markdown_table() -> None:
     # begin-snippet: markdown_table_example
     inputs = ["verify json", "verify all", "verify parameters", "verify as json"]
     table = MarkdownTable.with_headers(

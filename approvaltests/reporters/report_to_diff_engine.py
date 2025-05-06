@@ -5,7 +5,7 @@ import json
 from approvaltests import Reporter
 
 
-def send_tcp_socket(host, port, data):
+def send_tcp_socket(host: str, port: int, data: str) -> None:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         sock.connect((host, port))

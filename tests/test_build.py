@@ -2,7 +2,7 @@ import os
 import ast
 
 
-def test_no_imports_from_build_directory():
+def test_no_imports_from_build_directory() -> None:
     # Make sure no file imports from build
     root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     for dirpath, dirnames, filenames in os.walk(root_dir):

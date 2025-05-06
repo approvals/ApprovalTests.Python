@@ -1,7 +1,8 @@
 import datetime
 import inspect
 import traceback
-from typing import Callable, Any, Iterable, ContextManager, Optional, Union
+from typing import Callable, Any, Iterable, ContextManager, Optional, Union, Type
+from types import TracebackType
 
 
 from approval_utilities.utilities.exceptions.exception_utils import to_string
@@ -47,13 +48,13 @@ class LoggingInstance:
 
     def indent(self) -> ContextManager:
         class Indent:
-            def __init__(self, log):
+            def __init__(self, log: "LoggingInstance") -> None:
                 self.log = log
 
-            def __enter__(self):
+            def __enter__(self) -> None:
                 self.log.tabbing += 1
 
-            def __exit__(self, exc_type, exc_val, exc_tb):
+            def __exit__(self, exc_type: Optional[Type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
                 self.log.tabbing -= 1
 
         return Indent(self)
@@ -64,27 +65,27 @@ class LoggingInstance:
         additional_stack: int = 0,
     ) -> ContextManager:
         class Nothing:
-            def __enter__(self):
+            def __enter__(self) -> None:
                 pass
 
-            def __exit__(self, exc_type, exc_val, exc_tb):
+            def __exit__(self, exc_type: Optional[type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
                 pass
 
         if not self.toggles.markers:
             return Nothing()
 
         class Markers:
-            def __init__(self, log, method_name, filename):
+            def __init__(self, log: "LoggingInstance", method_name: str, filename: str) -> None:
                 self.log = log
                 self.method_name = method_name
                 self.filename = filename
 
-            def __enter__(self):
+            def __enter__(self) -> None:
                 expected = f"-> in: {self.method_name}({self.get_parameters(False)}) in {self.filename}"
                 self.log.log_line(expected)
                 self.log.tabbing = self.log.tabbing + 1
 
-            def __exit__(self, exc_type, exc_val, exc_tb):
+            def __exit__(self, exc_type: Optional[type], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]) -> None:
                 self.log.tabbing = self.log.tabbing - 1
                 expected = f"<- out: {self.method_name}({self.get_parameters(True)})"
                 self.log.log_line(expected)
@@ -177,7 +178,7 @@ class LoggingInstance:
             return
         self.log_line(f"Sql: {query_text}")
 
-    def message(self, message):
+    def message(self, message: str) -> None:
         if not self.toggles.messages:
             return
         self.log_line(f"message: {message}")
@@ -211,23 +212,23 @@ class LoggingInstance:
             self.log_line(stack_trace, use_timestamps=False)
         self.log_line(warning_stars, use_timestamps=False)
 
-    def show_queries(self, show):
+    def show_queries(self, show: bool) -> None:
         self.toggles.queries = show
 
     def show_all(self, show: bool) -> None:
         self.toggles = Toggles(show)
 
-    def show_messages(self, show):
+    def show_messages(self, show: bool) -> None:
         self.toggles.messages = show
 
-    def show_variables(self, show):
+    def show_variables(self, show: bool) -> None:
         self.toggles.variables = show
 
-    def show_hour_glass(self, show):
+    def show_hour_glass(self, show: bool) -> None:
         self.toggles.hour_glass = show
 
-    def show_markers(self, show):
+    def show_markers(self, show: bool) -> None:
         self.toggles.markers = show
 
-    def show_events(self, show):
+    def show_events(self, show: bool) -> None:
         self.toggles.events = show

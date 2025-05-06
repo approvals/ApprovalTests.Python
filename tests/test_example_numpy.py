@@ -32,7 +32,7 @@ def test_simulator_produces_correct_output() -> None:
 # begin-snippet: numpy_custom_reporter
 
 
-def load_ndarray(path):
+def load_ndarray(path: str):
     with open(path, mode="rb") as f:
         return np.load(f)
 
@@ -53,6 +53,6 @@ class NDArrayDiffReporter(Reporter):
     # end-snippet
 
     @staticmethod
-    def _create_empty_array(path):
+    def _create_empty_array(path: str) -> None:
         with open(path, mode="wb") as f:
             f.write(serialize_ndarray(np.zeros((0,))))

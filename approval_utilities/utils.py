@@ -80,7 +80,7 @@ def create_directory_if_needed(received_file: str) -> None:
         os.makedirs(directory, exist_ok=True)
 
 
-def print_grid(width, height, cell_print_func):
+def print_grid(width: int, height: int, cell_print_func: Callable[[int, int], str]) -> str:
     result = ""
     for y in range(height):
         for x in range(width):

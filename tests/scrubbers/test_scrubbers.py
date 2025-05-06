@@ -11,7 +11,7 @@ from approvaltests.scrubbers.scrubbers import (
 )
 
 
-def test_full_stack_scrubbing():
+def test_full_stack_scrubbing() -> None:
     verify_all(
         "expanding twos",
         [1, 2, 12, 21, 121, 131, 222],
@@ -19,7 +19,7 @@ def test_full_stack_scrubbing():
     )
 
 
-def test_date_scrubbing():
+def test_date_scrubbing() -> None:
     date1 = str(datetime.datetime(year=2000, month=1, day=2))
     date2 = str(datetime.datetime(year=2000, month=1, day=3))
     date3 = str(datetime.datetime(year=2000, month=1, day=4))
@@ -27,7 +27,7 @@ def test_date_scrubbing():
     verify_as_json(mydict, options=Options().with_scrubber(scrub_all_dates))
 
 
-def test_regex():
+def test_regex() -> None:
     verify(
         'and then jane said "blah blah blah "',
         options=Options().with_scrubber(
@@ -36,7 +36,7 @@ def test_regex():
     )
 
 
-def test_invalid_argument_to_create_regex_scrubber():
+def test_invalid_argument_to_create_regex_scrubber() -> None:
     verify_exception(
         lambda: verify(
             'and then jane said "blah blah blah "',
@@ -45,7 +45,7 @@ def test_invalid_argument_to_create_regex_scrubber():
     )
 
 
-def test_regex_by_lambda():
+def test_regex_by_lambda() -> None:
     verify(
         'and then jane said "blah blah blah "',
         options=Options().with_scrubber(
@@ -54,7 +54,7 @@ def test_regex_by_lambda():
     )
 
 
-def test_guid():
+def test_guid() -> None:
     guids = [
         "2fd78d4a-ad49-447d-96a8-deda585a9aa5",
         "2fd78d4a-1111-1111-1111-deda585a9aa5",
@@ -65,7 +65,7 @@ def test_guid():
     verify_all("guids", guids, options=Options().with_scrubber(scrub_all_guids))
 
 
-def test_combine_scrubbers():
+def test_combine_scrubbers() -> None:
     verify(
         f"blah {str(datetime.datetime(year=2000, month=1, day=2))} 2fd78d4a-ad49-447d-96a8-deda585a9aa5",
         options=Options().with_scrubber(
@@ -78,7 +78,7 @@ def test_combine_scrubbers():
     )
 
 
-def test_line_scrubber():
+def test_line_scrubber() -> None:
     text = """
     line 1
     remove me

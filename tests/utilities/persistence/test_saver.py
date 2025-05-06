@@ -8,6 +8,6 @@ class IncrementSaver(Saver[int]):
         return t + 1
 
 
-def test_save():
+def test_save() -> None:
     saver = IncrementSaver()
     assert 42 == saver.save(41)

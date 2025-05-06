@@ -15,7 +15,7 @@ class ReporterForTesting(Reporter):
         self.success = success
 
     @override
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.__class__.__name__}({self.success})"
 
     __repr__ = __str__
@@ -56,7 +56,7 @@ class TestFirstWorkingReporter(unittest.TestCase):
         self.assertFalse(success)
 
     def test_exception(self) -> None:
-        def exception():
+        def exception() -> None:
             raise Exception()
 
         r1 = ReporterForTesting(False, exception)

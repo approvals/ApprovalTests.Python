@@ -1,4 +1,4 @@
-from typing import Callable, Sequence, Any
+from typing import Callable, Sequence, Any, List
 
 from approval_utilities.utilities.exceptions.multiple_exceptions import (
     MultipleExceptions,
@@ -6,8 +6,8 @@ from approval_utilities.utilities.exceptions.multiple_exceptions import (
 
 
 class ExceptionCollector:
-    def __init__(self):
-        self._exceptions = []
+    def __init__(self) -> None:
+        self._exceptions: List[Exception] = []
 
     def gather(self, code_to_execute: Callable[[], Any]) -> None:
         try:
@@ -15,7 +15,7 @@ class ExceptionCollector:
         except Exception as exception:
             self._exceptions.append(exception)
 
-    def release(self):
+    def release(self) -> None:
         if len(self._exceptions) == 0:
             return
         if len(self._exceptions) == 1:

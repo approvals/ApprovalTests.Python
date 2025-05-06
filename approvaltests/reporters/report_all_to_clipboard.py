@@ -8,7 +8,7 @@ class ReporterByCopyMoveCommandForEverythingToClipboard(Reporter):
     text: str = ""
 
     @override
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         ReporterByCopyMoveCommandForEverythingToClipboard.text = (
             ReporterByCopyMoveCommandForEverythingToClipboard.text
             + get_command_text(received_path, approved_path)

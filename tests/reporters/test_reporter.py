@@ -16,21 +16,21 @@ from approvaltests.reporters.report_with_beyond_compare import (
 
 
 class ReporterTests(unittest.TestCase):
-    def test_file_launcher(self):
+    def test_file_launcher(self) -> None:
         reporter = ReceivedFileLauncherReporter()
         command = reporter.get_command("b.txt")
         self.assertEqual(command, ["cmd", "/C", "start", "b.txt", "/B"])
 
-    def test_different_ways_of_creating_reporter(self):
+    def test_different_ways_of_creating_reporter(self) -> None:
         reporter1 = GenericDiffReporterFactory().get("BeyondCompare")
         reporter2 = ReportWithBeyondCompare()
         reporter3 = report_with_beyond_compare()
         assert reporter1 == reporter2 == reporter3
 
-    def test_move_command(self):
+    def test_move_command(self) -> None:
         verify_all("", [True, False], lambda b: get_command_text("a.text", "r.txt", b))
 
-    def test_set_default_reporter(self):
+    def test_set_default_reporter(self) -> None:
         old = get_default_reporter()
         set_default_reporter(ReportWithBeyondCompare())
 

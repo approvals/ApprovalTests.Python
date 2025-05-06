@@ -4,7 +4,7 @@ from approvaltests import Options, verify_all
 from approvaltests.inline.parse import Parse
 
 
-def test_single_strings():
+def test_single_strings() -> None:
     """
     Sam -> SAM
     Llewellyn -> LLEWELLYN
@@ -19,7 +19,7 @@ def test_single_strings():
     parse.verify_all(lambda s: s.upper())
 
 
-def test_with_types_transformers_and_both():
+def test_with_types_transformers_and_both() -> None:
     """
     1 -> 0b1
     9 -> 0b1001
@@ -37,7 +37,7 @@ def test_with_types_transformers_and_both():
 # parse.transform(int).transform(str).transform(int).verify_all(lambda i: bin(i), options= Options().with_reporter(ReporterThatAutomaticallyApproves())
 
 
-def test_with_2_types_transformers_and_both():
+def test_with_2_types_transformers_and_both() -> None:
     """
     1, 5.0 -> 5.0
     4, 0.5 -> 2.0
@@ -47,7 +47,7 @@ def test_with_2_types_transformers_and_both():
     parse.transform2(str, str).transform2(int, float).verify_all(lambda i, f: i * f)
 
 
-def test_example_step_1():
+def test_example_step_1() -> None:
     # begin-snippet: parse_input_step_2
     """
     Kody -> 0
@@ -69,7 +69,7 @@ def test_example_step_1():
     test_count_vowels()
 
 
-def test_example_step_2():
+def test_example_step_2() -> None:
     """
     Kody -> 1
     Teresa -> 3
@@ -94,7 +94,7 @@ def test_example_step_2():
 
 
 # begin-snippet: parse_input_transformation
-def test_with_transformation():
+def test_with_transformation() -> None:
     """
     1 -> 0b1
     9 -> 0b1001
@@ -107,7 +107,7 @@ def test_with_transformation():
 
 
 # begin-snippet: parse_input_two_parameters
-def test_with_two_parameters():
+def test_with_two_parameters() -> None:
     """
     a, 3 -> aaa
     !, 7 -> !!!!!!!
@@ -120,7 +120,7 @@ def test_with_two_parameters():
 
 
 # long-term intention: get the test to fail, randomSauce is incorrect
-def test_with_3_parameters():
+def test_with_3_parameters() -> None:
     """
     a, 3, 1 -> aaaa
     """

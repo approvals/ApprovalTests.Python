@@ -6,7 +6,7 @@ from approvaltests.namer import NamerFactory
 from approvaltests.utilities.logging.logging_approvals import verify_logging
 
 
-def load_person():
+def load_person() -> str:
     logging.info("connecting to the database")
     logging.info("querying a table")
     logging.info("closing the database")

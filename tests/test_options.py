@@ -30,16 +30,16 @@ _approvals_modules = list(
 )
 
 
-def test_list_of_modules():
+def test_list_of_modules() -> None:
     verify_all("", _approvals_modules)
 
 
-def test_every_function_in_approvals_with_verify_has_an_options():
+def test_every_function_in_approvals_with_verify_has_an_options() -> None:
     for module_name in _approvals_modules:
         assert_verify_methods_have_options(importlib.import_module(module_name))
 
 
-def assert_verify_methods_have_options(module):
+def assert_verify_methods_have_options(module) -> None:
     for function_name, obj in module.__dict__.items():
         if "verify" not in function_name:
             continue
@@ -58,13 +58,13 @@ def assert_verify_methods_have_options(module):
         ), f"Missing Keyword only parameter `options` in {function_name}:\n\t{argspec}"
 
 
-def test_empty_options_has_default_reporter():
+def test_empty_options_has_default_reporter() -> None:
     ##approvals.set_default_reporter(None)
     options = Options()
     assert options.reporter == get_default_reporter()
 
 
-def test_with_reporter():
+def test_with_reporter() -> None:
     testr = ReporterForTesting()
     options = Options().with_reporter(testr)
     try:
@@ -75,13 +75,13 @@ def test_with_reporter():
     assert testr.called
 
 
-def test_setting_reporter():
+def test_setting_reporter() -> None:
     testr = ReporterForTesting()
     options = Options().with_reporter(testr)
     assert options.reporter == testr
 
 
-def test_file_extensions():
+def test_file_extensions() -> None:
     approvals.settings().allow_multiple_verify_calls_for_this_method()
     content = "# This is a markdown header\n"
     # begin-snippet: options_with_file_extension
@@ -90,7 +90,7 @@ def test_file_extensions():
     verify(content, options=Options().for_file.with_extension("md"))
 
 
-def test_add_reporter():
+def test_add_reporter() -> None:
     # current behaviour, override
     options0 = (
         Options()

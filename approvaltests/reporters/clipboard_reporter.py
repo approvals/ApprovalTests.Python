@@ -32,7 +32,7 @@ class ClipboardReporter(Reporter):
     """
 
     @override
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         text = get_command_text(received_path, approved_path)
         print(text)
         copy_to_clipboard(text)
@@ -54,7 +54,7 @@ class CommandLineReporter(Reporter):
     """
 
     @override
-    def report(self, received_path, approved_path):
+    def report(self, received_path: str, approved_path: str) -> bool:
         text = get_command_text(received_path, approved_path)
         print(f"\n\n{text}\n\n")
         return True

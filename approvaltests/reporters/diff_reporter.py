@@ -19,7 +19,7 @@ class DiffReporter(FirstWorkingReporter):
     At present, the default Reporter is the DiffReporter.
     """
 
-    def __init__(self, reporter_factory=None):
+    def __init__(self, reporter_factory=None) -> None:
         factory = reporter_factory or GenericDiffReporterFactory()
 
         reporters = list(factory.get_all_reporters_from_config())

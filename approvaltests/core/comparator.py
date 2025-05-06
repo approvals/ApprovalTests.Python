@@ -13,7 +13,7 @@ class Comparator(ABC):
     """
 
     @override
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         return repr(self) == repr(other)
 
     @abstractmethod

@@ -31,7 +31,7 @@ class GenericDiffReporterFactory:
     def __init__(self) -> None:
         self.load(get_adjacent_file("reporters.json"))
 
-    def add_default_reporter_config(self, config):
+    def add_default_reporter_config(self, config: List[str]) -> None:
         self.reporter_configs.insert(0, create_config(config))
 
     def list(self) -> List[str]:

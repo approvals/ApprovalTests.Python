@@ -4,5 +4,5 @@ from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondC
 
 class ReportWithDiffToolOnWindows(FirstWorkingReporter):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(ReportWithBeyondCompare())

@@ -1,7 +1,7 @@
 from approvaltests import Options, verify_all
 
 
-def test_verify_all_with_no_header():
+def test_verify_all_with_no_header() -> None:
     """
     0) 1
     1) 2

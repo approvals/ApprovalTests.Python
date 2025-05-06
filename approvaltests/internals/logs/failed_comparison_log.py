@@ -15,7 +15,7 @@ class FailedComparisonLog:
         return ApprovedFilesLog.get_temp_directory() / ".failed_comparison.log"
 
     @staticmethod
-    def log(received_file, approved_file):
+    def log(received_file: str, approved_file: str) -> None:
         with FailedComparisonLog.get_failed_comparison_log().open(mode="a") as file:
             file.write(f"{received_file} -> {approved_file}\n")
 

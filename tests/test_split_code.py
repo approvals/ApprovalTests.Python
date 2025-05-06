@@ -3,7 +3,7 @@ from approvaltests import verify_all
 from approvaltests.inline.split_code import SplitCode
 
 
-def test_splitting_code():
+def test_splitting_code() -> None:
     code_list = [
         '''
         def other_code():

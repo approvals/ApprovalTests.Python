@@ -8,7 +8,7 @@ from approvaltests.reporters.generic_diff_reporter_config import (
 
 
 class ReportWithBeyondCompareLinux(GenericDiffReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__, path="/usr/bin/bcompare"
@@ -17,7 +17,7 @@ class ReportWithBeyondCompareLinux(GenericDiffReporter):
 
 
 class ReportWithBeyondCompareMac(GenericDiffReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
@@ -27,7 +27,7 @@ class ReportWithBeyondCompareMac(GenericDiffReporter):
 
 
 class ReportWithBeyondCompare4Windows(GenericDiffReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
@@ -37,7 +37,7 @@ class ReportWithBeyondCompare4Windows(GenericDiffReporter):
 
 
 class ReportWithBeyondCompare5Windows(GenericDiffReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
@@ -47,7 +47,7 @@ class ReportWithBeyondCompare5Windows(GenericDiffReporter):
 
 
 class ReportWithWinMerge(GenericDiffReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
@@ -57,7 +57,7 @@ class ReportWithWinMerge(GenericDiffReporter):
 
 
 class ReportWithPycharm(GenericDiffReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
@@ -68,7 +68,7 @@ class ReportWithPycharm(GenericDiffReporter):
 
 
 class ReportWithBeyondCompare(FirstWorkingReporter):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             ReportWithBeyondCompareMac(),
             ReportWithBeyondCompare4Windows(),

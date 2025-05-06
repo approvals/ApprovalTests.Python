@@ -44,7 +44,7 @@ class TemplatedCustomNamer(Namer):
         )
 
 
-def test_template_fields():
+def test_template_fields() -> None:
     table = MarkdownTable().with_headers("template", "usage")
     for fields in dir(TemplateFields):
         if not fields.startswith("__"):
@@ -52,7 +52,7 @@ def test_template_fields():
     verify(table)
 
 
-def test_get_received_filename():
+def test_get_received_filename() -> None:
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
@@ -62,14 +62,14 @@ def test_get_received_filename():
     )
 
 
-def test_approved_file_extension():
+def test_approved_file_extension() -> None:
     namer = TemplatedCustomNamer(
         "{test_source_directory}/sub/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
     verify_as_json("This should be a .json file", options=Options().with_namer(namer))
 
 
-def test_get_approved_filename():
+def test_get_approved_filename() -> None:
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )

@@ -8,6 +8,6 @@ class IntegerLoader(Loader[int]):
         return 42
 
 
-def test_load():
+def test_load() -> None:
     loader = IntegerLoader()
     assert 42 == loader.load()

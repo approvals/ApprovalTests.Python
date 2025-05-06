@@ -1,5 +1,5 @@
 from typing_extensions import override
-from typing import List
+from typing import List, Iterable, Any, Tuple
 
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.utilities.persistence.loader import Loader, T
@@ -25,8 +25,8 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         connection.close()
         return self.format_data_as_markdown_table(column_names, rows)
 
-    def format_data_as_markdown_table(self, column_names, rows):
-        def format_table_row(values):
+    def format_data_as_markdown_table(self, column_names: List[str], rows: List[List]) -> str:
+        def format_table_row(values: Iterable[Any]) -> str:
             return "| " + " | ".join(map(str, values)) + " |"
 
         headers = format_table_row(column_names)
@@ -36,7 +36,7 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 {dashes}
 {data}"""
 
-    def connect_to_database(self):
+    def connect_to_database(self) -> Tuple[Any, Any]:
         import mariadb  # you need to uncomment this in the requirements.tests.txt
 
         conn = mariadb.connect(user="root", password="", port=3306, database="sakila")

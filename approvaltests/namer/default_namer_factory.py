@@ -1,11 +1,11 @@
 import os
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 from approvaltests.core.options import Options
 from approvaltests.namer.default_name import get_default_namer
 
 
-def is_ci(environment_loader: Callable[[str], str] = os.environ.get) -> bool:
+def is_ci(environment_loader: Callable[[str], Optional[str]] = os.environ.get) -> bool:
     possible = [
         "CI",
         "CONTINUOUS_INTEGRATION",
@@ -19,7 +19,7 @@ def is_ci(environment_loader: Callable[[str], str] = os.environ.get) -> bool:
     )
 
 
-def is_team_city(environment_loader: Callable[[str], str] = os.environ.get) -> bool:
+def is_team_city(environment_loader: Callable[[str], Optional[str]] = os.environ.get) -> bool:
     team_city_version = environment_loader("TEAMCITY_VERSION")
     team_city = team_city_version and team_city_version != "LOCAL"
     return team_city

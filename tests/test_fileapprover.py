@@ -15,28 +15,28 @@ from approvaltests.internals.logs.failed_comparison_log import FailedComparisonL
 
 class FileApproverTests(unittest.TestCase):
     @staticmethod
-    def test_compare_same_files():
+    def test_compare_same_files() -> None:
         writer = StringWriter("a")
         writer.write_received_file("a.txt")
         shutil.copy("a.txt", "a_same.txt")
         FileApprover.verify_files("a.txt", "a_same.txt", None, Options().comparator)
 
-    def test_compare_different_files(self):
+    def test_compare_different_files(self) -> None:
         reporter = ReporterForTesting()
         FileApprover.verify_files("a.txt", "b.txt", reporter, Options().comparator)
         self.assertTrue(reporter.called)
 
-    def test_scrubbed_files(self):
+    def test_scrubbed_files(self) -> None:
         verify_file("a.txt", options=Options().with_scrubber(lambda t: "<scrubbed>"))
 
-    def test_full(self):
+    def test_full(self) -> None:
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = ReporterForTesting()
         FileApprover.verify(namer, writer, reporter, Options().comparator)
         self.assertTrue(reporter.called)
 
-    def test_returns_error_when_files_are_different(self):
+    def test_returns_error_when_files_are_different(self) -> None:
         approvals.settings().allow_multiple_verify_calls_for_this_method()
         namer = get_default_namer()
         writer = StringWriter("b")
@@ -48,14 +48,14 @@ class FileApproverTests(unittest.TestCase):
 
         verify(replaced)
 
-    def test_returns_none_when_files_are_same_files(self):
+    def test_returns_none_when_files_are_same_files(self) -> None:
         namer = get_default_namer()
         writer = StringWriter("b")
         reporter = GenericDiffReporterFactory().get_first_working()
         error = FileApprover.verify(namer, writer, reporter, Options().comparator)
         self.assertEqual(None, error)
 
-    def test_approved_file_is_logged(self):
+    def test_approved_file_is_logged(self) -> None:
         name = approvals.get_default_namer().get_approved_filename()
         name1 = name.replace(".txt", ".txt1")
         name2 = name.replace(".txt", ".txt2")
@@ -76,7 +76,7 @@ class FileApproverTests(unittest.TestCase):
         self.assertIn(name1, log_lines)
         self.assertIn(name2, log_lines)
 
-    def test_failed_comparison_is_logged(self):
+    def test_failed_comparison_is_logged(self) -> None:
         approved_name = approvals.get_default_namer().get_approved_filename()
         received_name = approvals.get_default_namer().get_received_filename()
         expected_line = f"{received_name} -> {approved_name}"
@@ -101,7 +101,7 @@ class FileApproverTests(unittest.TestCase):
         self.assertIn(name1, log_lines)
         self.assertIn(name2, log_lines)
 
-    def run_a_failing_test(self, extension):
+    def run_a_failing_test(self, extension: str) -> None:
         try:
             verify(
                 "a",

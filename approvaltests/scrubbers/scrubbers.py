@@ -72,7 +72,7 @@ def create_line_scrubber(remove_lines_containing: str) -> Scrubber:
     return lambda t: scrub_lines_containing(remove_lines_containing, t)
 
 
-def scrub_lines_containing(remove_lines_containing, text):
+def scrub_lines_containing(remove_lines_containing: str, text: str) -> str:
     lines = text.splitlines()
     for line in lines:
         if remove_lines_containing in line:

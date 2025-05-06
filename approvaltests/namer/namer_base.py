@@ -14,11 +14,11 @@ class NamerBase(Namer):
         self.config: Optional[Dict[str, str]] = None
 
     @abstractmethod
-    def get_file_name(self):
+    def get_file_name(self) -> str:
         raise Exception("This class is abstract, override this method in a subclass")
 
     @abstractmethod
-    def get_directory(self):
+    def get_directory(self) -> str:
         raise Exception("This class is abstract, override this method in a subclass")
 
     def config_directory(self) -> str:

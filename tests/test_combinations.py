@@ -99,7 +99,7 @@ class VerifyAllCombinationsTests(unittest.TestCase):
     def test_records_exception_message_when_function_under_test_throws_an_exception(
         self,
     ) -> None:
-        def function_that_raises_exceptions(*args):
+        def function_that_raises_exceptions(*args: object) -> None:
             raise Exception(args)
 
         arg1_combinations = (1, 3)
@@ -148,13 +148,13 @@ class VerifyAllCombinationsWithNamerTests(unittest.TestCase):
         )
 
 
-def test_example_for_combinations():
+def test_example_for_combinations() -> None:
     # begin-snippet: combination_introduction
     verify_all_combinations(is_awake, [["Monday", "Sunday"], ["7:00", "9:00", "11:00"]])
     # end-snippet
 
 
-def test_starting_snippet():
+def test_starting_snippet() -> None:
     # begin-snippet: combinations_starting_point
     inputs1 = ["input1.value1", "input1.value2"]
     inputs2 = ["input2.value1", "input2.value2", "input2.value3"]
@@ -162,7 +162,7 @@ def test_starting_snippet():
     # end-snippet
 
 
-def is_awake(day, time):
+def is_awake(day: str, time) -> str:
     weekdays = ["Monday"]
     is_weekday = day in weekdays
     time = int(time.replace(":00", ""))

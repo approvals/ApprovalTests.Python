@@ -1,7 +1,7 @@
 from approvaltests import get_default_namer
 
 
-def test_different_name():
+def test_different_name() -> None:
     assert (
         get_default_namer()
         .get_approved_filename()
@@ -9,7 +9,7 @@ def test_different_name():
     )
 
 
-def different_name_check():
+def different_name_check() -> None:
     assert (
         get_default_namer()
         .get_approved_filename()
