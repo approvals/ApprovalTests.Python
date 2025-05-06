@@ -1,10 +1,13 @@
-def compare_log_and_file_system(log_file_names, fs_file_names):
+from typing import List
+
+
+def compare_log_and_file_system(log_file_names: List[str], fs_file_names: List[str]):
     return [file for file in fs_file_names if file not in log_file_names]
 
 
 def test_returns_empty_list_for_two_empty_lists():
-    log_file_names = []
-    fs_file_names = []
+    log_file_names: List[str] = []
+    fs_file_names: List[str] = []
     assert compare_log_and_file_system(log_file_names, fs_file_names) == []
 
 

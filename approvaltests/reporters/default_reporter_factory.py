@@ -6,7 +6,7 @@ from approvaltests.core.reporter import Reporter
 DEFAULT_REPORTER = local()
 
 
-def set_default_reporter(reporter: Reporter) -> None:
+def set_default_reporter(reporter: Optional[Reporter]) -> None:
     DEFAULT_REPORTER.v = reporter
 
 

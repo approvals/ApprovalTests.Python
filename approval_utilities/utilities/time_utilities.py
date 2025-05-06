@@ -1,12 +1,13 @@
 import os
 
 from typing_extensions import ContextManager
+from typing import Optional
 
 
 def use_utc_timezone() -> ContextManager:
     class TimeZoneSwap:
         def __init__(self):
-            self.timezone = ""
+            self.timezone: Optional[str] = ""
 
         def __enter__(self):
             self.timezone = os.environ.get("TZ")

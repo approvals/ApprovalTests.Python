@@ -7,7 +7,7 @@ import unittest
 
 import pytest
 
-from approvaltests import Options, delete_approved_file, approvals
+from approvaltests import Options, delete_approved_file, approvals, List
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import (
     verify,
@@ -139,7 +139,7 @@ class VerifyTests(unittest.TestCase):
             verify_as_json(Ellipsis, self.reporter)
 
     def test_verify_as_json_raises_value_error_for_non_renderable_values(self):
-        circular_data = []
+        circular_data: List[List] = []
         circular_data.append(circular_data)
         with self.assertRaises(ValueError):
             verify_as_json(circular_data, self.reporter)

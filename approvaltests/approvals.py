@@ -325,7 +325,7 @@ def verify_file(
 
 def verify_all(
     header: str,
-    alist: List[str],
+    alist: List[Any],
     formatter: Optional[Callable] = None,
     reporter: Optional[DiffReporter] = None,
     encoding: None = None,

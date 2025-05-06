@@ -11,7 +11,7 @@ class StringWriter(Writer):
 
     def __init__(
         self,
-        contents: str,
+        contents: Optional[str],
         extension: str = ".txt",
         encoding: Optional[str] = None,
         errors: Optional[str] = None,
