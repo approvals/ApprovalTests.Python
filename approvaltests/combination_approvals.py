@@ -13,7 +13,7 @@ VariationForEachParameter = Sequence[Sequence[Any]]
 CombinationsOfParameters = Sequence[Sequence[Any]]
 
 
-def calculate_total_size(input_arguments):
+def calculate_total_size(input_arguments: VariationForEachParameter) -> int:
     from functools import reduce
 
     return reduce(

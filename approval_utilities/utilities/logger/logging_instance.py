@@ -33,7 +33,7 @@ class LoggingInstance:
         self.log_stack_traces = True
         self.toggles = Toggles(True)
         self.previous_timestamp: Optional[datetime.datetime] = None
-        self.logger = lambda t: print(t, end="")
+        self.logger: Callable[[str], None] = lambda t: print(t, end="")
         self.tabbing: int = 0
         self.counter = 0
         self.log_with_timestamps = True

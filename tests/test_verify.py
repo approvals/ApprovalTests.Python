@@ -1,6 +1,8 @@
-from typing_extensions import override
-
 # -*- coding: utf-8 -*-
+
+from typing_extensions import override
+from typing import Callable, Optional, Dict
+
 import json
 import random
 import unittest
@@ -35,7 +37,7 @@ from approval_utilities.utils import get_adjacent_file, is_windows_os, print_gri
 
 
 class GameOfLife:
-    def __init__(self, board):
+    def __init__(self, board: Callable[[int, int], int]):
         self.board = board
         self.alive = "X"
         self.dead = "."
@@ -65,11 +67,11 @@ class GameOfLife:
             5, 5, lambda x, y: f"{self.alive} " if self.board(x, y) else f"{self.dead} "
         )
 
-    def set_alive_cell(self, alive):
+    def set_alive_cell(self, alive: str) -> str:
         self.alive = alive
         return self.alive
 
-    def set_dead_cell(self, dead):
+    def set_dead_cell(self, dead: str) -> str:
         self.dead = dead
         return self.dead
 
@@ -126,9 +128,9 @@ class VerifyTests(unittest.TestCase):
 
     def test_verify_as_json(self) -> None:
         class Bag(object):
-            def __init__(self):
+            def __init__(self) -> None:
                 self.stuff = 1
-                self.json = None
+                self.json: Optional[Dict[str, int]] = None
 
         o = Bag()
         o.json = {"a": 0, "z": 26}
@@ -217,15 +219,15 @@ class VerifyTests(unittest.TestCase):
 
     def test_simple_storyboard(self) -> None:
         class AsciiWheel:
-            def __init__(self):
+            def __init__(self) -> None:
                 self.steps = ["-", "\\", "|", "/"]
                 self.step = 0
 
             @override
-            def __str__(self):
+            def __str__(self) -> str:
                 return self.steps[self.step]
 
-            def advance(self):
+            def advance(self) -> None:
                 self.step += 1
                 self.step %= 4
 
@@ -310,7 +312,7 @@ class VerifyTests(unittest.TestCase):
     # begin-snippet: verifiable_object_example
     def test_verifiable(self):
         class MarkdownParagraph(Verifiable):
-            def __init__(self, title, text):
+            def __init__(self, title: str, text: str) -> None:
                 self.title = title
                 self.text = text
 
