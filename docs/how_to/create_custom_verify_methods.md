@@ -54,7 +54,7 @@ for example:
 ```py
 def test_verifiable(self):
     class MarkdownParagraph(Verifiable):
-        def __init__(self, title, text):
+        def __init__(self, title: str, text: str) -> None:
             self.title = title
             self.text = text
 
@@ -75,6 +75,6 @@ def test_verifiable(self):
         MarkdownParagraph("Paragraph Title", "This is where the paragraph text is.")
     )
 ```
-<sup><a href='/tests/test_verify.py#L310-L334' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L312-L336' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   
