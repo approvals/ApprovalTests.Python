@@ -7,7 +7,7 @@ from approval_utilities.utilities.wrapper import SingleWrapper, ThreadedWrapper,
 
 
 class SimpleLogger:
-    _wrapper: Wrapper = SingleWrapper(LoggingInstance())
+    _wrapper: Wrapper[LoggingInstance] = SingleWrapper(LoggingInstance())
 
     @staticmethod
     def register_logger(log_method: Callable[[str], None]) -> None:
