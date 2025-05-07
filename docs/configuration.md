@@ -54,7 +54,7 @@ below.
 # From __init__.py
 configure_approvaltests()
 ```
-<sup><a href='/tests/__init__.py#L5-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests_under_init' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/__init__.py#L7-L10' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_approvaltests_under_init' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 <!-- snippet: configure_approvaltests -->
