@@ -10,7 +10,7 @@ from approvaltests.core.options import Options
 def verify_simple_logger(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None
-) -> ContextManager:
+) -> ContextManager[None]:
     class VerifySimpleLogger:
         def __init__(self) -> None:
             self.output = SimpleLogger.log_to_string()

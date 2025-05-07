@@ -5,7 +5,7 @@ from typing import Optional, Type
 from types import TracebackType
 
 
-def use_utc_timezone() -> ContextManager:
+def use_utc_timezone() -> ContextManager[None]:
     class TimeZoneSwap:
         def __init__(self) -> None:
             self.timezone: Optional[str] = ""
@@ -16,7 +16,7 @@ def use_utc_timezone() -> ContextManager:
 
         def __exit__(
             self,
-            exc_type: Optional[Type],
+            exc_type: Optional[Type[BaseException]],
             exc_val: Optional[BaseException],
             exc_tb: Optional[TracebackType],
         ) -> bool:

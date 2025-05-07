@@ -46,7 +46,7 @@ class LoggingInstance:
         self.log_stack_traces = False
         return buffer
 
-    def indent(self) -> ContextManager:
+    def indent(self) -> ContextManager[None]:
         class Indent:
             def __init__(self, log: "LoggingInstance") -> None:
                 self.log = log
@@ -56,7 +56,7 @@ class LoggingInstance:
 
             def __exit__(
                 self,
-                exc_type: Optional[Type],
+                exc_type: Optional[Type[BaseException]],
                 exc_val: Optional[BaseException],
                 exc_tb: Optional[TracebackType],
             ) -> None:
@@ -68,7 +68,7 @@ class LoggingInstance:
         self,
         parameter_text: Optional[Union[str, Callable[[], str]]] = None,
         additional_stack: int = 0,
-    ) -> ContextManager:
+    ) -> ContextManager[None]:
         class Nothing:
             def __enter__(self) -> None:
                 pass
