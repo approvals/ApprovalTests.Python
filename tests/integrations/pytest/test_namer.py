@@ -1,4 +1,5 @@
 import os
+
 from _pytest.fixtures import FixtureRequest
 
 from approvaltests.approvals import get_default_namer, verify

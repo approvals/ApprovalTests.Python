@@ -1,11 +1,12 @@
-from typing_extensions import override
 import unittest
+
+from typing_extensions import override
 
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.combination_approvals import (
     verify_all_combinations,
-    verify_all_combinations_with_namer,
     verify_all_combinations_with_labeled_input,
+    verify_all_combinations_with_namer,
 )
 from approvaltests.reporters import CommandLineReporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting

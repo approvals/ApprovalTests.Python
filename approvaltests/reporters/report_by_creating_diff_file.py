@@ -1,5 +1,6 @@
-from typing_extensions import override
 from pathlib import Path
+
+from typing_extensions import override
 
 from approval_utilities.utils import ensure_file_exists
 from approvaltests.core.reporter import Reporter

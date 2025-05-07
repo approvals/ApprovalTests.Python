@@ -1,9 +1,10 @@
 import pytest
-from approvaltests import verify, get_scenario_namer
-from approvaltests.namer import NamerFactory
+
 from approval_utilities.utilities.exceptions.exception_collector import (
     gather_all_exceptions_and_throw,
 )
+from approvaltests import get_scenario_namer, verify
+from approvaltests.namer import NamerFactory
 
 
 def is_leap_year(year: int) -> bool:

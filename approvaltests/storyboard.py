@@ -1,6 +1,7 @@
-from typing_extensions import override
-from typing import Any, Callable, Optional, Collection, Type
 from types import TracebackType
+from typing import Any, Callable, Collection, Optional, Type
+
+from typing_extensions import override
 
 from approvaltests import verify
 from approvaltests.core.options import Options

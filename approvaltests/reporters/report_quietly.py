@@ -1,4 +1,5 @@
 from typing_extensions import override
+
 from approvaltests.core import Reporter
 
 

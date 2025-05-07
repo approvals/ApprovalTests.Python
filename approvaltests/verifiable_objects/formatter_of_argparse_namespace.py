@@ -1,6 +1,8 @@
-from typing_extensions import override
 import argparse
 from typing import Any
+
+from typing_extensions import override
+
 from approvaltests.core.format_wrapper import FormatWrapper
 
 

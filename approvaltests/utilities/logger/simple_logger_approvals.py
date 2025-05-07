@@ -1,6 +1,5 @@
-from typing import ContextManager, Optional, Type
 from types import TracebackType
-
+from typing import ContextManager, Optional, Type
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approvaltests.approvals import verify

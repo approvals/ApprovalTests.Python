@@ -1,14 +1,15 @@
-from typing_extensions import override
+import fnmatch
 import inspect
 import os
 from inspect import FrameInfo
-from typing import Optional, Dict, List
-import fnmatch
+from typing import Dict, List, Optional
 
-from approvaltests.namer.namer_base import NamerBase
-from approvaltests.approval_exception import FrameNotFound
+from typing_extensions import override
+
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
+from approvaltests.approval_exception import FrameNotFound
 from approvaltests.integrations.pytest.pytest_config import PytestConfig
+from approvaltests.namer.namer_base import NamerBase
 
 
 class StackFrameNamer(NamerBase):

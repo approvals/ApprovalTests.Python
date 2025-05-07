@@ -1,9 +1,9 @@
-from typing_extensions import override
 from pathlib import Path
 
-from approval_utilities.utils import is_windows_os, append_to_file
-from approvaltests import Reporter
+from typing_extensions import override
 
+from approval_utilities.utils import append_to_file, is_windows_os
+from approvaltests import Reporter
 from approvaltests.internals.logs.log_commons import APPROVAL_TESTS_TEMP_DIRECTORY
 from approvaltests.reporters import get_command_text
 

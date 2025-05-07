@@ -1,8 +1,9 @@
-from typing_extensions import override
 import json
 import os
 from abc import abstractmethod
-from typing import Optional, Dict
+from typing import Dict, Optional
+
+from typing_extensions import override
 
 from approvaltests.core.namer import Namer
 

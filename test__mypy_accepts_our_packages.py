@@ -1,10 +1,10 @@
+import os
 import pathlib
-import tempfile
 import subprocess
 import sys
+import tempfile
 import time
 import typing
-import os
 
 from version import version_number
 

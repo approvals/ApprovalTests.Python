@@ -1,14 +1,14 @@
-from typing_extensions import override
-
-#!/usr/bin/env python
-
 import os
 import sys
 from difflib import unified_diff
 
-from approvaltests.reporters.clipboard_reporter import get_command_text
-from approvaltests.core.reporter import Reporter
+from typing_extensions import override
+
 from approval_utilities.utils import ensure_file_exists
+from approvaltests.core.reporter import Reporter
+from approvaltests.reporters.clipboard_reporter import get_command_text
+
+#!/usr/bin/env python
 
 
 class PythonNativeReporter(Reporter):

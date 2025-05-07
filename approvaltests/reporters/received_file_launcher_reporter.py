@@ -1,6 +1,7 @@
-from typing_extensions import override
 from subprocess import call
 from typing import List
+
+from typing_extensions import override
 
 from approvaltests.core.reporter import Reporter
 

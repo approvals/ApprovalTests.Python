@@ -1,16 +1,16 @@
 ﻿import shutil
 import unittest
 
-from approvaltests import get_default_namer, verify, Options, verify_file, approvals
+from approvaltests import Options, approvals, get_default_namer, verify, verify_file
 from approvaltests.file_approver import FileApprover
+from approvaltests.internals.logs.approved_file_log import ApprovedFilesLog
+from approvaltests.internals.logs.failed_comparison_log import FailedComparisonLog
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.string_writer import StringWriter
-from approvaltests.internals.logs.approved_file_log import ApprovedFilesLog
-from approvaltests.internals.logs.failed_comparison_log import FailedComparisonLog
 
 
 class FileApproverTests(unittest.TestCase):

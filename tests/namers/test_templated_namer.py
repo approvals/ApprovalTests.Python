@@ -1,8 +1,9 @@
-from typing_extensions import override
 from typing import Optional
 
+from typing_extensions import override
+
 from approval_utilities.utilities.markdown_table import MarkdownTable
-from approvaltests import Namer, StackFrameNamer, verify_as_json, Options, verify
+from approvaltests import Namer, Options, StackFrameNamer, verify, verify_as_json
 
 
 class TemplateFields:

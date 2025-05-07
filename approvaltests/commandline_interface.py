@@ -1,6 +1,7 @@
 import argparse
 from sys import stdin
 from typing import Tuple
+
 from approvaltests import verify
 
 # pylint: disable = no-name-in-module

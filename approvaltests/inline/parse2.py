@@ -1,8 +1,8 @@
-from typing import Generic, Callable, Tuple, Any
+from typing import Any, Callable, Generic, Tuple
 
 from approvaltests import verify_all
-from approvaltests.inline.types import T1, T2, NT1, NT2
 from approvaltests.core.options import Options
+from approvaltests.inline.types import NT1, NT2, T1, T2
 
 
 class Parse2(Generic[T1, T2]):

@@ -1,7 +1,5 @@
 from approvaltests import verify
-from approvaltests.reporters.generic_diff_reporter import (
-    GenericDiffReporter,
-)
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import create_config
 
 

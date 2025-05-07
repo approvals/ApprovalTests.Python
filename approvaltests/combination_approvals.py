@@ -1,13 +1,12 @@
 from itertools import product
-from typing import Any, Callable, Optional, List, Sequence
+from typing import Any, Callable, List, Optional, Sequence
 
-from approvaltests.core.reporter import Reporter
-from approvaltests.approvals import verify, initialize_options
+from approval_utilities.utilities.logger.simple_logger import SimpleLogger
+from approvaltests.approvals import initialize_options, verify
 from approvaltests.core.options import Options
-
+from approvaltests.core.reporter import Reporter
 from approvaltests.pairwise_combinations import get_best_covering_pairs
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 
 VariationForEachParameter = Sequence[Sequence[Any]]
 CombinationsOfParameters = Sequence[Sequence[Any]]

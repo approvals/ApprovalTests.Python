@@ -1,5 +1,6 @@
+from typing import Any, Iterable, List, Tuple
+
 from typing_extensions import override
-from typing import List, Iterable, Any, Tuple
 
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.utilities.persistence.loader import Loader, T

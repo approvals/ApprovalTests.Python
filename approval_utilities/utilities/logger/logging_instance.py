@@ -1,13 +1,12 @@
 import datetime
 import inspect
 import traceback
-from typing import Callable, Any, Iterable, ContextManager, Optional, Union, Type
 from types import TracebackType
-
+from typing import Any, Callable, ContextManager, Iterable, Optional, Type, Union
 
 from approval_utilities.utilities.exceptions.exception_utils import to_string
-from approval_utilities.utilities.string_wrapper import StringWrapper
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
+from approval_utilities.utilities.string_wrapper import StringWrapper
 
 
 class Toggles:

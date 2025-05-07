@@ -1,14 +1,14 @@
 import os
+import subprocess
 import sys
 import tempfile
-import subprocess
 from typing import List, Tuple
 
-from approvaltests import Options, verify_argument_parser
-from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
-from tests.find_stale_approved_files import create_argument_parser
+from approvaltests import Options, verify_argument_parser
 from approvaltests.scrubbers import create_regex_scrubber
+from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
+from tests.find_stale_approved_files import create_argument_parser
 
 
 # Create a temporary sandbox directory and log file

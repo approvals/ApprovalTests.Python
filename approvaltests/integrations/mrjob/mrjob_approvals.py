@@ -2,10 +2,10 @@ import sys
 import warnings
 from io import BytesIO
 from itertools import product
-from typing import Callable, Sequence, Any, Dict, Optional
+from typing import Any, Callable, Dict, Optional, Sequence
 
 from approval_utilities.utilities.map_reduce import product_dict
-from approvaltests import verify, Options
+from approvaltests import Options, verify
 
 if sys.version_info <= (3, 12):
     from mrjob.job import MRJob

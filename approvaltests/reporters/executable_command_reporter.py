@@ -1,7 +1,7 @@
-from typing_extensions import override
+import pathlib
 from typing import Optional
 
-import pathlib
+from typing_extensions import override
 
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from

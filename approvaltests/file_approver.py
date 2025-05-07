@@ -1,8 +1,9 @@
-from typing_extensions import override
 import filecmp
 import os
 import pathlib
-from typing import Optional, Callable, List
+from typing import Callable, List, Optional
+
+from typing_extensions import override
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests.core.comparator import Comparator

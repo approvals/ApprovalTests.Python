@@ -1,5 +1,5 @@
 from approval_utilities.utilities.map_reduce import first, product_dict
-from approvaltests import verify, Options, verify_as_json
+from approvaltests import Options, verify, verify_as_json
 
 
 def test_first() -> None:

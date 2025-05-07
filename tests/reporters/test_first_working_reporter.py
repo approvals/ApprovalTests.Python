@@ -1,9 +1,10 @@
-from typing_extensions import override
 import unittest
+from typing import Callable, Optional
+
+from typing_extensions import override
 
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
-from typing import Callable, Optional
 
 
 class ReporterForTesting(Reporter):

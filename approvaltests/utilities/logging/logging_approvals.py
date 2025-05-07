@@ -1,9 +1,9 @@
-from typing import Optional, ContextManager, Type
 from types import TracebackType
+from typing import ContextManager, Optional, Type
 
-from approvaltests import Options, verify
 from testfixtures import LogCapture
 
+from approvaltests import Options, verify
 from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 

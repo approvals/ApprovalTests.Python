@@ -1,5 +1,6 @@
-from typing_extensions import override
 from typing import Optional
+
+from typing_extensions import override
 
 from approvaltests.core.namer import Namer
 

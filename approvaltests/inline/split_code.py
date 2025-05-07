@@ -1,6 +1,7 @@
-from typing_extensions import override
 import re
 from enum import Enum
+
+from typing_extensions import override
 
 
 class SplitCode:

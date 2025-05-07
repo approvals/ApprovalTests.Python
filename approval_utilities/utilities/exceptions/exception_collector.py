@@ -1,4 +1,4 @@
-from typing import Callable, Sequence, Any, List
+from typing import Any, Callable, List, Sequence
 
 from approval_utilities.utilities.exceptions.multiple_exceptions import (
     MultipleExceptions,

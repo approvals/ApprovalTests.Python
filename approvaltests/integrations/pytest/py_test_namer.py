@@ -1,8 +1,8 @@
-from typing_extensions import override
 import os
 from typing import Dict
 
 from _pytest.fixtures import FixtureRequest
+from typing_extensions import override
 
 from approvaltests.namer.namer_base import NamerBase
 

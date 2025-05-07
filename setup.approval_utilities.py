@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages  # type: ignore
+from setuptools import find_packages, setup  # type: ignore
 
 from setup_utils import get_version
 

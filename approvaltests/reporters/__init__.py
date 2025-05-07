@@ -10,6 +10,6 @@ from .generic_diff_reporter_factory import *
 from .multi_reporter import *
 from .python_native_reporter import *
 from .received_file_launcher_reporter import *
-from .reporter_that_automatically_approves import *
 from .report_all_to_clipboard import *
 from .report_by_creating_diff_file import *
+from .reporter_that_automatically_approves import *

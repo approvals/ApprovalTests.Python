@@ -1,6 +1,6 @@
+from approval_utilities.utilities import markdown_table
 from approvaltests import Options, verify, verify_exception
 from approvaltests.scrubbers.date_scrubber import DateScrubber
-from approval_utilities.utilities import markdown_table
 
 
 def test_supported_formats() -> None:

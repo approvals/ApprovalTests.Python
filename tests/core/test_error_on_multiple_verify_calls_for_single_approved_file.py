@@ -1,6 +1,6 @@
 import pytest
 
-from approvaltests import verify, ApprovalException, settings, approvals, Options
+from approvaltests import ApprovalException, Options, approvals, settings, verify
 from approvaltests.file_approver import FileApprover
 from tests.namers.test_templated_namer import TemplatedCustomNamer
 

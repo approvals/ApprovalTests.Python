@@ -1,7 +1,8 @@
-from typing_extensions import override
 import threading
 from abc import ABC, abstractmethod
-from typing import TypeVar, Generic, Callable, cast
+from typing import Callable, Generic, TypeVar, cast
+
+from typing_extensions import override
 
 _T = TypeVar("_T")
 

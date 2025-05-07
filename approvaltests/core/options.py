@@ -1,9 +1,9 @@
-from typing import Dict, Callable, Optional
+from typing import Callable, Dict, Optional
 
-from approvaltests.core.reporter import Reporter
 from approvaltests.core.comparator import Comparator
-from approvaltests.file_approver import FileComparator
 from approvaltests.core.namer import Namer
+from approvaltests.core.reporter import Reporter
+from approvaltests.file_approver import FileComparator
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.scrubbers import combine_scrubbers
 

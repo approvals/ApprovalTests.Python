@@ -1,5 +1,6 @@
-from typing_extensions import override
 from abc import ABC, abstractmethod
+
+from typing_extensions import override
 
 
 class Reporter(ABC):

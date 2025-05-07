@@ -1,6 +1,7 @@
-from typing_extensions import override
 import io
 from typing import Optional
+
+from typing_extensions import override
 
 from approval_utilities.utils import create_directory_if_needed
 from approvaltests.core.writer import Writer

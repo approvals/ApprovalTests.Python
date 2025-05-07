@@ -1,6 +1,5 @@
-from typing import Optional
-
 import textwrap
+from typing import Optional
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 

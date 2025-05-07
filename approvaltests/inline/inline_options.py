@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing_extensions import override
 from pathlib import Path
 from typing import TYPE_CHECKING
+
+from typing_extensions import override
 
 if TYPE_CHECKING:
     from approvaltests.core.options import Options

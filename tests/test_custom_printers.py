@@ -1,13 +1,14 @@
-from typing_extensions import override
 import argparse
 import typing
 from abc import ABC
 
+from typing_extensions import override
+
 from approvaltests import (
-    verify,
-    register_formatter,
-    find_formatter_for_specified_class,
     approvals,
+    find_formatter_for_specified_class,
+    register_formatter,
+    verify,
 )
 from approvaltests.core.format_wrapper import FormatWrapper
 from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (

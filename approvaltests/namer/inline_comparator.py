@@ -1,8 +1,9 @@
-from typing_extensions import override
 import tempfile
 from inspect import FrameInfo
 from pathlib import Path
-from typing import Optional, Callable, Any
+from typing import Any, Callable, Optional
+
+from typing_extensions import override
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame

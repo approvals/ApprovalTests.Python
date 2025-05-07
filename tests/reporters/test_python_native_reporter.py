@@ -2,9 +2,7 @@ import os
 import pathlib
 from pathlib import Path
 
-
 from approvaltests import verify
-
 from approvaltests.reporters.python_native_reporter import *
 
 

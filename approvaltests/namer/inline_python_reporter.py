@@ -1,8 +1,9 @@
-from typing_extensions import override
 import tempfile
 from inspect import FrameInfo
 from pathlib import Path
 from typing import Callable, Optional
+
+from typing_extensions import override
 
 from approvaltests import Reporter, StackFrameNamer
 from approvaltests.inline.split_code import SplitCode

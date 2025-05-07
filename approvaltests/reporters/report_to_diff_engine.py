@@ -1,6 +1,7 @@
-from typing_extensions import override
-import socket
 import json
+import socket
+
+from typing_extensions import override
 
 from approvaltests import Reporter
 

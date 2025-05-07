@@ -1,8 +1,10 @@
-from typing_extensions import override
 import io
 from pathlib import Path
+
 import numpy as np
-from approvaltests import verify_binary, Options
+from typing_extensions import override
+
+from approvaltests import Options, verify_binary
 from approvaltests.core import Reporter
 from approvaltests.reporters import get_command_text
 

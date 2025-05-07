@@ -1,5 +1,5 @@
-import os
 import ast
+import os
 
 
 def test_no_imports_from_build_directory() -> None:

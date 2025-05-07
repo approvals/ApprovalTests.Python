@@ -1,5 +1,6 @@
+from typing import TYPE_CHECKING, Any, Callable, Iterable
+
 from typing_extensions import override
-from typing import Any, Callable, Iterable, TYPE_CHECKING
 
 from approval_utilities.approvaltests.core.verifiable import Verifiable
 from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters

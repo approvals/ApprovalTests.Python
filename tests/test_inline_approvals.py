@@ -1,25 +1,25 @@
+import sys
 import unittest
 from inspect import FrameInfo
-from typing import Callable, Any
-import sys
+from typing import Any, Callable
 
 import pytest
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests import (
-    StackFrameNamer,
+    ApprovalException,
     Options,
+    StackFrameNamer,
     verify,
     verify_all,
     verify_all_combinations_with_labeled_input,
-    ApprovalException,
 )
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.report_with_beyond_compare import (
-    ReportWithPycharm,
     ReportWithBeyondCompare,
+    ReportWithPycharm,
 )
 
 

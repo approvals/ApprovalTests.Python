@@ -1,8 +1,8 @@
 import os
 import subprocess
-from typing import Sequence, Optional, Any, Dict
+from typing import Any, Dict, Optional, Sequence
 
-from approvaltests import verify, Options
+from approvaltests import Options, verify
 
 
 def verify_command_line_with_inputs(

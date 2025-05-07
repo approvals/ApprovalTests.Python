@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
 
-from typing_extensions import override
-from typing import Callable, Optional, Dict
-
 import json
 import random
 import unittest
+from typing import Callable, Dict, Optional
 
 import pytest
+from typing_extensions import override
 
-from approvaltests import Options, delete_approved_file, approvals, List
+from approval_utilities.approvaltests.core.verifiable import Verifiable
+from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
+from approval_utilities.utils import get_adjacent_file, is_windows_os, print_grid
+from approvaltests import List, Options, approvals, delete_approved_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import (
     verify,
     verify_as_json,
-    verify_file,
-    verify_xml,
-    verify_html,
     verify_binary,
     verify_exception,
+    verify_file,
+    verify_html,
+    verify_xml,
 )
 from approvaltests.core.comparator import Comparator
-from approval_utilities.approvaltests.core.verifiable import Verifiable
-from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
@@ -32,8 +33,6 @@ from approvaltests.reporters.reporter_that_automatically_approves import (
 )
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 from approvaltests.storyboard import Storyboard, verify_storyboard
-from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approval_utilities.utils import get_adjacent_file, is_windows_os, print_grid
 
 
 class GameOfLife:

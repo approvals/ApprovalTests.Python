@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from approvaltests.internals.logs.log_commons import (
-    LogCommons,
     APPROVAL_TESTS_TEMP_DIRECTORY,
+    LogCommons,
 )
 
 

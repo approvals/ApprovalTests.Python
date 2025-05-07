@@ -1,12 +1,16 @@
+from typing import Any, Optional
+
 from typing_extensions import override
-from typing import Optional, Any
 
 from approval_utilities.utils import write_to_temporary_file
 from approvaltests import FileApprover
+from approvaltests.approvals import (
+    get_default_namer,
+    initialize_options,
+    verify_with_namer,
+)
 from approvaltests.core import Reporter
 from approvaltests.core.options import Options
-from approvaltests.approvals import get_default_namer, initialize_options
-from approvaltests.approvals import verify_with_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 

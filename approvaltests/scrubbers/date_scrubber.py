@@ -1,6 +1,7 @@
+from typing import List, Tuple
+
 from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.scrubbers.scrubbers import Scrubber
-from typing import List, Tuple
 
 
 class DateScrubber:

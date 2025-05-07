@@ -3,21 +3,20 @@ import inspect
 import sys
 
 from approvaltests import (
-    get_default_reporter,
+    ReporterForTesting,
     approvals,
+    combination_approvals,
+    get_default_reporter,
     verify,
     verify_all,
-    ReporterForTesting,
-    combination_approvals,
 )
 from approvaltests.core.options import Options
 from approvaltests.integrations.mrjob import mrjob_approvals
-from approvaltests.reporters import ReportByCreatingDiffFile, MultiReporter
+from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.utilities import command_line_approvals
 from approvaltests.utilities.logger import simple_logger_approvals
 from approvaltests.utilities.logging import logging_approvals
-
 
 _approvals_modules = list(
     sorted(

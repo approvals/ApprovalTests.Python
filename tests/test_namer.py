@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from approvaltests.namer.default_namer_factory import get_default_namer, NamerFactory
+from approvaltests.namer.default_namer_factory import NamerFactory, get_default_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 
 

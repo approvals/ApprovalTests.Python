@@ -1,11 +1,11 @@
-from typing import Generic, Callable, List, Any, Tuple
+from typing import Any, Callable, Generic, List, Tuple
 
 from approvaltests import Options, verify_all
 from approvaltests.inline.parse2 import Parse2
 from approvaltests.inline.parse3 import Parse3
+from approvaltests.inline.types import T1, T2, T
 from approvaltests.namer.inline_comparator import InlineComparator
 from approvaltests.reporters import ReporterThatAutomaticallyApproves
-from approvaltests.inline.types import T, T2, T1
 
 
 class Parse(Generic[T]):

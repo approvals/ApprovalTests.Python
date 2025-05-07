@@ -1,10 +1,10 @@
+from typing import Optional
+
 from typing_extensions import override
+
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
 from approval_utilities.utils import is_windows_os
 from approvaltests.core.reporter import Reporter
-
-
-from typing import Optional
 
 
 def get_command_text(

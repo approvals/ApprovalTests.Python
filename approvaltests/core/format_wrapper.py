@@ -1,6 +1,7 @@
-from typing_extensions import override
 import abc
 import typing
+
+from typing_extensions import override
 
 
 class FormatWrapper(abc.ABC):

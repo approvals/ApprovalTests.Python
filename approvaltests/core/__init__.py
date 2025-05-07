@@ -1,7 +1,7 @@
 """Approvaltests.core module."""
 
-from .reporter import *
-from .writer import *
-from .options import *
 from .comparator import *
+from .options import *
+from .reporter import *
 from .scenario_namer import *
+from .writer import *

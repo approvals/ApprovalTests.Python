@@ -1,7 +1,8 @@
-from typing_extensions import override
 import unittest
 
-from approvaltests import verify, Options
+from typing_extensions import override
+
+from approvaltests import Options, verify
 from approvaltests.reporters import GenericDiffReporterFactory
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.report_with_beyond_compare import (

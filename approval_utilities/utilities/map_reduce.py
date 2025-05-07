@@ -1,5 +1,5 @@
 import itertools
-from typing import Sequence, Any, Callable, Generator, Dict
+from typing import Any, Callable, Dict, Generator, Sequence
 
 
 def first(sequence: Sequence[Any], predicate: Callable[[Any], bool]) -> Any:

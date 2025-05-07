@@ -1,6 +1,6 @@
-from setuptools import setup, find_packages  # type: ignore
+from setuptools import find_packages, setup  # type: ignore
 
-from setup_utils import get_requirements_from_file, do_the_setup
+from setup_utils import do_the_setup, get_requirements_from_file
 
 required = get_requirements_from_file("requirements.prod.required.txt")
 

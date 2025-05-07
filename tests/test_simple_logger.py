@@ -1,19 +1,18 @@
 import datetime
 import threading
-from typing import Generator, Callable
-
 from contextlib import contextmanager
+from typing import Callable, Generator
 
-from approvaltests import (
-    verify,
-    Options,
-    run_all_combinations,
-    verify_logging_for_all_combinations,
-    approvals,
-)
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
-from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 from approval_utilities.utilities.time_utilities import use_utc_timezone
+from approvaltests import (
+    Options,
+    approvals,
+    run_all_combinations,
+    verify,
+    verify_logging_for_all_combinations,
+)
+from approvaltests.utilities.logger.simple_logger_approvals import verify_simple_logger
 
 
 def test_warnings() -> None:

@@ -1,5 +1,5 @@
 import inspect
-from typing import Sequence, Any, Dict
+from typing import Any, Dict, Sequence
 
 from approvaltests.combination_approvals import (
     verify_all_combinations,

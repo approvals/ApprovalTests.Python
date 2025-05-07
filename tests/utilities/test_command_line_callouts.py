@@ -2,8 +2,8 @@ from pathlib import Path
 
 from approvaltests import Options
 from approvaltests.utilities.command_line_approvals import (
-    verify_command_line_with_inputs,
     verify_command_line,
+    verify_command_line_with_inputs,
 )
 
 

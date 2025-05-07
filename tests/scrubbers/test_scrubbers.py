@@ -1,13 +1,13 @@
 import datetime
 
-from approvaltests.approvals import verify_all, verify_as_json, verify, verify_exception
+from approvaltests.approvals import verify, verify_all, verify_as_json, verify_exception
 from approvaltests.core.options import Options
 from approvaltests.scrubbers import combine_scrubbers
 from approvaltests.scrubbers.scrubbers import (
-    scrub_all_dates,
-    create_regex_scrubber,
-    scrub_all_guids,
     create_line_scrubber,
+    create_regex_scrubber,
+    scrub_all_dates,
+    scrub_all_guids,
 )
 
 

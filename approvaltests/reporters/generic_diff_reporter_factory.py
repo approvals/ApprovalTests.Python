@@ -1,22 +1,21 @@
-from typing_extensions import override
 import json
-from typing import Iterator, List, Optional, Type, Dict, Callable
+from typing import Callable, Dict, Iterator, List, Optional, Type
 
+from typing_extensions import override
+
+from approval_utilities.utilities.deprecated import deprecated
+from approval_utilities.utils import get_adjacent_file
 from approvaltests.core.reporter import Reporter
-from approvaltests.reporters.python_native_reporter import PythonNativeReporter
-from approvaltests.reporters.generic_diff_reporter import (
-    GenericDiffReporter,
-)
+from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
     create_config,
 )
+from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithWinMerge,
 )
-from approval_utilities.utils import get_adjacent_file
-from approval_utilities.utilities.deprecated import deprecated
 
 
 class NoConfigReporter(Reporter):

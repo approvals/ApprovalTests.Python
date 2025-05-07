@@ -2,10 +2,10 @@ import argparse
 import xml.dom.minidom
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Callable, List, Optional, Any, ByteString, Iterator
+from typing import Any, ByteString, Callable, Iterator, List, Optional
 
-import approvaltests.reporters.default_reporter_factory
 import approvaltests.namer.default_namer_factory
+import approvaltests.reporters.default_reporter_factory
 from approval_utilities import utils
 from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
 from approval_utilities.approvaltests.core.verifiable import Verifiable
@@ -15,14 +15,14 @@ from approval_utilities.utilities.map_reduce import first
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.binary_writer import BinaryWriter
 from approvaltests.core import Reporter, Writer
-from approvaltests.core.format_wrapper import FormatWrapper, AlwaysMatch
+from approvaltests.core.format_wrapper import AlwaysMatch, FormatWrapper
 from approvaltests.core.namer import Namer
 from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
-from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.namer.namer_base import NamerBase
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.executable_command_reporter import (
     ExecutableCommandReporter,

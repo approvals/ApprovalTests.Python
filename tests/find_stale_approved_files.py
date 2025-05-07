@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
-import os
 import argparse
+import os
 import pathlib
 from pathlib import Path
 from typing import List, Set

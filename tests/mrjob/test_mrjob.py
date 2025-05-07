@@ -1,6 +1,7 @@
 import sys
+from typing import Any, Dict, Generator, List, Sequence, Tuple
+
 import pytest
-from typing import Dict, Any, Generator, Tuple, Sequence, List
 
 from approvaltests.integrations.mrjob.mrjob_approvals import (
     verify_map_reduce,

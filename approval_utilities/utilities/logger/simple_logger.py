@@ -1,5 +1,5 @@
 import threading
-from typing import Iterator, Any, Callable, Optional, Union, ContextManager
+from typing import Any, Callable, ContextManager, Iterator, Optional, Union
 
 from approval_utilities.utilities.logger.logging_instance import LoggingInstance
 from approval_utilities.utilities.string_wrapper import StringWrapper

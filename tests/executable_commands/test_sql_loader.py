@@ -1,9 +1,10 @@
 from typing_extensions import override
+
+from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
+from approvaltests import verify, verify_executable_command
 from approvaltests.reporters.executable_command_reporter import (
     ExecutableCommandReporter,
 )
-from approval_utilities.approvaltests.core.executable_command import ExecutableCommand
-from approvaltests import verify, verify_executable_command
 from tests.executable_commands.country_loader import CountryLoader
 
 

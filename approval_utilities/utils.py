@@ -1,11 +1,9 @@
 import inspect
 import json
 import os
-
 from copy import deepcopy
 from pathlib import Path
-
-from typing import Callable, Dict, TypeVar, Optional, Any
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 
 def get_adjacent_file(name: str) -> str:

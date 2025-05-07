@@ -1,13 +1,14 @@
-from typing import Optional
-from typing_extensions import override
 import unittest
 from pathlib import Path
+from typing import Optional
 
+from typing_extensions import override
+
+from approval_utilities.utils import get_adjacent_file
+from approvaltests import Options, assert_against_file, assert_equal_with_reporter
 from approvaltests.approval_exception import ApprovalException
-from approvaltests import assert_against_file, assert_equal_with_reporter, Options
 from approvaltests.core import Reporter
 from approvaltests.reporters.testing_reporter import ReporterForTesting
-from approval_utilities.utils import get_adjacent_file
 from approvaltests.scrubbers import scrub_all_guids
 
 

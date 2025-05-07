@@ -1,8 +1,8 @@
 import os
+from types import TracebackType
+from typing import Optional, Type
 
 from typing_extensions import ContextManager
-from typing import Optional, Type
-from types import TracebackType
 
 
 def use_utc_timezone() -> ContextManager[None]:
