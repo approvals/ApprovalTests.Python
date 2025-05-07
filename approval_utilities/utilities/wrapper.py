@@ -5,6 +5,7 @@ from typing import TypeVar, Generic, Callable, cast
 
 _T = TypeVar("_T")
 
+
 class Wrapper(ABC, Generic[_T]):
     @abstractmethod
     def get(self) -> _T:
