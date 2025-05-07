@@ -24,7 +24,7 @@ filename = get_adjacent_file(name)
 with open(filename, mode="rb") as f:
     verify_binary(f.read(), ".png")
 ```
-<sup><a href='/tests/test_verify.py#L185-L190' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_binary_image' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L184-L189' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_binary_image' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Which will produce
@@ -47,7 +47,7 @@ def test_simulator_produces_correct_output() -> None:
         options=Options().with_reporter(NDArrayDiffReporter()),
     )
 ```
-<sup><a href='/tests/test_example_numpy.py#L17-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_numpy_array' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_example_numpy.py#L19-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_numpy_array' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It also shows the use of a custom reporter, which uses the NumPy testing features to produce a well-formatted error report highlighting the differences between arrays.
@@ -72,5 +72,5 @@ class NDArrayDiffReporter(Reporter):
         print(np.testing.build_err_msg([received, approved], err_msg=to_approve_msg))
         return True
 ```
-<sup><a href='/tests/test_example_numpy.py#L32-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-numpy_custom_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_example_numpy.py#L34-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-numpy_custom_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

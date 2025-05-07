@@ -28,5 +28,5 @@ class NDArrayDiffReporter(Reporter):
         print(np.testing.build_err_msg([received, approved], err_msg=to_approve_msg))
         return True
 ```
-<sup><a href='/tests/test_example_numpy.py#L32-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-numpy_custom_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_example_numpy.py#L34-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-numpy_custom_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

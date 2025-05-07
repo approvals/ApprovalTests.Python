@@ -47,7 +47,7 @@ def test_scenarios(year: int) -> None:
         options=NamerFactory.with_parameters(year),
     )
 ```
-<sup><a href='/tests/test_scenarios.py#L25-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L26-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-parametrized-test-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Method 2: Verify Multiple Things with Blocking
@@ -79,7 +79,7 @@ verify(
     options=NamerFactory.with_parameters(year),
 )
 ```
-<sup><a href='/tests/test_scenarios.py#L38-L59' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-with-blocking' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L39-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-with-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Method 3: Verify Multiple Things without Blocking
@@ -101,7 +101,7 @@ gather_all_exceptions_and_throw(
     ),
 )
 ```
-<sup><a href='/tests/test_scenarios.py#L63-L72' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_scenarios.py#L64-L73' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple-verifies-without-blocking' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
