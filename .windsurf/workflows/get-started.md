@@ -1,3 +1,7 @@
+---
+description: Start a mob programming session
+---
+
 # AI Assistant Process
 ## Reporting Guidelines
  when running this process report on progress after each stage and summarize at the end
