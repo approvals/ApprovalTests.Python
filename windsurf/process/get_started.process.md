@@ -14,4 +14,4 @@ tell us about any new things that have happened in the last 2 weeks
    run `C:\Users\ImageBuilderAdmin\AppData\Local\MobTime\MobTime.exe`
 
 4. Start github desktop
-   run `C:\Program Files\GitHub\Desktop\GitHubDesktop.exe`
+   run `C:\Users\ImageBuilderAdmin\AppData\Local\GitHubDesktop\GitHubDesktop.exe`
