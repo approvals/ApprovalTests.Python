@@ -24,8 +24,7 @@ LOG_FILE=$(mktemp -t approvaltests_run_tests.XXXXXX.log)
 run_step() {
     local display_name="$1"
     shift
-    local cmd=("$@")
-    if "${cmd[@]}" > "$LOG_FILE" 2>&1; then
+    if "${@}" > "$LOG_FILE" 2>&1; then
         echo "✅ $display_name"
     else
         echo "$display_name: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
