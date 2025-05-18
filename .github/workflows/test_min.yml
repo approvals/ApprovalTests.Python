@@ -27,7 +27,7 @@ jobs:
       - name: Test
         run: |
           python ./generate_prod_min.py
-          ./run_tests.sh
+          ./build_and_test.sh
         shell: bash
 
       - name: Publish Test Report

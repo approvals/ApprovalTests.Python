@@ -17,7 +17,7 @@ Default STARTER_CHARACTER = 🧩
 
 ## Running Tests
 
-- Run Tests with `.\run_tests.cmd` or `./run_tests.sh`.
+- Run Tests with `.\run_tests.cmd` or `./build_and_test.sh`.
 
 # Style
 - Do not add comments to code unless explicitly instructed to do so.

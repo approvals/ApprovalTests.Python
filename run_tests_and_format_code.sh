@@ -2,4 +2,4 @@
 set -euo pipefail
 
 ./format_code.sh
-./run_tests.sh
+./build_and_test.sh

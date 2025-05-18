@@ -29,7 +29,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Test
         run: |
-          ./run_tests.sh
+          ./build_and_test.sh
         shell: bash
 
       - name: Publish Test Report
