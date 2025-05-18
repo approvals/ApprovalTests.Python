@@ -25,8 +25,7 @@ run_step() {
     local display_name="$1"
     shift
     local cmd=("$@")
-    "${cmd[@]}" > "$LOG_FILE" 2>&1
-    if [ $? -eq 0 ]; then
+    if "${cmd[@]}" > "$LOG_FILE" 2>&1; then
         echo "✅ $display_name"
     else
         echo "$display_name: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
