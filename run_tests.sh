@@ -21,32 +21,21 @@ fi
 
 LOG_FILE=$(mktemp -t approvaltests_run_tests.XXXXXX.log)
 
-python -m pip --disable-pip-version-check install tox > "$LOG_FILE" 2>&1
-if [ $? -eq 0 ]; then
-    echo "✅ tox"
-else
-    echo "pip install tox: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
-fi
+run_step() {
+    local display_name="$1"
+    shift
+    local cmd=("$@")
+    "${cmd[@]}" > "$LOG_FILE" 2>&1
+    if [ $? -eq 0 ]; then
+        echo "✅ $display_name"
+    else
+        echo "$display_name: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
+    fi
+}
 
-python -m tox -e py -- --junitxml=test-reports/report.xml > "$LOG_FILE" 2>&1
-if [ $? -eq 0 ]; then
-    echo "✅ test passed"
-else
-    echo "tox -e py: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
-fi
-
-python -m tox -e mypy > "$LOG_FILE" 2>&1
-if [ $? -eq 0 ]; then
-    echo "✅ mypy"
-else
-    echo "tox -e mypy: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
-fi
-
-python -m tox -e integration_tests > "$LOG_FILE" 2>&1
-if [ $? -eq 0 ]; then
-    echo "✅ integration tests"
-else
-    echo "tox -e integration_tests: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
-fi
+run_step "tox" python -m pip --disable-pip-version-check install tox
+run_step "test passed" python -m tox -e py -- --junitxml=test-reports/report.xml
+run_step "mypy" python -m tox -e mypy
+run_step "integration tests" python -m tox -e integration_tests
 
 rm -f "$LOG_FILE"
