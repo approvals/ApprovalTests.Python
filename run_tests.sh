@@ -23,28 +23,28 @@ LOG_FILE="$TEMP/approvaltests_run_tests.log"
 
 python -m pip --disable-pip-version-check install tox > "$LOG_FILE" 2>&1
 if [ $? -eq 0 ]; then
-    echo "pip install tox: OK"
+    echo "✅ tox"
 else
     echo "pip install tox: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
 fi
 
 python -m tox -e py -- --junitxml=test-reports/report.xml > "$LOG_FILE" 2>&1
 if [ $? -eq 0 ]; then
-    echo "tox -e py: OK"
+    echo "✅ test passed"
 else
     echo "tox -e py: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
 fi
 
 python -m tox -e mypy > "$LOG_FILE" 2>&1
 if [ $? -eq 0 ]; then
-    echo "tox -e mypy: OK"
+    echo "✅ mypy"
 else
     echo "tox -e mypy: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
 fi
 
 python -m tox -e integration_tests > "$LOG_FILE" 2>&1
 if [ $? -eq 0 ]; then
-    echo "tox -e integration_tests: OK"
+    echo "✅ integration tests"
 else
     echo "tox -e integration_tests: FAILED" && cat "$LOG_FILE" && rm -f "$LOG_FILE" && exit 1
 fi
