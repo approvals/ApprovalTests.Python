@@ -1,7 +1,0 @@
-# Steps
-- Run Tests with `.\run_tests.cmd` or `./run_tests.sh`.
-- `git fetch` early and often
-
-# Style
-- Do not add comments to code unless explicitly instructed to do so.
-- Only use Unix-style line endings (\n).

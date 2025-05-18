@@ -11,7 +11,14 @@ Default STARTER_CHARACTER = 🧩
 
 **NEVER** approve a test for us, the user will allways do that. If you believe the `.approved.` file needs to be changed, prompt the user.
 
+## Git
+
+- `git fetch` early and often
 
 ## Running Tests
 
-To run tests: `./run_tests.sh`
+- Run Tests with `.\run_tests.cmd` or `./run_tests.sh`.
+
+# Style
+- Do not add comments to code unless explicitly instructed to do so.
+- Only use Unix-style line endings (\n).
