@@ -19,7 +19,7 @@ else
     exit 1
 fi
 
-LOG_FILE="$TEMP/approvaltests_run_tests.log"
+LOG_FILE=$(mktemp -t approvaltests_run_tests.XXXXXX.log)
 
 python -m pip --disable-pip-version-check install tox > "$LOG_FILE" 2>&1
 if [ $? -eq 0 ]; then
