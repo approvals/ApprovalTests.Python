@@ -19,16 +19,7 @@ else
     exit 1
 fi
 
-if [ -n "${TMPDIR:-}" ]; then
-    TEMP_DIR="$TMPDIR"
-elif [ -n "${TEMP:-}" ]; then
-    TEMP_DIR="$TEMP"
-elif [ -n "${TMP:-}" ]; then
-    TEMP_DIR="$TMP"
-else
-    TEMP_DIR="/tmp"
-fi
-LOG_FILE="$TEMP_DIR/approvaltests_run_tests.log"
+LOG_FILE="$TEMP/approvaltests_run_tests.log"
 
 python -m pip --disable-pip-version-check install tox > "$LOG_FILE" 2>&1
 if [ $? -eq 0 ]; then
