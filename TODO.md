@@ -2,6 +2,9 @@
 - [x] how we run integration tests
     - rename tox entry point and the test
 - [ ] in Python: rename run_tests -> build_and_test
+    - [ ] rename `run_tests_and_format_code.sh` to what?
+    - [ ] Jay wants to remove `.sh`
+    - [ ] What is the impact on TAB-completion?
 - [ ] mypy in Python
 - [ ] fix disabled test for inline whitespace
 - [ ] mypy in CommonScripts - tox?
