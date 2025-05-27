@@ -4,17 +4,15 @@ from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 
 def test_supported_formats() -> None:
-    supported_formats = DateScrubber.get_supported_formats()
-    for date_regex, examples in supported_formats:
-        for example in examples:
-            assert DateScrubber(date_regex).scrub(example) == "<date0>"
+    internal_formats = DateScrubber._get_internal_formats()
+    for date_format, parsing_examples, display_examples in internal_formats:
+        for example in parsing_examples:
+            assert DateScrubber(date_format).scrub(example) == "<date0>"
 
 
 def test_supported_formats_arbitrary_string() -> None:
     assert (
-        DateScrubber("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}").scrub(
-            "arbitrary string"
-        )
+        DateScrubber("%a %b %d %H:%M:%S").scrub("arbitrary string")
         == "arbitrary string"
     )
 
