@@ -7,12 +7,12 @@ def test_supported_formats() -> None:
     internal_formats = DateScrubber._get_internal_formats()
     for date_format, parsing_examples, display_examples in internal_formats:
         for example in parsing_examples:
-            assert DateScrubber(date_format).scrub(example) == "<date0>"
+            assert DateScrubber.from_format(date_format).scrub(example) == "<date0>"
 
 
 def test_supported_formats_arbitrary_string() -> None:
     assert (
-        DateScrubber("%a %b %d %H:%M:%S").scrub("arbitrary string")
+        DateScrubber.from_format("%a %b %d %H:%M:%S").scrub("arbitrary string")
         == "arbitrary string"
     )
 

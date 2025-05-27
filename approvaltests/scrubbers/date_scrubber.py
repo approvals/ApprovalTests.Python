@@ -67,14 +67,21 @@ class DateScrubber:
             parsing_examples,
             display_examples,
         ) in DateScrubber._get_internal_formats():
-            scrubber = DateScrubber(date_format)
+            scrubber = DateScrubber.from_format(date_format)
             regex_pattern = scrubber.date_regex
             formats.append((regex_pattern, display_examples))
         return formats
 
-    def __init__(self, date_format: str):
-        self.date_format = date_format
-        self.date_regex = self._convert_format_to_regex(date_format)
+    def __init__(self, date_regex: str):
+        self.date_regex = date_regex
+
+    @classmethod
+    def from_format(cls, date_format: str) -> "DateScrubber":
+        """Create a DateScrubber from a datetime format string like '%Y%m%d_%H%M%S'."""
+        instance = cls.__new__(cls)
+        instance.date_format = date_format
+        instance.date_regex = instance._convert_format_to_regex(date_format)
+        return instance
 
     def _convert_format_to_regex(self, date_format: str) -> str:
         """Convert datetime format string to a regex pattern for scrubbing."""
@@ -119,7 +126,7 @@ class DateScrubber:
     @staticmethod
     def get_scrubber_for_format(date_format: str) -> Scrubber:
         """Create a scrubber using a datetime format string like '%Y%m%d_%H%M%S'."""
-        scrubber = DateScrubber(date_format)
+        scrubber = DateScrubber.from_format(date_format)
         return scrubber.scrub
 
     @staticmethod
@@ -137,7 +144,7 @@ class DateScrubber:
         ) in DateScrubber._get_internal_formats():
             try:
                 datetime.strptime(example, date_format)
-                scrubber = DateScrubber(date_format)
+                scrubber = DateScrubber.from_format(date_format)
                 return scrubber.scrub
             except ValueError:
                 continue
