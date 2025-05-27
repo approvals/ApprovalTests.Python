@@ -1,0 +1,15 @@
+Format: %Y%m%d_%H%M%S
+Input:  Log: 20250527_125703 - System started
+Output: Log: <date0> - System started
+
+Format: %Y-%m-%dT%H:%M:%SZ
+Input:  Timestamp: 2021-01-01T12:34:56Z end
+Output: Timestamp: <date0> end
+
+Format: %H:%M:%S
+Input:  Time is 23:59:59 now
+Output: Time is <date0> now
+
+Format: %a %b %d %H:%M:%S %Y
+Input:  Event: Mon Jan 01 12:00:00 2024
+Output: Event: <date0>
