@@ -117,6 +117,12 @@ class DateScrubber:
         return create_regex_scrubber(self.date_regex, lambda t: f"<date{t}>")(date_str)
 
     @staticmethod
+    def get_scrubber_for_format(date_format: str) -> Scrubber:
+        """Create a scrubber using a datetime format string like '%Y%m%d_%H%M%S'."""
+        scrubber = DateScrubber(date_format)
+        return scrubber.scrub
+
+    @staticmethod
     def get_scrubber_for(example: str) -> Scrubber:
         # Build error message with regex patterns for external display
         supported = ""
