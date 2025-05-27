@@ -60,10 +60,12 @@ def test_get_scrubber_for_format() -> None:
     for format_pattern, test_date, test_string in test_cases:
         scrubber = DateScrubber.get_scrubber_for_format(format_pattern)
         result = scrubber(test_string)
-        results.append(f"Format: {format_pattern}")
-        results.append(f"Input:  {test_string}")
-        results.append(f"Output: {result}")
-        results.append("")  # Empty line for readability
+        results.extend((
+            f"Format: {format_pattern}",
+            f"Input:  {test_string}",
+            f"Output: {result}",
+            "",  # Empty line for readability
+        ))
 
     verify("\n".join(results))
 

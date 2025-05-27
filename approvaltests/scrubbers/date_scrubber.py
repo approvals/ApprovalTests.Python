@@ -106,14 +106,15 @@ class DateScrubber:
 
         # Replace format codes with regex patterns first
         regex_pattern = date_format
-        for format_code, regex in format_to_regex.items():
+        for format_code in format_to_regex:
             regex_pattern = regex_pattern.replace(format_code, f"__{format_code[1:]}__")
 
         # Escape special regex characters in the remaining format
         regex_pattern = re.escape(regex_pattern)
 
         # Replace placeholders with actual regex patterns
-        for format_code, regex in format_to_regex.items():
+        for format_code in format_to_regex:
+            regex = format_to_regex[format_code]
             placeholder = f"__{format_code[1:]}__"
             escaped_placeholder = re.escape(placeholder)
             regex_pattern = regex_pattern.replace(escaped_placeholder, regex)
