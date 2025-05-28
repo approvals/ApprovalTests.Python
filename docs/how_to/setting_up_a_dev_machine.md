@@ -6,17 +6,18 @@ pip install -r requirements.dev.txt
 ```
 
 ### Code formatting
-We use [black](https://black.readthedocs.io/en/stable/) for formatting.
-There is a CI that will automatically format your code to black but if you would like to do it, you can use one of the following methods:
+To format code, run `./format_code.sh`
+
+There is a CI that will automatically format whenever you push but if you would like to do it locally, you can use one of the following methods:
 
 #### Command-line
 ```bash
-python -m black .
+./format_code.sh
 ```
 
-#### Pycharm
+#### Pycharm Black configuration
 
-If you have the professional version you can configure black with the file watcher.
+If you have the professional version of Pycharm you can configure black with the file watcher.
 
 ![image](./images/black_config.png)
 
