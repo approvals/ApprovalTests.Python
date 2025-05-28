@@ -12,4 +12,5 @@ from .python_native_reporter import *
 from .received_file_launcher_reporter import *
 from .report_all_to_clipboard import *
 from .report_by_creating_diff_file import *
+from .report_with_opening_file import *
 from .reporter_that_automatically_approves import *
