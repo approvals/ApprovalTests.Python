@@ -4,3 +4,4 @@ black
 setuptools
 mypy
 types-requests
+types-setuptools

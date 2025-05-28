@@ -1,4 +1,4 @@
-from setuptools import find_packages, setup  # type: ignore
+from setuptools import find_packages, setup
 
 from setup_utils import do_the_setup, get_requirements_from_file
 

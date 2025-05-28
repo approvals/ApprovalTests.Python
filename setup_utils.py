@@ -1,26 +1,27 @@
 import re
 from pathlib import Path
+from typing import Dict, List
 
 from setuptools import find_packages, setup
 
 
-def get_parent_directory():
+def get_parent_directory() -> Path:
     return Path(__file__).parent
 
 
-def get_version():
+def get_version() -> str:
     _version_file_contents = (get_parent_directory() / "version.py").read_text()
     matched = re.search(r'"(.*)"', _version_file_contents)
     return matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
 
-def get_requirements_from_file(file):
+def get_requirements_from_file(file: str) -> List[str]:
     with open(get_parent_directory() / file) as f:
         required = f.read().splitlines()
     return required
 
 
-def do_the_setup(package_name, package_description, required, extra_requires):
+def do_the_setup(package_name: str, package_description: str, required: List[str], extra_requires: Dict[str, List[str]]) -> None:
     setup(
         name=package_name,
         version=get_version(),

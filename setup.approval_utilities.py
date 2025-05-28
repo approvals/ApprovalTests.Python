@@ -1,8 +1,9 @@
-from setuptools import find_packages, setup  # type: ignore
+from typing import Any, Dict
+from setuptools import find_packages, setup
 
 from setup_utils import get_version
 
-requires = {}
+requires: Dict[str, Any] = {}
 setup(
     name="approval_utilities",
     version=get_version(),
