@@ -27,7 +27,7 @@ def test_get_command_unknown_system() -> None:
         assert command == ["xdg-open", "test.txt"]
 
 
-@patch("subprocess.call")
+@patch("approvaltests.reporters.report_with_opening_file.call")
 def test_report_calls_command(mock_call: MagicMock) -> None:
     reporter = ReportWithOpeningFile()
     with patch("platform.system", return_value="Darwin"):
