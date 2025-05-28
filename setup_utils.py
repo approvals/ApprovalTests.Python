@@ -21,7 +21,12 @@ def get_requirements_from_file(file: str) -> List[str]:
     return required
 
 
-def do_the_setup(package_name: str, package_description: str, required: List[str], extra_requires: Dict[str, List[str]]) -> None:
+def do_the_setup(
+    package_name: str,
+    package_description: str,
+    required: List[str],
+    extra_requires: Dict[str, List[str]],
+) -> None:
     setup(
         name=package_name,
         version=get_version(),
