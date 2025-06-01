@@ -16,15 +16,12 @@ from approvaltests import (
 )
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.parse_docstring import parse_docstring
+from approvaltests.namer.inline_comparator import InlineComparator
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithPycharm,
 )
-from approvaltests.namer.inline_comparator import InlineComparator
-
-
-
 
 # Todo:
 # detect the actual tab
