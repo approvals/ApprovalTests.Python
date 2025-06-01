@@ -1,3 +1,8 @@
+2025-06-01
+- [ ] 🐜 Cascade running build_and_test reports success before running the tests - "run as blocking"
+- [ ] Explore how to change the audible feedback from Cascade to make it less annoying - shorter and less loud
+
+
 2025-04-20
 - [x] how we run integration tests
     - rename tox entry point and the test
