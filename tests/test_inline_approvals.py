@@ -21,20 +21,9 @@ from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithPycharm,
 )
+from approvaltests.namer.inline_comparator import InlineComparator
 
 
-def get_approved_via_doc_string() -> str:
-    test_stack_frame: FrameInfo = StackFrameNamer.get_test_frame()
-    method: Callable[..., Any] = get_caller_method(test_stack_frame)
-    return remove_indentation_from(method.__doc__)
-
-
-def get_caller_method(caller_frame: FrameInfo) -> Callable:
-    caller_function_name: str = caller_frame[3]
-    caller_function_object = caller_frame.frame.f_globals.get(
-        caller_function_name, None
-    )
-    return caller_function_object
 
 
 # Todo:
@@ -204,7 +193,7 @@ def test_inline_with_preserved_approved_text() -> None:
         verify("42", options=options)
     except ApprovalException:
         pass
-    verify(get_approved_via_doc_string())
+    verify(InlineComparator.get_test_method_doc_string())
 
 
 def test_inline_with_semi_automatic_inline() -> None:
@@ -217,4 +206,4 @@ def test_inline_with_semi_automatic_inline() -> None:
         verify("42", options=options)
     except ApprovalException:
         pass
-    verify(get_approved_via_doc_string())
+    verify(InlineComparator.get_test_method_doc_string())
