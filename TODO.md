@@ -1,7 +1,15 @@
+2025-06-08
+ - [ ] Datescrubber PRs
+ - Stuff from last week
+
+
 2025-06-01
 - [ ] 🐜 Cascade running build_and_test reports success before running the tests - "run as blocking"
 - [ ] Explore how to change the audible feedback from Cascade to make it less annoying - shorter and less loud
-- [ ] Publish soon (it has been a while - 7 April)
+- [x] Publish soon (it has been a while - 7 April)
+   - [x] make a list of the changes since the last time we published (to help us decide if we should release)
+   - [x] add to the approved list: git log, status, fetch, diff
+- [ ] consider creating a run book for the release process
 - [ ] reverse the dependency order of requirements.*.txt
 - [ ] switch to uv / eliminate Tox 
 
