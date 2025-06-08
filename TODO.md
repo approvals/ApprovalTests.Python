@@ -1,6 +1,9 @@
 2025-06-01
 - [ ] 🐜 Cascade running build_and_test reports success before running the tests - "run as blocking"
 - [ ] Explore how to change the audible feedback from Cascade to make it less annoying - shorter and less loud
+- [ ] Publish soon (it has been a while - 7 April)
+- [ ] reverse the dependency order of requirements.*.txt
+- [ ] switch to uv / eliminate Tox 
 
 
 2025-04-20
