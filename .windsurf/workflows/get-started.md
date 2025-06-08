@@ -11,6 +11,8 @@ description: Start a mob programming session
 
 ## Steps
 
+0. Ensure logged in to GitHub CL by running `gh auth login --git-protocol https --hostname github.com --web`
+
 1. Verify Repository State
    - Check git status for uncommitted changes
    - Run git pull and resolve any conflicts
