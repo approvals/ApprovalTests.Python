@@ -15,6 +15,11 @@ from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
+
+
+
+
+
 class FilePathNamer(StackFrameNamer):
     def __init__(self, file_path: str, extension: None = None) -> None:
         StackFrameNamer.__init__(self, extension)
@@ -53,3 +58,6 @@ def assert_equal_with_reporter(
     raise AssertionError(
         f'expected != actual\n  actual: "{actual}"\nexpected: "{expected}"'
     )
+
+
+# hello world!
