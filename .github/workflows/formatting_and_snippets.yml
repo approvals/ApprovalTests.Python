@@ -1,6 +1,7 @@
 name: Formatting and Snippets
 on:
   push:
+    branches: ['main']
 jobs:
   format_and_snippets:
     runs-on: ubuntu-latest

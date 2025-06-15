@@ -1,7 +1,12 @@
-2025-06-08
- - [ ] Datescrubber PRs
- - Stuff from last week
-
+2025-06-15
+- [ ] format pushes to main (maybe?)
+     potential bug in repo automation?? bug:  if you createa branch in app test pthon, sometimes it will get merged to main. :O
+     make a change that requires a format and see if it gets merged to main
+   - [ ] consider creating an org-level workflow template
+- [ ] Datescrubber PRs
+- [ ] dependabot linter
+- [ ] explore uv and Mise
+- stuff from last week
 
 2025-06-01
 - [ ] 🐜 Cascade running build_and_test reports success before running the tests - "run as blocking"
@@ -164,8 +169,8 @@ Inline Approvals Bugs
 1. [ ] rename all of the reporters to start with the word report
 2. [ ] check all reporters return True or False
     4. [ ] add mypy to the CI (type hints exist and they are being inforced)
-3. [ ] make it so that approvals works with Python 12
    4. 2024-04-21 - The issue is in MRJob. Need probably need to move to spark. this should probably be done with Jacqueline present
+3. [ ] make it so that approvals works with Python 12
 4. [ ] Improve verify_all for no header
         Expects VerifyAll to have a header
         this is mandatory For PYthon Approval Tests
