@@ -1,5 +1,5 @@
 2025-06-15
-- [ ] format pushes to main (maybe?)
+- [x] format pushes to main (maybe?)
      potential bug in repo automation?? bug:  if you createa branch in app test pthon, sometimes it will get merged to main. :O
      make a change that requires a format and see if it gets merged to main
    - [ ] consider creating an org-level workflow template
