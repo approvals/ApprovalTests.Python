@@ -11,4 +11,4 @@ STARTER_CHARACTER = 🚀
 7. Open the new draft release in the web browser.
 8. Tell the user to add a release title and description.
 9. Tell the user push the release button.
-10. Wait for CI to run on the new release, which you can observe with `gh run list --workflow "Publish Python Package to PyPI" --created YYYY-MM-DD`.
+10. Wait for publish action to run on the new release, which you can observe with `gh run list --workflow "Publish Python Package to PyPI" --created YYYY-MM-DD`.
