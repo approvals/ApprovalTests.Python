@@ -201,20 +201,6 @@ How to connect a Jetbrains product to a remote workspace.
     3. squence to animated gif writer
 19. Property Tests
     1. eval(any.__repr__) == any
-```python
-
-  def test_mypy(self) -> None:
-       try:
-           import mypy.api
-       except ImportError:
-           print("mypy not found")
-           self.skipTest("mypy not found")
-       stdout, stderr, exit_code = mypy.api.run([
-           '--config-file', 'mypy.ini',
-           SCRIPT_DIR,
-       ])
-       self.assertEqual(0, exit_code, "\n\n" + stdout + stderr)
-```
 
 1. Randomize order of tests in pytest plugin
 ```.ini
