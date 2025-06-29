@@ -101,48 +101,9 @@ Talker: <talker name>
 Next: <name of next person>
 
 
-
-
-# 9/22/24
-todo: 
-failure we saw was from a task from a few weeks ago
-the failure we see is:
-problem of how do we kknow if a .approved file was used in a run 
-so we can remove the STALE (abandonded) approved files
-
-# Roles
-From https://github.com/willemlarsen/mobprogrammingrpg/blob/master/rpg_roles_plain_text.md
-
-| Name | Role           |
-| --- |----------------|
-| Matt | Dr Feelgood    |
-| Diana | Anthropologist | 
-| Jay | The Nose       |
-| Jacqueline | Nostaligist    |
-| Michael | Archivist      | 
-| Llewellyn | Major Pain     |
-| Nitsan | Automationist  |
-
-
-Test are running on all CI machine
-
-Typing -> Talking -> Next
-Diana
-Teresa
-Joss
-
-
-We're doing "ping pong style" rotation
-Rotate on each successful test run, after **any** smallest improvement to the code
-in the direction of te agreed upon intention.
-Rotate on green was designed for git handoff, each commit is green
-
 > How do we know that everything works in both Pytest and Unittests?
 > 
 [ ] Test fail if mariadb is in the requirements for linux
-
-Ping-Pong Pairing
-Try to make the smallest change possible, then rotate
 
 POssible FEATURE  
 Create an API to add a REPORTER.[test_inline_approvals.py](tests%2Ftest_inline_approvals.p[ok.approved.txt](ok.approved.txt)y)
