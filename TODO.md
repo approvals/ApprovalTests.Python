@@ -134,21 +134,14 @@ Inline Approvals Bugs
   
 
 
-1. disable the CMD key in this Any Desk  (Nitsan suggested)
 2. [x] update Cyber-dojo to have latest version of approvaltests.py and
    a. [x] verify which version of approval tests is in the new image that we just created
 2. [ ] put an example of inline approvals into cyber-dojo
 3. [ ] add JQ (nitsan created repo and submitted an issue)
 
 -----  older stuff below ----
-2. [ ] run the test
-2. [ ] Review what we have done
-3. [ ] Clean up so things are ready for production
    1. [ ] extract SQL utils
-4. [ ] write some docs
-5. [ ] use it (as the users will )   Manual regression test
-6. [ ] ship the code
-   1. [ ] explore additional test that will Re-test the way other will use it
+
 7. [ ] copmarison after VCR (video recorder) hybrid of Executable Command 
    1. executatble ALONE
    2. VCR (python version of executable command )
@@ -160,25 +153,6 @@ Key x = done, - = started
 notes: 
 1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
 
-What have we learned?
-- How does approvals work in cyber-dojo?
-- There are two docker images with python approvals: 1. pytest 2. unittest
-- is the version number important?
-- Does it use the pytest plugin at all? Or just pytest?
-- set up Gitpod
-- 
-
-
-Possible problem:
-we have linked the Execute command and the _____
-when you run it
- there is the part about how to execute
- and there is ANOTHER part
-that shows you the specific command that you ar trying to verify
-it is not obvious how they are used
-REALIZATION: 
-Executatlbe command class is an Executable COmmand class    and
-_____ (put it in the chat Lev)
 
 QUESTION
 How to connect a Jetbrains product to a remote workspace.
@@ -191,18 +165,10 @@ How to connect a Jetbrains product to a remote workspace.
    5. Adding a binary
    6. Smarter namer
    7. test improvements - do we have all the tests we need?
-4. Create a self-sufficient mob. 
-   5. Need a reproducible anydesk machine
-      6. Create other EC2 instances
-      7. gitpod
-      8. Llewellyn starts an instance and then someone joins with RDP
-         9. Less comfortable -Github action that spins up an EC2 instance to launch the existing machine-
-   6. Need a zoom that anyone can connect to
 3. Logging decorator
 
 
 
-5. 
 6. Next Week:
    1. do clean up:
    clean up chain, 
