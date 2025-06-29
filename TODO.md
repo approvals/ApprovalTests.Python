@@ -34,60 +34,28 @@
  
 2025-04-06
 In `CommonScripts` repo:
-- [ ] move script from detect_and_remove_abandoned.bat -> python
--  [ ] finish exploratory test 
-    - [ ] Does it actually delete things?
-    - [ ] Showed the wrong files (`str`/`Path` comparison?)
-- [ ] Formatting locally (during the build?)
+- [x] move script from detect_and_remove_abandoned.bat -> python
+- [x] Formatting locally (during the build?)
 - 
-- 2025-03-23 
+2025-03-23 
 -  [x] make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
   -   Potential Discussion: "Failed comparisons" vs. "Mismatched Files"
 - 
 - 
   - [x] change the checklist
-  - install update to CoPilot
-  - PR to mobtime app to show the next person (see Susan and Diana's work)
   - Discussion: what to do about unused imports
 - [ ] ensure approval test temp always has the .gitignore
-    - there are multiple places that call mkdir, but ONLY one that writes .gitignore
-  Possible work for today 2025-3-23
-    - [] 1 does the last feature actually work?  (detecting abandond approve files)
-    - [] 2 make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
-    - [] 3 experiemnt with AI copilot in the editor with the new Agent mode 
-      -         install update to CoPilot
-    - [] 4 add to checklist: review open issues and PRs (at least 1x month )
-    - [] 5 PR to mobtime app to show the next person (see Susan and Diana's work)
-    - 
+    - [x] there are multiple places that call mkdir, but ONLY one that writes .gitignore
     
 - [ ] Scripts to clean up approvals
-     - [ ] Fix detect_and_remove_abandoned.bat
      - [ ] Check if there's a Python `Once` facility
        - Wrap download_if_needed with Once
-     - [ ] test the `approve_all` script
-     - [ ]  Consider whether this creates an acceptable run-time dependency
 - [ ] clean up FileApproverTests
 - [ ] Move the failed comparsion test to it's own file
 - [ ] 2025-01-19 Make a long-term fix for the situation where a test has a destructive command
-- [ ] 2025-01-26 Easy "approve all" script
-  - Llewellyn says "1. Create the .failed_comparison.log"
-  - Make a failed_comparison log and an approve_all script, in Python. Model it after ApprovalTests.Java. 
-  - Requirements:
-    - [X] Create the .failed_comparison.log
-      - [X] Every time you run the tests, it creates a fresh .failed_comparison.log
-      - [X] failed_comparison.log contains a list of all of the tests that failed, with a "goes-to" arrow for the approval file that it would be saved in, e.g.:
-      -    `C:\path\to\test.received.txt -> C:\path\to\test.approved.txt`
-    - [ ] Download the utility scripts
-      - [ ] approved_all.sh approves all the files that are listed in the failed_comparison.log
-      - Tip: start with the files at https://github.com/approvals/ApprovalTests.Java/tree/master/resources
-- [ ] 2024-09-22 discuss access to repo beyond just Llewellyn's user
-- [ ] clean-up old PRs (there are 3 from Dec 2023)
+- [x] 2025-01-26 Easy "approve all" script
 - [ ] docs: point to new architecture docs from python repo
-- [ ] mypy in the build
 - [ ] fix Namer and NamerBase
-- [ ] ReporterThatCreatesAnApprovalScript
-  - [ ] Write unit tests for this (automated)  see the manual tests in this file: test_reporter_that_creates_an_approval_script.py
-  - [ ] Create log and approve_all_failing.sh
 
 - FUTURE TODO
 Fix this timer - [see draft of proposed issue](https://docs.google.com/document/d/1avKRVobADSIxXiwRQt0o3Ohawvdbbo4UDlWtyRYhuRo/edit?usp=sharing)
