@@ -1,9 +1,16 @@
+2025-07-06
+- [ ] If using a custom comparator, maybe need a custom reporter
+   - Write a document
+   - A custom comparator already does the analysis, want to see that in the reporter
+   - See Discord conversation: https://discord.com/channels/1349240939406819409/1349244369240195153/1391466948323442881
+   - Example, comparing two pieces of code. Maybe we want to compare the AST not the original text.
+
+
 2025-06-15
 - [x] format pushes to main (maybe?)
      potential bug in repo automation?? bug:  if you createa branch in app test pthon, sometimes it will get merged to main. :O
      make a change that requires a format and see if it gets merged to main
    - [ ] consider creating an org-level workflow template
-- [ ] Datescrubber PRs
 - [ ] dependabot linter
 - [ ] explore uv and Mise
 - stuff from last week

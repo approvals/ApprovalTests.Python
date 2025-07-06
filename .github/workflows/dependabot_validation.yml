@@ -1,0 +1,17 @@
+name: validate dependabot.yml schema conformance
+
+on:
+  push:
+    paths: &paths
+      - .github/dependabot.yml
+      - .github/workflows/dependabot_validation.yml
+  pull_request:
+    paths: *paths
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: marocchino/validate-dependabot@v3
