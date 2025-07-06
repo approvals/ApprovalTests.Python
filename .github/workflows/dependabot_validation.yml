@@ -1,12 +1,13 @@
 name: validate dependabot.yml schema conformance
-
 on:
   push:
-    paths: &paths
+    paths:
       - .github/dependabot.yml
       - .github/workflows/dependabot_validation.yml
   pull_request:
-    paths: *paths
+    paths:
+      - .github/dependabot.yml
+      - .github/workflows/dependabot_validation.yml
   workflow_dispatch:
 
 jobs:
