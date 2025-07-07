@@ -4,5 +4,4 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    commit-message:
-      prefix: ". e "
+   prefix: ". e "
