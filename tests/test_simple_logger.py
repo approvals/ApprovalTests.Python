@@ -17,7 +17,8 @@ from approvaltests.utilities.logger.simple_logger_approvals import verify_simple
 
 def test_warnings() -> None:
     def scrubber(text: str) -> str:
-        return text.replace(__file__, "test_simple_logger.py")
+        import re
+        return re.sub(re.escape(__file__), "test_simple_logger.py", text, flags=re.IGNORECASE)
 
     output = SimpleLogger.log_to_string()
     SimpleLogger._wrapper.get().log_stack_traces = True
