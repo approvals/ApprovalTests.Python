@@ -1,6 +1,9 @@
 - [ ] Make it easier to switch between Windsurf and PyCharm
 - [ ] Line numbers in build output and other custom scripts
 - [ ] Solve startup with approvals (with Gregor)
+- [ ] Scrubber ideas
+   - [ ] replacement scrubber w/ case insensitive
+   - [ ] log if not found
 
 2025-07-06
 - [ ] If using a custom comparator, maybe need a custom reporter
