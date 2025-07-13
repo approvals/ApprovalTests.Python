@@ -1,3 +1,7 @@
+- [ ] Make it easier to switch between Windsurf and PyCharm
+- [ ] Line numbers in build output and other custom scripts
+
+
 2025-07-06
 - [ ] If using a custom comparator, maybe need a custom reporter
    - Write a document
@@ -7,10 +11,6 @@
 
 
 2025-06-15
-- [x] format pushes to main (maybe?)
-     potential bug in repo automation?? bug:  if you createa branch in app test pthon, sometimes it will get merged to main. :O
-     make a change that requires a format and see if it gets merged to main
-   - [ ] consider creating an org-level workflow template
 - [ ] dependabot linter
 - [ ] explore uv and Mise
 - stuff from last week
@@ -18,17 +18,11 @@
 2025-06-01
 - [ ] 🐜 Cascade running build_and_test reports success before running the tests - "run as blocking"
 - [ ] Explore how to change the audible feedback from Cascade to make it less annoying - shorter and less loud
-- [x] Publish soon (it has been a while - 7 April)
-   - [x] make a list of the changes since the last time we published (to help us decide if we should release)
-   - [x] add to the approved list: git log, status, fetch, diff
-- [ ] consider creating a run book for the release process
 - [ ] reverse the dependency order of requirements.*.txt
 - [ ] switch to uv / eliminate Tox 
 
 
 2025-04-20
-- [x] how we run integration tests
-    - rename tox entry point and the test
 - [ ] in Python: rename run_tests -> build_and_test
     - [ ] rename `run_tests_and_format_code.sh` to what?
     - [ ] Jay wants to remove `.sh`
@@ -39,28 +33,16 @@
 - [ ] setup.approval_utilities.py and setup.py are different but should not be
 - [ ] packaging has deprecation warnings
  
-2025-04-06
-In `CommonScripts` repo:
-- [x] move script from detect_and_remove_abandoned.bat -> python
-- [x] Formatting locally (during the build?)
-- 
+ 
 2025-03-23 
--  [x] make a common repo for approvals ( so that it could be distributed with mypy) It exists, it does not work. 
-  -   Potential Discussion: "Failed comparisons" vs. "Mismatched Files"
-- 
-- 
-  - [x] change the checklist
   - Discussion: what to do about unused imports
-- [ ] ensure approval test temp always has the .gitignore
-    - [x] there are multiple places that call mkdir, but ONLY one that writes .gitignore
-    
+   
 - [ ] Scripts to clean up approvals
      - [ ] Check if there's a Python `Once` facility
        - Wrap download_if_needed with Once
 - [ ] clean up FileApproverTests
 - [ ] Move the failed comparsion test to it's own file
 - [ ] 2025-01-19 Make a long-term fix for the situation where a test has a destructive command
-- [x] 2025-01-26 Easy "approve all" script
 - [ ] docs: point to new architecture docs from python repo
 - [ ] fix Namer and NamerBase
 
@@ -101,16 +83,12 @@ Inline Approvals Bugs
    4. [ ] multiple parameters 1, 2, 3 -> 
    5. [ ] converter parse(to_integer)
    6. [ ] some relationship between the output formatter and the parser
-      7. [X ] Move explainations to ApprovalTests.Documentation 
       Please note: we found this broken link [Capture .received. files from CI]
 8.   * [ ]  this link: 
    * [Capture .received. files from CI](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/explanations/how_to/CaptureFilesFromCI.md)
   
 
 
-2. [x] update Cyber-dojo to have latest version of approvaltests.py and
-   a. [x] verify which version of approval tests is in the new image that we just created
-2. [ ] put an example of inline approvals into cyber-dojo
 3. [ ] add JQ (nitsan created repo and submitted an issue)
 
 -----  older stuff below ----
@@ -123,9 +101,6 @@ Inline Approvals Bugs
 8. to consider:
 9. [ ] do we want to SPLIT up the Command Executer from the Command Generator 
 Key x = done, - = started
-
-notes: 
-1. [ ] update Cyber-dojo to have latest version of approvaltests.py and
 
 
 QUESTION
