@@ -11,7 +11,6 @@ from approvaltests import (
     verify_all,
 )
 from approvaltests.core.options import Options
-from approvaltests.integrations.mrjob import mrjob_approvals
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
 from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.utilities import command_line_approvals

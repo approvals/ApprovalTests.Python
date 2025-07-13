@@ -89,7 +89,6 @@ Inline Approvals Bugs
 1. [ ] rename all of the reporters to start with the word report
 2. [ ] check all reporters return True or False
     4. [ ] add mypy to the CI (type hints exist and they are being inforced)
-   4. 2024-04-21 - The issue is in MRJob. Need probably need to move to spark. this should probably be done with Jacqueline present
 3. [ ] make it so that approvals works with Python 12
 4. [ ] Improve verify_all for no header
         Expects VerifyAll to have a header
@@ -131,9 +130,7 @@ notes:
 
 QUESTION
 How to connect a Jetbrains product to a remote workspace.
-5. Mr job - need to be able to test against more than one line in a file.
 1. PR to mobti.me to make ding the default
-   4. Can we change the paradigm for how we do combinations with data and MRJob?
 1. cyber-dojo bug - received file not being deleted 3
 3. Continuing work on approvals-cli: 5
    4. Documentation

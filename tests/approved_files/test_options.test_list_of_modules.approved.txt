@@ -1,6 +1,5 @@
 0) approvaltests.approvals
 1) approvaltests.combination_approvals
-2) approvaltests.integrations.mrjob.mrjob_approvals
-3) approvaltests.utilities.command_line_approvals
-4) approvaltests.utilities.logger.simple_logger_approvals
-5) approvaltests.utilities.logging.logging_approvals
+2) approvaltests.utilities.command_line_approvals
+3) approvaltests.utilities.logger.simple_logger_approvals
+4) approvaltests.utilities.logging.logging_approvals
