@@ -20,7 +20,7 @@ description: Start a mob programming session
    - If tests fail, analyze and report issues
 
 2. Review Issues and PRs
-Run `windsurf\scripts\report_latest_from_github.cmd YYYY-MM-DD` to get the list of issues and PRs since the last 2 weeks
+Run `.windsurf\scripts\report_latest_from_github.cmd YYYY-MM-DD` to get the list of issues and PRs since the last 2 weeks
 
 
 
