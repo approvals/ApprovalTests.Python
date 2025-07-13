@@ -1,8 +1,8 @@
 import datetime
+import re
 import threading
 from contextlib import contextmanager
 from typing import Callable, Generator
-import re
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approval_utilities.utilities.time_utilities import use_utc_timezone
@@ -18,7 +18,9 @@ from approvaltests.utilities.logger.simple_logger_approvals import verify_simple
 
 def test_warnings() -> None:
     def scrubber(text: str) -> str:
-        return re.sub(re.escape(__file__), "test_simple_logger.py", text, flags=re.IGNORECASE)
+        return re.sub(
+            re.escape(__file__), "test_simple_logger.py", text, flags=re.IGNORECASE
+        )
 
     output = SimpleLogger.log_to_string()
     SimpleLogger._wrapper.get().log_stack_traces = True
