@@ -23,6 +23,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:

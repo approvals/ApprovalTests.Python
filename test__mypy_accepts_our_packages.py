@@ -18,6 +18,7 @@ def main() -> None:
         _run_python_checked(
             [
                 setup_file,
+                "--quiet",
                 "bdist_wheel",
                 "--build-number",
                 build_number,
@@ -28,6 +29,7 @@ def main() -> None:
                 "-m",
                 "pip",
                 "install",
+                "--quiet",
                 "--force-reinstall",
                 # version_number starts with `v`; remove that character
                 f"dist/{package_name}-{version_number[1:]}-{build_number}-py3-none-any.whl",
@@ -40,7 +42,7 @@ def main() -> None:
             test_file_path.write_text(f"import {package_name}")
 
             _run_python_checked(
-                ["-m", "mypy", str(test_file_path)],
+                ["-m", "mypy", "--quiet", str(test_file_path)],
                 cwd=temporary_directory,
             )
 

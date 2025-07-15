@@ -1,0 +1,11 @@
+[tasks]
+install = "python -m pip install -r requirements.dev.txt --quiet"
+test = "python -m pytest --quiet"
+mypy = "python -m mypy ."
+integration_tests = "python test__mypy_accepts_our_packages.py --quiet"
+
+[env]
+_.python.venv = { path = ".venv", create = true, uv_create_args = ['--seed', '--quiet'] }
+
+[settings]
+quiet = true
