@@ -270,7 +270,7 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ### Dependencies
 
-include: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt
+ApprovalTests is tested on the following Python versions: 3.8, 3.9, 3.10, 3.11, 3.12, 3.13.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt -->
 
 ApprovalTests requires the following dependencies:
 
