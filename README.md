@@ -270,7 +270,9 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ### Dependencies
 
-ApprovalTests require Python 3.8 or greater and the following dependencies:
+snippet: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt
+
+ApprovalTests requires the following dependencies:
 
 #### Required dependencies
 

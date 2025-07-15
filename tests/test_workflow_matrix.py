@@ -1,6 +1,7 @@
 from pathlib import Path
-
 import yaml
+
+from approvaltests import verify
 
 SCRIPT_DIR = Path(__file__).parent.resolve()
 
@@ -32,3 +33,5 @@ def test_workflow_matrix_python_versions() -> None:
     assert (
         python_versions == python_versions_current_release
     ), "Python version matrix in test.yml and test_current_release.yml do not match"
+
+    verify(f"ApprovalTests is tested on the following Python versions: {', '.join(python_versions)}.")
