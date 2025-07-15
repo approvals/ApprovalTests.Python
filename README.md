@@ -270,7 +270,13 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ### Dependencies
 
-snippet: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt
+<!-- snippet: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt -->
+<a id='snippet-tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt'></a>
+```txt
+ApprovalTests is tested on the following Python versions: 3.8, 3.9, 3.10, 3.11, 3.12, 3.13.
+```
+<sup><a href='/tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ApprovalTests requires the following dependencies:
 
