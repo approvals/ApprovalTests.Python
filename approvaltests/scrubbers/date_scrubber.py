@@ -4,7 +4,16 @@ from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.scrubbers.scrubbers import Scrubber
 
 
+_custom_scrubbers = []
+
 class DateScrubber:
+    @staticmethod
+    def add_scrubber(example: str, regex: str):
+        import re
+        if not re.search(regex, example):
+            raise Exception(f"Regex '{regex}' does not match example '{example}'")
+        _custom_scrubbers.append((regex, [example]))
+
     @staticmethod
     def get_supported_formats() -> List[Tuple[str, List[str]]]:
         return [
@@ -81,8 +90,9 @@ class DateScrubber:
 
     @staticmethod
     def get_scrubber_for(example: str) -> Scrubber:
+        all_formats = DateScrubber.get_supported_formats() + _custom_scrubbers
         supported = ""
-        for date_regex, examples in DateScrubber.get_supported_formats():
+        for date_regex, examples in all_formats:
             supported += f"    {examples[0]} | {date_regex} \n"
             scrubber = DateScrubber(date_regex)
             if scrubber.scrub(example) == "<date0>":
