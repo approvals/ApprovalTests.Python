@@ -36,10 +36,13 @@ def test_adds_valid_date_scrubber():
     DateScrubber.add_scrubber(text, "\\d{4}-\\d{2}-\\d{2}")
     verify(f"Hello on {text}", options=Options().with_scrubber(DateScrubber.get_scrubber_for(text)).inline())
 
-def ignore_test_raises_error_if_regex_does_not_match_example():
+def test_raises_error_if_regex_does_not_match_example():
+    """
+    Exception: Regex '\\d{2}/\\d{2}/\\d{4}' does not match example '2025-07-20'
+    """
     def call():
-        DateScrubber.add_scrubber("2025-07-20", r"\\d{2}/\\d{2}/\\d{4}")
-    verify_exception(call)
+        DateScrubber.add_scrubber("2025-07-20", "\\d{2}/\\d{2}/\\d{4}")
+    verify_exception(call, options=Options().inline())
 
 def ignore_test_handles_invalid_regex_patterns_gracefully():
     def call():
