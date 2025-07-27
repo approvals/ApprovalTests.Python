@@ -10,8 +10,11 @@ class DateScrubber:
     @staticmethod
     def add_scrubber(example: str, regex: str):
         import re
-        if not re.search(regex, example):
-            raise Exception(f"Regex '{regex}' does not match example '{example}'")
+        try:
+            if not re.search(regex, example):
+                raise Exception(f"Regex '{regex}' does not match example '{example}'")
+        except re.error as e:
+            raise Exception(f"Invalid regex pattern '{regex}': {e}")
         _custom_scrubbers.append((regex, [example]))
 
     @staticmethod
@@ -99,5 +102,10 @@ class DateScrubber:
                 return scrubber.scrub
 
         raise Exception(
-            f"No match found for '{example}'.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 \n Current supported formats are: \n{supported}"
+            f"No match found for '{example}'.\n"
+            "Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124\n"
+            f"Current supported formats are: \n{supported}\n\n"
+            "We do not recognize that date format.\n"
+            "How To Fix:\n"
+            '    DateScrubber.add_scrubber("07-20-2025", "<regex here>")'
         )

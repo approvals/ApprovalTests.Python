@@ -34,7 +34,9 @@ def test_adds_valid_date_scrubber():
     """
     text = "2025-07-20"
     DateScrubber.add_scrubber(text, "\\d{4}-\\d{2}-\\d{2}")
+    print("DEBUG: About to call verify, DateScrubber.get_scrubber_for(text)=", DateScrubber.get_scrubber_for(text))
     verify(f"Hello on {text}", options=Options().with_scrubber(DateScrubber.get_scrubber_for(text)).inline())
+
 
 def test_raises_error_if_regex_does_not_match_example():
     """
@@ -44,10 +46,13 @@ def test_raises_error_if_regex_does_not_match_example():
         DateScrubber.add_scrubber("2025-07-20", "\\d{2}/\\d{2}/\\d{4}")
     verify_exception(call, options=Options().inline())
 
-def ignore_test_handles_invalid_regex_patterns_gracefully():
+def test_handles_invalid_regex_patterns_gracefully():
+    """
+    Exception: Invalid regex pattern '[invalid-regex': unterminated character set at position 0
+    """
     def call():
-        DateScrubber.add_scrubber("2025-07-20", r"[invalid-regex")
-    verify_exception(call)
+        DateScrubber.add_scrubber("2025-07-20", "[invalid-regex")
+    verify_exception(call, options=Options().inline())
 
 
 def test_unsupported_format() -> None:
