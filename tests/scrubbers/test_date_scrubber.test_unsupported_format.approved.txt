@@ -17,12 +17,19 @@ Exception: No match found for 'an unsupported format'.
     Tue May 13 16:30:00 2014 | (Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s([0-3]?\d)\s([0-1]\d:[0-5]\d:[0-5]\d)\s(\d{4}) 
     2021-09-10T08:07:00+03:00 | \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2} 
     20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d 
+    2025-07-20 | \d{4}-\d{2}-\d{2}
 
-How To Fix:
-    DateScrubber.add_scrubber("2025-07-20", "<regex here")
+We do not recognize this date format: '07-20-2025'
+To add this new format:  '07-20-2025'
+you would use the  
+    DateScrubber.add_scrubber("07-20-2025", "\\d{2}/\\d{2}/\\d{4}")
 
 
-1. create function
-  1. function verifes it's valid
-2. fix error message
+
+TODO LIST:
+Done? 1. create function : DateScrubber.add_scrubber The DateScrubber.add_scrubber function adds the regex format  
+    1. verifies it's valid
+2. fix error message (7/27 message improved)
+(7/27 in line 23 and 25 added that the format is actually 07-20-2025 - is this wrong 
+or are all of the tests in test_date_scrubber for 2025-07-20 incorrect?)
 3. Possible add telemetery
