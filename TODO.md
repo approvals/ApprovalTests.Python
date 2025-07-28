@@ -1,9 +1,11 @@
 2025-07-27
 - [ ] DateScrubber.add_scrubber
 see detailed todo in test_date_scrubber.test_unsupported_format.approved.txt
+- [ x ] add doc for adding a scrubber. see: add_scrubbers.md C:\Code\ApprovalTests.Python\docs\how_to\add_scrubbers.md    
+- [ x ] add doc for add_scrubbers. to: scrub_dates.md C:\Code\ApprovalTests.Python\docs\how_to\scrub_dates.md
 
 
-2025-07-26
+2025-07-26 + 
 - [ ] Make it easier to switch between Windsurf and PyCharm
 - [ ] Line numbers in build output and other custom scripts (yes pls)   
 - [ ] Solve startup with approvals (with Gregor)
@@ -11,6 +13,7 @@ see detailed todo in test_date_scrubber.test_unsupported_format.approved.txt
 - [ ] Scrubber ideas
    - [ ] replacement scrubber w/ case insensitive
    - [ ] log if not found
+- [ ] Figure out how to tell Cascade Build that build_and_test is a blocking command (on7/27 we noticed that it says its done even though the tests have not completed running)
 
 2025-07-06
 - [ ] If using a custom comparator, maybe need a custom reporter

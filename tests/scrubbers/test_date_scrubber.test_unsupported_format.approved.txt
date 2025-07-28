@@ -19,10 +19,12 @@ Exception: No match found for 'an unsupported format'.
     20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d 
     2025-07-20 | \d{4}-\d{2}-\d{2}
 
-We do not recognize this date format: '07-20-2025'
-To add this new format:  '07-20-2025'
-you would use the  
-    DateScrubber.add_scrubber("07-20-2025", "\\d{2}/\\d{2}/\\d{4}")
+ This date format is not recognized: '07-20-2025'
+   If you would like to use this format, please add it to the list of supported formats.
+   You can do this by using:
+        DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
+   for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
+
 +++++ Hey ApprovalTests, ensemble coders...   ++++++
 +++++ PLEASE see below for MANY more examples of this error message. ++++++
 +++++ also:  commit earlier in the day may not have included user: @digable1
@@ -34,10 +36,12 @@ Key x = done, - = started
     [ x ] 1. verifies it's valid
     [ x ] 1. verifies that the example string matches the provided regex
     [ - ] 1. adds it to the list of date scrubbers
+    [ x ] 1. add add_scrubbers.md to python docs
+    [ - ] 1. add add_scrubbers.md to common docs
     
-[ - ] 2. fix error message (7/27 message improved)
-(7/27 in line 23 and 25 added that the format is actually 07-20-2025 - is this wrong 
-or are all of the tests in test_date_scrubber for 2025-07-20 incorrect?)
+[ x ] 2. fix error message (7/27 message improved)
+~~earlier note:(7/27 in line 23 and 25 added that the format is actually 07-20-2025 - is this wrong 
+or are all of the tests in test_date_scrubber for 2025-07-20 incorrect?)~~
 [ ] 3. Possible add telemetery (what is that?)
 [ ] 4. possibly add emojis to the error message
 [ ] 5. possible better test name. 
@@ -71,6 +75,17 @@ opt 1: gives_instructions_on_how_to_add_this_regex_pattern_or_raises_exception
     New date format detected: '07-20-2025'
     To register this format, use:
         DateScrubber.add_scrubber("07-20-2025", "\\d{2}-\\d{2}-\\d{4}")
+1E:
+   This date format is not recognized: '07-20-2025'
+   If you would like to use this format, please add it to the list of supported formats.
+   You can do this by using:
+        DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
+   for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
+   
+   NO LONGER needed in the Terminal message, because it is now in the docs :)
+   you can find a list of supported formats at https://github.com/approvals/ApprovalTests.Python/blob/main/docs/DateScrubber.md
+   you can create a regex for this example at https://regex101.com/
+   or by opening an issue at https://github.com/approvals/ApprovalTests.Python/issues/124
 
 opt 2: offer_to_add_this_regex_pattern
     ("07-20-2025", r"\d{2}-\d{2}-\d{4}")  ==> Compiler message:

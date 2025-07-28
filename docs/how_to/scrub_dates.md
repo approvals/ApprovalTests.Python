@@ -52,3 +52,7 @@ created at <date0>
 | 2021-09-10T08:07:00+03:00 | \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2} |
 | 20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d |
 <!-- endInclude -->
+
+## Custom Date Formats
+
+Need to handle a date format that's not listed above? You can add support for custom date formats. See [Adding Custom Date Scrubbers](../how_to/add_scrubbers.md) for details.
