@@ -1,6 +1,13 @@
+2025-07-27
+- [ ] DateScrubber.add_scrubber
+see detailed todo in test_date_scrubber.test_unsupported_format.approved.txt
+
+
+2025-07-26
 - [ ] Make it easier to switch between Windsurf and PyCharm
-- [ ] Line numbers in build output and other custom scripts
+- [ ] Line numbers in build output and other custom scripts (yes pls)   
 - [ ] Solve startup with approvals (with Gregor)
+   - [ ] make it so that approvals can show the 2 diff files in Windsurf (Gregor)
 - [ ] Scrubber ideas
    - [ ] replacement scrubber w/ case insensitive
    - [ ] log if not found
