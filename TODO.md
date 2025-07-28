@@ -4,6 +4,39 @@ see detailed todo in test_date_scrubber.test_unsupported_format.approved.txt
 - [ x ] add doc for adding a scrubber. see: add_scrubbers.md C:\Code\ApprovalTests.Python\docs\how_to\add_scrubbers.md    
 - [ x ] add doc for add_scrubbers. to: scrub_dates.md C:\Code\ApprovalTests.Python\docs\how_to\scrub_dates.md
 
+7/20 todo moved from test_date_scrubber.test_unsupported_format.approved.txt:
+TODO LIST:
+Key x = done, - = started
+[ - ] 1. create function : DateScrubber.add_scrubber The DateScrubber.add_scrubber function adds the regex format  
+    [ x ] 1. verifies it's valid
+    [ x ] 1. verifies that the example string matches the provided regex
+
+[ x ] 2. fix error message (7/27 message improved)
+[ ] 3. Possible add telemetery (what is that?)
+[ ] 4. possibly add emojis to the error message
+[ ] 5. possible better test name. 
+What does gracefully mean?
+
+Future Features
+    [ ] 1. handle invalid date, regex pair
+    testname: test_handles_date_does_not_match_regex_pattern
+    ("2025-07-20", "\\d{4}-\\d{2}-\\d{2}")  ==> Exception: Regex '\\d{4}-\\d{2}-\\d{2}' does not match example '2025-07-20'
+    [ ] 2. adds the new date format to the list of date scrubbers
+         [ ] 2. offers to add this regex pattern
+         testname:  test_offers_to_add_this_regex_pattern
+    test with:  DateScrubber.add_scrubber("07-20-2025", "\\d{2}-\\d{2}-\\d{4}")
+  OUTPUT:
+  opt A: 
+    This is a valid regex pattern, and it matches the example
+    we could add this pair for you:
+    "07-20-2025"  |  "\\d{2}-\\d{2}-\\d{4}"  
+    Would you like to add this regex pattern? (y/n)
+  opt B:
+    This is a valid regex pattern, and it matches the example
+    we could register this format for you:
+    "07-20-2025"  |  "\\d{2}-\\d{2}-\\d{4}"  
+    Would you like to register this format? (y/n)
+
 
 2025-07-26 + 
 - [ ] Make it easier to switch between Windsurf and PyCharm

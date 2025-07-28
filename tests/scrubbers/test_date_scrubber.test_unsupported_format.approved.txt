@@ -19,42 +19,25 @@ Exception: No match found for 'an unsupported format'.
     20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d 
     2025-07-20 | \d{4}-\d{2}-\d{2}
 
- This date format is not recognized: '07-20-2025'
-   If you would like to use this format, please add it to the list of supported formats.
-   You can do this by using:
-        DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
-   for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
+Exception: Invalid regex pattern '[invalid-regex': unterminated character set at position 0
+
+^^ this is the actual error message for the test: 
+test_handles_invalid_regex_patterns_gracefully():
+
+This date format is not recognized: '07-20-2025'
+If you would like to use this format, please add it to the list of supported formats.
+You can do this by using:
+    DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
+for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
+
+^^ this is the actual error message for the test: 
+test_gives_instructions_on_how_to_add_new_date_scrubber():
 
 +++++ Hey ApprovalTests, ensemble coders...   ++++++
 +++++ PLEASE see below for MANY more examples of this error message. ++++++
 +++++ also:  commit earlier in the day may not have included user: @digable1
 
 
-TODO LIST:
-Key x = done, - = started
-[ - ] 1. create function : DateScrubber.add_scrubber The DateScrubber.add_scrubber function adds the regex format  
-    [ x ] 1. verifies it's valid
-    [ x ] 1. verifies that the example string matches the provided regex
-    [ - ] 1. adds it to the list of date scrubbers
-    [ x ] 1. add add_scrubbers.md to python docs
-    [ - ] 1. add add_scrubbers.md to common docs
-    
-[ x ] 2. fix error message (7/27 message improved)
-~~earlier note:(7/27 in line 23 and 25 added that the format is actually 07-20-2025 - is this wrong 
-or are all of the tests in test_date_scrubber for 2025-07-20 incorrect?)~~
-[ ] 3. Possible add telemetery (what is that?)
-[ ] 4. possibly add emojis to the error message
-[ ] 5. possible better test name. 
-What does gracefully mean?
-  instead of:   test_handles_invalid_regex_patterns_gracefully
-  use: opt 1:   test_gives_instructions_on_how_to_add_this_regex_pattern_or_raises_exception
-  or
-  use: opt 2:   test_offers_to_add_this_regex_pattern_or_raises_exception
-  DateScrubber.add_scrubber
-    ("Date format", "regex string")  ==> output
-    --------------------------------------------------
-    ("2025-07-20", "[invalid-regex")  ==> Exception: Invalid regex pattern '[invalid-regex': unterminated character set at position 0 
-    ("2025-07-20", "\\d{4}-\\d{2}-\\d{2}")  ==> Exception: Regex '\\d{4}-\\d{2}-\\d{2}' does not match example '2025-07-20'
 
 opt 1: gives_instructions_on_how_to_add_this_regex_pattern_or_raises_exception
     ("07-20-2025", r"\d{2}-\d{2}-\d{4}")  ==> Compiler message:
@@ -82,24 +65,7 @@ opt 1: gives_instructions_on_how_to_add_this_regex_pattern_or_raises_exception
         DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
    for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
    
-   NO LONGER needed in the Terminal message, because it is now in the docs :)
-   you can find a list of supported formats at https://github.com/approvals/ApprovalTests.Python/blob/main/docs/DateScrubber.md
-   you can create a regex for this example at https://regex101.com/
-   or by opening an issue at https://github.com/approvals/ApprovalTests.Python/issues/124
 
-opt 2: offer_to_add_this_regex_pattern
-    ("07-20-2025", r"\d{2}-\d{2}-\d{4}")  ==> Compiler message:
-2A:
-    This is a valid regex pattern, and it matches the example
-    we could add this pair for you:
-    "07-20-2025"  |  "\\d{2}-\\d{2}-\\d{4}"  
-    Would you like to add this regex pattern? (y/n)
-2B:
-    This is a valid regex pattern, and it matches the example
-    we could register this format for you:
-    "07-20-2025"  |  "\\d{2}-\\d{2}-\\d{4}"  
-    Would you like to register this format? (y/n)
-  
 
 
 General Question:
