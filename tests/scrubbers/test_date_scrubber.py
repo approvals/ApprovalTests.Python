@@ -58,6 +58,7 @@ def test_handles_invalid_regex_patterns_gracefully():
 def test_gives_instructions_on_how_to_add_new_date_scrubber():
     """
     Exception: No match found for '07-20-2025'.
+    Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124
     Current supported formats are: 
         Tue May 13 16:30:00 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} 
         Wed Nov 17 22:28:33 EET 2021 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} [a-zA-Z]{3,4} \d{4} 
@@ -76,7 +77,7 @@ def test_gives_instructions_on_how_to_add_new_date_scrubber():
         2021-09-10T08:07:00+03:00 | \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2} 
         20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d 
         2025-07-20 | \d{4}-\d{2}-\d{2} 
-	This date format is not recognized: '07-20-2025'
+    This date format is not recognized: '07-20-2025'
     If you would like to use this format, please add it to the list of supported formats.
     You can do this by using:
          DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")

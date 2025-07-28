@@ -18,58 +18,8 @@ Exception: No match found for 'an unsupported format'.
     2021-09-10T08:07:00+03:00 | \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2} 
     20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d 
     2025-07-20 | \d{4}-\d{2}-\d{2}
-
-Exception: Invalid regex pattern '[invalid-regex': unterminated character set at position 0
-
-^^ this is the actual error message for the test: 
-test_handles_invalid_regex_patterns_gracefully():
-
-This date format is not recognized: '07-20-2025'
-If you would like to use this format, please add it to the list of supported formats.
-You can do this by using:
-    DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
-for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
-
-^^ this is the actual error message for the test: 
-test_gives_instructions_on_how_to_add_new_date_scrubber():
-
-+++++ Hey ApprovalTests, ensemble coders...   ++++++
-+++++ PLEASE see below for MANY more examples of this error message. ++++++
-+++++ also:  commit earlier in the day may not have included user: @digable1
-
-
-
-opt 1: gives_instructions_on_how_to_add_this_regex_pattern_or_raises_exception
-    ("07-20-2025", r"\d{2}-\d{2}-\d{4}")  ==> Compiler message:
-1A: 
-    We do not recognize this date format: '07-20-2025'
-    To add this new format:  '07-20-2025'
-    you would use the  
-        DateScrubber.add_scrubber("07-20-2025", "\\d{2}-\\d{2}-\\d{4}")
-1B:
-    This is a valid regex pattern, and it matches the example
-    To add this new date format use:  
-    DateScrubber.add_scrubber("07-20-2025", "\\d{2}-\\d{2}-\\d{4}") 
-1C 
-    Unrecognized date format: '07-20-2025'
-    To add support, use:
-        DateScrubber.add_scrubber("07-20-2025", "\\d{2}-\\d{2}-\\d{4}")
-1D:
-    New date format detected: '07-20-2025'
-    To register this format, use:
-        DateScrubber.add_scrubber("07-20-2025", "\\d{2}-\\d{2}-\\d{4}")
-1E:
    This date format is not recognized: '07-20-2025'
-   If you would like to use this format, please add it to the list of supported formats.
-   You can do this by using:
-        DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
-   for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
-   
-
-
-
-General Question:
-Cascade sometimes used this format:
-    r"\d{2}-\d{2}-\d{4}"  and other times updated the code to use this format:
-    "\\d{2}-\\d{2}-\\d{4}" 
-    not sure which is better.
+    If you would like to use this format, please add it to the list of supported formats.
+    You can do this by using:
+         DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
+    for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md

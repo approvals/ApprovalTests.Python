@@ -1,4 +1,9 @@
 2025-07-27
+[ ] the .md file might have an error:
+it inceludes this line:2025-07-20 | \d{4}-\d{2}-\d{2}
+is that ACTUALLY part of the supported formats?
+
+
 - [ ] DateScrubber.add_scrubber
 see detailed todo in test_date_scrubber.test_unsupported_format.approved.txt
 - [ x ] add doc for adding a scrubber. see: add_scrubbers.md C:\Code\ApprovalTests.Python\docs\how_to\add_scrubbers.md    
@@ -10,6 +15,13 @@ Key x = done, - = started
 [ - ] 1. create function : DateScrubber.add_scrubber The DateScrubber.add_scrubber function adds the regex format  
     [ x ] 1. verifies it's valid
     [ x ] 1. verifies that the example string matches the provided regex
+    [ ] 1. remove this line: "Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 "
+    from:
+"Exception: No match found for 'an unsupported format'.
+Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 
+Current supported formats are: 
+"
+Because we tell them how to do add the date scrubber themselves, also the new documentaiton has a link to issue. 
 
 [ x ] 2. fix error message (7/27 message improved)
 [ ] 3. Possible add telemetery (what is that?)
