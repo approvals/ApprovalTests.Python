@@ -1,5 +1,5 @@
-from typing import List, Tuple
 import textwrap
+from typing import List, Tuple
 
 from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.scrubbers.scrubbers import Scrubber
@@ -90,10 +90,12 @@ class DateScrubber:
                 return scrubber.scrub
 
         raise Exception(
-
-            textwrap.dedent(f"""\
+            textwrap.dedent(
+                f"""\
                 No match found for '{example}'.
                  Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 
                  Current supported formats are: 
-                """) + supported
+                """
+            )
+            + supported
         )
