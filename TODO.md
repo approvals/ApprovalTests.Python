@@ -1,3 +1,9 @@
+2025-08-03
+- [ ] F Improve scrubber help message when using unsupported format
+- [ ] F DateScrubber.add_scrubber()
+- [ ] d Document our local dialect of the commit notation in internal_documentation/commit_notation.md
+
+2025-07-20
 - [ ] Make it easier to switch between Windsurf and PyCharm
 - [ ] Line numbers in build output and other custom scripts
 - [ ] Solve startup with approvals (with Gregor)
