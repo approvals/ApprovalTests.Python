@@ -56,7 +56,7 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 # Agenda
 
-  1. Invite everyone to the discord
+  1. Invite everyone to the [discord](https://discord.gg/XDrgy6x6Se)
   2. Execute the [Startup Checklist](./Contribute.md#startup-checklist)
   3. review open issues and pull requests
   4. Choose item to work on (15 minutes or less)
