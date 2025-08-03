@@ -2,6 +2,10 @@
 - [ ] F Improve scrubber help message when using unsupported format
 - [ ] F DateScrubber.add_scrubber()
 - [ ] d Document our local dialect of the commit notation in internal_documentation/commit_notation.md
+        make this easy to refer to for NEW people. 
+        Consider: pasting it into chat at start of day
+        Consider: verbalize this during opening notice
+        HMW (How Might We) help people who join late?? 
 
 2025-07-20
 - [ ] Make it easier to switch between Windsurf and PyCharm
