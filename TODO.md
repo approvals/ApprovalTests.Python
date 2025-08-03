@@ -29,6 +29,14 @@ Because we tell them how to do add the date scrubber themselves, also the new do
 [ ] 5. possible better test name. 
 What does gracefully mean?
 
+Consider this  message for
+ test_gives_instructions_on_how_to_add_new_date_scrubber():
+   This date format is not recognized: '07-20-2025'
+    If you would like to use this format, please add it to the list of supported formats.
+    You can do this by using:
+         DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
+    for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
+
 Future Features
     [ ] 1. handle invalid date, regex pair
     testname: test_handles_date_does_not_match_regex_pattern

@@ -8,7 +8,7 @@ _custom_scrubbers = []
 
 class DateScrubber:
     @staticmethod
-    def add_scrubber(example: str, regex: str):
+    def add_scrubber(example: str, regex: str) -> None:
         import re
         try:
             if not re.search(regex, example):

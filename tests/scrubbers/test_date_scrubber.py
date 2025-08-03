@@ -12,7 +12,7 @@ def test_supported_formats() -> None:
 
 def test_supported_formats_arbitrary_string() -> None:
     assert (
-        DateScrubber("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}").scrub(
+        DateScrubber(r"[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2}").scrub(
             "arbitrary string"
         )
         == "arbitrary string"
@@ -28,34 +28,33 @@ def test_supported_format_example() -> None:
     # end-snippet
 
 
-def test_adds_valid_date_scrubber():
+def test_adds_valid_date_scrubber() -> None:
     """
     Hello on <date0>
     """
     text = "2025-07-20"
-    DateScrubber.add_scrubber(text, "\\d{4}-\\d{2}-\\d{2}")
-    print("DEBUG: About to call verify, DateScrubber.get_scrubber_for(text)=", DateScrubber.get_scrubber_for(text))
+    DateScrubber.add_scrubber(text, r"\d{4}-\d{2}-\d{2}")
     verify(f"Hello on {text}", options=Options().with_scrubber(DateScrubber.get_scrubber_for(text)).inline())
 
 
-def test_raises_error_if_regex_does_not_match_example():
+def test_raises_error_if_regex_does_not_match_example() -> None:
     """
     Exception: Regex '\\d{2}/\\d{2}/\\d{4}' does not match example '2025-07-20'
     """
-    def call():
-        DateScrubber.add_scrubber("2025-07-20", "\\d{2}/\\d{2}/\\d{4}")
+    def call() -> None:
+        DateScrubber.add_scrubber("2025-07-20", r"\d{2}/\d{2}/\d{4}")
     verify_exception(call, options=Options().inline())
 
-def test_handles_invalid_regex_patterns_gracefully():
+def test_handles_invalid_regex_patterns_gracefully() -> None:
     """
     Exception: Invalid regex pattern '[invalid-regex': unterminated character set at position 0
     """
-    def call():
+    def call() -> None:
         DateScrubber.add_scrubber("2025-07-20", "[invalid-regex")
     verify_exception(call, options=Options().inline())
 
 
-def test_gives_instructions_on_how_to_add_new_date_scrubber():
+def test_gives_instructions_on_how_to_add_new_date_scrubber() -> None:
     """
     Exception: No match found for '07-20-2025'.
     Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124
@@ -77,13 +76,13 @@ def test_gives_instructions_on_how_to_add_new_date_scrubber():
         2021-09-10T08:07:00+03:00 | \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2} 
         20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d 
         2025-07-20 | \d{4}-\d{2}-\d{2} 
-    This date format is not recognized: '07-20-2025'
-    If you would like to use this format, please add it to the list of supported formats.
-    You can do this by using:
-         DateScrubber.add_scrubber("07-20-2025", "<your regex pattern>")
-    for additional help, see: https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/add_scrubbers.md
+    
+    
+    We do not recognize that date format.
+    How To Fix:
+        DateScrubber.add_scrubber("07-20-2025", "<regex here>")
     """
-    def call():
+    def call() -> None:
         DateScrubber.get_scrubber_for("07-20-2025")
     verify_exception(call, options=Options().inline())
 
