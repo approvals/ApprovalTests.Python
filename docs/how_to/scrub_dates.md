@@ -4,6 +4,7 @@
 ## Contents
 
   * [How to do it](#how-to-do-it)
+  * [Adding custom date formats](#adding-custom-date-formats)
   * [Supported formats](#supported-formats)<!-- endToc -->
 
 ## How to do it
@@ -29,6 +30,29 @@ created at <date0>
 ```
 <sup><a href='/tests/scrubbers/test_date_scrubber.test_supported_format_example.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_date_scrubber.test_supported_format_example.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+## Adding custom date formats
+
+If you encounter a date format that isn't supported by the built-in formats, you can easily add your own custom date scrubber using the `add_scrubber` method:
+
+```python
+from approvaltests.scrubbers.date_scrubber import DateScrubber
+
+# Add a custom date format
+DateScrubber.add_scrubber("2025-07-20", r"\d{4}-\d{2}-\d{2}")
+
+# Now you can use it in your tests
+verify(
+    "Event scheduled for 2025-07-20",
+    options=Options().with_scrubber(DateScrubber.get_scrubber_for("2025-07-20"))
+)
+```
+**Global scope**: Custom scrubbers are available globally once added
+
+### Contributing Back:
+
+If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.
+
 
 ## Supported formats
 
