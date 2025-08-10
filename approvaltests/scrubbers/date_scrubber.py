@@ -92,10 +92,9 @@ class DateScrubber:
         raise Exception(
             textwrap.dedent(
                 f"""\
-                No match found for '{example}'.
-                 Feel free to add your date at https://github.com/approvals/ApprovalTests.Python/issues/124 
-                 Current supported formats are: 
+                No date scrubber found for '{example}'. 
+
+                For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md.
                 """
             )
-            + supported
         )

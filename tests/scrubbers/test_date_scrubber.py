@@ -29,7 +29,7 @@ def test_supported_format_example() -> None:
 
 
 def test_unsupported_format() -> None:
-    verify_exception(lambda: DateScrubber.get_scrubber_for("an unsupported format"))
+    verify_exception(lambda: DateScrubber.get_scrubber_for("AN_UNSUPPORTED_DATE_FORMAT"))
 
 
 def test_supported_formats_as_table() -> None:
