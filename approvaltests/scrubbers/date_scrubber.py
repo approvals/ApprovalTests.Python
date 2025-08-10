@@ -109,7 +109,11 @@ class DateScrubber:
                 return scrubber.scrub
 
         raise Exception(
-            f"No date scrubber found for '{example}'. You can add a scrubber with:\n\n"
-            f"   DateScrubber.add_scrubber(\"{example}\", \"<your_regex_here>\")\n\n"
-            "For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md."
+            textwrap.dedent(f"""\
+                No date scrubber found for '{example}'. You can add a scrubber with:
+
+                   DateScrubber.add_scrubber("{example}", "<your_regex_here>")
+
+                For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md.
+                """)
         )
