@@ -4,7 +4,6 @@ from typing import List, Tuple
 from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.scrubbers.scrubbers import Scrubber
 
-
 _custom_scrubbers = []
 
 
@@ -12,6 +11,7 @@ class DateScrubber:
     @staticmethod
     def add_scrubber(example: str, regex: str) -> None:
         import re
+
         try:
             if not re.search(regex, example):
                 raise Exception(f"Regex '{regex}' does not match example '{example}'")
@@ -109,11 +109,13 @@ class DateScrubber:
                 return scrubber.scrub
 
         raise Exception(
-            textwrap.dedent(f"""\
+            textwrap.dedent(
+                f"""\
                 No date scrubber found for '{example}'. You can add a scrubber with:
 
                    DateScrubber.add_scrubber("{example}", "<your_regex_here>")
 
                 For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md.
-                """)
+                """
+            )
         )

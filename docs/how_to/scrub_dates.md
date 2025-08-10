@@ -47,10 +47,10 @@ DateScrubber.add_scrubber("2025-07-20", r"\d{4}-\d{2}-\d{2}")
 # Now you can use it in your tests
 verify(
     "Event scheduled for 2025-07-20",
-    options=Options().with_scrubber(DateScrubber.get_scrubber_for("2025-07-20"))
+    options=Options().with_scrubber(DateScrubber.get_scrubber_for("2025-07-20")),
 )
 ```
-<sup><a href='/tests/scrubbers/test_date_scrubber.py#L66-L77' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_date_format_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/scrubbers/test_date_scrubber.py#L77-L88' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_date_format_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 **Global scope**: Custom scrubbers are available globally once added
 
