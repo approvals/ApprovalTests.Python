@@ -5,7 +5,25 @@ from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.scrubbers.scrubbers import Scrubber
 
 
+_custom_scrubbers = []
+
+
 class DateScrubber:
+    @staticmethod
+    def add_scrubber(example: str, regex: str) -> None:
+        import re
+        try:
+            if not re.search(regex, example):
+                raise Exception(f"Regex '{regex}' does not match example '{example}'")
+        except re.error as e:
+            raise Exception(f"Invalid regex pattern '{regex}': {e}")
+        _custom_scrubbers.append((regex, [example]))
+
+    @staticmethod
+    def _clear_custom_scrubbers() -> None:
+        """Clear all custom scrubbers. Used for testing purposes."""
+        _custom_scrubbers.clear()
+
     @staticmethod
     def get_supported_formats() -> List[Tuple[str, List[str]]]:
         return [
@@ -82,19 +100,16 @@ class DateScrubber:
 
     @staticmethod
     def get_scrubber_for(example: str) -> Scrubber:
+        all_formats = DateScrubber.get_supported_formats() + _custom_scrubbers
         supported = ""
-        for date_regex, examples in DateScrubber.get_supported_formats():
+        for date_regex, examples in all_formats:
             supported += f"    {examples[0]} | {date_regex} \n"
             scrubber = DateScrubber(date_regex)
             if scrubber.scrub(example) == "<date0>":
                 return scrubber.scrub
 
         raise Exception(
-            textwrap.dedent(
-                f"""\
-                No date scrubber found for '{example}'. 
-
-                For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md.
-                """
-            )
+            f"No date scrubber found for '{example}'. You can add a scrubber with:\n\n"
+            f"   DateScrubber.add_scrubber(\"{example}\", \"<your_regex_here>\")\n\n"
+            "For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md."
         )

@@ -28,6 +28,36 @@ def test_supported_format_example() -> None:
     # end-snippet
 
 
+def test_adds_valid_date_scrubber() -> None:
+    """
+    Hello on <date0>
+    """
+    text = "02025-007-020"
+    try:
+        DateScrubber.add_scrubber(text, r"\d{5}-\d{3}-\d{3}")
+        verify(f"Hello on {text}", options=Options().with_scrubber(DateScrubber.get_scrubber_for(text)).inline())
+    finally:
+        DateScrubber._clear_custom_scrubbers()  # Clean up after test, even if it fails
+
+
+def test_raises_error_if_regex_does_not_match_example() -> None:
+    """
+    Exception: Regex '\d{2}/\d{2}/\d{4}' does not match example '2025-07-20'
+    """
+    def call() -> None:
+        DateScrubber.add_scrubber("2025-07-20", r"\d{2}/\d{2}/\d{4}")
+    verify_exception(call, options=Options().inline())
+
+
+def test_handles_invalid_regex_patterns_gracefully() -> None:
+    """
+    Exception: Invalid regex pattern '[invalid-regex': unterminated character set at position 0
+    """
+    def call() -> None:
+        DateScrubber.add_scrubber("2025-07-20", "[invalid-regex")
+    verify_exception(call, options=Options().inline())
+
+
 def test_unsupported_format() -> None:
     verify_exception(lambda: DateScrubber.get_scrubber_for("AN_UNSUPPORTED_DATE_FORMAT"))
 

@@ -1,3 +1,5 @@
-Exception: No date scrubber found for 'AN_UNSUPPORTED_DATE_FORMAT'. 
+Exception: No date scrubber found for 'AN_UNSUPPORTED_DATE_FORMAT'. You can add a scrubber with:
+
+   DateScrubber.add_scrubber("AN_UNSUPPORTED_DATE_FORMAT", "<your_regex_here>")
 
 For more help, see https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/scrub_dates.md.
