@@ -5,7 +5,7 @@ B - bugfix
 r - refactoring
 t - test-only
 e - development environment
-d - documentation   <--- is this correct? 
+d - documentation  
 
 prefix:
 . proof that it can't break production
