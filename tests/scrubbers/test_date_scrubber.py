@@ -62,6 +62,23 @@ def test_unsupported_format() -> None:
     verify_exception(lambda: DateScrubber.get_scrubber_for("AN_UNSUPPORTED_DATE_FORMAT"))
 
 
+def test_custom_date_format_example() -> None:
+    # begin-snippet: custom_date_format_example
+    from approvaltests.scrubbers.date_scrubber import DateScrubber
+
+    # Add a custom date format
+    DateScrubber.add_scrubber("2025-07-20", r"\d{4}-\d{2}-\d{2}")
+
+    # Now you can use it in your tests
+    verify(
+        "Event scheduled for 2025-07-20",
+        options=Options().with_scrubber(DateScrubber.get_scrubber_for("2025-07-20"))
+    )
+    # end-snippet
+    # Clean up after test
+    DateScrubber._clear_custom_scrubbers()
+
+
 def test_supported_formats_as_table() -> None:
     table = markdown_table.MarkdownTable.with_headers("Example Date", "Regex Pattern")
     supported_formats = DateScrubber.get_supported_formats()

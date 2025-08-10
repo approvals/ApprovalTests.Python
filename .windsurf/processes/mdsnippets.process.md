@@ -16,7 +16,8 @@ If a code block is not surrounded with these tags, it should be extracted into a
 1. If the test code doesn't have a snippet, add the snippet and use it.
 1. If the code is not in an existing test, make a test add the code and the snippet.
 1. If the test is purefuly for an example, start the name of the test with `test_...._example`.
-
+1. Run `./run_mdsnippets.sh`.
+1. Run `./build_and_test.sh`.
 
 ## Snippet styles
 

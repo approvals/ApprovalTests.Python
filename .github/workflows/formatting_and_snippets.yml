@@ -12,8 +12,7 @@ jobs:
         ./format_code.sh
     - name: Run MarkdownSnippets
       run: |
-        dotnet tool install --global MarkdownSnippets.Tool
-        mdsnippets ${GITHUB_WORKSPACE}
+        ./run_mdsnippets.sh
       shell: bash
     - name: Git Commit and Push
       uses: github-actions-x/commit@v2.9

@@ -5,6 +5,7 @@
 
   * [How to do it](#how-to-do-it)
   * [Adding custom date formats](#adding-custom-date-formats)
+    * [Contributing Back:](#contributing-back)
   * [Supported formats](#supported-formats)<!-- endToc -->
 
 ## How to do it
@@ -35,7 +36,9 @@ created at <date0>
 
 If you encounter a date format that isn't supported by the built-in formats, you can easily add your own custom date scrubber using the `add_scrubber` method:
 
-```python
+<!-- snippet: custom_date_format_example -->
+<a id='snippet-custom_date_format_example'></a>
+```py
 from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 # Add a custom date format
@@ -47,6 +50,8 @@ verify(
     options=Options().with_scrubber(DateScrubber.get_scrubber_for("2025-07-20"))
 )
 ```
+<sup><a href='/tests/scrubbers/test_date_scrubber.py#L66-L77' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_date_format_example' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 **Global scope**: Custom scrubbers are available globally once added
 
 ### Contributing Back:
