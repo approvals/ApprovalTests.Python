@@ -6,7 +6,7 @@ jobs:
   format_and_snippets:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Run black
       run: |
         ./format_code.sh
