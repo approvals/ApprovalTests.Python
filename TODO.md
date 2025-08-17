@@ -1,3 +1,8 @@
+2025-08-17
+- [ ] look at garbage collect of the with statement
+- 
+
+
 2025-08-10
 - [x] Update help message
 - [x] add_scrubber
