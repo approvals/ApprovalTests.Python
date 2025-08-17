@@ -19,7 +19,7 @@ verify(
     options=Options().with_scrubber(DateScrubber.get_scrubber_for("00:00:00")),
 )
 ```
-<sup><a href='/tests/scrubbers/test_date_scrubber.py#L23-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/scrubbers/test_date_scrubber.py#L25-L30' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce
@@ -42,7 +42,7 @@ If you encounter a date format that isn't supported by the built-in formats, you
 from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 # Add a custom date format
-DateScrubber.add_scrubber("2025-07-20", r"\d{4}-\d{2}-\d{2}")
+DateScrubber.add_scrubber("2025-07-20", r"\d{4}-\d{2}-\d{2}", display_message=False)
 
 # Now you can use it in your tests
 verify(
@@ -50,7 +50,7 @@ verify(
     options=Options().with_scrubber(DateScrubber.get_scrubber_for("2025-07-20")),
 )
 ```
-<sup><a href='/tests/scrubbers/test_date_scrubber.py#L77-L88' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_date_format_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/scrubbers/test_date_scrubber.py#L79-L90' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_date_format_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 **Global scope**: Custom scrubbers are available globally once added
 
