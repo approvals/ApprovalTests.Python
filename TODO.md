@@ -1,12 +1,14 @@
 2025-08-17
 - [ ] look at garbage collect of the with statement
 - [ ] build and test takes too long
+- [ ] promote _clear_custom_scrubbers to public and give instructions in the feature file
+- [ ] test this add_scrubber.md in java
 
 
 2025-08-10
 - [x] Update help message
 - [x] add_scrubber
-- [ ] display_message on add_scrubber
+- [X] display_message on add_scrubber
          You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.
 
          To suppress this message, use `DateScrubber.add_scrubber("an unsupported date format", "<your_regex_here>", display_message=False)`
