@@ -1,6 +1,6 @@
 2025-08-17
 - [ ] look at garbage collect of the with statement
-- 
+- [ ] build and test takes too long
 
 
 2025-08-10

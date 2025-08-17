@@ -106,6 +106,7 @@ def test_custom_scrubber_displays_message(capsys: CaptureFixture[str]) -> None:
     
     To suppress this message, use
         DateScrubber.add_scrubber("2023-Dec-25", "\d{4}-[A-Za-z]{3}-\d{2}", display_message=False)
+
     """
     try:
         DateScrubber.add_scrubber("2023-Dec-25", r"\d{4}-[A-Za-z]{3}-\d{2}")

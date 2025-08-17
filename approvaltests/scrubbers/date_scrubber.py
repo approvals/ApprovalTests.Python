@@ -1,4 +1,5 @@
 import textwrap
+from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from typing import List, Tuple
 
 from approvaltests.scrubbers import create_regex_scrubber
@@ -20,10 +21,13 @@ class DateScrubber:
         _custom_scrubbers.append((regex, [example]))
         
         if display_message:
-            print("You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.")
-            print()
-            print("To suppress this message, use")
-            print(f'    DateScrubber.add_scrubber("{example}", "{regex}", display_message=False)')
+            message = remove_indentation_from(f"""
+                You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.
+
+                To suppress this message, use
+                    DateScrubber.add_scrubber("{example}", "{regex}", display_message=False)
+                """)
+            print(message)
 
     @staticmethod
     def _clear_custom_scrubbers() -> None:
