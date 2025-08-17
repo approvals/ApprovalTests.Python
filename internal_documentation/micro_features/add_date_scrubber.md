@@ -5,6 +5,14 @@ The date scrubber has a method called `add_scrubber` that does the following:
 ## Purpose
 Allows users to register custom date format patterns that aren't included in the built-in supported formats.
 
+## Message
+When a custom scrubber is added, a message is displayed to the user to let them know that a custom scrubber has been added 
+Message: 
+    You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.
+
+    To suppress this message, use 
+    `DateScrubber.add_scrubber("<date format>", "<regex>", display_message=False)`
+
 
 ## Behavior
 1. **Validates the regex pattern**: Checks if the provided regex is syntactically valid
