@@ -55,11 +55,11 @@ class InlinePythonReporter(Reporter):
         # Handle preceding whitespace consistently across all lines.
         received_text = handle_preceeding_whitespace(received_text)
         method_name = StackFrameNamer.get_test_frame().function
-        trailing_comment = ""
         if detect_trailing_whitespace(original_received_text):
-            trailing_comment = (
-                "Warning: Editors may remove trailing spaces, causing this test to fail"
-            )
+            trailing_comment = "  # Warning: Editors may remove trailing spaces, causing this test to fail"
+        else:
+            trailing_comment = ""
+
         new_code = self.swap(
             received_text, code, method_name, after_docstring_comment=trailing_comment
         )
@@ -70,18 +70,10 @@ class InlinePythonReporter(Reporter):
     def swap(self, received_text: str, code: str, method_name: str, after_docstring_comment: str = "") -> str:
         split_code = SplitCode.on_method(code, method_name)
         after = split_code.after_method
-        if after_docstring_comment:
-            return (
-                f'{split_code.before_method}\n'
-                f'{split_code.tab}"""\n'
-                f'{split_code.indent(received_text)}\n'
-                f'{split_code.tab}"""  # {after_docstring_comment}\n'
-                f'{after}'
-            )
         return (
             f'{split_code.before_method}\n'
             f'{split_code.tab}"""\n'
             f'{split_code.indent(received_text)}\n'
-            f'{split_code.tab}"""\n'
+            f'{split_code.tab}"""{after_docstring_comment}\n'
             f'{after}'
         )
