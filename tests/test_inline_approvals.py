@@ -165,7 +165,8 @@ def test_no_preceeding_whitespace() -> None:
 def test_trailing_whitespace() -> None:
     """
     4 trailing whitespaces    
-    """
+    """  # Warning: Editors may remove trailing spaces, causing this test to fail
+
     # Note: Pycharm will remove the trailing whitespaces, to disable this go to:
     # File -> Settings -> Editor -> General -> On Save -> [ ] Remove trailing spaces
     verify("4 trailing whitespaces    ", options=Options().inline())
@@ -234,3 +235,24 @@ def test_inline_with_semi_automatic_inline() -> None:
     except ApprovalException:
         pass
     verify(InlineComparator.get_test_method_doc_string())
+
+
+def test_detect_trailing_whitespace_true() -> None:
+    from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
+
+    text = "no trail\nwith trail \t\nnormal"
+    assert detect_trailing_whitespace(text)
+
+
+def test_detect_trailing_whitespace_false() -> None:
+    from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
+
+    text = "alpha\nbeta\ngamma"
+    assert not detect_trailing_whitespace(text)
+
+
+def test_detect_trailing_whitespace_ignores_pure_empty_lines() -> None:
+    from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
+
+    text = "line1\n\nline2"
+    assert not detect_trailing_whitespace(text)

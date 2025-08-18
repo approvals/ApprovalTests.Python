@@ -20,6 +20,18 @@ def handle_preceeding_whitespace(received_text: str) -> str:
         return f"{PRESERVE_LEADING_WHITESPACE_MARKER}" + received_text
     return received_text
 
+def detect_trailing_whitespace(text: str) -> bool:
+    """
+    Returns True if any line in text ends with a space or tab character.
+    Blank lines without spaces/tabs do not count.
+    """
+    if not text:
+        return False
+    for line in text.split("\n"):
+        if line != "" and len(line.rstrip(" \t")) != len(line):
+            return True
+    return False
+
 
 class InlinePythonReporter(Reporter):
     def __init__(
@@ -45,15 +57,38 @@ class InlinePythonReporter(Reporter):
     def create_received_file(self, received_path: str, test_source_file: str) -> str:
         code = Path(test_source_file).read_text()
 
-        received_text = Path(received_path).read_text()[:-1] + self.footer
+        original_received_text = Path(received_path).read_text()[:-1]
+        received_text = original_received_text + self.footer
         # Handle preceding whitespace consistently across all lines.
         received_text = handle_preceeding_whitespace(received_text)
         method_name = StackFrameNamer.get_test_frame().function
-        new_code = self.swap(received_text, code, method_name)
+        trailing_comment = ""
+        if detect_trailing_whitespace(original_received_text):
+            trailing_comment = (
+                "Warning: Editors may remove trailing spaces, causing this test to fail"
+            )
+        new_code = self.swap(
+            received_text, code, method_name, after_docstring_comment=trailing_comment
+        )
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
         Path(file).write_text(new_code)
         return file
 
-    def swap(self, received_text: str, code: str, method_name: str) -> str:
+    def swap(self, received_text: str, code: str, method_name: str, after_docstring_comment: str = "") -> str:
         split_code = SplitCode.on_method(code, method_name)
-        return f'{split_code.before_method}\n{split_code.tab}"""\n{split_code.indent(received_text)}\n{split_code.tab}"""\n{split_code.after_method}'
+        after = split_code.after_method
+        if after_docstring_comment:
+            return (
+                f'{split_code.before_method}\n'
+                f'{split_code.tab}"""\n'
+                f'{split_code.indent(received_text)}\n'
+                f'{split_code.tab}"""  # {after_docstring_comment}\n'
+                f'{after}'
+            )
+        return (
+            f'{split_code.before_method}\n'
+            f'{split_code.tab}"""\n'
+            f'{split_code.indent(received_text)}\n'
+            f'{split_code.tab}"""\n'
+            f'{after}'
+        )
