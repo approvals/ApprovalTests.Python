@@ -21,16 +21,9 @@ def handle_preceeding_whitespace(received_text: str) -> str:
     return received_text
 
 def detect_trailing_whitespace(text: str) -> bool:
-    """
-    Returns True if any line in text ends with a space or tab character.
-    Blank lines without spaces/tabs do not count.
-    """
     if not text:
         return False
-    for line in text.split("\n"):
-        if line != "" and len(line.rstrip(" \t")) != len(line):
-            return True
-    return False
+    return any(len(line) and line[-1] in " \t" for line in text.split("\n"))
 
 
 class InlinePythonReporter(Reporter):
