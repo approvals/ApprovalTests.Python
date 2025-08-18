@@ -49,7 +49,7 @@ def test_adds_valid_date_scrubber() -> None:
 
 def test_raises_error_if_regex_does_not_match_example() -> None:
     """
-    Exception: Regex '\d{2}/\d{2}/\d{4}' does not match example '2025-07-20'
+    Exception: Regex '\\d{2}/\\d{2}/\\d{4}' does not match example '2025-07-20'
     """
 
     def call() -> None:
