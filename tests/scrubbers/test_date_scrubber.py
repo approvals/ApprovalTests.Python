@@ -103,10 +103,10 @@ def test_supported_formats_as_table() -> None:
 def test_custom_scrubber_displays_message(capsys: CaptureFixture[str]) -> None:
     """
     You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.
-
+    
     To suppress this message, use
-        DateScrubber.add_scrubber("2023-Dec-25", "\d{4}-[A-Za-z]{3}-\d{2}", display_message=False)
-
+        DateScrubber.add_scrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", display_message=False)
+    
     """
     try:
         DateScrubber.add_scrubber("2023-Dec-25", r"\d{4}-[A-Za-z]{3}-\d{2}")
