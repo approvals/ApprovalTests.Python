@@ -18,6 +18,8 @@ Default STARTER_CHARACTER = 🧩
 ## Running Tests
 
 - Run Tests with `.\build_and_test.cmd` or `./build_and_test.sh`.
+- **ALWAYS** run the build_and_test script in blocking mode.
+
 
 # Style
 - Do not add comments to code unless explicitly instructed to do so.

@@ -137,18 +137,27 @@ def get_preceding_whitespace() -> str:
 
 # fmt: off
 @unittest.skipIf(sys.version_info >= (3, 13), "__doc__ removes preceding whitespace in Python 3.13+")
-def test_preceding_whitespace() -> None:
+def test_preceding_whitespace_before_python_3_13() -> None:
     """
         4 whitespaces
     """
     verify(get_preceding_whitespace(), options=Options().inline())
 
-@unittest.skipUnless(sys.version_info >= (3, 13), "__doc__ removes preceding whitespace in Python 3.13+")
-def test_preceding_whitespace_in_python_3_13() -> None:
+def test_preceding_whitespace() -> None:
     """
+    <<approvaltests:preserve-leading-whitespace>>
         4 whitespaces
     """
-    verify(get_preceding_whitespace().lstrip(), options=Options().inline())
+    verify(get_preceding_whitespace(), options=Options().inline())
+
+
+def test_no_preceeding_whitespace() -> None:
+    """
+        4 whitespaces
+    applesauce
+    """
+    text = "    4 whitespaces\napplesauce"
+    verify(text, options=Options().inline())
 
 
 def test_trailing_whitespace() -> None:

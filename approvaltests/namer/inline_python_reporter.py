@@ -7,6 +7,9 @@ from typing_extensions import override
 
 from approvaltests import Reporter, StackFrameNamer
 from approvaltests.inline.split_code import SplitCode
+from approvaltests.inline.markers import (
+    PRESERVE_LEADING_WHITESPACE_MARKER,
+)
 
 
 class InlinePythonReporter(Reporter):
@@ -34,6 +37,14 @@ class InlinePythonReporter(Reporter):
         code = Path(test_source_file).read_text()
 
         received_text = Path(received_path).read_text()[:-1] + self.footer
+        # If the first line begins with leading whitespace, inject a marker line
+        # so we can preserve intended indentation across Python versions.
+        if received_text:
+            first_line = received_text.split("\n", 1)[0]
+            if (first_line.startswith(" ") or first_line.startswith("\t")) and not received_text.startswith(
+                PRESERVE_LEADING_WHITESPACE_MARKER
+            ):
+                received_text = f"{PRESERVE_LEADING_WHITESPACE_MARKER}\n" + received_text
         method_name = StackFrameNamer.get_test_frame().function
         new_code = self.swap(received_text, code, method_name)
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name

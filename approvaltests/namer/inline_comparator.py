@@ -6,6 +6,9 @@ from typing import Any, Callable, Optional
 from typing_extensions import override
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
+from approvaltests.inline.markers import (
+    PRESERVE_LEADING_WHITESPACE_MARKER,
+)
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests import Namer, StackFrameNamer
 from approvaltests.core.options import Options
@@ -32,7 +35,11 @@ class InlineComparator(Namer):
         method: Callable[..., Any] = InlineComparator.get_caller_method(
             test_stack_frame
         )
-        return remove_indentation_from(method.__doc__)
+        doc = remove_indentation_from(method.__doc__)
+        lines = doc.split("\n")
+        if len(lines) > 0 and lines[0] == PRESERVE_LEADING_WHITESPACE_MARKER:
+            return "\n".join(lines[1:])
+        return doc
 
     @staticmethod
     def get_caller_method(caller_frame: FrameInfo) -> Callable:
