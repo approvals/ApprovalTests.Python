@@ -91,11 +91,10 @@ class InlinePythonReporter(Reporter):
         after_docstring_comment: str = "",
     ) -> str:
         split_code = SplitCode.on_method(code, method_name)
-        after = split_code.after_method
         return (
             f"{split_code.before_method}\n"
             f'{split_code.tab}"""\n'
             f"{split_code.indent(received_text)}\n"
             f'{split_code.tab}"""{after_docstring_comment}\n'
-            f"{after}"
+            f"{split_code.after_method}"
         )
