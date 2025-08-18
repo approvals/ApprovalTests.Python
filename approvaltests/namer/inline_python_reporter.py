@@ -44,7 +44,7 @@ class InlinePythonReporter(Reporter):
             if (first_line.startswith(" ") or first_line.startswith("\t")) and not received_text.startswith(
                 PRESERVE_LEADING_WHITESPACE_MARKER
             ):
-                received_text = f"{PRESERVE_LEADING_WHITESPACE_MARKER}\n" + received_text
+                received_text = f"{PRESERVE_LEADING_WHITESPACE_MARKER}" + received_text
         method_name = StackFrameNamer.get_test_frame().function
         new_code = self.swap(received_text, code, method_name)
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name

@@ -36,9 +36,8 @@ class InlineComparator(Namer):
             test_stack_frame
         )
         doc = remove_indentation_from(method.__doc__)
-        lines = doc.split("\n")
-        if len(lines) > 0 and lines[0] == PRESERVE_LEADING_WHITESPACE_MARKER:
-            return "\n".join(lines[1:])
+        if doc.startswith(PRESERVE_LEADING_WHITESPACE_MARKER):
+            return doc[len(PRESERVE_LEADING_WHITESPACE_MARKER):]
         return doc
 
     @staticmethod
