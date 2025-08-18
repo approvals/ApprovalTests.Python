@@ -1,1 +1,1 @@
-version_number = "v15.1.1"
+version_number = "v15.2.0"
