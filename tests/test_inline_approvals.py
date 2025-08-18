@@ -177,14 +177,14 @@ def test_trailing_whitespace() -> None:
 
 def test_bug_blank_lines() -> None:
     """
-
-
-    test bug with blank lines
-
-
-
+    
+    
+    test bug <br \\> with blank lines
+    
+    
+    
     """
-    verify("\n\ntest bug with blank lines\n\n\n\n", options=Options().inline())
+    verify("\n\ntest bug <br \\> with blank lines\n\n\n\n", options=Options().inline())
 
 
 def test_handle_preceeding_whitespace_all_lines_indented() -> None:
