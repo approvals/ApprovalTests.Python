@@ -6,13 +6,13 @@ from typing import Any, Callable, Optional
 from typing_extensions import override
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
-from approvaltests.inline.markers import (
-    PRESERVE_LEADING_WHITESPACE_MARKER,
-)
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests import Namer, StackFrameNamer
 from approvaltests.core.options import Options
 from approvaltests.inline.inline_options import InlineOptions
+from approvaltests.inline.markers import (
+    PRESERVE_LEADING_WHITESPACE_MARKER,
+)
 from approvaltests.namer.inline_python_reporter import InlinePythonReporter
 from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
@@ -37,7 +37,7 @@ class InlineComparator(Namer):
         )
         doc = remove_indentation_from(method.__doc__)
         if doc.startswith(PRESERVE_LEADING_WHITESPACE_MARKER):
-            return doc[len(PRESERVE_LEADING_WHITESPACE_MARKER):]
+            return doc[len(PRESERVE_LEADING_WHITESPACE_MARKER) :]
         return doc
 
     @staticmethod

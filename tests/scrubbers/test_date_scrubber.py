@@ -115,11 +115,10 @@ def test_custom_scrubber_displays_message(capsys: CaptureFixture[str]) -> None:
         DateScrubber._clear_custom_scrubbers()
 
 
-
 def test_custom_scrubber_message_can_be_suppressed(capsys: CaptureFixture[str]) -> None:
     try:
         regex = r"\d{4}-[A-Za-z]{3}-\d{2}"
-        DateScrubber.add_scrubber("2023-Dec-25",regex, display_message=False)
+        DateScrubber.add_scrubber("2023-Dec-25", regex, display_message=False)
         assert capsys.readouterr().out == ""
     finally:
         DateScrubber._clear_custom_scrubbers()
