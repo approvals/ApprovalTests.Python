@@ -16,15 +16,18 @@ from approvaltests import (
     verify_all_combinations_with_labeled_input,
 )
 from approvaltests.inline.inline_options import InlineOptions
+from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.namer.inline_comparator import InlineComparator
+from approvaltests.namer.inline_python_reporter import (
+    detect_trailing_whitespace,
+    handle_preceeding_whitespace,
+)
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithPycharm,
 )
-from approvaltests.namer.inline_python_reporter import handle_preceeding_whitespace
-from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
 
 # Todo:
 # detect the actual tab

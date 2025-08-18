@@ -6,19 +6,22 @@ from typing import Callable, Optional
 from typing_extensions import override
 
 from approvaltests import Reporter, StackFrameNamer
-from approvaltests.inline.split_code import SplitCode
 from approvaltests.inline.markers import (
     PRESERVE_LEADING_WHITESPACE_MARKER,
 )
+from approvaltests.inline.split_code import SplitCode
 
 
 def handle_preceeding_whitespace(received_text: str) -> str:
     if not received_text:
         return received_text
     lines = received_text.split("\n")
-    if all((line.startswith(" ") or line.startswith("\t")) for line in lines if line != ""):
+    if all(
+        (line.startswith(" ") or line.startswith("\t")) for line in lines if line != ""
+    ):
         return f"{PRESERVE_LEADING_WHITESPACE_MARKER}" + received_text
     return received_text
+
 
 def detect_trailing_whitespace(text: str) -> bool:
     if not text:
@@ -80,13 +83,19 @@ class InlinePythonReporter(Reporter):
         Path(file).write_text(new_code)
         return file
 
-    def swap(self, received_text: str, code: str, method_name: str, after_docstring_comment: str = "") -> str:
+    def swap(
+        self,
+        received_text: str,
+        code: str,
+        method_name: str,
+        after_docstring_comment: str = "",
+    ) -> str:
         split_code = SplitCode.on_method(code, method_name)
         after = split_code.after_method
         return (
-            f'{split_code.before_method}\n'
+            f"{split_code.before_method}\n"
             f'{split_code.tab}"""\n'
-            f'{split_code.indent(received_text)}\n'
+            f"{split_code.indent(received_text)}\n"
             f'{split_code.tab}"""{after_docstring_comment}\n'
-            f'{after}'
+            f"{after}"
         )
