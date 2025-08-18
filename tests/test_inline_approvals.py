@@ -5,7 +5,6 @@ from typing import Any, Callable
 
 import pytest
 
-from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace, escape_backslashes
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests import (
     ApprovalException,
@@ -21,6 +20,7 @@ from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.namer.inline_comparator import InlineComparator
 from approvaltests.namer.inline_python_reporter import (
     detect_trailing_whitespace,
+    escape_backslashes,
     handle_preceeding_whitespace,
 )
 from approvaltests.reporters.report_quietly import ReportQuietly
@@ -180,12 +180,12 @@ def test_trailing_whitespace() -> None:
 
 def test_bug_blank_lines() -> None:
     """
-    
-    
+
+
     test bug <br \\> with blank lines
-    
-    
-    
+
+
+
     """
     verify("\n\ntest bug <br \\> with blank lines\n\n\n\n", options=Options().inline())
 
@@ -258,7 +258,9 @@ def test_detect_trailing_whitespace_ignores_pure_empty_lines() -> None:
 
 def test_escape_backslashes_windows_path() -> None:
     text = "C:\\Temp\\foo\\bar\\note.txt"
-    assert escape_backslashes(text) == "C:\\Temp\\foo\\bar\\note.txt".replace("\\", "\\\\")
+    assert escape_backslashes(text) == "C:\\Temp\\foo\\bar\\note.txt".replace(
+        "\\", "\\\\"
+    )
 
 
 def test_escape_backslashes_mixed_sequences() -> None:
