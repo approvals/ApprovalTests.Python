@@ -91,10 +91,12 @@ class InlinePythonReporter(Reporter):
         after_docstring_comment: str = "",
     ) -> str:
         split_code = SplitCode.on_method(code, method_name)
-        return "\n".join([
-            split_code.before_method,
-            split_code.tab + '"""',
-            split_code.indent(received_text),
-            split_code.tab + '"""' + after_docstring_comment,
-            split_code.after_method,
-        ])
+        return "\n".join(
+            [
+                split_code.before_method,
+                split_code.tab + '"""',
+                split_code.indent(received_text),
+                split_code.tab + '"""' + after_docstring_comment,
+                split_code.after_method,
+            ]
+        )
