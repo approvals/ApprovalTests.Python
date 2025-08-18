@@ -5,6 +5,7 @@ from typing import Any, Callable
 
 import pytest
 
+from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests import (
     ApprovalException,
@@ -238,21 +239,15 @@ def test_inline_with_semi_automatic_inline() -> None:
 
 
 def test_detect_trailing_whitespace_true() -> None:
-    from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
-
     text = "no trail\nwith trail \t\nnormal"
     assert detect_trailing_whitespace(text)
 
 
 def test_detect_trailing_whitespace_false() -> None:
-    from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
-
     text = "alpha\nbeta\ngamma"
     assert not detect_trailing_whitespace(text)
 
 
 def test_detect_trailing_whitespace_ignores_pure_empty_lines() -> None:
-    from approvaltests.namer.inline_python_reporter import detect_trailing_whitespace
-
     text = "line1\n\nline2"
     assert not detect_trailing_whitespace(text)
