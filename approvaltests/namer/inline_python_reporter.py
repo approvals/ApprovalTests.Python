@@ -26,6 +26,17 @@ def detect_trailing_whitespace(text: str) -> bool:
     return any(len(line) and line[-1] in " \t" for line in text.split("\n"))
 
 
+def escape_backslashes(text: str) -> str:
+    """
+    Ensure literal backslashes in the approved docstring are preserved by escaping
+    them in the source code injection so Python does not interpret sequences like
+    "\n" or "\t".
+    """
+    if not text:
+        return text
+    return text.replace("\\", "\\\\")
+
+
 class InlinePythonReporter(Reporter):
     def __init__(
         self,
@@ -54,6 +65,8 @@ class InlinePythonReporter(Reporter):
         received_text = original_received_text + self.footer
         # Handle preceding whitespace consistently across all lines.
         received_text = handle_preceeding_whitespace(received_text)
+        # Escape backslashes to avoid accidental escape sequences in the docstring.
+        received_text = escape_backslashes(received_text)
         method_name = StackFrameNamer.get_test_frame().function
         if detect_trailing_whitespace(original_received_text):
             trailing_comment = "  # Warning: Editors may remove trailing spaces, causing this test to fail"

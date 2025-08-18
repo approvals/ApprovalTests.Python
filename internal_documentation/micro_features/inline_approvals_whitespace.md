@@ -25,6 +25,9 @@ How inline approvals handles whitespace in docstrings and verified strings, incl
 3. **Blank lines**
    - Blank lines (including multiple in a row) are preserved and must match exactly.
 
+4. Escape characters
+   Backslashes are special in docstrings. So the reporter will escape them with another backslash.
+
 ## Special markers
 
 If the first line is `<<approvaltests:preserve-leading-whitespace>>`, then remove it before verifying. This is only  true if it's the first line.
