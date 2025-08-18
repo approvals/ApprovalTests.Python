@@ -12,6 +12,15 @@ from approvaltests.inline.markers import (
 )
 
 
+def handle_preceeding_whitespace(received_text: str) -> str:
+    if not received_text:
+        return received_text
+    lines = received_text.split("\n")
+    if all((line.startswith(" ") or line.startswith("\t")) for line in lines if line != ""):
+        return f"{PRESERVE_LEADING_WHITESPACE_MARKER}" + received_text
+    return received_text
+
+
 class InlinePythonReporter(Reporter):
     def __init__(
         self,
@@ -37,14 +46,8 @@ class InlinePythonReporter(Reporter):
         code = Path(test_source_file).read_text()
 
         received_text = Path(received_path).read_text()[:-1] + self.footer
-        # If the first line begins with leading whitespace, inject a marker line
-        # so we can preserve intended indentation across Python versions.
-        if received_text:
-            first_line = received_text.split("\n", 1)[0]
-            if (first_line.startswith(" ") or first_line.startswith("\t")) and not received_text.startswith(
-                PRESERVE_LEADING_WHITESPACE_MARKER
-            ):
-                received_text = f"{PRESERVE_LEADING_WHITESPACE_MARKER}" + received_text
+        # Handle preceding whitespace consistently across all lines.
+        received_text = handle_preceeding_whitespace(received_text)
         method_name = StackFrameNamer.get_test_frame().function
         new_code = self.swap(received_text, code, method_name)
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name

@@ -22,6 +22,8 @@ from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithPycharm,
 )
+from approvaltests.namer.inline_python_reporter import handle_preceeding_whitespace
+from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
 
 # Todo:
 # detect the actual tab
@@ -181,6 +183,18 @@ def test_bug_blank_lines() -> None:
 
     """
     verify("\n\ntest bug with blank lines\n\n\n\n", options=Options().inline())
+
+
+def test_handle_preceeding_whitespace_all_lines_indented() -> None:
+    text = "    indented with spaces\n\tindented with tab\n    still indented"
+    result = handle_preceeding_whitespace(text)
+    assert result.startswith(PRESERVE_LEADING_WHITESPACE_MARKER)
+
+
+def test_handle_preceeding_whitespace_one_line_not_indented() -> None:
+    text = "    indented with spaces\nnot indented\n\tindented with tab"
+    result = handle_preceeding_whitespace(text)
+    assert not result.startswith(PRESERVE_LEADING_WHITESPACE_MARKER)
 
 
 def test_inline_with_additional_reporter() -> None:
