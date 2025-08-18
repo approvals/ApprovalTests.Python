@@ -143,6 +143,13 @@ def test_preceding_whitespace() -> None:
     """
     verify(get_preceding_whitespace(), options=Options().inline())
 
+@unittest.skipUnless(sys.version_info >= (3, 13), "__doc__ removes preceding whitespace in Python 3.13+")
+def test_preceding_whitespace_in_python_3_13() -> None:
+    """
+        4 whitespaces
+    """
+    verify(get_preceding_whitespace().lstrip(), options=Options().inline())
+
 
 def test_trailing_whitespace() -> None:
     """
