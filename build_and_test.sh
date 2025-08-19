@@ -6,6 +6,5 @@ if ! command -v mise >/dev/null 2>&1; then
   exit 127
 fi
 
-mise settings add idiomatic_version_file_enable_tools python
 mise task --quiet run install_python_deps
 mise task --quiet run test ::: mypy ::: integration
