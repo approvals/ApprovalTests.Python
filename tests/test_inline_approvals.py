@@ -2,6 +2,7 @@ import sys
 import unittest
 from inspect import FrameInfo
 from typing import Any, Callable
+from pathlib import Path
 
 import pytest
 
@@ -13,6 +14,7 @@ from approvaltests import (
     verify,
     verify_all,
     verify_all_combinations_with_labeled_input,
+    verify_file,
 )
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
@@ -28,6 +30,8 @@ from approvaltests.reporters.report_with_beyond_compare import (
     ReportWithBeyondCompare,
     ReportWithPycharm,
 )
+
+SCRIPT_DIR = Path(__file__).parent
 
 # Todo:
 # detect the actual tab
@@ -188,6 +192,16 @@ def test_bug_blank_lines() -> None:
 
     """
     verify("\n\ntest bug <br \\> with blank lines\n\n\n\n", options=Options().inline())
+
+
+def test_unicode_and_special_characters() -> None:
+    """
+    Caf\xc3\xa9
+    \xe6\xbc\xa2\xe5\xad\x97 and \xce\x95\xce\xbb\xce\xbb\xce\xb7\xce\xbd\xce\xb9\xce\xba\xce\xac
+    Flags: \xf0\x9f\x8f\xb3\xef\xb8\x8f\xe2\x80\x8d\xf0\x9f\x8c\x88
+    Backslashes: C:\\Temp\\\xe8\xb7\xaf\xe5\xbe\x84
+    """
+    verify_file(SCRIPT_DIR / "special_characters.txt", options=Options().inline())
 
 
 def test_handle_preceeding_whitespace_all_lines_indented() -> None:
