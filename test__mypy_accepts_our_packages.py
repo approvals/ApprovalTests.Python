@@ -18,6 +18,7 @@ def main() -> None:
         _run_python_checked(
             [
                 setup_file,
+                "--quiet",
                 "bdist_wheel",
                 "--build-number",
                 build_number,
@@ -31,6 +32,8 @@ def main() -> None:
                 "--force-reinstall",
                 # version_number starts with `v`; remove that character
                 f"dist/{package_name}-{version_number[1:]}-{build_number}-py3-none-any.whl",
+                "--quiet",
+                "--no-warn-script-location",
             ]
         )
 
