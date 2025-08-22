@@ -65,5 +65,7 @@ venv
 *.sqlite3
 .mypy_cache
 .DS_Store
+
 tests/approved_files/VerifyTests.test_verify_automatic_approval.approved.txt
 tests/approved_files/VerifyTests.test_verify_automatic_approval.approved.txt
+/a.txt
