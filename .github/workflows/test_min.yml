@@ -34,5 +34,5 @@ jobs:
         uses: mikepenz/action-junit-report@v5
         if: always()
         with:
-          report_paths: '**/test-reports/*.xml'
+          report_paths: 'build/test-reports/*.xml'
           detailed_summary: true
