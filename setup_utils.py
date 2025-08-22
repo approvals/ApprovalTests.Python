@@ -27,6 +27,10 @@ def do_the_setup(
     required: List[str],
     extra_requires: Dict[str, List[str]],
 ) -> None:
+    # Ensure build directory exists for egg-info
+    build_dir = get_parent_directory() / "build"
+    build_dir.mkdir(exist_ok=True)
+    
     setup(
         name=package_name,
         version=get_version(),
