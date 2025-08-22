@@ -10,7 +10,7 @@ def get_parent_directory() -> Path:
 
 
 def get_version() -> str:
-    _version_file_contents = (get_parent_directory() / "version.py").read_text()
+    _version_file_contents = (get_parent_directory().parent / "version.py").read_text()
     matched = re.search(r'"(.*)"', _version_file_contents)
     return matched.group(1) if matched is not None else "UNKNOWN VERSION"
 
@@ -48,7 +48,7 @@ def do_the_setup(
         },
         install_requires=required,
         extras_require=extra_requires,
-        long_description=(get_parent_directory() / "README.md").read_text(),
+        long_description=(get_parent_directory().parent / "README.md").read_text(),
         long_description_content_type="text/markdown",
         classifiers=[
             "Development Status :: 4 - Beta",

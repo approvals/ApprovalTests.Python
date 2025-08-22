@@ -11,8 +11,8 @@ from version import version_number
 
 def main() -> None:
     for package_name, setup_file in [
-        ("approval_utilities", "setup.approval_utilities.py"),
-        ("approvaltests", "setup.py"),
+        ("approval_utilities", "setup/setup.approval_utilities.py"),
+        ("approvaltests", "setup/setup.py"),
     ]:
         build_number = str(int(time.time()))
         _run_python_checked(

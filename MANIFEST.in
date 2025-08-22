@@ -1,2 +1,2 @@
-include requirements.prod.txt requirements.prod.extras.txt requirements.prod.required.txt setup_utils.py version.py
+include requirements.prod.txt requirements.prod.extras.txt requirements.prod.required.txt setup/setup_utils.py version.py
 
