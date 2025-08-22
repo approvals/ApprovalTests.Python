@@ -1,8 +1,7 @@
 from typing import Any, Dict
 
-from setuptools import find_packages, setup
-
 from setup_utils import get_version
+from setuptools import find_packages, setup
 
 requires: Dict[str, Any] = {}
 setup(
