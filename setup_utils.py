@@ -30,7 +30,7 @@ def do_the_setup(
     # Ensure build directory exists for egg-info
     build_dir = get_parent_directory() / "build"
     build_dir.mkdir(exist_ok=True)
-    
+
     setup(
         name=package_name,
         version=get_version(),
