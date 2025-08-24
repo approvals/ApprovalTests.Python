@@ -1,3 +1,10 @@
+2025-08-24
+- [ ] fix XML test results
+- [ ] explore Mise w/ Nitsan (the PR from Jay)
+- [ ] more root dir cleanup
+- [ ] anything from last week
+- [ ] clean up TODO list
+
 2025-08-17
 - [ ] look at garbage collect of the with statement
 - [ ] build and test takes too long
