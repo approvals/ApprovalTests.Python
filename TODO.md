@@ -1,9 +1,9 @@
 2025-08-24
-- [ ] fix XML test results
 - [ ] explore Mise w/ Nitsan (the PR from Jay)
 - [ ] more root dir cleanup
 - [ ] anything from last week
-- [ ] clean up TODO list
+- [-] clean up TODO list
+- [ ] remove mypy suppressions and fix
 
 2025-08-17
 - [ ] look at garbage collect of the with statement
@@ -11,20 +11,7 @@
 - [ ] promote _clear_custom_scrubbers to public and give instructions in the feature file
 - [ ] test this add_scrubber.md in java
 
-
-2025-08-10
-- [x] Update help message
-- [x] add_scrubber
-- [X] display_message on add_scrubber
-         You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Python/issues/124.
-
-         To suppress this message, use `DateScrubber.add_scrubber("an unsupported date format", "<your_regex_here>", display_message=False)`
-
-
-
 2025-08-03
-- [ ] F Improve scrubber help message when using unsupported format
-- [ ] F DateScrubber.add_scrubber()
 - [ ] d Document our local dialect of the commit notation in internal_documentation/commit_notation.md
         make this easy to refer to for NEW people. 
         Consider: pasting it into chat at start of day
@@ -46,25 +33,16 @@
    - See Discord conversation: https://discord.com/channels/1349240939406819409/1349244369240195153/1391466948323442881
    - Example, comparing two pieces of code. Maybe we want to compare the AST not the original text.
 
-
-2025-06-15
-- [ ] dependabot linter
-- [ ] explore uv and Mise
-- stuff from last week
-
 2025-06-01
 - [ ] 🐜 Cascade running build_and_test reports success before running the tests - "run as blocking"
 - [ ] Explore how to change the audible feedback from Cascade to make it less annoying - shorter and less loud
 - [ ] reverse the dependency order of requirements.*.txt
-- [ ] switch to uv / eliminate Tox 
-
 
 2025-04-20
 - [ ] in Python: rename run_tests -> build_and_test
     - [ ] rename `run_tests_and_format_code.sh` to what?
     - [ ] Jay wants to remove `.sh`
     - [ ] What is the impact on TAB-completion?
-- [ ] mypy in Python
 - [ ] fix disabled test for inline whitespace
 - [ ] mypy in CommonScripts - tox?
 - [ ] setup.approval_utilities.py and setup.py are different but should not be
