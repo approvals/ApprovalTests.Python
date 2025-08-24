@@ -61,14 +61,6 @@
 - [ ] docs: point to new architecture docs from python repo
 - [ ] fix Namer and NamerBase
 
-- FUTURE TODO
-# How we use the mob timer
-- we use the local desktop app "Mob Time"
-- when it says "Amy's Turn" that means Amy is talking, as in "Amy's Turn [to talk]"
-- the previous talker is now typing
-- "Next" means next talker
-- a 5 minute timer for smaller groups, 4 minutes for larger groups
-
 > How do we know that everything works in both Pytest and Unittests?
 > 
 [ ] Test fail if mariadb is in the requirements for linux

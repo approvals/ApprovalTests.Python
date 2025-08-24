@@ -67,8 +67,9 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 ### Startup Checklist
   1. change screen resolution to 1920X1080 
-       *note*: Preferences -> display (requires only 1 person is connected)
+      *note*: Preferences -> display (requires only 1 person is connected)
   1. Start mob timer
+      *note*: Use Amy's Turn = Amy's Turn to TALK
   1. Run all tests
   1. review pending changes
   1. pull `main` 
