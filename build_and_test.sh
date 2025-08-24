@@ -32,7 +32,7 @@ run_step() {
 }
 
 run_step "install tox" python -m pip --disable-pip-version-check install tox
-run_step "run unit tests" python -m tox -e py -- --junitxml=build/test-reports/report.xml
+run_step "run unit tests" python -m tox -e py -- --junitxml=junit-reports/TEST-results.xml
 run_step "run mypy" python -m tox -e mypy
 run_step "run integration tests" python -m tox -e integration_tests
 
