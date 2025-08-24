@@ -62,16 +62,12 @@
 - [ ] fix Namer and NamerBase
 
 - FUTURE TODO
-Fix this timer - [see draft of proposed issue](https://docs.google.com/document/d/1avKRVobADSIxXiwRQt0o3Ohawvdbbo4UDlWtyRYhuRo/edit?usp=sharing)
-1) show all three roles
-Typer: talker and Next
-2) label the roles to match what we like
-New Timer will show: 
-Typer: <typer name>
-And in lower right:
-Talker: <talker name>
-Next: <name of next person>
-
+# How we use the mob timer
+- we use the local desktop app "Mob Time"
+- when it says "Amy's Turn" that means Amy is talking, as in "Amy's Turn [to talk]"
+- the previous talker is now typing
+- "Next" means next talker
+- a 5 minute timer for smaller groups, 4 minutes for larger groups
 
 > How do we know that everything works in both Pytest and Unittests?
 > 
