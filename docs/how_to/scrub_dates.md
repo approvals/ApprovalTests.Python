@@ -80,4 +80,5 @@ If you think the format you want to scrub would be useful for others, please add
 | Tue May 13 16:30:00 2014 | (Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s([0-3]?\d)\s([0-1]\d:[0-5]\d:[0-5]\d)\s(\d{4}) |
 | 2021-09-10T08:07:00+03:00 | \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2} |
 | 20250527_125703 | [12]\d{3}[01]\d[0-3]\d_[0-2]\d[0-5]\d[0-5]\d |
+| 2020-02-02 | \d{4}-\d{2}-\d{2} |
 <!-- endInclude -->
