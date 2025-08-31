@@ -23,15 +23,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Test
-        run: |
-          ./build_and_test.sh
+      - run: echo "${{ matrix.python-version }}" > .python-version
+      - uses: jdx/mise-action@v2
+      - run: ./build_and_test.sh
         shell: bash
-
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
         if: always()
