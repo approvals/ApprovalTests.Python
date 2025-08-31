@@ -1,6 +1,6 @@
 [tasks]
 install_python_deps = "python -m pip install -r requirements.dev.txt --quiet --no-warn-script-location"
-test = "python -m pytest --quiet --junitxml=test-reports/pytest.xml"
+test = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml"
 mypy = "python -m mypy ."
 integration = "python test__mypy_accepts_our_packages.py"
 isort = "python -m isort ."
