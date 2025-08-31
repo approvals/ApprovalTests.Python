@@ -1,6 +1,3 @@
-[tools]
-uv = "latest"
-
 [tasks]
 install_python_deps = "python -m pip install -r requirements.dev.txt --quiet --no-warn-script-location"
 test = "python -m pytest --quiet --junitxml=test-reports/pytest.xml"
