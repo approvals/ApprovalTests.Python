@@ -1,4 +1,5 @@
 from setup_utils import get_requirements_from_file, get_version
+
 from setup import do_the_setup
 
 required = get_requirements_from_file("../requirements.prod.required.txt")
