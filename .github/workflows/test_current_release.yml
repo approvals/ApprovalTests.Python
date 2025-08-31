@@ -37,9 +37,16 @@ jobs:
           ./run_tests.sh
         shell: bash
 
+      - name: Print ApprovalTests Version
+        run: |
+          pip show approvaltests
+          echo "## ApprovalTests Version" >> $GITHUB_STEP_SUMMARY
+          pip show approvaltests | grep Version >> $GITHUB_STEP_SUMMARY
+        shell: bash
+
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
         if: always()
         with:
-          report_paths: 'build/test-reports/*.xml'
+          report_paths: 'test-reports/*.xml'
           detailed_summary: true
