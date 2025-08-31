@@ -10,9 +10,7 @@ from approval_utilities.utilities.stack_frame_utilities import get_class_name_fo
 from approvaltests import Namer, StackFrameNamer
 from approvaltests.core.options import Options
 from approvaltests.inline.inline_options import InlineOptions
-from approvaltests.inline.markers import (
-    PRESERVE_LEADING_WHITESPACE_MARKER,
-)
+from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
 from approvaltests.namer.inline_python_reporter import InlinePythonReporter
 from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
