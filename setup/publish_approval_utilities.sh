@@ -1,9 +1,9 @@
 #!/bin/sh
 
-mv setup.py setup.approvaltests.py
-cp setup.approval_utilities.py setup.py
-python setup.py sdist bdist_wheel
+mv setup/setup.py setup/setup.approvaltests.py
+cp setup/setup.approval_utilities.py setup/setup.py
+python setup/setup.py sdist bdist_wheel
 twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
-rm setup.py
-mv setup.approvaltests.py setup.py
+rm setup/setup.py
+mv setup/setup.approvaltests.py setup/setup.py
 rm -r dist
