@@ -32,18 +32,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Run Tests
+      - name: Install ApprovalTests
         run: |
-          ./run_tests.sh
-        shell: bash
-
-      - name: Print ApprovalTests Version
-        run: |
+          pip install approvaltests
           pip show approvaltests
           echo "## ApprovalTests Version" >> $GITHUB_STEP_SUMMARY
           pip show approvaltests | grep Version >> $GITHUB_STEP_SUMMARY
         shell: bash
-
+      - name: Run Tests
+        run: |
+          ./run_tests.sh
+        shell: bash
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v5
         if: always()
