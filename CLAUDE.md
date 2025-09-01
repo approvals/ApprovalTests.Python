@@ -2,9 +2,7 @@
 
 ## Running Tests & Type Checking
 
-- Use `uv run tox -e mypy` to run mypy type checking
-- Use `uv run tox -e py` to run unit tests
-- Use `./build_and_test.sh` for full build (but it's slow)
+- Use `./build_and_test.sh` for full build (this includes mypy)
 
 ## MyPy Configuration
 
