@@ -1,5 +1,11 @@
+[tools]
+uv = "latest"
+
+[env.'_'.python]
+venv = { path = ".venv", create = true, uv_create_args = ["--seed", "--quiet"] }
+
 [tasks]
-install_python_deps = "python -m pip install -r requirements.dev.txt --quiet --no-warn-script-location"
+install_python_deps = "uv pip install -r requirements.dev.txt --quiet"
 test = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml"
 mypy = "python -m mypy ."
 integration = "python test__mypy_accepts_our_packages.py"
