@@ -11,7 +11,7 @@ test = { run = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.x
 mypy = { run = "python -m mypy .", depends = ["pip-install"] }
 integration = { run = "python test__mypy_accepts_our_packages.py", depends = ["pip-install"] }
 isort = { run = "python -m isort .", depends = ["pip-install"] }
-black = { run = "python -m black .", depends = ["pip-install"] }
+ruff = { run = "python -m ruff format .", depends = ["pip-install"] }
 
 [settings]
 # we put the python version in the .python-version file instead of here so that it's easy to override in the CI matrix

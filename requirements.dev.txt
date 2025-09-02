@@ -1,6 +1,6 @@
 -r requirements.prod.txt
 -r requirements.test.txt
-black
+ruff
 setuptools
 mypy
 types-requests
