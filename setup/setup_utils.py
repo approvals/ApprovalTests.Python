@@ -1,4 +1,5 @@
 import re
+import sys
 from pathlib import Path
 from typing import Dict, List
 
@@ -10,11 +11,11 @@ def get_parent_directory() -> Path:
 
 
 def get_version() -> str:
-    import sys
-    from pathlib import Path
     sys.path.append(str(get_parent_directory().parent))
     from version import version_number
-    return version_number
+
+    assert version_number.startswith("v")
+    return version_number[1:]
 
 def get_requirements_from_file(file: str) -> List[str]:
     with open(get_parent_directory() / file) as f:
