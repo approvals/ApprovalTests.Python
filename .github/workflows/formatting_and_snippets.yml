@@ -8,12 +8,8 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - uses: jdx/mise-action@v3
-    - name: Run black
-      run: |
-        ./format_code.sh
-    - name: Run MarkdownSnippets
-      run: |
-        ./run_mdsnippets.sh
+    - run: ./format_code.sh
+    - run: ./run_mdsnippets.sh
       shell: bash
     - name: Git Commit and Push
       uses: github-actions-x/commit@v2.9
