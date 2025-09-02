@@ -1,4 +1,4 @@
-﻿import shutil
+import shutil
 import unittest
 
 from approvaltests import Options, approvals, get_default_namer, verify, verify_file

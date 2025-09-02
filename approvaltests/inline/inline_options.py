@@ -14,7 +14,6 @@ DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
 
 
 class InlineOptions:
-
     @staticmethod
     def automatic() -> "InlineOptions":
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
@@ -76,7 +75,6 @@ class InlineOptions:
         return PreviousCaptureInlineOptions()
 
     def apply(self, options: "Options") -> "Options":
-
         return options
 
     @staticmethod

@@ -9,7 +9,7 @@ from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 def verify_logging(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None
+    options: Optional[Options] = None,
 ) -> ContextManager[None]:
     class VerifyLogging:
         def __init__(self) -> None:

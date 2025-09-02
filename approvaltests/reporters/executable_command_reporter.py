@@ -35,7 +35,7 @@ class ExecutableCommandReporter(Reporter):
             command_string, self.executor
         )
         approved_executed_result_file = (
-            f"{path.name[:-len(path.suffix)]}.executed_results.txt"
+            f"{path.name[: -len(path.suffix)]}.executed_results.txt"
         )
         pathlib.Path(approved_executed_result_file).write_text(result)
         return approved_executed_result_file

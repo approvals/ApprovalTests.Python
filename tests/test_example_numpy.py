@@ -47,7 +47,7 @@ class NDArrayDiffReporter(Reporter):
         received = load_ndarray(received_path)
         approved = load_ndarray(approved_path)
         to_approve_msg = (
-            f"To approve run:\n {get_command_text(received_path,approved_path)}"
+            f"To approve run:\n {get_command_text(received_path, approved_path)}"
         )
         print(np.testing.build_err_msg([received, approved], err_msg=to_approve_msg))
         return True

@@ -1,4 +1,4 @@
-﻿import unittest
+import unittest
 
 from approvaltests import verify_all
 from approvaltests.reporters import GenericDiffReporterFactory, get_command_text
