@@ -25,6 +25,8 @@ jobs:
       - uses: actions/checkout@v5
       - run: echo "${{ matrix.python-version }}" > .python-version
       - uses: jdx/mise-action@v3
+        with:
+          install: false
       - run: ./build_and_test.sh
         shell: bash
       - name: Publish Test Report
