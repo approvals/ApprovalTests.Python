@@ -7,6 +7,7 @@ from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
 
+
 def get_version() -> str:
     sys.path.append(str(_SCRIPT_DIR.parent))
     from version import version_number
