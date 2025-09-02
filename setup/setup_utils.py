@@ -5,13 +5,10 @@ from typing import Dict, List
 
 from setuptools import find_packages, setup
 
-
-def get_parent_directory() -> Path:
-    return Path(__file__).parent
-
+_SCRIPT_DIR = Path(__file__).parent
 
 def get_version() -> str:
-    sys.path.append(str(get_parent_directory().parent))
+    sys.path.append(str(_SCRIPT_DIR.parent))
     from version import version_number
 
     assert version_number.startswith("v")
@@ -19,7 +16,7 @@ def get_version() -> str:
 
 
 def get_requirements_from_file(file: str) -> List[str]:
-    with open(get_parent_directory() / file) as f:
+    with open(_SCRIPT_DIR / file) as f:
         required = f.read().splitlines()
     return required
 
@@ -31,7 +28,7 @@ def do_the_setup(
     extra_requires: Dict[str, List[str]],
 ) -> None:
     # Ensure build directory exists for egg-info
-    build_dir = get_parent_directory() / "build"
+    build_dir = _SCRIPT_DIR / "build"
     build_dir.mkdir(exist_ok=True)
 
     setup(
@@ -51,7 +48,7 @@ def do_the_setup(
         },
         install_requires=required,
         extras_require=extra_requires,
-        long_description=(get_parent_directory().parent / "README.md").read_text(),
+        long_description=(_SCRIPT_DIR.parent / "README.md").read_text(),
         long_description_content_type="text/markdown",
         classifiers=[
             "Development Status :: 4 - Beta",
