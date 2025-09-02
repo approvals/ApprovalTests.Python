@@ -6,12 +6,12 @@ uv = "latest"
 venv = { path = ".venv", create = true, uv_create_args = ["--seed", "--quiet"] }
 
 [tasks]
-install_python_deps = "uv pip install -r requirements.dev.txt --quiet"
-test = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml"
-mypy = "python -m mypy ."
-integration = "python test__mypy_accepts_our_packages.py"
-isort = "python -m isort ."
-black = "python -m black ."
+"pip-install" = "uv pip install -r requirements.dev.txt --quiet"
+test = { run = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml", depends = ["pip-install"] }
+mypy = { run = "python -m mypy .", depends = ["pip-install"] }
+integration = { run = "python test__mypy_accepts_our_packages.py", depends = ["pip-install"] }
+isort = { run = "python -m isort .", depends = ["pip-install"] }
+black = { run = "python -m black .", depends = ["pip-install"] }
 
 [settings]
 # we put the python version in the .python-version file instead of here so that it's easy to override in the CI matrix
