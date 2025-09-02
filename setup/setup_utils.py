@@ -10,10 +10,11 @@ def get_parent_directory() -> Path:
 
 
 def get_version() -> str:
-    _version_file_contents = (get_parent_directory().parent / "version.py").read_text()
-    matched = re.search(r'"(.*)"', _version_file_contents)
-    return matched.group(1) if matched is not None else "UNKNOWN VERSION"
-
+    import sys
+    from pathlib import Path
+    sys.path.append(str(get_parent_directory().parent))
+    from version import version_number
+    return version_number
 
 def get_requirements_from_file(file: str) -> List[str]:
     with open(get_parent_directory() / file) as f:
