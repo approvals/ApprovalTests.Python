@@ -17,6 +17,7 @@ def get_version() -> str:
     assert version_number.startswith("v")
     return version_number[1:]
 
+
 def get_requirements_from_file(file: str) -> List[str]:
     with open(get_parent_directory() / file) as f:
         required = f.read().splitlines()
