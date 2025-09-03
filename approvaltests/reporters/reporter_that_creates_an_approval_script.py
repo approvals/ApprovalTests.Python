@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from typing_extensions import override
 
 from approval_utilities.utils import append_to_file, is_windows_os

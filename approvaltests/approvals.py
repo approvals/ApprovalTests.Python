@@ -22,7 +22,6 @@ from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.namer.namer_base import NamerBase
-from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.executable_command_reporter import (
     ExecutableCommandReporter,

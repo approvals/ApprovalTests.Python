@@ -1,5 +1,5 @@
 import json
-from typing import Callable, Dict, Iterator, List, Optional, Type
+from typing import Callable, Dict, Iterator, List, Optional
 
 from typing_extensions import override
 

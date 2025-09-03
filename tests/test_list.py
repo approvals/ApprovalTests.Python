@@ -1,4 +1,3 @@
-import os
 from unittest import TestCase
 
 from typing_extensions import override

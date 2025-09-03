@@ -1,6 +1,5 @@
 import argparse
 import typing
-from abc import ABC
 
 from typing_extensions import override
 

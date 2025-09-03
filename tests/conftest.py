@@ -1,7 +1,6 @@
 import pytest
 
 # The next line registers the plugin
-from approvaltests.integrations.pytest.pytest_plugin import pytest_configure
 from tests.approvals_config import configure_approvaltests
 
 

@@ -2,8 +2,6 @@ from pathlib import Path
 
 import requests
 
-from approval_utilities.utils import is_windows_os
-
 APPROVAL_TESTS_TEMP_DIRECTORY = Path(".approval_tests_temp")
 
 

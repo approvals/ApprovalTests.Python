@@ -1,5 +1,4 @@
 from setup_utils import do_the_setup, get_requirements_from_file
-from setuptools import find_packages, setup
 
 required = get_requirements_from_file("../requirements.prod.required.txt")
 

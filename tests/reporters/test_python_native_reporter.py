@@ -1,5 +1,4 @@
 import os
-import pathlib
 from pathlib import Path
 
 from approvaltests import verify
