@@ -1,4 +1,5 @@
 #!/bin/bash
 set -euo pipefail
 
-mise exec -- mdsnippets .
+dotnet tool install --global MarkdownSnippets.Tool
+mdsnippets .
