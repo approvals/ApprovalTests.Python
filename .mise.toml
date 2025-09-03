@@ -13,7 +13,7 @@ integration = { run = "python test__mypy_accepts_our_packages.py", depends = ["p
 [tasks.ruff]
 run = [
     "python -m ruff format .",
-    "python -m ruff check --select I --fix ."
+    "python -m ruff check --extend-select I --fix ."
 ]
 depends = ["pip-install"]
 
