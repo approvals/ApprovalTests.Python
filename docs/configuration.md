@@ -79,6 +79,6 @@ Here's the code for implementing it in `conftest.py` (so skip the code in `__ini
 def set_default_reporter_for_all_tests() -> None:
     configure_approvaltests()
 ```
-<sup><a href='/tests/conftest.py#L8-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-conftest_pytest_session_scoped' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/conftest.py#L7-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-conftest_pytest_session_scoped' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
