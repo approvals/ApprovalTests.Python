@@ -1,13 +1,9 @@
 2025-08-24
-- [ ] explore Mise w/ Nitsan (the PR from Jay)
 - [ ] more root dir cleanup
-- [ ] anything from last week
-- [-] clean up TODO list
 - [ ] remove mypy suppressions and fix
 
 2025-08-17
 - [ ] look at garbage collect of the with statement
-- [ ] build and test takes too long
 - [ ] promote _clear_custom_scrubbers to public and give instructions in the feature file
 - [ ] test this add_scrubber.md in java
 
