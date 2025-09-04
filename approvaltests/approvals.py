@@ -421,9 +421,11 @@ def verify_argument_parser(
 ) -> None:
     parser.formatter_class = lambda prog: argparse.HelpFormatter(prog, width=200)
     options = options or Options()
-    scrubber = lambda t: t.replace("options:", "<optional header>:").replace(
-        "optional arguments:", "<optional header>:"
-    )
+    def scrubber(t: str) -> str:
+        return t.replace("options:", "<optional header>:").replace(
+            "optional arguments:", "<optional header>:"
+        )
+
     verify(
         parser.format_help(),
         options=options.with_scrubber(scrubber),

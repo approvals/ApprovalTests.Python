@@ -8,7 +8,6 @@ disable=R0903, C0114, C0115, C0116, C0301,
     C0303,   # Trailing whitespace
     C0305,   # Trailing newlines (trailing-newlines)
     C0415,   # Import outside toplevel (...) (import-outside-toplevel)
-    C3001,   # Lambda expression assigned to a variable. Define a function using the "def" keyword instead. (unnecessary-lambda-assignment)
     E0401,   # Unable to import '...' (import-error)
     E0601,   # Using variable '...' before assignment (used-before-assignment)
     E0602,   # Undefined variable

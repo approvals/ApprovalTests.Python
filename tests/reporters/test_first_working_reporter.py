@@ -9,9 +9,7 @@ from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 
 class ReporterForTesting(Reporter):
     def __init__(self, success: bool, additional: Optional[Callable] = None) -> None:
-        if additional is None:
-            additional = lambda: None
-        self.additional = additional
+        self.additional = additional or (lambda: None)
         self.called = False
         self.success = success
 
