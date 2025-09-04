@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 from typing import Iterator
+
 from pytest import CaptureFixture
 
 from approval_utilities.utilities import markdown_table
@@ -8,7 +9,9 @@ from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 
 @contextmanager
-def custom_date_scrubber(example: str, regex: str, display_message: bool = True) -> Iterator[None]:
+def custom_date_scrubber(
+    example: str, regex: str, display_message: bool = True
+) -> Iterator[None]:
     DateScrubber.add_scrubber(example, regex, display_message=display_message)
     try:
         yield
