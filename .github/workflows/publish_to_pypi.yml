@@ -9,6 +9,7 @@ jobs:
   deploy:
     env:
       TWINE_USERNAME: __token__
+      TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
