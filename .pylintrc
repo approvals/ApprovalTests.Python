@@ -1,4 +1,54 @@
 [MESSAGES CONTROL]
-disable=R0903, C0114, C0115, C0116, C0301
+disable=R0903, C0114, C0115, C0116, C0301,
+    C0103,   # Attribute name "..." doesn't conform to snake_case naming style (invalid-name)
+    C0121,   # Comparison 'self.previous_timestamp != None' should be 'self.previous_timestamp is not None' (singleton-comparison)
+    C0123,   # Use isinstance() rather than type() for a typecheck. (unidiomatic-typecheck)
+    C0206,   # Consider iterating with .items() (consider-using-dict-items)
+    C0209,   # Formatting a regular string which could be an f-string (consider-using-f-string)
+    C0303,   # Trailing whitespace
+    C0305,   # Trailing newlines (trailing-newlines)
+    C0415,   # Import outside toplevel (...) (import-outside-toplevel)
+    C3001,   # Lambda expression assigned to a variable. Define a function using the "def" keyword instead. (unnecessary-lambda-assignment)
+    E0401,   # Unable to import '...' (import-error)
+    E0601,   # Using variable '...' before assignment (used-before-assignment)
+    E0602,   # Undefined variable
+    E0606,   # Possibly using variable '...' before assignment (possibly-used-before-assignment)
+    F0001,   # No module named
+    R0022,   # Useless option value for '...', '...' was moved to an optional extension, see https://pylint.readthedocs.io/en/latest/whatsnew/2/2.14/summary.html#removed-checkers. (useless-option-value)
+    R0205,   # Class '...' inherits from object, can be safely removed from bases in python3 (useless-object-inheritance)
+    R0801,   # Similar lines in 2 files
+    R0902,   # Too many instance attributes (8/7) (too-many-instance-attributes)
+    R0904,   # Too many public methods (too-many-public-methods)
+    R0913,   # Too many arguments (8/5) (too-many-arguments)
+    R0917,   # Too many positional arguments
+    R1702,   # Too many nested blocks (6/5) (too-many-nested-blocks)
+    R1704,   # Redefining argument with the local name '...' (redefined-argument-from-local)
+    R1705,   # Unnecessary "else/elif" after "return" (no-else-return)
+    R1713,   # Consider using str.join(sequence) for concatenating strings from an iterable (consider-using-join)
+    R1732,   # Consider using 'with' for resource-allocating operations (consider-using-with)
+    W0107,   # Unnecessary pass statement (unnecessary-pass)
+    W0108,   # Lambda may not be necessary (unnecessary-lambda)
+    W0212,   # Access to a protected member ... of a client class (protected-access)
+    W0237,   # Parameter 'approved_path' has been renamed to 'approved_filename' in overriding 'ExecutableCommandReporter.report' method (arguments-renamed)
+    W0401,   # Wildcard import ... (wildcard-import)
+    W0511,   # TODO comment
+    W0611,   # Unused ... imported from ... (unused-import)
+    W0612,   # Unused variable (unused-variable)
+    W0613,   # Unused argument '...' (unused-argument)
+    W0614,   # Unused import(s) ..., ..., ..., ..., ..., ... and ... from wildcard import of ... (unused-wildcard-import)
+    W0621,   # Redefining name '...' from outer scope (line 100) (redefined-outer-name)
+    W0622,   # Redefining built-in (redefined-builtin)
+    W0640,   # Cell variable ... defined in loop (cell-var-from-loop)
+    W0702,   # No exception type(s) specified (bare-except)
+    W0707,   # Consider explicitly re-raising using 'raise Exception(f"Invalid regex pattern '...',   # {e}") from e' (raise-missing-from)
+    W0718,   # Catching too general exception (broad-exception-caught)
+    W0719,   # Raising too general exception,   # ... (broad-exception-raised)
+    W1503,   # Redundant use of assert with constant value (redundant-unittest-assert)
+    W1510,   # '...' used without explicitly defining the value for 'check'. (subprocess-run-check)
+    W1514,   # Using open without explicitly specifying an encoding
+    W2101,   # '...' directly created in 'with' has no effect (useless-with-lock)
+    W3101,   # Missing timeout argument for method '...' can cause your program to hang indefinitely (missing-timeout)
+    W4904,   # Using deprecated class
+
 [MASTER]
 init-hook='import sys; sys.path.append("C:\\Code\\ApprovalTests.Python\\")'
