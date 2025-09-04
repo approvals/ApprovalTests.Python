@@ -2,57 +2,42 @@
 
 ## Concept
 
-These are the basic dev scripts that every repo should have.
+These are the basic dev scripts that every repo should have. They provide a standardized interface for common development tasks that works across different platforms and environments.
 
-The underlying tool that supports the uderlying tools and tasks will be Mise-en-Place, aka "Mise". See https://mise.jdx.dev/.
+The underlying tool is Mise-en-Place, aka "Mise" (https://mise.jdx.dev/), which manages tools and tasks within the project scope without requiring system-wide installations.
 
-The idea here is that you can clone a repo on a clean machine, then run one of these scripts, and it will just work (assuming Mise is already installed).
+The idea is that you can clone a repo on a clean machine, then run one of these scripts, and it will just work (assuming Mise is already installed).
 
 ## Prerequisites
 
-1. Mise
+1. **Mise** - The only system requirement. All other tools are managed by Mise per-project.
 
-Mise will verify that all the tools we're going to use in the script are already installed.
-it installs the tools that take care of the dependancies
-it will create a Virtual env
-we need to be EXPLICIT about how the virtual env is configured.
+Mise automatically:
+- Installs required tools (defined in `.mise.toml`)
+- Creates and manages virtual environments  
+- Handles dependencies
+- Runs tasks with proper environment setup
 
+## Implemented Scripts
 
+### Core Scripts
 
-## Basic functionality
+1. **`build_and_test.sh/.cmd`** - Runs the full build pipeline including tests, type checking, linting, and integration tests
+2. **`format_code.sh`** - Formats code using configured formatters
+3. **`run_mdsnippets.sh/.cmd`** - Updates markdown documentation with code snippets
 
-1. build_and_test (builds, runs tests, any other thing that is associated with that process)
-2. format_code
-3. mdsnippets
+### Script Implementation Details
 
-## Scripts syntax
+**Bash Scripts (.sh):**
+- Include error handling (`set -euo pipefail`)
+- Check for Mise availability with helpful error messages
+- Use `mise task run` to execute configured tasks
+- Support parallel task execution where appropriate
 
-For a given script we'll have both a Bash script and a CMD script. The Bash script will be named `script`, and the CMD script will be named `script.cmd`. The script will be one line long, containing only `mise run ...`.
+**Windows Scripts (.cmd):**
+- Use Git Bash to execute the corresponding `.sh` file
+- Provide cross-platform compatibility without duplicating logic
 
-## What and Why
+### Configuration
 
-Mise is a task and tool manager, like tox.
-Tools like adding a chocolatey, but not system installed, per repo
-
-## Replacing
-tox
-
-## Adding
-managing python and other tools
-
-## Benefits
-
-simplify build_and_test
-
-speed
-
-doesn't assume system-installed tools
-
-## Entry Points
- * format code (black)
- * build_and_test
- * mdsnippets
- * lint (not used)
-
-
-
+Tasks are defined in `.mise.toml`.
