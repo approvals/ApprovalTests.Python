@@ -43,18 +43,15 @@ jobs:
         env:
             TWINE_USERNAME: __token__
             TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
-        run: |
-          ./setup/publish_approval_utilities.sh
+        run: setup/publish_approval_utilities.sh
       - name: Build and publish approvaltests
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          ./setup/publish_approvaltests.sh
+        run: setup/publish_approvaltests.sh
       - name: Build and publish minimal
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVALTESTS_MINIMAL }}
-        run: |
-          ./setup/publish_approvaltests_minimal.sh
+        run: setup/publish_approvaltests_minimal.sh
           
