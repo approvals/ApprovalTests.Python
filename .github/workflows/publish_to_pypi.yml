@@ -7,6 +7,8 @@ on:
 
 jobs:
   deploy:
+    env:
+      TWINE_USERNAME: __token__
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -41,17 +43,14 @@ jobs:
         shell: bash
       - name: Build and publish approval_utilities
         env:
-            TWINE_USERNAME: __token__
             TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
         run: setup/publish_approval_utilities.sh
       - name: Build and publish approvaltests
         env:
-          TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: setup/publish_approvaltests.sh
       - name: Build and publish minimal
         env:
-          TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVALTESTS_MINIMAL }}
         run: setup/publish_approvaltests_minimal.sh
           
