@@ -45,6 +45,6 @@ jobs:
       - run: setup/publish_approvaltests.sh
         env:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      - run: setup/publish_approvaltests_minimal.sh
+      - run: setup/publish_minimal.sh
         env:
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVALTESTS_MINIMAL }}
