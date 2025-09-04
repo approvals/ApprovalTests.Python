@@ -15,21 +15,17 @@ choco install python --version=3.8
 choco install pip
 choco install pycharm
 choco install ditto
+choco install mise
 
 # Keyboard rotation for Dvorak
 Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/LearnWithLlew/MobTime.keyboardswitching/main/install.windows.ps1 | Invoke-Expression
 
 syspin "C:\Program Files (x86)\JetBrains\PyCharm 2020.3.2\bin\pycharm64.exe" "Pin to taskbar"
 
-# choco install visualstudio2019buildtools
-pip install tox
-
 # Clone repo
 & "C:\Program Files\Git\cmd\git.exe" clone https://github.com/approvals/ApprovalTests.Python.git C:\Code\ApprovalTests.Python
 cd C:\Code\ApprovalTests.Python
 
-tox -e dev
-tox -e lint
 
 # Done
 cls
