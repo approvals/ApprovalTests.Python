@@ -1,8 +1,19 @@
+from contextlib import contextmanager
+from typing import Iterator
 from pytest import CaptureFixture
 
 from approval_utilities.utilities import markdown_table
 from approvaltests import Options, verify, verify_exception
 from approvaltests.scrubbers.date_scrubber import DateScrubber
+
+
+@contextmanager
+def custom_date_scrubber(example: str, regex: str, display_message: bool = True) -> Iterator[None]:
+    DateScrubber.add_scrubber(example, regex, display_message=display_message)
+    try:
+        yield
+    finally:
+        DateScrubber._clear_custom_scrubbers()
 
 
 def test_supported_formats() -> None:
@@ -108,17 +119,11 @@ def test_custom_scrubber_displays_message(capsys: CaptureFixture[str]) -> None:
         DateScrubber.add_scrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", display_message=False)
 
     """
-    try:
-        DateScrubber.add_scrubber("2023-Dec-25", r"\d{4}-[A-Za-z]{3}-\d{2}")
+    with custom_date_scrubber("2023-Dec-25", r"\d{4}-[A-Za-z]{3}-\d{2}"):
         verify(capsys.readouterr().out, options=Options().inline())
-    finally:
-        DateScrubber._clear_custom_scrubbers()
 
 
 def test_custom_scrubber_message_can_be_suppressed(capsys: CaptureFixture[str]) -> None:
-    try:
-        regex = r"\d{4}-[A-Za-z]{3}-\d{2}"
-        DateScrubber.add_scrubber("2023-Dec-25", regex, display_message=False)
+    regex = r"\d{4}-[A-Za-z]{3}-\d{2}"
+    with custom_date_scrubber("2023-Dec-25", regex, display_message=False):
         assert capsys.readouterr().out == ""
-    finally:
-        DateScrubber._clear_custom_scrubbers()
