@@ -1,20 +1,10 @@
 # ApprovalTests.Python - Claude Development Notes
 
-## Running Tests & Type Checking
-
-- Use `./build_and_test.sh` for full build (this includes mypy)
-
-## MyPy Configuration
-
-- Currently enabling strict mode rules incrementally
-- Enabled: `disallow_any_generics` (completed)
-- Still disabled: `no_implicit_reexport`, `disallow_subclassing_any`
-- See `mypy.ini` for current configuration
+- Use `./build_and_test.sh` for full build (this includes mypy and lint)
 
 ## Code Style
 
-- Use `uv tool run ruff check .` for linting
-- Use `uv tool run black .` for formatting
+- Prefer `Path` over strings
 - Follow existing patterns in the codebase
 - Prefer complete function names and type hints over docstrings
 
