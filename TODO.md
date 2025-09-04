@@ -1,3 +1,10 @@
+- [ ] how to make a dev release (with Jay)
+- [ ] Continuous Delivery (with Jay)
+   - [ ] https://test.pypi.org/ credentials
+   - [ ] test_current_release against https://test.pypi.org/
+   - [ ] every commit releases to https://test.pypi.org/
+
+
 2025-08-24
 - [ ] more root dir cleanup
 - [ ] remove mypy suppressions and fix
