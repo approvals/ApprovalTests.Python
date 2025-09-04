@@ -1,10 +1,14 @@
 [MESSAGES CONTROL]
-disable=R0903, C0114, C0115, C0116, C0301,
-    C0103,   # Attribute name "..." doesn't conform to snake_case naming style (invalid-name)
+disable=
+    C0103,   # Type variable name "..." doesn't conform to predefined naming style (invalid-name)
+    C0114,   # Missing module docstring (missing-module-docstring)
+    C0115,   # Missing class docstring (missing-class-docstring)
+    C0116,   # Missing function or method docstring (missing-function-docstring)
     C0121,   # Comparison 'self.previous_timestamp != None' should be 'self.previous_timestamp is not None' (singleton-comparison)
     C0123,   # Use isinstance() rather than type() for a typecheck. (unidiomatic-typecheck)
     C0206,   # Consider iterating with .items() (consider-using-dict-items)
     C0209,   # Formatting a regular string which could be an f-string (consider-using-f-string)
+    C0301,   # Line too long (112/100) (line-too-long)
     C0303,   # Trailing whitespace
     C0305,   # Trailing newlines (trailing-newlines)
     C0415,   # Import outside toplevel (...) (import-outside-toplevel)
@@ -17,6 +21,7 @@ disable=R0903, C0114, C0115, C0116, C0301,
     R0205,   # Class '...' inherits from object, can be safely removed from bases in python3 (useless-object-inheritance)
     R0801,   # Similar lines in 2 files
     R0902,   # Too many instance attributes (8/7) (too-many-instance-attributes)
+    R0903,   # Too few public methods
     R0904,   # Too many public methods (too-many-public-methods)
     R0913,   # Too many arguments (8/5) (too-many-arguments)
     R0917,   # Too many positional arguments
