@@ -35,9 +35,7 @@ class MarkdownTable(Verifiable):
 
     @staticmethod
     def print_row(*column_names: Any) -> str:
-        row = "|"
-        for column in column_names:
-            row += f" {column} |"
+        row = "| " + " | ".join(map(str, column_names)) + " |"
         return row + "\n"
 
     def add_rows_for_inputs(

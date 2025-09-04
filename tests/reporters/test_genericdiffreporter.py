@@ -37,9 +37,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_document_existing_reporters(self) -> None:
         reporters = self.factory.list()
         reporters.sort()
-        markdown = ""
-        for reporter in reporters:
-            markdown += f"* {reporter}\n"
+        markdown = "".join(f"* {reporter}\n" for reporter in reporters)
 
         verify(markdown, options=Options().for_file.with_extension(".md"))
 

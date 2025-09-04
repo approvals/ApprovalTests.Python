@@ -23,7 +23,6 @@ disable=R0903, C0114, C0115, C0116, C0301,
     R1702,   # Too many nested blocks (6/5) (too-many-nested-blocks)
     R1704,   # Redefining argument with the local name '...' (redefined-argument-from-local)
     R1705,   # Unnecessary "else/elif" after "return" (no-else-return)
-    R1713,   # Consider using str.join(sequence) for concatenating strings from an iterable (consider-using-join)
     R1732,   # Consider using 'with' for resource-allocating operations (consider-using-with)
     W0107,   # Unnecessary pass statement (unnecessary-pass)
     W0108,   # Lambda may not be necessary (unnecessary-lambda)
