@@ -2,7 +2,7 @@ name: Publish Python Package to PyPI
 
 on:
   release:
-    types: [ published ]
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -41,11 +41,10 @@ jobs:
         shell: bash
       - run: setup/publish_approval_utilities.sh
         env:
-            TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
       - run: setup/publish_approvaltests.sh
         env:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       - run: setup/publish_approvaltests_minimal.sh
         env:
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVALTESTS_MINIMAL }}
-          
