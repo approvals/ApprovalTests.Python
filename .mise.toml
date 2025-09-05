@@ -1,5 +1,6 @@
 [tools]
 uv = "latest"
+"dotnet:MarkdownSnippets.Tool" = "latest"
 
 [env.'_'.python]
 venv = { path = ".venv", create = true, uv_create_args = ["--seed", "--quiet"] }
@@ -21,3 +22,5 @@ depends = ["pip-install"]
 [settings]
 # we put the python version in the .python-version file instead of here so that it's easy to override in the CI matrix
 idiomatic_version_file_enable_tools = ["python"]
+# dotnet backend is experimental
+experimental = true
