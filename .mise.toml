@@ -1,5 +1,9 @@
 [tools]
 uv = "latest"
+dotnet = [
+    { version="9.0.304", os=[ "linux", "macos"] },
+    { version="9.0.8", os=[ "windows"] },
+]
 "dotnet:MarkdownSnippets.Tool" = "latest"
 
 [env.'_'.python]
