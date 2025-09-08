@@ -1,6 +1,38 @@
 [format]
 line-ending = "lf"
 
+# See https://docs.astral.sh/ruff/rules/
+
 [lint]
+select = [
+    "ALL",
+]
 ignore = [
+    "D", # pydocstyle
+
+    # [*] we currently have these violations that are fixable if we want
+    "B010",  # Do not call `setattr` with a constant attribute value. It is not any safer than normal property access.
+    "C413",  # Unnecessary `list()` call around `sorted()`
+    "COM812",  # Trailing comma missing
+    "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
+    "PIE790",  # Unnecessary `pass` statement
+    "PIE800",  # Unnecessary spread `**`
+    "PIE808",  # Unnecessary `start` argument in `range`
+    "PLW1510",  # `subprocess.run` without explicit `check` argument
+    "RET505",  # Unnecessary `...` after `return` statement
+    "RSE102",  # Unnecessary parentheses on raised exception
+    "RUF010",  # Use explicit conversion flag
+    "SIM114",  # Combine `if` branches using logical `or` operator
+    "SIM118",  # Use `key not in dict` instead of `key not in dict.keys()`
+    "SIM300",  # Yoda condition detected
+    "TC006",  # Add quotes to type expression in `typing.cast()`
+    "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
+    "UP004",  # Class `...` inherits from `object`
+    "UP009",  # UTF-8 encoding declaration is unnecessary
+    "UP015",  # Unnecessary mode argument
+    "UP020",  # Use builtin `open`
+    "UP032",  # Use f-string instead of `format` call
+    "UP035",  # Import from `collections.abc` instead
+    "UP037",  # Remove quotes from type annotation
+
 ]

@@ -29,7 +29,7 @@ depends = ["pip-install"]
 [tasks.tidy_code]
 run = [
     "python -m ruff format .",
-    "python -m ruff check --extend-select I --fix-only .",
+    "python -m ruff check --fix-only .",
 ]
 depends = ["pip-install"]
 
