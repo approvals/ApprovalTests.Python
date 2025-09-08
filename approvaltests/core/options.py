@@ -26,7 +26,7 @@ class FileOptions:
             extension_with_dot = "." + extension_with_dot
         if no_override and "extension_with_dot" in self.fields:
             extension_with_dot = self.fields["extension_with_dot"]
-        return Options({**self.fields, **{"extension_with_dot": extension_with_dot}})
+        return Options({**self.fields, "extension_with_dot": extension_with_dot})
 
 
 class Options:
@@ -46,7 +46,7 @@ class Options:
         return self.fields.get("comparator", FileComparator())
 
     def with_comparator(self, comparator: Comparator) -> "Options":
-        return Options({**self.fields, **{"comparator": comparator}})
+        return Options({**self.fields, "comparator": comparator})
 
     def scrub(self, data: str) -> str:
         if self.has_scrubber():
@@ -54,7 +54,7 @@ class Options:
         return data
 
     def with_scrubber(self, scrubber_func: Callable[[str], str]) -> "Options":
-        return Options({**self.fields, **{"scrubber_func": scrubber_func}})
+        return Options({**self.fields, "scrubber_func": scrubber_func})
 
     def add_scrubber(self, scrubber: Callable[[str], str]) -> "Options":
         if self.has_scrubber():
@@ -65,10 +65,10 @@ class Options:
         return "scrubber_func" in self.fields
 
     def with_reporter(self, reporter: "Reporter") -> "Options":
-        return Options({**self.fields, **{"reporter": reporter}})
+        return Options({**self.fields, "reporter": reporter})
 
     def with_namer(self, namer: "Namer") -> "Options":
-        return Options({**self.fields, **{"namer": namer}})
+        return Options({**self.fields, "namer": namer})
 
     @property
     def for_file(self) -> FileOptions:
