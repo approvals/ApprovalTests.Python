@@ -15,13 +15,13 @@ DELETE_ME_TO_APPROVE_ = "\n***** DELETE ME TO APPROVE *****"
 
 class InlineOptions:
     @staticmethod
-    def automatic() -> "InlineOptions":
+    def automatic() -> InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
         class AutomaticInlineOptions(InlineOptions):
             @override
-            def apply(self, options: "Options") -> "Options":
+            def apply(self, options: Options) -> Options:
                 return options.with_reporter(
                     InlinePythonReporter(ReporterThatAutomaticallyApproves())
                 )
@@ -29,13 +29,13 @@ class InlineOptions:
         return AutomaticInlineOptions()
 
     @staticmethod
-    def semi_automatic() -> "InlineOptions":
+    def semi_automatic() -> InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
         class SemiAutomaticInlineOptions(InlineOptions):
             @override
-            def apply(self, options: "Options") -> "Options":
+            def apply(self, options: Options) -> Options:
                 return options.with_reporter(
                     InlinePythonReporter(
                         ReporterThatAutomaticallyApproves(),
@@ -46,7 +46,7 @@ class InlineOptions:
         return SemiAutomaticInlineOptions()
 
     @staticmethod
-    def semi_automatic_with_previous_approved() -> "InlineOptions":
+    def semi_automatic_with_previous_approved() -> InlineOptions:
         from approvaltests.namer.inline_python_reporter import InlinePythonReporter
         from approvaltests.reporters import ReporterThatAutomaticallyApproves
 
@@ -64,7 +64,7 @@ class InlineOptions:
 
         class PreviousCaptureInlineOptions(InlineOptions):
             @override
-            def apply(self, options: "Options") -> "Options":
+            def apply(self, options: Options) -> Options:
                 return options.with_reporter(
                     InlinePythonReporter(
                         ReporterThatAutomaticallyApproves(),
@@ -74,7 +74,7 @@ class InlineOptions:
 
         return PreviousCaptureInlineOptions()
 
-    def apply(self, options: "Options") -> "Options":
+    def apply(self, options: Options) -> Options:
         return options
 
     @staticmethod
@@ -83,12 +83,12 @@ class InlineOptions:
 
         class ShowCodeInlineOptions(InlineOptions):
             @override
-            def apply(self, options: "Options") -> "Options":
+            def apply(self, options: Options) -> Options:
                 return options.with_reporter(InlinePythonReporter(options.reporter))
 
         class DoNotShowCodeInlineOptions(InlineOptions):
             @override
-            def apply(self, options: "Options") -> "Options":
+            def apply(self, options: Options) -> Options:
                 return options
 
         return ShowCodeInlineOptions() if do_show_code else DoNotShowCodeInlineOptions()
