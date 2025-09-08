@@ -4,9 +4,12 @@ import sys
 import tempfile
 import time
 import typing
+from packaging.version import Version
 
 from version import version_number
 
+# normalize version number
+version_number = str(Version(version_number))
 
 def main() -> None:
     for package_name, setup_file in [
@@ -29,8 +32,7 @@ def main() -> None:
                 "pip",
                 "install",
                 "--force-reinstall",
-                # version_number starts with `v`; remove that character
-                f"dist/{package_name}-{version_number[1:]}-{build_number}-py3-none-any.whl",
+                f"dist/{package_name}-{version_number}-{build_number}-py3-none-any.whl",
                 "--quiet",
                 "--no-warn-script-location",
             ]
