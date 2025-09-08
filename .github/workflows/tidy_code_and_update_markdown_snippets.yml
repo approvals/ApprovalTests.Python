@@ -1,4 +1,4 @@
-name: Formatting and Snippets
+name: Tidy Code and Update Markdown Snippets
 on:
   push:
     branches: ['main']
@@ -8,14 +8,14 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - uses: jdx/mise-action@v3
-    - run: ./format_code.sh
+    - run: ./tidy_code.sh
     - run: ./run_mdsnippets.sh
       shell: bash
     - name: Git Commit and Push
       uses: github-actions-x/commit@v2.9
       with:
         github-token: "${secrets.GITHUB_TOKEN}"
-        commit-message: ". d format and update markdown snippets"
+        commit-message: ". d tidy code and update markdown snippets"
         rebase: 'true'
         push-branch: 'main'
         name: github actions
