@@ -1,5 +1,5 @@
 import re
-from collections import abc, defaultdict
+from collections import defaultdict
 from typing import Callable, DefaultDict, Union
 
 from approval_utilities.utilities.logger.logging_instance import print_type
