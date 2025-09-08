@@ -10,7 +10,7 @@ def format_list(alist: List[Any], formatter: Optional[Callable], header: str) ->
     return text
 
 
-class FormatLineItem(object):
+class FormatLineItem:
     def __init__(self) -> None:
         self.index = 0
 
