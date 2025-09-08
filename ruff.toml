@@ -27,7 +27,6 @@ ignore = [
     "SIM300",  # Yoda condition detected
     "TC006",  # Add quotes to type expression in `typing.cast()`
     "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
-    "UP004",  # Class `...` inherits from `object`
     "UP009",  # UTF-8 encoding declaration is unnecessary
     "UP015",  # Unnecessary mode argument
     "UP020",  # Use builtin `open`
