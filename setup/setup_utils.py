@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Dict, List
 
 from setuptools import find_packages, setup
+from packaging.version import Version
 
 _SCRIPT_DIR = Path(__file__).parent
 
@@ -10,9 +11,7 @@ _SCRIPT_DIR = Path(__file__).parent
 def get_version() -> str:
     sys.path.append(str(_SCRIPT_DIR.parent))
     from version import version_number
-
-    assert version_number.startswith("v")
-    return version_number[1:]
+    return str(Version(version_number))
 
 
 def get_requirements_from_file(file: str) -> List[str]:
