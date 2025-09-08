@@ -15,4 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: marocchino/validate-dependabot@v3
+      - uses: cardinalby/schema-validator-action@v3
+        with:
+          file: '.github/dependabot.yml'
+          schema: 'https://json.schemastore.org/dependabot-2.0.json'
+          mode: 'lax'  # Error: Keyword not supported: "x-intellij-enum-metadata" at https://json.schemastore.org/dependabot-2.0.json#
