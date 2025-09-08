@@ -3,12 +3,4 @@ line-ending = "lf"
 
 [lint]
 ignore = [
-    "E721",    # Use `is` and `is not` for type comparisons, or `isinstance()` for isinstance checks
-    "F841",    # Local variable `...` is assigned to but never used
-    "E722",    # Do not use bare `except`
-    "F405",    # `...` may be undefined, or defined from star imports
-    "F403",    # `from .... import *` used; unable to detect undefined names
-    "F401",    # `...` imported but unused; consider removing, adding to `__all__`, or using a redundant alias
-    "E731",    # Do not assign a `lambda` expression, use a `def`
-    "E711",    # Comparison to `None` should be `cond is not None`
 ]
