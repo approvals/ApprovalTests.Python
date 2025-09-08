@@ -16,6 +16,7 @@ disable=
     E0601,   # Using variable '...' before assignment (used-before-assignment)
     E0602,   # Undefined variable
     E0606,   # Possibly using variable '...' before assignment (possibly-used-before-assignment)
+    E0611,   # No name '...' in module '...' (no-name-in-module)
     F0001,   # No module named
     R0022,   # Useless option value for '...', '...' was moved to an optional extension, see https://pylint.readthedocs.io/en/latest/whatsnew/2/2.14/summary.html#removed-checkers. (useless-option-value)
     R0205,   # Class '...' inherits from object, can be safely removed from bases in python3 (useless-object-inheritance)
