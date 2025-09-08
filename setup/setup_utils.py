@@ -2,8 +2,8 @@ import sys
 from pathlib import Path
 from typing import Dict, List
 
-from setuptools import find_packages, setup
 from packaging.version import Version
+from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
 
@@ -11,6 +11,7 @@ _SCRIPT_DIR = Path(__file__).parent
 def get_version() -> str:
     sys.path.append(str(_SCRIPT_DIR.parent))
     from version import version_number
+
     return str(Version(version_number))
 
 
