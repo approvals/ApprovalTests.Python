@@ -28,7 +28,6 @@ ignore = [
     "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
     "UP009",  # UTF-8 encoding declaration is unnecessary
     "UP015",  # Unnecessary mode argument
-    "UP032",  # Use f-string instead of `format` call
     "UP035",  # Import from `collections.abc` instead
     "UP037",  # Remove quotes from type annotation
 
