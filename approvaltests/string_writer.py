@@ -1,4 +1,3 @@
-import io
 from typing import Optional
 
 from typing_extensions import override
@@ -34,7 +33,7 @@ class StringWriter(Writer):
     @override
     def write_received_file(self, received_file: str) -> str:
         create_directory_if_needed(received_file)
-        with io.open(
+        with open(
             received_file,
             mode="wt",
             encoding=self.encoding,

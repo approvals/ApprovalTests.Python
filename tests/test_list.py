@@ -24,7 +24,7 @@ class TestList(TestCase):
     def test_uppercase(self) -> None:
         alist = ["a", "b", "c", "d"]
         approvals.verify_all(
-            "uppercase", alist, lambda x: "{0} => {1}".format(x, x.upper())
+            "uppercase", alist, lambda x: f"{x} => {x.upper()}"
         )
 
     def test_format_line_part1(self) -> None:

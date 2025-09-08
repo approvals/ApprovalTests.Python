@@ -170,7 +170,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def assertFileDoesNotExist(self, file_path: str) -> None:
         file_exists = os.path.isfile(file_path)
         if file_exists:
-            msg = "File {} exists when it shouldn't".format(file_path)
+            msg = f"File {file_path} exists when it shouldn't"
             self.fail(msg)
 
     def assertFileIsEmpty(self, file_path: str) -> None:
