@@ -46,6 +46,7 @@ def execute_script(directory: str, log_file: str) -> None:
     print(f"Executing script: {full_script=}")
     result = subprocess.run(
         [sys.executable, full_script, directory, log_file],
+        check=False,
         capture_output=True,
         text=True,
     )

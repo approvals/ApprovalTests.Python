@@ -17,7 +17,6 @@ ignore = [
     "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
     "PIE790",  # Unnecessary `pass` statement
     "PIE808",  # Unnecessary `start` argument in `range`
-    "PLW1510",  # `subprocess.run` without explicit `check` argument
     "RET505",  # Unnecessary `...` after `return` statement
     "RSE102",  # Unnecessary parentheses on raised exception
     "RUF010",  # Use explicit conversion flag
