@@ -8,6 +8,7 @@ uv_create_args = ["--seed", "--quiet"]
 
 [tasks]
 "pip-install" = "uv pip install -r requirements.dev.txt --quiet"
+build_and_test.depends = ["test", "mypy", "lint", "integration"]
 
 [tasks.test]
 run = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml"
@@ -28,7 +29,7 @@ depends = ["pip-install"]
 [tasks.ruff]
 run = [
     "python -m ruff format .",
-    "python -m ruff check --extend-select I --fix ."
+    "python -m ruff check --extend-select I --fix .",
 ]
 depends = ["pip-install"]
 
