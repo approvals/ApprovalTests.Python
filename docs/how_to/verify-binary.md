@@ -24,7 +24,7 @@ filename = get_adjacent_file(name)
 with open(filename, mode="rb") as f:
     verify_binary(f.read(), ".png")
 ```
-<sup><a href='/tests/test_verify.py#L184-L189' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_binary_image' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_verify.py#L183-L188' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_binary_image' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Which will produce
