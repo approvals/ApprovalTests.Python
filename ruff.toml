@@ -16,7 +16,6 @@ ignore = [
     "COM812",  # Trailing comma missing
     "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
     "PIE790",  # Unnecessary `pass` statement
-    "PIE800",  # Unnecessary spread `**`
     "PIE808",  # Unnecessary `start` argument in `range`
     "PLW1510",  # `subprocess.run` without explicit `check` argument
     "RET505",  # Unnecessary `...` after `return` statement
