@@ -26,7 +26,7 @@ depends = ["pip-install"]
 run = "python test__mypy_accepts_our_packages.py"
 depends = ["pip-install"]
 
-[tasks.ruff]
+[tasks.tidy_code]
 run = [
     "python -m ruff format .",
     "python -m ruff check --extend-select I --fix .",
