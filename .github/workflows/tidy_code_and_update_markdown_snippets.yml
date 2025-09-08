@@ -11,6 +11,9 @@ jobs:
     - run: ./tidy_code.sh
     - run: ./run_mdsnippets.sh
       shell: bash
+    # ensure that the above changes didn't break the build
+    - run: ./build_and_test.sh
+      shell: bash
     - name: Git Commit and Push
       uses: github-actions-x/commit@v2.9
       with:
