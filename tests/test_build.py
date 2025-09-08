@@ -15,7 +15,7 @@ def test_no_imports_from_build_directory() -> None:
             if filename.startswith(".") or not filename.endswith(".py"):
                 continue
             file_path = os.path.join(dirpath, filename)
-            with open(file_path, "r", encoding="utf-8") as file:
+            with open(file_path, encoding="utf-8") as file:
                 source = file.read()
             try:
                 tree = ast.parse(source, filename=file_path)

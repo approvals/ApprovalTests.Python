@@ -99,7 +99,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
         reporter.report(namer.get_received_filename(), approved)
 
-        with open(approved, "r") as approved_file:
+        with open(approved) as approved_file:
             actual_contents = approved_file.read()
         self.assertEqual(actual_contents, approved_contents)
 
@@ -108,7 +108,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         saved_reporters_file = os.path.join(n.get_directory(), "saved-reporters.json")
         self.factory.save(saved_reporters_file)
         try:
-            with open(saved_reporters_file, "r") as f:
+            with open(saved_reporters_file) as f:
                 file_contents = f.read()
                 # remove the absolute path to the python_native_reporter.py file since it is different on every machine
                 regex = re.compile(r'.*"([^"]*)python_native_reporter.py')

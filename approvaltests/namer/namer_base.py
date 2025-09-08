@@ -33,7 +33,7 @@ class NamerBase(Namer):
                 self.config_directory(), "approvaltests_config.json"
             )
             if os.path.exists(config_file):
-                with open(config_file, "r", encoding="utf8") as file:
+                with open(config_file, encoding="utf8") as file:
                     self.config = json.load(file)
             else:
                 self.config = {}

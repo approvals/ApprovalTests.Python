@@ -11,7 +11,7 @@ def test_writes_file(tmp_path: Path) -> None:
     filename = os.path.join(str(tmp_path), "stuff.txt")
     sw.write_received_file(filename)
 
-    with open(filename, "r") as received:
+    with open(filename) as received:
         assert contents == received.read()
 
 
@@ -21,7 +21,7 @@ def test_writes_file_to_missing_directory(tmp_path: Path) -> None:
     filename = os.path.join(str(tmp_path), "non_existent_folder", "./stuff.txt")
     sw.write_received_file(filename)
 
-    with open(filename, "r") as received:
+    with open(filename) as received:
         assert contents == received.read()
 
 

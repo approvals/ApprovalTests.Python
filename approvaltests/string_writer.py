@@ -35,7 +35,7 @@ class StringWriter(Writer):
         create_directory_if_needed(received_file)
         with open(
             received_file,
-            mode="wt",
+            mode="w",
             encoding=self.encoding,
             errors=self.errors,
             newline=self.newline,

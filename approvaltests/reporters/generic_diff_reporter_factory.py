@@ -77,7 +77,7 @@ class GenericDiffReporterFactory:
         return file_name
 
     def load(self, file_name: str) -> List[GenericDiffReporterConfig]:
-        with open(file_name, "r", encoding="utf8") as file:
+        with open(file_name, encoding="utf8") as file:
             configs = json.load(file)
         self.reporter_configs = [create_config(config) for config in configs]
         return self.reporter_configs
