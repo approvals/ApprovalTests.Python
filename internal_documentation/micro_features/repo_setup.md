@@ -54,6 +54,12 @@ Tasks are defined in `.mise.toml`.
 
 Tasks should pass `--quiet` or similar to each tool, to keep the console output minimal.
 
+Tasks should either:
+ - execute a single command, or
+ - delegate to other tasks
+
+**NEVER** write descriptions for tasks
+
 ## Tool Version Management
 
 ### Primary language/runtime
