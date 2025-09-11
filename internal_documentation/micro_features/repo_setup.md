@@ -32,8 +32,8 @@ Prefer to name scripts and tasks using `snake_case`.
 
 **Bash Scripts:**
 - `build_and_test` checks for Mise availability and includes shebang and error handling (`set -euo pipefail`)
-- Use `mise task --quiet run` to execute configured tasks
-- No extension on the file name
+- Every bash script runs exactly one command: `mise task --quiet run NAME` (where NAME is the name of the task and the basename of the script)
+- No extension on the file name of Bash scripts
 
 **Windows Scripts (.cmd):**
 Every batch file should be exactly:
