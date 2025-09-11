@@ -6,30 +6,23 @@
 
 These are the basic dev scripts that every repo should have. They provide a standardized interface for common development tasks that works across different platforms and environments.
 
-The underlying tool is Mise-en-Place, aka "Mise" (https://mise.jdx.dev/), which manages tools and tasks within the project scope without requiring system-wide installations.
-
-The idea is that you can clone a repo on a clean machine, then run one of these scripts, and it will just work (assuming Mise is already installed).
+- **`build_and_test`** - Runs the full build pipeline including tests and lint. Also used by CI.
+- **`tidy_code`** - Formats code and applies automatic fixes (e.g. removing unused imports)
+- **`update_docs`** - Updates markdown documentation with code snippets (See https://github.com/SimonCropp/MarkdownSnippets)
+- **`run`** - For projects that aren't a library, run it. (Build as necessary.)
 
 ## Prerequisites
 
 1. **Mise** - The only system requirement. All other tools are managed by Mise per-project.
 
+The underlying tool is Mise-en-Place, aka "Mise" (https://mise.jdx.dev/), which manages tools and tasks within the project scope without requiring system-wide installations.
+
+The idea is that you can clone a repo on a clean machine, then run one of these scripts, and it will just work (assuming Mise is already installed).
+
 Mise:
 - Installs required tools (defined in `.mise.toml`)
 - Creates and manages Python virtual environments (if needed)
 - Runs tasks (in parallel where appropriate)
-
-## 
-
-### Core
-
-1. **`build_and_test`** - Runs the full build pipeline including tests and lint. Also used by CI.
-2. **`tidy_code`** - Formats code and applies automatic fixes (e.g. removing unused imports)
-3. **`update_docs`** - Updates markdown documentation with code snippets (See https://github.com/SimonCropp/MarkdownSnippets)
-4. **`run`** - For projects that aren't a library, run it. (Build as necessary.)
-  - For desktop apps, launch the app
-  - For web sites, open it in a browser
-  - For phone apps, open it in a phone emulator
 
 ### Script Implementation Details
 
