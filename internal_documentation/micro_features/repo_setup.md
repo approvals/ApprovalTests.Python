@@ -52,6 +52,8 @@ Every batch file should be exactly:
 
 Tasks are defined in `.mise.toml`.
 
+Tasks should pass `--quiet` or similar to each tool, to keep the console output minimal.
+
 ## Tool Version Management
 
 ### Primary language/runtime
