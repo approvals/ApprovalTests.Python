@@ -44,35 +44,33 @@ def log_from_inner_method() -> None:
 
 
 def test_standard_logger() -> None:
-    with verify_simple_logger():
-        with SimpleLogger.use_markers() as m:
-            log_from_inner_method()
+    with verify_simple_logger(), SimpleLogger.use_markers() as m:
+        log_from_inner_method()
 
 
 def test_timestamps() -> None:
-    with use_utc_timezone():
-        with verify_simple_logger():
-            count = -1
+    with use_utc_timezone(), verify_simple_logger():
+        count = -1
 
-            def create_applesauce_timer() -> datetime.datetime:
-                dates = [
-                    datetime.datetime.fromtimestamp(0.0),
-                    datetime.datetime.fromtimestamp(0.5),
-                    datetime.datetime.fromtimestamp(2.0),
-                    datetime.datetime.fromtimestamp(1050),
-                    datetime.datetime.fromtimestamp(1052),
-                ]
-                nonlocal count
-                count = count + 1
-                return dates[count]
+        def create_applesauce_timer() -> datetime.datetime:
+            dates = [
+                datetime.datetime.fromtimestamp(0.0),
+                datetime.datetime.fromtimestamp(0.5),
+                datetime.datetime.fromtimestamp(2.0),
+                datetime.datetime.fromtimestamp(1050),
+                datetime.datetime.fromtimestamp(1052),
+            ]
+            nonlocal count
+            count = count + 1
+            return dates[count]
 
-            SimpleLogger._wrapper.get().timer = create_applesauce_timer
-            SimpleLogger.show_timestamps(True)
-            SimpleLogger.event("1")
-            SimpleLogger.event("2")
-            SimpleLogger.event("3")
-            SimpleLogger.event("4")
-            SimpleLogger.warning(exception=Exception("Oh no you didn't!"))
+        SimpleLogger._wrapper.get().timer = create_applesauce_timer
+        SimpleLogger.show_timestamps(True)
+        SimpleLogger.event("1")
+        SimpleLogger.event("2")
+        SimpleLogger.event("3")
+        SimpleLogger.event("4")
+        SimpleLogger.warning(exception=Exception("Oh no you didn't!"))
 
 
 # begin-snippet: verify_simple_logger_example

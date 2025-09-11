@@ -21,7 +21,7 @@ Here is an example:
 def method_with_inputs(number: int, name: str) -> None:
     with SimpleLogger.use_markers(f"number = {number}, name = {name}"):
 ```
-<sup><a href='/tests/test_simple_logger.py#L199-L202' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L197-L200' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It will produce:  
@@ -47,7 +47,7 @@ def method_with_inputs_and_outputs(number: int, announcement: str) -> None:
         lambda: f"number = {number}, announcement = {announcement}"
     ):
 ```
-<sup><a href='/tests/test_simple_logger.py#L212-L217' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_simple_logger.py#L210-L215' title='Snippet source file'>snippet source</a> | <a href='#snippet-method_with_inputs_and_outputs' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 It will produce:  
