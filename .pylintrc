@@ -53,6 +53,3 @@ disable=
     W2101,   # '...' directly created in 'with' has no effect (useless-with-lock)
     W3101,   # Missing timeout argument for method '...' can cause your program to hang indefinitely (missing-timeout)
     W4904,   # Using deprecated class
-
-[MASTER]
-init-hook='import sys; sys.path.append("C:\\Code\\ApprovalTests.Python\\")'
