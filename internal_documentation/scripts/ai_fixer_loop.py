@@ -1,91 +1,99 @@
 import subprocess
-import sys
 import os
+import sys
+from subprocess import CompletedProcess
 
-def get_script_path(script_name):
-    """Gets the absolute path to the script, adding .cmd for Windows."""
-    base_path = os.path.join(os.path.dirname(__file__), script_name)
-    if sys.platform == "win32":
-        return f"{base_path}.cmd"
-    return base_path
+if sys.platform == "win32":
+    import winsound
 
-def run_command(command, check=True):
-    """Runs a command and returns its output."""
-    print(f"-> Running: {' '.join(command)}")
-    process = subprocess.run(command, capture_output=True, text=True, check=False)
-    if check and process.returncode != 0:
-        print(f"Error running command: {' '.join(command)}")
-        print(process.stdout)
-        print(process.stderr)
-        raise subprocess.CalledProcessError(process.returncode, command, process.stdout, process.stderr)
-    return process
+# Script Names
+CHECK_SCRIPT = "check_that_fix_works"
+FIND_PROBLEMS_SCRIPT = "find_problems"
+FIX_PROBLEM_SCRIPT = "fix_problem"
+COMMIT_SCRIPT = "commit"
 
-def play_chime():
-    """Plays a system sound to indicate a successful operation."""
+
+
+
+
+def run_command(command: str, check: bool = True) -> CompletedProcess:
+    print(f"-> Running: {command}")
+    return subprocess.run(
+        command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=check, shell=True
+    )
+
+
+def run_script(script_name: str, check: bool = True) -> CompletedProcess:
+    script_path = os.path.join(os.path.dirname(__file__), script_name)
+    return run_command(script_path, check=check)
+
+
+def play_chime() -> None:
     print("-> Playing success chime.")
     if sys.platform == "win32":
-        import winsound
         winsound.PlaySound('SystemAsterisk', winsound.SND_ALIAS)
     elif sys.platform == "darwin":
-        subprocess.run(["afplay", "/System/Library/Sounds/Glass.aiff"])
-    # No default sound for Linux
+        run_command("afplay /System/Library/Sounds/Glass.aiff")
 
-def main_loop():
-    """Main loop to find, fix, and commit problems."""
-    print("Starting AI Fixer Loop...")
 
-    # 1. Initial check
+def perform_initial_check() -> bool:
     print("\nStep 1: Performing initial system check...")
-    initial_check_script = get_script_path("check_that_fix_works")
-    if not os.path.exists(initial_check_script):
-        print(f"Error: Script not found at {initial_check_script}")
-        return
-        
-    try:
-        run_command([initial_check_script])
+    result = run_script(CHECK_SCRIPT, check=False)
+    if result.returncode == 0:
         print("Initial check passed. System is stable.")
-    except subprocess.CalledProcessError:
+        return True
+    else:
         print("Initial 'check_that_fix_works' failed. Aborting.")
+        print(result.stdout)
+        return False
+
+
+def find_problems() -> bool:
+    print("Step 2: Finding problems...")
+    result = run_script(FIND_PROBLEMS_SCRIPT, check=False)
+    if result.returncode != 0:
+        print(f"Problem found: {result.stdout.strip()}")
+    return result.returncode == 0
+
+def fix_and_verify() -> bool:
+    print("Step 3: Attempting to fix the problem...")
+    run_script(FIX_PROBLEM_SCRIPT)
+
+    print("Step 4: Verifying the fix...")
+    try:
+        run_script(CHECK_SCRIPT)
+        print("Verification passed.")
+        return True
+    except subprocess.CalledProcessError:
+        print("Verification failed. Reverting changes.")
+        run_command("git reset --hard")
+        print("Changes have been reverted.")
+        return False
+
+
+def commit_changes() -> None:
+    print("Step 5: Committing the changes...")
+    run_script(COMMIT_SCRIPT)
+    print("Commit successful.")
+    play_chime()
+
+
+def main_loop() -> None:
+    print("Starting AI Fixer Loop...")
+    if not perform_initial_check():
         return
 
-    # 2. Main loop
     for i in range(1000):
         print(f"\n--- Iteration {i + 1} ---")
-        # Find problems
-        print("Step 2: Finding problems...")
-        find_problems_script = get_script_path("find_problems")
-        result = run_command([find_problems_script], check=False)
-
-        if not result.stdout.strip():
+        if find_problems():
             print("No problems found. All done!")
             break
 
-        print(f"Problem found: {result.stdout.strip()}")
-
-        # Fix problem
-        print("Step 3: Attempting to fix the problem...")
-        fix_problem_script = get_script_path("fix_problem")
-        run_command([fix_problem_script])
-
-        # Check if the fix worked
-        print("Step 4: Verifying the fix...")
-        try:
-            run_command([initial_check_script])
-            print("Verification passed.")
-
-            # Commit the fix
-            print("Step 5: Committing the changes...")
-            commit_script = get_script_path("commit")
-            run_command([commit_script])
-            print("Commit successful.")
-            play_chime()
-
-        except subprocess.CalledProcessError:
-            print("Verification failed. Reverting changes.")
-            run_command(["git", "reset", "--hard"])
-            print("Changes have been reverted.")
+        if fix_and_verify():
+            commit_changes()
     else:
         print("\nReached maximum number of iterations (1000). Stopping.")
+
 
 if __name__ == "__main__":
     main_loop()

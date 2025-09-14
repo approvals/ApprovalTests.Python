@@ -1,1 +1,2 @@
-mise mypy > .ignore/lint-results.txt
+@echo off
+mypy approvaltests approval_utilities tests
