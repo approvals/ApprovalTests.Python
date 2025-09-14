@@ -1,0 +1,1 @@
+type .\internal_documentation\linting.process.md | claude --dangerously-skip-permissions -p --output-format text --verbose

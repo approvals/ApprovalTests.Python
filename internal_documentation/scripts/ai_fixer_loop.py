@@ -23,10 +23,6 @@ def run_command(command: str, check: bool = True) -> CompletedProcess:
     )
 
 
-def run_script(script_name: str, check: bool = True) -> CompletedProcess:
-    script_path = os.path.join(os.path.dirname(__file__), script_name)
-    return run_command(script_path, check=check)
-
 
 def play_chime() -> None:
     print("-> Playing success chime.")
@@ -38,7 +34,7 @@ def play_chime() -> None:
 
 def perform_initial_check() -> bool:
     print("\nStep 1: Performing initial system check...")
-    result = run_script(CHECK_SCRIPT, check=False)
+    result = run_command(CHECK_SCRIPT, check=False)
     if result.returncode == 0:
         print("Initial check passed. System is stable.")
         return True
@@ -50,18 +46,18 @@ def perform_initial_check() -> bool:
 
 def find_problems() -> bool:
     print("Step 2: Finding problems...")
-    result = run_script(FIND_PROBLEMS_SCRIPT, check=False)
+    result = run_command(FIND_PROBLEMS_SCRIPT, check=False)
     if result.returncode != 0:
         print(f"Problem found: {result.stdout.strip()}")
     return result.returncode == 0
 
 def fix_and_verify() -> bool:
     print("Step 3: Attempting to fix the problem...")
-    run_script(FIX_PROBLEM_SCRIPT)
+    run_command(FIX_PROBLEM_SCRIPT)
 
     print("Step 4: Verifying the fix...")
     try:
-        run_script(CHECK_SCRIPT)
+        run_command(CHECK_SCRIPT)
         print("Verification passed.")
         return True
     except subprocess.CalledProcessError:
@@ -73,7 +69,7 @@ def fix_and_verify() -> bool:
 
 def commit_changes() -> None:
     print("Step 5: Committing the changes...")
-    run_script(COMMIT_SCRIPT)
+    run_command(COMMIT_SCRIPT)
     print("Commit successful.")
     play_chime()
 

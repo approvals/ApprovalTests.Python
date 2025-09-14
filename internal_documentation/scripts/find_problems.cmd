@@ -1,2 +1,1 @@
-@echo off
-mypy approvaltests approval_utilities tests
+mise mypy > .ignore/issues.txt

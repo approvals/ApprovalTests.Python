@@ -50,12 +50,12 @@ flowchart TD
 
 The Delinter relies on a set of scripts located alongside the main Python script. These scripts should be executed from the repository's base directory.
 
-- `check_that_fix_works`: Verifies that the latest changes have not broken the build or tests.
-- `find_problems`: Scans the codebase and identifies issues to be fixed.
-- `fix_problem`: Calls the AI model to generate a fix for an identified problem.
-- `commit`: Commits the verified changes to the Git repository.
+- `check_that_fix_works`: Verifies that the latest changes have not broken the build or tests. retrun code 0 means Build is working.
+- `find_problems`: Scans the codebase and identifies issues to be fixed. retrun code 0 meanswe have problems.
+- `fix_problem`: Calls the AI model to generate a fix for an identified problem. return code means nothing.
+- `commit`: Commits the verified changes to the Git repository. return code means nothing.
 
-On Windows, these scripts are `.cmd` files. On Linux/macOS, they are shell scripts without an extension. You can run them from the command line like this the same way:
+On Windows, these scripts are `.cmd` files. On Linux/macOS, they are shell scripts without an extension. You can run them from the command line like this the same way, if you use a shell:
 ```bash
 ./find_problems
 ```
@@ -77,4 +77,30 @@ import winsound
 
 # Play the 'Asterisk' system sound
 winsound.PlaySound('SystemAsterisk', winsound.SND_ALIAS)
+```
+
+## sample output
+time stamps show how long external scripts took. 
+```
+✅ build working
+Run #1 
+✅ found problems [0:21]
+✅ fix problem [0:22]
+✅ build working [0:23]
+✅ commit [0:24]
+-----------------------------
+Run #2 
+✅ found problems [0:21]
+✅ fix problem [0:22]
+❌ build failed [0:23]
+❌ revert [0:24]
+-----------------------------
+Run #3 
+✅ found problems [0:21]
+✅ fix problem [0:22]
+✅ build working [0:23]
+✅ commit [0:24]
+----------------------------
+Run #4  
+no more problems found.
 ```

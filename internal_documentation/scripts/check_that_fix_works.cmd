@@ -1,1 +1,1 @@
-.\build_and_test.cmd
+mise test
