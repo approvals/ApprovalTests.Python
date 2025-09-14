@@ -1,2 +1,2 @@
 cd ../..
-mise my_py > .ignore/lint-results.txt
+mise mypy > .ignore/lint-results.txt
