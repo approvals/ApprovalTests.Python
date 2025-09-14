@@ -1,2 +1,1 @@
-cd ../..
 mise test

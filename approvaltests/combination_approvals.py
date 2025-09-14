@@ -158,7 +158,7 @@ def verify_logging_for_all_combinations(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
 ) -> None:
-    def printer(*args):
+    def printer(*args: Any) -> None:
         SimpleLogger._wrapper.get().log_line(f"Running inputs {args} => ")
         with SimpleLogger._wrapper.get().indent():
             function_to_run(*args)
