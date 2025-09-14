@@ -1,39 +1,57 @@
-# Delinter
+# AI Loop Fixer
 
-This is a python script that reads the .temp/lint-results.txt file and fixes the first issue. All temporary files are stored in the `.temp` directory which is ignored by git.
+This is a python script 
+Detects an issue and tries to fix it in a loop.
 
-## Steps
+```mermaid
+flowchart TD
+    Start([START<br/>PYTHON]) --> RunTests1{check_that_fix_works}
+    RunTests1 -->|FAIL| Exit([EXIT/ABORT<br/>PYTHON])
+    RunTests1 -->|PASS| RunLint["find_problems"]
+    
+    RunLint --> HasIssues{has_problems}
+    HasIssues -->|NO| Done([ALL DONE<br/>PYTHON])
+    HasIssues -->|YES| CallClaude[fix_problem] --> check_that_fix_works
+    
+  
+  
 
-1. Run Tests, Ensure they pass
-2. Linting (saves results to `.temp/lint-results.txt`)
-3. Claude Fixes Linting (writes commit message to `.temp/commit-message.txt`)
-4. Run Tests, Ensure they pass. If they do, commit the changes and play a chime. Otherwise, revert. Repeat up to 1000x by default.
+    
+    check_that_fix_works -->|NO| Revert[Revert Changes<br/>PYTHON]
+    check_that_fix_works -->|YES| Commit["commit"]
+    
+    Commit --> Chime["Play Chime<br/>PYTHON"]
+    Chime --> RunLint
 
-### Running Tests
+    Revert --> RunLint
+    
+
+    
+
+    
+    %% End states
+    style Done fill:#2e7d32,stroke:#1b5e20,stroke-width:2px,color:#fff
+    style Exit fill:#c62828,stroke:#b71c1c,stroke-width:2px,color:#fff
+```
+
+## Scripts
+
+The scripts are along side the python script, but all run from the repos base directory.
+
+* check_that_fix_works
+* find_problems
+* fix_problems
+* commit
+
+on windows the scripts are .cmd files, on linux they are .sh files without an extension. This means you can run them from the command line like this:
 
 ```
-mise test
+./find_problems
 ```
 
-### Linting
-
-```
-mise lint1 | tee .temp/lint-results.txt
-```
-
-### Fixing
-
-Call claude code on the cli and pass it the prompt lint.process.md file. Have it exit afterwars and use dangerously-skip-permissions to skip the permissions check.
-
-### Committing
-
-```
-git add .
-git commit -F .temp/commit-message.txt
-```
+## Git revert
+`git reset --hard`
 
 ### Chime
 
-After each successful iteration (commit), the script plays a system chime sound (Glass.aiff on macOS) to notify that the iteration is complete.
-delinter.md
-Displaying delinter.md.
+After each successful iteration (commit), the script plays a system chime sound (Glass.aiff on macOS) (?? on windows) to notify that the iteration is complete.
