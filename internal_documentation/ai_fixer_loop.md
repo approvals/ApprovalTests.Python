@@ -59,6 +59,9 @@ On Windows, these scripts are `.cmd` files. On Linux/macOS, they are shell scrip
 ```bash
 ./find_problems
 ```
+## Preventing Infinite Loops
+
+The script will run a max of 1000 times. 
 
 ## Key Operations
 
