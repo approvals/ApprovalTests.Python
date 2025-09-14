@@ -59,12 +59,12 @@ def verify_all_combinations_with_labeled_input(
     function_under_test: Callable,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
-    **kwargs,
+    **kwargs: Any,
 ) -> None:
     labels = list(kwargs.keys())
     input_arguments = [kwargs[key] for key in kwargs]
 
-    def formatter(inputs, output):
+    def formatter(inputs: Sequence[Any], output: Any) -> str:
         labeled_inputs = ", ".join(
             [f"{label}: {input}" for label, input in zip(labels, inputs)]
         )

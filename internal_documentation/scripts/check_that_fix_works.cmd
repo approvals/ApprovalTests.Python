@@ -1,0 +1,2 @@
+cd ../..
+mise test
