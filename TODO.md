@@ -5,7 +5,8 @@
    - [ ] every commit releases to https://test.pypi.org/
 - [ ] continuous AI loop experiment
    - [x] manual one-line linting experiment
-   - [ ] if there are linting errors, then call claude script
+   - [ ] get python script to work: AI fixing script
+   the python script is not working: the details are in the ai_fixer_loop.md file
 
 2025-08-24
 - [ ] more root dir cleanup
