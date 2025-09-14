@@ -4,7 +4,8 @@
    - [ ] test_current_release against https://test.pypi.org/
    - [ ] every commit releases to https://test.pypi.org/
 - [ ] continuous AI loop experiment
-   - [ ] manual one-line linting experiment
+   - [x] manual one-line linting experiment
+   - [ ] if there are linting errors, then call claude script
 
 2025-08-24
 - [ ] more root dir cleanup

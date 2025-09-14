@@ -1,0 +1,1 @@
+git commit -a --file=.ignore/commit_message.txt
