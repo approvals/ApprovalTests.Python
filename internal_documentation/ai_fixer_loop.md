@@ -7,13 +7,10 @@ This is a Python script that automates the process of detecting and fixing of is
 - [Overview](#overview)
 - [Workflow Diagram](#workflow-diagram)
 - [Core Scripts](#core-scripts)
-- [Key Operations](#key-operations)
-  - [Git Revert](#git-revert)
-  - [Chime Notification](#chime-notification)
 
 ## Overview
 
-The main goal of the AI Fixer Loop is to maintain code quality by automating repetitive fixing tasks. It starts by running tests to ensure a stable baseline. If the tests pass, it scans for problems. When a problem is found, it invokes an AI to generate a fix. The fix is then tested. If the tests pass, the changes are committed, and the loop continues. If the tests fail, the changes are reverted, and the script moves on to the next problem.
+The main goal of the AI Fixer Loop is to maintain code quality by automating repetitive fixing tasks. It starts by running an initial check to ensure a stable baseline. If the check passes, it scans for problems. When a problem is found, it invokes an AI to generate a fix. The fix is then passed to the `tcr` script, which tests the changes, and then either commits them if they pass or reverts them if they fail. The loop continues until no more problems are found.
 
 ## Workflow Diagram
 
@@ -22,7 +19,7 @@ The following diagram illustrates the execution flow of the AI Fixer Loop script
 ```mermaid
 flowchart TD
     subgraph Initialization
-        Start([START]) --> InitialTest{check_that_fix_works}
+        Start([START]) --> InitialTest{tcr}
     end
 
     InitialTest -->|FAIL| Exit([ABORT])
@@ -33,12 +30,8 @@ flowchart TD
         HasProblems -->|NO| Done([ALL DONE])
         HasProblems -->|YES| FixProblem[fix_problem]
         
-        FixProblem --> PostFixTest{check_that_fix_works}
-        PostFixTest -->|PASS| CommitChanges[commit]
-        PostFixTest -->|FAIL| Revert[Revert Changes]
-        
-        CommitChanges --> Chime[Play Chime] --> FindProblems
-        Revert --> FindProblems
+        FixProblem --> Tcr[tcr]
+        Tcr --> FindProblems
     end
     
     %% Styling
@@ -50,10 +43,9 @@ flowchart TD
 
 The Delinter relies on a set of scripts located alongside the main Python script. These scripts should be executed from the repository's base directory.
 
-- `check_that_fix_works`: Verifies that the latest changes have not broken the build or tests. retrun code 0 means Build is working.
-- `find_problems`: Scans the codebase and identifies issues to be fixed. retrun code 0 meanswe have problems.
+- `find_problems`: Scans the codebase and identifies issues to be fixed. return code 0 means we have problems.
 - `fix_problem`: Calls the AI model to generate a fix for an identified problem. return code means nothing.
-- `commit`: Commits the verified changes to the Git repository. return code means nothing.
+- `tcr`: (Test && Commit || Revert) Verifies that the latest changes have not broken the build or tests. If the build is working, it commits the changes. Otherwise, it reverts them. return code 0 means it committed.
 
 On Windows, these scripts are `.cmd` files. On Linux/macOS, they are shell scripts without an extension. You can run them from the command line like this the same way, if you use a shell:
 ```bash
@@ -63,29 +55,13 @@ On Windows, these scripts are `.cmd` files. On Linux/macOS, they are shell scrip
 
 The script will run a max of 1000 times. 
 
-## Key Operations
-
-### Git Revert
-If a fix proposed by the AI fails the `check_that_fix_works` step, the script will revert the changes using `git reset --hard` to ensure the codebase remains in a valid state before proceeding.
-
-### Chime Notification
-After each successful iteration (i.e., a successful commit), the script plays a system chime sound to provide an audible notification that a fix has been completed. The sound is `Glass.aiff` on macOS. On Windows, the `SystemAsterisk` sound can be played using the `winsound` module.
-
-
-Example for Windows:
-```python
-import winsound
-
-# Play the 'Asterisk' system sound
-winsound.PlaySound('SystemAsterisk', winsound.SND_ALIAS)
-```
 
 ## Parameters
 
 There are optional parameters for:
-- `--find FIND_SCRIPT`: the script to run to find problems. default is `find_problems`
-- `--fix FIX_SCRIPT`: the script to run to fix problems. default is `fix_problem`
-- `--tcr TCR_SCRIPT`: the checks that the fix worked and either commits or reverts. default is `tcr`
+- `--find FIND_SCRIPT`: The script to run to find problems. Default is `find_problems`.
+- `--fix FIX_SCRIPT`: The script to run to fix problems. Default is `fix_problem`.
+- `--tcr TCR_SCRIPT`: The script that checks if the fix worked and either commits or reverts. Default is `tcr`.
 
 ## sample output
 time stamps show how long external scripts took. 
