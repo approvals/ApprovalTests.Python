@@ -71,6 +71,7 @@ If a fix proposed by the AI fails the `check_that_fix_works` step, the script wi
 ### Chime Notification
 After each successful iteration (i.e., a successful commit), the script plays a system chime sound to provide an audible notification that a fix has been completed. The sound is `Glass.aiff` on macOS. On Windows, the `SystemAsterisk` sound can be played using the `winsound` module.
 
+
 Example for Windows:
 ```python
 import winsound
@@ -79,6 +80,13 @@ import winsound
 winsound.PlaySound('SystemAsterisk', winsound.SND_ALIAS)
 ```
 
+## Parameters
+
+There are optional parameters for:
+- `--find FIND_SCRIPT`: the script to run to find problems. default is `find_problems`
+- `--fix FIX_SCRIPT`: the script to run to fix problems. default is `fix_problem`
+- `--tcr TCR_SCRIPT`: the checks that the fix worked and either commits or reverts. default is `tcr`
+
 ## sample output
 time stamps show how long external scripts took. 
 ```
@@ -86,21 +94,29 @@ time stamps show how long external scripts took.
 Run #1 
 ✅ found problems [0:21]
 ✅ fix problem [0:22]
-✅ build working [0:23]
-✅ commit [0:24]
+✅ tcr: committed [0:23]
 -----------------------------
 Run #2 
 ✅ found problems [0:21]
 ✅ fix problem [0:22]
-❌ build failed [0:23]
-❌ revert [0:24]
+❌ tcr: reverted [0:23]
 -----------------------------
 Run #3 
 ✅ found problems [0:21]
 ✅ fix problem [0:22]
-✅ build working [0:23]
-✅ commit [0:24]
+✅ tcr: committed [0:23]
 ----------------------------
 Run #4  
 no more problems found.
 ```
+
+## testing
+
+To test the AI fixer loop and reproduce the sample output, you can use the following scripts. They coordinate by writing to a shared `.ignore/count.txt` file.
+
+- **`test_find`**: Finds problems and increments the counter in `.ignore/count.txt` until it reaches `4`.
+- **`test_fix`**: This script does nothing.
+- **`test_tcr`**:
+    - **Passes** if the counter is `1` or `3`.
+    - **Fails** if the counter is `2`.
+    - **Resets** the counter to `0` if it is `4`.
