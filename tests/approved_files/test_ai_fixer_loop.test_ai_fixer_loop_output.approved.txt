@@ -1,0 +1,22 @@
+Running initial check...
+✅ tcr: committed [0.02s]
+✅ build working
+-----------------------------
+Run #1
+✅ found problems [0.02s]
+✅ fix problem [0.01s]
+✅ tcr: committed [0.02s]
+-----------------------------
+Run #2
+✅ found problems [0.02s]
+✅ fix problem [0.01s]
+❌ tcr: reverted [0.02s]
+-----------------------------
+Run #3
+✅ found problems [0.02s]
+✅ fix problem [0.02s]
+✅ tcr: committed [0.02s]
+-----------------------------
+Run #4
+❌ found problems [0.02s]
+no more problems found.

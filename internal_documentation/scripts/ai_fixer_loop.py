@@ -5,7 +5,7 @@ import platform
 import os
 
 
-def get_script_path(script_name):
+def get_script_path(script_name: str) -> str:
     # Go up two directories to get to the project root from the script's location
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     base_path = os.path.join(project_root, script_name)
@@ -15,12 +15,12 @@ def get_script_path(script_name):
         return base_path
 
 
-def run_script(script_path, display_name):
+def run_script(script_path: str, display_name: str) -> subprocess.CompletedProcess:
     start_time = time.time()
     script_dir = os.path.dirname(script_path)
     # We use shell=True for Windows to correctly execute .cmd files
     use_shell = platform.system() == "Windows"
-    result = subprocess.run(os.path.basename(script_path), capture_output=True, text=True, shell=use_shell, cwd=script_dir)
+    result = subprocess.run(os.path.basename(script_path), capture_output=True, text=True, shell=use_shell, cwd=script_dir, encoding="utf-8")
     end_time = time.time()
     duration = end_time - start_time
 
@@ -38,7 +38,7 @@ def run_script(script_path, display_name):
     return result
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="AI-Powered Loop Fixer.")
     parser.add_argument("--find", default="find_problems", help="The script to run to find problems.")
     parser.add_argument("--fix", default="fix_problem", help="The script to run to fix problems.")
@@ -68,7 +68,7 @@ def main():
         run_script(fix_script, "fix problem")
         
         start_time = time.time()
-        tcr_result = subprocess.run(get_script_path(args.tcr), capture_output=True, text=True, shell=platform.system() == "Windows", cwd=os.path.dirname(get_script_path(args.tcr)))
+        tcr_result = subprocess.run(get_script_path(args.tcr), capture_output=True, text=True, shell=platform.system() == "Windows", cwd=os.path.dirname(get_script_path(args.tcr)), encoding="utf-8")
         duration = time.time() - start_time
         if tcr_result.returncode == 0:
             print(f"✅ tcr: committed [{duration:.2f}s]")
