@@ -3,36 +3,16 @@ import subprocess
 import sys
 from pathlib import Path
 
+from approvaltests.utilities.command_line_approvals import verify_command_line
 import pytest
 
 from approvaltests import Options, verify
 
 _SCRIPT_DIR = Path(__file__).parent
+_REPO_ROOT = _SCRIPT_DIR.parent
 
-
-@pytest.mark.skip
-def test_ai_fixer_loop_output() -> None:
-    result = subprocess.run(
-        [
-            sys.executable,
-            "ai_fixer_loop.py",
-            "--find",
-            "test_find",
-            "--fix",
-            "test_fix",
-            "--tcr",
-            "test_tcr",
-        ],
-        capture_output=True,
-        text=True,
-        check=True,
-        encoding="utf-8",
-        cwd=_SCRIPT_DIR.parent / "internal_documentation/scripts",
-    )
-
-    verify(
-        result.stdout,
-        options=Options().with_scrubber(
-            lambda text: re.sub(r" \[[\d\.]+s\]", "", text)
-        ),
-    )
+def test_ai_fixer_loop() -> None:
+    cwd=_REPO_ROOT / "internal_documentation" /  "scripts"
+    verify_command_line(r"C:\Users\ImageBuilderAdmin\AppData\Local\Programs\Python\Python313\python.exe ai_fixer_loop.py --find test_find --fix test_fix --tcr test_tcr", current_working_directory=str(cwd), options=Options().with_scrubber(
+            lambda text: re.sub(r" \[[\d\.]+s\]", " [time]", text)
+        ))
