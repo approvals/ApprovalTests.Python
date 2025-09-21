@@ -6,9 +6,9 @@ import time
 
 
 def get_script_path(script_name: str) -> str:
-    # Go up two directories to get to the project root from the script's location
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-    base_path = os.path.join(project_root, script_name)
+    # The scripts are in the same directory as this script
+    script_dir = os.path.dirname(__file__)
+    base_path = os.path.join(script_dir, script_name)
     if platform.system() == "Windows":
         return f"{base_path}.cmd"
     else:

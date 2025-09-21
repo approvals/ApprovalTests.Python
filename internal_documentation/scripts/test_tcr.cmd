@@ -1,7 +1,9 @@
 @echo off
 setlocal
 
+
 set COUNT_FILE=..\..\.ignore\count.txt
+if not exist "..\..\.ignore" mkdir "..\..\.ignore"
 
 if not exist "%COUNT_FILE%" (
     echo 0 > "%COUNT_FILE%"
