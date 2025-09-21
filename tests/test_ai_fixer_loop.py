@@ -1,4 +1,5 @@
 import re
+import pytest
 from pathlib import Path
 
 from approvaltests.utilities.command_line_approvals import verify_command_line
