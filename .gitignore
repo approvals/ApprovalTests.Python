@@ -57,6 +57,7 @@ atlassian-ide-plugin.xml
 # caches
 .cache/
 .pytest_cache
+__pycache__/
 
 # virtual environments
 virtualenv
