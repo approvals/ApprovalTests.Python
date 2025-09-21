@@ -18,7 +18,7 @@ class InlineComparator(Namer):
     def get_approved_filename(self, base: Optional[str] = None) -> str:
         file = tempfile.NamedTemporaryFile(suffix=".approved.txt", delete=False).name
         docs = self.get_test_method_doc_string()
-        Path(file).write_text(docs)
+        Path(file).write_text(docs, encoding='utf-8')
         return file
 
     @override
