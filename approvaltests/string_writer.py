@@ -19,7 +19,7 @@ class StringWriter(Writer):
     ) -> None:
         self.contents = StringWriter.sanitize_string(contents)
         self.extension_with_dot = extension
-        self.encoding = encoding
+        self.encoding = encoding or "utf-8"
         self.errors = errors
         self.newline = newline
 

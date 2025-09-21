@@ -23,13 +23,34 @@ def verify_command_line(
     current_working_directory: str = ".",
     additional_environment_variables: Optional[Dict[str, str]] = None,
 ) -> None:
-    my_env = None
+    # Set up environment with UTF-8 support for Windows
+    my_env = {**os.environ}
+    
+    # Ensure UTF-8 encoding on Windows for emoji support
+    if os.name == 'nt':  # Windows
+        my_env.update({
+            'PYTHONIOENCODING': 'utf-8',
+            'PYTHONUTF8': '1'
+        })
+    
     if additional_environment_variables:
-        my_env = {**os.environ, **additional_environment_variables}
-    output = subprocess.check_output(
+        my_env.update(additional_environment_variables)
+    try:
+        output = subprocess.check_output(
             command_line,
             shell=True,
-            universal_newlines=True,
+            text=True,
+            encoding='utf-8',
+            input=input_string,
+            cwd=current_working_directory,
+            env=my_env,
+        )
+    except UnicodeDecodeError:
+        # Fallback to system default encoding if UTF-8 fails
+        output = subprocess.check_output(
+            command_line,
+            shell=True,
+            text=True,
             input=input_string,
             cwd=current_working_directory,
             env=my_env,
