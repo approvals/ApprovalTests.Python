@@ -22,7 +22,8 @@ def run_script(script_path: str, display_name: str) -> subprocess.CompletedProce
     use_shell = platform.system() == "Windows"
     result = subprocess.run(
         os.path.basename(script_path),
-        check=False, capture_output=True,
+        check=False,
+        capture_output=True,
         text=True,
         shell=use_shell,
         cwd=script_dir,
@@ -83,7 +84,8 @@ def main() -> None:
         start_time = time.time()
         tcr_result = subprocess.run(
             get_script_path(args.tcr),
-            check=False, capture_output=True,
+            check=False,
+            capture_output=True,
             text=True,
             shell=platform.system() == "Windows",
             cwd=os.path.dirname(get_script_path(args.tcr)),
