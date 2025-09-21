@@ -25,14 +25,11 @@ def verify_command_line(
 ) -> None:
     # Set up environment with UTF-8 support for Windows
     my_env = {**os.environ}
-    
+
     # Ensure UTF-8 encoding on Windows for emoji support
-    if os.name == 'nt':  # Windows
-        my_env.update({
-            'PYTHONIOENCODING': 'utf-8',
-            'PYTHONUTF8': '1'
-        })
-    
+    if os.name == "nt":  # Windows
+        my_env.update({"PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"})
+
     if additional_environment_variables:
         my_env.update(additional_environment_variables)
     try:
@@ -40,7 +37,7 @@ def verify_command_line(
             command_line,
             shell=True,
             text=True,
-            encoding='utf-8',
+            encoding="utf-8",
             input=input_string,
             cwd=current_working_directory,
             env=my_env,
