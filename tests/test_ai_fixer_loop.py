@@ -1,7 +1,8 @@
-import subprocess
 import re
+import subprocess
 import sys
 from pathlib import Path
+
 import pytest
 
 from approvaltests import Options, verify
@@ -29,4 +30,9 @@ def test_ai_fixer_loop_output() -> None:
         cwd=_SCRIPT_DIR.parent / "internal_documentation/scripts",
     )
 
-    verify(result.stdout, options=Options().with_scrubber(lambda text: re.sub(r" \[[\d\.]+s\]", "", text)))
+    verify(
+        result.stdout,
+        options=Options().with_scrubber(
+            lambda text: re.sub(r" \[[\d\.]+s\]", "", text)
+        ),
+    )
