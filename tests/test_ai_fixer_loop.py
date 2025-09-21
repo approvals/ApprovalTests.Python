@@ -1,12 +1,8 @@
 import re
-import subprocess
-import sys
 from pathlib import Path
 
 from approvaltests.utilities.command_line_approvals import verify_command_line
-import pytest
-
-from approvaltests import Options, verify
+from approvaltests import Options
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent
