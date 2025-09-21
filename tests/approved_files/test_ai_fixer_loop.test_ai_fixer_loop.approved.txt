@@ -1,22 +1,22 @@
 Running initial check...
-CHECKMARK tcr: committed [time]
-CHECKMARK build working
+✅ tcr: committed [time]
+✅ build working
 -----------------------------
 Run #1
-CHECKMARK found problems [time]
-CHECKMARK fix problem [time]
-CHECKMARK tcr: committed [time]
+✅ found problems [time]
+✅ fix problem [time]
+✅ tcr: committed [time]
 -----------------------------
 Run #2
-CHECKMARK found problems [time]
-CHECKMARK fix problem [time]
-X tcr: reverted [time]
+✅ found problems [time]
+✅ fix problem [time]
+❌ tcr: reverted [time]
 -----------------------------
 Run #3
-CHECKMARK found problems [time]
-CHECKMARK fix problem [time]
-CHECKMARK tcr: committed [time]
+✅ found problems [time]
+✅ fix problem [time]
+✅ tcr: committed [time]
 -----------------------------
 Run #4
-X found problems [time]
+❌ found problems [time]
 no more problems found.
