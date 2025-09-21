@@ -26,14 +26,15 @@ def verify_command_line(
     my_env = None
     if additional_environment_variables:
         my_env = {**os.environ, **additional_environment_variables}
-    verify(
-        subprocess.check_output(
+    output = subprocess.check_output(
             command_line,
             shell=True,
             universal_newlines=True,
             input=input_string,
             cwd=current_working_directory,
             env=my_env,
-        ),
+        )
+    verify(
+        output,
         options=options,
     )
