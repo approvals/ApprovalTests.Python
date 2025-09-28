@@ -10,7 +10,7 @@ FAILURE_EMOJI = "❌"
 
 def get_script_path(script_name: str) -> str:
     # The scripts are in the same directory as this script
-    script_dir = os.path.dirname(__file__)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
     base_path = os.path.join(script_dir, script_name)
     if platform.system() == "Windows":
         return f"{base_path}.cmd"
@@ -21,10 +21,11 @@ def get_script_path(script_name: str) -> str:
 def run_script(script_path: str, display_name: str) -> subprocess.CompletedProcess:
     start_time = time.time()
     script_dir = os.path.dirname(script_path)
+    script_name = os.path.basename(script_path)
     # We use shell=True for Windows to correctly execute .cmd files
     use_shell = platform.system() == "Windows"
     result = subprocess.run(
-        os.path.basename(script_path),
+        script_name,
         check=False,
         capture_output=True,
         text=True,
@@ -86,7 +87,7 @@ def main() -> None:
 
         start_time = time.time()
         tcr_result = subprocess.run(
-            get_script_path(args.tcr),
+            os.path.basename(get_script_path(args.tcr)),
             check=False,
             capture_output=True,
             text=True,
