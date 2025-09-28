@@ -33,7 +33,7 @@ def verify_command_line(
     if additional_environment_variables:
         my_env.update(additional_environment_variables)
     try:
-        output = subprocess.check_output(
+        result = subprocess.run(
             command_line,
             shell=True,
             text=True,
@@ -41,17 +41,25 @@ def verify_command_line(
             input=input_string,
             cwd=current_working_directory,
             env=my_env,
+            capture_output=True,
         )
+        output = result.stdout
+        if result.stderr:
+            output += "\n--- STDERR ---\n" + result.stderr
     except UnicodeDecodeError:
         # Fallback to system default encoding if UTF-8 fails
-        output = subprocess.check_output(
+        result = subprocess.run(
             command_line,
             shell=True,
             text=True,
             input=input_string,
             cwd=current_working_directory,
             env=my_env,
+            capture_output=True,
         )
+        output = result.stdout
+        if result.stderr:
+            output += "\n--- STDERR ---\n" + result.stderr
     verify(
         output,
         options=options,
