@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+import sys
 
 from approvaltests import Options
 from approvaltests.utilities.command_line_approvals import verify_command_line
@@ -9,7 +10,7 @@ _REPO_ROOT = _SCRIPT_DIR.parent
 
 
 def test_ai_fixer_loop() -> None:
-    python = r"C:\Code\ApprovalTests.Python\.venv\Scripts\python.exe"
+    python = sys.executable
     cwd = _REPO_ROOT / "internal_documentation" / "scripts"
     verify_command_line(
         python + " ai_fixer_loop.py --find test_find --fix test_fix --tcr test_tcr",
