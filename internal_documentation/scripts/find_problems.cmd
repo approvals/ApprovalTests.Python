@@ -1,4 +1,4 @@
-mise mypy > .ignore/issues.txt
+mise run task mypy > .ignore/issues.txt
 if errorlevel 1 (
     exit /b 0
 )else (
