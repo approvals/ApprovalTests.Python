@@ -22,14 +22,12 @@ def run_script(script_path: str, display_name: str) -> subprocess.CompletedProce
     start_time = time.time()
     script_dir = os.path.dirname(script_path)
     script_name = os.path.basename(script_path)
-    # We use shell=True for Windows to correctly execute .cmd files
-    use_shell = platform.system() == "Windows"
     result = subprocess.run(
-        script_name,
+        f"./{script_name}",
         check=False,
         capture_output=True,
         text=True,
-        shell=use_shell,
+        shell=True,
         cwd=script_dir,
         encoding="utf-8",
     )
@@ -87,11 +85,11 @@ def main() -> None:
 
         start_time = time.time()
         tcr_result = subprocess.run(
-            os.path.basename(get_script_path(args.tcr)),
+            f"./{os.path.basename(get_script_path(args.tcr))}",
             check=False,
             capture_output=True,
             text=True,
-            shell=platform.system() == "Windows",
+            shell=True,
             cwd=os.path.dirname(get_script_path(args.tcr)),
             encoding="utf-8",
         )

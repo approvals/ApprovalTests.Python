@@ -1,0 +1,23 @@
+#!/bin/bash
+
+COUNT_FILE="../../.ignore/count.txt"
+if [ ! -d "../../.ignore" ]; then
+    mkdir -p "../../.ignore"
+fi
+
+if [ ! -f "$COUNT_FILE" ]; then
+    echo 0 > "$COUNT_FILE"
+fi
+
+count=$(cat "$COUNT_FILE")
+
+if [ $count -eq 2 ]; then
+    exit 1
+fi
+
+if [ $count -eq 4 ]; then
+    echo 0 > "$COUNT_FILE"
+    exit 0
+fi
+
+exit 0
