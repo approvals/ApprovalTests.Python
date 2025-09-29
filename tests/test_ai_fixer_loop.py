@@ -1,6 +1,6 @@
 import re
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from approvaltests import Options
 from approvaltests.utilities.command_line_approvals import verify_command_line
