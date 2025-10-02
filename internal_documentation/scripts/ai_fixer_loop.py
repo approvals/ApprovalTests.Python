@@ -22,8 +22,9 @@ def run_script(script_path: str, display_name: str) -> subprocess.CompletedProce
     start_time = time.time()
     script_dir = os.path.dirname(script_path)
     script_name = os.path.basename(script_path)
+    prefix = ".\\" if platform.system() == "Windows" else "./"
     result = subprocess.run(
-        f"./{script_name}",
+        f"{prefix}{script_name}",
         check=False,
         capture_output=True,
         text=True,
@@ -84,8 +85,9 @@ def main() -> None:
         run_script(fix_script, "fix problem")
 
         start_time = time.time()
+        prefix = ".\\" if platform.system() == "Windows" else "./"
         tcr_result = subprocess.run(
-            f"./{os.path.basename(get_script_path(args.tcr))}",
+            f"{prefix}{os.path.basename(get_script_path(args.tcr))}",
             check=False,
             capture_output=True,
             text=True,
