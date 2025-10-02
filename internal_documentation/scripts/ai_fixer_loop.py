@@ -1,8 +1,8 @@
 import argparse
-import os
 import platform
 import subprocess
 import time
+from pathlib import Path
 
 SUCCESS_EMOJI = "✅"
 FAILURE_EMOJI = "❌"
@@ -10,18 +10,18 @@ FAILURE_EMOJI = "❌"
 
 def get_script_path(script_name: str) -> str:
     # The scripts are in the same directory as this script
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    base_path = os.path.join(script_dir, script_name)
+    script_dir = Path(__file__).resolve().parent
+    base_path = script_dir / script_name
     if platform.system() == "Windows":
         return f"{base_path}.cmd"
     else:
-        return base_path
+        return str(base_path)
 
 
 def run_script(script_path: str, display_name: str) -> subprocess.CompletedProcess:
     start_time = time.time()
-    script_dir = os.path.dirname(script_path)
-    script_name = os.path.basename(script_path)
+    script_dir = Path(script_path).parent
+    script_name = Path(script_path).name
     prefix = ".\\" if platform.system() == "Windows" else "./"
     result = subprocess.run(
         f"{prefix}{script_name}",
@@ -87,12 +87,12 @@ def main() -> None:
         start_time = time.time()
         prefix = ".\\" if platform.system() == "Windows" else "./"
         tcr_result = subprocess.run(
-            f"{prefix}{os.path.basename(get_script_path(args.tcr))}",
+            f"{prefix}{Path(get_script_path(args.tcr)).name}",
             check=False,
             capture_output=True,
             text=True,
             shell=True,
-            cwd=os.path.dirname(get_script_path(args.tcr)),
+            cwd=Path(get_script_path(args.tcr)).parent,
             encoding="utf-8",
         )
         duration = time.time() - start_time
