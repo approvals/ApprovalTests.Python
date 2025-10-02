@@ -14,7 +14,7 @@ def get_script_path(script_name: str) -> Path:
     # The scripts are in the same directory as this script
     base_path = _SCRIPT_DIR / script_name
     if platform.system() == "Windows":
-        return Path(f"{base_path}.cmd")
+        return base_path
     else:
         return base_path
 
