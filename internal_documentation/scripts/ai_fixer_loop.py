@@ -4,14 +4,15 @@ import subprocess
 import time
 from pathlib import Path
 
+_SCRIPT_DIR = Path(__file__).parent.resolve()
+
 SUCCESS_EMOJI = "✅"
 FAILURE_EMOJI = "❌"
 
 
 def get_script_path(script_name: str) -> str:
     # The scripts are in the same directory as this script
-    script_dir = Path(__file__).resolve().parent
-    base_path = script_dir / script_name
+    base_path = _SCRIPT_DIR / script_name
     if platform.system() == "Windows":
         return f"{base_path}.cmd"
     else:
