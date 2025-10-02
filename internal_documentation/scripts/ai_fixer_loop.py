@@ -97,7 +97,7 @@ def main() -> None:
             capture_output=True,
             text=True,
             shell=True,
-            cwd= get_script_path(args.tcr).parent,
+            cwd=get_script_path(args.tcr).parent,
             encoding="utf-8",
         )
         duration = time.time() - start_time
