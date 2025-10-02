@@ -10,19 +10,19 @@ SUCCESS_EMOJI = "✅"
 FAILURE_EMOJI = "❌"
 
 
-def get_script_path(script_name: str) -> str:
+def get_script_path(script_name: str) -> Path:
     # The scripts are in the same directory as this script
     base_path = _SCRIPT_DIR / script_name
     if platform.system() == "Windows":
-        return f"{base_path}.cmd"
+        return Path(f"{base_path}.cmd")
     else:
-        return str(base_path)
+        return base_path
 
 
-def run_script(script_path: str, display_name: str) -> subprocess.CompletedProcess:
+def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProcess:
     start_time = time.time()
-    script_dir = Path(script_path).parent
-    script_name = Path(script_path).name
+    script_dir = script_path.parent
+    script_name = script_path.name
     prefix = ".\\" if platform.system() == "Windows" else "./"
     result = subprocess.run(
         f"{prefix}{script_name}",
@@ -88,12 +88,12 @@ def main() -> None:
         start_time = time.time()
         prefix = ".\\" if platform.system() == "Windows" else "./"
         tcr_result = subprocess.run(
-            f"{prefix}{Path(get_script_path(args.tcr)).name}",
+            f"{prefix}{get_script_path(args.tcr).name}",
             check=False,
             capture_output=True,
             text=True,
             shell=True,
-            cwd=Path(get_script_path(args.tcr)).parent,
+            cwd= get_script_path(args.tcr).parent,
             encoding="utf-8",
         )
         duration = time.time() - start_time
