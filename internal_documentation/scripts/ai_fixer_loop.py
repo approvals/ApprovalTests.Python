@@ -24,9 +24,8 @@ def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProc
     start_time = time.time()
     script_dir = script_path.parent
     script_name = script_path.name
-    prefix = f".{os.sep}"
     result = subprocess.run(
-        f"{prefix}{script_name}",
+        f".{os.sep}{script_name}",
         check=False,
         capture_output=True,
         text=True,
@@ -87,9 +86,8 @@ def main() -> None:
         run_script(fix_script, "fix problem")
 
         start_time = time.time()
-        prefix = f".{os.sep}"
         tcr_result = subprocess.run(
-            f"{prefix}{get_script_path(args.tcr).name}",
+            f".{os.sep}{get_script_path(args.tcr).name}",
             check=False,
             capture_output=True,
             text=True,
