@@ -35,7 +35,8 @@ def verify_command_line(
     try:
         result = subprocess.run(
             command_line,
-            check=False, shell=True,
+            check=False,
+            shell=True,
             text=True,
             encoding="utf-8",
             input=input_string,
@@ -50,7 +51,8 @@ def verify_command_line(
         # Fallback to system default encoding if UTF-8 fails
         result = subprocess.run(
             command_line,
-            check=False, shell=True,
+            check=False,
+            shell=True,
             text=True,
             input=input_string,
             cwd=current_working_directory,
