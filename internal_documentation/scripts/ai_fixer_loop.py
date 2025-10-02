@@ -50,7 +50,7 @@ def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProc
     return result
 
 
-def main() -> None:
+def get_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="AI-Powered Loop Fixer.")
     parser.add_argument(
         "--find", default="find_problems", help="The script to run to find problems."
@@ -61,6 +61,11 @@ def main() -> None:
     parser.add_argument(
         "--tcr", default="tcr", help="The script for Test && Commit || Revert."
     )
+    return parser
+
+
+def main() -> None:
+    parser = get_argument_parser()
     args = parser.parse_args()
 
     find_script = get_script_path(args.find)
