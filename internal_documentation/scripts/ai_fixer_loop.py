@@ -1,6 +1,5 @@
 import argparse
 import os
-import platform
 import subprocess
 import time
 from pathlib import Path
@@ -14,10 +13,7 @@ FAILURE_EMOJI = "❌"
 def get_script_path(script_name: str) -> Path:
     # The scripts are in the same directory as this script
     base_path = _SCRIPT_DIR / script_name
-    if platform.system() == "Windows":
-        return base_path
-    else:
-        return base_path
+    return base_path
 
 
 def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProcess:
