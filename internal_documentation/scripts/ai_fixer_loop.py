@@ -1,4 +1,5 @@
 import argparse
+import os
 import platform
 import subprocess
 import time
@@ -23,7 +24,7 @@ def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProc
     start_time = time.time()
     script_dir = script_path.parent
     script_name = script_path.name
-    prefix = ".\\" if platform.system() == "Windows" else "./"
+    prefix = f".{os.sep}"
     result = subprocess.run(
         f"{prefix}{script_name}",
         check=False,
@@ -86,7 +87,7 @@ def main() -> None:
         run_script(fix_script, "fix problem")
 
         start_time = time.time()
-        prefix = ".\\" if platform.system() == "Windows" else "./"
+        prefix = f".{os.sep}"
         tcr_result = subprocess.run(
             f"{prefix}{get_script_path(args.tcr).name}",
             check=False,
