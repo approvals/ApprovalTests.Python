@@ -16,7 +16,7 @@ def get_script_path(script_name: str) -> Path:
     return base_path
 
 
-def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProcess:
+def run_script(script_path: Path, display_name: str) -> bool:
     start_time = time.time()
     script_dir = script_path.parent
     script_name = script_path.name
@@ -43,7 +43,7 @@ def run_script(script_path: Path, display_name: str) -> subprocess.CompletedProc
             print("--- STDERR ---")
             print(result.stderr)
 
-    return result
+    return result.returncode == 0
 
 
 def get_argument_parser() -> argparse.ArgumentParser:
@@ -70,7 +70,7 @@ def main() -> None:
 
     print("Running initial check...")
     initial_check = run_script(tcr_script, "tcr: committed")
-    if initial_check.returncode != 0:
+    if not initial_check:
         print(f"{FAILURE_EMOJI} Initial build is broken. Aborting.")
         return
     print(f"{SUCCESS_EMOJI} build working")
@@ -80,7 +80,7 @@ def main() -> None:
         print(f"Run #{i}")
 
         find_result = run_script(find_script, "found problems")
-        if find_result.returncode != 0:
+        if not find_result:
             print("no more problems found.")
             break
 
