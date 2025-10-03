@@ -1,5 +1,4 @@
 import argparse
-import os
 import subprocess
 import time
 from pathlib import Path
@@ -46,13 +45,22 @@ def run_script(script_path: Path, display_name: str) -> bool:
 def get_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="AI-Powered Loop Fixer.")
     parser.add_argument(
-        "--find", type=Path, default="find_problems", help="The script to run to find problems."
+        "--find",
+        type=Path,
+        default="find_problems",
+        help="The script to run to find problems.",
     )
     parser.add_argument(
-        "--fix", type=Path, default="fix_problem", help="The script to run to fix problems."
+        "--fix",
+        type=Path,
+        default="fix_problem",
+        help="The script to run to fix problems.",
     )
     parser.add_argument(
-        "--tcr", type=Path, default="tcr", help="The script for Test && Commit || Revert."
+        "--tcr",
+        type=Path,
+        default="tcr",
+        help="The script for Test && Commit || Revert.",
     )
     return parser
 
