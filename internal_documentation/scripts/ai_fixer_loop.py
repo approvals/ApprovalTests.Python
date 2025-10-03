@@ -18,15 +18,12 @@ def get_script_path(script_name: Path) -> Path:
 
 def run_script(script_path: Path, display_name: str) -> bool:
     start_time = time.time()
-    script_dir = script_path.parent
-    script_name = script_path.name
     result = subprocess.run(
-        f".{os.sep}{script_name}",
+        script_path.as_posix(),
         check=False,
         capture_output=True,
         text=True,
         shell=True,
-        cwd=script_dir,
         encoding="utf-8",
     )
     end_time = time.time()
@@ -88,12 +85,11 @@ def main() -> None:
 
         start_time = time.time()
         tcr_result = subprocess.run(
-            f".{os.sep}{get_script_path(args.tcr).name}",
+            get_script_path(args.tcr).as_posix(),
             check=False,
             capture_output=True,
             text=True,
             shell=True,
-            cwd=get_script_path(args.tcr).parent,
             encoding="utf-8",
         )
         duration = time.time() - start_time
