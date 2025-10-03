@@ -10,7 +10,7 @@ SUCCESS_EMOJI = "✅"
 FAILURE_EMOJI = "❌"
 
 
-def get_script_path(script_name: str) -> Path:
+def get_script_path(script_name: Path) -> Path:
     # The scripts are in the same directory as this script
     base_path = _SCRIPT_DIR / script_name
     return base_path
@@ -49,13 +49,13 @@ def run_script(script_path: Path, display_name: str) -> bool:
 def get_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="AI-Powered Loop Fixer.")
     parser.add_argument(
-        "--find", default="find_problems", help="The script to run to find problems."
+        "--find", type=Path, default="find_problems", help="The script to run to find problems."
     )
     parser.add_argument(
-        "--fix", default="fix_problem", help="The script to run to fix problems."
+        "--fix", type=Path, default="fix_problem", help="The script to run to fix problems."
     )
     parser.add_argument(
-        "--tcr", default="tcr", help="The script for Test && Commit || Revert."
+        "--tcr", type=Path, default="tcr", help="The script for Test && Commit || Revert."
     )
     return parser
 
