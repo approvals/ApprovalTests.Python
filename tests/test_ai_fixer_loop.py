@@ -8,7 +8,9 @@ from approvaltests.utilities.command_line_approvals import verify_command_line
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent
 sys.path.insert(0, _REPO_ROOT.joinpath("internal_documentation/scripts").as_posix())
-from ai_fixer_loop import get_argument_parser  # pylint: disable=wrong-import-position,wrong-import-order
+from ai_fixer_loop import (  # pylint: disable=wrong-import-position,wrong-import-order
+    get_argument_parser,
+)
 
 
 def test_ai_fixer_loop() -> None:
@@ -23,12 +25,13 @@ def test_ai_fixer_loop() -> None:
         ),
     )
 
+
 def test_argument_parser() -> None:
     """
     usage: __main__.py [-h] [--find FIND] [--fix FIX] [--tcr TCR]
-    
+
     AI-Powered Loop Fixer.
-    
+
     <optional header>:
       -h, --help   show this help message and exit
       --find FIND  The script to run to find problems.
