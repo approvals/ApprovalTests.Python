@@ -28,7 +28,7 @@ def test_ai_fixer_loop() -> None:
 
 def test_argument_parser() -> None:
     """
-    usage: __main__.py [-h] [--find FIND] [--fix FIX] [--tcr TCR]
+    usage: ai_fixer_loop [-h] [--find FIND] [--fix FIX] [--tcr TCR]
 
     AI-Powered Loop Fixer.
 
