@@ -7,7 +7,7 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         python-version:
           - "3.8"
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: echo "${{ matrix.python-version }}" > .python-version
-      - uses: jdx/mise-action@v3
+      - uses: jdx/mise-action@v3.2.0
         with:
           install: false
       - run: ./build_and_test.sh
