@@ -1,17 +1,19 @@
-from typing import ByteString
+from typing import Union
 
 from typing_extensions import override
 
 from approval_utilities.utils import create_directory_if_needed
 from approvaltests.core.writer import Writer
 
+# typing.ByteString was removed in Python 3.14
+_ByteString = Union[bytes, bytearray, memoryview]
 
 class BinaryWriter(Writer):
-    contents: ByteString
+    contents: _ByteString
 
     def __init__(
         self,
-        contents: ByteString,
+        contents: _ByteString,
         extension: str,
     ) -> None:
         self.contents = contents

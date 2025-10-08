@@ -2,7 +2,7 @@ import argparse
 import xml.dom.minidom
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, ByteString, Callable, Iterator, List, Optional
+from typing import Any, Callable, Iterator, List, Optional, Union
 
 import approvaltests.namer.default_namer_factory
 import approvaltests.reporters.default_reporter_factory
@@ -33,6 +33,9 @@ from approvaltests.verifiable_objects.formatter_of_argparse_namespace import (
 
 __unittest = True
 __tracebackhide__ = True
+
+# typing.ByteString was removed in Python 3.14
+_ByteString = Union[bytes, bytearray, memoryview]
 
 
 class Settings:
@@ -147,7 +150,7 @@ def find_formatter_for_specified_class(data: Any) -> Any:
 
 
 def verify_binary(
-    data: ByteString,
+    data: _ByteString,
     file_extension_with_dot: str,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Optional[Options] = None,
