@@ -8,6 +8,7 @@ from approvaltests.core.writer import Writer
 # typing.ByteString was removed in Python 3.14
 _ByteString = Union[bytes, bytearray, memoryview]
 
+
 class BinaryWriter(Writer):
     contents: _ByteString
 

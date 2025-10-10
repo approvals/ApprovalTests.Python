@@ -43,7 +43,9 @@ def run_script(script_path: Path, display_name: str) -> bool:
 
 
 def get_argument_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="AI-Powered Loop Fixer.", prog="ai_fixer_loop")
+    parser = argparse.ArgumentParser(
+        description="AI-Powered Loop Fixer.", prog="ai_fixer_loop"
+    )
     parser.add_argument(
         "--find",
         type=Path,
