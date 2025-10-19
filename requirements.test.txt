@@ -3,7 +3,7 @@ numpy
 pylint
 
 pytest
-pytest-asyncio==0.21.1 # 0.23 has a bug 2023/12/3
+pytest-asyncio
 pytest-xdist
 PyYAML
 
