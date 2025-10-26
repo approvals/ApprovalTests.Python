@@ -7,7 +7,7 @@ create = true
 uv_create_args = ["--seed", "--quiet"]
 
 [tasks]
-"pip-install" = "uv pip install -r requirements.dev.txt --quiet"
+"pip-install" = "uv pip --no-cache install -r requirements.dev.txt --quiet"
 build_and_test.depends = ["test", "mypy", "lint", "integration"]
 
 [tasks.test]

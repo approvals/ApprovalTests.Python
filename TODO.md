@@ -1,3 +1,26 @@
+- [ ] e uv cache doesn't respect `.python-version`
+   - ideas/options:
+      - clear the cache in `build_and_test`
+      - use `uv pip --no-cache` DONE
+         - problem: need to remember to rm the venv after changing python versions
+         - idea: advertize the current actual python used version on every mise task execution 
+      - guess: migrate to `pyproj.toml`, will solve this
+         - how will we handle CI matrix?
+      - write a `clean` script
+          - git clean -xdf (to delete venv)
+          - mise exec -- uv cache clean
+          - mise uninstall --all
+          - mise cache clear
+
+      - define a custom cache key based on `.python-version`
+      - in the python version checklist, clear cache
+         - [ ] edit `.python-version`
+         - [ ] run `uv cache clean`
+
+- [ ] `set_python_version` script, which also removes the venv
+
+- [ ] uninstall unmanaged uv from dev machine (~/.local/bin)
+
 - [ ] continuous AI loop experiment
    - [x] manual one-line linting experiment
    - [x] get python script to work: AI fixing script
