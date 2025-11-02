@@ -21,3 +21,12 @@
 Official name is Risk Aware Commit Notation (RACN); formerly called "Arlo's Commit Notation" (ACN).
 
 Llewellyn uses `-` in situations where  RACN recommends `^`.
+
+## Examples
+
+```
+. d Update TODO
+. t Add test for such-and-such
+- r extract function
+! F add custom date format scrubbers
+```
