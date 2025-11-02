@@ -19,8 +19,6 @@
 
 - [ ] `set_python_version` script, which also removes the venv
 
-- [ ] uninstall unmanaged uv from dev machine (~/.local/bin)
-
 - [ ] continuous AI loop experiment
    - [x] manual one-line linting experiment
    - [x] get python script to work: AI fixing script
