@@ -16,6 +16,8 @@
 | ! | **This behavior change** is verified with automated tests |
 | @ | No verification |
 
+`***` for probably-broken checkpoint
+
 ## Format
 
 ```
