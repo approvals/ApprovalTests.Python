@@ -11,10 +11,10 @@
 
 | code | risk |
 | - | - |
-| . | proof that it can't break production |
-| - | verified with comprehensive testing |
-| ! | verified with a test for this change |
-| @ | no verification |
+| . | We are completely certain that it can't break production |
+| - | **Whole system** is verified with comprehensive (unit) testing, before and after this change |
+| ! | **This behavior change** is verified with automated tests |
+| @ | No verification |
 
 ## NOTES
 
