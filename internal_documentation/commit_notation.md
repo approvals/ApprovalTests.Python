@@ -16,11 +16,11 @@
 | ! | **This behavior change** is verified with automated tests |
 | @ | No verification |
 
-## NOTES
+## Format
 
-Official name is Risk Aware Commit Notation (RACN); formerly called "Arlo's Commit Notation" (ACN).
-
-Llewellyn uses `-` in situations where  RACN recommends `^`.
+```
+<risk> <intention> <description>
+```
 
 ## Examples
 
@@ -30,3 +30,10 @@ Llewellyn uses `-` in situations where  RACN recommends `^`.
 - r extract function
 ! F add custom date format scrubbers
 ```
+
+## NOTES
+
+Official name is Risk Aware Commit Notation (RACN); formerly called "Arlo's Commit Notation" (ACN).
+
+Llewellyn uses `-` in situations where  RACN recommends `^`.
+
