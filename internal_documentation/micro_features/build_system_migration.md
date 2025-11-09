@@ -133,6 +133,69 @@ Same Source:       approvaltests (full)  ═══ same code ═══  approval
 4. **Dependency Variants**: Full vs minimal versions with different deps
 5. **Cross-Package Dependencies**: `approvaltests` depends on `approval_utilities`
 
+## GitHub Actions Integration
+
+### Publishing Workflow (`publish_to_pypi.yml`)
+
+**Trigger**: On GitHub release publication or manual dispatch
+
+**Process**:
+```
+1. Setup Environment
+   ├─► Python 3.x (latest)
+   ├─► Install: pip, setuptools, wheel, twine
+   └─► Extract version from git tag
+
+2. Version Management
+   ├─► Update version.py with git tag
+   ├─► Copy to approvaltests/version.py
+   └─► Commit and push to main branch
+
+3. Sequential Publishing (CRITICAL ORDER)
+   ├─► publish_approval_utilities.sh
+   │   └─► Auth: secrets.PYPI_APPROVAL_UTILITIES
+   │
+   ├─► publish_approvaltests.sh
+   │   └─► Auth: secrets.PYPI_PASSWORD
+   │
+   └─► publish_minimal.sh
+       └─► Auth: secrets.PYPI_APPROVALTESTS_MINIMAL
+```
+
+**Key Points**:
+- **3 separate PyPI tokens** (one per package)
+- **Sequential execution** ensures `approval_utilities` publishes first
+- **Version synchronization** across all packages from single git tag
+- Uses deprecated `setup.py` commands (source of warnings)
+
+### Testing Workflows
+
+**test.yml** - Main CI testing
+- Runs on: push, PR, manual
+- Matrix: Python 3.8-3.14 × 3 OS (macOS, Ubuntu, Windows)
+- Uses: `./build_and_test.sh` (which uses `setup.py install`)
+
+**test_min.yml** - Minimal dependency testing
+- Generates minimal requirements
+- Tests with minimum supported dependency versions
+
+**test_current_release.yml** - Integration testing
+- Tests published PyPI packages
+- Installs from PyPI: `pip install approvaltests`
+- Validates released versions work correctly
+
+### Build System Impact
+
+All workflows currently rely on:
+- `setup.py install` (deprecated)
+- `setup.py sdist bdist_wheel` (deprecated)
+- `setuptools` and `wheel` packages
+
+Migration will require updating:
+- Publishing workflow commands
+- Test environment setup
+- Dependency installation methods
+
 ## Status
 
 Investigating modern build system alternatives to resolve the deprecation warning.
