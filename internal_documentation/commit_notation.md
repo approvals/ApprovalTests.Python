@@ -1,5 +1,9 @@
 # Arlo's Git notation
 
+```
+<risk> <intention> <description>
+```
+
 | code | intention |
 | - | - |
 | F | feature |
@@ -17,12 +21,6 @@
 | @ | No verification |
 
 `***` for probably-broken checkpoint
-
-## Format
-
-```
-<risk> <intention> <description>
-```
 
 ## Examples
 
