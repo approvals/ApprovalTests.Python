@@ -261,3 +261,26 @@ def test_escape_backslashes_windows_path() -> None:
 def test_escape_backslashes_mixed_sequences() -> None:
     text = "a\\b\\c\\n"
     assert escape_backslashes(text) == "a\\b\\c\\n".replace("\\", "\\\\")
+
+def test_unicode_and_special_characters_combining_acute() -> None:
+    """
+    e\u0301
+    """
+    text = "e\u0301" # 'e' + COMBINING ACUTE (2 code points)
+    verify(text, options=Options().inline())
+
+
+def test_unicode_null_character() -> None:
+    """
+    hello\x00world
+    """
+    text = "hello\x00world"  # Null character
+    verify(text, options=Options().inline())
+
+
+def test_unicode_right_to_left_mark() -> None:
+    """
+    hello\u200fworld
+    """
+    text = "hello\u200fworld"  # Right-to-left mark
+    verify(text, options=Options().inline())
