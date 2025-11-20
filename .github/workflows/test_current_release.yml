@@ -26,7 +26,7 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           repository: approvals/ApprovalTests.Python.StarterProject
       - name: Set up Python ${{ matrix.python-version }}
