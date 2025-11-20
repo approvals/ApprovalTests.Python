@@ -23,7 +23,7 @@ jobs:
           - windows-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: echo "${{ matrix.python-version }}" > .python-version
       - uses: jdx/mise-action@v3
       - run: ./build_and_test.sh

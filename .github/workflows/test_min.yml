@@ -20,7 +20,7 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: echo "${{ matrix.python-version }}" > .python-version
       - uses: jdx/mise-action@v3
       - run: python ./generate_prod_min.py
