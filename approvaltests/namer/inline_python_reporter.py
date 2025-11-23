@@ -60,9 +60,9 @@ class InlinePythonReporter(Reporter):
         return test_stack_frame.filename
 
     def create_received_file(self, received_path: str, test_source_file: str) -> str:
-        code = Path(test_source_file).read_text()
+        code = Path(test_source_file).read_text(encoding="utf-8")
 
-        original_received_text = Path(received_path).read_text()[:-1]
+        original_received_text = Path(received_path).read_text(encoding="utf-8")[:-1]
         received_text = original_received_text + self.footer
         # Handle preceding whitespace consistently across all lines.
         received_text = handle_preceeding_whitespace(received_text)
@@ -78,7 +78,7 @@ class InlinePythonReporter(Reporter):
             received_text, code, method_name, after_docstring_comment=trailing_comment
         )
         file = tempfile.NamedTemporaryFile(suffix=".received.txt", delete=False).name
-        Path(file).write_text(new_code)
+        Path(file).write_text(new_code, encoding="utf-8")
         return file
 
     def swap(

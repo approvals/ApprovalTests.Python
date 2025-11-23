@@ -263,12 +263,25 @@ def test_escape_backslashes_mixed_sequences() -> None:
     assert escape_backslashes(text) == "a\\b\\c\\n".replace("\\", "\\\\")
 
 
-def test_unicode_and_special_characters_combining_acute() -> None:
+def test_unicode_and_special_characters__mismatch() -> None:
+    # TODO: consider inspecting the exception
     """
-    e\u0301
+    é
     """
+    text = "xe\u0301"  # 'e' + COMBINING ACUTE (2 code points)
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_and_special_characters__missing() -> None:
     text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
-    verify(text, options=Options().inline())
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_and_special_characters__not_inline() -> None:
+    text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
+    verify(text)
 
 
 def test_unicode_null_character() -> None:
