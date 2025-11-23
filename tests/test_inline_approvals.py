@@ -263,6 +263,14 @@ def test_escape_backslashes_mixed_sequences() -> None:
     assert escape_backslashes(text) == "a\\b\\c\\n".replace("\\", "\\\\")
 
 
+def test_unicode_and_special_characters__passing() -> None:
+    """
+    é
+    """
+    text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
+    verify(text, options=Options().inline())
+
+
 def test_unicode_and_special_characters__mismatch() -> None:
     # TODO: consider inspecting the exception
     """
