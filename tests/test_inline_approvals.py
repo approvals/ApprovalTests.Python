@@ -29,6 +29,11 @@ from approvaltests.reporters.report_with_beyond_compare import (
 # detect if the quote type used in the docstring  (i.e. " or ')
 
 
+def verify_approval_failure(text: str):
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
 def fizz_buzz(param: int) -> str:
     return_string = ""
     for i in range(1, param + 1):
@@ -272,20 +277,16 @@ def test_unicode_and_special_characters__passing() -> None:
 
 
 def test_unicode_and_special_characters__mismatch() -> None:
-    # TODO: consider inspecting the exception
     """
     é
     """
-    text = "xe\u0301"  # 'e' + COMBINING ACUTE (2 code points)
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    # 'e' + COMBINING ACUTE (2 code points)
+    verify_approval_failure("xe\u0301")
 
 
 def test_unicode_and_special_characters__missing() -> None:
     text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
-
+    verify_approval_failure(text)
 
 def test_unicode_and_special_characters__not_inline() -> None:
     text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
@@ -294,35 +295,32 @@ def test_unicode_and_special_characters__not_inline() -> None:
 
 def test_unicode_null_character__passing() -> None:
     """
-    hello\x00world
+    \x00
     """
-    text = "hello\x00world"  # Null character
+    text = "\x00"  # Null character
     verify(text, options=Options().inline())
 
 
 def test_unicode_null_character__missing() -> None:
     text = "hello\x00world"  # Null character
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    verify_approval_failure(text)
+
+
 
 
 def test_unicode_null_character__incorrect_test() -> None:
     """
     hello\x00world
     """
-    text = "hello\x20world"  # not null character
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    verify_approval_failure("hello world")
 
 
 def test_unicode_null_character__incorrect_approval() -> None:
-    # TODO: consider inspecting the exception
     """
-    hello\x20world
+    hello .
     """
-    text = "hello\x00world"  # null character
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    verify_approval_failure("hello\x00.")
+
 
 
 def test_unicode_right_to_left_mark__passing() -> None:
@@ -335,23 +333,18 @@ def test_unicode_right_to_left_mark__passing() -> None:
 
 def test_unicode_right_to_left_mark__missing() -> None:
     text = "hello!\u200fworld"  # Right-to-left mark
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    verify_approval_failure(text)
 
 
 def test_unicode_right_to_left_mark__incorrect_approval() -> None:
     """
     hello world
     """
-    text = "hello!\u200fworld"  # Right-to-left mark
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    verify_approval_failure("hello!\u200fworld")
 
 
 def test_unicode_right_to_left_mark__incorrect_test() -> None:
     """
     hello!\u200fworld
     """
-    text = "hello world"  # Right-to-left mark
-    with pytest.raises(ApprovalException):
-        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+    verify_approval_failure("hello world")
