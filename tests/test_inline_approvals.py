@@ -292,7 +292,7 @@ def test_unicode_and_special_characters__not_inline() -> None:
     verify(text)
 
 
-def test_unicode_null_character() -> None:
+def test_unicode_null_character__passing() -> None:
     """
     hello\x00world
     """
@@ -300,9 +300,58 @@ def test_unicode_null_character() -> None:
     verify(text, options=Options().inline())
 
 
-def test_unicode_right_to_left_mark() -> None:
+def test_unicode_null_character__missing() -> None:
+    text = "hello\x00world"  # Null character
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_null_character__incorrect_test() -> None:
     """
-    hello\u200fworld
+    hello\x00world
     """
-    text = "hello\u200fworld"  # Right-to-left mark
+    text = "hello\x20world"  # not null character
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_null_character__incorrect_approval() -> None:
+    # TODO: consider inspecting the exception
+    """
+    hello\x20world
+    """
+    text = "hello\x00world"  # null character
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_right_to_left_mark__passing() -> None:
+    """
+    hello!\u200fworld
+    """
+    text = "hello!\u200fworld"  # Right-to-left mark
     verify(text, options=Options().inline())
+
+
+def test_unicode_right_to_left_mark__missing() -> None:
+    text = "hello!\u200fworld"  # Right-to-left mark
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_right_to_left_mark__incorrect_approval() -> None:
+    """
+    hello world
+    """
+    text = "hello!\u200fworld"  # Right-to-left mark
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
+
+
+def test_unicode_right_to_left_mark__incorrect_test() -> None:
+    """
+    hello!\u200fworld
+    """
+    text = "hello world"  # Right-to-left mark
+    with pytest.raises(ApprovalException):
+        verify(text, options=Options().with_reporter(ReportQuietly()).inline())
