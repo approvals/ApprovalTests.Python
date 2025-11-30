@@ -288,6 +288,7 @@ def test_unicode_and_special_characters__missing() -> None:
     text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
     verify_approval_failure(text)
 
+
 def test_unicode_and_special_characters__not_inline() -> None:
     text = "e\u0301"  # 'e' + COMBINING ACUTE (2 code points)
     verify(text)
@@ -306,8 +307,6 @@ def test_unicode_null_character__missing() -> None:
     verify_approval_failure(text)
 
 
-
-
 def test_unicode_null_character__incorrect_test() -> None:
     """
     hello\x00world
@@ -320,7 +319,6 @@ def test_unicode_null_character__incorrect_approval() -> None:
     hello .
     """
     verify_approval_failure("hello\x00.")
-
 
 
 def test_unicode_right_to_left_mark__passing() -> None:
