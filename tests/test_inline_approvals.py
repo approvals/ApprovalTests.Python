@@ -29,7 +29,7 @@ from approvaltests.reporters.report_with_beyond_compare import (
 # detect if the quote type used in the docstring  (i.e. " or ')
 
 
-def verify_approval_failure(text: str):
+def verify_approval_failure(text: str) -> None:
     with pytest.raises(ApprovalException):
         verify(text, options=Options().with_reporter(ReportQuietly()).inline())
 
