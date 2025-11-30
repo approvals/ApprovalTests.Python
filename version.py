@@ -1,1 +1,1 @@
-version_number = "v15.3.2-dev9"
+version_number = "v16.0.0"
