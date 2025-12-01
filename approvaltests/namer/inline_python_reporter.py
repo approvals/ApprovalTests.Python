@@ -42,32 +42,30 @@ def escape_control_characters(text: str) -> str:
     if not text:
         return text
 
-    replacements = {
-        "\x00": "\\x00",  # Null
-        "\x08": "\\b",  # Backspace
-        "\x0b": "\\v",  # Vertical tab
-        "\x0c": "\\f",  # Form feed
-        "\x1b": "\\x1b",  # Escape
-        "\x7f": "\\x7f",  # Delete
-        "\u00a0": "\\u00a0",  # Non-breaking space
-        "\u200b": "\\u200b",  # Zero-width space
-        "\u200c": "\\u200c",  # Zero-width non-joiner
-        "\u200d": "\\u200d",  # Zero-width joiner
-        "\u200e": "\\u200e",  # Left-to-right mark
-        "\u200f": "\\u200f",  # Right-to-left mark
-        "\u202c": "\\u202c",  # Pop directional formatting
-        "\u202d": "\\u202d",  # Left-to-right override
-        "\u202e": "\\u202e",  # Right-to-left override
-        "\u2028": "\\u2028",  # Line separator
-        "\u2029": "\\u2029",  # Paragraph separator
-        "\ufeff": "\\ufeff",  # Byte order mark
-    }
+    translation_table = str.maketrans(
+        {
+            "\x00": "\\x00",  # Null
+            "\x08": "\\b",  # Backspace
+            "\x0b": "\\v",  # Vertical tab
+            "\x0c": "\\f",  # Form feed
+            "\x1b": "\\x1b",  # Escape
+            "\x7f": "\\x7f",  # Delete
+            "\u00a0": "\\u00a0",  # Non-breaking space
+            "\u200b": "\\u200b",  # Zero-width space
+            "\u200c": "\\u200c",  # Zero-width non-joiner
+            "\u200d": "\\u200d",  # Zero-width joiner
+            "\u200e": "\\u200e",  # Left-to-right mark
+            "\u200f": "\\u200f",  # Right-to-left mark
+            "\u202c": "\\u202c",  # Pop directional formatting
+            "\u202d": "\\u202d",  # Left-to-right override
+            "\u202e": "\\u202e",  # Right-to-left override
+            "\u2028": "\\u2028",  # Line separator
+            "\u2029": "\\u2029",  # Paragraph separator
+            "\ufeff": "\\ufeff",  # Byte order mark
+        }
+    )
 
-    result = text
-    for char, escape_seq in replacements.items():
-        result = result.replace(char, escape_seq)
-
-    return result
+    return text.translate(translation_table)
 
 
 class InlinePythonReporter(Reporter):
