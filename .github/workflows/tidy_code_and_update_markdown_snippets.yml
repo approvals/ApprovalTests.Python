@@ -8,6 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v6
     - uses: jdx/mise-action@v3
+    - run: mise install  # retry for network issues
     - run: ./tidy_code.sh
     - run: ./run_mdsnippets.sh
       shell: bash

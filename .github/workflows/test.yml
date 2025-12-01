@@ -26,6 +26,7 @@ jobs:
       - uses: actions/checkout@v6
       - run: echo "${{ matrix.python-version }}" > .python-version
       - uses: jdx/mise-action@v3
+      - run: mise install  # retry for network issues
       - run: ./build_and_test.sh
         shell: bash
       - name: Publish Test Report
