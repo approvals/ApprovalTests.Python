@@ -1,5 +1,6 @@
 from pathlib import Path
 import argparse
+from packaging.version import Version
 
 _VERSION_FILES = map(Path, [
     "version.py",
@@ -8,7 +9,7 @@ _VERSION_FILES = map(Path, [
 
 def main() -> None:
     argument_parser = argparse.ArgumentParser()
-    argument_parser.add_argument("version")
+    argument_parser.add_argument("version", type=Version)
     args = argument_parser.parse_args()
     version_number = args.version
 
