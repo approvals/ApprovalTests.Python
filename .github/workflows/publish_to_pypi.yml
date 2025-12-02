@@ -26,10 +26,7 @@ jobs:
         id: version
         run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
       - name: set version
-        run: |
-          rm ./version.py
-          echo version_number = \"${{ steps.version.outputs.tag }}\" > ./version.py
-          cp ./version.py ./approvaltests/version.py
+        run: python setup/set_version.py ${{ steps.version.outputs.tag }}
       - name: Push changes
         run: |
           git config --local user.email "action@github.com"
