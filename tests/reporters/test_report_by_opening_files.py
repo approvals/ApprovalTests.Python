@@ -103,42 +103,13 @@ class TestReportByOpeningFiles(unittest.TestCase):
         self.assertEqual("Failed to open files", call_args[0][0])
         self.assertIsInstance(call_args[1]["exception"], Exception)
 
-    @patch("platform.system")
-    @patch("os.startfile")
-    def test_display_file_windows(
-        self, mock_startfile: MagicMock, mock_system: MagicMock
-    ) -> None:
-        mock_system.return_value = "Windows"
-        test_file = "test.txt"
-
-        ReportByOpeningFiles.display_file(test_file)
-
-        mock_startfile.assert_called_once_with(test_file)
-
-    @patch("platform.system")
-    @patch("subprocess.call")
-    def test_display_file_macos(
-        self, mock_call: MagicMock, mock_system: MagicMock
-    ) -> None:
-        mock_system.return_value = "Darwin"
-        test_file = "test.txt"
-
-        ReportByOpeningFiles.display_file(test_file)
-
-        mock_call.assert_called_once_with(["open", test_file])
-
-    @patch("platform.system")
-    @patch("subprocess.call")
-    def test_display_file_linux(
-        self, mock_call: MagicMock, mock_system: MagicMock
-    ) -> None:
-        mock_system.return_value = "Linux"
-        test_file = "test.txt"
-
-        ReportByOpeningFiles.display_file(test_file)
-
-        mock_call.assert_called_once_with(["xdg-open", test_file])
 
 
-if __name__ == "__main__":
-    unittest.main()
+
+
+
+
+def test_get_opening_command():
+    assert ["start", "text.txt"] == ReportByOpeningFiles.get_opening_command("text.txt", "Windows")
+    assert ["open", "text.txt"] == ReportByOpeningFiles.get_opening_command("text.txt", "Darwin")
+    assert ["xdg-open", "text.txt"] == ReportByOpeningFiles.get_opening_command("text.txt", "Linux")

@@ -2,6 +2,7 @@ import os
 import platform
 import subprocess
 from pathlib import Path
+from typing import List
 
 from typing_extensions import override
 
@@ -13,14 +14,18 @@ class ReportByOpeningFiles(Reporter):
 
     @staticmethod
     def display_file(file_path: str) -> None:
-        system = platform.system()
+        call = ReportByOpeningFiles.get_opening_command(file_path, platform.system())
+        subprocess.call(call, shell=True)
 
-        if system == "Windows":
-            os.startfile(file_path)
-        elif system == "Darwin":  # macOS
-            subprocess.call(["open", file_path])
-        else:  # Linux and other Unix-like systems
-            subprocess.call(["xdg-open", file_path])
+    @staticmethod
+    def get_opening_command(file_path: str, os: str) -> List[str]:
+        command = {
+            "Windows": "start",
+            "Darwin": "open",
+            "Linux": "xdg-open",
+        }[os]
+        call = [command, file_path]
+        return call
 
     @staticmethod
     def is_non_empty_file(file_path: str) -> bool:
