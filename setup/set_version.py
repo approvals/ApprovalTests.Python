@@ -1,11 +1,16 @@
-from pathlib import Path
 import argparse
+from pathlib import Path
+
 from packaging.version import Version
 
-_VERSION_FILES = map(Path, [
-    "version.py",
-    "approvaltests/version.py",
-])
+_VERSION_FILES = map(
+    Path,
+    [
+        "version.py",
+        "approvaltests/version.py",
+    ],
+)
+
 
 def main() -> None:
     argument_parser = argparse.ArgumentParser()
@@ -18,4 +23,5 @@ def main() -> None:
         version_file.write_text(f'version_number = "{version_number}"\n')
 
 
-if __name__ == "__main__": main()
+if __name__ == "__main__":
+    main()
