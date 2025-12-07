@@ -5,12 +5,7 @@ import tempfile
 import time
 import typing
 
-from packaging.version import Version
-
 from version import version_number
-
-# normalize version number
-version_number = str(Version(version_number))
 
 
 def main() -> None:
