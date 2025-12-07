@@ -10,7 +10,6 @@ from approvaltests.core.reporter import Reporter
 
 
 class ReportByOpeningFiles(Reporter):
-
     @staticmethod
     def display_file(file_path: str) -> None:
         call = ReportByOpeningFiles.get_opening_command(file_path, platform.system())
