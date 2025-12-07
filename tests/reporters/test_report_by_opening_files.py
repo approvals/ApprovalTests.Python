@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+import pytest
 from typing_extensions import override
 
 from approvaltests.reporters.report_by_opening_files import ReportByOpeningFiles
@@ -103,6 +104,9 @@ class TestReportByOpeningFiles(unittest.TestCase):
         self.assertEqual("Failed to open files", call_args[0][0])
         self.assertIsInstance(call_args[1]["exception"], Exception)
 
+def test_unknown_os():
+    with pytest.raises(KeyError):
+        ReportByOpeningFiles.get_opening_command("text.txt", "unknown")
 
 def test_get_opening_command():
     assert ["start", "text.txt"] == ReportByOpeningFiles.get_opening_command("text.txt", "Windows")
