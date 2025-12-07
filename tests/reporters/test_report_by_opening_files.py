@@ -1,43 +1,27 @@
 import os
 import platform
+import shutil
 import tempfile
-import unittest
-from pathlib import Path
-from unittest.mock import MagicMock, patch
 
 import pytest
-from typing_extensions import override
 
+from approval_utilities import utils
 from approvaltests.reporters.report_by_opening_files import ReportByOpeningFiles
 
 
-class TestReportByOpeningFiles(unittest.TestCase):
-    @override
-    def setUp(self) -> None:
-        self.reporter = ReportByOpeningFiles()
-        self.temp_dir = tempfile.mkdtemp()
+def test_is_non_empty_file_with_empty_file() -> None:
+    temp_dir = tempfile.mkdtemp()
+    temp_file = os.path.join(temp_dir, "empty.txt")
+    utils.create_empty_file(temp_file)
+    assert not ReportByOpeningFiles.is_non_empty_file(temp_file)
 
-    @override
-    def tearDown(self) -> None:
-        import shutil
+    shutil.rmtree(temp_dir, ignore_errors=True)
 
-        shutil.rmtree(self.temp_dir, ignore_errors=True)
-
-
-
-    def test_is_non_empty_file_with_empty_file(self) -> None:
-        temp_file = os.path.join(self.temp_dir, "empty.txt")
-        Path(temp_file).touch()
-
-        self.assertFalse(self.reporter.is_non_empty_file(temp_file))
-
-    def test_is_non_empty_file_with_nonexistent_file(self) -> None:
-        nonexistent = os.path.join(self.temp_dir, "nonexistent.txt")
-
-        self.assertFalse(self.reporter.is_non_empty_file(nonexistent))
-
-def test_is_non_empty_file_with_content() -> None:
+def test_is_non_empty_file() -> None:
     assert ReportByOpeningFiles.is_non_empty_file(__file__)
+
+def test_is_non_missing_file() -> None:
+    assert not ReportByOpeningFiles.is_non_empty_file("non_existent.txt")
 
 def test_current_os_is_known():
     ReportByOpeningFiles.get_opening_command("text.txt", platform.system())
