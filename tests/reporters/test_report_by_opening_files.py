@@ -1,0 +1,144 @@
+import os
+import tempfile
+import unittest
+from pathlib import Path
+from unittest.mock import MagicMock, patch
+
+from typing_extensions import override
+
+from approvaltests.reporters.report_by_opening_files import ReportByOpeningFiles
+
+
+class TestReportByOpeningFiles(unittest.TestCase):
+    @override
+    def setUp(self) -> None:
+        self.reporter = ReportByOpeningFiles()
+        self.temp_dir = tempfile.mkdtemp()
+
+    @override
+    def tearDown(self) -> None:
+        import shutil
+
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def test_is_non_empty_file_with_content(self) -> None:
+        temp_file = os.path.join(self.temp_dir, "test.txt")
+        Path(temp_file).write_text("content")
+
+        self.assertTrue(self.reporter.is_non_empty_file(temp_file))
+
+    def test_is_non_empty_file_with_empty_file(self) -> None:
+        temp_file = os.path.join(self.temp_dir, "empty.txt")
+        Path(temp_file).touch()
+
+        self.assertFalse(self.reporter.is_non_empty_file(temp_file))
+
+    def test_is_non_empty_file_with_nonexistent_file(self) -> None:
+        nonexistent = os.path.join(self.temp_dir, "nonexistent.txt")
+
+        self.assertFalse(self.reporter.is_non_empty_file(nonexistent))
+
+    @patch("approvaltests.reporters.report_by_opening_files.ReportByOpeningFiles.display_file")
+    def test_report_opens_both_files_when_approved_is_non_empty(
+        self, mock_display: MagicMock
+    ) -> None:
+        received_file = os.path.join(self.temp_dir, "received.txt")
+        approved_file = os.path.join(self.temp_dir, "approved.txt")
+        Path(received_file).write_text("received content")
+        Path(approved_file).write_text("approved content")
+
+        result = self.reporter.report(received_file, approved_file)
+
+        self.assertTrue(result)
+        self.assertEqual(2, mock_display.call_count)
+        mock_display.assert_any_call(approved_file)
+        mock_display.assert_any_call(received_file)
+
+    @patch("approvaltests.reporters.report_by_opening_files.ReportByOpeningFiles.display_file")
+    def test_report_only_opens_received_when_approved_is_empty(
+        self, mock_display: MagicMock
+    ) -> None:
+        received_file = os.path.join(self.temp_dir, "received.txt")
+        approved_file = os.path.join(self.temp_dir, "approved.txt")
+        Path(received_file).write_text("received content")
+        Path(approved_file).touch()
+
+        result = self.reporter.report(received_file, approved_file)
+
+        self.assertTrue(result)
+        self.assertEqual(1, mock_display.call_count)
+        mock_display.assert_called_once_with(received_file)
+
+    @patch("approvaltests.reporters.report_by_opening_files.ReportByOpeningFiles.display_file")
+    def test_report_only_opens_received_when_approved_does_not_exist(
+        self, mock_display: MagicMock
+    ) -> None:
+        received_file = os.path.join(self.temp_dir, "received.txt")
+        approved_file = os.path.join(self.temp_dir, "nonexistent.txt")
+        Path(received_file).write_text("received content")
+
+        result = self.reporter.report(received_file, approved_file)
+
+        self.assertTrue(result)
+        self.assertEqual(1, mock_display.call_count)
+        mock_display.assert_called_once_with(received_file)
+
+    @patch("approvaltests.reporters.report_by_opening_files.ReportByOpeningFiles.display_file")
+    @patch("approvaltests.reporters.report_by_opening_files.SimpleLogger.warning")
+    def test_report_returns_false_and_logs_on_exception(
+        self, mock_warning: MagicMock, mock_display: MagicMock
+    ) -> None:
+        mock_display.side_effect = Exception("Failed to open file")
+
+        received_file = os.path.join(self.temp_dir, "received.txt")
+        approved_file = os.path.join(self.temp_dir, "approved.txt")
+        Path(received_file).write_text("content")
+        Path(approved_file).write_text("content")
+
+        result = self.reporter.report(received_file, approved_file)
+
+        self.assertFalse(result)
+        mock_warning.assert_called_once()
+        call_args = mock_warning.call_args
+        self.assertEqual("Failed to open files", call_args[0][0])
+        self.assertIsInstance(call_args[1]["exception"], Exception)
+
+    @patch("platform.system")
+    @patch("os.startfile")
+    def test_display_file_windows(
+        self, mock_startfile: MagicMock, mock_system: MagicMock
+    ) -> None:
+        mock_system.return_value = "Windows"
+        test_file = "test.txt"
+
+        ReportByOpeningFiles.display_file(test_file)
+
+        mock_startfile.assert_called_once_with(test_file)
+
+    @patch("platform.system")
+    @patch("subprocess.call")
+    def test_display_file_macos(
+        self, mock_call: MagicMock, mock_system: MagicMock
+    ) -> None:
+        mock_system.return_value = "Darwin"
+        test_file = "test.txt"
+
+        ReportByOpeningFiles.display_file(test_file)
+
+        mock_call.assert_called_once_with(["open", test_file])
+
+    @patch("platform.system")
+    @patch("subprocess.call")
+    def test_display_file_linux(
+        self, mock_call: MagicMock, mock_system: MagicMock
+    ) -> None:
+        mock_system.return_value = "Linux"
+        test_file = "test.txt"
+
+        ReportByOpeningFiles.display_file(test_file)
+
+        mock_call.assert_called_once_with(["xdg-open", test_file])
+
+
+if __name__ == "__main__":
+    unittest.main()
