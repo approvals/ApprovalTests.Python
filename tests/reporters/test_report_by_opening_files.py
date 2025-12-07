@@ -1,4 +1,5 @@
 import os
+import platform
 import tempfile
 import unittest
 from pathlib import Path
@@ -103,6 +104,9 @@ class TestReportByOpeningFiles(unittest.TestCase):
         call_args = mock_warning.call_args
         self.assertEqual("Failed to open files", call_args[0][0])
         self.assertIsInstance(call_args[1]["exception"], Exception)
+
+def test_current_os_is_known():
+    ReportByOpeningFiles.get_opening_command("text.txt", platform.system())
 
 def test_unknown_os():
     with pytest.raises(KeyError):
