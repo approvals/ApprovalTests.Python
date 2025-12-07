@@ -104,11 +104,6 @@ class TestReportByOpeningFiles(unittest.TestCase):
         self.assertIsInstance(call_args[1]["exception"], Exception)
 
 
-
-
-
-
-
 def test_get_opening_command():
     assert ["start", "text.txt"] == ReportByOpeningFiles.get_opening_command("text.txt", "Windows")
     assert ["open", "text.txt"] == ReportByOpeningFiles.get_opening_command("text.txt", "Darwin")
