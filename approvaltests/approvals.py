@@ -2,7 +2,7 @@ import argparse
 import xml.dom.minidom
 from contextlib import contextmanager
 from pathlib import Path
-from typing import Any, Callable, Iterator, List, Optional, Union
+from typing import Any, Callable, Iterable, Iterator, Optional, Union
 
 import approvaltests.namer.default_namer_factory
 import approvaltests.reporters.default_reporter_factory
@@ -327,7 +327,7 @@ def verify_file(
 
 def verify_all(
     header: str,
-    alist: List[Any],
+    alist: Iterable[Any],
     formatter: Optional[Callable] = None,
     reporter: Optional[DiffReporter] = None,
     encoding: None = None,

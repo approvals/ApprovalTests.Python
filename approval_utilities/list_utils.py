@@ -1,7 +1,9 @@
-from typing import Any, Callable, List, Optional
+from typing import Any, Callable, Iterable, Optional
 
 
-def format_list(alist: List[Any], formatter: Optional[Callable], header: str) -> str:
+def format_list(
+    alist: Iterable[Any], formatter: Optional[Callable], header: str
+) -> str:
     if formatter is None:
         formatter = FormatLineItem().print_item
     text = (header + "\n\n") if header else ""
