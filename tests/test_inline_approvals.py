@@ -18,6 +18,7 @@ from approvaltests.namer.inline_python_reporter import (
     detect_trailing_whitespace,
     escape_backslashes,
     handle_preceeding_whitespace,
+    escape_characters_dict
 )
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.report_with_beyond_compare import (
@@ -346,3 +347,7 @@ def test_unicode_right_to_left_mark__incorrect_test() -> None:
     hello!\u200fworld
     """
     verify_approval_failure("hello world")
+
+
+def test_escape_characters_dict() -> None:
+    verify(escape_characters_dict)
