@@ -37,12 +37,7 @@ def escape_backslashes(text: str) -> str:
         return text
     return text.replace("\\", "\\\\")
 
-
-def escape_control_characters(text: str) -> str:
-    if not text:
-        return text
-
-    escape_characters_dict = {
+escape_characters_dict = {
         "\x00": "\\x00",  # Null
         "\x08": "\\b",  # Backspace
         "\x0b": "\\v",  # Vertical tab
@@ -62,6 +57,10 @@ def escape_control_characters(text: str) -> str:
         "\u2029": "\\u2029",  # Paragraph separator
         "\ufeff": "\\ufeff",  # Byte order mark
     }
+
+def escape_control_characters(text: str) -> str:
+    if not text:
+        return text
 
     translation_table = str.maketrans(escape_characters_dict)
 
