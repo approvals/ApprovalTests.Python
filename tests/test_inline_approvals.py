@@ -350,4 +350,4 @@ def test_unicode_right_to_left_mark__incorrect_test() -> None:
 
 
 def test_escape_characters_dict() -> None:
-    verify(escape_characters_dict)
+    verify_all("", escape_characters_dict.items())
