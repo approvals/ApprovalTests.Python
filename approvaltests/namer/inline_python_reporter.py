@@ -37,8 +37,10 @@ def escape_backslashes(text: str) -> str:
         return text
     return text.replace("\\", "\\\\")
 
+
 escape_characters_dict = {
-     v.encode().decode("unicode_escape"): v for v in [
+    v.encode().decode("unicode_escape"): v
+    for v in [
         "\\x00",  # Null
         "\\b",  # Backspace
         "\\v",  # Vertical tab
@@ -57,11 +59,9 @@ escape_characters_dict = {
         "\\u2028",  # Line separator
         "\\u2029",  # Paragraph separator
         "\\ufeff",  # Byte order mark
-     ]
-      
-      
-      
-    }
+    ]
+}
+
 
 def escape_control_characters(text: str) -> str:
     if not text:

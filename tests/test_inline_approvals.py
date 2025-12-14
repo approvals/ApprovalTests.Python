@@ -17,8 +17,8 @@ from approvaltests.namer.inline_comparator import InlineComparator
 from approvaltests.namer.inline_python_reporter import (
     detect_trailing_whitespace,
     escape_backslashes,
+    escape_characters_dict,
     handle_preceeding_whitespace,
-    escape_characters_dict
 )
 from approvaltests.reporters.report_quietly import ReportQuietly
 from approvaltests.reporters.report_with_beyond_compare import (
