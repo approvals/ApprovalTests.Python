@@ -41,24 +41,24 @@ def escape_backslashes(text: str) -> str:
 escape_characters_dict = {
     v.encode().decode("unicode_escape"): v
     for v in [
-        "\\x00",  # Null
-        "\\b",  # Backspace
-        "\\v",  # Vertical tab
-        "\\f",  # Form feed
-        "\\x1b",  # Escape
-        "\\x7f",  # Delete
-        "\\u00a0",  # Non-breaking space
-        "\\u200b",  # Zero-width space
-        "\\u200c",  # Zero-width non-joiner
-        "\\u200d",  # Zero-width joiner
-        "\\u200e",  # Left-to-right mark
-        "\\u200f",  # Right-to-left mark
-        "\\u202c",  # Pop directional formatting
-        "\\u202d",  # Left-to-right override
-        "\\u202e",  # Right-to-left override
-        "\\u2028",  # Line separator
-        "\\u2029",  # Paragraph separator
-        "\\ufeff",  # Byte order mark
+        r"\x00",  # Null
+        r"\b",  # Backspace
+        r"\v",  # Vertical tab
+        r"\f",  # Form feed
+        r"\x1b",  # Escape
+        r"\x7f",  # Delete
+        r"\u00a0",  # Non-breaking space
+        r"\u200b",  # Zero-width space
+        r"\u200c",  # Zero-width non-joiner
+        r"\u200d",  # Zero-width joiner
+        r"\u200e",  # Left-to-right mark
+        r"\u200f",  # Right-to-left mark
+        r"\u202c",  # Pop directional formatting
+        r"\u202d",  # Left-to-right override
+        r"\u202e",  # Right-to-left override
+        r"\u2028",  # Line separator
+        r"\u2029",  # Paragraph separator
+        r"\ufeff",  # Byte order mark
     ]
 }
 
