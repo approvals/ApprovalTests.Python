@@ -19,7 +19,7 @@ jobs:
           - "3.14"
         os:
           - macos-latest
-          - ubuntu-latest
+          - ubuntu-slim
           - windows-latest
 
     steps:
