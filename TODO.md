@@ -1,3 +1,5 @@
+- Help SeleniumLibrary update ApprovalTests. See https://github.com/robotframework/SeleniumLibrary/blame/c5c21ea2eb44d7e76619f96210d1f28c859f3aee/requirements-dev.txt#L6
+
 - [ ] e uv cache doesn't respect `.python-version`
    - ideas/options:
       - clear the cache in `build_and_test`
