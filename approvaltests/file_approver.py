@@ -81,7 +81,7 @@ class FileApprover:
             
             # Possible Fixes
             1. Separate your test into two tests
-            2. In your verify call, add `options=NamerFactory.with_parameters("your_paramater")`
+            2. In your verify call, add `options=NamerFactory.with_parameters("your_parameter")`
             3. In your test, call `approvals.settings().allow_multiple_verify_calls_for_this_method()`
             """
         )
