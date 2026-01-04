@@ -272,6 +272,8 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ApprovalTests is tested on the following Python versions: 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt -->
 
+For older versions of Python, either use an older version of ApprovalTests or use [TextTest](https://texttest.org/).
+
 ApprovalTests requires the following dependencies:
 
 #### Required dependencies
