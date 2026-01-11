@@ -24,18 +24,11 @@
 
 ## Explanations
 
--  [Overview of Approval Scripts](https://github.com/approvals/ApprovalTests.CommonScripts/blob/main/docs/explanations/overview.md)
-  
-### Missing Documentation?
-
-If there is documentation you wish existed, please add a `page request` to [this issue](https://github.com/approvals/ApprovalTests.Python/issues/135).
-
-## Explanations
-
 -   [Place to modify output](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/creating_output.md)
 -   [Approval Testing Concepts](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/approval_testing.md)
 -   [What are Approvals](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/what_are_approvals.md)
 -   [Benifits of Different Reporters](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/benefits_of_different_reporters.md)
+-  [Overview of Approval Scripts](https://github.com/approvals/ApprovalTests.CommonScripts/blob/main/docs/explanations/overview.md)
 
 ## Tutorial
 
@@ -44,5 +37,9 @@ If there is documentation you wish existed, please add a `page request` to [this
 ## Links
 
 -   [How to Contribute](Contribute.md)
+
+### Missing Documentation?
+
+If there is documentation you wish existed, please add a `page request` to [this issue](https://github.com/approvals/ApprovalTests.Python/issues/135).
 
 **Note:** We are following [Daniele Procida's theory of documentation](https://documentation.divio.com)
