@@ -39,11 +39,11 @@ class Options:
             get_default_reporter,
         )
 
-        return self.fields.get("reporter", get_default_reporter())
+        return self.fields.get("reporter") or get_default_reporter()
 
     @property
     def comparator(self) -> Comparator:
-        return self.fields.get("comparator", FileComparator())
+        return self.fields.get("comparator") or FileComparator()
 
     def with_comparator(self, comparator: Comparator) -> "Options":
         return Options({**self.fields, "comparator": comparator})
@@ -78,7 +78,7 @@ class Options:
     def namer(self) -> Namer:
         from approvaltests.namer.default_name import get_default_namer
 
-        namer = self.fields.get("namer", get_default_namer())
+        namer = self.fields.get("namer") or get_default_namer()
         if hasattr(namer, "set_extension"):
             namer.set_extension(self.for_file.file_extention)
         return namer
