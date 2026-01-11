@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/SimonCropp/MarkdownSnippets/master/schema.json",
-  "ExcludeDirectories": [ "target", ".windsurf" ],
+  "ExcludeDirectories": [ "target", ".windsurf", ".venv" ],
   "include": [ ".github/workflows" ],
   "Convention": "InPlaceOverwrite",
   "TocLevel": 5
