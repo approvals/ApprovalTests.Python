@@ -22,6 +22,10 @@
 -   [MarkdownTables](reference/markdown_table.md)
 -   [SimpleLogger](reference/simple_logger.md)
 
+## Explanations
+
+-  [Overview of Approval Scripts](https://github.com/approvals/ApprovalTests.CommonScripts/blob/main/docs/explanations/overview.md)
+  
 ### Missing Documentation?
 
 If there is documentation you wish existed, please add a `page request` to [this issue](https://github.com/approvals/ApprovalTests.Python/issues/135).
