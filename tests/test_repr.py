@@ -7,3 +7,4 @@ def test_ApprovalException():
 
 def test_ReporterMissingException():
     assert "ReporterMissingException('MY_REPORTER')" == repr(ReporterMissingException('MY_REPORTER'))
+    assert "Could not find 'MY_REPORTER' in the environment, perhaps you need to configure your reporter." == str(ReporterMissingException('MY_REPORTER'))
