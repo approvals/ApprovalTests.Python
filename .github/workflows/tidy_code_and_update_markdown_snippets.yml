@@ -1,7 +1,10 @@
 name: Tidy Code and Update Markdown Snippets
+
 on:
   push:
     branches: ['main']
+  workflow_dispatch:
+
 jobs:
   format_and_snippets:
     runs-on: ubuntu-latest
