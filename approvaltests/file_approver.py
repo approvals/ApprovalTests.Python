@@ -79,6 +79,10 @@ class FileApprover:
             To find out more, visit: 
             https://github.com/approvals/ApprovalTests.Python/blob/main/docs/how_to/multiple_approvals_per_test.md
             
+            # Edge Case
+            Custom Namers might create the same approved file from two different test methods.
+            If this is what you want, use fix #3.
+            
             # Possible Fixes
             1. Separate your test into two tests
             2. In your verify call, add `options=NamerFactory.with_parameters("your_parameter")`
