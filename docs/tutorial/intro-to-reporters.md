@@ -19,10 +19,6 @@ The default reporter will search your machine for any installed diff tool.
 
 * AraxisMergeMac<!-- include: GenericDiffReporterTests.test_document_existing_reporters.approved.md -->
 * AraxisMergeWin
-* BeyondCompare3
-* BeyondCompare4
-* BeyondCompare4Mac
-* BeyondCompare4x64
 * DiffMerge
 * PyCharm
 * kdiff3

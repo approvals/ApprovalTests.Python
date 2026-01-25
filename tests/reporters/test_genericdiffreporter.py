@@ -2,7 +2,6 @@ import os
 import re
 import shutil
 import unittest
-from typing import cast
 
 from typing_extensions import override
 

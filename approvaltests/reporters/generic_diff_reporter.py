@@ -88,7 +88,7 @@ class GenericDiffReporter(Reporter):
     def expand_program_files(path: str) -> str:
         def normalize_path(p: str) -> str:
             return Path(p).as_posix()
-        
+
         if PROGRAM_FILES not in path:
             return path
 

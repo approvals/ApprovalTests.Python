@@ -3,6 +3,7 @@ from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
 )
 
+
 class ReportWithDiffMergeMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -13,6 +14,7 @@ class ReportWithDiffMergeMac(GenericDiffReporter):
             )
         )
 
+
 class ReportWithBeyondCompareMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -21,6 +23,7 @@ class ReportWithBeyondCompareMac(GenericDiffReporter):
                 path="/Applications/Beyond Compare.app/Contents/MacOS/bcomp",
             )
         )
+
 
 class ReportWithKaleidoscopeMac(GenericDiffReporter):
     def __init__(self) -> None:
@@ -31,6 +34,7 @@ class ReportWithKaleidoscopeMac(GenericDiffReporter):
             )
         )
 
+
 class ReportWithKaleidoscope3Mac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -39,6 +43,7 @@ class ReportWithKaleidoscope3Mac(GenericDiffReporter):
                 path="/usr/local/bin/ksdiff",
             )
         )
+
 
 class ReportWithKdiff3Mac(GenericDiffReporter):
     def __init__(self) -> None:
@@ -50,6 +55,7 @@ class ReportWithKdiff3Mac(GenericDiffReporter):
             )
         )
 
+
 class ReportWithP4mergeMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -59,6 +65,7 @@ class ReportWithP4mergeMac(GenericDiffReporter):
             )
         )
 
+
 class ReportWithTkDiffMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -67,6 +74,7 @@ class ReportWithTkDiffMac(GenericDiffReporter):
                 path="/Applications/TkDiff.app/Contents/MacOS/tkdiff",
             )
         )
+
 
 class ReportWithVisualStudioCodeMac(GenericDiffReporter):
     def __init__(self) -> None:
@@ -78,6 +86,7 @@ class ReportWithVisualStudioCodeMac(GenericDiffReporter):
             )
         )
 
+
 class ReportWithAraxisMergeMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -86,6 +95,7 @@ class ReportWithAraxisMergeMac(GenericDiffReporter):
                 path="/Applications/Araxis Merge.app/Contents/Utilities/compare",
             )
         )
+
 
 class ReportWithBeyondCompare3Windows(GenericDiffReporter):
     def __init__(self) -> None:
@@ -96,6 +106,7 @@ class ReportWithBeyondCompare3Windows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithBeyondCompare4Windows(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -105,6 +116,7 @@ class ReportWithBeyondCompare4Windows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithBeyondCompare5Windows(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -113,6 +125,7 @@ class ReportWithBeyondCompare5Windows(GenericDiffReporter):
                 path="{ProgramFiles}Beyond Compare 5/BCompare.exe",
             )
         )
+
 
 class ReportWithTortoiseImageDiffWindows(GenericDiffReporter):
     def __init__(self) -> None:
@@ -124,6 +137,7 @@ class ReportWithTortoiseImageDiffWindows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithTortoiseTextDiffWindows(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -132,6 +146,7 @@ class ReportWithTortoiseTextDiffWindows(GenericDiffReporter):
                 path="{ProgramFiles}TortoiseSVN/bin/TortoiseMerge.exe",
             )
         )
+
 
 class ReportWithTortoiseGitImageDiffWindows(GenericDiffReporter):
     def __init__(self) -> None:
@@ -143,6 +158,7 @@ class ReportWithTortoiseGitImageDiffWindows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithTortoiseGitTextDiffWindows(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -151,6 +167,7 @@ class ReportWithTortoiseGitTextDiffWindows(GenericDiffReporter):
                 path="{ProgramFiles}TortoiseGIT/bin/TortoiseGitMerge.exe",
             )
         )
+
 
 class ReportWithWinMergeReporterWindows(GenericDiffReporter):
     def __init__(self) -> None:
@@ -161,6 +178,7 @@ class ReportWithWinMergeReporterWindows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithAraxisMergeWindows(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -169,6 +187,7 @@ class ReportWithAraxisMergeWindows(GenericDiffReporter):
                 path="{ProgramFiles}Araxis/Araxis Merge/Compare.exe",
             )
         )
+
 
 class ReportWithCodeCompareWindows(GenericDiffReporter):
     def __init__(self) -> None:
@@ -179,6 +198,7 @@ class ReportWithCodeCompareWindows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithKdiff3Windows(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -187,6 +207,7 @@ class ReportWithKdiff3Windows(GenericDiffReporter):
                 path="{ProgramFiles}KDiff3/kdiff3.exe",
             )
         )
+
 
 class ReportWithVisualStudioCodeWindows(GenericDiffReporter):
     def __init__(self) -> None:
@@ -198,6 +219,7 @@ class ReportWithVisualStudioCodeWindows(GenericDiffReporter):
             )
         )
 
+
 class ReportWithDiffMergeLinux(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -208,6 +230,7 @@ class ReportWithDiffMergeLinux(GenericDiffReporter):
             )
         )
 
+
 class ReportWithMeldMergeLinux(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -216,6 +239,7 @@ class ReportWithMeldMergeLinux(GenericDiffReporter):
                 path="/usr/bin/meld",
             )
         )
+
 
 class ReportWithKdiff3Linux(GenericDiffReporter):
     def __init__(self) -> None:
@@ -226,4 +250,3 @@ class ReportWithKdiff3Linux(GenericDiffReporter):
                 extra_args=["-m"],
             )
         )
-

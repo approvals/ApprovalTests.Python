@@ -1,5 +1,4 @@
 import csv
-import re
 from pathlib import Path
 from typing import List
 
@@ -31,7 +30,7 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
 
     if extra_args:
         extra_args_str = ", ".join(f'"{arg}"' for arg in extra_args)
-        return f'''class {class_name}(GenericDiffReporter):
+        return f"""class {class_name}(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
@@ -40,9 +39,9 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
                 extra_args=[{extra_args_str}],
             )
         )
-'''
+"""
     else:
-        return f'''class {class_name}(GenericDiffReporter):
+        return f"""class {class_name}(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
@@ -50,16 +49,16 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
                 path="{normalized_path}",
             )
         )
-'''
+"""
 
 
 def generate_file_header() -> str:
-    return '''from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+    return """from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
 )
 
-'''
+"""
 
 
 def main() -> None:
