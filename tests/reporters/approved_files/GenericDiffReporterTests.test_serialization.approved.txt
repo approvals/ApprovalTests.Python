@@ -1,21 +1,5 @@
 [
   [
-    "BeyondCompare4x64",
-    "C:/Program Files/Beyond Compare 4/BCompare.exe"
-  ],
-  [
-    "BeyondCompare4",
-    "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
-  ],
-  [
-    "BeyondCompare4Mac",
-    "/Applications/Beyond Compare.app/Contents/MacOS/bcomp"
-  ],
-  [
-    "BeyondCompare3",
-    "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
-  ],
-  [
     "AraxisMergeWin",
     "C:/Program Files/Araxis/Araxis Merge/Merge.exe"
   ],

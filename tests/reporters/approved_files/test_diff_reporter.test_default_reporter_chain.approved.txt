@@ -1,16 +1,4 @@
 FirstWorkingReporter({
-    "name": "BeyondCompare4x64",
-    "path": "C:/Program Files/Beyond Compare 4/BCompare.exe"
-}, {
-    "name": "BeyondCompare4",
-    "path": "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
-}, {
-    "name": "BeyondCompare4Mac",
-    "path": "/Applications/Beyond Compare.app/Contents/MacOS/bcomp"
-}, {
-    "name": "BeyondCompare3",
-    "path": "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"
-}, {
     "name": "AraxisMergeWin",
     "path": "C:/Program Files/Araxis/Araxis Merge/Merge.exe"
 }, {

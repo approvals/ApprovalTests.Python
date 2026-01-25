@@ -41,9 +41,6 @@ class GenericDiffReporterTests(unittest.TestCase):
 
         verify(markdown, options=Options().for_file.with_extension(".md"))
 
-    def test_get_reporter(self) -> None:
-        verify(str(self.factory.get("BeyondCompare4")))
-
     def test_get_winmerge(self) -> None:
         self.assert_for_reporter("WinMerge")
 
@@ -59,11 +56,8 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_get_araxis_mac(self) -> None:
         self.assert_for_reporter("AraxisMergeMac")
 
-    def test_get_beyondcompare4_mac(self) -> None:
-        self.assert_for_reporter("BeyondCompare4Mac")
-
     def test_constructs_valid_diff_command(self) -> None:
-        reporter = cast(GenericDiffReporter, self.factory.get("BeyondCompare4"))
+        reporter = GenericDiffReporter.create("test")
         namer = get_default_namer()
         received = namer.get_received_filename()
         approved = namer.get_approved_filename()
@@ -79,7 +73,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         approved = namer.get_approved_filename()
         self.assertFalse(os.path.isfile(approved))
 
-        reporter = self.factory.get("BeyondCompare4")
+        reporter = GenericDiffReporter.create("test")
 
         setattr(reporter, "run_command", lambda command_array: None)
         setattr(reporter, "is_working", lambda: True)
@@ -94,7 +88,7 @@ class GenericDiffReporterTests(unittest.TestCase):
         approved_contents = "Approved"
         with open(approved, "w") as approved_file:
             approved_file.write(approved_contents)
-        reporter = self.factory.get("BeyondCompare4")
+        reporter = GenericDiffReporter.create("test")
         setattr(reporter, "run_command", lambda command_array: None)
 
         reporter.report(namer.get_received_filename(), approved)
