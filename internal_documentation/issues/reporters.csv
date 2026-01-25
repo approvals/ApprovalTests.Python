@@ -1,0 +1,24 @@
+name,path,arguments,file_types,os,group_name
+DIFF_MERGE,/Applications/DiffMerge.app/Contents/MacOS/DiffMerge,--nosplash %s %s,TEXT,Mac,DIFF_MERGE
+BEYOND_COMPARE,/Applications/Beyond Compare.app/Contents/MacOS/bcomp,,TEXT,Mac,BEYOND_COMPARE
+KALEIDOSCOPE,/Applications/Kaleidoscope.app/Contents/MacOS/ksdiff,,TEXT_AND_IMAGE,Mac,KALEIDOSCOPE
+KALEIDOSCOPE3,/usr/local/bin/ksdiff,,TEXT_AND_IMAGE,Mac,KALEIDOSCOPE
+KDIFF3,/Applications/kdiff3.app/Contents/MacOS/kdiff3,%s %s -m,TEXT,Mac,KDIFF3
+P4MERGE,/Applications/p4merge.app/Contents/MacOS/p4merge,,TEXT_AND_IMAGE,Mac,
+TK_DIFF,/Applications/TkDiff.app/Contents/MacOS/tkdiff,,TEXT,Mac,
+VISUAL_STUDIO_CODE,/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code,-d %s %s,TEXT,Mac,VISUAL_STUDIO_CODE
+ARAXIS_MERGE,/Applications/Araxis Merge.app/Contents/Utilities/compare,,TEXT_AND_IMAGE,Mac,ARAXIS_MERGE
+BEYOND_COMPARE_3,{ProgramFiles}Beyond Compare 3\BCompare.exe,,TEXT_AND_IMAGE,Windows,BEYOND_COMPARE
+BEYOND_COMPARE_4,{ProgramFiles}Beyond Compare 4\BCompare.exe,,TEXT_AND_IMAGE,Windows,BEYOND_COMPARE
+TORTOISE_IMAGE_DIFF,{ProgramFiles}TortoiseSVN\bin\TortoiseIDiff.exe,/left:%s /right:%s,IMAGE,Windows,TORTOISE
+TORTOISE_TEXT_DIFF,{ProgramFiles}TortoiseSVN\bin\TortoiseMerge.exe,,TEXT,Windows,TORTOISE
+TORTOISE_GIT_IMAGE_DIFF,{ProgramFiles}TortoiseGIT\bin\TortoiseGitIDiff.exe,/left:%s /right:%s,IMAGE,Windows,TORTOISE_GIT
+TORTOISE_GIT_TEXT_DIFF,{ProgramFiles}TortoiseGIT\bin\TortoiseGitMerge.exe,,TEXT,Windows,TORTOISE_GIT
+WIN_MERGE_REPORTER,{ProgramFiles}WinMerge\WinMergeU.exe,,TEXT_AND_IMAGE,Windows,
+ARAXIS_MERGE,{ProgramFiles}Araxis\Araxis Merge\Compare.exe,,TEXT,Windows,ARAXIS_MERGE
+CODE_COMPARE,{ProgramFiles}Devart\Code Compare\CodeCompare.exe,,TEXT,Windows,
+KDIFF3,{ProgramFiles}KDiff3\kdiff3.exe,,TEXT,Windows,KDIFF3
+VISUAL_STUDIO_CODE,{ProgramFiles}Microsoft VS Code\Code.exe,-d %s %s,TEXT,Windows,VISUAL_STUDIO_CODE
+DIFF_MERGE,/usr/bin/diffmerge,--nosplash %s %s,TEXT,Linux,DIFF_MERGE
+MELD_MERGE,/usr/bin/meld,%s %s,TEXT,Linux,
+KDIFF3,/usr/bin/kdiff3,%s %s -m,TEXT,Linux,KDIFF3
