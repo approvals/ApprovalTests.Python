@@ -1,6 +1,7 @@
 import csv
 import re
 from pathlib import Path
+from typing import List
 
 
 def to_class_name(name: str, os_name: str) -> str:
@@ -9,7 +10,7 @@ def to_class_name(name: str, os_name: str) -> str:
     return f"ReportWith{camel}{os_name}"
 
 
-def parse_extra_args(arguments: str) -> list[str]:
+def parse_extra_args(arguments: str) -> List[str]:
     if not arguments:
         return []
     args = []
@@ -61,7 +62,7 @@ from approvaltests.reporters.generic_diff_reporter_config import (
 '''
 
 
-def main():
+def main() -> None:
     script_dir = Path(__file__).parent
     csv_path = script_dir / ".." / "issues" / "reporters.csv"
     output_dir = script_dir / ".." / ".." / "approvaltests" / "reporters"
