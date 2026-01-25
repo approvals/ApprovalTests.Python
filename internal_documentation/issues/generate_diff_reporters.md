@@ -1,0 +1,51 @@
+# Generating Diff Reporter Classes from CSV
+
+This document describes how to generate diff reporter classes for any language from the `reporters.csv` file.
+
+## CSV Structure
+
+| Column | Description |
+|--------|-------------|
+| `name` | Reporter identifier (e.g., `BEYOND_COMPARE_4`, `KDIFF3`) |
+| `path` | Executable path. May contain `{ProgramFiles}` placeholder for Windows |
+| `arguments` | Optional command-line arguments (e.g., `--nosplash %s %s`, `-d %s %s`) |
+| `file_types` | `TEXT`, `IMAGE`, or `TEXT_AND_IMAGE` |
+| `os` | `Mac`, `Windows`, or `Linux` |
+| `group_name` | Optional grouping for aggregating reporters (e.g., `BEYOND_COMPARE`) |
+
+## Generation Steps
+
+### 1. Parse the CSV
+Read all rows from `reporters.csv`, skipping the header.
+
+### 2. For Each Row, Generate a Class
+
+**Class naming:**
+- Convert `name` from `SCREAMING_SNAKE_CASE` to `PascalCase`
+- Append the `os` value
+- Prefix with language-appropriate convention (e.g., `ReportWith` for Python)
+- Example: `BEYOND_COMPARE_4` + `Windows` → `ReportWithBeyondCompare4Windows`
+
+**Path handling:**
+- Normalize path separators (e.g., `\` → `/`)
+- Preserve `{ProgramFiles}` placeholder for runtime expansion
+
+**Arguments handling:**
+- Parse the `arguments` string into individual tokens
+- Remove `%s` placeholders (these represent received/approved file paths)
+- Keep flags like `--nosplash`, `-d`, `-m`
+- Example: `--nosplash %s %s` → `["--nosplash"]`
+
+### 3. Output Structure
+
+Each class should:
+1. Extend/implement the base diff reporter type
+2. Set the reporter name (typically the class name)
+3. Set the executable path
+4. Optionally set extra arguments if present
+
+### 4. (Optional) Generate Aggregator Classes
+
+For rows sharing the same non-empty `group_name`:
+- Create a wrapper class that tries each reporter in sequence
+- Example: `ReportWithBeyondCompare` tries Mac, Windows 4, Windows 5, Linux variants
