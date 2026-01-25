@@ -6,7 +6,7 @@ FirstWorkingReporter({
     "path": "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"
 }, {
     "name": "BeyondCompare4Mac",
-    "path": "/usr/local/bin/bcompare"
+    "path": "/Applications/Beyond Compare.app/Contents/MacOS/bcomp"
 }, {
     "name": "BeyondCompare3",
     "path": "C:/Program Files (x86)/Beyond Compare 3/BCompare.exe"

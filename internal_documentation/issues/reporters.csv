@@ -10,6 +10,7 @@ VISUAL_STUDIO_CODE,/Applications/Visual Studio Code.app/Contents/Resources/app/b
 ARAXIS_MERGE,/Applications/Araxis Merge.app/Contents/Utilities/compare,,TEXT_AND_IMAGE,Mac,ARAXIS_MERGE
 BEYOND_COMPARE_3,{ProgramFiles}Beyond Compare 3\BCompare.exe,,TEXT_AND_IMAGE,Windows,BEYOND_COMPARE
 BEYOND_COMPARE_4,{ProgramFiles}Beyond Compare 4\BCompare.exe,,TEXT_AND_IMAGE,Windows,BEYOND_COMPARE
+BEYOND_COMPARE_5,{ProgramFiles}Beyond Compare 5\BCompare.exe,,TEXT_AND_IMAGE,Windows,BEYOND_COMPARE
 TORTOISE_IMAGE_DIFF,{ProgramFiles}TortoiseSVN\bin\TortoiseIDiff.exe,/left:%s /right:%s,IMAGE,Windows,TORTOISE
 TORTOISE_TEXT_DIFF,{ProgramFiles}TortoiseSVN\bin\TortoiseMerge.exe,,TEXT,Windows,TORTOISE
 TORTOISE_GIT_IMAGE_DIFF,{ProgramFiles}TortoiseGIT\bin\TortoiseGitIDiff.exe,/left:%s /right:%s,IMAGE,Windows,TORTOISE_GIT

@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import List
 
 from typing_extensions import override
@@ -85,18 +86,21 @@ class GenericDiffReporter(Reporter):
 
     @staticmethod
     def expand_program_files(path: str) -> str:
+        def normalize_path(p: str) -> str:
+            return Path(p).as_posix()
+        
         if PROGRAM_FILES not in path:
             return path
 
         for candidate in [
-            r"C:/Program Files",
-            r"C:/Program Files (x86)",
-            r"C:/ProgramW6432",
+            r"C:/Program Files/",
+            r"C:/Program Files (x86)/",
+            r"C:/ProgramW6432/",
         ]:
             possible = path.replace(PROGRAM_FILES, candidate)
             if Command.executable(possible):
-                return possible
-        return path.replace(PROGRAM_FILES, "C:/Program Files")
+                return normalize_path(possible)
+        return normalize_path(path.replace(PROGRAM_FILES, "C:/Program Files/"))
 
     @staticmethod
     def reset_opened_diff_tool_count() -> None:

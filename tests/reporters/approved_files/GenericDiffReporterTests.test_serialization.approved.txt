@@ -9,7 +9,7 @@
   ],
   [
     "BeyondCompare4Mac",
-    "/usr/local/bin/bcompare"
+    "/Applications/Beyond Compare.app/Contents/MacOS/bcomp"
   ],
   [
     "BeyondCompare3",

@@ -1,4 +1,4 @@
 {
     "name": "BeyondCompare4Mac",
-    "path": "/usr/local/bin/bcompare"
+    "path": "/Applications/Beyond Compare.app/Contents/MacOS/bcomp"
 }
