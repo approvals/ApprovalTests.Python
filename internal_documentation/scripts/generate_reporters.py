@@ -1,6 +1,7 @@
 import csv
 from pathlib import Path
 from typing import List
+import textwrap
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
@@ -33,26 +34,28 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
 
     extra_args_str = ", ".join(f'"{arg}"' for arg in extra_args)
         
-    return f"""class {class_name}(GenericDiffReporter):
-    def __init__(self) -> None:
-        super().__init__(
-            config=GenericDiffReporterConfig(
-                name=self.__class__.__name__,
-                path="{normalized_path}",
-                extra_args=[{extra_args_str}],
-            )
-        )
-"""
+    return textwrap.dedent(f"""\
+        class {class_name}(GenericDiffReporter):
+            def __init__(self) -> None:
+                super().__init__(
+                    config=GenericDiffReporterConfig(
+                        name=self.__class__.__name__,
+                        path="{normalized_path}",
+                        extra_args=[{extra_args_str}],
+                    )
+                )
+        """)
 
 
 def generate_file_header() -> str:
-    return """from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
-from approvaltests.reporters.generic_diff_reporter_config import (
-    GenericDiffReporterConfig,
-)
+    return textwrap.dedent("""\
+        from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
+        from approvaltests.reporters.generic_diff_reporter_config import (
+            GenericDiffReporterConfig,
+        )
 
-
-"""
+ 
+    """)
 
 
 def main() -> None:
