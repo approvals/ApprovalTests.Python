@@ -266,5 +266,3 @@ class ReportWithKdiff3Linux(GenericDiffReporter):
                 extra_args=["-m"],
             )
         )
-
-

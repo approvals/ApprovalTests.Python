@@ -1,11 +1,12 @@
 import csv
+import textwrap
 from pathlib import Path
 from typing import List
-import textwrap
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
 assert _REPO_ROOT.joinpath(".gitattributes").exists()
+
 
 def to_class_name(name: str, os_name: str) -> str:
     parts = name.split("_")
@@ -33,7 +34,7 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
     extra_args = parse_extra_args(arguments)
 
     extra_args_str = ", ".join(f'"{arg}"' for arg in extra_args)
-        
+
     return textwrap.dedent(f"""\
         class {class_name}(GenericDiffReporter):
             def __init__(self) -> None:
