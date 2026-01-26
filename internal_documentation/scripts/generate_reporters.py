@@ -2,6 +2,9 @@ import csv
 from pathlib import Path
 from typing import List
 
+_SCRIPT_DIR = Path(__file__).parent
+_REPO_ROOT = _SCRIPT_DIR.parent.parent
+assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
 def to_class_name(name: str, os_name: str) -> str:
     parts = name.split("_")
@@ -63,9 +66,8 @@ from approvaltests.reporters.generic_diff_reporter_config import (
 
 
 def main() -> None:
-    script_dir = Path(__file__).parent
-    csv_path = script_dir / ".." / "issues" / "reporters.csv"
-    output_dir = script_dir / ".." / ".." / "approvaltests" / "reporters"
+    csv_path = _REPO_ROOT / "internal_documentation" / "issues" / "reporters.csv"
+    output_dir = _REPO_ROOT / "approvaltests" / "reporters"
 
     with open(csv_path, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
