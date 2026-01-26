@@ -55,6 +55,15 @@ def run_all_combinations(
             exception_handler(exception)
 
 
+def _get_label_formatter(labels: List[str]) -> Callable[[Sequence[Any], Any], str]:
+    def formatter(inputs: Sequence[Any], output: Any) -> str:
+        labeled_inputs = ", ".join(
+            [f"{label}: {input}" for label, input in zip(labels, inputs)]
+        )
+        return f"({labeled_inputs}) => {output}\n"
+    return formatter
+
+
 def verify_all_combinations_with_labeled_input(
     function_under_test: Callable,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
@@ -64,14 +73,9 @@ def verify_all_combinations_with_labeled_input(
     labels = list(kwargs.keys())
     input_arguments = [kwargs[key] for key in kwargs]
 
-    def formatter(inputs: Sequence[Any], output: Any) -> str:
-        labeled_inputs = ", ".join(
-            [f"{label}: {input}" for label, input in zip(labels, inputs)]
-        )
-        return f"({labeled_inputs}) => {output}\n"
 
     verify_all_combinations(
-        function_under_test, input_arguments, formatter=formatter, options=options
+        function_under_test, input_arguments, formatter=_get_label_formatter(labels), options=options
     )
 
 
@@ -150,6 +154,52 @@ def print_combinations(
 
 def args_and_result_formatter(args: List[Any], result: int) -> str:
     return f"args: {repr(args)} => {repr(result)}\n"
+
+
+async def print_combinations_async(
+    formatter: Optional[Callable],
+    function_under_test: Callable,
+    parameter_combinations: CombinationsOfParameters,
+) -> str:
+    if formatter is None:
+        formatter = args_and_result_formatter
+    approval_strings = []
+    for args in parameter_combinations:
+        try:
+            result = await function_under_test(*args)
+        except BaseException as exception:
+            result = exception
+        approval_strings.append(formatter(args, result))
+    return "".join(approval_strings)
+
+
+async def verify_all_combinations_async(
+    function_under_test: Callable,
+    input_arguments: VariationForEachParameter,
+    formatter: Optional[Callable] = None,
+    reporter: Optional[ReporterForTesting] = None,
+    *,
+    options: Optional[Options] = None,
+) -> None:
+    options = initialize_options(options, reporter)
+    text = await print_combinations_async(
+        formatter, function_under_test, product(*input_arguments)
+    )
+    verify(text, options=options)
+
+
+async def verify_all_combinations_with_labeled_input_async(
+    function_under_test: Callable,
+    *,
+    options: Optional[Options] = None,
+    **kwargs: Any,
+) -> None:
+    labels = list(kwargs.keys())
+    input_arguments = [kwargs[key] for key in kwargs]
+
+    await verify_all_combinations_async(
+        function_under_test, input_arguments, formatter=_get_label_formatter(labels), options=options
+    )
 
 
 def verify_logging_for_all_combinations(
