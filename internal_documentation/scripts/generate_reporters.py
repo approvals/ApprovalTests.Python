@@ -58,6 +58,7 @@ from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
 )
 
+
 """
 
 
@@ -78,7 +79,7 @@ def main() -> None:
             arguments=row["arguments"],
             os_name=row["os"],
         )
-        output += "\n"
+        output += "\n\n"
 
     output_path = output_dir / "generated_reporters.py"
     with open(output_path, "w", encoding="utf-8", newline="\n") as f:
