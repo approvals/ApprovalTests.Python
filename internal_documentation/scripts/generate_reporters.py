@@ -31,25 +31,15 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
     normalized_path = normalize_path(path)
     extra_args = parse_extra_args(arguments)
 
-    if extra_args:
-        extra_args_str = ", ".join(f'"{arg}"' for arg in extra_args)
-        return f"""class {class_name}(GenericDiffReporter):
+    extra_args_str = ", ".join(f'"{arg}"' for arg in extra_args)
+        
+    return f"""class {class_name}(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{normalized_path}",
                 extra_args=[{extra_args_str}],
-            )
-        )
-"""
-    else:
-        return f"""class {class_name}(GenericDiffReporter):
-    def __init__(self) -> None:
-        super().__init__(
-            config=GenericDiffReporterConfig(
-                name=self.__class__.__name__,
-                path="{normalized_path}",
             )
         )
 """

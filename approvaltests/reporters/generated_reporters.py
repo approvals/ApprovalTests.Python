@@ -21,6 +21,7 @@ class ReportWithBeyondCompareMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/Beyond Compare.app/Contents/MacOS/bcomp",
+                extra_args=[],
             )
         )
 
@@ -31,6 +32,7 @@ class ReportWithKaleidoscopeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/Kaleidoscope.app/Contents/MacOS/ksdiff",
+                extra_args=[],
             )
         )
 
@@ -41,6 +43,7 @@ class ReportWithKaleidoscope3Mac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/local/bin/ksdiff",
+                extra_args=[],
             )
         )
 
@@ -62,6 +65,7 @@ class ReportWithP4mergeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/p4merge.app/Contents/MacOS/p4merge",
+                extra_args=[],
             )
         )
 
@@ -72,6 +76,7 @@ class ReportWithTkDiffMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/TkDiff.app/Contents/MacOS/tkdiff",
+                extra_args=[],
             )
         )
 
@@ -93,6 +98,7 @@ class ReportWithAraxisMergeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/Araxis Merge.app/Contents/Utilities/compare",
+                extra_args=[],
             )
         )
 
@@ -103,6 +109,7 @@ class ReportWithBeyondCompare3Windows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Beyond Compare 3/BCompare.exe",
+                extra_args=[],
             )
         )
 
@@ -113,6 +120,7 @@ class ReportWithBeyondCompare4Windows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Beyond Compare 4/BCompare.exe",
+                extra_args=[],
             )
         )
 
@@ -123,6 +131,7 @@ class ReportWithBeyondCompare5Windows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Beyond Compare 5/BCompare.exe",
+                extra_args=[],
             )
         )
 
@@ -144,6 +153,7 @@ class ReportWithTortoiseTextDiffWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}TortoiseSVN/bin/TortoiseMerge.exe",
+                extra_args=[],
             )
         )
 
@@ -165,6 +175,7 @@ class ReportWithTortoiseGitTextDiffWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}TortoiseGIT/bin/TortoiseGitMerge.exe",
+                extra_args=[],
             )
         )
 
@@ -175,6 +186,7 @@ class ReportWithWinMergeReporterWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}WinMerge/WinMergeU.exe",
+                extra_args=[],
             )
         )
 
@@ -185,6 +197,7 @@ class ReportWithAraxisMergeWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Araxis/Araxis Merge/Compare.exe",
+                extra_args=[],
             )
         )
 
@@ -195,6 +208,7 @@ class ReportWithCodeCompareWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Devart/Code Compare/CodeCompare.exe",
+                extra_args=[],
             )
         )
 
@@ -205,6 +219,7 @@ class ReportWithKdiff3Windows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}KDiff3/kdiff3.exe",
+                extra_args=[],
             )
         )
 
@@ -237,6 +252,7 @@ class ReportWithMeldMergeLinux(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/meld",
+                extra_args=[],
             )
         )
 
