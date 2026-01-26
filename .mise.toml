@@ -33,6 +33,10 @@ run = [
 ]
 depends = ["pip-install"]
 
+[tasks.generate_reporters]
+run = "python internal_documentation/scripts/generate_reporters.py"
+depends = ["pip-install"]
+
 [settings]
 # we put the python version in the .python-version file instead of here so that it's easy to override in the CI matrix
 idiomatic_version_file_enable_tools = ["python"]
