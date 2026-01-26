@@ -69,9 +69,8 @@ def main() -> None:
     csv_path = _REPO_ROOT / "internal_documentation" / "issues" / "reporters.csv"
     output_dir = _REPO_ROOT / "approvaltests" / "reporters"
 
-    with open(csv_path, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        rows = list(reader)
+    reader = csv.DictReader(csv_path.read_text(encoding="utf-8").splitlines())
+    rows = list(reader)
 
     output = generate_file_header()
     for row in rows:
@@ -84,8 +83,7 @@ def main() -> None:
         output += "\n\n"
 
     output_path = output_dir / "generated_reporters.py"
-    with open(output_path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(output)
+    output_path.write_text(output, encoding="utf-8")
 
     print(f"Generated {len(rows)} reporter classes to {output_path}")
 
