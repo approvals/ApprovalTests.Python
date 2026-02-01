@@ -1,3 +1,5 @@
+import platform
+
 from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import (
@@ -273,14 +275,29 @@ class ReportWithDiffToolOnMac(FirstWorkingReporter):
     def __init__(self) -> None:
         super().__init__(ReportWithDiffMergeMac(), ReportWithBeyondCompareMac(), ReportWithKaleidoscopeMac(), ReportWithKaleidoscope3Mac(), ReportWithKdiff3Mac(), ReportWithP4mergeMac(), ReportWithTkDiffMac(), ReportWithVisualStudioCodeMac(), ReportWithAraxisMergeMac())
 
+    def report(self, received_path: str, approved_path: str) -> bool:
+        if platform.system() != "Darwin":
+            return False
+        return super().report(received_path, approved_path)
+
 
 class ReportWithDiffToolOnWindows(FirstWorkingReporter):
     def __init__(self) -> None:
         super().__init__(ReportWithBeyondCompare3Windows(), ReportWithBeyondCompare4Windows(), ReportWithBeyondCompare5Windows(), ReportWithTortoiseImageDiffWindows(), ReportWithTortoiseTextDiffWindows(), ReportWithTortoiseGitImageDiffWindows(), ReportWithTortoiseGitTextDiffWindows(), ReportWithWinMergeReporterWindows(), ReportWithAraxisMergeWindows(), ReportWithCodeCompareWindows(), ReportWithKdiff3Windows(), ReportWithVisualStudioCodeWindows())
 
+    def report(self, received_path: str, approved_path: str) -> bool:
+        if platform.system() != "Windows":
+            return False
+        return super().report(received_path, approved_path)
+
 
 class ReportWithDiffToolOnLinux(FirstWorkingReporter):
     def __init__(self) -> None:
         super().__init__(ReportWithDiffMergeLinux(), ReportWithMeldMergeLinux(), ReportWithKdiff3Linux())
+
+    def report(self, received_path: str, approved_path: str) -> bool:
+        if platform.system() != "Linux":
+            return False
+        return super().report(received_path, approved_path)
 
 

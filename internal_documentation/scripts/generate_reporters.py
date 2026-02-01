@@ -50,6 +50,10 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
 
 def generate_file_header() -> str:
     return textwrap.dedent("""\
+        import platform
+
+        from typing_extensions import override
+
         from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
         from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
         from approvaltests.reporters.generic_diff_reporter_config import (
@@ -60,13 +64,24 @@ def generate_file_header() -> str:
     """)
 
 
+def get_platform_name(os_name: str) -> str:
+    return {"Mac": "Darwin", "Windows": "Windows", "Linux": "Linux"}[os_name]
+
+
 def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
     reporter_instances = ", ".join(f"{name}()" for name in class_names)
-    return textwrap.dedent(f"""\
+    platform_name = get_platform_name(os_name)
+    return textwrap.dedent(f'''\
         class ReportWithDiffToolOn{os_name}(FirstWorkingReporter):
             def __init__(self) -> None:
                 super().__init__({reporter_instances})
-        """)
+
+            @override
+            def report(self, received_path: str, approved_path: str) -> bool:
+                if platform.system() != "{platform_name}":
+                    return False
+                return super().report(received_path, approved_path)
+        ''')
 
 
 def main() -> None:
