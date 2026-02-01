@@ -9,8 +9,6 @@ from .generated_reporters import (
     ReportWithDiffToolOnWindows,
 )
 from .python_native_reporter import PythonNativeReporter
-from .report_with_diff_command_line import ReportWithDiffCommandLine
-from .report_with_vscode import ReportWithVSCode, ReportWithVSCodeMacOS
 
 
 class DiffReporter(FirstWorkingReporter):
