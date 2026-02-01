@@ -49,6 +49,7 @@ Each class should:
 Generate a `ReportWithDiffToolOn{OS}` class for each OS (Mac, Windows, Linux):
 - Collect all reporter classes for that OS
 - Create a `FirstWorkingReporter` subclass that tries each reporter in sequence
+- Add early return on reporting if not on the os.
 - Example: `ReportWithDiffToolOnMac` tries all Mac reporters in order
 
 These per-OS reporters allow users to get a working diff tool without specifying which one, automatically finding the first available tool on their system.
