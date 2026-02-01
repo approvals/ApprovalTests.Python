@@ -96,8 +96,6 @@ def main() -> None:
     rows = list(reader)
 
     os_to_classes: Dict[str, List[str]] = {}
-
-    output = generate_file_header()
     for row in rows:
         class_name = to_class_name(row["name"], row["os"])
         os_name = row["os"]
@@ -105,11 +103,13 @@ def main() -> None:
             os_to_classes[os_name] = []
         os_to_classes[os_name].append(class_name)
 
+    output = generate_file_header()
+    for row in rows:
         output += generate_class(
             name=row["name"],
             path=row["path"],
             arguments=row["arguments"],
-            os_name=os_name,
+            os_name=row["os"],
         )
         output += "\n\n"
 
