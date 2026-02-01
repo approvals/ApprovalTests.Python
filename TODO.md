@@ -1,3 +1,19 @@
+
+- [ ] OS FIrstWorkingReporter of everything frmo the same OS
+- [ ] group diff reporter of everythingin the same group
+- [ ] eliminate reporters.json
+- [ ] IntelliJ is a side quest
+- [ ] extract repoters.csv to its own repo
+- [ ] clean up hand-coded rerpoters
+
+
+
+
+
+
+
+
+
 - Help SeleniumLibrary update ApprovalTests. See https://github.com/robotframework/SeleniumLibrary/blame/c5c21ea2eb44d7e76619f96210d1f28c859f3aee/requirements-dev.txt#L6
 
 - [ ] e uv cache doesn't respect `.python-version`

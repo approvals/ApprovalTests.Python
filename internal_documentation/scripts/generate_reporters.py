@@ -1,7 +1,7 @@
 import csv
 import textwrap
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
@@ -50,13 +50,23 @@ def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
 
 def generate_file_header() -> str:
     return textwrap.dedent("""\
+        from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
         from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
         from approvaltests.reporters.generic_diff_reporter_config import (
             GenericDiffReporterConfig,
         )
 
- 
+
     """)
+
+
+def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
+    reporter_instances = ", ".join(f"{name}()" for name in class_names)
+    return textwrap.dedent(f"""\
+        class ReportWithDiffToolOn{os_name}(FirstWorkingReporter):
+            def __init__(self) -> None:
+                super().__init__({reporter_instances})
+        """)
 
 
 def main() -> None:
@@ -66,14 +76,26 @@ def main() -> None:
     reader = csv.DictReader(csv_path.read_text().splitlines())
     rows = list(reader)
 
+    os_to_classes: Dict[str, List[str]] = {}
+
     output = generate_file_header()
     for row in rows:
+        class_name = to_class_name(row["name"], row["os"])
+        os_name = row["os"]
+        if os_name not in os_to_classes:
+            os_to_classes[os_name] = []
+        os_to_classes[os_name].append(class_name)
+
         output += generate_class(
             name=row["name"],
             path=row["path"],
             arguments=row["arguments"],
-            os_name=row["os"],
+            os_name=os_name,
         )
+        output += "\n\n"
+
+    for os_name, class_names in os_to_classes.items():
+        output += generate_per_os_reporter(os_name, class_names)
         output += "\n\n"
 
     output_path = output_dir / "generated_reporters.py"

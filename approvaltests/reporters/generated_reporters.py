@@ -1,3 +1,4 @@
+from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
@@ -266,3 +267,20 @@ class ReportWithKdiff3Linux(GenericDiffReporter):
                 extra_args=["-m"],
             )
         )
+
+
+class ReportWithDiffToolOnMac(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(ReportWithDiffMergeMac(), ReportWithBeyondCompareMac(), ReportWithKaleidoscopeMac(), ReportWithKaleidoscope3Mac(), ReportWithKdiff3Mac(), ReportWithP4mergeMac(), ReportWithTkDiffMac(), ReportWithVisualStudioCodeMac(), ReportWithAraxisMergeMac())
+
+
+class ReportWithDiffToolOnWindows(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(ReportWithBeyondCompare3Windows(), ReportWithBeyondCompare4Windows(), ReportWithBeyondCompare5Windows(), ReportWithTortoiseImageDiffWindows(), ReportWithTortoiseTextDiffWindows(), ReportWithTortoiseGitImageDiffWindows(), ReportWithTortoiseGitTextDiffWindows(), ReportWithWinMergeReporterWindows(), ReportWithAraxisMergeWindows(), ReportWithCodeCompareWindows(), ReportWithKdiff3Windows(), ReportWithVisualStudioCodeWindows())
+
+
+class ReportWithDiffToolOnLinux(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(ReportWithDiffMergeLinux(), ReportWithMeldMergeLinux(), ReportWithKdiff3Linux())
+
+

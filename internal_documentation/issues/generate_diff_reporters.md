@@ -44,7 +44,16 @@ Each class should:
 3. Set the executable path
 4. Optionally set extra arguments if present
 
-### 4. (Optional) Generate Aggregator Classes
+### 4. Generate Per-OS Aggregator Classes
+
+Generate a `ReportWithDiffToolOn{OS}` class for each OS (Mac, Windows, Linux):
+- Collect all reporter classes for that OS
+- Create a `FirstWorkingReporter` subclass that tries each reporter in sequence
+- Example: `ReportWithDiffToolOnMac` tries all Mac reporters in order
+
+These per-OS reporters allow users to get a working diff tool without specifying which one, automatically finding the first available tool on their system.
+
+### 5. (Optional) Generate Group Aggregator Classes
 
 For rows sharing the same non-empty `group_name`:
 - Create a wrapper class that tries each reporter in sequence
