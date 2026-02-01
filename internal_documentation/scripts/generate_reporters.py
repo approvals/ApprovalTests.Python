@@ -17,18 +17,15 @@ class ReporterDefinition:
 
     @property
     def class_name(self) -> str:
-        return to_class_name(self.name, self.os)
+        parts = self.name.split("_")
+        camel = "".join(word.capitalize() for word in parts)
+        return f"ReportWith{camel}{self.os}"
 
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
 assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
-
-def to_class_name(name: str, os_name: str) -> str:
-    parts = name.split("_")
-    camel = "".join(word.capitalize() for word in parts)
-    return f"ReportWith{camel}{os_name}"
 
 
 def parse_extra_args(arguments: str) -> List[str]:
