@@ -27,7 +27,6 @@ _REPO_ROOT = _SCRIPT_DIR.parent.parent
 assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
 
-
 def parse_extra_args(arguments: str) -> List[str]:
     if not arguments:
         return []
