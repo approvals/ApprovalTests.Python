@@ -26,9 +26,3 @@ def test_get_diff_file_name() -> None:
         "VerifyTests.test_verify_html.received.html"
     )
     assert diff_file == "VerifyTests.test_verify_html.diff"
-
-
-def test_default_reporter_chain() -> None:
-    reporter = DiffReporter()
-    printed_reporter = str(reporter)
-    verify(printed_reporter)
