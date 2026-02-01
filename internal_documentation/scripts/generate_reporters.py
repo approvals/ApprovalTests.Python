@@ -7,7 +7,7 @@ from typing import Dict, List
 
 
 @dataclass(frozen=True)
-class ReporterRow:
+class ReporterDefinition:
     name: str
     path: str
     arguments: str
@@ -105,7 +105,7 @@ def main() -> None:
     output_dir = _REPO_ROOT / "approvaltests" / "reporters"
 
     reader = csv.DictReader(csv_path.read_text().splitlines())
-    rows = [ReporterRow(**row) for row in reader]
+    rows = [ReporterDefinition(**row) for row in reader]
 
     os_to_classes: Dict[str, List[str]] = defaultdict(list)
     for row in rows:
