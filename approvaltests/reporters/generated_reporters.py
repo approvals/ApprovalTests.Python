@@ -297,7 +297,18 @@ class ReportWithDiffCommandLineMac(GenericDiffReporter):
 
 class ReportWithDiffToolOnMac(FirstWorkingReporter):
     def __init__(self) -> None:
-        super().__init__(ReportWithDiffMergeMac(), ReportWithBeyondCompareMac(), ReportWithKaleidoscopeMac(), ReportWithKaleidoscope3Mac(), ReportWithKdiff3Mac(), ReportWithP4mergeMac(), ReportWithTkDiffMac(), ReportWithVisualStudioCodeMac(), ReportWithAraxisMergeMac(), ReportWithDiffCommandLineMac())
+        super().__init__(
+            ReportWithDiffMergeMac(),
+            ReportWithBeyondCompareMac(),
+            ReportWithKaleidoscopeMac(),
+            ReportWithKaleidoscope3Mac(),
+            ReportWithKdiff3Mac(),
+            ReportWithP4mergeMac(),
+            ReportWithTkDiffMac(),
+            ReportWithVisualStudioCodeMac(),
+            ReportWithAraxisMergeMac(),
+            ReportWithDiffCommandLineMac(),
+        )
 
     @override
     def report(self, received_path: str, approved_path: str) -> bool:
@@ -308,7 +319,20 @@ class ReportWithDiffToolOnMac(FirstWorkingReporter):
 
 class ReportWithDiffToolOnWindows(FirstWorkingReporter):
     def __init__(self) -> None:
-        super().__init__(ReportWithBeyondCompare3Windows(), ReportWithBeyondCompare4Windows(), ReportWithBeyondCompare5Windows(), ReportWithTortoiseImageDiffWindows(), ReportWithTortoiseTextDiffWindows(), ReportWithTortoiseGitImageDiffWindows(), ReportWithTortoiseGitTextDiffWindows(), ReportWithWinMergeReporterWindows(), ReportWithAraxisMergeWindows(), ReportWithCodeCompareWindows(), ReportWithKdiff3Windows(), ReportWithVisualStudioCodeWindows())
+        super().__init__(
+            ReportWithBeyondCompare3Windows(),
+            ReportWithBeyondCompare4Windows(),
+            ReportWithBeyondCompare5Windows(),
+            ReportWithTortoiseImageDiffWindows(),
+            ReportWithTortoiseTextDiffWindows(),
+            ReportWithTortoiseGitImageDiffWindows(),
+            ReportWithTortoiseGitTextDiffWindows(),
+            ReportWithWinMergeReporterWindows(),
+            ReportWithAraxisMergeWindows(),
+            ReportWithCodeCompareWindows(),
+            ReportWithKdiff3Windows(),
+            ReportWithVisualStudioCodeWindows(),
+        )
 
     @override
     def report(self, received_path: str, approved_path: str) -> bool:
@@ -319,12 +343,15 @@ class ReportWithDiffToolOnWindows(FirstWorkingReporter):
 
 class ReportWithDiffToolOnLinux(FirstWorkingReporter):
     def __init__(self) -> None:
-        super().__init__(ReportWithDiffMergeLinux(), ReportWithMeldMergeLinux(), ReportWithKdiff3Linux(), ReportWithDiffCommandLineLinux())
+        super().__init__(
+            ReportWithDiffMergeLinux(),
+            ReportWithMeldMergeLinux(),
+            ReportWithKdiff3Linux(),
+            ReportWithDiffCommandLineLinux(),
+        )
 
     @override
     def report(self, received_path: str, approved_path: str) -> bool:
         if platform.system() != "Linux":
             return False
         return super().report(received_path, approved_path)
-
-

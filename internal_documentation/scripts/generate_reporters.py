@@ -71,7 +71,7 @@ def get_platform_name(os_name: str) -> str:
 def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
     reporter_instances = ", ".join(f"{name}()" for name in class_names)
     platform_name = get_platform_name(os_name)
-    return textwrap.dedent(f'''\
+    return textwrap.dedent(f"""\
         class ReportWithDiffToolOn{os_name}(FirstWorkingReporter):
             def __init__(self) -> None:
                 super().__init__({reporter_instances})
@@ -81,7 +81,7 @@ def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
                 if platform.system() != "{platform_name}":
                     return False
                 return super().report(received_path, approved_path)
-        ''')
+        """)
 
 
 def main() -> None:

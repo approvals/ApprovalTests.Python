@@ -1,6 +1,5 @@
 from typing import List
 
-from approvaltests import verify
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters import PythonNativeReporter
 from approvaltests.reporters.diff_reporter import DiffReporter
