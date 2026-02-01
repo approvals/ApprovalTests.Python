@@ -114,8 +114,7 @@ def main() -> None:
 
     os_to_classes: Dict[str, List[str]] = defaultdict(list)
     for row in rows:
-        class_name = to_class_name(row.name, row.os)
-        os_to_classes[row.os].append(class_name)
+        os_to_classes[row.os].append(row.class_name)
 
     output = generate_file_header()
     for row in rows:
