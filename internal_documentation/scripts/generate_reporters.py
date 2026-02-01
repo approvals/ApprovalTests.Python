@@ -15,6 +15,11 @@ class ReporterDefinition:
     os: str
     group_name: str
 
+    @property
+    def class_name(self) -> str:
+        return to_class_name(self.name, self.os)
+
+
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
 assert _REPO_ROOT.joinpath(".gitattributes").exists()
@@ -41,7 +46,7 @@ def normalize_path(path: str) -> str:
 
 
 def generate_class(reporter_definition: ReporterDefinition) -> str:
-    class_name = to_class_name(reporter_definition.name, reporter_definition.os)
+    class_name = reporter_definition.class_name
     normalized_path = normalize_path(reporter_definition.path)
     extra_args = parse_extra_args(reporter_definition.arguments)
 
