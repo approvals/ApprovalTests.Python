@@ -104,7 +104,6 @@ def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
 
 def main() -> None:
     csv_path = _REPO_ROOT / "internal_documentation" / "issues" / "reporters.csv"
-    output_dir = _REPO_ROOT / "approvaltests" / "reporters"
 
     reader = csv.DictReader(csv_path.read_text().splitlines())
     rows = [ReporterDefinition(**row) for row in reader]
@@ -125,7 +124,7 @@ def main() -> None:
         )
     )
 
-    output_path = output_dir / "generated_reporters.py"
+    output_path = _REPO_ROOT / "approvaltests" / "reporters" / "generated_reporters.py"
     output_path.write_text(output)
 
     print(f"Generated {len(rows)} reporter classes to {output_path}")
