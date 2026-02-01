@@ -40,10 +40,10 @@ def normalize_path(path: str) -> str:
     return path.replace("\\", "/")
 
 
-def generate_class(name: str, path: str, arguments: str, os_name: str) -> str:
-    class_name = to_class_name(name, os_name)
-    normalized_path = normalize_path(path)
-    extra_args = parse_extra_args(arguments)
+def generate_class(reporter_definition: ReporterDefinition) -> str:
+    class_name = to_class_name(reporter_definition.name, reporter_definition.os)
+    normalized_path = normalize_path(reporter_definition.path)
+    extra_args = parse_extra_args(reporter_definition.arguments)
 
     extra_args_str = ", ".join(f'"{arg}"' for arg in extra_args)
 
@@ -114,12 +114,7 @@ def main() -> None:
 
     output = generate_file_header()
     for row in rows:
-        output += generate_class(
-            name=row.name,
-            path=row.path,
-            arguments=row.arguments,
-            os_name=row.os,
-        )
+        output += generate_class(row)
         output += "\n\n"
 
     output += "\n\n".join(
