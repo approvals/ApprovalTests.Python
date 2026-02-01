@@ -31,9 +31,9 @@ FirstWorkingReporter({
     ],
     "name": "ReportWithVSCode",
     "path": "/Applications/Visual Studio Code.app/contents/Resources/app/bin/code"
-}, FirstWorkingReporter(FirstWorkingReporter({
-    "name": "ReportWithBeyondCompareMac",
-    "path": "/Applications/Beyond Compare.app/Contents/MacOS/BCompare"
+}, FirstWorkingReporter({
+    "name": "ReportWithBeyondCompare3Windows",
+    "path": "C:/Program Files/Beyond Compare 3/BCompare.exe"
 }, {
     "name": "ReportWithBeyondCompare4Windows",
     "path": "C:/Program Files/Beyond Compare 4/BCompare.exe"
@@ -41,9 +41,95 @@ FirstWorkingReporter({
     "name": "ReportWithBeyondCompare5Windows",
     "path": "C:/Program Files/Beyond Compare 5/BCompare.exe"
 }, {
-    "name": "ReportWithBeyondCompareLinux",
-    "path": "/usr/bin/bcompare"
-})), {
+    "arguments": [
+        "/left:%s",
+        "/right:%s"
+    ],
+    "name": "ReportWithTortoiseImageDiffWindows",
+    "path": "C:/Program Files/TortoiseSVN/bin/TortoiseIDiff.exe"
+}, {
+    "name": "ReportWithTortoiseTextDiffWindows",
+    "path": "C:/Program Files/TortoiseSVN/bin/TortoiseMerge.exe"
+}, {
+    "arguments": [
+        "/left:%s",
+        "/right:%s"
+    ],
+    "name": "ReportWithTortoiseGitImageDiffWindows",
+    "path": "C:/Program Files/TortoiseGIT/bin/TortoiseGitIDiff.exe"
+}, {
+    "name": "ReportWithTortoiseGitTextDiffWindows",
+    "path": "C:/Program Files/TortoiseGIT/bin/TortoiseGitMerge.exe"
+}, {
+    "name": "ReportWithWinMergeReporterWindows",
+    "path": "C:/Program Files/WinMerge/WinMergeU.exe"
+}, {
+    "name": "ReportWithAraxisMergeWindows",
+    "path": "C:/Program Files/Araxis/Araxis Merge/Compare.exe"
+}, {
+    "name": "ReportWithCodeCompareWindows",
+    "path": "C:/Program Files/Devart/Code Compare/CodeCompare.exe"
+}, {
+    "name": "ReportWithKdiff3Windows",
+    "path": "C:/Program Files/KDiff3/kdiff3.exe"
+}, {
+    "arguments": [
+        "-d"
+    ],
+    "name": "ReportWithVisualStudioCodeWindows",
+    "path": "C:/Program Files/Microsoft VS Code/Code.exe"
+}), FirstWorkingReporter({
+    "arguments": [
+        "--nosplash"
+    ],
+    "name": "ReportWithDiffMergeMac",
+    "path": "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
+}, {
+    "name": "ReportWithBeyondCompareMac",
+    "path": "/Applications/Beyond Compare.app/Contents/MacOS/bcomp"
+}, {
+    "name": "ReportWithKaleidoscopeMac",
+    "path": "/Applications/Kaleidoscope.app/Contents/MacOS/ksdiff"
+}, {
+    "name": "ReportWithKaleidoscope3Mac",
+    "path": "/usr/local/bin/ksdiff"
+}, {
+    "arguments": [
+        "-m"
+    ],
+    "name": "ReportWithKdiff3Mac",
+    "path": "/Applications/kdiff3.app/Contents/MacOS/kdiff3"
+}, {
+    "name": "ReportWithP4mergeMac",
+    "path": "/Applications/p4merge.app/Contents/MacOS/p4merge"
+}, {
+    "name": "ReportWithTkDiffMac",
+    "path": "/Applications/TkDiff.app/Contents/MacOS/tkdiff"
+}, {
+    "arguments": [
+        "-d"
+    ],
+    "name": "ReportWithVisualStudioCodeMac",
+    "path": "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+}, {
+    "name": "ReportWithAraxisMergeMac",
+    "path": "/Applications/Araxis Merge.app/Contents/Utilities/compare"
+}), FirstWorkingReporter({
+    "arguments": [
+        "--nosplash"
+    ],
+    "name": "ReportWithDiffMergeLinux",
+    "path": "/usr/bin/diffmerge"
+}, {
+    "name": "ReportWithMeldMergeLinux",
+    "path": "/usr/bin/meld"
+}, {
+    "arguments": [
+        "-m"
+    ],
+    "name": "ReportWithKdiff3Linux",
+    "path": "/usr/bin/kdiff3"
+}), {
     "arguments": [
         "-u"
     ],
