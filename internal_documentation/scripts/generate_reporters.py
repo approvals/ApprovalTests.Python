@@ -1,3 +1,4 @@
+from collections import defaultdict
 import csv
 import textwrap
 from pathlib import Path
@@ -95,12 +96,10 @@ def main() -> None:
     reader = csv.DictReader(csv_path.read_text().splitlines())
     rows = list(reader)
 
-    os_to_classes: Dict[str, List[str]] = {}
+    os_to_classes: Dict[str, List[str]] = defaultdict(list)
     for row in rows:
         class_name = to_class_name(row["name"], row["os"])
         os_name = row["os"]
-        if os_name not in os_to_classes:
-            os_to_classes[os_name] = []
         os_to_classes[os_name].append(class_name)
 
     output = generate_file_header()
