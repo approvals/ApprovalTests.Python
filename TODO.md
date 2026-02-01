@@ -1,9 +1,9 @@
 
-- [ ] group diff reporter of everythingin the same group
+- [ ] group diff reporter of everything in the same group
 - [ ] eliminate reporters.json
 - [ ] IntelliJ is a side quest
-- [ ] extract repoters.csv to its own repo
-- [ ] clean up hand-coded rerpoters
+- [ ] extract reporters.csv to its own repo
+- [ ] clean up hand-coded reporters
 
 
 
