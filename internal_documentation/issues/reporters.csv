@@ -23,3 +23,5 @@ VISUAL_STUDIO_CODE,{ProgramFiles}Microsoft VS Code\Code.exe,-d %s %s,TEXT,Window
 DIFF_MERGE,/usr/bin/diffmerge,--nosplash %s %s,TEXT,Linux,DIFF_MERGE
 MELD_MERGE,/usr/bin/meld,%s %s,TEXT,Linux,
 KDIFF3,/usr/bin/kdiff3,%s %s -m,TEXT,Linux,KDIFF3
+DIFF_COMMAND_LINE,/usr/bin/diff,-u %s %s,TEXT,Linux,DIFF_COMMAND_LINE
+DIFF_COMMAND_LINE,/usr/bin/diff,-u %s %s,TEXT,Mac,DIFF_COMMAND_LINE

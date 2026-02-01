@@ -273,9 +273,31 @@ class ReportWithKdiff3Linux(GenericDiffReporter):
         )
 
 
+class ReportWithDiffCommandLineLinux(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/usr/bin/diff",
+                extra_args=["-u"],
+            )
+        )
+
+
+class ReportWithDiffCommandLineMac(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/usr/bin/diff",
+                extra_args=["-u"],
+            )
+        )
+
+
 class ReportWithDiffToolOnMac(FirstWorkingReporter):
     def __init__(self) -> None:
-        super().__init__(ReportWithDiffMergeMac(), ReportWithBeyondCompareMac(), ReportWithKaleidoscopeMac(), ReportWithKaleidoscope3Mac(), ReportWithKdiff3Mac(), ReportWithP4mergeMac(), ReportWithTkDiffMac(), ReportWithVisualStudioCodeMac(), ReportWithAraxisMergeMac())
+        super().__init__(ReportWithDiffMergeMac(), ReportWithBeyondCompareMac(), ReportWithKaleidoscopeMac(), ReportWithKaleidoscope3Mac(), ReportWithKdiff3Mac(), ReportWithP4mergeMac(), ReportWithTkDiffMac(), ReportWithVisualStudioCodeMac(), ReportWithAraxisMergeMac(), ReportWithDiffCommandLineMac())
 
     @override
     def report(self, received_path: str, approved_path: str) -> bool:
@@ -297,7 +319,7 @@ class ReportWithDiffToolOnWindows(FirstWorkingReporter):
 
 class ReportWithDiffToolOnLinux(FirstWorkingReporter):
     def __init__(self) -> None:
-        super().__init__(ReportWithDiffMergeLinux(), ReportWithMeldMergeLinux(), ReportWithKdiff3Linux())
+        super().__init__(ReportWithDiffMergeLinux(), ReportWithMeldMergeLinux(), ReportWithKdiff3Linux(), ReportWithDiffCommandLineLinux())
 
     @override
     def report(self, received_path: str, approved_path: str) -> bool:

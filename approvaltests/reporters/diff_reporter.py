@@ -30,14 +30,11 @@ class DiffReporter(FirstWorkingReporter):
         reporters = list(factory.get_all_reporters_from_config())
         reporters.extend(
             [
-                ReportWithVSCode(),
-                ReportWithVSCodeMacOS(),
                 
                 ReportWithDiffToolOnWindows(),
                 ReportWithDiffToolOnMac(),
                 ReportWithDiffToolOnLinux(),
                 
-                ReportWithDiffCommandLine(),
                 PythonNativeReporter(),
             ]
         )
