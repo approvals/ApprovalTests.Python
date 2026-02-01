@@ -1,8 +1,19 @@
 from collections import defaultdict
 import csv
+from dataclasses import dataclass
 import textwrap
 from pathlib import Path
 from typing import Dict, List
+
+
+@dataclass(frozen=True)
+class ReporterRow:
+    name: str
+    path: str
+    arguments: str
+    file_types: str
+    os: str
+    group_name: str
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
@@ -94,21 +105,20 @@ def main() -> None:
     output_dir = _REPO_ROOT / "approvaltests" / "reporters"
 
     reader = csv.DictReader(csv_path.read_text().splitlines())
-    rows = list(reader)
+    rows = [ReporterRow(**row) for row in reader]
 
     os_to_classes: Dict[str, List[str]] = defaultdict(list)
     for row in rows:
-        class_name = to_class_name(row["name"], row["os"])
-        os_name = row["os"]
-        os_to_classes[os_name].append(class_name)
+        class_name = to_class_name(row.name, row.os)
+        os_to_classes[row.os].append(class_name)
 
     output = generate_file_header()
     for row in rows:
         output += generate_class(
-            name=row["name"],
-            path=row["path"],
-            arguments=row["arguments"],
-            os_name=row["os"],
+            name=row.name,
+            path=row.path,
+            arguments=row.arguments,
+            os_name=row.os,
         )
         output += "\n\n"
 
