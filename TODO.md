@@ -1,5 +1,4 @@
 
-- [ ] OS FIrstWorkingReporter of everything frmo the same OS
 - [ ] group diff reporter of everythingin the same group
 - [ ] eliminate reporters.json
 - [ ] IntelliJ is a side quest
