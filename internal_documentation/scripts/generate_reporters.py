@@ -69,12 +69,16 @@ def get_platform_name(os_name: str) -> str:
 
 
 def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
-    reporter_instances = ", ".join(f"{name}()" for name in class_names)
+    reporter_instances = ",\n                    ".join(
+        f"{name}()" for name in class_names
+    )
     platform_name = get_platform_name(os_name)
     return textwrap.dedent(f"""\
         class ReportWithDiffToolOn{os_name}(FirstWorkingReporter):
             def __init__(self) -> None:
-                super().__init__({reporter_instances})
+                super().__init__(
+                    {reporter_instances},
+                )
 
             @override
             def report(self, received_path: str, approved_path: str) -> bool:
@@ -109,9 +113,12 @@ def main() -> None:
         )
         output += "\n\n"
 
-    for os_name, class_names in os_to_classes.items():
-        output += generate_per_os_reporter(os_name, class_names)
-        output += "\n\n"
+    output += "\n\n".join(
+        map(
+            lambda item: generate_per_os_reporter(*item),
+            os_to_classes.items(),
+        )
+    )
 
     output_path = output_dir / "generated_reporters.py"
     output_path.write_text(output)
