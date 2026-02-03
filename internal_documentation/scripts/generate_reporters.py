@@ -112,9 +112,7 @@ def main() -> None:
         os_to_classes[row.os].append(row.class_name)
 
     output = generate_file_header()
-    for row in rows:
-        output += generate_class(row)
-        output += "\n\n"
+    output += "\n\n".join(map(generate_class, rows)) + "\n\n"
 
     output += "\n\n".join(
         map(
