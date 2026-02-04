@@ -114,9 +114,7 @@ def main() -> None:
         )
     )
 
-    output_path = (
-        _REPO_ROOT / "approvaltests" / "reporters" / "generated_diff_reporters.py"
-    )
+    output_path = _REPO_ROOT / "approvaltests/reporters/generated_diff_reporters.py"
     output_path.write_text(output)
 
     print(f"Generated {len(rows)} reporter classes to {output_path}")
