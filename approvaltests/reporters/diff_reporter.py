@@ -3,7 +3,7 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
 )
 
 from .first_working_reporter import FirstWorkingReporter
-from .generated_reporters import (
+from .generated_diff_reporters import (
     ReportWithDiffToolOnLinux,
     ReportWithDiffToolOnMac,
     ReportWithDiffToolOnWindows,
