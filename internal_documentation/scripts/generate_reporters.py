@@ -5,6 +5,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List
 
+_SCRIPT_DIR = Path(__file__).parent
+_REPO_ROOT = _SCRIPT_DIR.parent.parent
+assert _REPO_ROOT.joinpath(".gitattributes").exists()
+
 
 @dataclass(frozen=True)
 class ReporterDefinition:
@@ -20,11 +24,6 @@ class ReporterDefinition:
         parts = self.name.split("_")
         camel = "".join(word.capitalize() for word in parts)
         return f"ReportWith{camel}{self.os}"
-
-
-_SCRIPT_DIR = Path(__file__).parent
-_REPO_ROOT = _SCRIPT_DIR.parent.parent
-assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
 
 def parse_extra_args(arguments: str) -> List[str]:
