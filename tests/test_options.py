@@ -20,8 +20,9 @@ from approvaltests.utilities.logging import logging_approvals  # noqa: F401
 _approvals_modules = list(
     sorted(
         filter(
-            lambda name: name.startswith("approvaltests.")
-            and name.endswith("approvals"),
+            lambda name: (
+                name.startswith("approvaltests.") and name.endswith("approvals")
+            ),
             sys.modules.keys(),
         )
     )

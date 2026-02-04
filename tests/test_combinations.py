@@ -117,11 +117,9 @@ class VerifyAllCombinationsTests(unittest.TestCase):
         verify_all_combinations(
             self.func,
             arg_combinations,
-            formatter=lambda args, output: "inputs="
-            + str(args)
-            + ", outputs="
-            + str(output)
-            + "\n",
+            formatter=lambda args, output: (
+                "inputs=" + str(args) + ", outputs=" + str(output) + "\n"
+            ),
             reporter=self.reporter,
         )
 

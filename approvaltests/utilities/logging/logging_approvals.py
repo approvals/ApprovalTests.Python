@@ -15,7 +15,7 @@ def verify_logging(
         def __init__(self) -> None:
             self.l = LogCapture()
             self.output = "anything"
-            self.options = options if options else Options()
+            self.options = options or Options()
 
         def __enter__(self) -> None:
             self.l.__enter__()

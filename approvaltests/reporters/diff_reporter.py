@@ -34,4 +34,4 @@ class DiffReporter(FirstWorkingReporter):
                 PythonNativeReporter(),
             ]
         )
-        super(__class__, self).__init__(*reporters)
+        super().__init__(*reporters)
