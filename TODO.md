@@ -3,8 +3,7 @@
 - [ ] eliminate reporters.json
 - [ ] IntelliJ is a side quest
 - [ ] extract diff_reporters.csv to its own repo
-- [ ] clean up hand-coded reporters
-
+- [ ] deprecate everything in approvaltests/reporters/report_with_beyond_compare.py
 
 
 
