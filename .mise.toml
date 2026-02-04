@@ -33,8 +33,8 @@ run = [
 ]
 depends = ["pip-install"]
 
-[tasks.generate_reporters]
-run = "python internal_documentation/scripts/generate_reporters.py"
+[tasks.generate_diff_reporters]
+run = "python internal_documentation/scripts/generate_diff_reporters.py"
 depends = ["pip-install"]
 
 [settings]
