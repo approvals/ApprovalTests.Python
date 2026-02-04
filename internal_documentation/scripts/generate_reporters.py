@@ -28,13 +28,7 @@ assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
 
 def parse_extra_args(arguments: str) -> List[str]:
-    if not arguments:
-        return []
-    args = []
-    for part in arguments.split():
-        if part != "%s":
-            args.append(part)
-    return args
+    return [part for part in arguments.split() if part != "%s"]
 
 
 def normalize_path(path: str) -> str:
