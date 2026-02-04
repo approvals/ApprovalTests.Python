@@ -1,4 +1,5 @@
 from pathlib import Path
+from textwrap import dedent
 from typing import List
 
 from typing_extensions import override
@@ -62,9 +63,10 @@ class GenericDiffReporter(Reporter):
         ):
             GenericDiffReporter.limit_count += 1
             print(
-                f"Skipping the diff because the limit[{GenericDiffReporter.diff_tool_limit}]"
-                f" of opened diff reporters has been exceeded.\n"
-                f"You can configure this with GenericDiffReporter.diff_tool_limit"
+                dedent(f"""\
+                    Skipping the diff because the limit[{GenericDiffReporter.diff_tool_limit}]
+                    of opened diff reporters has been exceeded.
+                    You can configure this with GenericDiffReporter.diff_tool_limit""")
             )
             return True
 
