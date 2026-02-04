@@ -95,7 +95,7 @@ def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
 
 
 def main() -> None:
-    csv_path = _REPO_ROOT / "internal_documentation" / "issues" / "reporters.csv"
+    csv_path = _REPO_ROOT / "diff_reporters.csv"
 
     reader = csv.DictReader(csv_path.read_text().splitlines())
     rows = [ReporterDefinition(**row) for row in reader]

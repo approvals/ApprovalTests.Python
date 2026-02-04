@@ -2,7 +2,7 @@
 - [ ] group diff reporter of everything in the same group
 - [ ] eliminate reporters.json
 - [ ] IntelliJ is a side quest
-- [ ] extract reporters.csv to its own repo
+- [ ] extract diff_reporters.csv to its own repo
 - [ ] clean up hand-coded reporters
 
 
