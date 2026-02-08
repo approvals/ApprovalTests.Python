@@ -169,9 +169,9 @@ In the example shown below, we pass in an options with a reporter we're selectin
 ```py
 class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
-        verify("Hello", options=Options().with_reporter(report_with_beyond_compare()))
+        verify("Hello", options=Options().with_reporter(ReportWithBeyondCompare()))
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L28-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L26-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can also use the `GenericDiffReporterFactory` to find and select the first diff utility that exists on our system.
@@ -191,7 +191,7 @@ class TestSelectReporter(unittest.TestCase):
             "Hello", options=Options().with_reporter(self.factory.get("BeyondCompare"))
         )
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L13-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L11-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Or you can build your own GenericDiffReporter on the fly
@@ -208,7 +208,7 @@ class GettingStartedTest(unittest.TestCase):
             ),
         )
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L37-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L35-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2`
