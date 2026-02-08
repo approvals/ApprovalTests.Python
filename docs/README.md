@@ -29,6 +29,7 @@
 -   [What are Approvals](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/what_are_approvals.md)
 -   [Benifits of Different Reporters](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/benefits_of_different_reporters.md)
 -  [Overview of Approval Scripts](https://github.com/approvals/ApprovalTests.CommonScripts/blob/main/docs/explanations/overview.md)
+-  [Why we changed reporters](explanation/why_we_changed_reporters.md)
 
 ## Tutorial
 

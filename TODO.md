@@ -1,5 +1,4 @@
-# this release:
-- [ ] "generated_diff_reporters" is not a good customer-facging name
+
 # next release:
 - [ ] IntelliJ is a side quest
 - [ ] extract diff_reporters.csv to its own repo
