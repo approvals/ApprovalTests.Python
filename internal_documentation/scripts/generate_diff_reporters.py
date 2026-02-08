@@ -94,6 +94,24 @@ def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
         """)
 
 
+def screaming_snake_to_pascal(name: str) -> str:
+    return "".join(word.capitalize() for word in name.split("_"))
+
+
+def generate_group_reporter(group_name: str, class_names: List[str]) -> str:
+    reporter_instances = ",\n                    ".join(
+        f"{name}()" for name in class_names
+    )
+    pascal_name = screaming_snake_to_pascal(group_name)
+    return textwrap.dedent(f"""\
+        class ReportWith{pascal_name}(FirstWorkingReporter):
+            def __init__(self) -> None:
+                super().__init__(
+                    {reporter_instances},
+                )
+        """)
+
+
 def main() -> None:
     csv_path = _REPO_ROOT / "diff_reporters.csv"
 
@@ -112,6 +130,17 @@ def main() -> None:
             lambda item: generate_per_os_reporter(*item),
             os_to_classes.items(),
         )
+    )
+
+    group_to_classes: Dict[str, List[str]] = defaultdict(list)
+    for row in rows:
+        if row.group_name:
+            group_to_classes[row.group_name].append(row.class_name)
+
+    output += "\n\n"
+    output += "\n\n".join(
+        generate_group_reporter(name, classes)
+        for name, classes in group_to_classes.items()
     )
 
     output_path = _REPO_ROOT / "approvaltests/reporters/generated_diff_reporters.py"

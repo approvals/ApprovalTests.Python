@@ -355,3 +355,78 @@ class ReportWithDiffToolOnLinux(FirstWorkingReporter):
         if platform.system() != "Linux":
             return False
         return super().report(received_path, approved_path)
+
+
+class ReportWithDiffMerge(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithDiffMergeMac(),
+            ReportWithDiffMergeLinux(),
+        )
+
+
+class ReportWithBeyondCompare(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithBeyondCompareMac(),
+            ReportWithBeyondCompare3Windows(),
+            ReportWithBeyondCompare4Windows(),
+            ReportWithBeyondCompare5Windows(),
+        )
+
+
+class ReportWithKaleidoscope(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithKaleidoscopeMac(),
+            ReportWithKaleidoscope3Mac(),
+        )
+
+
+class ReportWithKdiff3(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithKdiff3Mac(),
+            ReportWithKdiff3Windows(),
+            ReportWithKdiff3Linux(),
+        )
+
+
+class ReportWithVisualStudioCode(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithVisualStudioCodeMac(),
+            ReportWithVisualStudioCodeWindows(),
+        )
+
+
+class ReportWithAraxisMerge(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithAraxisMergeMac(),
+            ReportWithAraxisMergeWindows(),
+        )
+
+
+class ReportWithTortoise(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithTortoiseImageDiffWindows(),
+            ReportWithTortoiseTextDiffWindows(),
+        )
+
+
+class ReportWithTortoiseGit(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithTortoiseGitImageDiffWindows(),
+            ReportWithTortoiseGitTextDiffWindows(),
+        )
+
+
+class ReportWithDiffCommandLine(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithDiffCommandLineLinux(),
+            ReportWithDiffCommandLineMac(),
+        )
