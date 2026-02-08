@@ -1,10 +1,8 @@
 # this release:
-- [ ] clean up hand-coded reporters
 - [ ] "generated_diff_reporters" is not a good customer-facging name
 # next release:
 - [ ] IntelliJ is a side quest
 - [ ] extract diff_reporters.csv to its own repo
-- [ ] deprecate everything in approvaltests/reporters/report_with_beyond_compare.py
 
 
 
