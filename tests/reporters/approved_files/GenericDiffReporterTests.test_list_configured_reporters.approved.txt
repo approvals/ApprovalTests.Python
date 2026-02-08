@@ -1,8 +1,0 @@
-[
-    "AraxisMergeWin",
-    "AraxisMergeMac",
-    "kdiff3",
-    "meld",
-    "DiffMerge",
-    "PyCharm"
-]

@@ -1,4 +1,0 @@
-{
-    "name": "AraxisMergeMac",
-    "path": "/Applications/Araxis Merge.app/Contents/Utilities/compare"
-}

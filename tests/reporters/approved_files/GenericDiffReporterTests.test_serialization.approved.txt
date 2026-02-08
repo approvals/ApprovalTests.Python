@@ -1,13 +1,5 @@
 [
   [
-    "AraxisMergeWin",
-    "C:/Program Files/Araxis/Araxis Merge/Merge.exe"
-  ],
-  [
-    "AraxisMergeMac",
-    "/Applications/Araxis Merge.app/Contents/Utilities/compare"
-  ],
-  [
     "kdiff3",
     "/usr/bin/kdiff3"
   ],

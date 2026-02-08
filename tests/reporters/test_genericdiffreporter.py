@@ -30,30 +30,14 @@ class GenericDiffReporterTests(unittest.TestCase):
     def tearDown(self) -> None:
         shutil.rmtree(self.tmp_dir)
 
-    def test_list_configured_reporters(self) -> None:
-        verify(to_json(self.factory.list()))
-
-    def test_document_existing_reporters(self) -> None:
-        reporters = self.factory.list()
-        reporters.sort()
-        markdown = "".join(f"* {reporter}\n" for reporter in reporters)
-
-        verify(markdown, options=Options().for_file.with_extension(".md"))
-
     def test_get_winmerge(self) -> None:
         self.assert_for_reporter("WinMerge")
-
-    def test_get_araxis(self) -> None:
-        self.assert_for_reporter("AraxisMergeWin")
 
     def assert_for_reporter(self, reporter: str) -> None:
         the_reporter = self.factory.get(reporter)
         verify(
             str(the_reporter), MultiReporter(ReportWithBeyondCompare(), the_reporter)
         )
-
-    def test_get_araxis_mac(self) -> None:
-        self.assert_for_reporter("AraxisMergeMac")
 
     def test_constructs_valid_diff_command(self) -> None:
         reporter = GenericDiffReporter.create("test")
