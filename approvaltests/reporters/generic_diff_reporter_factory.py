@@ -1,5 +1,5 @@
 import json
-from typing import Callable, Dict, Iterator, List, Optional
+from typing import Iterator, List, Optional
 
 from typing_extensions import override
 
@@ -10,11 +10,6 @@ from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import (
     GenericDiffReporterConfig,
     create_config,
-)
-from approvaltests.reporters.python_native_reporter import PythonNativeReporter
-from approvaltests.reporters.report_with_beyond_compare import (
-    ReportWithBeyondCompare,
-    ReportWithWinMerge,
 )
 
 
@@ -37,21 +32,7 @@ class GenericDiffReporterFactory:
         return [r.name for r in self.reporter_configs]
 
     def get(self, reporter_name: str) -> Reporter:
-        reporter = GenericDiffReporterFactory.get_reporter_programmatically(
-            reporter_name
-        )
-        return reporter or self.get_from_json_config(reporter_name)
-
-    @staticmethod
-    def get_reporter_programmatically(reporter_name: str) -> Optional[Reporter]:
-        reporters: Dict[str, Callable[[], Reporter]] = {
-            "BeyondCompare": ReportWithBeyondCompare,
-            "WinMerge": ReportWithWinMerge,
-            "PythonNative": PythonNativeReporter,
-            "PythonNativeReporter": PythonNativeReporter,
-        }
-        clazz = reporters.get(reporter_name)
-        return clazz and clazz()
+        return self.get_from_json_config(reporter_name)
 
     def get_from_json_config(self, reporter_name: str) -> Reporter:
         config = next(

@@ -6,16 +6,14 @@ import unittest
 from typing_extensions import override
 
 from approval_utilities.utils import is_windows_os, to_json
-from approvaltests import Options
 from approvaltests.approvals import delete_approved_file, get_default_namer, verify
 from approvaltests.reporters import MultiReporter
+from approvaltests.reporters.generated_diff_reporters import ReportWithBeyondCompare
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import create_config
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
-from approvaltests.reporters.report_with_beyond_compare import ReportWithBeyondCompare
-
 
 class GenericDiffReporterTests(unittest.TestCase):
     @override
@@ -29,15 +27,6 @@ class GenericDiffReporterTests(unittest.TestCase):
     @override
     def tearDown(self) -> None:
         shutil.rmtree(self.tmp_dir)
-
-    def test_get_winmerge(self) -> None:
-        self.assert_for_reporter("WinMerge")
-
-    def assert_for_reporter(self, reporter: str) -> None:
-        the_reporter = self.factory.get(reporter)
-        verify(
-            str(the_reporter), MultiReporter(ReportWithBeyondCompare(), the_reporter)
-        )
 
     def test_constructs_valid_diff_command(self) -> None:
         reporter = GenericDiffReporter.create("test")

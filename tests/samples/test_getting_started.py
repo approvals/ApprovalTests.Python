@@ -4,10 +4,8 @@ from typing_extensions import override
 
 from approvaltests import Options, verify
 from approvaltests.reporters import GenericDiffReporterFactory
+from approvaltests.reporters.generated_diff_reporters import ReportWithBeyondCompare
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
-from approvaltests.reporters.report_with_beyond_compare import (
-    report_with_beyond_compare,
-)
 
 
 # begin-snippet: select_reporter_from_factory
@@ -28,7 +26,7 @@ class TestSelectReporter(unittest.TestCase):
 # begin-snippet: select_reporter_from_class
 class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
-        verify("Hello", options=Options().with_reporter(report_with_beyond_compare()))
+        verify("Hello", options=Options().with_reporter(ReportWithBeyondCompare()))
 
 
 # end-snippet

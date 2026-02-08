@@ -25,7 +25,6 @@ from approvaltests.core.comparator import Comparator
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
-from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.reporters.reporter_that_automatically_approves import (
     ReporterThatAutomaticallyApproves,
 )
@@ -195,10 +194,7 @@ class VerifyTests(unittest.TestCase):
         verify_html(html)
 
     def test_newlines_at_end_of_files(self) -> None:
-        verify(
-            "There should be a blank line underneath this",
-            options=Options().with_reporter(ReportWithPycharm()),
-        )
+        verify("There should be a blank line underneath this")
 
     def test_verify_storyboard(self) -> None:
         with verify_storyboard() as b:

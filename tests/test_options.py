@@ -8,11 +8,10 @@ from approvaltests import (
     combination_approvals,  # noqa: F401
     get_default_reporter,
     verify,
-    verify_all,
+    verify_all, DiffReporter,
 )
 from approvaltests.core.options import Options
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
-from approvaltests.reporters.report_with_beyond_compare import ReportWithPycharm
 from approvaltests.utilities import command_line_approvals  # noqa: F401
 from approvaltests.utilities.logger import simple_logger_approvals  # noqa: F401
 from approvaltests.utilities.logging import logging_approvals  # noqa: F401
@@ -94,26 +93,26 @@ def test_add_reporter() -> None:
     options0 = (
         Options()
         .with_reporter(ReportByCreatingDiffFile())
-        .with_reporter(ReportWithPycharm())
+        .with_reporter(DiffReporter())
     )
-    assert type(options0.reporter) == ReportWithPycharm
+    assert type(options0.reporter) == DiffReporter
 
     # current work around, create a MultiReporter
     options_multi = Options().with_reporter(
-        MultiReporter(ReportByCreatingDiffFile(), ReportWithPycharm())
+        MultiReporter(ReportByCreatingDiffFile(), DiffReporter())
     )
     assert (
         str(options_multi.reporter)
-        == "MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)"
+        == "MultiReporter(ReportByCreatingDiffFile, DiffReporter)"
     )
 
     # new behaviour, append
     options0 = (
         Options()
         .with_reporter(ReportByCreatingDiffFile())
-        .add_reporter(ReportWithPycharm())
+        .add_reporter(DiffReporter())
     )
     assert (
         str(options_multi.reporter)
-        == "MultiReporter(ReportByCreatingDiffFile, ReportWithPycharm)"
+        == "MultiReporter(ReportByCreatingDiffFile, DiffReporter)"
     )
