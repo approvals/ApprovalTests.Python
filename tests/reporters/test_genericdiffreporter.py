@@ -1,5 +1,4 @@
 import os
-import re
 import shutil
 import unittest
 
@@ -7,13 +6,12 @@ from typing_extensions import override
 
 from approval_utilities.utils import is_windows_os, to_json
 from approvaltests.approvals import delete_approved_file, get_default_namer, verify
-from approvaltests.reporters import MultiReporter
-from approvaltests.reporters.generated_diff_reporters import ReportWithBeyondCompare
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 from approvaltests.reporters.generic_diff_reporter_config import create_config
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
+
 
 class GenericDiffReporterTests(unittest.TestCase):
     @override

@@ -1,7 +1,7 @@
 import unittest
 
 from approvaltests import verify_all
-from approvaltests.reporters import GenericDiffReporterFactory, get_command_text
+from approvaltests.reporters import get_command_text
 from approvaltests.reporters.default_reporter_factory import (
     get_default_reporter,
     set_default_reporter,

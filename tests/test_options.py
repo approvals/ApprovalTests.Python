@@ -3,12 +3,13 @@ import inspect
 import sys
 
 from approvaltests import (
+    DiffReporter,
     ReporterForTesting,
     approvals,
     combination_approvals,  # noqa: F401
     get_default_reporter,
     verify,
-    verify_all, DiffReporter,
+    verify_all,
 )
 from approvaltests.core.options import Options
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
@@ -103,5 +104,5 @@ def test_add_reporter() -> None:
     reporter2 = DiffReporter()
     handmade = MultiReporter(reporter1, reporter2)
 
-    options0 =         Options().with_reporter(reporter1)        .add_reporter(reporter2)
-    assert         str(options0.reporter)== str(handmade)
+    options0 = Options().with_reporter(reporter1).add_reporter(reporter2)
+    assert str(options0.reporter) == str(handmade)
