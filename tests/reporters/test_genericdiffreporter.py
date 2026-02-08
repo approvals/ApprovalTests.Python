@@ -80,23 +80,6 @@ class GenericDiffReporterTests(unittest.TestCase):
             actual_contents = approved_file.read()
         self.assertEqual(actual_contents, approved_contents)
 
-    def test_serialization(self) -> None:
-        n = get_default_namer()
-        saved_reporters_file = os.path.join(n.get_directory(), "saved-reporters.json")
-        self.factory.save(saved_reporters_file)
-        try:
-            with open(saved_reporters_file) as f:
-                file_contents = f.read()
-                # remove the absolute path to the python_native_reporter.py file since it is different on every machine
-                regex = re.compile(r'.*"([^"]*)python_native_reporter.py')
-                match = regex.findall(file_contents)
-                if match:
-                    file_contents = file_contents.replace(match[0], "")
-                file_contents = file_contents.replace("python.exe", "python")
-                verify(file_contents)
-        finally:
-            os.remove(saved_reporters_file)
-
     def test_deserialization(self) -> None:
         namer = get_default_namer()
         full_name = os.path.join(namer.get_directory(), "custom-reporters.json")

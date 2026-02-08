@@ -1,17 +1,5 @@
 [
   [
-    "kdiff3",
-    "/usr/bin/kdiff3"
-  ],
-  [
-    "meld",
-    "meld"
-  ],
-  [
-    "DiffMerge",
-    "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
-  ],
-  [
     "PyCharm",
     "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
     ["diff"]
