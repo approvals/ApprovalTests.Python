@@ -54,8 +54,13 @@ Generate a `ReportWithDiffToolOn{OS}` class for each OS (Mac, Windows, Linux):
 
 These per-OS reporters allow users to get a working diff tool without specifying which one, automatically finding the first available tool on their system.
 
-### 5. (Optional) Generate Group Aggregator Classes
+### 5. Generate Group Aggregator Classes
 
 For rows sharing the same non-empty `group_name`:
-- Create a wrapper class that tries each reporter in sequence
-- Example: `ReportWithBeyondCompare` tries Mac, Windows 4, Windows 5, Linux variants
+- Convert `group_name` from `SCREAMING_SNAKE_CASE` to `PascalCase`
+- Create a `FirstWorkingReporter` subclass named `ReportWith{GroupPascalCase}`
+- Include all reporters in the group, in CSV order
+- No OS guard is needed — individual reporters already fail gracefully when the executable is not found
+- Example: `ReportWithBeyondCompare` tries `ReportWithBeyondCompareMac`, `ReportWithBeyondCompare3Windows`, `ReportWithBeyondCompare4Windows`, `ReportWithBeyondCompare5Windows`
+
+These group reporters allow users to specify a tool by name (e.g., `ReportWithKdiff3`) without worrying about which OS or version they are on.
