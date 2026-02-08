@@ -88,7 +88,7 @@ def test_file_extensions() -> None:
     verify(content, options=Options().for_file.with_extension("md"))
 
 
-def test_add_reporter() -> None:
+def test_overwrite_reporter() -> None:
     # current behaviour, override
     options0 = (
         Options()
@@ -97,22 +97,11 @@ def test_add_reporter() -> None:
     )
     assert type(options0.reporter) == DiffReporter
 
-    # current work around, create a MultiReporter
-    options_multi = Options().with_reporter(
-        MultiReporter(ReportByCreatingDiffFile(), DiffReporter())
-    )
-    assert (
-        str(options_multi.reporter)
-        == "MultiReporter(ReportByCreatingDiffFile, DiffReporter)"
-    )
 
-    # new behaviour, append
-    options0 = (
-        Options()
-        .with_reporter(ReportByCreatingDiffFile())
-        .add_reporter(DiffReporter())
-    )
-    assert (
-        str(options_multi.reporter)
-        == "MultiReporter(ReportByCreatingDiffFile, DiffReporter)"
-    )
+def test_add_reporter() -> None:
+    reporter1 = ReportByCreatingDiffFile()
+    reporter2 = DiffReporter()
+    handmade = MultiReporter(reporter1, reporter2)
+
+    options0 =         Options().with_reporter(reporter1)        .add_reporter(reporter2)
+    assert         str(options0.reporter)== str(handmade)
