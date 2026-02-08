@@ -4,7 +4,7 @@ from typing_extensions import override
 
 from approvaltests import Options, verify
 from approvaltests.reporters import GenericDiffReporterFactory
-from approvaltests.reporters.generated_diff_reporters import ReportWithBeyondCompare
+from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
 
 

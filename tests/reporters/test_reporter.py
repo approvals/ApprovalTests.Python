@@ -6,7 +6,7 @@ from approvaltests.reporters.default_reporter_factory import (
     get_default_reporter,
     set_default_reporter,
 )
-from approvaltests.reporters.generated_diff_reporters import ReportWithBeyondCompare
+from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
 from approvaltests.reporters.received_file_launcher_reporter import (
     ReceivedFileLauncherReporter,
 )

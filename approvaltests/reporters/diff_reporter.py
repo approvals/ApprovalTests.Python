@@ -2,12 +2,12 @@ from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
 
-from .first_working_reporter import FirstWorkingReporter
-from .generated_diff_reporters import (
+from .diff_tools import (
     ReportWithDiffToolOnLinux,
     ReportWithDiffToolOnMac,
     ReportWithDiffToolOnWindows,
 )
+from .first_working_reporter import FirstWorkingReporter
 from .python_native_reporter import PythonNativeReporter
 
 

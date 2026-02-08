@@ -143,7 +143,7 @@ def main() -> None:
         for name, classes in group_to_classes.items()
     )
 
-    output_path = _REPO_ROOT / "approvaltests/reporters/generated_diff_reporters.py"
+    output_path = _REPO_ROOT / "approvaltests/reporters/diff_tools.py"
     output_path.write_text(output)
 
     print(f"Generated {len(rows)} reporter classes to {output_path}")

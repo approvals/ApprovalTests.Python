@@ -20,7 +20,7 @@ from approvaltests.namer.inline_python_reporter import (
     escape_characters_dict,
     handle_preceeding_whitespace,
 )
-from approvaltests.reporters.generated_diff_reporters import ReportWithBeyondCompare
+from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
 from approvaltests.reporters.report_quietly import ReportQuietly
 
 # Todo:
