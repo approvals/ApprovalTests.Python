@@ -1,0 +1,8 @@
+{
+    "arguments": [
+        "--custom_arg1",
+        "custom_arg2"
+    ],
+    "name": "CustomName",
+    "path": "/Path/To/Program.exe"
+}

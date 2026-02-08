@@ -1,7 +1,7 @@
 [
   [
-    "PyCharm",
-    "/Applications/PyCharm CE.app/Contents/MacOS/pycharm",
-    ["diff"]
+    "CustomName",
+    "/Path/To/Program.exe",
+    ["--custom_arg1", "custom_arg2"]
   ]
 ]

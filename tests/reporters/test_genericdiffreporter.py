@@ -139,8 +139,8 @@ class GenericDiffReporterTests(unittest.TestCase):
             msg = f"File is not empty: {file_path}"
             self.fail(msg)
 
-    def test_get_pycharm_reporter(self) -> None:
-        verify(str(self.factory.get("PyCharm")))
+    def test_get_from_reporters_json(self) -> None:
+        verify(str(self.factory.get("CustomName")))
 
     def test_diff_tool_limiting(self) -> None:
         reporter = self.instantiate_reporter_for_test()

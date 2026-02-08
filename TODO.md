@@ -1,12 +1,11 @@
 
-- [ ] group diff reporter of everything in the same group
+- [X] group diff reporter of everything in the same group
 - [ ] eliminate reporters.json
+- [ ] clean up hand-coded reporters
 - [ ] IntelliJ is a side quest
 - [ ] extract diff_reporters.csv to its own repo
 - [ ] deprecate everything in approvaltests/reporters/report_with_beyond_compare.py
-
-
-
+- [ ] test that json file still works
 
 
 
