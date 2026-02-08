@@ -9,8 +9,9 @@
   * [resources](#resources)<!-- endToc -->
 
 ## What is a reporter
-When approvaltests fails the mechanism to give you more information about that failing
-is via a reporter. Most of the time this means opening a diff tool to show you 
+
+When an approval test fails, the mechanism to give you more information about that failing
+is via a "reporter". Most of the time this means opening a diff tool to show you 
 the `.approved.` (expected) vs `.received.` (actual).  
 
 The default reporter will search your machine for any installed diff tool.
@@ -21,7 +22,7 @@ See [diff_reporters.csv](../../diff_reporters.csv) for a list of supported diff 
 
 ## Customizing the reporters.json
 
-You can add a difftool and path to ApprovalTests by editing the [`reporters.json`](../../approvaltests/reporters/reporters.json) file.
+You can add a diff tool and path to ApprovalTests by editing the [`reporters.json`](../../approvaltests/reporters/reporters.json) file.
 
 ## resources
 1. [configuring a reporter](../configuration.md#how-to-configure-a-default-reporter-for-your-system)

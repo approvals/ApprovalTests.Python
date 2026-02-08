@@ -158,11 +158,11 @@ echo "hello world!" | python -m approvaltests -t hello
 
 ### Selecting a Reporter
 
-All verify functions take an optional `options` parameter that can configure reporters (as well as many other aspects).
+All `verify...()` functions take an optional `options` parameter that can configure reporters (as well as many other aspects).
 
 ApprovalTests.Python comes with a few reporters configured, supporting Linux, Mac OSX, and Windows.
 
-In the example shown below, we pass in an options with a reporter we're selecting directly:
+In the example shown below, we pass in an `options` with a reporter we're selecting directly:
 
 <!-- snippet: select_reporter_from_class -->
 <a id='snippet-select_reporter_from_class'></a>
