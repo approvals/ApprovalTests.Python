@@ -1,8 +1,9 @@
 
 # next release:
 - [ ] IntelliJ is a side quest
-- [ ] extract diff_reporters.csv to its own repo
-
+- [ ] consume diff_reporters.csv from its own repo
+- [ ] pick a mechanism for consuming diff_reporters repo
+- [ ] %s handling
 
 
 

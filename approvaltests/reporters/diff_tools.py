@@ -20,6 +20,17 @@ class ReportWithDiffMergeMac(GenericDiffReporter):
         )
 
 
+class ReportWithFileMergeMac(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/Applications/Xcode.app/Contents/Applications/FileMerge.app/Contents/MacOS/FileMerge",
+                extra_args=["--nosplash", "-left", "-right"],
+            )
+        )
+
+
 class ReportWithBeyondCompareMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -295,10 +306,44 @@ class ReportWithDiffCommandLineMac(GenericDiffReporter):
         )
 
 
+class ReportWithSublimeMergeMac(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/Applications/Sublime Merge.app/Contents/SharedSupport/bin/smerge",
+                extra_args=["mergetool"],
+            )
+        )
+
+
+class ReportWithSublimeMergeWindows(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="{ProgramFiles}Sublime Merge/smerge.exe",
+                extra_args=["mergetool"],
+            )
+        )
+
+
+class ReportWithSublimeMergeLinux(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/usr/bin/smerge",
+                extra_args=["mergetool"],
+            )
+        )
+
+
 class ReportWithDiffToolOnMac(FirstWorkingReporter):
     def __init__(self) -> None:
         super().__init__(
             ReportWithDiffMergeMac(),
+            ReportWithFileMergeMac(),
             ReportWithBeyondCompareMac(),
             ReportWithKaleidoscopeMac(),
             ReportWithKaleidoscope3Mac(),
@@ -308,6 +353,7 @@ class ReportWithDiffToolOnMac(FirstWorkingReporter):
             ReportWithVisualStudioCodeMac(),
             ReportWithAraxisMergeMac(),
             ReportWithDiffCommandLineMac(),
+            ReportWithSublimeMergeMac(),
         )
 
     @override
@@ -332,6 +378,7 @@ class ReportWithDiffToolOnWindows(FirstWorkingReporter):
             ReportWithCodeCompareWindows(),
             ReportWithKdiff3Windows(),
             ReportWithVisualStudioCodeWindows(),
+            ReportWithSublimeMergeWindows(),
         )
 
     @override
@@ -348,6 +395,7 @@ class ReportWithDiffToolOnLinux(FirstWorkingReporter):
             ReportWithMeldMergeLinux(),
             ReportWithKdiff3Linux(),
             ReportWithDiffCommandLineLinux(),
+            ReportWithSublimeMergeLinux(),
         )
 
     @override
@@ -429,4 +477,13 @@ class ReportWithDiffCommandLine(FirstWorkingReporter):
         super().__init__(
             ReportWithDiffCommandLineLinux(),
             ReportWithDiffCommandLineMac(),
+        )
+
+
+class ReportWithSublimeMerge(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithSublimeMergeMac(),
+            ReportWithSublimeMergeWindows(),
+            ReportWithSublimeMergeLinux(),
         )
