@@ -1,7 +1,7 @@
 
 # next release:
 - [ ] IntelliJ is a side quest
-- [ ] consume diff_reporters.csv from its own repo
+- [x] consume diff_reporters.csv from its own repo
 - [ ] pick a mechanism for consuming diff_reporters repo
 - [ ] %s handling
 
