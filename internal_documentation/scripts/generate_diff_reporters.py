@@ -8,9 +8,10 @@ from typing import Dict, List
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
+assert _REPO_ROOT.joinpath(".gitattributes").exists()
+
 _DIFF_TOOLS_DIR = _REPO_ROOT / "DiffTools"
 _DIFF_TOOLS_REPO_URL = "https://github.com/approvals/DiffTools"
-assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
 
 @dataclass(frozen=True)
