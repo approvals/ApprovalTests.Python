@@ -1,4 +1,5 @@
 import csv
+import subprocess
 import textwrap
 from collections import defaultdict
 from dataclasses import dataclass
@@ -7,6 +8,8 @@ from typing import Dict, List
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
+_DIFF_TOOLS_DIR = _REPO_ROOT / "DiffTools"
+_DIFF_TOOLS_REPO_URL = "https://github.com/approvals/DiffTools"
 assert _REPO_ROOT.joinpath(".gitattributes").exists()
 
 
@@ -112,8 +115,26 @@ def generate_group_reporter(group_name: str, class_names: List[str]) -> str:
         """)
 
 
+def clone_and_update_diff_tools() -> None:
+    if not _DIFF_TOOLS_DIR.exists():
+        subprocess.run(
+            ["git", "clone", _DIFF_TOOLS_REPO_URL, _DIFF_TOOLS_DIR.as_posix()],
+            check=True,
+        )
+        return
+
+    if not _DIFF_TOOLS_DIR.joinpath(".git").exists():
+        raise RuntimeError(f"{_DIFF_TOOLS_DIR} exists but is not a git repository")
+
+    subprocess.run(
+        ["git", "-C", _DIFF_TOOLS_DIR.as_posix(), "pull", "--ff-only"],
+        check=True,
+    )
+
+
 def main() -> None:
-    csv_path = _REPO_ROOT / "DiffTools" / "diff_reporters.csv"
+    clone_and_update_diff_tools()
+    csv_path = _DIFF_TOOLS_DIR / "diff_reporters.csv"
 
     reader = csv.DictReader(csv_path.read_text().splitlines())
     rows = [ReporterDefinition(**row) for row in reader]
