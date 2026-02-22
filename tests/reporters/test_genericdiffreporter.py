@@ -157,19 +157,29 @@ class GenericDiffReporterTests(unittest.TestCase):
         config = GenericDiffReporterConfig("test", "/usr/bin/diff", ["-u"])
         reporter = GenericDiffReporter(config)
         result = reporter.get_command("received.txt", "approved.txt")
-        self.assertEqual(result, ["/usr/bin/diff", "-u", "received.txt", "approved.txt"])
+        self.assertEqual(
+            result, ["/usr/bin/diff", "-u", "received.txt", "approved.txt"]
+        )
 
     def test_get_command_substitutes_standalone_placeholders(self) -> None:
-        config = GenericDiffReporterConfig("kdiff3", "/usr/bin/kdiff3", ["%s", "%s", "-m"])
+        config = GenericDiffReporterConfig(
+            "kdiff3", "/usr/bin/kdiff3", ["%s", "%s", "-m"]
+        )
         reporter = GenericDiffReporter(config)
         result = reporter.get_command("received.txt", "approved.txt")
-        self.assertEqual(result, ["/usr/bin/kdiff3", "received.txt", "approved.txt", "-m"])
+        self.assertEqual(
+            result, ["/usr/bin/kdiff3", "received.txt", "approved.txt", "-m"]
+        )
 
     def test_get_command_substitutes_embedded_placeholders(self) -> None:
-        config = GenericDiffReporterConfig("tortoise", "/path/to/tortoise", ["/left:%s", "/right:%s"])
+        config = GenericDiffReporterConfig(
+            "tortoise", "/path/to/tortoise", ["/left:%s", "/right:%s"]
+        )
         reporter = GenericDiffReporter(config)
         result = reporter.get_command("received.txt", "approved.txt")
-        self.assertEqual(result, ["/path/to/tortoise", "/left:received.txt", "/right:approved.txt"])
+        self.assertEqual(
+            result, ["/path/to/tortoise", "/left:received.txt", "/right:approved.txt"]
+        )
 
     def test_get_command_with_no_extra_args(self) -> None:
         config = GenericDiffReporterConfig("simple", "/usr/bin/simple")
