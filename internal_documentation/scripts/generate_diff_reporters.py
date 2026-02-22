@@ -31,7 +31,7 @@ class ReporterDefinition:
 
 
 def parse_extra_args(arguments: str) -> List[str]:
-    return arguments.split() if arguments else []
+    return (arguments or "").split()
 
 
 def normalize_path(path: str) -> str:
