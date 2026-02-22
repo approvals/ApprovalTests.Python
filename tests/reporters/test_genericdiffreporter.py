@@ -7,7 +7,10 @@ from typing_extensions import override
 from approval_utilities.utils import is_windows_os, to_json
 from approvaltests.approvals import delete_approved_file, get_default_namer, verify
 from approvaltests.reporters.generic_diff_reporter import GenericDiffReporter
-from approvaltests.reporters.generic_diff_reporter_config import create_config
+from approvaltests.reporters.generic_diff_reporter_config import (
+    GenericDiffReporterConfig,
+    create_config,
+)
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
@@ -149,3 +152,27 @@ class GenericDiffReporterTests(unittest.TestCase):
         reporter = GenericDiffReporter(create_config(["Custom", "NotReal"]))
         expected = "GenericDiffReporter(...)"
         self.assertEqual(expected, str(reporter))
+
+    def test_get_command_appends_files_when_no_placeholder(self) -> None:
+        config = GenericDiffReporterConfig("test", "/usr/bin/diff", ["-u"])
+        reporter = GenericDiffReporter(config)
+        result = reporter.get_command("received.txt", "approved.txt")
+        self.assertEqual(result, ["/usr/bin/diff", "-u", "received.txt", "approved.txt"])
+
+    def test_get_command_substitutes_standalone_placeholders(self) -> None:
+        config = GenericDiffReporterConfig("kdiff3", "/usr/bin/kdiff3", ["%s", "%s", "-m"])
+        reporter = GenericDiffReporter(config)
+        result = reporter.get_command("received.txt", "approved.txt")
+        self.assertEqual(result, ["/usr/bin/kdiff3", "received.txt", "approved.txt", "-m"])
+
+    def test_get_command_substitutes_embedded_placeholders(self) -> None:
+        config = GenericDiffReporterConfig("tortoise", "/path/to/tortoise", ["/left:%s", "/right:%s"])
+        reporter = GenericDiffReporter(config)
+        result = reporter.get_command("received.txt", "approved.txt")
+        self.assertEqual(result, ["/path/to/tortoise", "/left:received.txt", "/right:approved.txt"])
+
+    def test_get_command_with_no_extra_args(self) -> None:
+        config = GenericDiffReporterConfig("simple", "/usr/bin/simple")
+        reporter = GenericDiffReporter(config)
+        result = reporter.get_command("received.txt", "approved.txt")
+        self.assertEqual(result, ["/usr/bin/simple", "received.txt", "approved.txt"])

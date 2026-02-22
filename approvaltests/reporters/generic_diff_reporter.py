@@ -48,6 +48,17 @@ class GenericDiffReporter(Reporter):
         run_command(command_array)
 
     def get_command(self, received: str, approved: str) -> List[str]:
+        if any("%s" in arg for arg in self.extra_args):
+            args = []
+            substitutions = [received, approved]
+            sub_index = 0
+            for arg in self.extra_args:
+                if "%s" in arg and sub_index < len(substitutions):
+                    args.append(arg.replace("%s", substitutions[sub_index], 1))
+                    sub_index += 1
+                else:
+                    args.append(arg)
+            return [self.path] + args
         return [self.path] + self.extra_args + [received, approved]
 
     @override
