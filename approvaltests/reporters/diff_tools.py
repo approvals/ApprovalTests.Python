@@ -15,7 +15,7 @@ class ReportWithDiffMergeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge",
-                extra_args=["--nosplash"],
+                extra_args=["--nosplash", "%s", "%s"],
             )
         )
 
@@ -26,7 +26,7 @@ class ReportWithFileMergeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/Xcode.app/Contents/Applications/FileMerge.app/Contents/MacOS/FileMerge",
-                extra_args=["--nosplash", "-left", "-right"],
+                extra_args=["--nosplash", "-left", "%s", "-right", "%s"],
             )
         )
 
@@ -70,7 +70,7 @@ class ReportWithKdiff3Mac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/kdiff3.app/Contents/MacOS/kdiff3",
-                extra_args=["-m"],
+                extra_args=["%s", "%s", "-m"],
             )
         )
 
@@ -103,7 +103,7 @@ class ReportWithVisualStudioCodeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code",
-                extra_args=["-d"],
+                extra_args=["-d", "%s", "%s"],
             )
         )
 
@@ -246,7 +246,7 @@ class ReportWithVisualStudioCodeWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Microsoft VS Code/Code.exe",
-                extra_args=["-d"],
+                extra_args=["-d", "%s", "%s"],
             )
         )
 
@@ -257,7 +257,7 @@ class ReportWithDiffMergeLinux(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/diffmerge",
-                extra_args=["--nosplash"],
+                extra_args=["--nosplash", "%s", "%s"],
             )
         )
 
@@ -268,7 +268,7 @@ class ReportWithMeldMergeLinux(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/meld",
-                extra_args=[],
+                extra_args=["%s", "%s"],
             )
         )
 
@@ -279,7 +279,7 @@ class ReportWithKdiff3Linux(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/kdiff3",
-                extra_args=["-m"],
+                extra_args=["%s", "%s", "-m"],
             )
         )
 
@@ -290,7 +290,7 @@ class ReportWithDiffCommandLineLinux(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/diff",
-                extra_args=["-u"],
+                extra_args=["-u", "%s", "%s"],
             )
         )
 
@@ -301,7 +301,7 @@ class ReportWithDiffCommandLineMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/diff",
-                extra_args=["-u"],
+                extra_args=["-u", "%s", "%s"],
             )
         )
 
@@ -312,7 +312,7 @@ class ReportWithSublimeMergeMac(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/Applications/Sublime Merge.app/Contents/SharedSupport/bin/smerge",
-                extra_args=["mergetool"],
+                extra_args=["mergetool", "%s", "%s"],
             )
         )
 
@@ -323,7 +323,7 @@ class ReportWithSublimeMergeWindows(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="{ProgramFiles}Sublime Merge/smerge.exe",
-                extra_args=["mergetool"],
+                extra_args=["mergetool", "%s", "%s"],
             )
         )
 
@@ -334,7 +334,7 @@ class ReportWithSublimeMergeLinux(GenericDiffReporter):
             config=GenericDiffReporterConfig(
                 name=self.__class__.__name__,
                 path="/usr/bin/smerge",
-                extra_args=["mergetool"],
+                extra_args=["mergetool", "%s", "%s"],
             )
         )
 
