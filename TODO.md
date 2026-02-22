@@ -1,7 +1,6 @@
 
 # next release:
 - [ ] IntelliJ is a side quest
-- [ ] %s handling
 - [ ] Github action to generate and commit diff_reporters
 
 
