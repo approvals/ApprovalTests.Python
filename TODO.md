@@ -1,5 +1,6 @@
 
 # next release:
+- [ ] review docs/reference/how_the_default_reporter_works.md
 - [ ] IntelliJ is a side quest
 - [ ] Github action to generate and commit diff_reporters
 
