@@ -1,6 +1,6 @@
 # Background
 
-Using the same approved file more than once can be useful, but it is rarely the case. See [](../docs/how_to/verify_both_logs_and_results.md)
+Using the same approved file more than once can be useful, but it is rarely the case. See [verify_both_logs_and_results.md](/docs/how_to/verify_both_logs_and_results.md)
 
 # Current Behaviour
 
