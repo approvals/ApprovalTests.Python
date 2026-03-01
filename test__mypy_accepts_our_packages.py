@@ -11,7 +11,7 @@ import typing
 def main() -> None:
     for package_name, setup_file in [
         ("approval_utilities", "setup/setup.approval_utilities.py"),
-        ("approvaltests", "setup/setup.py"),
+        ("approvaltests", "setup/setup.publish.py"),
     ]:
         print(f"Testing build {package_name} ...")
         dist_dir = pathlib.Path("dist")
