@@ -18,7 +18,7 @@ def main() -> None:
 
         shutil.copy2(setup_file, "setup.py")
         try:
-            _run_python_checked(["-m", "build", "--wheel", "."])
+            _run_python_checked(["-m", "build", "--wheel", "."], quiet=True)
         finally:
             pathlib.Path("setup.py").unlink(missing_ok=True)
 
@@ -48,12 +48,16 @@ def main() -> None:
 
 
 def _run_python_checked(
-    args: typing.List[str], cwd: typing.Optional[pathlib.Path] = None
+    args: typing.List[str],
+    cwd: typing.Optional[pathlib.Path] = None,
+    quiet: bool = False,
 ) -> None:
     subprocess.run(
         [sys.executable, *args],
         check=True,
         cwd=cwd,
+        stdout=subprocess.DEVNULL if quiet else None,
+        stderr=subprocess.DEVNULL if quiet else None,
     )
 
 
