@@ -140,8 +140,7 @@ def print_combinations(
     function_under_test: Callable,
     parameter_combinations: CombinationsOfParameters,
 ) -> str:
-    if formatter is None:
-        formatter = args_and_result_formatter
+    formatter = formatter or args_and_result_formatter
     approval_strings = []
     for args in parameter_combinations:
         try:
@@ -161,8 +160,7 @@ async def print_combinations_async(
     function_under_test: Callable,
     parameter_combinations: CombinationsOfParameters,
 ) -> str:
-    if formatter is None:
-        formatter = args_and_result_formatter
+    formatter = formatter or args_and_result_formatter
     approval_strings = []
     for args in parameter_combinations:
         try:
