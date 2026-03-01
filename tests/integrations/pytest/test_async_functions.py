@@ -1,8 +1,9 @@
 import pytest
-
+import asyncio
 from approvaltests import (
     verify,
     verify_all_combinations_async,
+    verify_all_combinations,
     verify_all_combinations_with_labeled_input_async,
 )
 
@@ -41,3 +42,11 @@ async def test_async_combination_records_exceptions() -> None:
         raise Exception(args)
 
     await verify_all_combinations_async(raises, [(1, 2), (3, 4)])
+
+
+def test_sync_that_wraps_async() -> None:
+
+    def sync_sum(*args: int) -> int:
+        return asyncio.run(async_sum(*args))
+
+    verify_all_combinations(sync_sum, [(1, 2), (3, 4)])
