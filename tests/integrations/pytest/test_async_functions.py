@@ -46,7 +46,7 @@ async def test_async_combination_records_exceptions() -> None:
 
 def test_sync_that_wraps_async() -> None:
 
-    def sync_sum(*args: int) -> int:
-        return asyncio.run(async_sum(*args))
+    def sync_sum(a: int, b :int) -> int:
+        return asyncio.run(async_sum(a,b))
 
     verify_all_combinations(sync_sum, [(1, 2), (3, 4)])
