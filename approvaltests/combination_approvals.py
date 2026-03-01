@@ -61,6 +61,7 @@ def _get_label_formatter(labels: List[str]) -> Callable[[Sequence[Any], Any], st
             [f"{label}: {input}" for label, input in zip(labels, inputs)]
         )
         return f"({labeled_inputs}) => {output}\n"
+
     return formatter
 
 
@@ -73,9 +74,11 @@ def verify_all_combinations_with_labeled_input(
     labels = list(kwargs.keys())
     input_arguments = [kwargs[key] for key in kwargs]
 
-
     verify_all_combinations(
-        function_under_test, input_arguments, formatter=_get_label_formatter(labels), options=options
+        function_under_test,
+        input_arguments,
+        formatter=_get_label_formatter(labels),
+        options=options,
     )
 
 
@@ -196,7 +199,10 @@ async def verify_all_combinations_with_labeled_input_async(
     input_arguments = [kwargs[key] for key in kwargs]
 
     await verify_all_combinations_async(
-        function_under_test, input_arguments, formatter=_get_label_formatter(labels), options=options
+        function_under_test,
+        input_arguments,
+        formatter=_get_label_formatter(labels),
+        options=options,
     )
 
 
