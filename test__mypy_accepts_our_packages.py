@@ -12,6 +12,7 @@ def main() -> None:
         ("approval_utilities", "setup/setup.approval_utilities.py"),
         ("approvaltests", "setup/setup.py"),
     ]:
+        print(f"Testing build {package_name} ...")
         dist_dir = pathlib.Path("dist")
         if dist_dir.exists():
             shutil.rmtree(dist_dir)
