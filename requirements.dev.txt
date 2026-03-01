@@ -1,5 +1,6 @@
 -r requirements.prod.txt
 -r requirements.test.txt
+build
 ruff
 setuptools
 mypy

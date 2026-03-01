@@ -1,11 +1,10 @@
+import glob
 import pathlib
+import shutil
 import subprocess
 import sys
 import tempfile
-import time
 import typing
-
-from version import version_number
 
 
 def main() -> None:
@@ -13,23 +12,25 @@ def main() -> None:
         ("approval_utilities", "setup/setup.approval_utilities.py"),
         ("approvaltests", "setup/setup.py"),
     ]:
-        build_number = str(int(time.time()))
-        _run_python_checked(
-            [
-                setup_file,
-                "--quiet",
-                "bdist_wheel",
-                "--build-number",
-                build_number,
-            ]
-        )
+        dist_dir = pathlib.Path("dist")
+        if dist_dir.exists():
+            shutil.rmtree(dist_dir)
+
+        shutil.copy2(setup_file, "setup.py")
+        try:
+            _run_python_checked(["-m", "build", "--wheel", "."])
+        finally:
+            pathlib.Path("setup.py").unlink(missing_ok=True)
+
+        wheel_files = glob.glob("dist/*.whl")
+        assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
         _run_python_checked(
             [
                 "-m",
                 "pip",
                 "install",
                 "--force-reinstall",
-                f"dist/{package_name}-{version_number}-{build_number}-py3-none-any.whl",
+                wheel_files[0],
                 "--quiet",
                 "--no-warn-script-location",
             ]

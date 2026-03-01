@@ -1,5 +1,10 @@
+import sys
+from pathlib import Path
 from typing import Any, Dict
 
+_setup_dir = Path(__file__).resolve().parent / "setup"
+if _setup_dir.is_dir():
+    sys.path.insert(0, str(_setup_dir))
 from setup_utils import get_version
 from setuptools import find_packages, setup
 

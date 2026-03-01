@@ -24,7 +24,7 @@ depends = ["pip-install"]
 
 [tasks.integration]
 run = "python test__mypy_accepts_our_packages.py"
-depends = ["pip-install"]
+depends = ["pip-install", "mypy", "lint"]
 
 [tasks.tidy_code]
 run = [
