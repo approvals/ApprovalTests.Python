@@ -4,6 +4,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import typing
 
 
@@ -21,7 +22,7 @@ def main() -> None:
         try:
             _run_python_checked(["-m", "build", "--wheel", "."], quiet=True)
         finally:
-            pathlib.Path("setup.py").unlink(missing_ok=True)
+            _unlink_with_retry(pathlib.Path("setup.py"))
 
         wheel_files = glob.glob("dist/*.whl")
         assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
@@ -60,6 +61,20 @@ def _run_python_checked(
         stdout=subprocess.DEVNULL if quiet else None,
         stderr=subprocess.DEVNULL if quiet else None,
     )
+
+
+def _unlink_with_retry(
+    path: pathlib.Path, retries: int = 5, delay: float = 1.0
+) -> None:
+    for attempt in range(retries):
+        try:
+            path.unlink(missing_ok=True)
+            return
+        except PermissionError:
+            if attempt < retries - 1:
+                time.sleep(delay)
+            else:
+                raise
 
 
 if __name__ == "__main__":
