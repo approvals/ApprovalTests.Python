@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 from typing import Any, Dict
+
 from setuptools import find_packages, setup
 
 _setup_dir = Path(__file__).resolve().parent / "setup"
