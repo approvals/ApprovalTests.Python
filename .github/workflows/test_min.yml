@@ -27,8 +27,6 @@ jobs:
       - run: mise pip-install || mise pip-install  # retry for network issues
       - run: python ./generate_prod_min.py
       - run: ./build_and_test.sh
-        env: 
-          MISE_JOBS: 1  # to avoid file-in-use error
         shell: bash
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v6

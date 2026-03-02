@@ -8,7 +8,7 @@ uv_create_args = ["--seed", "--quiet"]
 
 [tasks]
 "pip-install" = "uv pip --no-cache install -r requirements.dev.txt --quiet"
-build_and_test.depends = ["test", "mypy", "lint", "integration"]
+build_and_test.depends = ["pip-install","test", "mypy", "lint", "integration"]
 
 [tasks.test]
 run = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml"
@@ -38,5 +38,6 @@ run = "python internal_documentation/scripts/generate_diff_reporters.py"
 depends = ["pip-install"]
 
 [settings]
+jobs = 1
 # we put the python version in the .python-version file instead of here so that it's easy to override in the CI matrix
 idiomatic_version_file_enable_tools = ["python"]
