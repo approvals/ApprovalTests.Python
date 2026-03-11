@@ -29,7 +29,7 @@ with open(filename, mode="rb") as f:
 
 Which will produce
 
-![Approved image](../../tests/approved_files/VerifyTests.test_verify_file_binary_file.approved.png)
+![Approved image](/tests/approved_files/VerifyTests.test_verify_file_binary_file.approved.png)
 
 ### Approving NumPy arrays
 This more detailed example demonstrates how you could use `verify_binary` to approve NumPy arrays. 
