@@ -44,3 +44,7 @@ Scripts are lazily downloaded from [ApprovalTests.CommonScripts](https://github.
 - `approve_all.py` - Uses `.failed_comparison.log`
 
 Downloads are idempotent (skipped if script already exists) and silently fail on network errors.
+
+### Disabling Script Downloads
+
+Set `APPROVALTESTS_DISABLE_SCRIPT_DOWNLOADS=1` to prevent automatic downloads. Log files are still created.
