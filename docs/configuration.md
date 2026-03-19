@@ -5,6 +5,8 @@
 
   * [Samples](#samples)
   * [Examples](#examples)
+  * [Environment Variables](#environment-variables)
+    * [APPROVALTESTS_DISABLE_SCRIPT_DOWNLOADS](#approvaltests_disable_script_downloads)
   * [How to configure a default reporter for your system](#how-to-configure-a-default-reporter-for-your-system)
     * [Unittest](#unittest)
     * [Pytest](#pytest)<!-- endToc -->
@@ -27,6 +29,18 @@ A sample `approvaltests_config.json`:
   "subdirectory": "approved_files"
 }
 ```
+
+## Environment Variables
+
+### APPROVALTESTS_DISABLE_SCRIPT_DOWNLOADS
+
+ApprovalTests automatically downloads helper scripts when tests run. To disable these automatic downloads, set the environment variable:
+
+```bash
+export APPROVALTESTS_DISABLE_SCRIPT_DOWNLOADS=1
+```
+
+This is useful in CI/CD pipelines.
 
 ## How to configure a default reporter for your system
 
