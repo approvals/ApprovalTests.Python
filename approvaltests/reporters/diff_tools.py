@@ -284,28 +284,6 @@ class ReportWithKdiff3Linux(GenericDiffReporter):
         )
 
 
-class ReportWithDiffCommandLineLinux(GenericDiffReporter):
-    def __init__(self) -> None:
-        super().__init__(
-            config=GenericDiffReporterConfig(
-                name=self.__class__.__name__,
-                path="/usr/bin/diff",
-                extra_args=["-u", "%s", "%s"],
-            )
-        )
-
-
-class ReportWithDiffCommandLineMac(GenericDiffReporter):
-    def __init__(self) -> None:
-        super().__init__(
-            config=GenericDiffReporterConfig(
-                name=self.__class__.__name__,
-                path="/usr/bin/diff",
-                extra_args=["-u", "%s", "%s"],
-            )
-        )
-
-
 class ReportWithSublimeMergeMac(GenericDiffReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -339,6 +317,39 @@ class ReportWithSublimeMergeLinux(GenericDiffReporter):
         )
 
 
+class ReportWithCursorMac(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/Applications/Cursor.app/Contents/Resources/app/bin/code",
+                extra_args=["-d", "%s", "%s"],
+            )
+        )
+
+
+class ReportWithDiffCommandLineLinux(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/usr/bin/diff",
+                extra_args=["-u", "%s", "%s"],
+            )
+        )
+
+
+class ReportWithDiffCommandLineMac(GenericDiffReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            config=GenericDiffReporterConfig(
+                name=self.__class__.__name__,
+                path="/usr/bin/diff",
+                extra_args=["-u", "%s", "%s"],
+            )
+        )
+
+
 class ReportWithDiffToolOnMac(FirstWorkingReporter):
     def __init__(self) -> None:
         super().__init__(
@@ -352,8 +363,9 @@ class ReportWithDiffToolOnMac(FirstWorkingReporter):
             ReportWithTkDiffMac(),
             ReportWithVisualStudioCodeMac(),
             ReportWithAraxisMergeMac(),
-            ReportWithDiffCommandLineMac(),
             ReportWithSublimeMergeMac(),
+            ReportWithCursorMac(),
+            ReportWithDiffCommandLineMac(),
         )
 
     @override
@@ -394,8 +406,8 @@ class ReportWithDiffToolOnLinux(FirstWorkingReporter):
             ReportWithDiffMergeLinux(),
             ReportWithMeldMergeLinux(),
             ReportWithKdiff3Linux(),
-            ReportWithDiffCommandLineLinux(),
             ReportWithSublimeMergeLinux(),
+            ReportWithDiffCommandLineLinux(),
         )
 
     @override
@@ -472,18 +484,18 @@ class ReportWithTortoiseGit(FirstWorkingReporter):
         )
 
 
-class ReportWithDiffCommandLine(FirstWorkingReporter):
-    def __init__(self) -> None:
-        super().__init__(
-            ReportWithDiffCommandLineLinux(),
-            ReportWithDiffCommandLineMac(),
-        )
-
-
 class ReportWithSublimeMerge(FirstWorkingReporter):
     def __init__(self) -> None:
         super().__init__(
             ReportWithSublimeMergeMac(),
             ReportWithSublimeMergeWindows(),
             ReportWithSublimeMergeLinux(),
+        )
+
+
+class ReportWithDiffCommandLine(FirstWorkingReporter):
+    def __init__(self) -> None:
+        super().__init__(
+            ReportWithDiffCommandLineLinux(),
+            ReportWithDiffCommandLineMac(),
         )
