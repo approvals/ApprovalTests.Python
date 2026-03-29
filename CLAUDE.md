@@ -6,4 +6,4 @@ Default STARTER_CHARACTER = 🧩
 - Use `./build_and_test.sh` for full build (this includes mypy and lint)
 - When writing code, follow the code style guidelines in `internal_documentation/code_style.md`.
 - When interacting with GitHub, follow `internal_documentation/github_guidelines.md`.
-- When building a new feature, follow the steps in `internal_documentation/feature_development_process.md`.
+- When building a new feature or fixing a bug, follow the steps in `internal_documentation/development_process.md`.
