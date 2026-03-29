@@ -1,4 +1,4 @@
-## Code Style
+# Code Style
 
 - Prefer `Path` over strings
 - Prefer `map`, `any`, `all`, etc. over `for` loops

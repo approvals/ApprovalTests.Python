@@ -1,4 +1,6 @@
-## Feature Development Process
+# Feature Development Process
+
+STARTER_CHARACTER = 😎
 
 1. Create a micro feature document in `internal_documentation/micro_features/` describing the feature
 2. Write a failing test

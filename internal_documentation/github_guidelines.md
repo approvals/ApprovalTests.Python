@@ -1,1 +1,2 @@
 - Use the GitHub CLI rather than directly accessing the GitHub web site
+- To login to GitHub CLI, run `gh auth login --git-protocol https --hostname github.com --web --clipboard`
