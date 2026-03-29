@@ -1,2 +1,3 @@
 - Use `./build_and_test.sh` for full build (this includes mypy and lint)
 - When writing code, follow the code style guidelines in `internal_documentation/code_style.md`.
+- When interacting with GitHub, follow `internal_documentation/github_guidelines.md`.

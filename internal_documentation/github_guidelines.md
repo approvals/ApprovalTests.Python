@@ -1,0 +1,1 @@
+- Use the GitHub CLI rather than directly accessing the GitHub web site
