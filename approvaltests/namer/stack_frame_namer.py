@@ -76,6 +76,8 @@ class StackFrameNamer(NamerBase):
             and "_testMethodName" in vars(local_attributes["self"])
             and method_name != "__call__"
             and method_name != "_callTestMethod"
+            and method_name != "_callMaybeAsync"
+            and method_name != "_asyncioLoopRunner"
             and method_name != "run"
         )
         return is_unittest_test
