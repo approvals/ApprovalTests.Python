@@ -13,7 +13,7 @@ class TestIsolatedAsyncioTestCase(IsolatedAsyncioTestCase):
 
     async def test_namer_finds_correct_class_name(self) -> None:
         namer = StackFrameNamer()
-        self.assertEqual("TestIsolatedAsyncioTestCase", namer.get_class_name())
+        self.assertEqual(self.__class__.__name__, namer.get_class_name())
 
     async def test_example(self) -> None:
         verify("something")
