@@ -66,6 +66,14 @@ class StackFrameNamer(NamerBase):
 
         return False
 
+    UNITTEST_EXCLUDED_METHOD_NAMES = {
+        "__call__",
+        "_callTestMethod",
+        "_callMaybeAsync",
+        "_asyncioLoopRunner",
+        "run",
+    }
+
     @staticmethod
     def is_unittest_test(frame: FrameInfo) -> bool:
         method_name = frame[3]
@@ -74,11 +82,7 @@ class StackFrameNamer(NamerBase):
             "self" in local_attributes
             and hasattr(local_attributes["self"], "__dict__")
             and "_testMethodName" in vars(local_attributes["self"])
-            and method_name != "__call__"
-            and method_name != "_callTestMethod"
-            and method_name != "_callMaybeAsync"
-            and method_name != "_asyncioLoopRunner"
-            and method_name != "run"
+            and method_name not in StackFrameNamer.UNITTEST_EXCLUDED_METHOD_NAMES
         )
         return is_unittest_test
 
