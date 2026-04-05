@@ -10,15 +10,15 @@ import typing
 
 def main() -> None:
     for package_name, setup_file in [
-        ("approval_utilities", "setup/setup.approval_utilities.py"),
-        ("approvaltests", "setup/setup.publish.py"),
+        ("approval_utilities", "setup.approval_utilities.py"),
+        ("approvaltests", "setup.publish.py"),
     ]:
         print(f"Testing build {package_name} ...")
         dist_dir = pathlib.Path("dist")
         if dist_dir.exists():
             shutil.rmtree(dist_dir)
 
-        shutil.copy2(setup_file, "setup.py")
+        shutil.copy2("setup/" + setup_file, "setup.py")
         try:
             _run_python_checked(["-m", "build", "--wheel", "."], quiet=True)
         finally:
