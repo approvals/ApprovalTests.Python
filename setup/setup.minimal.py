@@ -1,9 +1,9 @@
 import sys
 from pathlib import Path
 
-_setup_dir = Path(__file__).resolve().parent / "setup"
-if _setup_dir.is_dir():
-    sys.path.insert(0, str(_setup_dir))
+_SCRIPT_DIR = Path(__file__).parent.resolve()
+
+sys.path.insert(0, str(_SCRIPT_DIR / "setup"))
 from setup_utils import do_the_setup, get_requirements_from_file
 
 required = get_requirements_from_file("../requirements.prod.required.txt")
