@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 _SCRIPT_DIR = Path(__file__).parent.resolve()
 
 sys.path.insert(0, str(_SCRIPT_DIR / "setup"))
-from setup_utils import get_version  # pylint: disable=wrong-import-position
+from setup_utils import PYTHON_VERSION_CLASSIFIERS, get_version  # pylint: disable=wrong-import-position
 
 requires: Dict[str, Any] = {}
 setup(
@@ -30,12 +30,7 @@ setup(
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: MacOS :: MacOS X",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
+        *PYTHON_VERSION_CLASSIFIERS,
         "Topic :: Software Development :: Libraries",
         "Topic :: Utilities",
     ],

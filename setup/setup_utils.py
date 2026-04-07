@@ -6,6 +6,15 @@ from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
 
+PYTHON_VERSION_CLASSIFIERS = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
 
 def get_version() -> str:
     sys.path.append(str(_SCRIPT_DIR.parent))
@@ -18,7 +27,6 @@ def get_requirements_from_file(file: str) -> List[str]:
     with open(_SCRIPT_DIR / file) as f:
         required = f.read().splitlines()
     return required
-
 
 def do_the_setup(
     package_name: str,
@@ -56,12 +64,7 @@ def do_the_setup(
             "Operating System :: POSIX",
             "Operating System :: Microsoft :: Windows",
             "Operating System :: MacOS :: MacOS X",
-            "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3 :: Only",
-            "Programming Language :: Python :: 3.8",
-            "Programming Language :: Python :: 3.9",
-            "Programming Language :: Python :: 3.10",
-            "Programming Language :: Python :: 3.11",
+            *PYTHON_VERSION_CLASSIFIERS,
             "Topic :: Software Development :: Libraries",
             "Topic :: Software Development :: Testing",
             "Topic :: Utilities",
