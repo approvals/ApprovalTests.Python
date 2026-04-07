@@ -12,6 +12,7 @@ def main() -> None:
     for package_name, setup_file in [
         ("approval_utilities", "setup.approval_utilities.py"),
         ("approvaltests", "setup.publish.py"),
+        ("approvaltests", "setup.minimal.py"),
     ]:
         dist_dir = pathlib.Path("dist")
         if dist_dir.exists():
