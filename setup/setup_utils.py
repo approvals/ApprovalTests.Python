@@ -1,4 +1,3 @@
-import re
 import sys
 from pathlib import Path
 from typing import Dict, List
@@ -6,21 +5,18 @@ from typing import Dict, List
 from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
-_VERSIONS_FILE = (
-    _SCRIPT_DIR.parent
-    / "tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt"
-)
-
-
-def _get_workflow_matrix_python_version_classifiers() -> List[str]:
-    versions = re.findall(r"3\.\d+", _VERSIONS_FILE.read_text())
-    return [f"Programming Language :: Python :: {v}" for v in versions]
 
 
 PYTHON_VERSION_CLASSIFIERS = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    *_get_workflow_matrix_python_version_classifiers(),
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 
 
