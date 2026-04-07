@@ -15,7 +15,6 @@ _VERSIONS_FILE = (
 def _get_workflow_matrix_python_version_classifiers() -> List[str]:
     versions = re.findall(r"3\.\d+", _VERSIONS_FILE.read_text())
     return [f"Programming Language :: Python :: {v}" for v in versions]
-    
 
 
 PYTHON_VERSION_CLASSIFIERS = [
