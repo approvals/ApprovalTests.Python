@@ -7,7 +7,10 @@ from setuptools import find_packages, setup
 _SCRIPT_DIR = Path(__file__).parent.resolve()
 
 sys.path.insert(0, str(_SCRIPT_DIR / "setup"))
-from setup_utils import PYTHON_VERSION_CLASSIFIERS, get_version  # pylint: disable=wrong-import-position
+from setup_utils import (  # pylint: disable=wrong-import-position
+    PYTHON_VERSION_CLASSIFIERS,
+    get_version,
+)
 
 requires: Dict[str, Any] = {}
 setup(

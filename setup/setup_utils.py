@@ -1,18 +1,20 @@
+import re
 import sys
 from pathlib import Path
 from typing import Dict, List
-import re
 
 from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
-_VERSIONS_FILE = _SCRIPT_DIR.parent / "tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt"
+_VERSIONS_FILE = (
+    _SCRIPT_DIR.parent
+    / "tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt"
+)
 
 
 def _get_workflow_matrix_python_version_classifiers() -> List[str]:
     versions = re.findall(r"3\.\d+", _VERSIONS_FILE.read_text())
-    return [f"Programming Language :: Python :: {v}" for v in versions],
-    
+    return ([f"Programming Language :: Python :: {v}" for v in versions],)
 
 
 PYTHON_VERSION_CLASSIFIERS = [
@@ -33,6 +35,7 @@ def get_requirements_from_file(file: str) -> List[str]:
     with open(_SCRIPT_DIR / file) as f:
         required = f.read().splitlines()
     return required
+
 
 def do_the_setup(
     package_name: str,
