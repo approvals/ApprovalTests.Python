@@ -39,15 +39,15 @@ jobs:
           branch="main"
           git push "${remote}" ${branch} || echo "nothing to push"
         shell: bash
-      - run: setup/publish_approval_utilities.sh
+      - run: setup/publish.approval_utilities.sh
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVAL_UTILITIES }}
-      - run: setup/publish_approvaltests.sh
+      - run: setup/publish.approvaltests.sh
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      - run: setup/publish_minimal.sh
+      - run: setup/publish.approvaltests-minimal.sh
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_APPROVALTESTS_MINIMAL }}

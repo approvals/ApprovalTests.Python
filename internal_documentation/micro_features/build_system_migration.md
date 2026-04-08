@@ -48,13 +48,13 @@ Repository Root (ApprovalTests.Python)
 │       └── Standalone setup (no shared utils)
 │
 ├── Publishing Scripts
-│   ├── publish_approvaltests.sh
+│   ├── publish.approvaltests.sh
 │   │   └── Runs: setup.approvaltests.py
 │   │
-│   ├── publish_minimal.sh
+│   ├── publish.approvaltests-minimal.sh
 │   │   └── Runs: setup.approvaltests-minimal.py
 │   │
-│   └── publish_approval_utilities.sh
+│   └── publish.approval_utilities.sh
 │       ├── Swaps: setup.py ↔ setup.approval_utilities.py
 │       ├── Runs: setup.py (temporarily approval_utilities)
 │       └── Restores: original setup.py
@@ -129,7 +129,7 @@ Same Source:       approvaltests (full)  ═══ same code ═══  approval
 
 1. **Multiple Packages from Single Repo**: 3 PyPI packages from one codebase
 2. **Shared Setup Logic**: `setup_utils.py` used by multiple setup files
-3. **File Swapping**: `publish_approval_utilities.sh` temporarily renames files
+3. **File Swapping**: `publish.approval_utilities.sh` temporarily renames files
 4. **Dependency Variants**: Full vs minimal versions with different deps
 5. **Cross-Package Dependencies**: `approvaltests` depends on `approval_utilities`
 
@@ -152,13 +152,13 @@ Same Source:       approvaltests (full)  ═══ same code ═══  approval
    └─► Commit and push to main branch
 
 3. Sequential Publishing (CRITICAL ORDER)
-   ├─► publish_approval_utilities.sh
+   ├─► publish.approval_utilities.sh
    │   └─► Auth: secrets.PYPI_APPROVAL_UTILITIES
    │
-   ├─► publish_approvaltests.sh
+   ├─► publish.approvaltests.sh
    │   └─► Auth: secrets.PYPI_PASSWORD
    │
-   └─► publish_minimal.sh
+   └─► publish.approvaltests-minimal.sh
        └─► Auth: secrets.PYPI_APPROVALTESTS_MINIMAL
 ```
 
