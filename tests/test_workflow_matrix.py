@@ -31,4 +31,5 @@ def _get_workflow_matrix_python_versions(filename: str) -> List[str]:
         "python-version"
     ]
     
+    assert isinstance(python_versions, list), f"Expected python-version to be a list in {filename}"
     return python_versions
