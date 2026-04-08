@@ -34,12 +34,12 @@ Repository Root (ApprovalTests.Python)
 │   │   ├── Includes: required + extras deps
 │   │   └── Uses: setup_utils.do_the_setup()
 │   │
-│   ├── setup.minimal.py        # Variant: approvaltests-minimal
+│   ├── setup.approvaltests-minimal.py  # Variant: approvaltests-minimal
 │   │   ├── Includes: required deps only
 │   │   ├── Optional: extras via extras_require
 │   │   └── Uses: setup_utils.do_the_setup()
 │   │
-│   ├── setup.publish.py        # Variant: approvaltests (for PyPI)
+│   ├── setup.approvaltests.py  # Variant: approvaltests (for PyPI)
 │   │   ├── Includes: required + extras deps
 │   │   ├── Adds: approval_utilities dependency
 │   │   └── Uses: setup_utils.do_the_setup()
@@ -49,10 +49,10 @@ Repository Root (ApprovalTests.Python)
 │
 ├── Publishing Scripts
 │   ├── publish_approvaltests.sh
-│   │   └── Runs: setup.publish.py
+│   │   └── Runs: setup.approvaltests.py
 │   │
 │   ├── publish_minimal.sh
-│   │   └── Runs: setup.minimal.py
+│   │   └── Runs: setup.approvaltests-minimal.py
 │   │
 │   └── publish_approval_utilities.sh
 │       ├── Swaps: setup.py ↔ setup.approval_utilities.py
@@ -92,7 +92,7 @@ Published Packages (to PyPI):
              │                   │                   │
     ┌────────▼────────┐ ┌────────▼────────┐ ┌────────▼────────┐
     │ File Swapping   │ │ Direct Build    │ │ Direct Build    │
-    │ (setup.py hack) │ │ (setup.publish) │ │ (setup.minimal) │
+    │ (setup.py hack) │ │ (setup.approvaltests) │ │ (setup.approvaltests-minimal) │
     └────────┬────────┘ └────────┬────────┘ └────────┬────────┘
              <!-- │                   │                   │ -->
     ┌────────▼────────┐ ┌────────▼────────┐ ┌────────▼────────┐
