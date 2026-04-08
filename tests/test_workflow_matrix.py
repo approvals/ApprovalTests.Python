@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import List
+
 import yaml
 
 from approvaltests import verify
@@ -14,7 +15,9 @@ def test_workflow_matrix_python_versions() -> None:
         "Python version matrix in test.yml and test_min.yml do not match"
     )
 
-    python_versions_current_release = _get_workflow_matrix_python_versions("test_current_release.yml")
+    python_versions_current_release = _get_workflow_matrix_python_versions(
+        "test_current_release.yml"
+    )
     assert python_versions == python_versions_current_release, (
         "Python version matrix in test.yml and test_current_release.yml do not match"
     )
@@ -23,6 +26,7 @@ def test_workflow_matrix_python_versions() -> None:
         f"ApprovalTests is tested on the following Python versions: {', '.join(python_versions)}."
     )
 
+
 def _get_workflow_matrix_python_versions(filename: str) -> List[str]:
     test_workflow = yaml.safe_load(
         (SCRIPT_DIR.parent / ".github/workflows" / filename).read_text()
@@ -30,6 +34,8 @@ def _get_workflow_matrix_python_versions(filename: str) -> List[str]:
     python_versions = test_workflow["jobs"]["build"]["strategy"]["matrix"][
         "python-version"
     ]
-    
-    assert isinstance(python_versions, list), f"Expected python-version to be a list in {filename}"
+
+    assert isinstance(python_versions, list), (
+        f"Expected python-version to be a list in {filename}"
+    )
     return python_versions
