@@ -1,11 +1,9 @@
-import glob
 import pathlib
 import shutil
 import subprocess
 import sys
 import tempfile
 import time
-import typing
 
 
 def main() -> None:
@@ -48,8 +46,6 @@ def main() -> None:
                 [sys.executable, "-m", "mypy", str(test_file_path)],
                 cwd=temporary_directory,
             )
-
-
 
 
 def _unlink_with_retry(
