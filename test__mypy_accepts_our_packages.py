@@ -20,14 +20,15 @@ def main() -> None:
 
         shutil.copy2("setup/" + setup_file, "setup.py")
         try:
-            _run_python_checked(["-m", "build", "--wheel", "."], quiet=True)
+            subprocess.check_output([sys.executable, "-m", "build", "--wheel", "."])
         finally:
             _unlink_with_retry(pathlib.Path("setup.py"))
 
         wheel_files = glob.glob("dist/*.whl")
         assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
-        _run_python_checked(
+        subprocess.check_call(
             [
+                sys.executable,
                 "-m",
                 "pip",
                 "install",
@@ -43,24 +44,12 @@ def main() -> None:
             test_file_path = temporary_directory / "test.py"
             test_file_path.write_text(f"import {package_name}")
 
-            _run_python_checked(
-                ["-m", "mypy", str(test_file_path)],
+            subprocess.check_call(
+                [sys.executable, "-m", "mypy", str(test_file_path)],
                 cwd=temporary_directory,
             )
 
 
-def _run_python_checked(
-    args: typing.List[str],
-    cwd: typing.Optional[pathlib.Path] = None,
-    quiet: bool = False,
-) -> None:
-    subprocess.run(
-        [sys.executable, *args],
-        check=True,
-        cwd=cwd,
-        stdout=subprocess.DEVNULL if quiet else None,
-        stderr=subprocess.DEVNULL if quiet else None,
-    )
 
 
 def _unlink_with_retry(
