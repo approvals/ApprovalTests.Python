@@ -24,7 +24,7 @@ def main() -> None:
         finally:
             _unlink_with_retry(pathlib.Path("setup.py"))
 
-        wheel_files = glob.glob("dist/*.whl")
+        wheel_files = list(dist_dir.glob("*.whl"))
         assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
         subprocess.check_call(
             [
