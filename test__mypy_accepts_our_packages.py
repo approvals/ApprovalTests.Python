@@ -12,7 +12,7 @@ def main() -> None:
         ("approvaltests", "setup.approvaltests.py"),
         ("approvaltests", "setup.approvaltests-minimal.py"),
     ]:
-        dist_dir = pathlib.Path("dist")
+        dist_dir = pathlib.Path("dist").resolve()
         if dist_dir.exists():
             shutil.rmtree(dist_dir)
 
@@ -24,26 +24,26 @@ def main() -> None:
 
         wheel_files = list(dist_dir.glob("*.whl"))
         assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
-        subprocess.check_call(
-            [
-                sys.executable,
-                "-m",
-                "pip",
-                "install",
-                "--force-reinstall",
-                wheel_files[0],
-                "--quiet",
-                "--no-warn-script-location",
-            ]
-        )
 
         with tempfile.TemporaryDirectory() as _temporary_directory:
             temporary_directory = pathlib.Path(_temporary_directory)
+
             test_file_path = temporary_directory / "test.py"
             test_file_path.write_text(f"import {package_name}")
 
             subprocess.check_call(
-                [sys.executable, "-m", "mypy", str(test_file_path)],
+                [
+                    "uv",
+                    "run",
+                    "--isolated",
+                    "--with",
+                    "mypy",
+                    "--with",
+                    wheel_files[0],
+                    "--",
+                    "mypy",
+                    test_file_path,
+                ],
                 cwd=temporary_directory,
             )
 
