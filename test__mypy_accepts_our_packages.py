@@ -5,6 +5,7 @@ import sys
 import tempfile
 import time
 
+_SCRIPT_DIR = pathlib.Path(__file__).parent.resolve()
 
 def main() -> None:
     for package_name, setup_file in [
@@ -15,7 +16,6 @@ def main() -> None:
         dist_dir = pathlib.Path("dist").resolve()
         if dist_dir.exists():
             shutil.rmtree(dist_dir)
-
         shutil.copy2("setup/" + setup_file, "setup.py")
         try:
             subprocess.check_output([sys.executable, "-m", "build", "--wheel", "."])
@@ -42,6 +42,18 @@ def main() -> None:
                     wheel_files[0],
                     "--",
                     "mypy",
+                    test_file_path,
+                ],
+                cwd=temporary_directory,
+            )
+
+            subprocess.check_call(
+                [
+                    "uv",
+                    "run",
+                    "--isolated",
+                    "--with",
+                    wheel_files[0],
                     test_file_path,
                 ],
                 cwd=temporary_directory,
