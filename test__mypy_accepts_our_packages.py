@@ -13,6 +13,12 @@ def main() -> None:
         ("approvaltests", "setup.approvaltests.py"),
         ("approvaltests", "setup.approvaltests-minimal.py"),
     ]:
+        dist_dir = _SCRIPT_DIR / "dist"
+        shutil.rmtree(dist_dir, ignore_errors=True)
+        shutil.rmtree(_SCRIPT_DIR / "build", ignore_errors=True)
+        for egg_info in _SCRIPT_DIR.glob("*.egg-info"):
+            shutil.rmtree(egg_info, ignore_errors=True)
+
         dist_dir = pathlib.Path("dist").resolve()
         if dist_dir.exists():
             shutil.rmtree(dist_dir)
