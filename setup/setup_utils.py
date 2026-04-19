@@ -39,6 +39,8 @@ def do_the_setup(
     required: List[str],
     extra_requires: Dict[str, List[str]],
 ) -> None:
+    required += [f"approval_utilities=={get_version()}"]
+    
     # Ensure build directory exists for egg-info
     build_dir = _SCRIPT_DIR / "build"
     build_dir.mkdir(exist_ok=True)

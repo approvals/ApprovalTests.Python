@@ -4,10 +4,9 @@ from pathlib import Path
 _SCRIPT_DIR = Path(__file__).parent.resolve()
 
 sys.path.insert(0, str(_SCRIPT_DIR / "setup"))
-from setup_utils import do_the_setup, get_requirements_from_file, get_version
+from setup_utils import do_the_setup, get_requirements_from_file
 
 required = get_requirements_from_file("../requirements.prod.required.txt")
-required += [f"approval_utilities=={get_version()}"]
 
 extra_requires = {
     "ClipboardReporter": ["pyperclip"],
