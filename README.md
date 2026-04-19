@@ -270,7 +270,7 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ### Dependencies
 
-ApprovalTests is tested on the following Python versions: 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt -->
+ApprovalTests is tested on the following Python versions: 3.10, 3.11, 3.12, 3.13, 3.14.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_workflow_matrix_python_versions.approved.txt -->
 
 For older versions of Python, either use an older version of ApprovalTests or use [TextTest](https://texttest.org/).
 
@@ -321,7 +321,7 @@ Pull requests are welcomed, particularly those accompanied by automated tests.
 To run the self-tests:
 `./build_and_test.sh`
 
-This will run the self-tests on several python versions. We support python 3.8 and above.
+This will run the self-tests on several python versions. We support python 3.10 and above.
 
 All pull requests will be pre-checked using GitHub actions to execute all these tests. You can see the [results of test
 runs here](https://github.com/approvals/ApprovalTests.Python/actions).

@@ -10,8 +10,6 @@ _SCRIPT_DIR = Path(__file__).parent
 PYTHON_VERSION_CLASSIFIERS = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -52,7 +50,7 @@ def do_the_setup(
         author="ApprovalTests Contributors",
         author_email="llewellyn.falco@gmail.com",
         url="https://github.com/approvals/ApprovalTests.Python",
-        python_requires=">=3.8",
+        python_requires=">=3.10",
         packages=find_packages(include=["approvaltests*"]),
         package_data={"approvaltests": ["reporters/reporters.json"]},
         entry_points={

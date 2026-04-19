@@ -20,7 +20,7 @@ setup(
     author="ApprovalTests Contributors",
     author_email="llewellyn.falco@gmail.com",
     url="https://github.com/approvals/ApprovalTests.Python",
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     packages=find_packages(include=["approval_utilities*"]),
     package_data={},
     install_requires=[],

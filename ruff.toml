@@ -1,4 +1,4 @@
-target-version = "py38"
+target-version = "py310"
 
 [format]
 line-ending = "lf"
@@ -28,6 +28,4 @@ ignore = [
     "TC006",  # Add quotes to type expression in `typing.cast()`
     "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
 
-    # needed for Python 3.8 compatibility
-    "UP035",  # Import from `collections.abc` instead
 ]

@@ -172,7 +172,7 @@ Same Source:       approvaltests (full)  ═══ same code ═══  approval
 
 **test.yml** - Main CI testing
 - Runs on: push, PR, manual
-- Matrix: Python 3.8-3.14 × 3 OS (macOS, Ubuntu, Windows)
+- Matrix: Python 3.10-3.14 × 3 OS (macOS, Ubuntu, Windows)
 - Uses: `./build_and_test.sh` (which uses `setup.py install`)
 
 **test_min.yml** - Minimal dependency testing
