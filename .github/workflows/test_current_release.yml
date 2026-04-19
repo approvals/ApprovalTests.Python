@@ -24,6 +24,7 @@ jobs:
           - "3.13"
           - "3.14"
         os: [macos-latest, ubuntu-latest, windows-latest]
+        package: [approvaltests, approvaltests-minimal]
 
     steps:
       - uses: actions/checkout@v6
@@ -33,16 +34,21 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Replace package in requirements.txt
+        run: |
+          sed -i.bak 's/^approvaltests$/${{ matrix.package }}/' requirements.txt
+          cat requirements.txt
+        shell: bash
       - name: Run Tests
         run: |
           ./run_tests.sh
         shell: bash
-      - name: Print ApprovalTests Version
+      - name: Print ${{ matrix.package }} Version
         if: always()
         run: |
-          .tox/py/bin/pip show approvaltests || .tox/py/Scripts/pip show approvaltests
-          echo "## ApprovalTests Version" >> $GITHUB_STEP_SUMMARY
-          (.tox/py/bin/pip show approvaltests || .tox/py/Scripts/pip show approvaltests) | grep Version >> $GITHUB_STEP_SUMMARY
+          .tox/py/bin/pip show ${{ matrix.package }} || .tox/py/Scripts/pip show ${{ matrix.package }}
+          echo "## ${{ matrix.package }} Version" >> $GITHUB_STEP_SUMMARY
+          (.tox/py/bin/pip show ${{ matrix.package }} || .tox/py/Scripts/pip show ${{ matrix.package }}) | grep Version >> $GITHUB_STEP_SUMMARY
         shell: bash
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v6
