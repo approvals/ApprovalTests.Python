@@ -17,10 +17,10 @@ For example, as we use it to handle json:
 ```py
 def verify_as_json(
     object_to_verify: Any,
-    reporter: Optional[Reporter] = None,
+    reporter: Reporter | None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     deserialize_json_fields: bool = False,
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     if deserialize_json_fields:
         object_to_verify = utils.deserialize_json_fields(object_to_verify)
@@ -34,7 +34,7 @@ def verify_as_json(
         options=options.for_file.with_extension(".json"),
     )
 ```
-<sup><a href='/approvaltests/approvals.py#L243-L264' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/approvals.py#L244-L265' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
