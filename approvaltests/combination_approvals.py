@@ -1,5 +1,6 @@
+from collections.abc import Callable, Sequence
 from itertools import product
-from typing import Any, Callable, List, Optional, Sequence
+from typing import Any
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approvaltests.approvals import initialize_options, verify
@@ -25,10 +26,10 @@ def calculate_total_size(input_arguments: VariationForEachParameter) -> int:
 def verify_best_covering_pairs(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
-    formatter: Optional[Callable] = None,
-    reporter: Optional[ReporterForTesting] = None,
+    formatter: Callable | None = None,
+    reporter: ReporterForTesting | None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     combinations = get_best_covering_pairs(input_arguments)
     count = len(combinations)
@@ -55,7 +56,7 @@ def run_all_combinations(
             exception_handler(exception)
 
 
-def _get_label_formatter(labels: List[str]) -> Callable[[Sequence[Any], Any], str]:
+def _get_label_formatter(labels: list[str]) -> Callable[[Sequence[Any], Any], str]:
     def formatter(inputs: Sequence[Any], output: Any) -> str:
         labeled_inputs = ", ".join(
             [f"{label}: {input}" for label, input in zip(labels, inputs)]
@@ -68,7 +69,7 @@ def _get_label_formatter(labels: List[str]) -> Callable[[Sequence[Any], Any], st
 def verify_all_combinations_with_labeled_input(
     function_under_test: Callable,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
     **kwargs: Any,
 ) -> None:
     labels = list(kwargs.keys())
@@ -85,10 +86,10 @@ def verify_all_combinations_with_labeled_input(
 def verify_all_combinations(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
-    formatter: Optional[Callable] = None,
-    reporter: Optional[ReporterForTesting] = None,
+    formatter: Callable | None = None,
+    reporter: ReporterForTesting | None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -113,10 +114,10 @@ def verify_all_combinations(
 def verify_all_combinations_with_namer(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
-    formatter: Optional[Callable] = None,
-    reporter: Optional[Reporter] = None,
+    formatter: Callable | None = None,
+    reporter: Reporter | None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     """Run func with all possible combinations of args and verify outputs against the recorded approval file.
 
@@ -139,7 +140,7 @@ def verify_all_combinations_with_namer(
 
 
 def print_combinations(
-    formatter: Optional[Callable],
+    formatter: Callable | None,
     function_under_test: Callable,
     parameter_combinations: CombinationsOfParameters,
 ) -> str:
@@ -154,12 +155,12 @@ def print_combinations(
     return "".join(approval_strings)
 
 
-def args_and_result_formatter(args: List[Any], result: int) -> str:
+def args_and_result_formatter(args: list[Any], result: int) -> str:
     return f"args: {repr(args)} => {repr(result)}\n"
 
 
 async def print_combinations_async(
-    formatter: Optional[Callable],
+    formatter: Callable | None,
     function_under_test: Callable,
     parameter_combinations: CombinationsOfParameters,
 ) -> str:
@@ -177,10 +178,10 @@ async def print_combinations_async(
 async def verify_all_combinations_async(
     function_under_test: Callable,
     input_arguments: VariationForEachParameter,
-    formatter: Optional[Callable] = None,
-    reporter: Optional[ReporterForTesting] = None,
+    formatter: Callable | None = None,
+    reporter: ReporterForTesting | None = None,
     *,
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     options = initialize_options(options, reporter)
     text = await print_combinations_async(
@@ -192,7 +193,7 @@ async def verify_all_combinations_async(
 async def verify_all_combinations_with_labeled_input_async(
     function_under_test: Callable,
     *,
-    options: Optional[Options] = None,
+    options: Options | None = None,
     **kwargs: Any,
 ) -> None:
     labels = list(kwargs.keys())
@@ -210,7 +211,7 @@ def verify_logging_for_all_combinations(
     function_to_run: Callable,
     input_arguments: VariationForEachParameter,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     def printer(*args: Any) -> None:
         SimpleLogger._wrapper.get().log_line(f"Running inputs {args} => ")

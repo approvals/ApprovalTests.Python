@@ -1,5 +1,4 @@
 import os
-from typing import Optional
 
 
 class Command:
@@ -10,7 +9,7 @@ class Command:
     def executable(cmd: str) -> bool:
         return os.path.isfile(cmd) and os.access(cmd, os.X_OK)
 
-    def locate(self) -> Optional[str]:
+    def locate(self) -> str | None:
         path, _ = os.path.split(self.command)
         if path and self.executable(self.command):
             return self.command

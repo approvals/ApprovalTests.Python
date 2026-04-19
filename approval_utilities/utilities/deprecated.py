@@ -1,6 +1,6 @@
 import functools
 import warnings
-from typing import Callable
+from collections.abc import Callable
 
 
 def deprecated(reason: str) -> Callable:

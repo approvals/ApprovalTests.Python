@@ -1,9 +1,10 @@
 import inspect
 import json
 import os
+from collections.abc import Callable
 from copy import deepcopy
 from pathlib import Path
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, TypeVar
 
 
 def get_adjacent_file(name: str) -> str:
@@ -13,7 +14,7 @@ def get_adjacent_file(name: str) -> str:
 
 
 def write_to_temporary_file(
-    text: str, name: str, file_extention_with_dot: Optional[str] = None
+    text: str, name: str, file_extention_with_dot: str | None = None
 ) -> str:
     import tempfile
 
@@ -93,7 +94,7 @@ _V = TypeVar("_V")
 _K = TypeVar("_K")
 
 
-def filter_values(filter: Callable[[_V], bool], a_dict: Dict[_K, _V]) -> Dict[_K, _V]:
+def filter_values(filter: Callable[[_V], bool], a_dict: dict[_K, _V]) -> dict[_K, _V]:
     return {k: v for k, v in a_dict.items() if filter(v)}
 
 

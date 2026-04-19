@@ -1,7 +1,6 @@
 import platform
 import subprocess
 from pathlib import Path
-from typing import List
 
 from typing_extensions import override
 
@@ -16,7 +15,7 @@ class ReportByOpeningFiles(Reporter):
         subprocess.call(call, shell=True)
 
     @staticmethod
-    def get_opening_command(file_path: str, os: str) -> List[str]:
+    def get_opening_command(file_path: str, os: str) -> list[str]:
         command = {
             "Windows": "start",
             "Darwin": "open",

@@ -1,5 +1,4 @@
 from threading import local
-from typing import Optional
 
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.diff_reporter import DiffReporter
@@ -7,7 +6,7 @@ from approvaltests.reporters.diff_reporter import DiffReporter
 DEFAULT_REPORTER = local()
 
 
-def set_default_reporter(reporter: Optional[Reporter]) -> None:
+def set_default_reporter(reporter: Reporter | None) -> None:
     DEFAULT_REPORTER.v = reporter
 
 
@@ -17,5 +16,5 @@ def get_default_reporter() -> Reporter:
     return DEFAULT_REPORTER.v
 
 
-def get_reporter(reporter: Optional[Reporter]) -> Reporter:
+def get_reporter(reporter: Reporter | None) -> Reporter:
     return reporter or get_default_reporter()

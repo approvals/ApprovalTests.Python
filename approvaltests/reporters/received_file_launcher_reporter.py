@@ -1,5 +1,4 @@
 from subprocess import call
-from typing import List
 
 from typing_extensions import override
 
@@ -20,7 +19,7 @@ class ReceivedFileLauncherReporter(Reporter):
     """
 
     @staticmethod
-    def get_command(received_path: str) -> List[str]:
+    def get_command(received_path: str) -> list[str]:
         return ["cmd", "/C", "start", received_path, "/B"]
 
     @override

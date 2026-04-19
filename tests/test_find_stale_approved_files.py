@@ -2,7 +2,6 @@ import os
 import subprocess
 import sys
 import tempfile
-from typing import List, Tuple
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approvaltests import Options, verify_argument_parser
@@ -13,8 +12,8 @@ from tests.find_stale_approved_files import create_argument_parser
 
 # Create a temporary sandbox directory and log file
 def create_sandbox(
-    approved_files: List[str], log_entries: List[str], nested: bool = False
-) -> Tuple[tempfile.TemporaryDirectory, str]:
+    approved_files: list[str], log_entries: list[str], nested: bool = False
+) -> tuple[tempfile.TemporaryDirectory, str]:
     sandbox_dir = tempfile.TemporaryDirectory()
     log_file_path = os.path.join(sandbox_dir.name, "approvedfiles.log")
 
@@ -125,7 +124,7 @@ def test_find_stale_approved_files() -> None:
 
 
 def verify_files(
-    approved_files: List[str], log_entries: List[str], nested: bool = False
+    approved_files: list[str], log_entries: list[str], nested: bool = False
 ) -> None:
     SimpleLogger.variable("Approved Files", approved_files)
     SimpleLogger.variable("Log Entries", log_entries)

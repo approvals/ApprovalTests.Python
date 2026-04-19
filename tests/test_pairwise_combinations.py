@@ -1,5 +1,6 @@
 import inspect
-from typing import Any, Dict, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from approvaltests.combination_approvals import (
     verify_all_combinations,
@@ -12,15 +13,15 @@ def get_key(in1: Any, in2: Any) -> str:
     return f"({in1},{in2})"
 
 
-def add_pair(in1: Any, in2: Any, all_pairs_with_index: Dict[str, int]) -> None:
+def add_pair(in1: Any, in2: Any, all_pairs_with_index: dict[str, int]) -> None:
     key = get_key(in1, in2)
     all_pairs_with_index.setdefault(key, len(all_pairs_with_index))
 
 
-def get_all_pairs_count(inputs: Sequence[Sequence[Any]]) -> Dict[str, int]:
+def get_all_pairs_count(inputs: Sequence[Sequence[Any]]) -> dict[str, int]:
     cases = get_best_covering_pairs(inputs)
     print(f"reduce set of {len(cases)} cases")
-    pairCount: Dict[str, int] = {}
+    pairCount: dict[str, int] = {}
     for params in cases:
         for i1 in range(len(inputs) - 1):
             for i2 in range(i1 + 1, len(inputs)):
@@ -31,7 +32,7 @@ def get_all_pairs_count(inputs: Sequence[Sequence[Any]]) -> Dict[str, int]:
 
 
 def assert_all_pairs_present_between_lists(
-    input1: Sequence[Any], input2: Sequence[Any], all_pairs_with_index: Dict[str, int]
+    input1: Sequence[Any], input2: Sequence[Any], all_pairs_with_index: dict[str, int]
 ) -> None:
     for i1 in input1:
         for i2 in input2:
@@ -41,7 +42,7 @@ def assert_all_pairs_present_between_lists(
 
 
 def assert_all_pairs_present(
-    all_pairs_with_index: Dict[str, int], inputs: Sequence[Sequence[Any]]
+    all_pairs_with_index: dict[str, int], inputs: Sequence[Sequence[Any]]
 ) -> None:
     for i1 in range(len(inputs) - 1):
         for i2 in range(i1 + 1, len(inputs)):

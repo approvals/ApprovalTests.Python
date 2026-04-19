@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from typing_extensions import override
 
@@ -23,12 +23,12 @@ class ScenarioNamer(Namer):
         return f"{basename}.{scenarios}"
 
     @override
-    def get_approved_filename(self, base: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: str | None = None) -> str:
         base = base or self.get_basename()
         return self.base_namer.get_approved_filename(base)
 
     @override
-    def get_received_filename(self, base: Optional[str] = None) -> str:
+    def get_received_filename(self, base: str | None = None) -> str:
         base = base or self.get_basename()
         return self.base_namer.get_received_filename(base)
 

@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 from approvaltests import Options, verify_all
 from approvaltests.inline.parse import Parse

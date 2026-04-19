@@ -1,4 +1,5 @@
-from typing import Any, Iterable, List, Tuple
+from collections.abc import Iterable
+from typing import Any
 
 from typing_extensions import override
 
@@ -7,9 +8,9 @@ from approval_utilities.utilities.persistence.loader import Loader
 from tests.executable_commands.country import Country
 
 
-class CountryLoader(ExecutableCommand, Loader[List[Country]]):
+class CountryLoader(ExecutableCommand, Loader[list[Country]]):
     @override
-    def load(self) -> List[Country]:
+    def load(self) -> list[Country]:
         pass
 
     @override
@@ -27,7 +28,7 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
         return self.format_data_as_markdown_table(column_names, rows)
 
     def format_data_as_markdown_table(
-        self, column_names: List[str], rows: List[List]
+        self, column_names: list[str], rows: list[list]
     ) -> str:
         def format_table_row(values: Iterable[Any]) -> str:
             return "| " + " | ".join(map(str, values)) + " |"
@@ -39,7 +40,7 @@ class CountryLoader(ExecutableCommand, Loader[List[Country]]):
 {dashes}
 {data}"""
 
-    def connect_to_database(self) -> Tuple[Any, Any]:
+    def connect_to_database(self) -> tuple[Any, Any]:
         import mariadb  # you need to uncomment this in the requirements.tests.txt
 
         conn = mariadb.connect(user="root", password="", port=3306, database="sakila")

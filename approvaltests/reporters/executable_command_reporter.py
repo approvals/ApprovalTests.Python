@@ -1,5 +1,4 @@
 import pathlib
-from typing import Optional
 
 from typing_extensions import override
 
@@ -42,7 +41,7 @@ class ExecutableCommandReporter(Reporter):
 
     @staticmethod
     def execute_command_and_format_result(
-        my_command: Optional[str], executor: ExecutableCommand
+        my_command: str | None, executor: ExecutableCommand
     ) -> str:
         if not my_command:
             return ""

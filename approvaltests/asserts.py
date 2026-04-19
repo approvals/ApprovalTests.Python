@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from typing_extensions import override
 
@@ -21,12 +21,12 @@ class FilePathNamer(StackFrameNamer):
         self.file_path = file_path
 
     @override
-    def get_approved_filename(self, base: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: str | None = None) -> str:
         return self.file_path
 
 
 def assert_against_file(
-    actual: str, file_path: str, reporter: Optional[ReporterForTesting] = None
+    actual: str, file_path: str, reporter: ReporterForTesting | None = None
 ) -> None:
     namer = FilePathNamer(file_path)
     FileApprover.add_allowed_duplicates(lambda n: n == namer.get_approved_filename())
@@ -36,9 +36,9 @@ def assert_against_file(
 def assert_equal_with_reporter(
     expected: str,
     actual: Any,
-    reporter: Optional[Reporter] = None,
+    reporter: Reporter | None = None,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> None:
     options = initialize_options(options, reporter)
     actual = options.scrub(actual)

@@ -3,19 +3,18 @@ import argparse
 import os
 import pathlib
 from pathlib import Path
-from typing import List, Set
 
 
-def find_approved_files(directory: pathlib.Path) -> List[Path]:
+def find_approved_files(directory: pathlib.Path) -> list[Path]:
     return list(directory.rglob("*.approved.*"))
 
 
-def read_approved_files_log(log_path: pathlib.Path) -> Set[pathlib.Path]:
+def read_approved_files_log(log_path: pathlib.Path) -> set[pathlib.Path]:
     lines = log_path.read_text().split("\n")
     return set(map(pathlib.Path, lines))
 
 
-def compare_files(found_files: List[Path], log_files: Set[Path]) -> List[Path]:
+def compare_files(found_files: list[Path], log_files: set[Path]) -> list[Path]:
     not_in_log = [file for file in found_files if file not in log_files]
     return not_in_log
 

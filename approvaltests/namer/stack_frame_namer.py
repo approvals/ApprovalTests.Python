@@ -2,7 +2,6 @@ import fnmatch
 import inspect
 import os
 from inspect import FrameInfo
-from typing import Dict, List, Optional
 
 from typing_extensions import override
 
@@ -17,13 +16,13 @@ class StackFrameNamer(NamerBase):
     method_name = ""
     class_name = ""
 
-    def __init__(self, extension: Optional[str] = None) -> None:
+    def __init__(self, extension: str | None = None) -> None:
         NamerBase.__init__(self, extension)
         self.set_for_stack(inspect.stack(1))
-        self.config: Dict[str, str] = {}
+        self.config: dict[str, str] = {}
         self.config_loaded = False
 
-    def set_for_stack(self, caller: List[FrameInfo]) -> None:
+    def set_for_stack(self, caller: list[FrameInfo]) -> None:
         frame = self.get_test_frame_index(caller)
         stacktrace = caller[frame]
         self.method_name = stacktrace[3]
@@ -31,7 +30,7 @@ class StackFrameNamer(NamerBase):
         self.directory = os.path.dirname(stacktrace[1])
 
     @staticmethod
-    def get_test_frame_index(caller: List[FrameInfo]) -> int:
+    def get_test_frame_index(caller: list[FrameInfo]) -> int:
         tmp_array = []
         for index, frame in enumerate(caller):
             if StackFrameNamer.is_test_method(frame):
@@ -50,7 +49,7 @@ class StackFrameNamer(NamerBase):
         return StackFrameNamer._is_match_for_pytest(method_name, patterns)
 
     @staticmethod
-    def _is_match_for_pytest(method_name: str, patterns: List[str]) -> bool:
+    def _is_match_for_pytest(method_name: str, patterns: list[str]) -> bool:
         # Do not modify this method, so we can compare with original code
         # taken from pytest/python.py (class PyCollector)
         for pattern in patterns:

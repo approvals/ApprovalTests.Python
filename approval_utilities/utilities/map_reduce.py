@@ -1,5 +1,6 @@
 import itertools
-from typing import Any, Callable, Dict, Generator, Sequence
+from collections.abc import Callable, Generator, Sequence
+from typing import Any
 
 
 def first(sequence: Sequence[Any], predicate: Callable[[Any], bool]) -> Any:
@@ -7,7 +8,7 @@ def first(sequence: Sequence[Any], predicate: Callable[[Any], bool]) -> Any:
     return next(matching, None)
 
 
-def product_dict(**kwargs: Sequence[Any]) -> Generator[Dict[str, Any], None, None]:
+def product_dict(**kwargs: Sequence[Any]) -> Generator[dict[str, Any], None, None]:
     """
     Similar to `itertools.product`, but the resulting combinations retain the names.
     """

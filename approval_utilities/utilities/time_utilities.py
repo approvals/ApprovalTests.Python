@@ -1,6 +1,5 @@
 import os
 from types import TracebackType
-from typing import Optional, Type
 
 from typing_extensions import ContextManager
 
@@ -8,7 +7,7 @@ from typing_extensions import ContextManager
 def use_utc_timezone() -> ContextManager[None]:
     class TimeZoneSwap:
         def __init__(self) -> None:
-            self.timezone: Optional[str] = ""
+            self.timezone: str | None = ""
 
         def __enter__(self) -> None:
             self.timezone = os.environ.get("TZ")
@@ -16,9 +15,9 @@ def use_utc_timezone() -> ContextManager[None]:
 
         def __exit__(
             self,
-            exc_type: Optional[Type[BaseException]],
-            exc_val: Optional[BaseException],
-            exc_tb: Optional[TracebackType],
+            exc_type: type[BaseException] | None,
+            exc_val: BaseException | None,
+            exc_tb: TracebackType | None,
         ) -> bool:
             if self.timezone is None:
                 os.environ.pop("TZ")

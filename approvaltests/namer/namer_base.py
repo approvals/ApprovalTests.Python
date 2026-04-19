@@ -1,7 +1,6 @@
 import json
 import os
 from abc import abstractmethod
-from typing import Dict, Optional
 
 from typing_extensions import override
 
@@ -9,10 +8,10 @@ from approvaltests.core.namer import Namer
 
 
 class NamerBase(Namer):
-    def __init__(self, extension: Optional[str] = None) -> None:
+    def __init__(self, extension: str | None = None) -> None:
         self.extension_with_dot = extension or ".txt"
         self.config_loaded = False
-        self.config: Optional[Dict[str, str]] = None
+        self.config: dict[str, str] | None = None
 
     @abstractmethod
     def get_file_name(self) -> str:
@@ -26,7 +25,7 @@ class NamerBase(Namer):
         # pylint:disable=no-self-use
         return None
 
-    def get_config(self) -> Dict[str, str]:
+    def get_config(self) -> dict[str, str]:
         """lazy load config when we need it, then store it in the instance variable self.config"""
         if not self.config_loaded:
             config_file = os.path.join(
@@ -46,12 +45,12 @@ class NamerBase(Namer):
         return str(os.path.join(self.get_directory(), subdirectory, file_name))
 
     @override
-    def get_received_filename(self, base: Optional[str] = None) -> str:
+    def get_received_filename(self, base: str | None = None) -> str:
         base = base or self.get_basename()
         return base + Namer.RECEIVED + self.extension_with_dot
 
     @override
-    def get_approved_filename(self, base: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: str | None = None) -> str:
         base = base or self.get_basename()
         return base + Namer.APPROVED + self.extension_with_dot
 

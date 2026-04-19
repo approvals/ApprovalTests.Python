@@ -1,5 +1,5 @@
 import unittest
-from typing import Callable, Optional
+from collections.abc import Callable
 
 from typing_extensions import override
 
@@ -8,7 +8,7 @@ from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 
 
 class ReporterForTesting(Reporter):
-    def __init__(self, success: bool, additional: Optional[Callable] = None) -> None:
+    def __init__(self, success: bool, additional: Callable | None = None) -> None:
         self.additional = additional or (lambda: None)
         self.called = False
         self.success = success

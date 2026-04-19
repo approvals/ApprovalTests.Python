@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import List
 
 import yaml
 
@@ -27,7 +26,7 @@ def test_workflow_matrix_python_versions() -> None:
     )
 
 
-def _get_workflow_matrix_python_versions(filename: str) -> List[str]:
+def _get_workflow_matrix_python_versions(filename: str) -> list[str]:
     test_workflow = yaml.safe_load(
         (SCRIPT_DIR.parent / ".github/workflows" / filename).read_text()
     )

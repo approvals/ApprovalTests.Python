@@ -1,5 +1,5 @@
 from types import TracebackType
-from typing import ContextManager, Optional, Type
+from typing import ContextManager
 
 from testfixtures import LogCapture
 
@@ -9,7 +9,7 @@ from approvaltests.scrubbers.date_scrubber import DateScrubber
 
 def verify_logging(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> ContextManager[None]:
     class VerifyLogging:
         def __init__(self) -> None:
@@ -24,9 +24,9 @@ def verify_logging(
 
         def __exit__(
             self,
-            exc_type: Optional[Type[BaseException]],
-            exc_val: Optional[BaseException],
-            exc_tb: Optional[TracebackType],
+            exc_type: type[BaseException] | None,
+            exc_val: BaseException | None,
+            exc_tb: TracebackType | None,
         ) -> bool:
             self.l.__exit__(exc_type, exc_val, exc_tb)
             self.options = self.options.add_scrubber(

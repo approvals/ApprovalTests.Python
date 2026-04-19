@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from typing import Callable, DefaultDict, Union
+from collections.abc import Callable
 
 from approval_utilities.utilities.logger.logging_instance import print_type
 
@@ -10,7 +10,7 @@ Scrubber = Callable[[str], str]
 # def print_type(value):
 #     return f"<{type(value).__name__}>"
 def create_regex_scrubber(
-    regex: str, function_or_replace_string: Union[Callable[[int], str], str]
+    regex: str, function_or_replace_string: Callable[[int], str] | str
 ) -> Scrubber:
     if isinstance(function_or_replace_string, str):
         return lambda t: _replace_regex(t, regex, lambda _: function_or_replace_string)
@@ -23,7 +23,7 @@ def create_regex_scrubber(
 
 
 def _replace_regex(text: str, regex: str, replacement: Callable[[int], str]) -> str:
-    matches: DefaultDict[str, int] = defaultdict(lambda: len(matches))
+    matches: defaultdict[str, int] = defaultdict(lambda: len(matches))
     return re.sub(regex, lambda m: replacement(matches[m.group(0)]), text)
 
 

@@ -1,8 +1,7 @@
 import textwrap
-from typing import Optional
 
 
-def remove_indentation_from(text: Optional[str]) -> str:
+def remove_indentation_from(text: str | None) -> str:
     if not text:
         return ""
     cleaned = textwrap.dedent(text + "|")

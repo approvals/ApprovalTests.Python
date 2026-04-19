@@ -1,6 +1,7 @@
 import os
 import subprocess
-from typing import Any, Dict, Optional, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from approvaltests import Options, verify
 
@@ -8,8 +9,8 @@ from approvaltests import Options, verify
 def verify_command_line_with_inputs(
     command: str,
     *,
-    inputs: Optional[Sequence[Any]] = None,
-    options: Optional[Options] = None,
+    inputs: Sequence[Any] | None = None,
+    options: Options | None = None,
 ) -> None:
     input_string = "\n".join(map(lambda a: f"{a}", inputs))
     verify_command_line(command, input_string=input_string, options=options)
@@ -18,10 +19,10 @@ def verify_command_line_with_inputs(
 def verify_command_line(
     command_line: str,
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    input_string: Optional[str] = None,
-    options: Optional[Options] = None,
+    input_string: str | None = None,
+    options: Options | None = None,
     current_working_directory: str = ".",
-    additional_environment_variables: Optional[Dict[str, str]] = None,
+    additional_environment_variables: dict[str, str] | None = None,
 ) -> None:
     # Set up environment with UTF-8 support for Windows
     my_env = {**os.environ}

@@ -1,6 +1,7 @@
 import threading
 from abc import ABC, abstractmethod
-from typing import Callable, Generic, TypeVar, cast
+from collections.abc import Callable
+from typing import Generic, TypeVar, cast
 
 from typing_extensions import override
 

@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-from typing import Dict, List
 
 from setuptools import find_packages, setup
 
@@ -25,7 +24,7 @@ def get_version() -> str:
     return version_number
 
 
-def get_requirements_from_file(file: str) -> List[str]:
+def get_requirements_from_file(file: str) -> list[str]:
     with open(_SCRIPT_DIR / file) as f:
         required = f.read().splitlines()
     return required
@@ -34,11 +33,11 @@ def get_requirements_from_file(file: str) -> List[str]:
 def do_the_setup(
     package_name: str,
     package_description: str,
-    required: List[str],
-    extra_requires: Dict[str, List[str]],
+    required: list[str],
+    extra_requires: dict[str, list[str]],
 ) -> None:
     required += [f"approval_utilities=={get_version()}"]
-    
+
     # Ensure build directory exists for egg-info
     build_dir = _SCRIPT_DIR / "build"
     build_dir.mkdir(exist_ok=True)

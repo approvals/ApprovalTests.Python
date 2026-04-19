@@ -1,5 +1,3 @@
-from typing import Optional
-
 from typing_extensions import override
 
 from approval_utilities.utilities.clipboard_utilities import copy_to_clipboard
@@ -8,7 +6,7 @@ from approvaltests.core.reporter import Reporter
 
 
 def get_command_text(
-    received_path: str, approved_path: str, is_windows: Optional[bool] = None
+    received_path: str, approved_path: str, is_windows: bool | None = None
 ) -> str:
     if is_windows is None:
         is_windows = is_windows_os()

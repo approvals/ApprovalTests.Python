@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import Optional
 
 
 class Namer(ABC):
@@ -9,9 +8,9 @@ class Namer(ABC):
     RECEIVED = "." + RECEIVED_WITHOUT_DOT
 
     @abstractmethod
-    def get_received_filename(self, base: Optional[str] = None) -> str:
+    def get_received_filename(self, base: str | None = None) -> str:
         pass
 
     @abstractmethod
-    def get_approved_filename(self, base: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: str | None = None) -> str:
         pass

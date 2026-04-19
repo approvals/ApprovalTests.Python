@@ -1,6 +1,5 @@
 from pathlib import Path
 from textwrap import dedent
-from typing import List
 
 from typing_extensions import override
 
@@ -44,10 +43,10 @@ class GenericDiffReporter(Reporter):
         return to_json(config)
 
     @staticmethod
-    def run_command(command_array: List[str]) -> None:
+    def run_command(command_array: list[str]) -> None:
         run_command(command_array)
 
-    def get_command(self, received: str, approved: str) -> List[str]:
+    def get_command(self, received: str, approved: str) -> list[str]:
         if any("%s" in arg for arg in self.extra_args):
             args = []
             substitutions = [received, approved]

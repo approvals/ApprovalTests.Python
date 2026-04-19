@@ -1,6 +1,5 @@
 import unittest
 from pathlib import Path
-from typing import Optional
 
 from typing_extensions import override
 
@@ -27,9 +26,9 @@ class TestAssertEqualWithReporter(unittest.TestCase):
     def test_text_reporter_called_on_failure(self) -> None:
         class LocalReporter(Reporter):
             def __init__(self) -> None:
-                self.received: Optional[str] = None
-                self.approved: Optional[str] = None
-                self.extention: Optional[str] = None
+                self.received: str | None = None
+                self.approved: str | None = None
+                self.extention: str | None = None
 
             @override
             def report(self, received_path: str, approved_path: str) -> bool:

@@ -1,8 +1,9 @@
 import datetime
 import inspect
 import traceback
+from collections.abc import Callable, Iterable
 from types import TracebackType
-from typing import Any, Callable, ContextManager, Iterable, Optional, Type, Union
+from typing import Any, ContextManager
 
 from approval_utilities.utilities.exceptions.exception_utils import to_string
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
@@ -31,7 +32,7 @@ class LoggingInstance:
     def __init__(self) -> None:
         self.log_stack_traces = True
         self.toggles = Toggles(True)
-        self.previous_timestamp: Optional[datetime.datetime] = None
+        self.previous_timestamp: datetime.datetime | None = None
         self.logger: Callable[[str], None] = lambda t: print(t, end="")
         self.tabbing: int = 0
         self.counter = 0
@@ -55,9 +56,9 @@ class LoggingInstance:
 
             def __exit__(
                 self,
-                exc_type: Optional[Type[BaseException]],
-                exc_val: Optional[BaseException],
-                exc_tb: Optional[TracebackType],
+                exc_type: type[BaseException] | None,
+                exc_val: BaseException | None,
+                exc_tb: TracebackType | None,
             ) -> None:
                 self.log.tabbing -= 1
 
@@ -65,7 +66,7 @@ class LoggingInstance:
 
     def use_markers(
         self,
-        parameter_text: Optional[Union[str, Callable[[], str]]] = None,
+        parameter_text: str | Callable[[], str] | None = None,
         additional_stack: int = 0,
     ) -> ContextManager[None]:
         class Nothing:
@@ -74,9 +75,9 @@ class LoggingInstance:
 
             def __exit__(
                 self,
-                exc_type: Optional[type],
-                exc_val: Optional[BaseException],
-                exc_tb: Optional[TracebackType],
+                exc_type: type | None,
+                exc_val: BaseException | None,
+                exc_tb: TracebackType | None,
             ) -> None:
                 pass
 
@@ -98,9 +99,9 @@ class LoggingInstance:
 
             def __exit__(
                 self,
-                exc_type: Optional[type],
-                exc_val: Optional[BaseException],
-                exc_tb: Optional[TracebackType],
+                exc_type: type | None,
+                exc_val: BaseException | None,
+                exc_tb: TracebackType | None,
             ) -> None:
                 self.log.tabbing = self.log.tabbing - 1
                 expected = f"<- out: {self.method_name}({self.get_parameters(True)})"
@@ -201,8 +202,8 @@ class LoggingInstance:
 
     def warning(
         self,
-        text: Union[str, BaseException] = "",
-        exception: Optional[BaseException] = None,
+        text: str | BaseException = "",
+        exception: BaseException | None = None,
     ) -> None:
         if isinstance(text, Exception):
             temp = ""

@@ -1,5 +1,3 @@
-from typing import Optional
-
 from typing_extensions import override
 
 from approval_utilities.utilities.markdown_table import MarkdownTable
@@ -26,11 +24,11 @@ class TemplatedCustomNamer(Namer):
         self.namer_parts.set_extension(extension_with_dot)
 
     @override
-    def get_received_filename(self, base: Optional[str] = None) -> str:
+    def get_received_filename(self, base: str | None = None) -> str:
         return self.format_filename(self.RECEIVED_WITHOUT_DOT)
 
     @override
-    def get_approved_filename(self, base: Optional[str] = None) -> str:
+    def get_approved_filename(self, base: str | None = None) -> str:
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
     def format_filename(self, approved_or_received: str) -> str:

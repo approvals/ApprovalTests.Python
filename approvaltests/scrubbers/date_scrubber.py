@@ -1,5 +1,4 @@
 import textwrap
-from typing import List, Tuple
 
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approvaltests.scrubbers import create_regex_scrubber
@@ -37,7 +36,7 @@ class DateScrubber:
         _custom_scrubbers.clear()
 
     @staticmethod
-    def get_supported_formats() -> List[Tuple[str, List[str]]]:
+    def get_supported_formats() -> list[tuple[str, list[str]]]:
         return [
             (
                 "[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}",

@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from setuptools import find_packages, setup
 
@@ -12,7 +12,7 @@ from setup_utils import (  # pylint: disable=wrong-import-position
     get_version,
 )
 
-requires: Dict[str, Any] = {}
+requires: dict[str, Any] = {}
 setup(
     name="approval_utilities",
     version=get_version(),

@@ -1,5 +1,3 @@
-from typing import Optional
-
 from typing_extensions import override
 
 from approval_utilities.utils import create_directory_if_needed
@@ -11,11 +9,11 @@ class StringWriter(Writer):
 
     def __init__(
         self,
-        contents: Optional[str],
+        contents: str | None,
         extension: str = ".txt",
-        encoding: Optional[str] = None,
-        errors: Optional[str] = None,
-        newline: Optional[str] = None,
+        encoding: str | None = None,
+        errors: str | None = None,
+        newline: str | None = None,
     ) -> None:
         self.contents = StringWriter.sanitize_string(contents)
         self.extension_with_dot = extension
@@ -24,7 +22,7 @@ class StringWriter(Writer):
         self.newline = newline
 
     @staticmethod
-    def sanitize_string(contents: Optional[str]) -> str:
+    def sanitize_string(contents: str | None) -> str:
         contents = contents or ""
         if len(contents) == 0 or contents[-1] != "\n":
             contents = contents + "\n"

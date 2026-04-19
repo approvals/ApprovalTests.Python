@@ -1,5 +1,4 @@
 import os
-from typing import Dict
 
 from _pytest.fixtures import FixtureRequest
 from typing_extensions import override
@@ -14,7 +13,7 @@ class PyTestNamer(NamerBase):
         NamerBase.__init__(self, extension)
         self.request = request
         self.filepath, self.filename = os.path.split(str(self.request.fspath))
-        self.config: Dict[str, str] = {}
+        self.config: dict[str, str] = {}
         subdir = self.request.config.getoption(
             "approvaltests_subdirectory", default=None
         )
@@ -30,5 +29,5 @@ class PyTestNamer(NamerBase):
         return self.filepath
 
     @override
-    def get_config(self) -> Dict[str, str]:
+    def get_config(self) -> dict[str, str]:
         return self.config

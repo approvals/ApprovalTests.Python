@@ -1,7 +1,7 @@
 import filecmp
 import os
 import pathlib
-from typing import Callable, List, Optional
+from collections.abc import Callable
 
 from typing_extensions import override
 
@@ -41,13 +41,13 @@ class FileComparator(Comparator):
 
 
 class FileApprover:
-    previous_approved: List[str] = []
-    allowed_duplicates: List[Callable[[str], bool]] = []
+    previous_approved: list[str] = []
+    allowed_duplicates: list[Callable[[str], bool]] = []
 
     @staticmethod
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
-    ) -> Optional[str]:
+    ) -> str | None:
         approved = namer.get_approved_filename()
         received = namer.get_received_filename()
 

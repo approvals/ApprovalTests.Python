@@ -4,7 +4,6 @@ import textwrap
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List
 
 _SCRIPT_DIR = Path(__file__).parent
 _REPO_ROOT = _SCRIPT_DIR.parent.parent
@@ -30,7 +29,7 @@ class ReporterDefinition:
         return f"ReportWith{camel}{self.os}"
 
 
-def parse_extra_args(arguments: str) -> List[str]:
+def parse_extra_args(arguments: str) -> list[str]:
     return (arguments or "").split()
 
 
@@ -78,7 +77,7 @@ def get_platform_name(os_name: str) -> str:
     return {"Mac": "Darwin", "Windows": "Windows", "Linux": "Linux"}[os_name]
 
 
-def generate_per_os_reporter(os_name: str, class_names: List[str]) -> str:
+def generate_per_os_reporter(os_name: str, class_names: list[str]) -> str:
     reporter_instances = ",\n                    ".join(
         f"{name}()" for name in class_names
     )
@@ -102,7 +101,7 @@ def screaming_snake_to_pascal(name: str) -> str:
     return "".join(word.capitalize() for word in name.split("_"))
 
 
-def generate_group_reporter(group_name: str, class_names: List[str]) -> str:
+def generate_group_reporter(group_name: str, class_names: list[str]) -> str:
     reporter_instances = ",\n                    ".join(
         f"{name}()" for name in class_names
     )
@@ -140,7 +139,7 @@ def main() -> None:
     reader = csv.DictReader(csv_path.read_text().splitlines())
     rows = [ReporterDefinition(**row) for row in reader]
 
-    os_to_classes: Dict[str, List[str]] = defaultdict(list)
+    os_to_classes: dict[str, list[str]] = defaultdict(list)
     for row in rows:
         os_to_classes[row.os].append(row.class_name)
 
@@ -154,7 +153,7 @@ def main() -> None:
         )
     )
 
-    group_to_classes: Dict[str, List[str]] = defaultdict(list)
+    group_to_classes: dict[str, list[str]] = defaultdict(list)
     for row in rows:
         if row.group_name:
             group_to_classes[row.group_name].append(row.class_name)

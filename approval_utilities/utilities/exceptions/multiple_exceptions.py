@@ -1,4 +1,4 @@
-from typing import Sequence
+from collections.abc import Sequence
 
 from approval_utilities.utilities.exceptions.exception_utils import to_string
 

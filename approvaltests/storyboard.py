@@ -1,5 +1,6 @@
+from collections.abc import Callable, Collection
 from types import TracebackType
-from typing import Any, Callable, Collection, Optional, Type
+from typing import Any
 
 from typing_extensions import override
 
@@ -12,7 +13,7 @@ class Storyboard:
         self,
         *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
         verify_on_exit: bool = False,
-        options: Optional[Options] = None,
+        options: Options | None = None,
     ) -> None:
         self.frame_number = 0
         self.story = ""
@@ -25,14 +26,14 @@ class Storyboard:
 
     def __exit__(
         self,
-        exc_type: Optional[Type[BaseException]],
-        exc_val: Optional[BaseException],
-        exc_tb: Optional[TracebackType],
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
     ) -> None:
         if self.verify_on_exit:
             verify(self, options=self.options)
 
-    def add_frame(self, data: Any, title: Optional[str] = None) -> "Storyboard":
+    def add_frame(self, data: Any, title: str | None = None) -> "Storyboard":
         if self.add_new_line:
             self.story += "\n"
             self.add_new_line = False
@@ -87,6 +88,6 @@ StoryBoard = Storyboard
 
 def verify_storyboard(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
-    options: Optional[Options] = None,
+    options: Options | None = None,
 ) -> "Storyboard":
     return Storyboard(verify_on_exit=True, options=options)

@@ -1,4 +1,5 @@
-from typing import Any, Callable, Generic, List, Tuple
+from collections.abc import Callable
+from typing import Any, Generic
 
 from approvaltests import Options, verify_all
 from approvaltests.inline.parse2 import Parse2
@@ -26,11 +27,11 @@ class Parse(Generic[T]):
             InlineComparator.get_test_method_doc_string(), lambda s: s, options=options
         )
 
-    def get_inputs(self) -> List[T]:
+    def get_inputs(self) -> list[T]:
         return Parse.parse_inputs(self.text, self._transformer)
 
     @staticmethod
-    def parse_inputs(text: str, transformer: Callable[[str], T]) -> List[T]:
+    def parse_inputs(text: str, transformer: Callable[[str], T]) -> list[T]:
         lines = text.split("\n")
         lines = list(filter(lambda line: line.strip(), lines))
         inputs = [line.split("->")[0].strip() for line in lines]
@@ -50,7 +51,7 @@ class Parse(Generic[T]):
     def transform2(
         self, transform1: Callable[[str], T1], transform2: Callable[[str], T2]
     ) -> "Parse2[T1, T2]":
-        def transformer(s: str) -> Tuple[T1, T2]:
+        def transformer(s: str) -> tuple[T1, T2]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
             return (transform1(parts[0]), transform2(parts[1]))
@@ -68,7 +69,7 @@ class Parse(Generic[T]):
         transform2: Callable[[str], T2],
         int1: Callable[[str], int],
     ) -> "Parse3[T1, int, int]":
-        def transformer(s: str) -> Tuple[T1, T2, int]:
+        def transformer(s: str) -> tuple[T1, T2, int]:
             parts = s.split(",")
             parts = list(map(lambda p: p.strip(), parts))
             return (transform1(parts[0]), transform2(parts[1]), int1(parts[2]))

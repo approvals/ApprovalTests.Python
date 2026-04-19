@@ -1,5 +1,6 @@
+import builtins
 import json
-from typing import Iterator, List, Optional
+from collections.abc import Iterator
 
 from typing_extensions import override
 
@@ -20,15 +21,15 @@ class NoConfigReporter(Reporter):
 
 
 class GenericDiffReporterFactory:
-    reporter_configs: List[GenericDiffReporterConfig] = []
+    reporter_configs: list[GenericDiffReporterConfig] = []
 
     def __init__(self) -> None:
         self.load(get_adjacent_file("reporters.json"))
 
-    def add_default_reporter_config(self, config: List[str]) -> None:
+    def add_default_reporter_config(self, config: list[str]) -> None:
         self.reporter_configs.insert(0, create_config(config))
 
-    def list(self) -> List[str]:
+    def list(self) -> list[str]:
         return [r.name for r in self.reporter_configs]
 
     def get(self, reporter_name: str) -> Reporter:
@@ -57,13 +58,13 @@ class GenericDiffReporterFactory:
             )
         return file_name
 
-    def load(self, file_name: str) -> List[GenericDiffReporterConfig]:
+    def load(self, file_name: str) -> builtins.list[GenericDiffReporterConfig]:
         with open(file_name, encoding="utf8") as file:
             configs = json.load(file)
         self.reporter_configs = [create_config(config) for config in configs]
         return self.reporter_configs
 
-    def get_first_working(self) -> Optional[GenericDiffReporter]:
+    def get_first_working(self) -> GenericDiffReporter | None:
         working = (i for i in self.get_all_reporters_from_config() if i.is_working())
         return next(working, None)
 

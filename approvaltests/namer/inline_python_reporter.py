@@ -1,7 +1,7 @@
 import tempfile
+from collections.abc import Callable
 from inspect import FrameInfo
 from pathlib import Path
-from typing import Callable, Optional
 
 from typing_extensions import override
 
@@ -76,7 +76,7 @@ class InlinePythonReporter(Reporter):
     def __init__(
         self,
         reporter: Reporter,
-        create_footer_function: Optional[Callable[[str, str], str]] = None,
+        create_footer_function: Callable[[str, str], str] | None = None,
     ):
         self.diffReporter = reporter
         self.footer_function = create_footer_function or (lambda __, ___: "")

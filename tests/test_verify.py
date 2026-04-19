@@ -1,7 +1,7 @@
 import json
 import random
 import unittest
-from typing import Callable, Dict, Optional
+from collections.abc import Callable
 
 import pytest
 from typing_extensions import override
@@ -10,7 +10,7 @@ from approval_utilities.approvaltests.core.verifiable import Verifiable
 from approval_utilities.approvaltests.core.verify_parameters import VerifyParameters
 from approval_utilities.utilities.multiline_string_utils import remove_indentation_from
 from approval_utilities.utils import get_adjacent_file, is_windows_os, print_grid
-from approvaltests import List, Options, approvals, delete_approved_file
+from approvaltests import Options, approvals, delete_approved_file
 from approvaltests.approval_exception import ApprovalException
 from approvaltests.approvals import (
     verify,
@@ -126,7 +126,7 @@ class VerifyTests(unittest.TestCase):
         class Bag:
             def __init__(self) -> None:
                 self.stuff = 1
-                self.json: Optional[Dict[str, int]] = None
+                self.json: dict[str, int] | None = None
 
         o = Bag()
         o.json = {"a": 0, "z": 26}
@@ -137,7 +137,7 @@ class VerifyTests(unittest.TestCase):
             verify_as_json(Ellipsis, self.reporter)
 
     def test_verify_as_json_raises_value_error_for_non_renderable_values(self):
-        circular_data: List[List] = []
+        circular_data: list[list] = []
         circular_data.append(circular_data)
         with self.assertRaises(ValueError):
             verify_as_json(circular_data, self.reporter)

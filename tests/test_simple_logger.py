@@ -1,8 +1,8 @@
 import datetime
 import re
 import threading
+from collections.abc import Callable, Generator
 from contextlib import contextmanager
-from typing import Callable, Generator
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approval_utilities.utilities.time_utilities import use_utc_timezone

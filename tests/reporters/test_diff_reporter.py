@@ -1,5 +1,3 @@
-from typing import List
-
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters import PythonNativeReporter
 from approvaltests.reporters.diff_reporter import DiffReporter
@@ -9,7 +7,7 @@ from approvaltests.reporters.report_by_creating_diff_file import (
 
 
 class FakeFactory:
-    def get_all_reporters_from_config(self) -> List[Reporter]:
+    def get_all_reporters_from_config(self) -> list[Reporter]:
         return []
 
 

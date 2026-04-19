@@ -1,4 +1,4 @@
-from typing import Callable, Dict, Optional
+from collections.abc import Callable
 
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.namer import Namer
@@ -9,7 +9,7 @@ from approvaltests.scrubbers import combine_scrubbers
 
 
 class FileOptions:
-    def __init__(self, fields: Dict):
+    def __init__(self, fields: dict):
         self.fields = fields
 
     @property
@@ -30,7 +30,7 @@ class FileOptions:
 
 
 class Options:
-    def __init__(self, fields: Optional[Dict] = None):
+    def __init__(self, fields: dict | None = None):
         self.fields = fields or {}
 
     @property
@@ -83,7 +83,7 @@ class Options:
             namer.set_extension(self.for_file.file_extention)
         return namer
 
-    def inline(self, inline_options: Optional[InlineOptions] = None) -> "Options":
+    def inline(self, inline_options: InlineOptions | None = None) -> "Options":
         from approvaltests.namer.inline_comparator import InlineComparator
 
         return InlineComparator().register(self, inline_options)
