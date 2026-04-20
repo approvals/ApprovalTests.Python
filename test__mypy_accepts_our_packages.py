@@ -22,28 +22,29 @@ def main() -> None:
         finally:
             _unlink_with_retry(pathlib.Path("setup.py"))
 
-        wheel_files = list(dist_dir.glob("*.whl"))
-        assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
-        subprocess.check_call(
-            [
-                sys.executable,
-                "-m",
-                "pip",
-                "install",
-                "--force-reinstall",
-                wheel_files[0],
-                "--quiet",
-                "--no-warn-script-location",
-            ]
-        )
-
         with tempfile.TemporaryDirectory() as _temporary_directory:
             temporary_directory = pathlib.Path(_temporary_directory)
+
+            wheel_files = list(dist_dir.glob("*.whl"))
+            assert len(wheel_files) == 1, f"Expected 1 wheel, found {wheel_files}"
+            wheel_file = wheel_files[0].resolve()
+
             test_file_path = temporary_directory / "test.py"
             test_file_path.write_text(f"import {package_name}")
 
             subprocess.check_call(
-                [sys.executable, "-m", "mypy", str(test_file_path)],
+                [
+                    "uv",
+                    "run",
+                    "--isolated",
+                    "--with",
+                    wheel_file,
+                    "--with",
+                    "mypy",
+                    "--no-project",
+                    "mypy",
+                    test_file_path,
+                ],
                 cwd=temporary_directory,
             )
 
