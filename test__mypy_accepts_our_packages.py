@@ -18,15 +18,7 @@ def main() -> None:
 
         shutil.copy2("setup/" + setup_file, "setup.py")
         try:
-            result = subprocess.run(
-                [sys.executable, "-m", "build", "--wheel", "."],
-                capture_output=True,
-                text=True,
-            )
-            if result.returncode != 0:
-                print(result.stdout)
-                print(result.stderr)
-                result.check_returncode()
+            subprocess.check_output([sys.executable, "-m", "build", "--wheel", "."])
         finally:
             _unlink_with_retry(pathlib.Path("setup.py"))
 
@@ -41,7 +33,7 @@ def main() -> None:
             test_file_path.write_text(f"import {package_name}")
 
             python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
-            result = subprocess.run(
+            subprocess.check_call(
                 [
                     "uv",
                     "run",
@@ -57,13 +49,7 @@ def main() -> None:
                     test_file_path,
                 ],
                 cwd=temporary_directory,
-                capture_output=True,
-                text=True,
             )
-            if result.returncode != 0:
-                print(result.stdout)
-                print(result.stderr)
-                result.check_returncode()
 
 
 def _unlink_with_retry(
