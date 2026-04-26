@@ -18,11 +18,11 @@ The default reporter will search your machine for any installed diff tool.
 
 ## Supported Diff Tools  
 
-See [diff_reporters.csv](../../diff_reporters.csv) for a list of supported diff tools.
+See [diff_reporters.csv](/diff_reporters.csv) for a list of supported diff tools.
 
 ## Customizing the reporters.json
 
-You can add a diff tool and path to ApprovalTests by editing the [`reporters.json`](../../approvaltests/reporters/reporters.json) file.
+You can add a diff tool and path to ApprovalTests by editing the [`reporters.json`](/approvaltests/reporters/reporters.json) file.
 
 ## resources
 1. [configuring a reporter](../configuration.md#how-to-configure-a-default-reporter-for-your-system)
