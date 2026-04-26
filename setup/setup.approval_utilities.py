@@ -26,10 +26,10 @@ setup(
     install_requires=[],
     # long_description=(get_parent_directory() / "README.md").read_text(),
     # long_description_content_type="text/markdown",
+    license="Apache-2.0",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: Apache Software License",
         "Operating System :: POSIX",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: MacOS :: MacOS X",
