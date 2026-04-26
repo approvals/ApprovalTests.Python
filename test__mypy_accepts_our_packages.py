@@ -32,11 +32,14 @@ def main() -> None:
             test_file_path = temporary_directory / "test.py"
             test_file_path.write_text(f"import {package_name}")
 
+            python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
             subprocess.check_call(
                 [
                     "uv",
                     "run",
                     "--isolated",
+                    "--python",
+                    python_version,
                     "--with",
                     wheel_file,
                     "--with",
