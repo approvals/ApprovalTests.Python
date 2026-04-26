@@ -7,3 +7,5 @@ Default STARTER_CHARACTER = 🧩
 - When writing code, follow the code style guidelines in `internal_documentation/code_style.md`.
 - When interacting with GitHub, follow `internal_documentation/github_guidelines.md`.
 - When building a new feature or fixing a bug, follow the steps in `internal_documentation/development_process.md`.
+
+If any instructions are unclear please ask question (1 at a time)
