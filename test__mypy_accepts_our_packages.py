@@ -18,9 +18,8 @@ def main() -> None:
 
         shutil.copy2("setup/" + setup_file, "setup.py")
         try:
-            subprocess.check_output(
+            subprocess.check_call(
                 [sys.executable, "-m", "build", "--quiet", "--quiet", "--wheel", "."],
-                stderr=subprocess.STDOUT,
             )
         finally:
             _unlink_with_retry(pathlib.Path("setup.py"))
