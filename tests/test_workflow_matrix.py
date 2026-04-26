@@ -7,7 +7,7 @@ from approvaltests import verify
 SCRIPT_DIR = Path(__file__).parent.resolve()
 
 
-def test_workflow_matrix_python_versions() -> None:
+def test_workflow_matrixes_match() -> None:
     python_versions = _get_workflow_matrix_python_versions("test.yml")
     python_versions_min = _get_workflow_matrix_python_versions("test_min.yml")
     assert python_versions == python_versions_min, (
@@ -21,6 +21,9 @@ def test_workflow_matrix_python_versions() -> None:
         "Python version matrix in test.yml and test_current_release.yml do not match"
     )
 
+
+def test_tested_versions_message() -> None:
+    python_versions = _get_workflow_matrix_python_versions("test.yml")
     verify(
         f"ApprovalTests is tested on the following Python versions: {', '.join(python_versions)}."
     )
