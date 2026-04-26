@@ -5,16 +5,13 @@ from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
 
+PYTHON_VERSIONS = ["3.10", "3.11", "3.12", "3.13", "3.14"]
+
 
 PYTHON_VERSION_CLASSIFIERS = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
-]
+] + [f"Programming Language :: Python :: {version}" for version in PYTHON_VERSIONS]
 
 
 def get_version() -> str:

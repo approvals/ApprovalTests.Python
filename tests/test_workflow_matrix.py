@@ -3,6 +3,7 @@ from pathlib import Path
 import yaml
 
 from approvaltests import verify
+from setup.setup_utils import PYTHON_VERSIONS
 
 SCRIPT_DIR = Path(__file__).parent.resolve()
 
@@ -27,6 +28,10 @@ def test_tested_versions_message() -> None:
     verify(
         f"ApprovalTests is tested on the following Python versions: {', '.join(python_versions)}."
     )
+
+
+def test_package_classifiers() -> None:
+    assert PYTHON_VERSIONS == _get_workflow_matrix_python_versions("test.yml")
 
 
 def _get_workflow_matrix_python_versions(filename: str) -> list[str]:
