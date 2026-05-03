@@ -6,4 +6,5 @@ if ! command -v mise >/dev/null 2>&1; then
   exit 127
 fi
 
+mise install --quiet
 mise task run build_and_test
