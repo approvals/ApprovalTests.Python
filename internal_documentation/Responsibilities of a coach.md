@@ -14,5 +14,3 @@ Keep the group moving forward:
 ## Cohesion
 
 Keep the group together:
-
-- Is someone lost?

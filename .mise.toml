@@ -8,7 +8,10 @@ uv_create_args = ["--seed", "--quiet"]
 
 [tasks]
 "pip-install" = "uv pip --no-cache install -r requirements.dev.txt --quiet"
-build_and_test.depends = ["pip-install","test", "mypy", "lint", "integration"]
+
+[tasks.build_and_test]
+depends = ["pip-install","test", "mypy", "lint", "integration"]
+run = "python --version"
 
 [tasks.test]
 run = "python -m pytest --quiet --junitxml=junit-reports/TEST-results.xml"
