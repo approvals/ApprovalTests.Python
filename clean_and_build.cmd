@@ -1,4 +1,3 @@
 cls
-git clean -xdff
-.\tidy_code.sh
-.\build_and_test.cmd
+call git clean -xdff
+call .\tidy_code.sh && call .\build_and_test.cmd
