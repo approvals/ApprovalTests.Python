@@ -4,7 +4,7 @@ from approval_utilities.utilities.multiline_string_utils import remove_indentati
 from approvaltests.scrubbers import create_regex_scrubber
 from approvaltests.scrubbers.scrubbers import Scrubber
 
-_custom_scrubbers = []
+_custom_scrubbers: list[tuple[str, list[str]]] = []
 
 
 class DateScrubber:
