@@ -270,13 +270,16 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 ### Dependencies
 
+#### Python
+
 ApprovalTests is tested on the following Python versions: 3.10, 3.11, 3.12, 3.13, 3.14.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_tested_versions_message.approved.txt -->
 
-For older versions of Python, either use an older version of ApprovalTests or use [TextTest](https://texttest.org/).
+For older versions of Python, either:
+- use an older version of ApprovalTests, or
+- use [TextTest](https://texttest.org/), or
+- hire us to help
 
-ApprovalTests requires the following dependencies:
-
-#### Required dependencies
+#### Required packages
 
 These dependencies are always required for approvaltests
 
@@ -290,9 +293,9 @@ typing_extensions>=3.6.2
 <sup><a href='/requirements.prod.required.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.required.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-#### Extra dependencies
+#### Extra packages
 
-These dependencies are required if you are going to use the related functionality.  
+These dependencies are needed if you are going to use the related functionality.  
 If you want the bare minimum you can use the pypi project
 [approvaltests-minimal](https://pypi.org/project/approvaltests-minimal/).
 
