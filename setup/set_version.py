@@ -20,7 +20,7 @@ def main() -> None:
 
     print(f"Setting version to {version_number}")
     for version_file in _VERSION_FILES:
-        version_file.write_text(f'version_number = "{version_number}"\n')
+        version_file.write_text(f'# Do not edit manually - use setup/set_version.py to change the version\nversion_number = "{version_number}"\n')
 
 
 if __name__ == "__main__":
