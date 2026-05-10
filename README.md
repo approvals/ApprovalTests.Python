@@ -21,8 +21,9 @@
   * [Support and Documentation](#support-and-documentation)
     * [Missing Documentation?](#missing-documentation)
     * [Dependencies](#dependencies)
-      * [Required dependencies](#required-dependencies)
-      * [Extra dependencies](#extra-dependencies)
+      * [Python](#python)
+      * [Required packages](#required-packages)
+      * [Extra packages](#extra-packages)
   * [For developers](#for-developers)
     * [Weekly Ensemble](#weekly-ensemble)
     * [Pull Requests](#pull-requests)<!-- endToc -->
