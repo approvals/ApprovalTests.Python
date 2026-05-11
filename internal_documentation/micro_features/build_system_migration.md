@@ -28,21 +28,21 @@ Repository Root (ApprovalTests.Python)
 │
 ├── setup/ directory
 │   ├── setup_utils.py          # Shared setup logic
-│   │   └── do_the_setup()      # Common setup function
+│   │   └── setup_approvaltests()      # Common setup function
 │   │
 │   ├── setup.py                # Main: approvaltests (full)
 │   │   ├── Includes: required + extras deps
-│   │   └── Uses: setup_utils.do_the_setup()
+│   │   └── Uses: setup_utils.setup_approvaltests()
 │   │
 │   ├── setup.approvaltests-minimal.py  # Variant: approvaltests-minimal
 │   │   ├── Includes: required deps only
 │   │   ├── Optional: extras via extras_require
-│   │   └── Uses: setup_utils.do_the_setup()
+│   │   └── Uses: setup_utils.setup_approvaltests()
 │   │
 │   ├── setup.approvaltests.py  # Variant: approvaltests (for PyPI)
 │   │   ├── Includes: required + extras deps
 │   │   ├── Adds: approval_utilities dependency
-│   │   └── Uses: setup_utils.do_the_setup()
+│   │   └── Uses: setup_utils.setup_approvaltests()
 │   │
 │   └── setup.approval_utilities.py  # Separate: approval_utilities
 │       └── Standalone setup (no shared utils)

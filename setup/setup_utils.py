@@ -27,7 +27,7 @@ def get_requirements_from_file(file: str) -> list[str]:
     return required
 
 
-def do_the_setup(
+def setup_approvaltests(
     package_name: str,
     package_description: str,
     required: list[str],
