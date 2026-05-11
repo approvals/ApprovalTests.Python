@@ -60,6 +60,7 @@ def setup_approvaltests(
         ],
     )
 
+
 def setup_approvals(
     additional_classifiers: list[str] = [],
     **kwargs: Any,
