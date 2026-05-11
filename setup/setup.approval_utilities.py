@@ -12,7 +12,6 @@ from setup_utils import (  # pylint: disable=wrong-import-position
     get_version,
 )
 
-requires: dict[str, Any] = {}
 setup(
     name="approval_utilities",
     version=get_version(),
