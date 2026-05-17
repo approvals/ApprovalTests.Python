@@ -14,6 +14,7 @@
 -   [test logs](how_to/test_logs.md)
 -   [Scrub Dates](how_to/scrub_dates.md)
 -   [Verify Both Logs and Results](how_to/verify_both_logs_and_results.md)
+-   [Verify a Dictionary](how_to/verify_a_dictionary.md)
 
 ## Reference
 

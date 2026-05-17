@@ -9,6 +9,7 @@ from approvaltests import (
     verify,
     verify_all,
     verify_all_combinations_with_labeled_input,
+    verify_as_json,
 )
 from approvaltests.inline.inline_options import InlineOptions
 from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
@@ -349,3 +350,18 @@ def test_unicode_right_to_left_mark__incorrect_test() -> None:
 
 def test_escape_characters_dict() -> None:
     verify_all("", escape_characters_dict.items())
+
+
+# begin-snippet: verify_dict_example
+def test_verify_dict() -> None:
+    """
+    {
+        "k1": "v1",
+        "k2": "v2"
+    }
+    """
+    d = {"k1": "v1", "k2": "v2"}
+    verify_as_json(d, options=Options().inline())
+
+
+# end-snippet
