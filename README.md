@@ -298,7 +298,7 @@ typing_extensions>=3.6.2
 
 These dependencies are needed if you are going to use the related functionality.  
 If you want the bare minimum you can use the pypi project
-[approvaltests-minimal](https://pypi.org/project/approvaltests-minimal/).
+[approvaltests_minimal](https://pypi.org/project/approvaltests-minimal/).
 
 <!-- snippet: requirements.prod.extras.txt -->
 <a id='snippet-requirements.prod.extras.txt'></a>

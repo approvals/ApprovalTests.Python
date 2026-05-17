@@ -22,7 +22,7 @@ jobs:
           - "3.13"
           - "3.14"
         os: [macos-latest, ubuntu-latest, windows-latest]
-        package: [approvaltests, approvaltests-minimal]
+        package: [approvaltests, approvaltests_minimal]
 
     steps:
       - uses: actions/checkout@v6

@@ -8,7 +8,7 @@ import time
 PACKAGES = [
     ("approval_utilities", "setup.approval_utilities.py"),
     ("approvaltests", "setup.approvaltests.py"),
-    ("approvaltests", "setup.approvaltests-minimal.py"),
+    ("approvaltests", "setup.approvaltests_minimal.py"),
 ]
 
 

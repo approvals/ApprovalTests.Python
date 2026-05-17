@@ -15,7 +15,7 @@ extra_requires = {
 }
 
 setup_approvaltests(
-    package_name="approvaltests-minimal",
+    package_name="approvaltests_minimal",
     package_description="Assertion/verification library to aid testing with the minimal required dependencies + the ability to opt in for the others ",
     required=required,
     extra_requires=extra_requires,

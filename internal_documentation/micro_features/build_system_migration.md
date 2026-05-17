@@ -34,7 +34,7 @@ Repository Root (ApprovalTests.Python)
 │   │   ├── Includes: required + extras deps
 │   │   └── Uses: setup_utils.setup_approvaltests()
 │   │
-│   ├── setup.approvaltests-minimal.py  # Variant: approvaltests-minimal
+│   ├── setup.approvaltests_minimal.py  # Variant: approvaltests_minimal
 │   │   ├── Includes: required deps only
 │   │   ├── Optional: extras via extras_require
 │   │   └── Uses: setup_utils.setup_approvaltests()
@@ -51,8 +51,8 @@ Repository Root (ApprovalTests.Python)
 │   ├── publish.approvaltests.sh
 │   │   └── Runs: setup.approvaltests.py
 │   │
-│   ├── publish.approvaltests-minimal.sh
-│   │   └── Runs: setup.approvaltests-minimal.py
+│   ├── publish.approvaltests_minimal.sh
+│   │   └── Runs: setup.approvaltests_minimal.py
 │   │
 │   └── publish.approval_utilities.sh
 │       ├── Swaps: setup.py ↔ setup.approval_utilities.py
@@ -67,7 +67,7 @@ Published Packages (to PyPI):
 ┌─────────────────────────────────────────────────────────┐
 │ 1. approval_utilities     (standalone utility package)  │
 │ 2. approvaltests          (full, depends on #1)         │
-│ 3. approvaltests-minimal  (minimal, no #1 dependency)   │
+│ 3. approvaltests_minimal  (minimal, no #1 dependency)   │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -92,7 +92,7 @@ Published Packages (to PyPI):
              │                   │                   │
     ┌────────▼────────┐ ┌────────▼────────┐ ┌────────▼────────┐
     │ File Swapping   │ │ Direct Build    │ │ Direct Build    │
-    │ (setup.py hack) │ │ (setup.approvaltests) │ │ (setup.approvaltests-minimal) │
+    │ (setup.py hack) │ │ (setup.approvaltests) │ │ (setup.approvaltests_minimal) │
     └────────┬────────┘ └────────┬────────┘ └────────┬────────┘
              <!-- │                   │                   │ -->
     ┌────────▼────────┐ ┌────────▼────────┐ ┌────────▼────────┐
@@ -121,7 +121,7 @@ Published Packages (to PyPI):
 
 Order Dependency:  approval_utilities  ──must publish before──►  approvaltests (full)
 
-Same Source:       approvaltests (full)  ═══ same code ═══  approvaltests-minimal
+Same Source:       approvaltests (full)  ═══ same code ═══  approvaltests_minimal
                    (only dependency configuration differs)
 ```
 
@@ -158,7 +158,7 @@ Same Source:       approvaltests (full)  ═══ same code ═══  approval
    ├─► publish.approvaltests.sh
    │   └─► Auth: secrets.PYPI_PASSWORD
    │
-   └─► publish.approvaltests-minimal.sh
+   └─► publish.approvaltests_minimal.sh
        └─► Auth: secrets.PYPI_APPROVALTESTS_MINIMAL
 ```
 
