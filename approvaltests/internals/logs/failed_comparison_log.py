@@ -16,8 +16,8 @@ class FailedComparisonLog:
 
     @staticmethod
     def log(received_file: str, approved_file: str) -> None:
+        if not FailedComparisonLog.get_failed_comparison_log().exists():
+            FailedComparisonLog.clear_log_file()
         with FailedComparisonLog.get_failed_comparison_log().open(mode="a") as file:
             file.write(f"{received_file} -> {approved_file}\n")
 
-
-FailedComparisonLog.clear_log_file()

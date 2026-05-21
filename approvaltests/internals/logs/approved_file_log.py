@@ -26,8 +26,8 @@ class ApprovedFilesLog:
 
     @staticmethod
     def log(approved_file: str) -> None:
+        if not ApprovedFilesLog.get_approved_files_log().exists():
+            ApprovedFilesLog.clear_log_file()
         with ApprovedFilesLog.get_approved_files_log().open(mode="a") as file:
             file.write(f"{approved_file}\n")
 
-
-ApprovedFilesLog.clear_log_file()
