@@ -16,7 +16,7 @@ jobs:
           - "3.13"
           - "3.14"
         os:
-          - macos-latest
+          - macos-26
           - ubuntu-slim
           - windows-latest
 
