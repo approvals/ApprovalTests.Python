@@ -303,7 +303,7 @@ If you want the bare minimum you can use the pypi project
 <a id='snippet-requirements.prod.extras.txt'></a>
 ```txt
 pyperclip>=1.5.29               # For Clipboard Reporter
-beautifulsoup4>=4.4.0           # For verify_html
+beautifulsoup4>=4.9.0           # For verify_html
 allpairspy>=2.1.0               # For PairwiseCombinations
 testfixtures >= 7.1.0, < 12     # For verify_logging
 mock >= 5.1.0                   # For verify_logging
