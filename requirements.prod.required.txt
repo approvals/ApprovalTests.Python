@@ -1,5 +1,2 @@
 pytest>=9.0.3
 empty-files>=0.0.3
-typing_extensions>=3.6.2
-
-
