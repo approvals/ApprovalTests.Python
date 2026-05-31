@@ -8,3 +8,4 @@ types-requests
 types-setuptools
 types-PyYAML
 types-pyperclip
+types-beautifulsoup4
