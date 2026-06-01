@@ -10,9 +10,9 @@ SCRIPT_DIR = Path(__file__).parent.resolve()
 
 def test_workflow_matrixes_match() -> None:
     python_versions = _get_workflow_matrix_python_versions("test.yml")
-    python_versions_min = _get_workflow_matrix_python_versions("test_min.yml")
+    python_versions_min = _get_workflow_matrix_python_versions("test_minimum_dependency_versions.yml")
     assert python_versions == python_versions_min, (
-        "Python version matrix in test.yml and test_min.yml do not match"
+        "Python version matrix in test.yml and test_minimum_dependency_versions.yml do not match"
     )
 
     python_versions_current_release = _get_workflow_matrix_python_versions(

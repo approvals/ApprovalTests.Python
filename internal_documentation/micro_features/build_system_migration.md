@@ -175,7 +175,7 @@ Same Source:       approvaltests (full)  ═══ same code ═══  approval
 - Matrix: Python 3.10-3.14 × 3 OS (macOS, Ubuntu, Windows)
 - Uses: `./build_and_test.sh` (which uses `setup.py install`)
 
-**test_min.yml** - Minimal dependency testing
+**test_minimum_dependency_versions.yml** - Minimal dependency testing
 - Generates minimal requirements
 - Tests with minimum supported dependency versions
 
