@@ -302,13 +302,20 @@ If you want the bare minimum you can use the pypi project
 <!-- snippet: requirements.prod.extras.txt -->
 <a id='snippet-requirements.prod.extras.txt'></a>
 ```txt
-pyperclip>=1.5.29               # For Clipboard Reporter
-beautifulsoup4>=4.9.0           # For verify_html
-allpairspy>=2.1.0               # For PairwiseCombinations
-testfixtures >= 7.1.0, < 12     # For verify_logging
-mock >= 5.1.0                   # For verify_logging
+# For reporters.clipboard_reporter.ClipboardReporter
+pyperclip>=1.5.29
+
+# For approvals.verify_html()
+beautifulsoup4>=4.9.0
+
+# For pairwise_combinations.get_best_covering_pairs()
+allpairspy>=2.1.0
+
+# For utilities.logging.logging_approvals.verify_logging()
+testfixtures >= 7.1.0, < 12
+mock >= 5.1.0
 ```
-<sup><a href='/requirements.prod.extras.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/requirements.prod.extras.txt#L1-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## For developers
