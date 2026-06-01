@@ -1,6 +1,7 @@
 -r requirements.prod.txt
 -r requirements.test.txt
 build
+pylint
 ruff
 setuptools
 mypy

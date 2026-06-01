@@ -1,6 +1,4 @@
-setuptools
 numpy
-pylint
 
 pytest
 pytest-asyncio
