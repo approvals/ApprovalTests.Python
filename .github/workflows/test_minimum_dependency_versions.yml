@@ -1,4 +1,4 @@
-name: Test Min Versions
+name: Test Mininimum Dependency Versions
 
 on: [push, pull_request, workflow_dispatch]
 
