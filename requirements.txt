@@ -1,1 +1,2 @@
--r requirements.dev.txt
+pytest>=9.0.3
+empty-files>=0.0.3

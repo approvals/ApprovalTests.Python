@@ -1,2 +1,0 @@
--r requirements.prod.required.txt
--r requirements.prod.extras.txt

@@ -1,4 +1,5 @@
--r requirements.prod.txt
+-r requirements.txt
+-r requirements.extras.txt
 -r requirements.test.txt
 build
 pylint
