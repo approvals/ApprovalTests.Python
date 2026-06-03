@@ -20,8 +20,6 @@ def verify_logging(
         def __enter__(self) -> None:
             self.l.__enter__()
 
-            pass
-
         def __exit__(
             self,
             exc_type: type[BaseException] | None,
