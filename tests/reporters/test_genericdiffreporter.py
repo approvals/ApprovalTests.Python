@@ -1,6 +1,7 @@
 import os
 import shutil
 import unittest
+from unittest.mock import patch
 
 from typing_extensions import override
 
@@ -48,9 +49,11 @@ class GenericDiffReporterTests(unittest.TestCase):
 
         reporter = GenericDiffReporter.create("test")
 
-        setattr(reporter, "run_command", lambda command_array: None)
-        setattr(reporter, "is_working", lambda: True)
-        reporter.report(received, approved)
+        with (
+            patch.object(reporter, "run_command", lambda command_array: None),
+            patch.object(reporter, "is_working", lambda: True),
+        ):
+            reporter.report(received, approved)
         self.assertEqual(0, os.stat(approved).st_size)
         delete_approved_file()
 
@@ -62,9 +65,8 @@ class GenericDiffReporterTests(unittest.TestCase):
         with open(approved, "w") as approved_file:
             approved_file.write(approved_contents)
         reporter = GenericDiffReporter.create("test")
-        setattr(reporter, "run_command", lambda command_array: None)
-
-        reporter.report(namer.get_received_filename(), approved)
+        with patch.object(reporter, "run_command", lambda command_array: None):
+            reporter.report(namer.get_received_filename(), approved)
 
         with open(approved) as approved_file:
             actual_contents = approved_file.read()
@@ -93,7 +95,7 @@ class GenericDiffReporterTests(unittest.TestCase):
     def instantiate_reporter_for_test() -> GenericDiffReporter:
         program = r"C:\Windows\System32\help.exe" if is_windows_os() else "echo"
         reporter = GenericDiffReporter.create(program)
-        setattr(reporter, "run_command", lambda command_array: None)
+        patch.object(reporter, "run_command", lambda command_array: None).start()
         return reporter
 
     @property

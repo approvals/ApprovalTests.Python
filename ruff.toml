@@ -13,7 +13,6 @@ ignore = [
     "D", # pydocstyle
 
     # [*] we currently have these violations that are fixable if we want
-    "B010",  # Do not call `setattr` with a constant attribute value. It is not any safer than normal property access.
     "C413",  # Unnecessary `list()` call around `sorted()`
     "COM812",  # Trailing comma missing
     "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
