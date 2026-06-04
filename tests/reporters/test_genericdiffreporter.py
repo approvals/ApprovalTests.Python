@@ -134,7 +134,7 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_diff_tool_limiting(self) -> None:
         reporter = self.instantiate_reporter_for_test()
-        for i in range(0, 7):
+        for i in range(7):
             reporter.report("a.txt", "b.txt")
         assert 7 == GenericDiffReporter.opened_diff_tool_count
         assert 2 == reporter.get_limit_count()

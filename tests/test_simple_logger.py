@@ -39,7 +39,7 @@ def log_from_inner_method() -> None:
     with SimpleLogger.use_markers():
         name = "Example"
         SimpleLogger.variable("name", name)
-        for _ in range(0, 142):
+        for _ in range(142):
             SimpleLogger.hour_glass()
 
 
