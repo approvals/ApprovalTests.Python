@@ -1,4 +1,3 @@
-import fnmatch
 import inspect
 import os
 from inspect import FrameInfo
@@ -7,6 +6,7 @@ from typing_extensions import override
 
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests.approval_exception import FrameNotFound
+from approvaltests.integrations.pytest._pytest_pattern_matching import matches_prefix_or_glob
 from approvaltests.integrations.pytest.pytest_config import PytestConfig
 from approvaltests.namer.namer_base import NamerBase
 
@@ -46,24 +46,7 @@ class StackFrameNamer(NamerBase):
     def is_pytest_test(frame: FrameInfo) -> bool:
         method_name = frame[3]
         patterns = PytestConfig.test_naming_patterns
-        return StackFrameNamer._is_match_for_pytest(method_name, patterns)
-
-    @staticmethod
-    def _is_match_for_pytest(method_name: str, patterns: list[str]) -> bool:
-        # Do not modify this method, so we can compare with original code
-        # taken from pytest/python.py (class PyCollector)
-        for pattern in patterns:
-            if method_name.startswith(pattern):
-                return True
-                # Check that name looks like a glob-string before calling fnmatch
-                # because this is called for every name in each collected module,
-                # and fnmatch is somewhat expensive to call.
-            elif (
-                "*" in pattern or "?" in pattern or "[" in pattern
-            ) and fnmatch.fnmatch(method_name, pattern):
-                return True
-
-        return False
+        return matches_prefix_or_glob(method_name, patterns)
 
     UNITTEST_EXCLUDED_METHOD_NAMES = {
         "__call__",

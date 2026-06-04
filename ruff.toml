@@ -18,10 +18,14 @@ ignore = [
     "COM812",  # Trailing comma missing
     "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
     "RET505",  # Unnecessary `...` after `return` statement
-    "SIM114",  # Combine `if` branches using logical `or` operator
     "SIM118",  # Use `key not in dict` instead of `key not in dict.keys()`
     "SIM300",  # Yoda condition detected
     "TC006",  # Add quotes to type expression in `typing.cast()`
     "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
 
+]
+
+[lint.per-file-ignores]
+"approvaltests/integrations/pytest/_pytest_pattern_matching.py" = [
+    "SIM114",  # Combine `if` branches using logical `or` operator
 ]
