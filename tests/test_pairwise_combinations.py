@@ -37,7 +37,7 @@ def assert_all_pairs_present_between_lists(
     for i1 in input1:
         for i2 in input2:
             key = get_key(i1, i2)
-            if key not in all_pairs_with_index.keys():
+            if key not in all_pairs_with_index:
                 raise Exception(f"could not find pair {key}")
 
 
