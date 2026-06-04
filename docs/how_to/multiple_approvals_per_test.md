@@ -43,7 +43,7 @@ Approval tests supports parametrized tests, here is an example:
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         options=NamerFactory.with_parameters(year),
     )
 ```
@@ -60,22 +60,22 @@ Be aware that this will halt your test on the first `verify()` that fails, same 
 ```py
 year = 1992
 verify(
-    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    f"is Leap {year!s}: {is_leap_year(year)!s}",
     options=NamerFactory.with_parameters(year),
 )
 year = 1993
 verify(
-    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    f"is Leap {year!s}: {is_leap_year(year)!s}",
     options=NamerFactory.with_parameters(year),
 )
 year = 1900
 verify(
-    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    f"is Leap {year!s}: {is_leap_year(year)!s}",
     options=NamerFactory.with_parameters(year),
 )
 year = 2000
 verify(
-    f"is Leap {str(year)}: {str(is_leap_year(year))}",
+    f"is Leap {year!s}: {is_leap_year(year)!s}",
     options=NamerFactory.with_parameters(year),
 )
 ```
@@ -96,7 +96,7 @@ years = [1993, 1992, 1900, 2000]
 gather_all_exceptions_and_throw(
     years,
     lambda y: verify(
-        f"is Leap {str(y)}: {str(is_leap_year(y))}",
+        f"is Leap {y!s}: {is_leap_year(y)!s}",
         options=NamerFactory.with_parameters(y),
     ),
 )
