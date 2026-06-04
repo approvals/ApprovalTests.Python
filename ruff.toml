@@ -14,7 +14,6 @@ ignore = [
 
     # [*] we currently have these violations that are fixable if we want
     "COM812",  # Trailing comma missing
-    "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
     "RET505",  # Unnecessary `...` after `return` statement
     "SIM118",  # Use `key not in dict` instead of `key not in dict.keys()`
     "SIM300",  # Yoda condition detected

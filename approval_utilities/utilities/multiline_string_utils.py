@@ -5,6 +5,5 @@ def remove_indentation_from(text: str | None) -> str:
     if not text:
         return ""
     cleaned = textwrap.dedent(text + "|")
-    if cleaned.startswith("\n"):
-        cleaned = cleaned[1:]
+    cleaned = cleaned.removeprefix("\n")
     return cleaned[:-1]
