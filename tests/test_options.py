@@ -17,12 +17,12 @@ from approvaltests.utilities import command_line_approvals  # noqa: F401
 from approvaltests.utilities.logger import simple_logger_approvals  # noqa: F401
 from approvaltests.utilities.logging import logging_approvals  # noqa: F401
 
-_approvals_modules = sorted(
-    filter(
-        lambda name: name.startswith("approvaltests.") and name.endswith("approvals"),
-        sys.modules.keys(),
-    )
-)
+
+def _is_approval_module(name: str) -> bool:
+    return name.startswith("approvaltests.") and name.endswith("approvals")
+
+
+_approvals_modules = sorted(filter(_is_approval_module, sys.modules.keys()))
 
 
 def test_list_of_modules() -> None:
