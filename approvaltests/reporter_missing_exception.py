@@ -8,4 +8,4 @@ class ReporterMissingException(BaseException):
 
     @override
     def __str__(self) -> str:
-        return f"Could not find {repr(self.value)} in the environment, perhaps you need to configure your reporter."
+        return f"Could not find {self.value!r} in the environment, perhaps you need to configure your reporter."

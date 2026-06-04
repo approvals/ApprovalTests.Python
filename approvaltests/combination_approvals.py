@@ -156,7 +156,7 @@ def print_combinations(
 
 
 def args_and_result_formatter(args: list[Any], result: int) -> str:
-    return f"args: {repr(args)} => {repr(result)}\n"
+    return f"args: {args!r} => {result!r}\n"
 
 
 async def print_combinations_async(

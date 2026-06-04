@@ -67,7 +67,7 @@ def test_guid() -> None:
 
 def test_combine_scrubbers() -> None:
     verify(
-        f"blah {str(datetime.datetime(year=2000, month=1, day=2))} 2fd78d4a-ad49-447d-96a8-deda585a9aa5",
+        f"blah {datetime.datetime(year=2000, month=1, day=2)!s} 2fd78d4a-ad49-447d-96a8-deda585a9aa5",
         options=Options().with_scrubber(
             combine_scrubbers(
                 scrub_all_guids,

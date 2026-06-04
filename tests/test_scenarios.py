@@ -18,7 +18,7 @@ def is_leap_year(year: int) -> bool:
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios_old(year: int) -> None:
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         namer=get_scenario_namer(year),
     )
 
@@ -27,7 +27,7 @@ def test_scenarios_old(year: int) -> None:
 @pytest.mark.parametrize("year", [1993, 1992, 1900, 2000])
 def test_scenarios(year: int) -> None:
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         options=NamerFactory.with_parameters(year),
     )
 
@@ -39,22 +39,22 @@ def test_manual_scenarios_with_blocking() -> None:
     # begin-snippet: multiple-verifies-with-blocking
     year = 1992
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         options=NamerFactory.with_parameters(year),
     )
     year = 1993
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         options=NamerFactory.with_parameters(year),
     )
     year = 1900
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         options=NamerFactory.with_parameters(year),
     )
     year = 2000
     verify(
-        f"is Leap {str(year)}: {str(is_leap_year(year))}",
+        f"is Leap {year!s}: {is_leap_year(year)!s}",
         options=NamerFactory.with_parameters(year),
     )
     # end-snippet
@@ -66,7 +66,7 @@ def test_manual_scenarios() -> None:
     gather_all_exceptions_and_throw(
         years,
         lambda y: verify(
-            f"is Leap {str(y)}: {str(is_leap_year(y))}",
+            f"is Leap {y!s}: {is_leap_year(y)!s}",
             options=NamerFactory.with_parameters(y),
         ),
     )

@@ -18,7 +18,6 @@ ignore = [
     "COM812",  # Trailing comma missing
     "FURB188",  # Prefer `str.removeprefix()` over conditionally replacing with slice.
     "RET505",  # Unnecessary `...` after `return` statement
-    "RUF010",  # Use explicit conversion flag
     "SIM114",  # Combine `if` branches using logical `or` operator
     "SIM118",  # Use `key not in dict` instead of `key not in dict.keys()`
     "SIM300",  # Yoda condition detected
