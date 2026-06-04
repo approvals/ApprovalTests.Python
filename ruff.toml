@@ -11,12 +11,122 @@ select = [
 ]
 ignore = [
     "D", # pydocstyle
+    "TD", # TODO comments
 
-    # [*] we currently have these violations that are fixable if we want
+    # auto-fixable if we want to enable them in the future
     "COM812",  # Trailing comma missing
     "RET505",  # Unnecessary `...` after `return` statement
     "SIM300",  # Yoda condition detected
     "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
+
+    # requires manual fix
+    "A001",     # Variable `dict` is shadowing a Python builtin
+    "A002",     # Function argument `...` is shadowing a Python builtin
+    "ANN001",    # Missing type annotation for function argument `...`
+    "ANN002",    # Missing type annotation for `...`
+    "ANN003",    # Missing type annotation for `...`
+    "ANN201",   # Missing return type annotation for public function
+    "ANN202",   # Missing return type annotation for private function
+    "ANN204",   # Missing return type annotation for special method `__str__`
+    "ANN401",    # Dynamically typed expressions (typing.Any) are disallowed in `...`
+    "ARG001",    # Unused function argument: `...`
+    "ARG005",    # Unused lambda argument: `...`
+    "B006",    # Do not use mutable data structures for argument defaults
+    "B007",    # Loop control variable `...` not used within loop body
+    "B011",    # Do not `assert False` (`python -O` removes these calls), raise `AssertionError()`
+    "B020",    # Loop control variable `...` overrides iterable it iterates
+    "B023",    # Function definition does not bind loop variable `...`
+    "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` or `raise ... from None` to distinguish them from errors in exception handling
+    "B905",    # `zip()` without an explicit `strict=` parameter
+    "BLE001",   # Do not catch blind exception: `BaseException`
+    "C417",    # Unnecessary `map()` usage
+    "C901",    # `...` is too complex (11 > 10)
+    "DTZ001",    # `datetime.datetime()` called without a `tzinfo` argument
+    "DTZ005",    # `datetime.datetime.now()` called without a `tz` argument
+    "DTZ006",    # `datetime.datetime.fromtimestamp()` called without a `tz` argument
+    "E402",    # Module level import not at top of file
+    "E501",     # Line too long (98 > 88)
+    "E711",    # Comparison to `None` should be `cond is not None`
+    "E721",    # Use `is` and `is not` for type comparisons, or `isinstance()` for isinstance checks
+    "E722",    # Do not use bare `except`
+    "EM101",    # Exception must not use a string literal, assign to variable first
+    "EM102",    # Exception must not use an f-string literal, assign to variable first
+    "ERA001",    # Found commented-out code
+    "EXE001",    # Shebang is present but file is not executable
+    "EXE005",    # Shebang should be at the beginning of the file
+    "F401",    # `...` imported but unused; consider removing, adding to `__all__`, or using a redundant alias
+    "F403",    # `...` used; unable to detect undefined names
+    "F405",    # `...` may be undefined, or defined from star imports
+    "F841",     # Local variable `infinity` is assigned to but never used
+    "FBT001",    # Boolean-typed positional argument in function definition
+    "FBT002",    # Boolean default positional argument in function definition
+    "FBT003",   # Boolean positional value in function call
+    "FBT003",   # Boolean positional value in function call
+    "FIX002",    # Line contains TODO, consider resolving the issue
+    "G004",    # Logging statement uses f-string
+    "INP001",    # File `...` is part of an implicit namespace package. Add an `__init__.py`.
+    "LOG015",    # `info()` call on root logger
+    "N802",    # Function name `...` should be lowercase
+    "N806",    # Variable `...` in function should be lowercase
+    "N818",    # Exception name `...` should be named with an Error suffix
+    "N999",    # Invalid module name: '...'
+    "PERF203",    # `try`-`except` within a loop incurs performance overhead
+    "PIE810",    # Call `startswith` once with a `tuple`
+    "PLC0415",    # `import` should be at the top-level of a file
+    "PLR0913",    # Too many arguments in function definition
+    "PLR1704",  # Redefining argument with the local name `number`
+    "PLR2004",  # Magic value used in comparison, consider replacing `4` with a constant variable
+    "PLW0108",  # Lambda may be unnecessary; consider inlining inner function
+    "PLW1641",    # Object does not implement `__hash__` method
+    "PLW2101",    # Threading lock directly created in `with` statement has no effect
+    "PLW2901",    # `for` loop variable `...` overwritten by assignment target
+    "PT009",    # Use a regular `assert` instead of unittest-style `assertTrue`
+    "PT013",    # Incorrect import of `pytest`; use `import pytest` instead
+    "PT015",    # Assertion always fails, replace with `pytest.fail()`
+    "PT027",    # Use `pytest.raises` instead of unittest-style `assertRaises`
+    "PTH100",    # `os.path.abspath()` should be replaced by `Path.resolve()`
+    "PTH102",    # `os.mkdir()` should be replaced by `Path.mkdir()`
+    "PTH103",    # `os.makedirs()` should be replaced by `Path.mkdir(parents=True)`
+    "PTH107",    # `os.remove()` should be replaced by `Path.unlink()`
+    "PTH110",    # `os.path.exists()` should be replaced by `Path.exists()`
+    "PTH113",    # `os.path.isfile()` should be replaced by `Path.is_file()`
+    "PTH116",    # `os.stat()` should be replaced by `Path.stat()`, `Path.owner()`, or `Path.group()`
+    "PTH118",   # `os.path.join()` should be replaced by `Path` with `/` operator
+    "PTH119",    # `os.path.basename()` should be replaced by `Path.name`
+    "PTH120",    # `os.path.dirname()` should be replaced by `Path.parent`
+    "PTH122",    # `os.path.splitext()` should be replaced by `Path.suffix`, `Path.stem`, and `Path.parent`
+    "PTH123",   # `open()` should be replaced by `Path.open()`
+    "PYI034",    # `__enter__` methods in classes like `Storyboard` usually return `self` at runtime
+    "PYI036",    # The first argument in `__exit__` should be annotated with `object` or `type[BaseException] | None`
+    "RET504",    # Unnecessary assignment to `...` before `return` statement
+    "RUF005",    # Consider `[*...]` instead of concatenation
+    "RUF012",    # Mutable default value for class attribute
+    "RUF100",    # Unused `noqa` directive (non-enabled: `F401`)
+    "S101",     # Use of `assert` detected
+    "S110",    # `try`-`except`-`pass` detected, consider logging the exception
+    "S113",    # Probable use of `requests` call without timeout
+    "S311",     # Standard pseudo-random generators are not suitable for cryptographic purposes
+    "S318",    # Using `xml` to parse untrusted data is known to be vulnerable to XML attacks; use `defusedxml` equivalents
+    "S602",    # `subprocess` call with `shell=True` identified, security issue
+    "S603",    # `subprocess` call: check for execution of untrusted input
+    "S607",    # Starting a process with a partial executable path
+    "SIM102",    # Use a single `if` statement instead of nested `if` statements
+    "SIM105",    # Use `...` instead of `try`-`except`-`pass`
+    "SIM110",    # Use `return any(...)` instead of `for` loop
+    "SIM115",    # Use a context manager for opening files
+    "SIM117",    # Use a single `with` statement with multiple contexts instead of nested `with` statements
+    "SLF001",    # Private member accessed: `...`
+    "T201",     # `print` found
+    "TC001",    # Move application import `...` into a type-checking block
+    "TC003",    # Move standard library import `...` into a type-checking block
+    "TRY002",   # Create your own exception
+    "TRY003",   # Avoid specifying long messages outside the exception class
+    "TRY300",    # Consider moving this statement to an `else` block
+    "TRY301",    # Abstract `raise` to an inner function
+    "UP007",    # Use `X | Y` for type annotations
+    "UP035",    # `typing.ContextManager` is deprecated, use `contextlib.AbstractContextManager` instead
+    "W291",     # Trailing whitespace
+    "W293",    # Blank line contains whitespace
 
 ]
 

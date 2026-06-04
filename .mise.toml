@@ -22,7 +22,10 @@ run = "python -m mypy ."
 depends = ["pip-install"]
 
 [tasks.lint]
-run = "python -m pylint ."
+run = [
+    "python -m pylint .",
+    "python -m ruff check .",
+]
 depends = ["pip-install"]
 
 [tasks.integration]
