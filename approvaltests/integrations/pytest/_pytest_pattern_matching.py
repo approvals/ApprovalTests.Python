@@ -19,4 +19,3 @@ def matches_prefix_or_glob(name: str, patterns: list[str]) -> bool:
         ):
             return True
     return False
-

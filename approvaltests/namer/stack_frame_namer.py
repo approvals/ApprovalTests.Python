@@ -6,7 +6,9 @@ from typing_extensions import override
 
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests.approval_exception import FrameNotFound
-from approvaltests.integrations.pytest._pytest_pattern_matching import matches_prefix_or_glob
+from approvaltests.integrations.pytest._pytest_pattern_matching import (
+    matches_prefix_or_glob,
+)
 from approvaltests.integrations.pytest.pytest_config import PytestConfig
 from approvaltests.namer.namer_base import NamerBase
 
