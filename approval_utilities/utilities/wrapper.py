@@ -32,4 +32,4 @@ class ThreadedWrapper(Wrapper[_T]):
     def get(self) -> _T:
         if not hasattr(self.local, "value"):
             self.local.value = self.generator()
-        return cast(_T, self.local.value)
+        return cast("_T", self.local.value)

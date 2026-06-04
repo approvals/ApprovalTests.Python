@@ -16,7 +16,6 @@ ignore = [
     "COM812",  # Trailing comma missing
     "RET505",  # Unnecessary `...` after `return` statement
     "SIM300",  # Yoda condition detected
-    "TC006",  # Add quotes to type expression in `typing.cast()`
     "TD006",  # Invalid TODO capitalization: `...` should be `TODO`
 
 ]
