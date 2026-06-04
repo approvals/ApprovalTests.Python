@@ -56,7 +56,7 @@ class TestFirstWorkingReporter(unittest.TestCase):
 
     def test_exception(self) -> None:
         def exception() -> None:
-            raise Exception()
+            raise Exception
 
         r1 = ReporterForTesting(False, exception)
         r2 = ReporterForTesting(False)
