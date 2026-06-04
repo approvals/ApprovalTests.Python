@@ -44,12 +44,11 @@ class InlineComparator(Namer):
         if caller_function_object:
             # pytest function
             return caller_function_object
-        else:
-            # unittest class function
-            className = get_class_name_for_frame(caller_frame)
-            clazz = caller_frame.frame.f_globals.get(className)
-            caller_function_object = clazz.__dict__.get(caller_function_name)
-            return caller_function_object
+        # unittest class function
+        className = get_class_name_for_frame(caller_frame)
+        clazz = caller_frame.frame.f_globals.get(className)
+        caller_function_object = clazz.__dict__.get(caller_function_name)
+        return caller_function_object
 
     def register(
         self, options: Options, inline_options: InlineOptions | None = None
