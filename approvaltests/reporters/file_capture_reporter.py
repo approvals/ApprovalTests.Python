@@ -4,7 +4,7 @@ from collections.abc import Callable
 from typing_extensions import override
 
 from approval_utilities.utilities.os_utilities import run_command
-from approvaltests import Reporter
+from approvaltests.core.reporter import Reporter
 
 
 def is_git_registration_needed_for_github() -> bool:
