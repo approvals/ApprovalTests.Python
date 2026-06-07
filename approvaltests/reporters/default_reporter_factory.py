@@ -2,6 +2,10 @@ from threading import local
 
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.diff_reporter import DiffReporter
+from approvaltests.reporters.environment_variable_reporter import (
+    EnvironmentVariableReporter,
+)
+from approvaltests.reporters.first_working_reporter import FirstWorkingReporter
 
 DEFAULT_REPORTER = local()
 
@@ -12,7 +16,7 @@ def set_default_reporter(reporter: Reporter | None) -> None:
 
 def get_default_reporter() -> Reporter:
     if not hasattr(DEFAULT_REPORTER, "v") or DEFAULT_REPORTER.v is None:
-        return DiffReporter()
+        return FirstWorkingReporter(EnvironmentVariableReporter(), DiffReporter())
     return DEFAULT_REPORTER.v
 
 

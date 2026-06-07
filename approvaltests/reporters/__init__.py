@@ -1,6 +1,7 @@
 """Approvaltests.reporters module."""
 
 from .clipboard_reporter import *
+from .environment_variable_reporter import *
 from .default_reporter_factory import *
 from .diff_reporter import *
 from .first_working_reporter import *
