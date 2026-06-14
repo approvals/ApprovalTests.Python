@@ -1,4 +1,6 @@
+import importlib
 import os
+from typing import cast
 
 from typing_extensions import override
 
@@ -30,13 +32,14 @@ from approvaltests.reporters.reporter_that_automatically_approves import (
     ReporterThatAutomaticallyApproves,
 )
 
+
 class EnvironmentVariableReporter(Reporter):
     ENVIRONMENT_VARIABLE_NAME = "APPROVAL_TESTS_USE_REPORTER"
 
     @override
     def report(self, received_path: str, approved_path: str) -> bool:
         class_name = os.environ.get(self.ENVIRONMENT_VARIABLE_NAME)
-        return _report_with(class_name, received_path, approved_path)
+        return EnvironmentVariableReporter._report_with(class_name or "", received_path, approved_path)
         
         
     @staticmethod
@@ -49,8 +52,7 @@ class EnvironmentVariableReporter(Reporter):
     @staticmethod
     def _load_reporter(class_name: str) -> Reporter:
         module_name, _, attr = class_name.rpartition(".")
-        import importlib
         module = importlib.import_module(module_name)
         cls = getattr(module, attr)
-        return cls()
+        return cast("Reporter", cls())
 
