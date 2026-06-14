@@ -18,7 +18,9 @@ class EnvironmentVariableReporter(Reporter):
         )
 
     @staticmethod
-    def _report_with(class_name: str | None, received_path: str, approved_path: str) -> bool:
+    def _report_with(
+        class_name: str | None, received_path: str, approved_path: str
+    ) -> bool:
         if not class_name:
             return False
         reporter = EnvironmentVariableReporter._load_reporter(class_name)
