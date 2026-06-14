@@ -14,11 +14,11 @@ class EnvironmentVariableReporter(Reporter):
     def report(self, received_path: str, approved_path: str) -> bool:
         class_name = os.environ.get(self.ENVIRONMENT_VARIABLE_NAME)
         return EnvironmentVariableReporter._report_with(
-            class_name or "", received_path, approved_path
+            class_name, received_path, approved_path
         )
 
     @staticmethod
-    def _report_with(class_name: str, received_path: str, approved_path: str) -> bool:
+    def _report_with(class_name: str | None, received_path: str, approved_path: str) -> bool:
         if not class_name:
             return False
         reporter = EnvironmentVariableReporter._load_reporter(class_name)

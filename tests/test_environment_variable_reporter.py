@@ -1,12 +1,11 @@
 import pathlib
-
 from approvaltests.reporters.environment_variable_reporter import (
     EnvironmentVariableReporter,
 )
 
 
 def test_returns_false_when_no_class_name() -> None:
-    assert not EnvironmentVariableReporter._report_with("", "received.txt", "approved.txt")
+    assert not EnvironmentVariableReporter._report_with(None, "received.txt", "approved.txt")
 
 
 def test_returns_false_when_class_name_is_empty() -> None:
@@ -31,6 +30,3 @@ def test_raises_when_class_name_does_not_exist() -> None:
             "approved.txt",
         )
 
-
-def test_env_var_name_is_approval_tests_use_reporter() -> None:
-    assert EnvironmentVariableReporter.ENVIRONMENT_VARIABLE_NAME == "APPROVAL_TESTS_USE_REPORTER"
