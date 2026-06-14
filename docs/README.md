@@ -6,6 +6,7 @@
 ## How to
 
 -   Make [custom reporter](how_to/create_a_custom_reporter.md)
+-   [Select a reporter via an Environment Variable](how_to/use_environment_variable_reporter.md)
 -   Create a [custom verify method](how_to/create_custom_verify_methods.md)
 -   [Approve multiple files in one test](how_to/multiple_approvals_per_test.md)
 -   Test a [combination of inputs](how_to/test_combinations_of_inputs.md)
