@@ -63,6 +63,24 @@ def main() -> None:
                 cwd=temporary_directory,
             )
 
+            subprocess.check_call(
+                [
+                    "uv",
+                    "run",
+                    "--isolated",
+                    "--python",
+                    python_version,
+                    "--find-links",
+                    str(dist_dir.resolve()),
+                    "--with",
+                    wheel_file,
+                    "--no-project",
+                    "python",
+                    str(test_file_path),
+                ],
+                cwd=temporary_directory,
+            )
+
 
 def _unlink_with_retry(
     path: pathlib.Path, retries: int = 5, delay: float = 1.0

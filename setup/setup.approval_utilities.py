@@ -12,7 +12,7 @@ setup_approvals(
     name="approval_utilities",
     description="Utilities for your production code that work well with approvaltests",
     packages=find_packages(include=["approval_utilities*"]),
-    install_requires=[],
+    install_requires=["typing_extensions>=4.4.0"],
     # long_description=(get_parent_directory() / "README.md").read_text(),
     # long_description_content_type="text/markdown",
 )
