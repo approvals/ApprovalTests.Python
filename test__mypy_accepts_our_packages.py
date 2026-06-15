@@ -65,9 +65,7 @@ def _uv_run_isolated(
 ) -> None:
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
 
-    with_args = []
-    for package in with_packages:
-        with_args += ["--with", package]
+    with_args = [with_package for package in with_packages for with_package in ("--with", package)]
 
     subprocess.check_call(
         [
