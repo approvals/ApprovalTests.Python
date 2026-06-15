@@ -34,7 +34,6 @@ def main() -> None:
         assert len(new_wheels) == 1, f"Expected 1 new wheel, found {new_wheels}"
         built.append((package_name, new_wheels.pop().resolve()))
 
-
     for package_name, wheel_file in built:
         with tempfile.TemporaryDirectory() as _temporary_directory:
             temporary_directory = pathlib.Path(_temporary_directory)
@@ -65,7 +64,11 @@ def _uv_run_isolated(
 ) -> None:
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
 
-    with_args = [with_package for package in with_packages for with_package in ("--with", package)]
+    with_args = [
+        with_package
+        for package in with_packages
+        for with_package in ("--with", package)
+    ]
 
     subprocess.check_call(
         [
