@@ -15,9 +15,8 @@ def set_default_reporter(reporter: Reporter | None) -> None:
 
 
 def get_default_reporter() -> Reporter:
-    if not hasattr(DEFAULT_REPORTER, "instance") or DEFAULT_REPORTER.instance is None:
-        return FirstWorkingReporter(EnvironmentVariableReporter(), DiffReporter())
-    return DEFAULT_REPORTER.instance
+    instance = getattr(DEFAULT_REPORTER, "instance", None)
+    return instance or FirstWorkingReporter(EnvironmentVariableReporter(), DiffReporter())
 
 
 def get_reporter(reporter: Reporter | None) -> Reporter:
