@@ -34,7 +34,6 @@ def main() -> None:
         assert len(new_wheels) == 1, f"Expected 1 new wheel, found {new_wheels}"
         built.append((package_name, new_wheels.pop().resolve()))
 
-    python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
 
     for package_name, wheel_file in built:
         with tempfile.TemporaryDirectory() as _temporary_directory:
@@ -43,43 +42,48 @@ def main() -> None:
             test_file_path = temporary_directory / "test.py"
             test_file_path.write_text(f"import {package_name}")
 
-            subprocess.check_call(
-                [
-                    "uv",
-                    "run",
-                    "--isolated",
-                    "--python",
-                    python_version,
-                    "--find-links",
-                    str(dist_dir.resolve()),
-                    "--with",
-                    wheel_file,
-                    "--with",
-                    "mypy",
-                    "--no-project",
-                    "mypy",
-                    test_file_path,
-                ],
-                cwd=temporary_directory,
+            _uv_run_isolated(
+                dist_dir,
+                temporary_directory,
+                with_packages=[wheel_file, "mypy"],
+                command=["mypy", test_file_path],
             )
 
-            subprocess.check_call(
-                [
-                    "uv",
-                    "run",
-                    "--isolated",
-                    "--python",
-                    python_version,
-                    "--find-links",
-                    str(dist_dir.resolve()),
-                    "--with",
-                    wheel_file,
-                    "--no-project",
-                    "python",
-                    str(test_file_path),
-                ],
-                cwd=temporary_directory,
+            _uv_run_isolated(
+                dist_dir,
+                temporary_directory,
+                with_packages=[wheel_file],
+                command=["python", test_file_path],
             )
+
+
+def _uv_run_isolated(
+    dist_dir: pathlib.Path,
+    temporary_directory: pathlib.Path,
+    with_packages: list[str | pathlib.Path],
+    command: list[str | pathlib.Path],
+) -> None:
+    python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+
+    with_args = []
+    for package in with_packages:
+        with_args += ["--with", package]
+
+    subprocess.check_call(
+        [
+            "uv",
+            "run",
+            "--isolated",
+            "--python",
+            python_version,
+            "--find-links",
+            dist_dir.resolve(),
+            *with_args,
+            "--no-project",
+            *command,
+        ],
+        cwd=temporary_directory,
+    )
 
 
 def _unlink_with_retry(
