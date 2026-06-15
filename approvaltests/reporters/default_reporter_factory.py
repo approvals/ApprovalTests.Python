@@ -16,7 +16,9 @@ def set_default_reporter(reporter: Reporter | None) -> None:
 
 def get_default_reporter() -> Reporter:
     instance = getattr(DEFAULT_REPORTER, "instance", None)
-    return instance or FirstWorkingReporter(EnvironmentVariableReporter(), DiffReporter())
+    return instance or FirstWorkingReporter(
+        EnvironmentVariableReporter(), DiffReporter()
+    )
 
 
 def get_reporter(reporter: Reporter | None) -> Reporter:
