@@ -8,3 +8,12 @@ from .scrubbers import (
     templates_regex_scrubber_with_lambda,
     templates_regex_scrubber_with_replacement,
 )
+
+__all__ = [
+    "combine_scrubbers",
+    "create_regex_scrubber",
+    "scrub_all_dates",
+    "scrub_all_guids",
+    "templates_regex_scrubber_with_lambda",
+    "templates_regex_scrubber_with_replacement",
+]
