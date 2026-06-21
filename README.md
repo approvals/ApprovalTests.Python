@@ -17,7 +17,6 @@
       * [Argument Definitions](#argument-definitions)
   * [Reporters](#reporters)
     * [Selecting a Reporter](#selecting-a-reporter)
-    * [JSON file for collection of reporters](#json-file-for-collection-of-reporters)
   * [Support and Documentation](#support-and-documentation)
     * [Missing Documentation?](#missing-documentation)
     * [Dependencies](#dependencies)
@@ -172,28 +171,13 @@ class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
         verify("Hello", options=Options().with_reporter(ReportWithBeyondCompare()))
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L26-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
+
+<sup><a href='/tests/samples/test_getting_started.py#L8-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-You can also use the `GenericDiffReporterFactory` to find and select the first diff utility that exists on our system.
-
-An advantage of this method is you can modify the reporters.json file directly to handle your unique system.
-
-<!-- snippet: select_reporter_from_factory -->
-<a id='snippet-select_reporter_from_factory'></a>
-```py
-class TestSelectReporter(unittest.TestCase):
-    @override
-    def setUp(self):
-        self.factory = GenericDiffReporterFactory()
-
-    def test_simple(self):
-        verify(
-            "Hello", options=Options().with_reporter(self.factory.get("BeyondCompare"))
-        )
-```
-<sup><a href='/tests/samples/test_getting_started.py#L11-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_factory' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+For more about reporters see [intro to reporters](docs\tutorial\intro-to-reporters.md). Many of the
+`ReportWith...` classes (such as `ReportWithBeyondCompare`) automatically pick
+the first matching diff tool installed on your system.
 
 Or you can build your own GenericDiffReporter on the fly
 
@@ -209,53 +193,15 @@ class GettingStartedTest(unittest.TestCase):
             ),
         )
 ```
-<sup><a href='/tests/samples/test_getting_started.py#L35-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/samples/test_getting_started.py#L17-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2`
 then it will be compatible with GenericDiffReporter. Otherwise you will have to derive your own reporter, which
 we won't cover here.
 
-### JSON file for collection of reporters
-
-To wrap things up, I should note that you can completely replace the collection of reporters known to the reporter
-factory by writing your own JSON file and loading it.
-
-For example if you had `C:/myreporters.json`
-
-```json
-[
-    ["BeyondCompare4", "C:/Program Files (x86)/Beyond Compare 4/BCompare.exe"],
-    ["WinMerge", "C:/Program Files (x86)/WinMerge/WinMergeU.exe"],
-    ["Tortoise", "C:/Program Files (x86)/TortoiseSVN/bin/tortoisemerge.exe"]
-]
-```
-
-You could then use that file by loading it into the factory:
-
-```python
-
-import unittest
-
-from approvaltests.approvals import verify
-from approvaltests.reporters.generic_diff_reporter_factory import GenericDiffReporterFactory
-
-
-class GettingStartedTest(unittest.TestCase):
-    def setUp(self):
-        factory = GenericDiffReporterFactory()
-        factory.load('C:/myreporters.json')
-        self.reporter = factory.get_first_working()
-
-    def test_simple(self):
-        verify('Hello', self.reporter)
-
-if __name__ == "__main__":
-    unittest.main()
-```
-
-Of course, if you have some interesting new reporters in `myreporters.json` then please consider updating the
-`reporters.json` file that ships with Approvals and submitting a pull request.
+For more on reporters, including how to write your own, see
+[Create a custom reporter](/docs/how_to/create_a_custom_reporter.md).
 
 ## Support and Documentation
 
