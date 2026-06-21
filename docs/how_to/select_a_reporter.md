@@ -13,7 +13,6 @@ class TestSelectReporterFromClass(unittest.TestCase):
     def test_simple(self):
         verify("Hello", options=Options().with_reporter(ReportWithBeyondCompare()))
 ```
-
 <sup><a href='/tests/samples/test_getting_started.py#L8-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 

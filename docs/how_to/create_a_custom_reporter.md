@@ -1,6 +1,11 @@
 # How to Create a Custom Reporter
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Extend Reporter](#extend-reporter)
+  * [Example Custom Diff Tool](#example-custom-diff-tool)
+  * [Example NumPy](#example-numpy)<!-- endToc -->
 
 ## Extend Reporter
 

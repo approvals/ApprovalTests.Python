@@ -16,7 +16,6 @@
       * [Usage](#usage)
       * [Argument Definitions](#argument-definitions)
   * [Reporters](#reporters)
-    * [Selecting a Reporter](#selecting-a-reporter)
   * [Support and Documentation](#support-and-documentation)
     * [Missing Documentation?](#missing-documentation)
     * [Dependencies](#dependencies)
