@@ -23,7 +23,7 @@ jobs:
           pip install build setuptools wheel twine
       - name: Determine version from git tag
         id: version
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+        run: echo "tag=${GITHUB_REF#refs/*/}" | tee -a $GITHUB_OUTPUT
       - name: set version
         run: python setup/set_version.py ${{ steps.version.outputs.tag }}
       - name: Push changes
