@@ -21,7 +21,7 @@ class LogCommons:
 
             response = requests.get(
                 f"https://raw.githubusercontent.com/approvals/ApprovalTests.CommonScripts/refs/heads/main/{script_name_with_suffix}", 
-                timeout=5
+                timeout=3
             )
             if response.ok:
                 script_path.write_text(response.text)
