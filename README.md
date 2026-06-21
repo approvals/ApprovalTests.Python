@@ -155,8 +155,8 @@ echo "hello world!" | python -m approvaltests -t hello
 
 ## Reporters
 
-A reporter controls how Approval Tests handle a failing test result. 
-The default behavior is to open a diff tool showing what you received vs what you approved. 
+A reporter controls how ApprovalTests handles a failing test result. 
+The default behavior is to open a diff tool showing what you received vs what was approved. 
 You can use this diff tool to change the approved to make the test pass the next time you run it.
 Reporters also have more advanced usages.
 
