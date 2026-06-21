@@ -20,8 +20,8 @@ class LogCommons:
                 return False
 
             response = requests.get(
-                f"https://raw.githubusercontent.com/approvals/ApprovalTests.CommonScripts/refs/heads/main/{script_name_with_suffix}", 
-                timeout=3
+                f"https://raw.githubusercontent.com/approvals/ApprovalTests.CommonScripts/refs/heads/main/{script_name_with_suffix}",
+                timeout=3,
             )
             if response.ok:
                 script_path.write_text(response.text)
