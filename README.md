@@ -156,52 +156,14 @@ echo "hello world!" | python -m approvaltests -t hello
 
 ## Reporters
 
-### Selecting a Reporter
+A reporter controls how Approval Tests handle a failing test result. 
+The default behavior is to open a diff tool showing what you received vs what you approved. 
+You can use this diff tool to change the approved to make the test pass the next time you run it.
+Reporters also have more advanced usages.
 
-All `verify...()` functions take an optional `options` parameter that can configure reporters (as well as many other aspects).
-
-ApprovalTests.Python comes with a few reporters configured, supporting Linux, Mac OSX, and Windows.
-
-In the example shown below, we pass in an `options` with a reporter we're selecting directly:
-
-<!-- snippet: select_reporter_from_class -->
-<a id='snippet-select_reporter_from_class'></a>
-```py
-class TestSelectReporterFromClass(unittest.TestCase):
-    def test_simple(self):
-        verify("Hello", options=Options().with_reporter(ReportWithBeyondCompare()))
-```
-
-<sup><a href='/tests/samples/test_getting_started.py#L8-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-
-For more about reporters see [intro to reporters](docs\tutorial\intro-to-reporters.md). Many of the
-`ReportWith...` classes (such as `ReportWithBeyondCompare`) automatically pick
-the first matching diff tool installed on your system.
-
-Or you can build your own GenericDiffReporter on the fly
-
-<!-- snippet: custom_generic_diff_reporter -->
-<a id='snippet-custom_generic_diff_reporter'></a>
-```py
-class GettingStartedTest(unittest.TestCase):
-    def test_simple(self):
-        verify(
-            "Hello",
-            options=Options().with_reporter(
-                GenericDiffReporter.create(r"C:\my\favorite\diff\utility.exe")
-            ),
-        )
-```
-<sup><a href='/tests/samples/test_getting_started.py#L17-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_generic_diff_reporter' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-
-As long as `C:/my/favorite/diff/utility.exe` can be invoked from the command line using the format `utility.exe file1 file2`
-then it will be compatible with GenericDiffReporter. Otherwise you will have to derive your own reporter, which
-we won't cover here.
-
-For more on reporters, including how to write your own, see
-[Create a custom reporter](/docs/how_to/create_a_custom_reporter.md).
+- [Intro to reporters](/docs/introduction_to_reporters.md)
+- [How to select a reporter](/docs/how_to/select_a_reporter.md)
+- [How to create a custom reporter](/docs/how_to/create_a_custom_reporter.md)
 
 ## Support and Documentation
 
