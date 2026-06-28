@@ -1,4 +1,5 @@
 import pytest
+
 from approval_utilities.utilities.markdown_table import MarkdownTable
 from approvaltests import Options, verify, verify_as_json
 from approvaltests.namer.templated_custom_namer import (
@@ -58,6 +59,14 @@ def test_unknown_template_field_raises_key_error() -> None:
     namer = TemplatedCustomNamer("/my/source/directory/{not_a_real_field}.txt")
     with pytest.raises(KeyError):
         namer.get_approved_filename()
+
+
+def test_repeated_template_field() -> None:
+    """
+    /root/test_repeated_template_field/test_repeated_template_field.txt
+    """
+    namer = TemplatedCustomNamer("/root/{test_case_name}/{test_case_name}.txt")
+    verify(namer.get_approved_filename(), options=Options().inline())
 
 
 def test_relative_test_source_directory_field() -> None:
