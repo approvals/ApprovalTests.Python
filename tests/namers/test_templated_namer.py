@@ -15,13 +15,13 @@ def test_template_fields() -> None:
 
 
 def test_get_received_filename() -> None:
+    """
+    /my/source/directory/received/test_templated_namer.test_get_received_filename.txt
+    """
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
-    assert (
-        namer.get_received_filename() == "/my/source/directory/received/"
-        "test_templated_namer.test_get_received_filename.txt"
-    )
+    verify(namer.get_received_filename(), options=Options().inline())
 
 
 def test_approved_file_extension() -> None:
@@ -32,33 +32,33 @@ def test_approved_file_extension() -> None:
 
 
 def test_get_approved_filename() -> None:
+    """
+    /my/source/directory/approved/test_templated_namer.test_get_approved_filename.txt
+    """
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
-    assert (
-        namer.get_approved_filename() == "/my/source/directory/approved/"
-        "test_templated_namer.test_get_approved_filename.txt"
-    )
+    verify(namer.get_approved_filename(), options=Options().inline())
 
 
 def test_approvals_subdirectory_field() -> None:
+    """
+    /root/my_subdir/approved/test_templated_namer.test_approvals_subdirectory_field.txt
+    """
     namer = TemplatedCustomNamer(
         "/root/{approvals_subdirectory}/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
     namer.namer_parts.config = {"subdirectory": "my_subdir"}
     namer.namer_parts.config_loaded = True
-    assert (
-        namer.get_approved_filename() == "/root/my_subdir/approved/"
-        "test_templated_namer.test_approvals_subdirectory_field.txt"
-    )
+    verify(namer.get_approved_filename(), options=Options().inline())
 
 
 def test_relative_test_source_directory_field() -> None:
+    """
+    tests/namers/approved/test_templated_namer.test_relative_test_source_directory_field.txt
+    """
     namer = TemplatedCustomNamer(
         "{relative_test_source_directory}/{approved_or_received}/"
         "{test_file_name}.{test_case_name}.{file_extension}"
     )
-    assert (
-        namer.get_approved_filename() == "tests/namers/approved/"
-        "test_templated_namer.test_relative_test_source_directory_field.txt"
-    )
+    verify(namer.get_approved_filename(), options=Options().inline())
