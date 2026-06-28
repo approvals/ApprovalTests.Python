@@ -46,6 +46,7 @@ The default `StackFrameNamer` expressed as a template would be:
   existing absolute `{test_source_directory}` field.
 - `{approvals_subdirectory}` reads the same `subdirectory` configuration value
   that `NamerBase.get_basename()` uses; it is empty when no config is present.
+- Template Paths are written using forward slashes; these are handled appropriately regardless of OS
 
 ## Integration
 
