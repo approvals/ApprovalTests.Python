@@ -8,6 +8,16 @@ from approvaltests.namer.templated_custom_namer import (
 )
 
 
+def test_templated_custom_namer_example() -> None:
+    # begin-snippet: templated_custom_namer_example
+    namer = TemplatedCustomNamer(
+        "{test_source_directory}/{approvals_subdirectory}/{approved_or_received}/"
+        "{test_file_name}.{test_case_name}.{file_extension}"
+    )
+    verify("Hello", options=Options().with_namer(namer))
+    # end-snippet
+
+
 def test_template_fields() -> None:
     table = MarkdownTable().with_headers("template", "usage")
     for fields in dir(TemplateFields):
