@@ -1,3 +1,5 @@
+import os
+
 from typing_extensions import override
 
 from approvaltests import Namer, StackFrameNamer
@@ -9,7 +11,6 @@ class TemplateFields:
     test_case_name = "test_case_name"
     file_extension = "file_extension"
     test_source_directory = "test_source_directory"
-    # TODO - the following are not supported yet
     relative_test_source_directory = "relative_test_source_directory"
     approvals_subdirectory = "approvals_subdirectory"
 
@@ -38,5 +39,11 @@ class TemplatedCustomNamer(Namer):
                 TemplateFields.test_case_name: self.namer_parts.get_method_name(),
                 TemplateFields.file_extension: self.namer_parts.get_extension_without_dot(),
                 TemplateFields.test_source_directory: self.namer_parts.directory,
+                TemplateFields.relative_test_source_directory: os.path.relpath(
+                    self.namer_parts.directory
+                ).replace(os.sep, "/"),
+                TemplateFields.approvals_subdirectory: self.namer_parts.get_config().get(
+                    "subdirectory", ""
+                ),
             }
         )
