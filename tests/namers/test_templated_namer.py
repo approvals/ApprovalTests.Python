@@ -51,3 +51,14 @@ def test_approvals_subdirectory_field() -> None:
         namer.get_approved_filename() == "/root/my_subdir/approved/"
         "test_templated_namer.test_approvals_subdirectory_field.txt"
     )
+
+
+def test_relative_test_source_directory_field() -> None:
+    namer = TemplatedCustomNamer(
+        "{relative_test_source_directory}/{approved_or_received}/"
+        "{test_file_name}.{test_case_name}.{file_extension}"
+    )
+    assert (
+        namer.get_approved_filename() == "tests/namers/approved/"
+        "test_templated_namer.test_relative_test_source_directory_field.txt"
+    )
