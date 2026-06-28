@@ -31,6 +31,15 @@ subset that happened to be wired up.
 | `relative_test_source_directory` | the test source directory relative to the current working directory |
 | `approvals_subdirectory` | the configured `subdirectory` from `approvaltests_config.json` (empty if unset) |
 
+## The Default Namer as a Template
+
+The default `StackFrameNamer` expressed as a template would be:
+
+```python
+"{test_source_directory}/{approvals_subdirectory}/"
+"{test_file_name}.{test_case_name}.{approved_or_received}.{file_extension}"
+```
+
 ## Behavior
 
 - `{relative_test_source_directory}` is the relative-path counterpart of the
