@@ -1,32 +1,24 @@
 # This script
 # iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/windows.ps1 | iex
 
-#Requires -RunAsAdministrator
-reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+Start-Process -Verb RunAs powershell 'Invoke-WebRequest -UseBasicParsing -Uri "https://cin.st" | Invoke-Expression'
+Start-Process -Verb RunAs powershell 'Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"; refreshenv'
 
-# Install-PackageProvider -Force -Name NuGet
-# Install-Module -Force PSWindowsUpdate
-# Get-WindowsUpdate
-# Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -IgnoreReboot
+Start-Process -Verb RunAs choco 'feature enable  --name=allowGlobalConfirmation'
+Start-Process -Verb RunAs choco 'feature disable --name=showDownloadProgress'
 
-iwr -useb cin.st | iex
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-refreshenv
+Start-Process -Verb RunAs choco 'install win-no-annoy'
 
-choco feature enable --name=allowGlobalConfirmation
-choco feature disable --name=showDownloadProgress
-
-choco install win-no-annoy
-
-choco install googlechrome setdefaultbrowser --ignore-checksums
+Start-Process -Verb RunAs choco 'install googlechrome --ignore-checksums'
+Start-Process -Verb RunAs choco 'install setdefaultbrowser'
 SetDefaultBrowser.exe chrome
 
-choco install powershell-core
+Start-Process -Verb RunAs choco 'install powershell-core'
 
-choco install git poshgit github-desktop
+Start-Process -Verb RunAs choco 'install git poshgit github-desktop'
 Set-Alias github $env:LOCALAPPDATA\GitHubDesktop\bin\github.bat
 
-choco install beyondcompare
+Start-Process -Verb RunAs choco 'install beyondcompare'
 
 # delete annoying Windows notification sounds
 Remove-Item -ErrorAction SilentlyContinue -Recurse HKCU:\AppEvents\Schemes
@@ -37,7 +29,7 @@ Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanc
 # Open new explorer windows to This PC instead of Quick Access
 Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced LaunchTo 1
 
-choco install vscode
+Start-Process -Verb RunAs choco 'install vscode'
 @(
     'wmaurer.change-case'
     'streetsidesoftware.code-spell-checker'
@@ -73,18 +65,18 @@ choco install vscode
 $ProgressPreference = 'SilentlyContinue'
 $mobtimeMsiUrl = (Invoke-RestMethod https://api.github.com/repos/GreatWebGuy/MobTime/releases/latest).assets |
     Where-Object { $_.name -like '*.msi' } | Select-Object -First 1 -ExpandProperty browser_download_url
-iwr $mobtimeMsiUrl -O MobTime.msi
+Invoke-WebRequest $mobtimeMsiUrl -O MobTime.msi
 ./MobTime.msi /qr
 
 & "${env:ProgramFiles}\Google\Chrome\Application\chrome.exe" https://app.mindmup.com/map/new
 
 # Clean up the task bar
-choco install syspin --ignore-checksums
+Start-Process -Verb RunAs choco 'install syspin --ignore-checksums'
 syspin "C:\Program Files\Google\Chrome\Application\chrome.exe" "Pin to taskbar"
 syspin "C:\Users\Administrator\AppData\Local\GitHubDesktop\GitHubDesktop.exe" "Pin to taskbar"
 syspin  "C:\Users\Administrator\AppData\Local\MobTime\MobTime.exe" "Pin to taskbar"
 syspin "C:\Program Files\internet explorer\iexplore.exe" "Unpin from taskbar"
 
-choco install taskbar-winconfig --params "'/CORTANA:no /INK:no /PEOPLE:no /TASKVIEW:no /KEYBOARD:no'"
-choco uninstall taskbar-winconfig
+Start-Process -Verb RunAs choco 'install taskbar-winconfig --params "'/CORTANA:no /INK:no /PEOPLE:no /TASKVIEW:no /KEYBOARD:no'"'
+Start-Process -Verb RunAs choco 'uninstall taskbar-winconfig'
 
