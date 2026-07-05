@@ -8,10 +8,10 @@
 iwr -useb https://raw.githubusercontent.com/approvals/approvaltests.python/main/windows.ps1 | iex
 
 
-winget install -e --id ScooterSoftware.BeyondCompare --accept-package-agreements --accept-source-agreements
-winget install -e --id JetBrains.PyCharm.Professional --accept-package-agreements --accept-source-agreements
-winget install -e --id jdx.mise --accept-package-agreements --accept-source-agreements
-winget install -e --id OpenJS.NodeJS --accept-package-agreements --accept-source-agreements
+choco install beyondcompare
+choco install pycharm
+choco install mise
+choco install nodejs
 # Python and uv are managed by mise (see .python-version and .mise.toml), so we don't install them separately.
 
 # AI coding agents
