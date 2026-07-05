@@ -31,7 +31,7 @@ cd C:\Code\ApprovalTests.Python
 # Let mise provision the toolchain (python from .python-version, uv from .mise.toml) and run the build
 mise trust
 mise install
-mise run build_and_test
+./build_and_test
 
 
 # Done
