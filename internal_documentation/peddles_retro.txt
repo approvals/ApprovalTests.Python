@@ -1,0 +1,8 @@
+patterns
+emotions
+tools
+team
+domain
+language
+events
+surprises
