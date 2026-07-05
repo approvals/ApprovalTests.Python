@@ -1,24 +1,21 @@
 # To run this script directly, run this in an elevated admin PowerShell prompt:
-#     Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/approvals/ApprovalTests.Python/master/install.windows.ps1 | Invoke-Expression
+#     Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/approvals/ApprovalTests.Python/main/install.windows.ps1 | Invoke-Expression
 
 # This script is intended to setup a dev machine from scratch. Very useful for setting up a EC2 instance for mobbing.
 #
 
 
-iwr -useb https://raw.githubusercontent.com/approvals/approvaltests.python/main/windows.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/approvals/ApprovalTests.Python/main/windows.ps1 | iex
 
 
 choco install beyondcompare
 choco install pycharm
 choco install mise
-choco install nodejs
-# Python and uv are managed by mise (see .python-version and .mise.toml), so we don't install them separately.
+choco install windsurf
+choco install python
 
 # AI coding agents
-npm install -g @anthropic-ai/claude-code   # `claude`
-
-# Instructions for AI agents:
-# install devin
+irm https://claude.ai/install.ps1 | iex
 
 
 syspin "C:\Program Files\JetBrains\PyCharm 2025.1.1.1\bin\pycharm64.exe" "Pin to taskbar"
