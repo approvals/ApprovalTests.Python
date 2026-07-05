@@ -10,6 +10,9 @@ reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v En
 # Install-WindowsUpdate -MicrosoftUpdate -AcceptAll -IgnoreReboot
 
 iwr -useb cin.st | iex
+Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+refreshenv
+
 choco feature enable --name=allowGlobalConfirmation
 choco feature disable --name=showDownloadProgress
 
