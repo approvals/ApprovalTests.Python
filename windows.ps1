@@ -1,8 +1,6 @@
 # This script
 # iwr -useb https://raw.githubusercontent.com/JayBazuzi/machine-setup/main/windows.ps1 | iex
 
-Write-Host -Foreground yellow "Warning: You will need to Reboot when done or AnyDesk will not work properly"
-
 #Requires -RunAsAdministrator
 reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
 
@@ -25,7 +23,6 @@ choco install powershell-core
 choco install git poshgit github-desktop
 Set-Alias github $env:LOCALAPPDATA\GitHubDesktop\bin\github.bat
 
-choco install notepadplusplus
 choco install beyondcompare
 
 # delete annoying Windows notification sounds
