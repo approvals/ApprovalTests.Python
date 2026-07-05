@@ -22,6 +22,10 @@ syspin "C:\Program Files\JetBrains\PyCharm 2025.1.1.1\bin\pycharm64.exe" "Pin to
 
 # Clone repo
 & "C:\Program Files\Git\cmd\git.exe" clone https://github.com/approvals/ApprovalTests.Python.git C:\Code\ApprovalTests.Python
+
+# We cloned as admin; make the repo usable by everyone on this (shared mobbing) box
+icacls C:\Code\ApprovalTests.Python /grant "Users:(OI)(CI)F" /T
+
 cd C:\Code\ApprovalTests.Python
 
 # Let mise provision the toolchain (python from .python-version, uv from .mise.toml) and run the build
