@@ -18,7 +18,7 @@ choco feature disable --name=showDownloadProgress
 
 choco install win-no-annoy
 
-choco install googlechrome setdefaultbrowser
+choco install googlechrome setdefaultbrowser --ignore-checksums
 SetDefaultBrowser.exe chrome
 
 choco install powershell-core
