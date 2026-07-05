@@ -68,8 +68,9 @@ choco install vscode
 '@ | Out-File -Encoding ASCII $env:APPDATA\Code\User\settings.json
 
 $ProgressPreference = 'SilentlyContinue'
-$mobtimeVersion = '1.7.4'
-iwr https://github.com/GreatWebGuy/MobTime/releases/download/v$mobtimeVersion/MobTime-$mobtimeVersion.msi -O MobTime.msi
+$mobtimeMsiUrl = (Invoke-RestMethod https://api.github.com/repos/GreatWebGuy/MobTime/releases/latest).assets |
+    Where-Object { $_.name -like '*.msi' } | Select-Object -First 1 -ExpandProperty browser_download_url
+iwr $mobtimeMsiUrl -O MobTime.msi
 ./MobTime.msi /qr
 
 & "${env:ProgramFiles}\Google\Chrome\Application\chrome.exe" https://app.mindmup.com/map/new
