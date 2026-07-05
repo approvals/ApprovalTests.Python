@@ -7,8 +7,6 @@
 
 iwr -useb https://raw.githubusercontent.com/approvals/ApprovalTests.Python/main/windows.ps1 | iex
 
-
-choco install beyondcompare
 choco install pycharm
 choco install mise
 choco install windsurf
