@@ -21,7 +21,7 @@ class FilePathNamer(StackFrameNamer):
         self.file_path = file_path
 
     @override
-    def get_approved_filename(self, base: str | None = None) -> str:
+    def get_approved_filename(self) -> str:
         return self.file_path
 
 

@@ -1,8 +1,8 @@
   ```mermaid
 classDiagram
     class Namer {
-        +get_received_filename(base: Optional[str]): str
-        +get_approved_filename(base: Optional[str]): str
+        +get_received_filename(): str
+        +get_approved_filename(): str
     }
 
     class NamerBase {
@@ -15,8 +15,8 @@ classDiagram
         +config_directory(): str
         +get_config(): Dict
         +get_basename(): str
-        +get_received_filename(base: Optional[str]): str
-        +get_approved_filename(base: Optional[str]): str
+        +get_received_filename(): str
+        +get_approved_filename(): str
         +set_extension(extension: str): None
     }
     Namer <|-- NamerBase
@@ -44,8 +44,8 @@ classDiagram
         -namer_parts: StackFrameNamer
         +__init__(template: str): None
         +set_extension(extension_with_dot: str): None
-        +get_received_filename(base: Optional[str]): str
-        +get_approved_filename(base: Optional[str]): str
+        +get_received_filename(): str
+        +get_approved_filename(): str
         +format_filename(approved_or_received: str): str
     }
     Namer <|-- TemplatedCustomNamer

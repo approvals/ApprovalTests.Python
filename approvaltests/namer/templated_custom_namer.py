@@ -24,11 +24,11 @@ class TemplatedCustomNamer(Namer):
         self.namer_parts.set_extension(extension_with_dot)
 
     @override
-    def get_received_filename(self, base: str | None = None) -> str:
+    def get_received_filename(self) -> str:
         return self.format_filename(self.RECEIVED_WITHOUT_DOT)
 
     @override
-    def get_approved_filename(self, base: str | None = None) -> str:
+    def get_approved_filename(self) -> str:
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
     def format_filename(self, approved_or_received: str) -> str:
