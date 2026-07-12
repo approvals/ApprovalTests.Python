@@ -194,7 +194,7 @@ These dependencies are always required for approvaltests
 <!-- snippet: requirements.prod.required.txt -->
 <a id='snippet-requirements.prod.required.txt'></a>
 ```txt
-pytest>=9.0.3
+pytest>=4.0.0
 empty-files>=0.0.3
 typing_extensions>=4.12.0
 ```
