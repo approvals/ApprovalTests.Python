@@ -23,14 +23,12 @@ class ScenarioNamer(Namer):
         return f"{basename}.{scenarios}"
 
     @override
-    def get_approved_filename(self, base: str | None = None) -> str:
-        base = base or self.get_basename()
-        return self.base_namer.get_approved_filename(base)
+    def get_approved_filename(self) -> str:
+        return self.get_basename() + Namer.APPROVED + self.base_namer.extension_with_dot
 
     @override
-    def get_received_filename(self, base: str | None = None) -> str:
-        base = base or self.get_basename()
-        return self.base_namer.get_received_filename(base)
+    def get_received_filename(self) -> str:
+        return self.get_basename() + Namer.RECEIVED + self.base_namer.extension_with_dot
 
     def set_extension(self, extension: str) -> None:
         self.base_namer.set_extension(extension)

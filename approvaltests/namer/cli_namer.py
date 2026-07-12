@@ -8,11 +8,11 @@ class CliNamer(Namer):
         self.test_id = test_id
 
     @override
-    def get_received_filename(self, base: str | None = None) -> str:
+    def get_received_filename(self) -> str:
         return f"{self.test_id}.received.txt"
 
     @override
-    def get_approved_filename(self, base: str | None = None) -> str:
+    def get_approved_filename(self) -> str:
         return f"{self.test_id}.approved.txt"
 
     def get_basename(self) -> str:

@@ -8,9 +8,9 @@ class Namer(ABC):
     RECEIVED = "." + RECEIVED_WITHOUT_DOT
 
     @abstractmethod
-    def get_received_filename(self, base: str | None = None) -> str:
+    def get_received_filename(self) -> str:
         pass
 
     @abstractmethod
-    def get_approved_filename(self, base: str | None = None) -> str:
+    def get_approved_filename(self) -> str:
         pass
