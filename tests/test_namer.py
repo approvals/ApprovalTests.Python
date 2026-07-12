@@ -34,16 +34,23 @@ class NamerTests(unittest.TestCase):
 
     def test_received_name(self) -> None:
         filename = StackFrameNamer().get_received_filename()
-        self.assertTrue(filename.endswith("NamerTests.test_received_name.received.txt"), filename)
+        self.assertTrue(
+            filename.endswith("NamerTests.test_received_name.received.txt"), filename
+        )
 
     def test_approved_name(self) -> None:
         filename = StackFrameNamer().get_approved_filename()
-        self.assertTrue(filename.endswith("NamerTests.test_approved_name.approved.txt"), filename)
+        self.assertTrue(
+            filename.endswith("NamerTests.test_approved_name.approved.txt"), filename
+        )
 
     def test_alternative_extension(self) -> None:
         n = StackFrameNamer(extension=".html")
         filename = n.get_approved_filename()
-        self.assertTrue(filename.endswith("NamerTests.test_alternative_extension.approved.html"), filename)
+        self.assertTrue(
+            filename.endswith("NamerTests.test_alternative_extension.approved.html"),
+            filename,
+        )
 
     def test_additional_information(self) -> None:
         assert_ends_with(
