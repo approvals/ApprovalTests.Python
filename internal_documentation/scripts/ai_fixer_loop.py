@@ -15,6 +15,15 @@ def get_script_path(script_name: Path) -> Path:
     return base_path
 
 
+def _print_output(result: subprocess.CompletedProcess[str]) -> None:
+    if result.stdout:
+        print("--- STDOUT ---")
+        print(result.stdout)
+    if result.stderr:
+        print("--- STDERR ---")
+        print(result.stderr)
+
+
 def run_script(script_path: Path, display_name: str) -> bool:
     start_time = time.time()
     result = subprocess.run(
@@ -32,12 +41,7 @@ def run_script(script_path: Path, display_name: str) -> bool:
         print(f"{SUCCESS_EMOJI} {display_name} [{duration:.2f}s]")
     else:
         print(f"{FAILURE_EMOJI} {display_name} [{duration:.2f}s]")
-        if result.stdout:
-            print("--- STDOUT ---")
-            print(result.stdout)
-        if result.stderr:
-            print("--- STDERR ---")
-            print(result.stderr)
+        _print_output(result)
 
     return result.returncode == 0
 
@@ -107,6 +111,7 @@ def main() -> None:
             print(f"{SUCCESS_EMOJI} tcr: committed [{duration:.2f}s]")
         else:
             print(f"{FAILURE_EMOJI} tcr: reverted [{duration:.2f}s]")
+            _print_output(tcr_result)
 
     else:  # This else belongs to the for loop
         print("Loop finished after 1000 runs. Stopping to prevent infinite loops.")
