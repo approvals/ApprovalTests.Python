@@ -1,6 +1,13 @@
+from unittest.mock import MagicMock, patch
+
+import psutil
+
 from approvaltests import Options, verify
 from approvaltests.inline.parse_docstring import parse_docstring
-from approvaltests.reporters.intellij_reporter import find_jetbrains_ides
+from approvaltests.reporters.intellij_reporter import (
+    find_jetbrains_ides,
+    get_running_process_paths,
+)
 
 
 def test_find_jetbrains_ides() -> None:
@@ -33,3 +40,30 @@ def test_find_jetbrains_ides_no_processes() -> None:
     (no match)
     """
     verify(find_jetbrains_ides([]) or "(no match)", options=Options().inline())
+
+
+def test_get_running_process_paths_falls_back_to_cmdline_on_access_denied() -> None:
+    """
+    /usr/bin/pycharm
+    /usr/bin/pycharm
+    /opt/idea/bin/idea.sh
+    """
+    readable_process = MagicMock()
+    readable_process.exe.return_value = "/usr/bin/pycharm"
+    readable_process.cmdline.return_value = ["/usr/bin/pycharm"]
+
+    exe_denied_process = MagicMock()
+    exe_denied_process.exe.side_effect = psutil.AccessDenied()
+    exe_denied_process.cmdline.return_value = ["/opt/idea/bin/idea.sh"]
+
+    fully_denied_process = MagicMock()
+    fully_denied_process.exe.side_effect = psutil.NoSuchProcess(0)
+    fully_denied_process.cmdline.side_effect = psutil.AccessDenied()
+
+    with patch(
+        "psutil.process_iter",
+        return_value=[readable_process, exe_denied_process, fully_denied_process],
+    ):
+        paths = get_running_process_paths()
+
+    verify("\n".join(paths), options=Options().inline())

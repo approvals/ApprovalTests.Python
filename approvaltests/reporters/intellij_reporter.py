@@ -43,23 +43,23 @@ def get_running_process_paths() -> list[str]:
     import psutil
 
     paths = []
-    for process in psutil.process_iter(["exe"]):
+    for process in psutil.process_iter():
         try:
-            exe = process.info["exe"]
+            exe = process.exe()
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-            continue
+            exe = None
         if exe:
             paths.append(exe)
+
+        try:
+            cmdline = process.cmdline()
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            cmdline = []
+        paths.extend(cmdline)
     return paths
 
 
-class IntelliJReporter(GenericDiffReporter):
-    """
-    Automatically detects a running JetBrains IDE process and
-    uses it to display diffs when an approval test fails.
-    """
-
-    INSTANCE: "IntelliJReporter"
+class ReportWithIntellijTools(GenericDiffReporter):
 
     def __init__(self) -> None:
         super().__init__(
@@ -77,4 +77,3 @@ class IntelliJReporter(GenericDiffReporter):
         return super().is_working()
 
 
-IntelliJReporter.INSTANCE = IntelliJReporter()

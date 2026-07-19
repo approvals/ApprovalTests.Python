@@ -1,3 +1,4 @@
+from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.generic_diff_reporter_factory import (
     GenericDiffReporterFactory,
 )
@@ -8,7 +9,7 @@ from .diff_tools import (
     ReportWithDiffToolOnWindows,
 )
 from .first_working_reporter import FirstWorkingReporter
-from .intellij_reporter import IntelliJReporter
+from .intellij_reporter import ReportWithIntellijTools
 from .python_native_reporter import PythonNativeReporter
 
 
@@ -26,13 +27,14 @@ class DiffReporter(FirstWorkingReporter):
     def __init__(self, reporter_factory=None) -> None:
         factory = reporter_factory or GenericDiffReporterFactory()
 
-        reporters = list(factory.get_all_reporters_from_config())
+        reporters: list[Reporter] = []
+        reporters.extend(factory.get_all_reporters_from_config())
         reporters.extend(
             [
+                ReportWithIntellijTools(),
                 ReportWithDiffToolOnWindows(),
                 ReportWithDiffToolOnMac(),
                 ReportWithDiffToolOnLinux(),
-                IntelliJReporter(),
                 PythonNativeReporter(),
             ]
         )

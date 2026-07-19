@@ -22,3 +22,6 @@ the first matching diff tool installed on your system.
 
 For more on reporters, including how to write your own, see
 [Create a custom reporter](/docs/how_to/create_a_custom_reporter.md).
+
+If you use a JetBrains IDE (IntelliJ, PyCharm, WebStorm, etc.), see
+[Use the IntelliJ reporter](/docs/how_to/use_the_intellij_reporter.md) for automatic detection.
