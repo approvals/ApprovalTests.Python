@@ -60,7 +60,6 @@ def get_running_process_paths() -> list[str]:
 
 
 class ReportWithIntellijTools(GenericDiffReporter):
-
     def __init__(self) -> None:
         super().__init__(
             config=GenericDiffReporterConfig(
@@ -75,5 +74,3 @@ class ReportWithIntellijTools(GenericDiffReporter):
     def is_working(self) -> bool:
         self.path = find_jetbrains_ides(get_running_process_paths())
         return super().is_working()
-
-

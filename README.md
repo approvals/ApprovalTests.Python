@@ -222,8 +222,11 @@ allpairspy>=2.1.0
 # For utilities.logging.logging_approvals.verify_logging()
 testfixtures >= 7.1.0, < 12
 mock >= 5.1.0
+
+# For reporters.intellij_reporter.IntelliJReporter
+psutil >= 5.9.0
 ```
-<sup><a href='/requirements.prod.extras.txt#L1-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/requirements.prod.extras.txt#L1-L15' title='Snippet source file'>snippet source</a> | <a href='#snippet-requirements.prod.extras.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## For developers
