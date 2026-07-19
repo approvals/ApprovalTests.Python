@@ -14,7 +14,7 @@ from approvaltests.reporters.intellij_reporter import (
 
 # begin-snippet: use_intellij_reporter
 class TestUseIntellijReporter(unittest.TestCase):
-    def test_simple(self):
+    def test_simple(self) -> None:
         verify("Hello", options=Options().with_reporter(ReportWithIntellijTools()))
 
 
