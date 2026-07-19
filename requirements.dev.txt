@@ -10,3 +10,4 @@ types-setuptools
 types-PyYAML
 types-pyperclip
 types-beautifulsoup4
+types-psutil

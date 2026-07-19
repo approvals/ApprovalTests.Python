@@ -35,3 +35,12 @@ Uses `diff %s %s` with the detected IDE executable, passing the received file an
 
 ## Integration
 `IntelliJReporter` is part of the reporter auto-detection chain. `findJetBrainsIdes(String[])` is public and testable independently of running processes.
+
+
+## Issues
+* Name is not consistent -> ReportWithIntellijTools
+* exe (windows) but also mac and linux
+* Before all other reporters in diffreporter
+* need how_to page
+
+

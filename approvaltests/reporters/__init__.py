@@ -8,6 +8,7 @@ from .first_working_reporter import *
 from .generic_diff_reporter import *
 from .generic_diff_reporter_config import *
 from .generic_diff_reporter_factory import *
+from .intellij_reporter import *
 from .multi_reporter import *
 from .python_native_reporter import *
 from .received_file_launcher_reporter import *

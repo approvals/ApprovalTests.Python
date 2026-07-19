@@ -10,3 +10,6 @@ allpairspy>=2.1.0
 # For utilities.logging.logging_approvals.verify_logging()
 testfixtures >= 7.1.0, < 12
 mock >= 5.1.0
+
+# For reporters.intellij_reporter.IntelliJReporter
+psutil >= 5.9.0

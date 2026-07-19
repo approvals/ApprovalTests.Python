@@ -8,6 +8,7 @@ from .diff_tools import (
     ReportWithDiffToolOnWindows,
 )
 from .first_working_reporter import FirstWorkingReporter
+from .intellij_reporter import IntelliJReporter
 from .python_native_reporter import PythonNativeReporter
 
 
@@ -31,6 +32,7 @@ class DiffReporter(FirstWorkingReporter):
                 ReportWithDiffToolOnWindows(),
                 ReportWithDiffToolOnMac(),
                 ReportWithDiffToolOnLinux(),
+                IntelliJReporter(),
                 PythonNativeReporter(),
             ]
         )
