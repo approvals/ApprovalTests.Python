@@ -1,0 +1,6 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); model=$(echo \"$input\" | jq -r '.model.display_name'); effort=$(echo \"$input\" | jq -r '.effort.level // empty'); if [ -n \"$effort\" ]; then printf '%s (effort: %s)' \"$model\" \"$effort\"; else printf '%s' \"$model\"; fi"
+  }
+}
