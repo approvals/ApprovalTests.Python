@@ -4,15 +4,15 @@
 
 ## Basic Usage
 
+<!-- snippet: use_intellij_reporter -->
+<a id='snippet-use_intellij_reporter'></a>
 ```py
-verify("Hello", options=Options().with_reporter(ReportWithIntellijTools()))
+class TestUseIntellijReporter(unittest.TestCase):
+    def test_simple(self):
+        verify("Hello", options=Options().with_reporter(ReportWithIntellijTools()))
 ```
-
-Or use the shared singleton:
-
-```py
-verify("Hello", options=Options().with_reporter(ReportWithIntellijTools()))
-```
+<sup><a href='/tests/reporters/test_intellij_reporter.py#L16-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_intellij_reporter' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 `ReportWithIntellijTools` is also included first in the default `DiffReporter` chain, so if a supported IDE is running, it's picked automatically without any extra setup.
 

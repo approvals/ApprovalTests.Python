@@ -1,3 +1,4 @@
+import unittest
 from unittest.mock import MagicMock, patch
 
 import psutil
@@ -5,9 +6,19 @@ import psutil
 from approvaltests import Options, verify
 from approvaltests.inline.parse_docstring import parse_docstring
 from approvaltests.reporters.intellij_reporter import (
+    ReportWithIntellijTools,
     find_jetbrains_ides,
     get_running_process_paths,
 )
+
+
+# begin-snippet: use_intellij_reporter
+class TestUseIntellijReporter(unittest.TestCase):
+    def test_simple(self):
+        verify("Hello", options=Options().with_reporter(ReportWithIntellijTools()))
+
+
+# end-snippet
 
 
 def test_find_jetbrains_ides() -> None:
