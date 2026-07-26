@@ -12,6 +12,7 @@ select = [
 ignore = [
     "D", # pydocstyle
     "TD", # TODO comments
+    "CPY001", # Missing copyright notice at top of file
 
     # auto-fixable if we want to enable them in the future
     "COM812",  # Trailing comma missing
