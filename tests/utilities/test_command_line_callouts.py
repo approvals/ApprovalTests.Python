@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from approvaltests import Options
+from approvaltests import Options, verify_argument_parser
 from approvaltests.utilities.command_line_approvals import (
     verify_command_line,
     verify_command_line_with_inputs,
@@ -15,6 +15,12 @@ def test_verify_command_line_with_input() -> None:
     verify_command_line(
         'python -c "import sys; print(sys.stdin.read())"', input_string="input"
     )
+
+
+def test_argument_parser() -> None:
+    from approvaltests.commandline_interface import _get_argument_parser
+
+    verify_argument_parser(_get_argument_parser())
 
 
 def test_command_line_verify() -> None:

@@ -1,0 +1,9 @@
+usage: __main__.py [-h] --test-id ID [--received RECEIVED]
+
+verify
+
+<optional header>:
+  -h, --help            show this help message and exit
+  --test-id ID, -t ID   test id
+  --received RECEIVED, -r RECEIVED
+                        received
