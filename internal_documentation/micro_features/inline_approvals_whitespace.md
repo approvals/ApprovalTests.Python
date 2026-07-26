@@ -18,7 +18,7 @@ How inline approvals handles whitespace in docstrings and verified strings, incl
    - If any line has trailing whitespace the reporter appends a warning on the same line as the closing triple quotes:
    ```python
    """
-   your expected content here    
+   your expected content here
    """  # Warning: Editors may remove trailing spaces, causing this test to fail
    ```
 

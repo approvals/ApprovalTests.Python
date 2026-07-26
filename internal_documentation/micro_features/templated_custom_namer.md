@@ -37,6 +37,7 @@ The default `StackFrameNamer` expressed as a template would be:
 
 ```python
 "{test_source_directory}/{approvals_subdirectory}/"
+
 "{test_file_name}.{test_case_name}.{approved_or_received}.{file_extension}"
 ```
 

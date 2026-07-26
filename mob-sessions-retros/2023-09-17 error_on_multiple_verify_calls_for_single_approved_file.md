@@ -55,9 +55,9 @@ This test should fail
 
 ```python
 def test_multiple_calls_to_verify():
-  error_on_multiple_verify_calls(True)
-  verify("call to verify")
-  verify("call to verify")
+    error_on_multiple_verify_calls(True)
+    verify("call to verify")
+    verify("call to verify")
 ```
 
 # Retro

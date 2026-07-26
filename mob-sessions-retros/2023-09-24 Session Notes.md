@@ -17,9 +17,9 @@ Still to do for our feature:
 - option #4 - use something like .with_context_manager 
 - allow the user to use mulitpl verifies for one test, not for all of the verifies 
 ```python
-with open('myfile.txt', 'r') as f:
-  content = f.read()
-  # Do something with the content...
+with open("myfile.txt", "r") as f:
+    content = f.read()
+    # Do something with the content...
 
 # File is automatically closed outside the "with" block
 ```
