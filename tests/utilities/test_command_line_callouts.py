@@ -1,6 +1,6 @@
 from pathlib import Path
-import pytest
 import sys
+import pytest
 
 from approvaltests import Options, verify_argument_parser
 from approvaltests.utilities.command_line_approvals import (
