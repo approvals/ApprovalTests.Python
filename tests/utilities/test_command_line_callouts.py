@@ -1,4 +1,6 @@
 from pathlib import Path
+import pytest
+import sys
 
 from approvaltests import Options, verify_argument_parser
 from approvaltests.utilities.command_line_approvals import (
@@ -16,7 +18,7 @@ def test_verify_command_line_with_input() -> None:
         'python -c "import sys; print(sys.stdin.read())"', input_string="input"
     )
 
-
+@pytest.mark.skipif(sys.version_info < (3, 13), reason="arparse help formatting of metavars changed: https://github.com/python/cpython/issues/101599")
 def test_argument_parser() -> None:
     from approvaltests.commandline_interface import _get_argument_parser
 

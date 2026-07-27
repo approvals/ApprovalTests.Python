@@ -4,6 +4,6 @@ verify
 
 <optional header>:
   -h, --help            show this help message and exit
-  --test-id ID, -t ID   test id
-  --received RECEIVED, -r RECEIVED
+  --test-id, -t ID      test id
+  --received, -r RECEIVED
                         received
