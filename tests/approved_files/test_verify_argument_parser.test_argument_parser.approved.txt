@@ -1,4 +1,4 @@
-usage: my_program.py [-h] [--optional_argument OPTIONAL_ARGUMENT] 1st_argument long_argument
+usage: my_program.py [-h] [--optional_argument OPTIONAL_ARGUMENT] [-c COUNT] 1st_argument long_argument
 
 My Description
 
@@ -12,3 +12,5 @@ positional arguments:
   -h, --help            show this help message and exit
   --optional_argument OPTIONAL_ARGUMENT
                         An Optional Argument help text
+  -c COUNT, --count COUNT
+                        Number of items to process
