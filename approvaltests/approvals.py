@@ -433,5 +433,5 @@ def verify_argument_parser(
 
     verify(
         parser.format_help(),
-        options=options.with_scrubber(scrubber),
+        options=options.add_scrubber(scrubber),
     )
