@@ -1,4 +1,4 @@
-usage: __main__.py [-h] --test-id ID [--received RECEIVED]
+usage: <SCRUBBED_PROG> [-h] --test-id ID [--received RECEIVED]
 
 verify
 
