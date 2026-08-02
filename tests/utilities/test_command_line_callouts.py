@@ -32,6 +32,13 @@ def test_argument_parser() -> None:
         options=Options().with_scrubber(lambda s: s.replace("usage: python.exe -m pytest", "usage: __main__.py")),
     )
 
+def test_argument_parser_scrubs() -> None:
+    from approvaltests.commandline_interface import _get_argument_parser
+
+    verify_argument_parser(
+        _get_argument_parser(),
+        options=Options().with_scrubber(lambda s: "<SCRUBBED>"),
+    )
 
 def test_command_line_verify() -> None:
     import tempfile
