@@ -29,10 +29,7 @@ def test_argument_parser() -> None:
 
     subject = _get_argument_parser()
     subject.prog = "<SCRUBBED_PROG>"
-    verify_argument_parser(
-        subject
-    )
-
+    verify_argument_parser(subject)
 
 
 def test_command_line_verify() -> None:

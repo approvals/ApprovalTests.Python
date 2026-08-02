@@ -14,6 +14,7 @@ def test_argument_parser() -> None:
     parser.add_argument("long_argument", help=f"{'Very' * 100} Long message")
     verify_argument_parser(parser)
 
+
 def test_argument_parser_scrubs() -> None:
     """
     <SCRUBBED>
