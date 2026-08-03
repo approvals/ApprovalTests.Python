@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: echo "${{ matrix.python-version }}" > .python-version
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.3
       - run: ./build_and_test.sh
         shell: bash
       - name: Publish Test Report

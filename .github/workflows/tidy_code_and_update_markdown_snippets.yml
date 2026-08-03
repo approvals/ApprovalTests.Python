@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
-    - uses: jdx/mise-action@v4
+    - uses: jdx/mise-action@v4.2.3
     - run: mise install  # retry for network issues
     - run: mise pip-install || mise pip-install  # retry for network issues
     - run: ./tidy_code.sh
