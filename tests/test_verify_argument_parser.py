@@ -2,8 +2,9 @@ import argparse
 import sys
 
 from approvaltests import verify_argument_parser
-from approvaltests.namer.default_namer_factory import NamerFactory
 from approvaltests.core.options import Options
+from approvaltests.namer.default_namer_factory import NamerFactory
+
 
 def test_argument_parser() -> None:
     parser = argparse.ArgumentParser(
