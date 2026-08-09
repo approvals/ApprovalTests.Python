@@ -6,6 +6,11 @@ if ! command -v mise >/dev/null 2>&1; then
   exit 127
 fi
 
+if [[ $# -gt 0 ]]; then
+  echo "$1" > .python-version
+  eval "$(mise hook-env --force)"
+fi
+
 if [[ -f .venv/pyvenv.cfg ]]; then
   wanted_version=$(<.python-version)
   venv_version=$(sed -n 's/^version_info = //p' .venv/pyvenv.cfg)
