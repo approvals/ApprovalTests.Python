@@ -12,5 +12,4 @@ positional arguments:
   -h, --help            show this help message and exit
   --optional_argument OPTIONAL_ARGUMENT
                         An Optional Argument help text
-  -c COUNT, --count COUNT
-                        Number of items to process
+  -c, --count COUNT     Number of items to process
