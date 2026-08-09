@@ -11,6 +11,7 @@ def test_argument_parser() -> None:
     )
     parser.add_argument("1st_argument", help="1st argument help text")
     parser.add_argument("--optional_argument", help="An Optional Argument help text")
+    parser.add_argument("-c", "--count", type=int, help="Number of items to process")
     parser.add_argument("long_argument", help=f"{'Very' * 100} Long message")
     verify_argument_parser(parser)
 
