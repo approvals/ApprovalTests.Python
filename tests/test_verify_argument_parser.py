@@ -15,9 +15,8 @@ def test_argument_parser() -> None:
     parser.add_argument("-c", "--count", type=int, help="Number of items to process")
     parser.add_argument("long_argument", help=f"{'Very' * 100} Long message")
     help_includes_duplicate_metavars = sys.version_info < (3, 13)
-    options = NamerFactory.with_parameters("help_includes_duplicate_metavars")
     if help_includes_duplicate_metavars:
-        pass
+        options = NamerFactory.with_parameters("help_includes_duplicate_metavars")
     else:
         options = None
     verify_argument_parser(
