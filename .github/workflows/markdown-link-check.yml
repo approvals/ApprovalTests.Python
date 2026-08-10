@@ -1,0 +1,14 @@
+name: Check Markdown links
+
+on: 
+    push:
+    workflow_dispatch:
+    schedule:
+        - cron: '13 6 * * 0'  # [https://crontab.guru/#13_6_*_*_0](At 06:13 on Sunday)
+
+jobs:
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: tcort/github-action-markdown-link-check@v1
