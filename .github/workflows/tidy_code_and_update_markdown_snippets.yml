@@ -11,8 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v7
     - uses: jdx/mise-action@v4.2.4
-    - run: mise install  # retry for network issues
-    - run: mise pip-install || mise pip-install  # retry for network issues
     - run: ./tidy_code
     # ensure that the above changes didn't break the build
     - run: ./build_and_test
