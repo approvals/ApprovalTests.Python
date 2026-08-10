@@ -1,3 +1,9 @@
 {
-  "baseUrl": "https://github.com/approvals/ApprovalTests.Python/blob/main/"
+  "projectBaseUrl": "https://github.com/approvals/ApprovalTests.Python/blob/main",
+  "replacementPatterns": [
+    {
+      "pattern": "^/",
+      "replacement": "{{BASEURL}}/"
+    }
+  ]
 }
