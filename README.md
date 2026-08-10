@@ -34,8 +34,8 @@ For more information see: [www.approvaltests.com](http://approvaltests.com/).
 [![PyPI version](https://img.shields.io/pypi/v/approvaltests.svg)](https://pypi.org/project/approvaltests)
 [![Python versions](https://img.shields.io/pypi/pyversions/approvaltests.svg)](https://pypi.org/project/approvaltests)
 [![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Test/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.Python/actions)
-[![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/on-push-do-doco/badge.svg)](https://github.com/approvals/ApprovalTests.Python/actions?query=workflow%3Aon-push-do-doco)
-[![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Upload%20Python%20Package/badge.svg)](https://github.com/approvals/ApprovalTests.Python/actions?query=workflow%3A%22Upload+Python+Package%22)
+[![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Tidy%20Code%20and%20Update%20Markdown%20Snippets/badge.svg)](https://github.com/approvals/ApprovalTests.Python/actions?query=workflow%3A%22Tidy+Code+and+Update+Markdown+Snippets%22)
+[![Build Status](https://github.com/approvals/ApprovalTests.Python/workflows/Publish%20Python%20Package%20to%20PyPI/badge.svg)](https://github.com/approvals/ApprovalTests.Python/actions?query=workflow%3A%22Publish+Python+Package+to+PyPI%22)
 [![Discord](https://img.shields.io/discord/1349240939406819409?logo=discord)](https://discord.gg/XDrgy6x6Se)
 
 ## What can I use ApprovalTests for?
@@ -160,7 +160,7 @@ The default behavior is to open a diff tool showing what you received vs what wa
 You can use this diff tool to change the approved to make the test pass the next time you run it.
 Reporters also have more advanced usages.
 
-- [Intro to reporters](/docs/introduction_to_reporters.md)
+- [Intro to reporters](/docs/tutorial/intro-to-reporters.md)
 - [How to select a reporter](/docs/how_to/select_a_reporter.md)
 - [How to create a custom reporter](/docs/how_to/create_a_custom_reporter.md)
 
