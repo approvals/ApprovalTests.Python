@@ -1,2 +1,1 @@
-@echo off
-"C:\Program Files\Git\bin\bash.exe" ./%~n0.sh
+@call "C:\Program Files\Git\bin\bash.exe" %~dpn0 %*
