@@ -16,7 +16,7 @@ class TestSelectReporterFromClass(unittest.TestCase):
 <sup><a href='/tests/samples/test_getting_started.py#L8-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-select_reporter_from_class' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-For more about reporters see [intro to reporters](docs\tutorial\intro-to-reporters.md). Many of the
+For more about reporters see [intro to reporters](/docs/tutorial/intro-to-reporters.md). Many of the
 `ReportWith...` classes (such as `ReportWithBeyondCompare`) automatically pick
 the first matching diff tool installed on your system.
 
