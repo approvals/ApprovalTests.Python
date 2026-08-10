@@ -5,5 +5,10 @@
       "pattern": "^/",
       "replacement": "{{BASEURL}}/"
     }
+  ],
+  "ignorePatterns": [
+    {
+      "pattern": "^/mob-sessions-retros"
+    }
   ]
 }
