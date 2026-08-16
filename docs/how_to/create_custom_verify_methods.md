@@ -41,8 +41,8 @@ def verify_as_json(
 
 Alternatively, you can create an object that knows how to verify itself. 
 See the required interfaces: 
-* [Verifiable](https://github.com/approvals/ApprovalTests.Python/blob/main/approvaltests/core/verifiable.py#L7-L10)
-* [VerifyParameters](https://github.com/approvals/ApprovalTests.Python/blob/main/approvaltests/core/verify_parameters.py)
+* [Verifiable](https://github.com/approvals/ApprovalTests.Python/blob/main/approval_utilities/approvaltests/core/verifiable.py)
+* [VerifyParameters](https://github.com/approvals/ApprovalTests.Python/blob/main/approval_utilities/approvaltests/core/verify_parameters.py)
 
 And then just call `verify(YourVarifiableObject)`
 
