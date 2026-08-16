@@ -16,9 +16,9 @@ the `.approved.` (expected) vs `.received.` (actual).
 
 The default reporter will search your machine for any installed diff tool.
 
-## Supported Diff Tools  
+## Supported Diff Tools
 
-See [diff_reporters.csv](/diff_reporters.csv) for a list of supported diff tools.
+See [diff_reporters.csv](https://github.com/approvals/DiffTools/blob/main/diff_reporters.csv) for a list of supported diff tools.
 
 ## Customizing the reporters.json
 
