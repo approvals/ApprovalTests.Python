@@ -12,6 +12,7 @@
 -   Create a [custom `verify()` method](how_to/create_custom_verify_methods.md)
 -   [Approve multiple files in one test](how_to/multiple_approvals_per_test.md)
 -   Test a [combination of inputs](how_to/test_combinations_of_inputs.md)
+-   Test a [variety of values for one input](how_to/test_a_variety_of_values.md)
 -   [Verify binary data](how_to/verify-binary.md)
 -   [Log method parameter values](how_to/log_method_parameter_values.md)
 -   [test logs](how_to/test_logs.md)

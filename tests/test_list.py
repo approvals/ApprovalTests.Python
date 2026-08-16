@@ -25,6 +25,12 @@ class TestList(TestCase):
         alist = ["a", "b", "c", "d"]
         approvals.verify_all("uppercase", alist, lambda x: f"{x} => {x.upper()}")
 
+    def test_starting_snippet(self) -> None:
+        # begin-snippet: verify_all_starting_point
+        inputs = ["input.value1", "input.value2"]
+        approvals.verify_all("TITLE", inputs, lambda s: f"placeholder {s}")
+        # end-snippet
+
     def test_format_line_part1(self) -> None:
         # This is part one of a test which reproduces the issue #32
         alist = ["1", "2", "3"]
