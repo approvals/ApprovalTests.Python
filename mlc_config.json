@@ -5,5 +5,11 @@
       "pattern": "^/",
       "replacement": "{{BASEURL}}/"
     }
+  ],
+  "ignorePatterns": [
+    {
+      "comment": "timeanddate.com returns 403 to the link checker's bot; the page works in a browser",
+      "pattern": "^https://www\\.timeanddate\\.com/"
+    }
   ]
 }
