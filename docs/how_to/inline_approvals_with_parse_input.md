@@ -62,7 +62,7 @@ Kody -> 0
 <sup><a href='/tests/test_parse_inputs.py#L51-L56' title='Snippet source file'>snippet source</a> | <a href='#snippet-parse_input_step_2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-### Step 3: Implement and rerun 
+### Step 3: Implement and rerun
 Everytime you run the tests, you automatically see the result at the top in the docstring.
 As you want more test cases just add more lines to the docstring.
 Here's an example of where we have handled O, E, & A.
