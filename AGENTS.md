@@ -13,6 +13,9 @@ If any instructions are unclear please ask question (1 at a time)
 
 ## Decisions
 When you need my input on a decision:
-•⁠  ⁠First, pick the option you think is best and propose it. Start that message with ⁠ ⭐ ⁠
-•⁠  ⁠Also list the alternatives you rejected, each with a brief reason why. Start each with ⁠ ❌ ⁠
+
+- First, pick the option you think is best and propose it. Start that message with ⭐
+- Also list the alternatives you rejected, each with a brief reason why. Start each with ❌
+
+
 Then we can have a discussion.
