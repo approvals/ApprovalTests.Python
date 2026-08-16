@@ -19,7 +19,7 @@
 We have a function named `load_person()`.   
 We want to verify the logs from this call as well as the person object that is returned.
 
-### Sample Logs 
+### Sample Logs
 <!-- snippet: test_logging_examples.test_load_person_logs.approved.txt -->
 <a id='snippet-test_logging_examples.test_load_person_logs.approved.txt'></a>
 ```txt
