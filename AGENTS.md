@@ -9,7 +9,7 @@ Default STARTER_CHARACTER = 🧩
 - When building a new feature or fixing a bug, follow the steps in `internal_documentation/development_process.md`.
 
 If any instructions are unclear please ask question (1 at a time)
-
+**ALWAYS** answer in plain english
 
 ## Decisions
 When you need my input on a decision:
