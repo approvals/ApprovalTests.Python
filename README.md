@@ -94,10 +94,10 @@ def test_simple() -> None:
 Install the plugin pytest-approvaltests and use it to select a reporter:
 
     pip install pytest-approvaltests
-    pytest --approvaltests-use-reporter='PythonNative'
+    pytest --approvaltests-use-reporter='PythonNativeReporter'
 
 The reporter is used both to alert you to changes in your test output, and to provide a tool to update the golden
-master. In this snippet, we chose the 'PythonNative' reporter when we ran the tests. For more information about selecting
+master. In this snippet, we chose the 'PythonNativeReporter' reporter when we ran the tests. For more information about selecting
 reporters see [the documentation](https://github.com/approvals/ApprovalTests.Python.PytestPlugin)
 
 ### Example using unittest
