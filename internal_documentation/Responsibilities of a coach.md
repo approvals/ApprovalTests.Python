@@ -8,7 +8,8 @@ If you see good behavior, acknowledge it. This reinforces the behavior.
 These are small things. 
 Don't break flow.
 Give fedback close to the moments.
-Prefer lots of tiny tiny mentions over large things at the end.
+
+Prefer lots of tiny tiny mentions as they happen over large things at the end.
 
 ## Flow
 
@@ -28,7 +29,7 @@ When you are introducing or re-enforcing process, commands are good.
 When you are getting the group in sync, questions are good.
 
 ### Examples of Commands
-- *"<Typer>, please summarize"* at end of rotation, and they aren't moving on, or if skip it.
+- *"\<Typer\>, please summarize"* at end of rotation, and they aren't moving on, or if they skip the summary.
 - *"No thinking at the keyboard"* when the typer is doing too much.
 - *"Rotate"* when the timer went off but people didn't.
 
