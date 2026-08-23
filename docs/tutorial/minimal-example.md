@@ -4,48 +4,40 @@
 ## Contents
 
   * [Steps](#steps)
-    * [1. Install Dependencies](#1-install-dependencies)
-    * [2. Create the test file](#2-create-the-test-file)
-    * [3. Run the test](#3-run-the-test)
+    * [1. Create the test file](#1-create-the-test-file)
+    * [2. Run the test](#2-run-the-test)
       * [Section 1: Run Information](#section-1-run-information)
       * [Section 2: ApprovalTests diff report](#section-2-approvaltests-diff-report)
       * [Section 3: How to approve the new result](#section-3-how-to-approve-the-new-result)
       * [Section 4: Summary](#section-4-summary)
-    * [4. Approve the results](#4-approve-the-results)
+    * [3. Approve the results](#3-approve-the-results)
       * [Unix](#unix)
       * [Windows](#windows)
-    * [5. Rerun the tests](#5-rerun-the-tests)<!-- endToc -->
+    * [4. Rerun the tests](#4-rerun-the-tests)<!-- endToc -->
 
 ## Steps
 
-### 1. Install Dependencies
-
-Open a terminal and run:
-
-```bash
-pip install pytest approvaltests pytest-approvaltests
-```
-
-### 2. Create the test file
+### 1. Create the test file
 
 Add a new file called `test_with_approvals.py`
 
 containing:
 
 ```py
-from approvaltests import verify
+from approvaltests import verify, Options
+from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 
 
 def test_with_approvals():
-    verify("Hello World")
+    verify("Hello World", options=Options().with_reporter(PythonNativeReporter()))
 ```
 
-### 3. Run the test
+### 2. Run the test
 
 Run the test in the terminal:
 
 ```bash
-python -m pytest . --approvaltests-use-reporter='PythonNativeReporter' 
+python -m pytest .  
 ```
 
 You should similar output to the following (paths, times, and versions might differ) :
@@ -122,7 +114,7 @@ FAILED test_with_approvals.py::test_with_approvals - approvaltests.approval_exce
 
 The above summarizes the results of all (1) of the tests run in the session. 
 
-### 4. Approve the results
+### 3. Approve the results
 
 Copy the `.received.` to the `.approved.`
 
@@ -137,12 +129,12 @@ mv -f "test_with_approvals.test_with_approvals.received.txt" "test_with_approval
 move "test_with_approvals.test_with_approvals.received.txt" "test_with_approvals.test_with_approvals.approved.txt"
 ```
 
-### 5. Rerun the tests
+### 4. Rerun the tests
 
 Run the test in the terminal:
 
 ```bash
-python -m pytest . --approvaltests-use-reporter='PythonNativeReporter' 
+python -m pytest .
 ```
 
 You should simular output to the following (paths, times, and versions might differ) :
