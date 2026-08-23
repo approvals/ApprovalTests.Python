@@ -91,15 +91,6 @@ def test_simple() -> None:
 <sup><a href='/tests/examples/getting_started_with_pytest.py#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-getting_started_with_pytest.py' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-Install the plugin pytest-approvaltests and use it to select a reporter:
-
-    pip install pytest-approvaltests
-    pytest --approvaltests-use-reporter='PythonNativeReporter'
-
-The reporter is used both to alert you to changes in your test output, and to provide a tool to update the golden
-master. In this snippet, we chose the 'PythonNativeReporter' reporter when we ran the tests. For more information about selecting
-reporters see [the documentation](https://github.com/approvals/ApprovalTests.Python.PytestPlugin)
-
 ### Example using unittest
 
 <!-- snippet: getting_started_with_unittest.py -->
