@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - run: echo "${{ matrix.python-version }}" > .python-version
-      - uses: jdx/mise-action@v4.2.5
+      - uses: jdx/mise-action@v4.3.0
       - run: python pin_requirements_to_minimum_acceptable_version.py
       - run: ./build_and_test
       - name: Publish Test Report
