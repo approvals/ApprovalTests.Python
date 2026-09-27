@@ -70,6 +70,8 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
       *note*: Preferences -> display (requires only 1 person is connected)
 
+  1. Add contributors to GitHub Desktop (Purple Cat)
+  
   1. Start mob timer
 
       *note*: Use "Amy's Turn" = Amy's Turn to *TALK*
