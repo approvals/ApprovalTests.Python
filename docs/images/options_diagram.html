@@ -215,38 +215,38 @@
 <!-- ================= main code panel ================= -->
 <div class="panel panel-light mono" style="left:470px; top:90px; width:660px; height:692px; padding:10px 0;">
 <!-- GENERATED:CODE:BEGIN — do not hand-edit; run internal_documentation/scripts/generate_options_diagram.py -->
-<div class="code-line"><span class="num">166</span><span class="kw">def</span> <span class="fn">test_demonstrate_available_approvaltests_options</span>() -&gt; <span class="kw">None</span>:</div>
-<div class="code-line"><span class="num">167</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># begin-snippet: options_with_all_options</span></div>
-<div class="code-line"><span class="num">168</span>&nbsp;&nbsp;&nbsp;&nbsp;options = (</div>
-<div class="code-line"><span class="num">169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line" style="border-color:var(--c-core);">Options()</span></div>
-<div class="code-line"><span class="num">170</span></div>
-<div class="code-line"><span class="num">171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># write the .approved/.received files as Markdown instead of .txt</span></div>
-<div class="code-line"><span class="num">172</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="extension" style="border-color:var(--c-extension);">.for_file.with_extension(<span class="str">".md"</span>)</span></div>
-<div class="code-line"><span class="num">173</span></div>
-<div class="code-line"><span class="num">174</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># uppercase the text before it is written/compared, so the effect</span></div>
-<div class="code-line"><span class="num">175</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># is visible in the received/approved files themselves</span></div>
-<div class="code-line"><span class="num">176</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="scrubber" style="border-color:var(--c-scrubber);">.with_scrubber(<span class="kw">lambda</span> text: text.upper())</span></div>
-<div class="code-line"><span class="num">177</span></div>
-<div class="code-line"><span class="num">178</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># add_scrubber stacks an additional scrubber on top of any scrubbers already</span></div>
-<div class="code-line"><span class="num">179</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># added, instead of replacing them like with_scrubber would; here there's only</span></div>
-<div class="code-line"><span class="num">180</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># one scrubber (from with_scrubber above). The newly added scrubber turns "!"</span></div>
-<div class="code-line"><span class="num">181</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># into "!!!", which sets up the comparator below to show off what it ignores</span></div>
-<div class="code-line"><span class="num">182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="add-scrubber" style="border-color:var(--c-add-scrubber);">.add_scrubber(<span class="kw">lambda</span> text: text.replace(<span class="str">"!"</span>, <span class="str">"!!!"</span>))</span></div>
+<div class="code-line"><span class="num">172</span><span class="kw">def</span> <span class="fn">test_demonstrate_available_approvaltests_options</span>() -&gt; <span class="kw">None</span>:</div>
+<div class="code-line"><span class="num">173</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># begin-snippet: options_with_all_options</span></div>
+<div class="code-line"><span class="num">174</span>&nbsp;&nbsp;&nbsp;&nbsp;options = (</div>
+<div class="code-line"><span class="num">175</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line" style="border-color:var(--c-core);">Options()</span></div>
+<div class="code-line"><span class="num">176</span></div>
+<div class="code-line"><span class="num">177</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># write the .approved/.received files as Markdown instead of .txt</span></div>
+<div class="code-line"><span class="num">178</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="extension" style="border-color:var(--c-extension);">.for_file.with_extension(<span class="str">".md"</span>)</span></div>
+<div class="code-line"><span class="num">179</span></div>
+<div class="code-line"><span class="num">180</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># uppercase the text before it is written/compared, so the effect</span></div>
+<div class="code-line"><span class="num">181</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># is visible in the received/approved files themselves</span></div>
+<div class="code-line"><span class="num">182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="scrubber" style="border-color:var(--c-scrubber);">.with_scrubber(<span class="kw">lambda</span> text: text.upper())</span></div>
 <div class="code-line"><span class="num">183</span></div>
-<div class="code-line"><span class="num">184</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom namer, so the user controls the approved/received file names</span></div>
-<div class="code-line"><span class="num">185</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># directly, instead of having them derived from the test's own name</span></div>
-<div class="code-line"><span class="num">186</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="namer" style="border-color:var(--c-namer);">.with_namer(UserSpecifiedFileNamer())</span></div>
-<div class="code-line"><span class="num">187</span></div>
-<div class="code-line"><span class="num">188</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom comparator that ignores trailing "!"s, so the mismatch</span></div>
-<div class="code-line"><span class="num">189</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># created by add_scrubber above still counts as approved</span></div>
-<div class="code-line"><span class="num">190</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="comparator" style="border-color:var(--c-comparator);">.with_comparator(IgnoreTrailingExclamationsComparator())</span></div>
-<div class="code-line"><span class="num">191</span></div>
-<div class="code-line"><span class="num">192</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># launch Beyond Compare to review any mismatch</span></div>
-<div class="code-line"><span class="num">193</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="reporter" style="border-color:var(--c-reporter);">.with_reporter(ReportWithBeyondCompare())</span></div>
-<div class="code-line"><span class="num">194</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
-<div class="code-line"><span class="num">195</span></div>
-<div class="code-line"><span class="num">196</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hover-target" data-option="verdict">verify(<span class="str">"Hello, Approvals!"</span>, options=options)</span></div>
-<div class="code-line"><span class="num">197</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># end-snippet</span></div>
+<div class="code-line"><span class="num">184</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># add_scrubber stacks an additional scrubber on top of any scrubbers already</span></div>
+<div class="code-line"><span class="num">185</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># added, instead of replacing them like with_scrubber would; here there's only</span></div>
+<div class="code-line"><span class="num">186</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># one scrubber (from with_scrubber above). The newly added scrubber turns "!"</span></div>
+<div class="code-line"><span class="num">187</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># into "!!!", which sets up the comparator below to show off what it ignores</span></div>
+<div class="code-line"><span class="num">188</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="add-scrubber" style="border-color:var(--c-add-scrubber);">.add_scrubber(<span class="kw">lambda</span> text: text.replace(<span class="str">"!"</span>, <span class="str">"!!!"</span>))</span></div>
+<div class="code-line"><span class="num">189</span></div>
+<div class="code-line"><span class="num">190</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom namer, so the user controls the approved/received file names</span></div>
+<div class="code-line"><span class="num">191</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># directly, instead of having them derived from the test's own name</span></div>
+<div class="code-line"><span class="num">192</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="namer" style="border-color:var(--c-namer);">.with_namer(UserSpecifiedFileNamer())</span></div>
+<div class="code-line"><span class="num">193</span></div>
+<div class="code-line"><span class="num">194</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom comparator that ignores trailing "!"s, so the mismatch</span></div>
+<div class="code-line"><span class="num">195</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># created by add_scrubber above still counts as approved</span></div>
+<div class="code-line"><span class="num">196</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="comparator" style="border-color:var(--c-comparator);">.with_comparator(IgnoreTrailingExclamationsComparator())</span></div>
+<div class="code-line"><span class="num">197</span></div>
+<div class="code-line"><span class="num">198</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># launch Beyond Compare to review any mismatch</span></div>
+<div class="code-line"><span class="num">199</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="reporter" style="border-color:var(--c-reporter);">.with_reporter(ReportWithBeyondCompare())</span></div>
+<div class="code-line"><span class="num">200</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
+<div class="code-line"><span class="num">201</span></div>
+<div class="code-line"><span class="num">202</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hover-target" data-option="verdict">verify(<span class="str">"Hello, Approvals!"</span>, options=options)</span></div>
+<div class="code-line"><span class="num">203</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># end-snippet</span></div>
 <!-- GENERATED:CODE:END -->
 </div>
 
