@@ -1,0 +1,341 @@
+<title>Chained Options</title>
+<style>
+  :root {
+    --bg: #16171a;
+    --ink: #ececec;
+    --muted: #8a8d93;
+    --panel-light-bg: #fdfdfb;
+    --panel-light-ink: #1a1a1a;
+    --panel-dark-bg: #0d0d0f;
+    --panel-dark-ink: #f2f2f2;
+    --panel-border: #2a2b2f;
+    --num: #6f7278;
+    --kw: #cc7832;
+    --str: #6a8759;
+    --com: #8f9297;
+    --fn: #d8a34d;
+
+    --c-extension: #e08a2b;
+    --c-scrubber: #3fa34d;
+    --c-add-scrubber: #3b6fd6;
+    --c-namer: #a058e0;
+    --c-comparator: #2bb3a3;
+    --c-reporter: #d6417a;
+    --c-core: #5a5d66;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  body { padding: 28px 16px 48px; }
+
+  h1 {
+    text-align: center;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: #f2f2f2;
+  }
+  .subtitle {
+    text-align: center;
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 18px;
+    margin: 0 auto 24px;
+    max-width: 1000px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+  }
+  .legend span.dot {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .legend .item { color: var(--muted); white-space: nowrap; }
+
+  .scroller {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  .canvas {
+    position: relative;
+    width: 1600px;
+    height: 880px;
+    margin: 0 auto;
+  }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+  svg.arrows {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1600px;
+    height: 880px;
+    pointer-events: none;
+  }
+
+  .panel {
+    position: absolute;
+    border-radius: 6px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+  }
+  .panel-light,
+  .panel-dark { background: var(--panel-dark-bg); color: var(--panel-dark-ink); border: 1px solid var(--panel-border); }
+
+  .panel-header {
+    font-size: 10.5px;
+    letter-spacing: .03em;
+    color: var(--muted);
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .panel-body { padding: 9px 12px; font-size: 12.5px; line-height: 1.55; }
+
+  .code-line { white-space: pre; font-size: 12.5px; line-height: 21px; }
+  .num { color: var(--num); margin-right: 12px; user-select: none; display: inline-block; width: 18px; text-align: right; }
+  .kw { color: var(--kw); }
+  .str { color: var(--str); }
+  .com { color: var(--com); font-style: italic; }
+  .fn  { color: var(--fn); }
+
+  .box-line {
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 3px;
+    padding: 0 4px;
+    margin: -1px 0;
+  }
+
+  .result-line { line-height: 1.7; }
+  .result-line .arrow-in { color: var(--muted); }
+
+  .arrows polyline {
+    opacity: 0;
+    transition: opacity .15s ease;
+  }
+  .arrows polyline.active { opacity: 1; }
+
+  .panel[data-option] {
+    opacity: .4;
+    filter: saturate(.5);
+    transition: opacity .15s ease, filter .15s ease, box-shadow .15s ease;
+  }
+  .panel[data-option].active {
+    opacity: 1;
+    filter: none;
+    box-shadow: 0 0 0 2px var(--glow, #fff), 0 6px 20px rgba(0,0,0,.45);
+  }
+
+  .hover-target {
+    cursor: pointer;
+    transition: background-color .15s ease, box-shadow .15s ease;
+  }
+  .hover-target.active {
+    box-shadow: 0 0 0 2px var(--glow, #fff);
+    background-color: rgba(255,255,255,0.12);
+  }
+  .hover-target.dim { opacity: .55; }
+
+  [data-option="extension"]    { --glow: var(--c-extension); }
+  [data-option="scrubber"]     { --glow: var(--c-scrubber); }
+  [data-option="add-scrubber"] { --glow: var(--c-add-scrubber); }
+  [data-option="namer"]        { --glow: var(--c-namer); }
+  [data-option="comparator"]   { --glow: var(--c-comparator); }
+  [data-option="reporter"]     { --glow: var(--c-reporter); }
+  [data-option="verdict"]      { --glow: var(--c-core); }
+
+  .badge {
+    display: inline-block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--c-comparator);
+    color: #06201c;
+  }
+</style>
+
+<h1>ApprovalTests.Python &mdash; every option, chained</h1>
+<p class="subtitle">tests/test_options.py &middot; test_demonstrate_available_approvaltests_options</p>
+<p class="subtitle" style="margin-top:-14px;">hover a highlighted call in the code to see what it does</p>
+
+<div class="legend mono">
+  <span class="item"><span class="dot" style="background:var(--c-extension)"></span>for_file.with_extension</span>
+  <span class="item"><span class="dot" style="background:var(--c-scrubber)"></span>with_scrubber</span>
+  <span class="item"><span class="dot" style="background:var(--c-add-scrubber)"></span>add_scrubber</span>
+  <span class="item"><span class="dot" style="background:var(--c-namer)"></span>with_namer</span>
+  <span class="item"><span class="dot" style="background:var(--c-comparator)"></span>with_comparator</span>
+  <span class="item"><span class="dot" style="background:var(--c-reporter)"></span>with_reporter</span>
+</div>
+
+<div class="scroller">
+<div class="canvas">
+
+<svg class="arrows">
+  <defs>
+    <marker id="ah-extension" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e08a2b"/></marker>
+    <marker id="ah-scrubber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3fa34d"/></marker>
+    <marker id="ah-addscrubber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3b6fd6"/></marker>
+    <marker id="ah-namer" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#a058e0"/></marker>
+    <marker id="ah-comparator" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2bb3a3"/></marker>
+    <marker id="ah-reporter" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#d6417a"/></marker>
+    <marker id="ah-core" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a5d66"/></marker>
+  </defs>
+
+  <!-- extension: code -> approved-file panel (top-left) -->
+  <polyline data-option="extension" points="470,205 448,205 448,213 440,213" fill="none" stroke="var(--c-extension)" stroke-width="2" marker-end="url(#ah-extension)"/>
+  <!-- scrubber: code -> effect panel (top-right) -->
+  <polyline data-option="scrubber" points="1130,268 1148,268 1148,258 1160,258" fill="none" stroke="var(--c-scrubber)" stroke-width="2" marker-end="url(#ah-scrubber)"/>
+  <!-- add_scrubber: code -> effect panel (right) -->
+  <polyline data-option="add-scrubber" points="1130,373 1148,373 1148,373 1160,373" fill="none" stroke="var(--c-add-scrubber)" stroke-width="2" marker-end="url(#ah-addscrubber)"/>
+  <!-- namer: code -> class panel (bottom-left) -->
+  <polyline data-option="namer" points="470,436 448,436 448,458 440,458" fill="none" stroke="var(--c-namer)" stroke-width="2" marker-end="url(#ah-namer)"/>
+  <!-- comparator: code -> class panel (bottom-right) -->
+  <polyline data-option="comparator" points="1130,499 1148,499 1148,510 1160,510" fill="none" stroke="var(--c-comparator)" stroke-width="2" marker-end="url(#ah-comparator)"/>
+  <!-- reporter: code -> Beyond Compare mockup (far bottom-right) -->
+  <polyline data-option="reporter" points="1130,541 1148,541 1148,690 1160,690" fill="none" stroke="var(--c-reporter)" stroke-width="2" marker-end="url(#ah-reporter)"/>
+  <!-- verify(): code -> verdict panel (bottom-center) -->
+  <polyline data-option="verdict" points="800,676 800,690 800,700" fill="none" stroke="var(--c-core)" stroke-width="2" marker-end="url(#ah-core)"/>
+</svg>
+
+<!-- ================= main code panel ================= -->
+<div class="panel panel-light mono" style="left:470px; top:90px; width:660px; height:692px; padding:10px 0;">
+<!-- GENERATED:CODE:BEGIN — do not hand-edit; run internal_documentation/scripts/generate_options_diagram.py -->
+<div class="code-line"><span class="num">166</span><span class="kw">def</span> <span class="fn">test_demonstrate_available_approvaltests_options</span>() -&gt; <span class="kw">None</span>:</div>
+<div class="code-line"><span class="num">167</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># begin-snippet: options_with_all_options</span></div>
+<div class="code-line"><span class="num">168</span>&nbsp;&nbsp;&nbsp;&nbsp;options = (</div>
+<div class="code-line"><span class="num">169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line" style="border-color:var(--c-core);">Options()</span></div>
+<div class="code-line"><span class="num">170</span></div>
+<div class="code-line"><span class="num">171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># write the .approved/.received files as Markdown instead of .txt</span></div>
+<div class="code-line"><span class="num">172</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="extension" style="border-color:var(--c-extension);">.for_file.with_extension(<span class="str">".md"</span>)</span></div>
+<div class="code-line"><span class="num">173</span></div>
+<div class="code-line"><span class="num">174</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># uppercase the text before it is written/compared, so the effect</span></div>
+<div class="code-line"><span class="num">175</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># is visible in the received/approved files themselves</span></div>
+<div class="code-line"><span class="num">176</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="scrubber" style="border-color:var(--c-scrubber);">.with_scrubber(<span class="kw">lambda</span> text: text.upper())</span></div>
+<div class="code-line"><span class="num">177</span></div>
+<div class="code-line"><span class="num">178</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># add_scrubber stacks an additional scrubber on top of any scrubbers already</span></div>
+<div class="code-line"><span class="num">179</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># added, instead of replacing them like with_scrubber would; here there's only</span></div>
+<div class="code-line"><span class="num">180</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># one scrubber (from with_scrubber above). The newly added scrubber turns "!"</span></div>
+<div class="code-line"><span class="num">181</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># into "!!!", which sets up the comparator below to show off what it ignores</span></div>
+<div class="code-line"><span class="num">182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="add-scrubber" style="border-color:var(--c-add-scrubber);">.add_scrubber(<span class="kw">lambda</span> text: text.replace(<span class="str">"!"</span>, <span class="str">"!!!"</span>))</span></div>
+<div class="code-line"><span class="num">183</span></div>
+<div class="code-line"><span class="num">184</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom namer, so the user controls the approved/received file names</span></div>
+<div class="code-line"><span class="num">185</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># directly, instead of having them derived from the test's own name</span></div>
+<div class="code-line"><span class="num">186</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="namer" style="border-color:var(--c-namer);">.with_namer(UserSpecifiedFileNamer())</span></div>
+<div class="code-line"><span class="num">187</span></div>
+<div class="code-line"><span class="num">188</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom comparator that ignores trailing "!"s, so the mismatch</span></div>
+<div class="code-line"><span class="num">189</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># created by add_scrubber above still counts as approved</span></div>
+<div class="code-line"><span class="num">190</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="comparator" style="border-color:var(--c-comparator);">.with_comparator(IgnoreTrailingExclamationsComparator())</span></div>
+<div class="code-line"><span class="num">191</span></div>
+<div class="code-line"><span class="num">192</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># launch Beyond Compare to review any mismatch</span></div>
+<div class="code-line"><span class="num">193</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="reporter" style="border-color:var(--c-reporter);">.with_reporter(ReportWithBeyondCompare())</span></div>
+<div class="code-line"><span class="num">194</span>&nbsp;&nbsp;&nbsp;&nbsp;)</div>
+<div class="code-line"><span class="num">195</span></div>
+<div class="code-line"><span class="num">196</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hover-target" data-option="verdict">verify(<span class="str">"Hello, Approvals!"</span>, options=options)</span></div>
+<div class="code-line"><span class="num">197</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># end-snippet</span></div>
+<!-- GENERATED:CODE:END -->
+</div>
+
+<!-- ================= extension: approved-file panel ================= -->
+<div class="panel panel-light" data-option="extension" style="left:10px; top:160px; width:430px; height:110px; border-color:var(--c-extension); --glow:var(--c-extension);">
+  <div class="panel-header mono">tests/approved_files/ &middot; final file name</div>
+  <div class="panel-body mono">
+    test_demonstrate_available_approvaltests_options_<br>
+    renamed_by_user.approved<span class="box-line" style="border-color:var(--c-extension);">.md</span>
+  </div>
+</div>
+
+<!-- ================= namer class panel ================= -->
+<div class="panel panel-light mono" data-option="namer" style="left:10px; top:390px; width:430px; height:150px; border-color:var(--c-namer); --glow:var(--c-namer); padding:10px 12px;">
+<div class="code-line"><span class="kw">class</span> <span class="fn">UserSpecifiedFileNamer</span>(StackFrameNamer):</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;@override</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">get_file_name</span>(self) -&gt; str:</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="str">"..._</span><span class="box-line" style="border-color:var(--c-namer);">renamed_by_user</span><span class="str">"</span></div>
+</div>
+
+<!-- ================= scrubber effect panel ================= -->
+<div class="panel panel-dark mono" data-option="scrubber" style="left:1160px; top:210px; width:420px; height:100px; border-color:var(--c-scrubber); --glow:var(--c-scrubber); padding:0;">
+  <div class="panel-header mono" style="border-color:#2a2b2f;">effect of .with_scrubber</div>
+  <div class="panel-body result-line">
+    <span class="arrow-in">in&nbsp;&nbsp;&rarr;</span> Hello, Approvals!<br>
+    <span class="arrow-in">out &rarr;</span> <span class="box-line" style="border-color:var(--c-scrubber);">HELLO, APPROVALS!</span>
+  </div>
+</div>
+
+<!-- ================= add_scrubber effect panel ================= -->
+<div class="panel panel-dark mono" data-option="add-scrubber" style="left:1160px; top:330px; width:420px; height:100px; border-color:var(--c-add-scrubber); --glow:var(--c-add-scrubber); padding:0;">
+  <div class="panel-header mono" style="border-color:#2a2b2f;">effect of .add_scrubber (stacks on top)</div>
+  <div class="panel-body result-line">
+    <span class="arrow-in">in&nbsp;&nbsp;&rarr;</span> HELLO, APPROVALS!<br>
+    <span class="arrow-in">out &rarr;</span> <span class="box-line" style="border-color:var(--c-add-scrubber);">HELLO, APPROVALS!!!</span>
+  </div>
+</div>
+
+<!-- ================= comparator class panel ================= -->
+<div class="panel panel-light mono" data-option="comparator" style="left:1160px; top:450px; width:420px; height:150px; border-color:var(--c-comparator); --glow:var(--c-comparator); padding:10px 12px;">
+<div class="code-line"><span class="kw">class</span> <span class="box-line" style="border-color:var(--c-comparator);"><span class="fn">IgnoreTrailingExclamationsComparator</span></span>(Comparator):</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;@override</div>
+<div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">compare</span>(self, received_path, approved_path) -&gt; bool:</div>
+<div class="code-line" style="font-size:11.5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;received = &hellip;.rstrip(<span class="str">"!\n"</span>)</div>
+<div class="code-line" style="font-size:11.5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;approved = &hellip;.rstrip(<span class="str">"!\n"</span>)</div>
+<div class="code-line"><span class="kw">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</span> received == approved</div>
+</div>
+
+<!-- ================= Beyond Compare mockup ================= -->
+<div class="panel panel-light" data-option="reporter" style="left:1160px; top:640px; width:420px; height:180px; border-color:var(--c-reporter); --glow:var(--c-reporter); overflow:hidden;">
+  <div class="panel-header mono" style="border-color:var(--panel-border);">
+    demo.received.md &lt;&gt; demo.approved.md &mdash; <span class="box-line" style="border-color:var(--c-reporter); font-size:10px; padding:0 3px;">Beyond Compare</span>
+  </div>
+  <div style="display:flex; height:calc(100% - 27px);">
+    <div class="mono" style="flex:1; padding:8px 10px; font-size:11.5px; border-right:1px solid var(--panel-border);">HELLO, APPROVALS!!!<br><span style="color:var(--muted);">(scrubbed, received)</span></div>
+    <div class="mono" style="flex:1; padding:8px 10px; font-size:11.5px;">HELLO, APPROVALS!<br><span style="color:var(--muted);">(approved)</span></div>
+  </div>
+</div>
+
+<!-- ================= final verdict panel ================= -->
+<div class="panel panel-dark mono" data-option="verdict" style="left:470px; top:700px; width:660px; height:150px; border-color:var(--c-core); --glow:var(--c-core); padding:14px 18px;">
+  <div style="font-size:13px; line-height:1.7;">
+    received &nbsp;<span class="box-line" style="border-color:var(--c-add-scrubber);">HELLO, APPROVALS!!!</span><br>
+    approved &nbsp;<span class="box-line" style="border-color:var(--c-scrubber);">HELLO, APPROVALS!</span><br>
+    <span class="box-line" style="border-color:var(--c-comparator);">IgnoreTrailingExclamationsComparator</span> strips trailing <span class="str">"!"</span>s from both before comparing &mdash;
+    so despite <span class="box-line" style="border-color:var(--c-add-scrubber); font-size:11px; padding:0 3px;">add_scrubber</span>'s extra <span class="str">"!!!"</span>, the test <span class="badge">PASSES</span>
+  </div>
+</div>
+
+</div>
+</div>
+
+<script>
+function setActive(option) {
+  document.querySelectorAll('[data-option]').forEach(el => {
+    el.classList.toggle('active', el.dataset.option === option);
+    el.classList.toggle('dim', el.dataset.option !== option);
+  });
+}
+function clearActive() {
+  document.querySelectorAll('[data-option]').forEach(el => {
+    el.classList.remove('active', 'dim');
+  });
+}
+document.querySelectorAll('[data-option]').forEach(el => {
+  el.addEventListener('mouseenter', () => setActive(el.dataset.option));
+  el.addEventListener('mouseleave', clearActive);
+  el.addEventListener('focus', () => setActive(el.dataset.option));
+  el.addEventListener('blur', clearActive);
+});
+document.querySelectorAll('.hover-target').forEach(el => el.setAttribute('tabindex', '0'));
+</script>

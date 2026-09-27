@@ -44,6 +44,10 @@ depends = ["pip-install"]
 run = "python internal_documentation/scripts/generate_diff_reporters.py"
 depends = ["pip-install"]
 
+[tasks.generate_options_diagram]
+run = "python internal_documentation/scripts/generate_options_diagram.py"
+depends = ["pip-install"]
+
 [settings]
 jobs = 1
 # we put the python version in the .python-version file instead of here so that it's easy to override in the CI matrix
