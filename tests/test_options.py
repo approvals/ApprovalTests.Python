@@ -1,6 +1,9 @@
 import importlib
 import inspect
+import pathlib
 import sys
+
+from typing_extensions import override
 
 from approvaltests import (
     DiffReporter,
@@ -11,8 +14,11 @@ from approvaltests import (
     verify,
     verify_all,
 )
+from approvaltests.core.comparator import Comparator
 from approvaltests.core.options import Options
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
+from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
 from approvaltests.utilities import command_line_approvals  # noqa: F401
 from approvaltests.utilities.logger import simple_logger_approvals  # noqa: F401
 from approvaltests.utilities.logging import logging_approvals  # noqa: F401
