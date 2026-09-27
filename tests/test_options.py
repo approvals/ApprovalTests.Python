@@ -144,17 +144,19 @@ def test_add_reporter() -> None:
     options0 = Options().with_reporter(reporter1).add_reporter(reporter2)
     assert str(options0.reporter) == str(handmade)
 
+
 # Original Input = Hello, Approvals!
 # apply scrubber = text.upper()
 # Result = HELLO, APPROVALS!
 # add scrubber = text.replace("!", "!!!")
 # Result = HELLO, APPROVALS!!!
 # use comparator = IgnoreTrailingExclamationsComparator()
-# Result = True, because it compares 
+# Result = True, because it compares
 #          received "HELLO, APPROVALS!!!" against
-#          approved "HELLO, APPROVALS!" 
+#          approved "HELLO, APPROVALS!"
 # NOTE: The trailing "!"s are stripped from both files before the compare
 #          the effect is to IGNORE all trailing "!" characters
+
 
 class UserSpecifiedFileNamer(StackFrameNamer):
     @override
@@ -169,32 +171,27 @@ class IgnoreTrailingExclamationsComparator(Comparator):
         approved = pathlib.Path(approved_path).read_text().rstrip("!\n")
         return received == approved
 
+
 def test_demonstrate_available_approvaltests_options() -> None:
     # begin-snippet: options_with_all_options
     options = (
         Options()
-
         # write the .approved/.received files as Markdown instead of .txt
         .for_file.with_extension(".md")
-
         # uppercase the text before it is written/compared, so the effect
         # is visible in the received/approved files themselves
         .with_scrubber(lambda text: text.upper())
-
         # add_scrubber stacks an additional scrubber on top of any scrubbers already
         # added, instead of replacing them like with_scrubber would; here there's only
         # one scrubber (from with_scrubber above). The newly added scrubber turns "!"
         # into "!!!", which sets up the comparator below to show off what it ignores
         .add_scrubber(lambda text: text.replace("!", "!!!"))
-
         # use a custom namer, so the user controls the approved/received file names
         # directly, instead of having them derived from the test's own name
         .with_namer(UserSpecifiedFileNamer())
-
         # use a custom comparator that ignores trailing "!"s, so the mismatch
         # created by add_scrubber above still counts as approved
         .with_comparator(IgnoreTrailingExclamationsComparator())
-
         # launch Beyond Compare to review any mismatch
         .with_reporter(ReportWithBeyondCompare())
     )

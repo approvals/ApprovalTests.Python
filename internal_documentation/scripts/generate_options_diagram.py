@@ -42,7 +42,9 @@ def _highlight(text: str) -> str:
     escaped = re.sub(r'"[^"]*"', _stash_string, escaped)
 
     escaped = re.sub(
-        r"\bdef (\w+)", r'<span class="kw">def</span> <span class="fn">\1</span>', escaped
+        r"\bdef (\w+)",
+        r'<span class="kw">def</span> <span class="fn">\1</span>',
+        escaped,
     )
     escaped = re.sub(
         r"\bclass (\w+)",
@@ -50,7 +52,9 @@ def _highlight(text: str) -> str:
         escaped,
     )
     for keyword in _KEYWORDS:
-        escaped = re.sub(rf"\b{keyword}\b", f'<span class="kw">{keyword}</span>', escaped)
+        escaped = re.sub(
+            rf"\b{keyword}\b", f'<span class="kw">{keyword}</span>', escaped
+        )
 
     for index, string_literal in enumerate(strings):
         escaped = escaped.replace(
@@ -89,7 +93,9 @@ def _render_line(line_number: int, raw_line: str) -> str:
 
 
 def _extract_snippet(lines: list[str]) -> tuple[int, list[str]]:
-    begin_index = next(i for i, line in enumerate(lines) if _BEGIN_SNIPPET_MARKER in line)
+    begin_index = next(
+        i for i, line in enumerate(lines) if _BEGIN_SNIPPET_MARKER in line
+    )
     def_index = next(
         i for i in range(begin_index, -1, -1) if lines[i].lstrip().startswith("def ")
     )
@@ -109,7 +115,9 @@ def main() -> None:
     )
 
     diagram_html = _DIAGRAM_PATH.read_text()
-    begin_marker_end = diagram_html.index("-->", diagram_html.index(_GENERATED_BEGIN)) + 3
+    begin_marker_end = (
+        diagram_html.index("-->", diagram_html.index(_GENERATED_BEGIN)) + 3
+    )
     end_marker_start = diagram_html.index(_GENERATED_END)
 
     new_diagram_html = (
