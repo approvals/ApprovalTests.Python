@@ -1,21 +1,6 @@
 # Options
 
-<!-- toc -->
-## Contents
-
-  * [Configuration for verify](#configuration-for-verify)
-  * [Inline Approvals](#inline-approvals)
-    * [Known Issues](#known-issues)<!-- endToc -->
-
-## Configuration for verify
-
-All verify methods take an optional options parameter. This allows you to configure
-
-- The reporter
-- Scrubbers
-- file extensions
-
-See the [Options diagram](https://raw.githack.com/approvals/ApprovalTests.Python/main/docs/images/options_diagram.html) for how Options are composed.
+All `verify()` methods take an optional `options` parameter to configure reporters, scrubbers, file extensions, etc. See the [Options diagram](https://raw.githack.com/approvals/ApprovalTests.Python/main/docs/images/options_diagram.html) for more details.
 
 ## Inline Approvals
 
