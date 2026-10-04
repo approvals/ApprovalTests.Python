@@ -15,6 +15,8 @@ All verify methods take an optional options parameter. This allows you to config
 - Scrubbers
 - file extensions
 
+See the [Options diagram](https://raw.githack.com/approvals/ApprovalTests.Python/main/docs/images/options_diagram.html) for how Options are composed.
+
 ## Inline Approvals
 
 ### Known Issues
