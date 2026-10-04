@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from typing_extensions import override
 
 from approval_utilities.utils import append_to_file, is_windows_os
@@ -7,7 +9,7 @@ from approvaltests.reporters import get_command_text
 
 
 class ReporterThatCreatesAnApprovalScript(Reporter):
-    file = None
+    file: Path | None = None
 
     def create_approval_script(self, script: str) -> None:
         if ReporterThatCreatesAnApprovalScript.file is None:

@@ -13,5 +13,5 @@ class CommandExecutor(ABC):
         raise NotImplementedError("Interface member not implemented")
 
 
-class ExecutableCommand(CommandGetter, CommandExecutor):
+class ExecutableCommand(CommandGetter, CommandExecutor, ABC):
     pass
