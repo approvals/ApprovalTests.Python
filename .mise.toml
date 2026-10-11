@@ -1,5 +1,9 @@
 [tools]
 uv = "latest"
+"pipx:habit-hooks" = { version = "latest", extras = "python" }
+"pipx:deptry" = "latest"
+node = "lts"
+"npm:jscpd" = "latest"
 
 [env.'_'.python.venv]
 path = ".venv"

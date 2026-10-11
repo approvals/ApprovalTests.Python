@@ -1,0 +1,7 @@
+{
+  "path": ["approvaltests", "tests"],
+  "ignore": ["**/*.approved.*", "**/*.received.*"],
+  "threshold": 0,
+  "minLines": 5,
+  "minTokens": 50
+}
