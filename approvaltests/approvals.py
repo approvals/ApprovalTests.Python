@@ -84,37 +84,22 @@ def verify(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Options | None = None,
 ) -> None:
-    """Verify string data against a previously approved version of the string.
+    """Verify data against a previously approved version.
 
     Args:
-        data: A string containing the data to be compared with approved data from a previous run.
-            On Python 2 this can be a bytes, str, or unicode object. On Python 3 this should be
-            a str object.
+        data: The object to verify. It is converted to text and compared with the
+            approved file from a previous run.
 
-        reporter: An optional Reporter. If None (the default), the default reporter
-            will be used; see get_default_reporter().
+        reporter: An optional Reporter. If None, the default reporter is used;
+            see get_default_reporter().
 
-        encoding: An optional encoding to be used when serialising the data to a byte stream for
-            comparison. If None (the default) a locale-dependent encoding will be used; see
-            locale.getpreferredencoding().
+        namer: An optional Namer. If None, the namer from options is used.
 
-        errors: An optional string that specifies how encoding and decoding errors are to be handled
-            If None (the default) or 'strict', raise a ValueError exception if there is an encoding
-            error. Pass 'ignore' to ignore encoding errors. Pass 'replace' to use a replacement
-            marker (such as '?') when there is malformed data.
-
-        newline: An optional string that controls how universal newlines work when comparing data.
-            It can be None, '', '\n', '\r', and '\r\n'. If None (the default) universal newlines are
-            enabled and any '\n' characters are translated to the system default line separator
-            given by os.linesep. If newline is '', no translation takes place. If newline is any of
-            the other legal values, any '\n' characters written are translated to the given string.
+        encoding, errors, newline: Control how the received text is written to disk.
+            They have the same meaning as in the built-in open().
 
     Raises:
-        ApprovalException: If the verification fails because the given string does not match the
-            approved string.
-
-        ValueError: If data cannot be encoded using the specified encoding when errors is set to
-            None or 'strict'.
+        ApprovalException: If the received text does not match the approved text.
     """
     data = find_formatter_for_specified_class(data)
 
@@ -187,39 +172,22 @@ def verify_with_namer(
     *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/
     options: Options | None = None,
 ) -> None:
-    """Verify string data against a previously approved version of the string.
+    """Verify data against a previously approved version, using the given namer.
 
     Args:
-        data: A string containing the data to be compared with approved data from a previous run.
-            On Python 2 this can be a bytes, str, or unicode object. On Python 3 this should be
-            a str object.
+        data: The object to verify. It is converted to text with str() and compared
+            with the approved file from a previous run.
 
         namer: A Namer instance used for naming approved and received data files.
 
-        reporter: An optional Reporter. If None (the default), the default reporter
-            will be used; see get_default_reporter().
+        reporter: An optional Reporter. If None, the default reporter is used;
+            see get_default_reporter().
 
-        encoding: An optional encoding to be used when serialising the data to a byte stream for
-            comparison. If None (the default) a locale-dependent encoding will be used; see
-            locale.getpreferredencoding().
-
-        errors: An optional string that specifies how encoding and decoding errors are to be handled
-            If None (the default) or 'strict', raise a ValueError exception if there is an encoding
-            error. Pass 'ignore' to ignore encoding errors. Pass 'replace' to use a replacement
-            marker (such as '?') when there is malformed data.
-
-        newline: An optional string that controls how universal newlines work when comparing data.
-            It can be None, '', '\n', '\r', and '\r\n'. If None (the default) universal newlines are
-            enabled and any '\n' characters are translated to the system default line separator
-            given by os.linesep. If newline is '', no translation takes place. If newline is any of
-            the other legal values, any '\n' characters written are translated to the given string.
+        encoding, errors, newline: Control how the received text is written to disk.
+            They have the same meaning as in the built-in open().
 
     Raises:
-        ApprovalException: If the verification fails because the given string does not match the
-            approved string.
-
-        ValueError: If data cannot be encoded using the specified encoding when errors is set to
-            None or 'strict'.
+        ApprovalException: If the received text does not match the approved text.
     """
     options = initialize_options(options, reporter)
     writer = StringWriter(
@@ -308,16 +276,11 @@ def verify_file(
     Args:
         file_name: The path to a file. The file will be opened in text mode.
 
-        reporter: An optional Reporter. If None (the default), the default reporter
-            will be used; see get_default_reporter().
-
+        reporter: An optional Reporter. If None, the default reporter is used;
+            see get_default_reporter().
 
     Raises:
-        ApprovalException: If the verification fails because the given string does not match the
-            approved string.
-
-        ValueError: If data cannot be encoded using the specified encoding when errors is set to
-            None or 'strict'.
+        ApprovalException: If the received text does not match the approved text.
     """
     options = initialize_options(options, reporter)
     options = options.for_file.with_extension(Path(file_name).suffix, no_override=True)
@@ -345,33 +308,17 @@ def verify_all(
         alist: An iterable series of objects, a string representation of each of which will be
             included in an aggregated string for comparison.
 
-        formatter: An optional object which must have a print_item(x) method such that
-            formatter.print_item(x) will return a string representation of a single item from alist.
+        formatter: An optional callable that returns the string representation of a
+            single item from alist.
 
-        reporter: An optional Reporter. If None (the default), the default reporter
-            will be used; see get_default_reporter().
+        reporter: An optional Reporter. If None, the default reporter is used;
+            see get_default_reporter().
 
-        encoding: An optional encoding to be used when serialising the data to a byte stream for
-            comparison. If None (the default) a locale-dependent encoding will be used; see
-            locale.getpreferredencoding().
-
-        errors: An optional string that specifies how encoding and decoding errors are to be handled
-            If None (the default) or 'strict', raise a ValueError exception if there is an encoding
-            error. Pass 'ignore' to ignore encoding errors. Pass 'replace' to use a replacement
-            marker (such as '?') when there is malformed data.
-
-        newline: An optional string that controls how universal newlines work when comparing data.
-            It can be None, '', '\n', '\r', and '\r\n'. If None (the default) universal newlines are
-            enabled and any '\n' characters are translated to the system default line separator
-            given by os.linesep. If newline is '', no translation takes place. If newline is any of
-            the other legal values, any '\n' characters written are translated to the given string.
+        encoding, errors, newline: Control how the received text is written to disk.
+            They have the same meaning as in the built-in open().
 
     Raises:
-        ApprovalException: If the verification fails because the given string does not match the
-            approved string.
-
-        ValueError: If data cannot be encoded using the specified encoding when errors is set to
-            None or 'strict'.
+        ApprovalException: If the received text does not match the approved text.
     """
     options = initialize_options(options, reporter)
     text = format_list(alist, formatter, header)
