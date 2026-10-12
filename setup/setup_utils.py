@@ -6,7 +6,13 @@ from setuptools import find_packages, setup
 
 _SCRIPT_DIR = Path(__file__).parent
 
-PYTHON_VERSIONS = ["3.10", "3.11", "3.12", "3.13", "3.14"]
+PYTHON_VERSIONS = [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15",
+]
 
 
 PYTHON_VERSION_CLASSIFIERS = [
@@ -71,7 +77,7 @@ def setup_approvals(
         author="ApprovalTests Contributors",
         author_email="llewellyn.falco@gmail.com",
         url="https://github.com/approvals/ApprovalTests.Python",
-        python_requires=">=3.10",
+        python_requires=">=3.11",
         classifiers=[
             "Development Status :: 4 - Beta",
             "Intended Audience :: Developers",

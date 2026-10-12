@@ -1,3 +1,4 @@
+import tomllib
 from pathlib import Path
 
 import yaml
@@ -26,6 +27,12 @@ def test_tested_versions_message() -> None:
 
 def test_package_classifiers() -> None:
     assert PYTHON_VERSIONS == _get_workflow_matrix_python_versions("test.yml")
+
+
+def test_ruff_target_version_is_minimum_python_version() -> None:
+    ruff_config = tomllib.loads((SCRIPT_DIR.parent / "ruff.toml").read_text())
+    minimum_version = PYTHON_VERSIONS[0].replace(".", "")
+    assert ruff_config["target-version"] == f"py{minimum_version}"
 
 
 def _assert_workflow_matrix_python_versions_match(left: str, right: str) -> None:
