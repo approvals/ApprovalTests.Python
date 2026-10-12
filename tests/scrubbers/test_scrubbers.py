@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from approvaltests.approvals import verify, verify_all, verify_as_json, verify_exception
 from approvaltests.core.options import Options
@@ -20,9 +20,9 @@ def test_full_stack_scrubbing() -> None:
 
 
 def test_date_scrubbing() -> None:
-    date1 = str(datetime.datetime(year=2000, month=1, day=2))
-    date2 = str(datetime.datetime(year=2000, month=1, day=3))
-    date3 = str(datetime.datetime(year=2000, month=1, day=4))
+    date1 = str(datetime(year=2000, month=1, day=2))
+    date2 = str(datetime(year=2000, month=1, day=3))
+    date3 = str(datetime(year=2000, month=1, day=4))
     mydict = {"start": date1, "pause": date2, "resume": date2, "end": date3}
     verify_as_json(mydict, options=Options().with_scrubber(scrub_all_dates))
 
@@ -67,7 +67,7 @@ def test_guid() -> None:
 
 def test_combine_scrubbers() -> None:
     verify(
-        f"blah {datetime.datetime(year=2000, month=1, day=2)!s} 2fd78d4a-ad49-447d-96a8-deda585a9aa5",
+        f"blah {datetime(year=2000, month=1, day=2)!s} 2fd78d4a-ad49-447d-96a8-deda585a9aa5",
         options=Options().with_scrubber(
             combine_scrubbers(
                 scrub_all_guids,

@@ -1,8 +1,8 @@
-import datetime
 import re
 import threading
 from collections.abc import Callable, Generator
 from contextlib import contextmanager
+from datetime import datetime
 
 from approval_utilities.utilities.logger.simple_logger import SimpleLogger
 from approval_utilities.utilities.time_utilities import use_utc_timezone
@@ -52,13 +52,13 @@ def test_timestamps() -> None:
     with use_utc_timezone(), verify_simple_logger():
         count = -1
 
-        def create_applesauce_timer() -> datetime.datetime:
+        def create_applesauce_timer() -> datetime:
             dates = [
-                datetime.datetime.fromtimestamp(0.0),
-                datetime.datetime.fromtimestamp(0.5),
-                datetime.datetime.fromtimestamp(2.0),
-                datetime.datetime.fromtimestamp(1050),
-                datetime.datetime.fromtimestamp(1052),
+                datetime.fromtimestamp(0.0),
+                datetime.fromtimestamp(0.5),
+                datetime.fromtimestamp(2.0),
+                datetime.fromtimestamp(1050),
+                datetime.fromtimestamp(1052),
             ]
             nonlocal count
             count = count + 1

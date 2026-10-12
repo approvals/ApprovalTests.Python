@@ -1,7 +1,7 @@
-import datetime
 import inspect
 import traceback
 from collections.abc import Callable, Iterable
+from datetime import datetime
 from types import TracebackType
 from typing import Any, ContextManager
 
@@ -32,12 +32,12 @@ class LoggingInstance:
     def __init__(self) -> None:
         self.log_stack_traces = True
         self.toggles = Toggles(True)
-        self.previous_timestamp: datetime.datetime | None = None
+        self.previous_timestamp: datetime | None = None
         self.logger: Callable[[str], None] = lambda t: print(t, end="")
         self.tabbing: int = 0
         self.counter = 0
         self.log_with_timestamps = True
-        self.timer: Callable[[], datetime.datetime] = datetime.datetime.now
+        self.timer: Callable[[], datetime] = datetime.now
 
     def log_to_string(self) -> StringWrapper:
         buffer = StringWrapper()
@@ -133,7 +133,7 @@ class LoggingInstance:
     def get_timestamp(self) -> str:
         timestamp = ""
         if self.log_with_timestamps:
-            time1: datetime.datetime = self.timer()
+            time1: datetime = self.timer()
             time = time1.strftime("%Y-%m-%dT%H:%M:%SZ")
             diff_millseconds = 0
             if self.previous_timestamp != None:
