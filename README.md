@@ -171,7 +171,7 @@ If there is documentation you wish existed, please add a `page request` to [this
 
 #### Python
 
-ApprovalTests is tested on the following Python versions: 3.10, 3.11, 3.12, 3.13, 3.14.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_tested_versions_message.approved.txt -->
+ApprovalTests is tested on the following Python versions: 3.11, 3.12, 3.13, 3.14, 3.15.<!-- singleLineInclude: tests/approved_files/test_workflow_matrix.test_tested_versions_message.approved.txt -->
 
 For older versions of Python, either:
 - use an older version of ApprovalTests, or
