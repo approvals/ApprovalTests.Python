@@ -207,9 +207,10 @@ def test_demonstrate_available_approvaltests_options() -> None:
         # is visible in the received/approved files themselves
         .with_scrubber(lambda text: text.upper())
         # add_scrubber stacks an additional scrubber on top of any scrubbers already
-        # added, instead of replacing them like with_scrubber would; here there's only
-        # one scrubber (from with_scrubber above). The newly added scrubber turns "!"
-        # into "!!!", which sets up the comparator below to show off what it ignores
+        # added (with_scrubber does the same unless you pass replace=True); here
+        # there's only one scrubber (from with_scrubber above). The newly added
+        # scrubber turns "!" into "!!!", which sets up the comparator below to show
+        # off what it ignores
         .add_scrubber(lambda text: text.replace("!", "!!!"))
         # use a custom namer, so the user controls the approved/received file names
         # directly, instead of having them derived from the test's own name
