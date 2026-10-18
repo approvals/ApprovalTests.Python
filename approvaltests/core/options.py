@@ -53,12 +53,19 @@ class Options:
             return self.fields["scrubber_func"](data)
         return data
 
-    def with_scrubber(self, scrubber_func: Callable[[str], str]) -> "Options":
+    def with_scrubber(
+        self,
+        scrubber_func: Callable[[str], str],
+        *,  # enforce keyword arguments - https://www.python.org/dev/peps/pep-3102/,
+        replace: bool = False,
+    ) -> "Options":
+        if self.has_scrubber() and not replace:
+            scrubber_func = combine_scrubbers(
+                self.fields["scrubber_func"], scrubber_func
+            )
         return Options({**self.fields, "scrubber_func": scrubber_func})
 
     def add_scrubber(self, scrubber: Callable[[str], str]) -> "Options":
-        if self.has_scrubber():
-            scrubber = combine_scrubbers(self.fields["scrubber_func"], scrubber)
         return self.with_scrubber(scrubber)
 
     def has_scrubber(self) -> bool:

@@ -16,6 +16,7 @@ from approvaltests import (
 )
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.options import Options
+from approvaltests.inline.parse import Parse
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
 from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
@@ -103,6 +104,30 @@ def test_add_scrubber() -> None:
         .add_scrubber(lambda text: text.replace("!", "!!!"))
     )
     verify("Hello, Approvals!", options=options)
+
+
+def test_with_scrubber_adds_to_existing_scrubbers() -> None:
+    """
+    Hello, Approvals! -> HELLO, APPROVALS!!!
+    """
+    options = (
+        Options()
+        .with_scrubber(lambda text: text.upper())
+        .with_scrubber(lambda text: text.replace("!", "!!!"))
+    )
+    Parse.doc_string().verify_all(options.scrub)
+
+
+def test_with_scrubber_replace_overwrites_existing_scrubbers() -> None:
+    """
+    Hello, Approvals! -> Hello, Approvals!!!
+    """
+    options = (
+        Options()
+        .with_scrubber(lambda text: text.upper())
+        .with_scrubber(lambda text: text.replace("!", "!!!"), replace=True)
+    )
+    Parse.doc_string().verify_all(options.scrub)
 
 
 class MyCustomFileNamer(StackFrameNamer):
