@@ -161,7 +161,6 @@ class VerifyTests(unittest.TestCase):
         filename = get_adjacent_file(name)
         verify_file(filename, self.reporter)
 
-    @pytest.mark.skipif(not is_windows_os(), reason="Doesn't work on unix")
     def test_verify_file_with_windows_1252_encoding(self):
         name = "exampleFileWindows1252.txt"
         filename = get_adjacent_file(name)
