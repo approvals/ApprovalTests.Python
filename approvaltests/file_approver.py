@@ -18,7 +18,7 @@ def exists(path: str) -> bool:
     return os.path.isfile(path)
 
 
-def normalize_line_endings(path: str) -> bytes:
+def read_with_normalization(path: str) -> bytes:
     return pathlib.Path(path).read_bytes().replace(b"\r\n", b"\n")
 
 
@@ -35,7 +35,7 @@ class FileComparator(Comparator):
         if filecmp.cmp(approved_path, received_path, shallow=False):
             return True
         try:
-            return normalize_line_endings(approved_path) == normalize_line_endings(
+            return read_with_normalization(approved_path) == read_with_normalization(
                 received_path
             )
         except BaseException:
