@@ -5,6 +5,10 @@ uv = "latest"
 node = "lts"
 "npm:jscpd" = "latest"
 
+[env]
+# PyYAML has no Windows wheel for Python 3.15 yet; build it as pure Python instead of compiling the C extension
+PYYAML_FORCE_LIBYAML = "0"
+
 [env.'_'.python.venv]
 path = ".venv"
 create = true
