@@ -31,10 +31,10 @@ class FileComparator(Comparator):
         if filecmp.cmp(approved_path, received_path, shallow=False):
             return True
         try:
-            approved_raw = pathlib.Path(approved_path).read_text()
-            approved_text = approved_raw.replace("\r\n", "\n")
-            received_raw = pathlib.Path(received_path).read_text()
-            received_text = received_raw.replace("\r\n", "\n")
+            approved_raw = pathlib.Path(approved_path).read_bytes()
+            approved_text = approved_raw.replace(b"\r\n", b"\n")
+            received_raw = pathlib.Path(received_path).read_bytes()
+            received_text = received_raw.replace(b"\r\n", b"\n")
             return approved_text == received_text
         except BaseException:
             return False
