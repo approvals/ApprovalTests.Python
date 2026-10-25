@@ -17,6 +17,8 @@ from approvaltests.internals.logs.failed_comparison_log import FailedComparisonL
 def exists(path: str) -> bool:
     return os.path.isfile(path)
 
+def normalize_line_endings(path: str) -> bytes:
+    return pathlib.Path(path).read_bytes().replace(b"\r\n", b"\n")
 
 class ReporterNotWorkingException(Exception):
     def __init__(self, reporter: Reporter):
@@ -31,11 +33,7 @@ class FileComparator(Comparator):
         if filecmp.cmp(approved_path, received_path, shallow=False):
             return True
         try:
-            approved_raw = pathlib.Path(approved_path).read_bytes()
-            approved_text = approved_raw.replace(b"\r\n", b"\n")
-            received_raw = pathlib.Path(received_path).read_bytes()
-            received_text = received_raw.replace(b"\r\n", b"\n")
-            return approved_text == received_text
+            return normalize_line_endings(approved_path) == normalize_line_endings(received_path)
         except BaseException:
             return False
 
