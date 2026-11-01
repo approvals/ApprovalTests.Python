@@ -16,10 +16,13 @@ from approvaltests import (
 )
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.options import Options
+from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.inline.parse import Parse
+from approvaltests.namer.default_name import get_default_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
 from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
+from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approvaltests.utilities import command_line_approvals  # noqa: F401
 from approvaltests.utilities.logger import simple_logger_approvals  # noqa: F401
 from approvaltests.utilities.logging import logging_approvals  # noqa: F401
@@ -183,12 +186,6 @@ def test_add_reporter() -> None:
 #          the effect is to IGNORE all trailing "!" characters
 
 
-class UserSpecifiedFileNamer(StackFrameNamer):
-    @override
-    def get_file_name(self) -> str:
-        return "test_demonstrate_available_approvaltests_options_renamed_by_user"
-
-
 class IgnoreTrailingExclamationsComparator(Comparator):
     @override
     def compare(self, received_path: str, approved_path: str) -> bool:
@@ -206,21 +203,28 @@ def test_demonstrate_available_approvaltests_options() -> None:
         # uppercase the text before it is written/compared, so the effect
         # is visible in the received/approved files themselves
         .with_scrubber(lambda text: text.upper())
-        # add_scrubber stacks an additional scrubber on top of any scrubbers already
-        # added (with_scrubber does the same unless you pass replace=True); here
-        # there's only one scrubber (from with_scrubber above). The newly added
-        # scrubber turns "!" into "!!!", which sets up the comparator below to show
-        # off what it ignores
-        .add_scrubber(lambda text: text.replace("!", "!!!"))
-        # use a custom namer, so the user controls the approved/received file names
-        # directly, instead of having them derived from the test's own name
-        .with_namer(UserSpecifiedFileNamer())
+        # a second scrubber runs after the first; this one turns "!" into "!!!"
+        .with_scrubber(lambda text: text.replace("!", "!!!"))
+        # add a scenario name to the file name, so one test can keep a separate
+        # approved file per case (e.g. one per language)
+        .with_namer(ScenarioNamer(get_default_namer(), "english"))
         # use a custom comparator that ignores trailing "!"s, so the mismatch
-        # created by add_scrubber above still counts as approved
+        # created by the second scrubber above still counts as approved
         .with_comparator(IgnoreTrailingExclamationsComparator())
-        # launch Beyond Compare to review any mismatch
-        .with_reporter(ReportWithBeyondCompare())
+        # print a diff and the approve command to the test output on any mismatch
+        .with_reporter(PythonNativeReporter())
     )
 
     verify("Hello, Approvals!", options=options)
+    # end-snippet
+
+
+def test_options_example() -> None:
+    # begin-snippet: options_example
+    verify(
+        "Hello, World!",
+        options=Options()
+        .with_scrubber(lambda text: text.replace("World", "Approvals"))
+        .for_file.with_extension(".md"),
+    )
     # end-snippet
