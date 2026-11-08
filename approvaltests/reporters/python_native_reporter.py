@@ -23,7 +23,7 @@ class PythonNativeReporter(Reporter):
     @override
     def report(self, received_path: str, approved_path: str) -> bool:
         ensure_file_exists(approved_path)
-        print(calculate_diff_with_approve_instruction(received_path, approved_path))
+        print(calculate_failure_report(received_path, approved_path))
         return True
 
     @override
@@ -31,6 +31,22 @@ class PythonNativeReporter(Reporter):
         return self.__class__.__name__
 
     __repr__ = __str__
+
+
+def calculate_failure_report(received_path: str, approved_path: str) -> str:
+    diff_lines = calculate_diff(received_path, approved_path).splitlines()
+    return "\n".join(
+        [
+            "# APPROVAL TEST FAILED",
+            f"    approved: {os.path.abspath(approved_path)}",
+            f"    received: {os.path.abspath(received_path)}",
+            f"    approve_with: {get_command_text(received_path, approved_path)}",
+            "",
+            "    ## DIFF",
+            *[f"    {line}" for line in diff_lines],
+            "----------------------",
+        ]
+    )
 
 
 def calculate_diff_with_approve_instruction(file1: str, file2: str) -> str:

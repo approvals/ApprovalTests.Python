@@ -1,0 +1,13 @@
+# APPROVAL TEST FAILED
+    approved: <dir>/sample.approved.txt
+    received: <dir>/sample.received.txt
+    approve_with: <approve command>
+
+    ## DIFF
+    --- sample.approved.txt
+    +++ sample.received.txt
+    @@ -1,2 +1,2 @@
+     hello world
+    -line two
+    +line 2
+----------------------

@@ -1,5 +1,8 @@
 import os
+import re
 from pathlib import Path
+
+import pytest
 
 from approvaltests import verify
 from approvaltests.reporters.python_native_reporter import *
@@ -43,3 +46,19 @@ def test_approved_file_is_created_when_missing(tmp_path: Path) -> None:
     reporter = PythonNativeReporter()
     reporter.report(file1, file2)
     assert Path(file2).exists()
+
+
+def test_report_prints_both_files(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    received = tmp_path / "sample.received.txt"
+    approved = tmp_path / "sample.approved.txt"
+    approved.write_text("hello world\nline two\n")
+    received.write_text("hello world\nline 2\n")
+
+    assert PythonNativeReporter().report(str(received), str(approved))
+
+    output = capsys.readouterr().out.replace(str(tmp_path), "<dir>")
+    output = output.replace("\\", "/")
+    output = re.sub(r"approve_with: .*", "approve_with: <approve command>", output)
+    verify(output)

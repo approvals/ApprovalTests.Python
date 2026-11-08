@@ -68,7 +68,6 @@ def create_empty_file(file_path: str) -> None:
 
 
 def ensure_file_exists(approved_path: str) -> None:
-    print("approved_path check", approved_path)
     if not os.path.isfile(approved_path):
         create_empty_file(approved_path)
 
