@@ -1,3 +1,4 @@
+import os
 from typing import Union
 
 from typing_extensions import override
@@ -22,6 +23,9 @@ class BinaryWriter(Writer):
 
     def get_file_extension_with_dot(self) -> str:
         return self.extension_with_dot
+
+    def clean_up_received(self, received_file: str) -> None:
+        os.remove(received_file)
 
     @override
     def write_received_file(self, received_file: str) -> str:

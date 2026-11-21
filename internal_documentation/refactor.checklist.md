@@ -41,7 +41,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Add `get_file_extension_with_dot()` to `StringWriter` and `BinaryWriter`
 - [x] Add `get_file_extension_with_dot()` to `ExistingFileWriter` (it comes from `options.for_file.file_extention`)
 - [x] `verify_with_namer` passes the options extension to `StringWriter` (today it always gets `.txt`)
-- [ ] Add `clean_up_received()` to each of the 3 writers (`os.remove`)
+- [x] Add `clean_up_received()` to each of the 3 writers (`os.remove`)
 - [ ] `FileApprover` calls `writer.clean_up_received` instead of `os.remove`
 - [ ] Add both methods as `@abstractmethod` on `Writer`
 
