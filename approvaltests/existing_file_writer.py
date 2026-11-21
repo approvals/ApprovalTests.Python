@@ -11,6 +11,9 @@ class ExistingFileWriter(Writer):
         self.file_name = file_name
         self.options = options
 
+    def get_file_extension_with_dot(self) -> str:
+        return self.options.for_file.file_extention
+
     @override
     def write_received_file(self, received_file: str) -> str:
         if not self.options.has_scrubber():
