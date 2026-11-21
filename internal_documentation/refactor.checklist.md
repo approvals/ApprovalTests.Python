@@ -42,8 +42,8 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Add `get_file_extension_with_dot()` to `ExistingFileWriter` (it comes from `options.for_file.file_extention`)
 - [x] `verify_with_namer` passes the options extension to `StringWriter` (today it always gets `.txt`)
 - [x] Add `clean_up_received()` to each of the 3 writers (`os.remove`)
-- [ ] `FileApprover` calls `writer.clean_up_received` instead of `os.remove`
-- [ ] Add both methods as `@abstractmethod` on `Writer`
+- [x] Add both methods as `@abstractmethod` on `Writer`
+- [ ] `FileApprover` calls `writer.clean_up_received` instead of `os.remove` (keep `verify_files` backward compatible: optional `writer` as the last parameter, falling back to `os.remove`)
 
 ### Phase 2: Namers onto the template
 - [ ] Extract `TemplatedCustomNamer.get_template_fields_from_stacktrace()`. It returns the fields dict that `format_filename` builds today, without the per-call fields (approved_or_received, extension).
@@ -80,3 +80,4 @@ writer.clean_up_received(received)  # instead of os.remove
 - **Paths on Windows:** `NamerBase` uses `os.path.join` (backslashes on Windows), but templates use `/`. Watch for tests that approve file paths.
 - **`FilePathNamer` overrides only the approved file.** Its received file must keep the default name.
 - **Behavior change to tell users about:** once the extension comes from the writer, a namer built with its own extension, such as `StackFrameNamer(".json")`, no longer controls the extension.
+- **Breaking change to tell users about:** `Writer` now has two more abstract methods, `get_file_extension_with_dot()` and `clean_up_received()`. A custom `Writer` subclass fails with `TypeError` until it implements both.

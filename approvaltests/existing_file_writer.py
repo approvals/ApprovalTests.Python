@@ -12,9 +12,11 @@ class ExistingFileWriter(Writer):
         self.file_name = file_name
         self.options = options
 
+    @override
     def get_file_extension_with_dot(self) -> str:
         return self.options.for_file.file_extention
 
+    @override
     def clean_up_received(self, received_file: str) -> None:
         os.remove(received_file)
 

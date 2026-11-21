@@ -21,9 +21,11 @@ class BinaryWriter(Writer):
         self.contents = contents
         self.extension_with_dot = extension
 
+    @override
     def get_file_extension_with_dot(self) -> str:
         return self.extension_with_dot
 
+    @override
     def clean_up_received(self, received_file: str) -> None:
         os.remove(received_file)
 
