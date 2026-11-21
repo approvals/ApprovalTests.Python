@@ -32,18 +32,27 @@ class TemplatedCustomNamer(Namer):
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
     def format_filename(self, approved_or_received: str) -> str:
-        return self.template.format_map(
-            {
-                TemplateFields.approved_or_received: approved_or_received,
-                TemplateFields.test_file_name: self.namer_parts.get_class_name(),
-                TemplateFields.test_case_name: self.namer_parts.get_method_name(),
-                TemplateFields.file_extension: self.namer_parts.get_extension_without_dot(),
-                TemplateFields.test_source_directory: self.namer_parts.directory,
-                TemplateFields.relative_test_source_directory: os.path.relpath(
-                    self.namer_parts.directory
-                ).replace(os.sep, "/"),
-                TemplateFields.approvals_subdirectory: self.namer_parts.get_config().get(
-                    "subdirectory", ""
-                ),
-            }
+        fields = self.get_template_fields_from_stacktrace()
+        fields[TemplateFields.approved_or_received] = approved_or_received
+        fields[TemplateFields.approvals_subdirectory] = (
+            self.namer_parts.get_config().get("subdirectory", "")
         )
+        fields[TemplateFields.file_extension] = (
+            self.namer_parts.get_extension_without_dot()
+        )
+        return self.template.format_map(fields)
+
+    @staticmethod
+    def get_template_fields_from_stacktrace() -> dict[str, str]:
+        namer_parts = StackFrameNamer()
+        return {
+            TemplateFields.test_file_name: namer_parts.get_class_name(),
+            TemplateFields.test_case_name: namer_parts.get_method_name(),
+            TemplateFields.test_source_directory: namer_parts.directory,
+            TemplateFields.relative_test_source_directory: os.path.relpath(
+                namer_parts.directory
+            ).replace(os.sep, "/"),
+            TemplateFields.approvals_subdirectory: namer_parts.get_config().get(
+                "subdirectory", ""
+            ),
+        }

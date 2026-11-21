@@ -51,7 +51,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] `FileApprover` calls `writer.clean_up_received` instead of `os.remove` (keep `verify_files` backward compatible: optional `writer` as the last parameter, falling back to `os.remove`)
 
 ### Phase 2: Namers onto the template
-- [ ] Extract `TemplatedCustomNamer.get_template_fields_from_stacktrace()`. It returns the fields dict that `format_filename` builds today, without the per-call fields (approved_or_received, extension).
+- [x] Extract `TemplatedCustomNamer.get_template_fields_from_stacktrace()`. It returns the fields dict that `format_filename` builds today, without the per-call fields (approved_or_received, extension).
 - [ ] Move the stack-walking it needs out of `StackFrameNamer`, so the template namer no longer creates a `StackFrameNamer` (this removes the circular dependency below)
 - [ ] Add a `DEFAULT_TEMPLATE` that reproduces today's names:
   - class methods: `ClassName.method`; functions: `test_file.function` (decision: keep today's names)
