@@ -28,6 +28,9 @@ class StringWriter(Writer):
             contents = contents + "\n"
         return contents
 
+    def get_file_extension_with_dot(self) -> str:
+        return self.extension_with_dot
+
     @override
     def write_received_file(self, received_file: str) -> str:
         create_directory_if_needed(received_file)
