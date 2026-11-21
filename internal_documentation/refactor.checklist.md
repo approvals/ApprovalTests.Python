@@ -12,13 +12,18 @@ class Writer(ABC):  # purely abstract
     def write_received_file(self, received_file: str) -> str: ...
     def clean_up_received(self, received_file: str) -> None: ...
 
+
 class Namer(ABC):
     def get_approved_file(self, extension_with_dot: str) -> str: ...
     def get_received_file(self, extension_with_dot: str) -> str: ...
 
+
 class TemplatedCustomNamer(Namer):
     @staticmethod
-    def get_template_fields_from_stacktrace() -> dict[str, str]: ...  # the test-discovery seam
+    def get_template_fields_from_stacktrace() -> dict[
+        str, str
+    ]: ...  # the test-discovery seam
+
 
 # FileApprover.verify
 extension = writer.get_file_extension_with_dot()
