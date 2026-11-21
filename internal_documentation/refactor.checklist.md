@@ -48,7 +48,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] `verify_with_namer` passes the options extension to `StringWriter` (today it always gets `.txt`)
 - [x] Add `clean_up_received()` to each of the 3 writers (`os.remove`)
 - [x] Add both methods as `@abstractmethod` on `Writer`
-- [ ] `FileApprover` calls `writer.clean_up_received` instead of `os.remove` (keep `verify_files` backward compatible: optional `writer` as the last parameter, falling back to `os.remove`)
+- [x] `FileApprover` calls `writer.clean_up_received` instead of `os.remove` (keep `verify_files` backward compatible: optional `writer` as the last parameter, falling back to `os.remove`)
 
 ### Phase 2: Namers onto the template
 - [ ] Extract `TemplatedCustomNamer.get_template_fields_from_stacktrace()`. It returns the fields dict that `format_filename` builds today, without the per-call fields (approved_or_received, extension).
