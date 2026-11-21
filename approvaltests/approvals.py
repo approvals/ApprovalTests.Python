@@ -191,7 +191,11 @@ def verify_with_namer(
     """
     options = initialize_options(options, reporter)
     writer = StringWriter(
-        options.scrub(str(data)), encoding=encoding, errors=errors, newline=newline
+        options.scrub(str(data)),
+        extension=options.for_file.file_extention,
+        encoding=encoding,
+        errors=errors,
+        newline=newline,
     )
     verify_with_namer_and_writer(namer, writer, options=options)
 
