@@ -60,12 +60,12 @@ The default `StackFrameNamer` expressed as a template would be:
 
 ## Setting the Extension
 
-You can override the file extension on the namer:
+The extension comes from the writer. Ask the namer for a file name by passing the extension:
 
 ```python
 namer = TemplatedCustomNamer(
     "{test_source_directory}/{approved_or_received}/"
     "{test_file_name}.{test_case_name}.{file_extension}"
 )
-namer.set_extension(".json")
+namer.get_approved_file(".json")
 ```

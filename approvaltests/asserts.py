@@ -21,10 +21,6 @@ class FilePathNamer(StackFrameNamer):
         self.file_path = file_path
 
     @override
-    def get_approved_filename(self) -> str:
-        return self.file_path
-
-    @override
     def get_approved_file(self, extension_with_dot: str) -> str:
         return self.file_path
 
@@ -33,7 +29,7 @@ def assert_against_file(
     actual: str, file_path: str, reporter: ReporterForTesting | None = None
 ) -> None:
     namer = FilePathNamer(file_path)
-    FileApprover.add_allowed_duplicates(lambda n: n == namer.get_approved_filename())
+    FileApprover.add_allowed_duplicates(lambda n: n == namer.get_approved_file(".txt"))
     verify_with_namer(actual, namer, reporter)
 
 

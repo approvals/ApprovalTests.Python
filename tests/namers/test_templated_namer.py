@@ -31,7 +31,7 @@ def test_get_received_filename() -> None:
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
-    verify(namer.get_received_filename(), options=Options().inline())
+    verify(namer.get_received_file(".txt"), options=Options().inline())
 
 
 def test_approved_file_extension() -> None:
@@ -48,7 +48,7 @@ def test_get_approved_filename() -> None:
     namer = TemplatedCustomNamer(
         "/my/source/directory/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
-    verify(namer.get_approved_filename(), options=Options().inline())
+    verify(namer.get_approved_file(".txt"), options=Options().inline())
 
 
 def test_approvals_subdirectory_field() -> None:
@@ -59,13 +59,13 @@ def test_approvals_subdirectory_field() -> None:
         "/root/{approvals_subdirectory}/{approved_or_received}/{test_file_name}.{test_case_name}.{file_extension}"
     )
     namer.approvals_subdirectory = "my_subdir"
-    verify(namer.get_approved_filename(), options=Options().inline())
+    verify(namer.get_approved_file(".txt"), options=Options().inline())
 
 
 def test_unknown_template_field_raises_key_error() -> None:
     namer = TemplatedCustomNamer("/my/source/directory/{not_a_real_field}.txt")
     with pytest.raises(KeyError):
-        namer.get_approved_filename()
+        namer.get_approved_file(".txt")
 
 
 def test_repeated_template_field() -> None:
@@ -73,7 +73,7 @@ def test_repeated_template_field() -> None:
     /root/test_repeated_template_field/test_repeated_template_field.txt
     """
     namer = TemplatedCustomNamer("/root/{test_case_name}/{test_case_name}.txt")
-    verify(namer.get_approved_filename(), options=Options().inline())
+    verify(namer.get_approved_file(".txt"), options=Options().inline())
 
 
 def test_relative_test_source_directory_field() -> None:
@@ -84,7 +84,7 @@ def test_relative_test_source_directory_field() -> None:
         "{relative_test_source_directory}/{approved_or_received}/"
         "{test_file_name}.{test_case_name}.{file_extension}"
     )
-    verify(namer.get_approved_filename(), options=Options().inline())
+    verify(namer.get_approved_file(".txt"), options=Options().inline())
 
 
 def test_get_approved_and_received_file_take_the_extension() -> None:

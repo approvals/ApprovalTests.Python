@@ -15,7 +15,7 @@ class CliNamer(Namer):
         self.test_id = test_id
 
     def _create_filename(
-        self, approved_or_received: str, extension_with_dot: str = ".txt"
+        self, approved_or_received: str, extension_with_dot: str
     ) -> str:
         values = TemplateFieldValues(
             approved_or_received=approved_or_received,
@@ -28,14 +28,6 @@ class CliNamer(Namer):
             additional_information="",
         )
         return TemplatedCustomNamer.create_filename(self.TEMPLATE, values)
-
-    @override
-    def get_received_filename(self) -> str:
-        return self._create_filename(Namer.RECEIVED_WITHOUT_DOT)
-
-    @override
-    def get_approved_filename(self) -> str:
-        return self._create_filename(Namer.APPROVED_WITHOUT_DOT)
 
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:

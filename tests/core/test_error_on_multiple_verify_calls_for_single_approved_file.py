@@ -26,7 +26,7 @@ def test_allow_multiple_verifies_per_method() -> None:
 
 
 def test_allow_multiple_verifies_by_lambda() -> None:
-    filename = approvals.get_default_namer().get_approved_filename()
+    filename = approvals.get_default_namer().get_approved_file(".txt")
     FileApprover.add_allowed_duplicates(lambda n: n == filename)
     FileApprover.add_allowed_duplicates(lambda n: False)
     verify("call to verify")

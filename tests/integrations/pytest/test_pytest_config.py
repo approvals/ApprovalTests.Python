@@ -4,7 +4,7 @@ from approvaltests import get_default_namer
 def test_different_name() -> None:
     assert (
         get_default_namer()
-        .get_approved_filename()
+        .get_approved_file(".txt")
         .endswith("test_pytest_config.test_different_name.approved.txt")
     )
 
@@ -12,6 +12,6 @@ def test_different_name() -> None:
 def different_name_check() -> None:
     assert (
         get_default_namer()
-        .get_approved_filename()
+        .get_approved_file(".txt")
         .endswith("test_pytest_config.different_name_check.approved.txt")
     )

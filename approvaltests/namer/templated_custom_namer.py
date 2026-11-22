@@ -43,20 +43,8 @@ class TemplatedCustomNamer(Namer):
     def __init__(self, template: str) -> None:
         self.template = template
         self._template_field_values = self.get_template_fields_from_stacktrace()
-        self.extension_with_dot = ".txt"
         self.approvals_subdirectory: str | None = None
         self.additional_information: str | None = None
-
-    def set_extension(self, extension_with_dot: str) -> None:
-        self.extension_with_dot = extension_with_dot
-
-    @override
-    def get_received_filename(self) -> str:
-        return self.format_filename(self.RECEIVED_WITHOUT_DOT)
-
-    @override
-    def get_approved_filename(self) -> str:
-        return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:
@@ -65,9 +53,6 @@ class TemplatedCustomNamer(Namer):
     @override
     def get_received_file(self, extension_with_dot: str) -> str:
         return self._format_with_extension(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
-
-    def format_filename(self, approved_or_received: str) -> str:
-        return self._format_with_extension(approved_or_received, self.extension_with_dot)
 
     def _format_with_extension(
         self, approved_or_received: str, extension_with_dot: str

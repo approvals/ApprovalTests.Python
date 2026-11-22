@@ -356,7 +356,7 @@ def get_scenario_namer(*scenario_name: Any) -> StackFrameNamer:
 
 
 def delete_approved_file() -> None:
-    filename = Path(get_default_namer().get_approved_filename())
+    filename = Path(get_default_namer().get_approved_file(".txt"))
     if filename.exists():
         filename.unlink()
 

@@ -86,7 +86,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] `Options.namer` stops calling `set_extension`
 
 ### Later (not in this round)
-- [ ] Remove `get_approved_filename` / `get_received_filename` / `set_extension`
+- [x] Remove `get_approved_filename` / `get_received_filename` / `set_extension`
 - [ ] Remove `StackFrameNamer` if nothing uses it
 - [ ] Stop returning a path from `write_received_file`
 - [ ] Creator per `verify`, `with_subdirectory` and `with_template` on `Options`

@@ -16,14 +16,6 @@ from approvaltests.inline.markers import PRESERVE_LEADING_WHITESPACE_MARKER
 
 class InlineComparator(Namer):
     @override
-    def get_approved_filename(self) -> str:
-        return self.get_approved_file(".txt")
-
-    @override
-    def get_received_filename(self) -> str:
-        return self.get_received_file(".txt")
-
-    @override
     def get_approved_file(self, extension_with_dot: str) -> str:
         file = tempfile.NamedTemporaryFile(
             suffix=".approved" + extension_with_dot, delete=False

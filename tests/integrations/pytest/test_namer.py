@@ -15,7 +15,7 @@ def test_received_filename() -> None:
     expected = os_path(
         "/tests/integrations/pytest/test_namer.test_received_filename.received.txt"
     )
-    assert namer.get_received_filename().endswith(expected)
+    assert namer.get_received_file(".txt").endswith(expected)
 
 
 def test_pytest_namer(request: FixtureRequest) -> None:
@@ -23,7 +23,7 @@ def test_pytest_namer(request: FixtureRequest) -> None:
     expected = os_path(
         "/tests/integrations/pytest/test_namer.test_pytest_namer.received.txt"
     )
-    assert namer.get_received_filename().endswith(expected)
+    assert namer.get_received_file(".txt").endswith(expected)
     verify("foo", namer=namer)
 
 

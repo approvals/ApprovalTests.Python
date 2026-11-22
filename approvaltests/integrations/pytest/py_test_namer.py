@@ -13,8 +13,7 @@ from approvaltests.namer.templated_custom_namer import (
 class PyTestNamer(Namer):
     "Pass a pytest 'request' to the constructor. You get one of those as a pytest fixture"
 
-    def __init__(self, request: FixtureRequest, extension: None = None) -> None:
-        self.extension_with_dot = extension or ".txt"
+    def __init__(self, request: FixtureRequest) -> None:
         self.request = request
         self.filepath, self.filename = os.path.split(str(self.request.fspath))
         self.config: dict[str, str] = {}
@@ -23,9 +22,6 @@ class PyTestNamer(Namer):
         )
         if subdir:
             self.config["subdirectory"] = subdir
-
-    def set_extension(self, extension: str) -> None:
-        self.extension_with_dot = extension
 
     def get_file_name(self) -> str:
         return f"{os.path.splitext(self.filename)[0]}.{self.request.node.name}"
@@ -60,14 +56,6 @@ class PyTestNamer(Namer):
             approved_or_received, extension_with_dot[1:]
         )
         return TemplatedCustomNamer.create_filename(self.get_template(), values)
-
-    @override
-    def get_approved_filename(self) -> str:
-        return self.get_approved_file(self.extension_with_dot)
-
-    @override
-    def get_received_filename(self) -> str:
-        return self.get_received_file(self.extension_with_dot)
 
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:

@@ -11,7 +11,7 @@ SUBDIRECTORIES = ["", "my_subdir"]
 def template_names(subdirectory: str) -> list[str]:
     namer = TemplatedCustomNamer(TemplatedCustomNamer.DEFAULT_TEMPLATE)
     namer.approvals_subdirectory = subdirectory
-    return [namer.get_approved_filename(), namer.get_received_filename()]
+    return [namer.get_approved_file(".txt"), namer.get_received_file(".txt")]
 
 
 def default_names(subdirectory: str) -> list[str]:
@@ -19,7 +19,7 @@ def default_names(subdirectory: str) -> list[str]:
     assert isinstance(namer, StackFrameNamer)
     namer.config = {"subdirectory": subdirectory}
     namer.config_loaded = True
-    return [namer.get_approved_filename(), namer.get_received_filename()]
+    return [namer.get_approved_file(".txt"), namer.get_received_file(".txt")]
 
 
 PARAMETERS = [(), ("a",), ("a", 2), ("ci", None, 3.5)]
@@ -29,12 +29,12 @@ def template_names_with_parameters(parameters: tuple) -> list[str]:
     namer = TemplatedCustomNamer(TemplatedCustomNamer.DEFAULT_TEMPLATE)
     namer.approvals_subdirectory = ""
     namer.additional_information = ".".join(map(str, parameters))
-    return [namer.get_approved_filename(), namer.get_received_filename()]
+    return [namer.get_approved_file(".txt"), namer.get_received_file(".txt")]
 
 
 def scenario_names(parameters: tuple) -> list[str]:
     namer = get_scenario_namer(*parameters)
-    return [namer.get_approved_filename(), namer.get_received_filename()]
+    return [namer.get_approved_file(".txt"), namer.get_received_file(".txt")]
 
 
 def compare_names_with_parameters(parameters: tuple) -> str:

@@ -27,9 +27,6 @@ class StackFrameNamer(Namer):
         self.config: dict[str, str] = {}
         self.config_loaded = False
 
-    def set_extension(self, extension: str) -> None:
-        self.extension_with_dot = extension
-
     def set_for_stack(self, caller: list[FrameInfo]) -> None:
         frame = stack_walker.get_test_frame_index(caller)
         stacktrace = caller[frame]
@@ -117,14 +114,6 @@ class StackFrameNamer(Namer):
         if not self._overrides_get_file_name():
             template += ".{test_case_name}"
         return TemplatedCustomNamer.create_filename(template, self.get_template_field_values())
-
-    @override
-    def get_approved_filename(self) -> str:
-        return self.get_approved_file(self.extension_with_dot)
-
-    @override
-    def get_received_filename(self) -> str:
-        return self.get_received_file(self.extension_with_dot)
 
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:

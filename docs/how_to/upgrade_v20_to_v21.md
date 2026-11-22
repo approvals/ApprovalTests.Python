@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has seven breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, `NamerBase` is removed, custom `Namer` subclasses need two more methods, and the extension now comes from the writer.
+21.0.0 has eight breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, `NamerBase` is removed, custom `Namer` subclasses need two more methods, the extension now comes from the writer, and `get_approved_filename`, `get_received_filename` and `set_extension` are removed.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -23,7 +23,8 @@ Apply the sections below in order. For each section:
 6. [NamerBase is removed](#namerbase-is-removed)
 7. [Custom Namer subclasses](#custom-namer-subclasses)
 8. [The extension comes from the writer](#the-extension-comes-from-the-writer)
-9. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+9. [get_approved_filename, get_received_filename and set_extension are removed](#get_approved_filename-get_received_filename-and-set_extension-are-removed)
+10. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -94,7 +95,7 @@ rg -n "namer_parts" --type py
 | Before | After |
 |---|---|
 | `namer.namer_parts.config = {"subdirectory": "my_subdir"}` | `namer.approvals_subdirectory = "my_subdir"` |
-| `namer.namer_parts.set_extension(".json")` | `namer.set_extension(".json")` |
+| `namer.namer_parts.set_extension(".json")` | `namer.get_approved_file(".json")` (see [below](#get_approved_filename-get_received_filename-and-set_extension-are-removed)) |
 
 ## Create TemplatedCustomNamer inside the test
 
@@ -199,8 +200,7 @@ from approvaltests.core.namer import Namer
 
 
 class MyNamer(Namer):
-    # implement get_approved_filename, get_received_filename,
-    # get_approved_file and get_received_file yourself
+    # implement get_approved_file and get_received_file yourself
     ...
 
 
@@ -239,7 +239,7 @@ class MyNamer(Namer):
         return "my_test.received.txt"
 ```
 
-After:
+After (see also the section on removed methods below):
 
 ```py
 from typing_extensions import override
@@ -248,14 +248,6 @@ from approvaltests.core.namer import Namer
 
 
 class MyNamer(Namer):
-    @override
-    def get_approved_filename(self) -> str:
-        return "my_test.approved.txt"
-
-    @override
-    def get_received_filename(self) -> str:
-        return "my_test.received.txt"
-
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:
         return f"my_test.approved{extension_with_dot}"
@@ -270,7 +262,7 @@ class MyNamer(Namer):
 `FileApprover.verify` now asks the writer for its extension and passes it to `namer.get_approved_file(...)` and `namer.get_received_file(...)`.
 A namer built with its own extension, such as `StackFrameNamer(".json")`, or one that had `set_extension` called on it, no longer controls the extension. The writer does.
 For `verify`, the writer's extension is `options.for_file.file_extention`. For files, it is the file's own extension.
-`Options.namer` no longer sets the extension on the namer. If you ask it for names yourself, pass the extension: use `options.namer.get_approved_file(options.for_file.file_extention)` instead of `options.namer.get_approved_filename()`, which now always ends in `.txt` unless the namer was built with another extension.
+`Options.namer` no longer sets the extension on the namer. If you ask it for names yourself, pass the extension: use `options.namer.get_approved_file(options.for_file.file_extention)`.
 
 Search:
 
@@ -289,6 +281,25 @@ After:
 ```py
 verify(data, options=Options().for_file.with_extension(".json"))
 ```
+
+## get_approved_filename, get_received_filename and set_extension are removed
+
+`Namer` and all the namers that ship with ApprovalTests no longer have `get_approved_filename()`, `get_received_filename()` or `set_extension()`.
+Ask for a file name with the extension you want: `get_approved_file(extension_with_dot)` and `get_received_file(extension_with_dot)`. The default extension used to be `.txt`.
+The constructor parameter `extension` of `StackFrameNamer` is still accepted but ignored. `PyTestNamer` no longer has the `extension` parameter. `TemplatedCustomNamer.format_filename` is removed too.
+
+Search:
+
+```sh
+rg -n "get_approved_filename|get_received_filename|set_extension" --type py
+```
+
+| Before | After |
+|---|---|
+| `namer.get_approved_filename()` | `namer.get_approved_file(".txt")` |
+| `namer.get_received_filename()` | `namer.get_received_file(".txt")` |
+| `namer.set_extension(".json")` then `namer.get_approved_filename()` | `namer.get_approved_file(".json")` |
+| `namer.format_filename("approved")` | `namer.get_approved_file(".txt")` |
 
 ## Coming in this release (still in progress)
 
