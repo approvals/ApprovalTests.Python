@@ -3,7 +3,7 @@ from collections.abc import Callable
 from typing import Any
 
 from approvaltests.core.options import Options
-from approvaltests.namer.default_name import get_default_namer
+from approvaltests.namer.default_name import get_default_namer  # noqa: F401
 
 
 def is_ci(environment_loader: Callable[[str], str | None] = os.environ.get) -> bool:
@@ -31,10 +31,10 @@ def is_team_city(
 class NamerFactory:
     @staticmethod
     def with_parameters(*args: Any) -> Options:
-        from approvaltests.core.scenario_namer import ScenarioNamer
-
-        namer = ScenarioNamer(get_default_namer(), *args)
-        return Options().with_namer(namer)
+        options = Options()
+        for arg in args:
+            options = options.for_file.add_additional_information(str(arg))
+        return options
 
     @staticmethod
     def as_ci_specific_test() -> Options:

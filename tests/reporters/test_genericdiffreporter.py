@@ -33,8 +33,8 @@ class GenericDiffReporterTests(unittest.TestCase):
     def test_constructs_valid_diff_command(self) -> None:
         reporter = GenericDiffReporter.create("test")
         namer = get_default_namer()
-        received = namer.get_received_filename()
-        approved = namer.get_approved_filename()
+        received = namer.get_received_file(".txt")
+        approved = namer.get_approved_file(".txt")
         command = reporter.get_command(received, approved)
         expected_command = [reporter.path, received, approved]
         self.assertEqual(command, expected_command)
@@ -43,8 +43,8 @@ class GenericDiffReporterTests(unittest.TestCase):
         delete_approved_file()
 
         namer = get_default_namer()
-        received = namer.get_received_filename()
-        approved = namer.get_approved_filename()
+        received = namer.get_received_file(".txt")
+        approved = namer.get_approved_file(".txt")
         self.assertFalse(os.path.isfile(approved))
 
         reporter = GenericDiffReporter.create("test")
@@ -59,14 +59,14 @@ class GenericDiffReporterTests(unittest.TestCase):
 
     def test_approved_file_not_changed_when_one_exists_already(self) -> None:
         namer = get_default_namer()
-        approved = namer.get_approved_filename()
+        approved = namer.get_approved_file(".txt")
         os.remove(approved)
         approved_contents = "Approved"
         with open(approved, "w") as approved_file:
             approved_file.write(approved_contents)
         reporter = GenericDiffReporter.create("test")
         with patch.object(reporter, "run_command", lambda command_array: None):
-            reporter.report(namer.get_received_filename(), approved)
+            reporter.report(namer.get_received_file(".txt"), approved)
 
         with open(approved) as approved_file:
             actual_contents = approved_file.read()

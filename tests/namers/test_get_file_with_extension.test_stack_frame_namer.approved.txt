@@ -1,0 +1,4 @@
+StackFrameNamer
+
+0) test_get_file_with_extension.test_stack_frame_namer.approved.json
+1) test_get_file_with_extension.test_stack_frame_namer.received.json

@@ -1,3 +1,4 @@
+import os
 import shutil
 from pathlib import Path
 
@@ -10,6 +11,14 @@ class ExistingFileWriter(Writer):
     def __init__(self, file_name: str, options: Options) -> None:
         self.file_name = file_name
         self.options = options
+
+    @override
+    def get_file_extension_with_dot(self) -> str:
+        return self.options.for_file.file_extention
+
+    @override
+    def clean_up_received(self, received_file: str) -> None:
+        os.remove(received_file)
 
     @override
     def write_received_file(self, received_file: str) -> str:

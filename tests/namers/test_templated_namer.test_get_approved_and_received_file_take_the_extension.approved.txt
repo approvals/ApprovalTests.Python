@@ -1,0 +1,5 @@
+files
+
+0) approved/test_get_approved_and_received_file_take_the_extension.json
+1) received/test_get_approved_and_received_file_take_the_extension.json
+2) approved/test_get_approved_and_received_file_take_the_extension.txt

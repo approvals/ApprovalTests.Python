@@ -50,8 +50,9 @@ class FileApprover:
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
     ) -> str | None:
-        approved = namer.get_approved_filename()
-        received = namer.get_received_filename()
+        extension = writer.get_file_extension_with_dot()
+        approved = namer.get_approved_file(extension)
+        received = namer.get_received_file(extension)
 
         if FileApprover.is_this_a_multiple_verify(approved):
             return FileApprover.get_duplicate_verify_error_message(approved)
@@ -59,7 +60,9 @@ class FileApprover:
 
         # The writer has the ability to change the name of the received file
         received = writer.write_received_file(received)
-        verified = FileApprover.verify_files(approved, received, reporter, comparator)
+        verified = FileApprover.verify_files(
+            approved, received, reporter, comparator, writer=writer
+        )
 
         if not verified:
             return (
@@ -112,11 +115,15 @@ class FileApprover:
         received_file: str,
         reporter: Reporter,
         comparator: Comparator,
+        writer: Writer | None = None,
     ) -> bool:
         ApprovedFilesLog.log(approved_file)
 
         if comparator.compare(received_file, approved_file):
-            os.remove(received_file)
+            if writer is None:
+                os.remove(received_file)
+            else:
+                writer.clean_up_received(received_file)
             return True
         FailedComparisonLog.log(received_file, approved_file)
         worked = reporter.report(received_file, approved_file)

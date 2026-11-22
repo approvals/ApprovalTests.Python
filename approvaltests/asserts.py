@@ -16,12 +16,12 @@ from approvaltests.reporters.testing_reporter import ReporterForTesting
 
 
 class FilePathNamer(StackFrameNamer):
-    def __init__(self, file_path: str, extension: None = None) -> None:
-        StackFrameNamer.__init__(self, extension)
+    def __init__(self, file_path: str) -> None:
+        StackFrameNamer.__init__(self)
         self.file_path = file_path
 
     @override
-    def get_approved_filename(self) -> str:
+    def get_approved_file(self, extension_with_dot: str) -> str:
         return self.file_path
 
 
@@ -29,7 +29,7 @@ def assert_against_file(
     actual: str, file_path: str, reporter: ReporterForTesting | None = None
 ) -> None:
     namer = FilePathNamer(file_path)
-    FileApprover.add_allowed_duplicates(lambda n: n == namer.get_approved_filename())
+    FileApprover.add_allowed_duplicates(lambda n: n == namer.get_approved_file(".txt"))
     verify_with_namer(actual, namer, reporter)
 
 

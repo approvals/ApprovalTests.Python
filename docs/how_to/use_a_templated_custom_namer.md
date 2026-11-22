@@ -20,7 +20,7 @@ namer = TemplatedCustomNamer(
 )
 verify("Hello", options=Options().with_namer(namer))
 ```
-<sup><a href='/tests/namers/test_templated_namer.py#L12-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-templated_custom_namer_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/namers/test_templated_namer.py#L10-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-templated_custom_namer_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Template paths are written using forward slashes; these are handled
@@ -33,6 +33,7 @@ The available template fields are:
 <!-- include: test_templated_namer.test_template_fields.approved.md -->
 | template | usage |
 | --- | --- |
+| additional_information | {additional_information} |
 | approvals_subdirectory | {approvals_subdirectory} |
 | approved_or_received | {approved_or_received} |
 | file_extension | {file_extension} |
@@ -59,12 +60,12 @@ The default `StackFrameNamer` expressed as a template would be:
 
 ## Setting the Extension
 
-You can override the file extension on the namer:
+The extension comes from the writer. Ask the namer for a file name by passing the extension:
 
 ```python
 namer = TemplatedCustomNamer(
     "{test_source_directory}/{approved_or_received}/"
     "{test_file_name}.{test_case_name}.{file_extension}"
 )
-namer.set_extension(".json")
+namer.get_approved_file(".json")
 ```

@@ -1,3 +1,5 @@
+import os
+
 from typing_extensions import override
 
 from approval_utilities.utils import create_directory_if_needed
@@ -27,6 +29,14 @@ class StringWriter(Writer):
         if len(contents) == 0 or contents[-1] != "\n":
             contents = contents + "\n"
         return contents
+
+    @override
+    def get_file_extension_with_dot(self) -> str:
+        return self.extension_with_dot
+
+    @override
+    def clean_up_received(self, received_file: str) -> None:
+        os.remove(received_file)
 
     @override
     def write_received_file(self, received_file: str) -> str:

@@ -33,20 +33,20 @@ class NamerTests(unittest.TestCase):
         )
 
     def test_received_name(self) -> None:
-        filename = StackFrameNamer().get_received_filename()
+        filename = StackFrameNamer().get_received_file(".txt")
         self.assertTrue(
             filename.endswith("NamerTests.test_received_name.received.txt"), filename
         )
 
     def test_approved_name(self) -> None:
-        filename = StackFrameNamer().get_approved_filename()
+        filename = StackFrameNamer().get_approved_file(".txt")
         self.assertTrue(
             filename.endswith("NamerTests.test_approved_name.approved.txt"), filename
         )
 
     def test_alternative_extension(self) -> None:
-        n = StackFrameNamer(extension=".html")
-        filename = n.get_approved_filename()
+        n = StackFrameNamer()
+        filename = n.get_approved_file(".html")
         self.assertTrue(
             filename.endswith("NamerTests.test_alternative_extension.approved.html"),
             filename,
@@ -54,17 +54,17 @@ class NamerTests(unittest.TestCase):
 
     def test_additional_information(self) -> None:
         assert_ends_with(
-            NamerFactory.with_parameters("case1").namer.get_approved_filename(),
+            NamerFactory.with_parameters("case1").namer.get_approved_file(".txt"),
             "test_additional_information.case1.approved.txt",
         )
         assert_ends_with(
-            NamerFactory.with_parameters(
-                "case1", "case2"
-            ).namer.get_approved_filename(),
+            NamerFactory.with_parameters("case1", "case2").namer.get_approved_file(
+                ".txt"
+            ),
             "test_additional_information.case1.case2.approved.txt",
         )
         assert_ends_with(
-            get_default_namer().get_approved_filename(),
+            get_default_namer().get_approved_file(".txt"),
             "test_additional_information.approved.txt",
         )
 

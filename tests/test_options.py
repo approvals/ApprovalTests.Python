@@ -16,9 +16,7 @@ from approvaltests import (
 )
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.options import Options
-from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.inline.parse import Parse
-from approvaltests.namer.default_name import get_default_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
 from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
@@ -207,7 +205,7 @@ def test_demonstrate_available_approvaltests_options() -> None:
         .with_scrubber(lambda text: text.replace("!", "!!!"))
         # add a scenario name to the file name, so one test can keep a separate
         # approved file per case (e.g. one per language)
-        .with_namer(ScenarioNamer(get_default_namer(), "english"))
+        .for_file.add_additional_information("english")
         # use a custom comparator that ignores trailing "!"s, so the mismatch
         # created by the second scrubber above still counts as approved
         .with_comparator(IgnoreTrailingExclamationsComparator())
@@ -228,3 +226,21 @@ def test_options_example() -> None:
         .for_file.with_extension(".md"),
     )
     # end-snippet
+
+
+def test_add_additional_information() -> None:
+    options = Options()
+    with_a = options.for_file.add_additional_information("a")
+    with_a_and_2 = with_a.for_file.add_additional_information("2")
+    verify_all(
+        "additional_information",
+        [options, with_a, with_a_and_2],
+        lambda o: repr(o.for_file.additional_information),
+    )
+
+
+def test_verify_with_additional_information() -> None:
+    verify(
+        "named like the scenario namer",
+        options=Options().for_file.add_additional_information("a"),
+    )

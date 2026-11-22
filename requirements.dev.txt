@@ -1,7 +1,7 @@
 -r requirements.prod.txt
 -r requirements.test.txt
 build
-pylint
+pylint<4.1  # astroid 4.3.x crash, see https://github.com/approvals/ApprovalTests.Python/issues/292
 ruff
 setuptools
 mypy

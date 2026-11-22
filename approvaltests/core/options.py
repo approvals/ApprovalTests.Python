@@ -16,6 +16,18 @@ class FileOptions:
     def file_extention(self) -> str:
         return self.fields.get("extension_with_dot", ".txt")
 
+    @property
+    def additional_information(self) -> str:
+        return self.fields.get("additional_information", "")
+
+    def add_additional_information(self, additional_information: str) -> "Options":
+        return Options(
+            {
+                **self.fields,
+                "additional_information": f"{self.additional_information}.{additional_information}",
+            }
+        )
+
     def with_extension(
         self,
         extension_with_dot: str,
@@ -85,9 +97,9 @@ class Options:
     def namer(self) -> Namer:
         from approvaltests.namer.default_name import get_default_namer
 
-        namer = self.fields.get("namer") or get_default_namer()
-        if hasattr(namer, "set_extension"):
-            namer.set_extension(self.for_file.file_extention)
+        namer = self.fields.get("namer") or get_default_namer(
+            additional_information=self.for_file.additional_information
+        )
         return namer
 
     def inline(self, inline_options: InlineOptions | None = None) -> "Options":

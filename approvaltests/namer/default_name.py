@@ -1,6 +1,5 @@
-from approvaltests.namer.namer_base import NamerBase
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 
 
-def get_default_namer(extension: str | None = None) -> NamerBase:
-    return StackFrameNamer(extension)
+def get_default_namer(additional_information: str = "") -> StackFrameNamer:
+    return StackFrameNamer(additional_information)

@@ -41,6 +41,10 @@
 
 -   [Intro to reporters](tutorial/intro-to-reporters.md)
 
+## Upgrades
+
+-   [Upgrade from v20 to v21](how_to/upgrade_v20_to_v21.md)
+
 ## Links
 
 -   [How to Contribute](Contribute.md)

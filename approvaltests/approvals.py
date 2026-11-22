@@ -19,10 +19,9 @@ from approvaltests.core import Reporter, Writer
 from approvaltests.core.format_wrapper import AlwaysMatch, FormatWrapper
 from approvaltests.core.namer import Namer
 from approvaltests.core.options import Options
-from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
-from approvaltests.namer.namer_base import NamerBase
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.executable_command_reporter import (
     ExecutableCommandReporter,
@@ -68,10 +67,10 @@ def get_reporter(reporter: Reporter | None) -> Reporter:
     return approvaltests.reporters.default_reporter_factory.get_reporter(reporter)
 
 
-def get_default_namer(extension: str | None = None) -> NamerBase:
+def get_default_namer(additional_information: str = "") -> StackFrameNamer:
     from approvaltests.namer.default_name import get_default_namer as get_namer
 
-    return get_namer(extension)
+    return get_namer(additional_information)
 
 
 def verify(
@@ -191,7 +190,11 @@ def verify_with_namer(
     """
     options = initialize_options(options, reporter)
     writer = StringWriter(
-        options.scrub(str(data)), encoding=encoding, errors=errors, newline=newline
+        options.scrub(str(data)),
+        extension=options.for_file.file_extention,
+        encoding=encoding,
+        errors=errors,
+        newline=newline,
     )
     verify_with_namer_and_writer(namer, writer, options=options)
 
@@ -341,12 +344,17 @@ def verify_exception(
     verify(result, options=options)
 
 
-def get_scenario_namer(*scenario_name: Any) -> ScenarioNamer:
-    return ScenarioNamer(get_default_namer(), *scenario_name)
+def get_scenario_namer(*scenario_name: Any) -> StackFrameNamer:
+    options = approvaltests.namer.default_namer_factory.NamerFactory.with_parameters(
+        *scenario_name
+    )
+    return get_default_namer(
+        additional_information=options.for_file.additional_information
+    )
 
 
 def delete_approved_file() -> None:
-    filename = Path(get_default_namer().get_approved_filename())
+    filename = Path(get_default_namer().get_approved_file(".txt"))
     if filename.exists():
         filename.unlink()
 

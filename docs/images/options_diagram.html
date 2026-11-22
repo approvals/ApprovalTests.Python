@@ -259,7 +259,7 @@
 <div class="code-line"><span class="num">186</span></div>
 <div class="code-line"><span class="num">187</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># add a scenario name to the file name, so one test can keep a separate</span></div>
 <div class="code-line"><span class="num">188</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># approved file per case (e.g. one per language)</span></div>
-<div class="code-line"><span class="num">189</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="namer" style="border-color:var(--c-namer);">.with_namer(ScenarioNamer(get_default_namer(), <span class="str">"english"</span>))</span></div>
+<div class="code-line"><span class="num">189</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="box-line hover-target" data-option="namer" style="border-color:var(--c-namer);">.for_file.add_additional_information(<span class="str">"english"</span>)</span></div>
 <div class="code-line"><span class="num">190</span></div>
 <div class="code-line"><span class="num">191</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># use a custom comparator that ignores trailing "!"s, so the mismatch</span></div>
 <div class="code-line"><span class="num">192</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="com"># created by the second scrubber above still counts as approved</span></div>

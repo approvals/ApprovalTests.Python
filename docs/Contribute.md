@@ -40,7 +40,8 @@ You can join the [zoom here](https://us02web.zoom.us/j/83006973213?pwd=RHhBamZNb
 
 ### Opening Notice
 
-# Values<!-- include: opening_notice.md -->
+<!-- include: opening_notice.md -->
+# Values
   We come together in order to accomplish the following 3 goals in priority order:
 
   1. Code: We want to get something shipped 
