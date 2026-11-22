@@ -4,6 +4,7 @@ from typing_extensions import override
 
 from approvaltests.core.namer import Namer
 from approvaltests.namer.namer_base import NamerBase
+from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
 
 
 class ScenarioNamer(Namer):
@@ -13,7 +14,9 @@ class ScenarioNamer(Namer):
     Use this namer when the same test case needs to verify more than one value, and produce more than one file.
     """
 
-    def __init__(self, base_namer: NamerBase, *scenario_names: Any) -> None:
+    def __init__(
+        self, base_namer: NamerBase | TemplatedCustomNamer, *scenario_names: Any
+    ) -> None:
         self.base_namer = base_namer
         self.scenario_names = scenario_names
 

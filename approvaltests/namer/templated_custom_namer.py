@@ -2,7 +2,7 @@ import os
 
 from typing_extensions import override
 
-from approvaltests import Namer
+from approvaltests.core.namer import Namer
 from approvaltests.namer import stack_walker
 
 
@@ -50,6 +50,23 @@ class TemplatedCustomNamer(Namer):
         )
         fields[TemplateFields.file_extension] = self.extension_with_dot[1:]
         return TemplatedCustomNamer.create_filename(self.template, fields)
+
+    def get_file_name(self) -> str:
+        fields = self.get_template_fields_from_stacktrace()
+        return f"{fields[TemplateFields.test_file_name]}.{fields[TemplateFields.test_case_name]}"
+
+    def get_basename(self) -> str:
+        fields = self.get_template_fields_from_stacktrace()
+        subdirectory = (
+            self.approvals_subdirectory
+            if self.approvals_subdirectory is not None
+            else fields[TemplateFields.approvals_subdirectory]
+        )
+        return os.path.join(
+            fields[TemplateFields.test_source_directory],
+            subdirectory,
+            self.get_file_name(),
+        )
 
     @staticmethod
     def create_filename(template: str, fields: dict[str, str]) -> str:

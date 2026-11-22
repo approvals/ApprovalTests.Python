@@ -57,7 +57,7 @@ writer.clean_up_received(received)  # instead of os.remove
   - class methods: `ClassName.method`; functions: `test_file.function` (decision: keep today's names)
   - an empty subdirectory must not leave `//` in the path
 - [x] Add an `{additional_information}` field (`.` + the parameters joined with `.`, or empty)
-- [ ] Make sure the callers of `get_file_name()` / `get_basename()` (`approvals.py`, `asserts.py`, `ScenarioNamer`) work with the template namer
+- [x] Make sure the callers of `get_file_name()` / `get_basename()` (`approvals.py`, `asserts.py`, `ScenarioNamer`) work with the template namer
 - [ ] `get_default_namer()` returns the template namer with `DEFAULT_TEMPLATE`
 - [ ] Replace `ScenarioNamer` with the template namer plus additional information (`NamerFactory.with_parameters`, `get_scenario_namer`)
 - [ ] `PyTestNamer` builds its fields from the pytest `request` (a second way to get fields) and uses the template
