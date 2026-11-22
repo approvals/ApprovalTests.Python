@@ -261,6 +261,7 @@ class MyNamer(Namer):
 
 `FileApprover.verify` now asks the writer for its extension and passes it to `namer.get_approved_file(...)` and `namer.get_received_file(...)`.
 A namer built with its own extension, such as `StackFrameNamer(".json")`, or one that had `set_extension` called on it, no longer controls the extension. The writer does.
+`StackFrameNamer(".json")` and `get_default_namer(".json")` no longer accept an extension; use `options.for_file.with_extension(".json")`.
 For `verify`, the writer's extension is `options.for_file.file_extention`. For files, it is the file's own extension.
 `Options.namer` no longer sets the extension on the namer. If you ask it for names yourself, pass the extension: use `options.namer.get_approved_file(options.for_file.file_extention)`.
 

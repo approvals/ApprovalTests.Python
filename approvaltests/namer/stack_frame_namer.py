@@ -18,10 +18,7 @@ class StackFrameNamer(Namer):
     method_name = ""
     class_name = ""
 
-    def __init__(
-        self, extension: str | None = None, additional_information: str = ""
-    ) -> None:
-        self.extension_with_dot = extension or ".txt"
+    def __init__(self, additional_information: str = "") -> None:
         self.additional_information = additional_information
         self.set_for_stack(inspect.stack(1))
         self.config: dict[str, str] = {}
@@ -122,12 +119,6 @@ class StackFrameNamer(Namer):
     @override
     def get_received_file(self, extension_with_dot: str) -> str:
         return self._create_filename(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
-
-    def get_extension_with_dot(self) -> str:
-        return self.extension_with_dot
-
-    def get_extension_without_dot(self) -> str:
-        return self.extension_with_dot[1:]
 
     @classmethod
     def get_test_frame(cls) -> FrameInfo:

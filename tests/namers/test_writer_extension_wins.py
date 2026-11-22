@@ -8,7 +8,7 @@ from approvaltests.string_writer import StringWriter
 
 
 def test_writer_extension_wins_over_namer_extension() -> None:
-    namer = StackFrameNamer(".json")
+    namer = StackFrameNamer()
     writer = StringWriter("hello", extension=".xml")
     error = FileApprover.verify(namer, writer, ReporterForTesting(), Options().comparator)
     assert error is not None

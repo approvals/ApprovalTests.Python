@@ -67,12 +67,10 @@ def get_reporter(reporter: Reporter | None) -> Reporter:
     return approvaltests.reporters.default_reporter_factory.get_reporter(reporter)
 
 
-def get_default_namer(
-    extension: str | None = None, additional_information: str = ""
-) -> StackFrameNamer:
+def get_default_namer(additional_information: str = "") -> StackFrameNamer:
     from approvaltests.namer.default_name import get_default_namer as get_namer
 
-    return get_namer(extension, additional_information)
+    return get_namer(additional_information)
 
 
 def verify(
