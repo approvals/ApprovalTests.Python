@@ -28,10 +28,10 @@ class TemplateFieldValues:
             file_extension=file_extension,
         )
 
-    def with_additional_information(
-        self, additional_information: str
-    ) -> "TemplateFieldValues":
-        return replace(self, additional_information=additional_information)
+    def add_additional_information(self, more: str) -> "TemplateFieldValues":
+        return replace(
+            self, additional_information=self.additional_information + "." + more
+        )
 
 
 class TemplatedCustomNamer(Namer):
@@ -79,9 +79,9 @@ class TemplatedCustomNamer(Namer):
         fields = self._template_field_values
         if self.approvals_subdirectory is not None:
             fields = replace(fields, approvals_subdirectory=self.approvals_subdirectory)
-        return fields.with_additional_information(
-            f".{self.additional_information}" if self.additional_information else ""
-        )
+        if self.additional_information:
+            fields = fields.add_additional_information(self.additional_information)
+        return fields
 
     def get_template(self) -> str:
         return self.template

@@ -20,11 +20,11 @@ class ScenarioNamer(Namer):
         self.base_namer = base_namer
         self.scenario_names = scenario_names
         self.template = base_namer.get_template()
-        self.template_field_values = (
-            base_namer.get_template_field_values().with_additional_information(
-                "." + ".".join(map(str, scenario_names))
+        self.template_field_values = base_namer.get_template_field_values()
+        for scenario_name in scenario_names:
+            self.template_field_values = (
+                self.template_field_values.add_additional_information(str(scenario_name))
             )
-        )
 
     def _create_filename(self, approved_or_received: str) -> str:
         return TemplatedCustomNamer.create_filename(
