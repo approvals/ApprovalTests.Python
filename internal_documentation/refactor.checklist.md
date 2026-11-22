@@ -76,14 +76,18 @@ writer.clean_up_received(received)  # instead of os.remove
 
 ### Phase 3: The extension comes from the writer
 - [x] Add `get_approved_file(ext)` / `get_received_file(ext)` to `TemplatedCustomNamer` (ext fills `{file_extension}`)
+- [ ] Collapse `NamerBase` 1: delete its unused `get_received_filename` / `get_approved_filename` (both subclasses override them)
+- [ ] Collapse `NamerBase` 2: `StackFrameNamer` and `PyTestNamer` load config through `stack_walker.load_config(...)`; `get_config()` / `config_directory()` leave `NamerBase` (keep `config` / `config_loaded` on the subclasses)
+- [ ] Collapse `NamerBase` 3: `PyTestNamer.get_basename()` is a `create_filename` call with its own template
 - [ ] Add them to whatever is left outside the template (`FilePathNamer`, `InlineComparator`)
 - [ ] Add both as `@abstractmethod` on `Namer`
 - [ ] `FileApprover.verify` calls `namer.get_*_file(writer.get_file_extension_with_dot())`. This is the only step that changes behavior.
 - [ ] `Options.namer` stops calling `set_extension`
+- [ ] Collapse `NamerBase` 4: `StackFrameNamer` and `PyTestNamer` inherit `Namer` directly; delete `namer_base.py` (upgrade guide; update the architecture diagram)
 
 ### Later (not in this round)
 - [ ] Remove `get_approved_filename` / `get_received_filename` / `set_extension`
-- [ ] Remove `NamerBase` and `StackFrameNamer` if nothing uses them
+- [ ] Remove `StackFrameNamer` if nothing uses it
 - [ ] Stop returning a path from `write_received_file`
 - [ ] Creator per `verify`, `with_subdirectory` and `with_template` on `Options`
 
