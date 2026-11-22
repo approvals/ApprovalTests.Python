@@ -58,9 +58,9 @@ class NamerTests(unittest.TestCase):
             "test_additional_information.case1.approved.txt",
         )
         assert_ends_with(
-            NamerFactory.with_parameters(
-                "case1", "case2"
-            ).namer.get_approved_file(".txt"),
+            NamerFactory.with_parameters("case1", "case2").namer.get_approved_file(
+                ".txt"
+            ),
             "test_additional_information.case1.case2.approved.txt",
         )
         assert_ends_with(

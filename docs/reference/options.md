@@ -14,7 +14,7 @@ verify(
     .for_file.with_extension(".md"),
 )
 ```
-<sup><a href='/tests/test_options.py#L222-L229' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/test_options.py#L221-L228' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Inline Approvals

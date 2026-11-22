@@ -29,7 +29,9 @@ def test_pytest_namer(request: FixtureRequest) -> None:
 
 def test_pytest_namer_with_extension(request: FixtureRequest) -> None:
     namer = PyTestNamer(request)
-    prefix = os_path("/tests/integrations/pytest/test_namer.test_pytest_namer_with_extension")
+    prefix = os_path(
+        "/tests/integrations/pytest/test_namer.test_pytest_namer_with_extension"
+    )
     assert namer.get_approved_file(".json").endswith(prefix + ".approved.json")
     assert namer.get_received_file(".json").endswith(prefix + ".received.json")
 

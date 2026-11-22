@@ -26,7 +26,10 @@ def test_file_path_namer() -> None:
     namer = FilePathNamer("fixed/path.approved.txt")
     verify_all(
         "FilePathNamer",
-        [namer.get_approved_file(".json"), os.path.basename(namer.get_received_file(".json"))],
+        [
+            namer.get_approved_file(".json"),
+            os.path.basename(namer.get_received_file(".json")),
+        ],
     )
 
 

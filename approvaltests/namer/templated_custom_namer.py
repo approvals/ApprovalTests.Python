@@ -24,11 +24,15 @@ class TemplatedCustomNamer(Namer):
 
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:
-        return self._format_with_extension(self.APPROVED_WITHOUT_DOT, extension_with_dot)
+        return self._format_with_extension(
+            self.APPROVED_WITHOUT_DOT, extension_with_dot
+        )
 
     @override
     def get_received_file(self, extension_with_dot: str) -> str:
-        return self._format_with_extension(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
+        return self._format_with_extension(
+            self.RECEIVED_WITHOUT_DOT, extension_with_dot
+        )
 
     def _format_with_extension(
         self, approved_or_received: str, extension_with_dot: str

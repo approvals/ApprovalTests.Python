@@ -123,7 +123,9 @@ After:
 
 ```py
 def test_something() -> None:
-    namer = TemplatedCustomNamer("{test_case_name}.{approved_or_received}.{file_extension}")
+    namer = TemplatedCustomNamer(
+        "{test_case_name}.{approved_or_received}.{file_extension}"
+    )
     verify("hello", options=Options().with_namer(namer))
 ```
 
@@ -147,7 +149,9 @@ TemplatedCustomNamer("{test_case_name}.{approved_or_received}.{file_extension}")
 After:
 
 ```py
-TemplatedCustomNamer("{test_case_name}{additional_information}.{approved_or_received}.{file_extension}")
+TemplatedCustomNamer(
+    "{test_case_name}{additional_information}.{approved_or_received}.{file_extension}"
+)
 ```
 
 ## ScenarioNamer is removed
@@ -186,8 +190,7 @@ Before:
 from approvaltests.namer.namer_base import NamerBase
 
 
-class MyNamer(NamerBase):
-    ...
+class MyNamer(NamerBase): ...
 
 
 def is_namer(x) -> bool:

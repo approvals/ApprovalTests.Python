@@ -17,7 +17,6 @@ from approvaltests import (
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.options import Options
 from approvaltests.inline.parse import Parse
-from approvaltests.namer.default_name import get_default_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
 from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
