@@ -42,6 +42,7 @@ class TemplatedCustomNamer(Namer):
 
     def __init__(self, template: str) -> None:
         self.template = template
+        self._template_field_values = self.get_template_fields_from_stacktrace()
         self.extension_with_dot = ".txt"
         self.approvals_subdirectory: str | None = None
         self.additional_information: str | None = None
@@ -75,7 +76,7 @@ class TemplatedCustomNamer(Namer):
         )
 
     def _get_field_values(self) -> TemplateFieldValues:
-        fields = self.get_template_fields_from_stacktrace()
+        fields = self._template_field_values
         if self.approvals_subdirectory is not None:
             fields = replace(fields, approvals_subdirectory=self.approvals_subdirectory)
         return fields.with_additional_information(

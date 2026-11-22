@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has two breaking changes so far: custom `Writer` subclasses need two more methods, and `TemplatedCustomNamer.namer_parts` is gone.
+21.0.0 has three breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, and `TemplatedCustomNamer` must be created inside a test.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -17,7 +17,8 @@ Apply the sections below in order. For each section:
 
 1. [Custom Writer subclasses](#custom-writer-subclasses)
 2. [TemplatedCustomNamer.namer_parts](#templatedcustomnamernamer_parts)
-3. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+3. [Create TemplatedCustomNamer inside the test](#create-templatedcustomnamer-inside-the-test)
+4. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -89,6 +90,35 @@ rg -n "namer_parts" --type py
 |---|---|
 | `namer.namer_parts.config = {"subdirectory": "my_subdir"}` | `namer.approvals_subdirectory = "my_subdir"` |
 | `namer.namer_parts.set_extension(".json")` | `namer.set_extension(".json")` |
+
+## Create TemplatedCustomNamer inside the test
+
+`TemplatedCustomNamer` now reads the test name from the call stack once, when it is created. Before, it read it each time it built a file name.
+So create it inside the test function. A namer created at module level, or in a pytest fixture, no longer finds the test.
+
+Search:
+
+```sh
+rg -n "TemplatedCustomNamer\(" --type py
+```
+
+Before:
+
+```py
+NAMER = TemplatedCustomNamer("{test_case_name}.{approved_or_received}.{file_extension}")
+
+
+def test_something() -> None:
+    verify("hello", options=Options().with_namer(NAMER))
+```
+
+After:
+
+```py
+def test_something() -> None:
+    namer = TemplatedCustomNamer("{test_case_name}.{approved_or_received}.{file_extension}")
+    verify("hello", options=Options().with_namer(namer))
+```
 
 ## Coming in this release (still in progress)
 
