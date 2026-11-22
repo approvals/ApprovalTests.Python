@@ -2,8 +2,6 @@ import json
 import os
 from abc import abstractmethod
 
-from typing_extensions import override
-
 from approvaltests.core.namer import Namer
 
 
@@ -43,16 +41,6 @@ class NamerBase(Namer):
         file_name = self.get_file_name()
         subdirectory = self.get_config().get("subdirectory", "")
         return str(os.path.join(self.get_directory(), subdirectory, file_name))
-
-    @override
-    def get_received_filename(self) -> str:
-        base = self.get_basename()
-        return base + Namer.RECEIVED + self.extension_with_dot
-
-    @override
-    def get_approved_filename(self) -> str:
-        base = self.get_basename()
-        return base + Namer.APPROVED + self.extension_with_dot
 
     def set_extension(self, extension: str) -> None:
         self.extension_with_dot = extension
