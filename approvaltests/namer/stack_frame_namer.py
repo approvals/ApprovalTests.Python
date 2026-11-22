@@ -63,8 +63,12 @@ class StackFrameNamer(NamerBase):
         return self.directory
 
     @override
-    def config_directory(self) -> str:
-        return self.directory
+    def get_config(self) -> dict[str, str]:
+        """lazy load config when we need it, then store it in the instance variable self.config"""
+        if not self.config_loaded:
+            self.config = stack_walker.load_config(self.get_directory())
+            self.config_loaded = True
+        return self.config
 
     @override
     def get_file_name(self) -> str:

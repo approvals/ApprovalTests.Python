@@ -1,4 +1,3 @@
-import json
 import os
 from abc import abstractmethod
 
@@ -8,8 +7,6 @@ from approvaltests.core.namer import Namer
 class NamerBase(Namer):
     def __init__(self, extension: str | None = None) -> None:
         self.extension_with_dot = extension or ".txt"
-        self.config_loaded = False
-        self.config: dict[str, str] | None = None
 
     @abstractmethod
     def get_file_name(self) -> str:
@@ -19,23 +16,9 @@ class NamerBase(Namer):
     def get_directory(self) -> str:
         raise Exception("This class is abstract, override this method in a subclass")
 
-    def config_directory(self) -> str:
-        # pylint:disable=no-self-use
-        return None
-
+    @abstractmethod
     def get_config(self) -> dict[str, str]:
-        """lazy load config when we need it, then store it in the instance variable self.config"""
-        if not self.config_loaded:
-            config_file = os.path.join(
-                self.config_directory(), "approvaltests_config.json"
-            )
-            if os.path.exists(config_file):
-                with open(config_file, encoding="utf8") as file:
-                    self.config = json.load(file)
-            else:
-                self.config = {}
-            self.config_loaded = True
-        return self.config
+        raise Exception("This class is abstract, override this method in a subclass")
 
     def get_basename(self) -> str:
         file_name = self.get_file_name()
