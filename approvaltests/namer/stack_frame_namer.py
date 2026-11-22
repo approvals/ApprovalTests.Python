@@ -7,10 +7,8 @@ from typing_extensions import override
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests.core.namer import Namer
 from approvaltests.namer import stack_walker
-from approvaltests.namer.templated_custom_namer import (
-    TemplatedCustomNamer,
-    TemplateFieldValues,
-)
+from approvaltests.namer.template_field_values import TemplateFieldValues
+from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
 
 
 class StackFrameNamer(Namer):

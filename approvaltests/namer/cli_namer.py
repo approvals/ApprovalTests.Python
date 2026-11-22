@@ -1,10 +1,8 @@
 from typing_extensions import override
 
 from approvaltests.core.namer import Namer
-from approvaltests.namer.templated_custom_namer import (
-    TemplatedCustomNamer,
-    TemplateFieldValues,
-)
+from approvaltests.namer.template_field_values import TemplateFieldValues
+from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
 
 
 class CliNamer(Namer):
