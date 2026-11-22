@@ -68,7 +68,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Add `options.for_file.add_additional_information(x)` (adds `.x` each time, like Java's `forFile().withAdditionalInformation`) and a property to read it back
 - [x] `Options.namer` passes that additional information to the default namer when no namer was set (`get_default_namer(additional_information)`, `StackFrameNamer` accepts it)
 - [x] `NamerFactory.with_parameters(*args)` becomes a loop of `add_additional_information` (and so `as_ci_specific_test`)
-- [ ] `get_scenario_namer(...)` returns the default namer with that additional information instead of a `ScenarioNamer`
+- [x] `get_scenario_namer(...)` returns the default namer with that additional information instead of a `ScenarioNamer`
 - [ ] Remove `ScenarioNamer` (upgrade guide: what to write instead)
 - [ ] `CliNamer` becomes a template: `"{test_id}.{approved_or_received}.{file_extension}"`
 - [ ] `FilePathNamer` uses `get_template_fields_from_stacktrace()` for the received file and keeps its fixed approved path

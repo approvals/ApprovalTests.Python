@@ -19,7 +19,6 @@ from approvaltests.core import Reporter, Writer
 from approvaltests.core.format_wrapper import AlwaysMatch, FormatWrapper
 from approvaltests.core.namer import Namer
 from approvaltests.core.options import Options
-from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
@@ -347,8 +346,13 @@ def verify_exception(
     verify(result, options=options)
 
 
-def get_scenario_namer(*scenario_name: Any) -> ScenarioNamer:
-    return ScenarioNamer(get_default_namer(), *scenario_name)
+def get_scenario_namer(*scenario_name: Any) -> StackFrameNamer:
+    options = approvaltests.namer.default_namer_factory.NamerFactory.with_parameters(
+        *scenario_name
+    )
+    return get_default_namer(
+        additional_information=options.for_file.additional_information
+    )
 
 
 def delete_approved_file() -> None:
