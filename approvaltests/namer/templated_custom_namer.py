@@ -14,18 +14,20 @@ class TemplateFields:
     test_source_directory = "test_source_directory"
     relative_test_source_directory = "relative_test_source_directory"
     approvals_subdirectory = "approvals_subdirectory"
+    additional_information = "additional_information"
 
 
 class TemplatedCustomNamer(Namer):
     DEFAULT_TEMPLATE = (
         "{test_source_directory}/{approvals_subdirectory}/"
-        "{test_file_name}.{test_case_name}.{approved_or_received}.{file_extension}"
+        "{test_file_name}.{test_case_name}{additional_information}.{approved_or_received}.{file_extension}"
     )
 
     def __init__(self, template: str) -> None:
         self.template = template
         self.extension_with_dot = ".txt"
         self.approvals_subdirectory: str | None = None
+        self.additional_information: str | None = None
 
     def set_extension(self, extension_with_dot: str) -> None:
         self.extension_with_dot = extension_with_dot
@@ -43,6 +45,9 @@ class TemplatedCustomNamer(Namer):
         fields[TemplateFields.approved_or_received] = approved_or_received
         if self.approvals_subdirectory is not None:
             fields[TemplateFields.approvals_subdirectory] = self.approvals_subdirectory
+        fields[TemplateFields.additional_information] = (
+            f".{self.additional_information}" if self.additional_information else ""
+        )
         fields[TemplateFields.file_extension] = self.extension_with_dot[1:]
         return TemplatedCustomNamer.create_filename(self.template, fields)
 

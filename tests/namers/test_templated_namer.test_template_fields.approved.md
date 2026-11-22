@@ -1,5 +1,6 @@
 | template | usage |
 | --- | --- |
+| additional_information | {additional_information} |
 | approvals_subdirectory | {approvals_subdirectory} |
 | approved_or_received | {approved_or_received} |
 | file_extension | {file_extension} |

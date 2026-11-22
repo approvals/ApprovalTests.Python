@@ -56,7 +56,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Add a `DEFAULT_TEMPLATE` that reproduces today's names:
   - class methods: `ClassName.method`; functions: `test_file.function` (decision: keep today's names)
   - an empty subdirectory must not leave `//` in the path
-- [ ] Add an `{additional_information}` field (`.` + the parameters joined with `.`, or empty)
+- [x] Add an `{additional_information}` field (`.` + the parameters joined with `.`, or empty)
 - [ ] Make sure the callers of `get_file_name()` / `get_basename()` (`approvals.py`, `asserts.py`, `ScenarioNamer`) work with the template namer
 - [ ] `get_default_namer()` returns the template namer with `DEFAULT_TEMPLATE`
 - [ ] Replace `ScenarioNamer` with the template namer plus additional information (`NamerFactory.with_parameters`, `get_scenario_namer`)

@@ -1,0 +1,6 @@
+parameters
+
+same as scenario namer: True, names: ['tests/namers/TestDefaultTemplate.test_parameters.approved.txt', 'tests/namers/TestDefaultTemplate.test_parameters.received.txt']
+same as scenario namer: True, names: ['tests/namers/TestDefaultTemplate.test_parameters.a.approved.txt', 'tests/namers/TestDefaultTemplate.test_parameters.a.received.txt']
+same as scenario namer: True, names: ['tests/namers/TestDefaultTemplate.test_parameters.a.2.approved.txt', 'tests/namers/TestDefaultTemplate.test_parameters.a.2.received.txt']
+same as scenario namer: True, names: ['tests/namers/TestDefaultTemplate.test_parameters.ci.None.3.5.approved.txt', 'tests/namers/TestDefaultTemplate.test_parameters.ci.None.3.5.received.txt']
