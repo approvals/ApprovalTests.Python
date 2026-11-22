@@ -48,10 +48,10 @@ class Options:
     @property
     def reporter(self) -> Reporter:
         from approvaltests.reporters.default_reporter_factory import (
-            get_default_reporter,
+            get_reporter,
         )
 
-        return self.fields.get("reporter") or get_default_reporter()
+        return get_reporter(self.fields.get("reporter"))
 
     @property
     def comparator(self) -> Comparator:
@@ -109,5 +109,9 @@ class Options:
 
     def add_reporter(self, additional_reporter: Reporter) -> "Options":
         from approvaltests.reporters import MultiReporter
+        from approvaltests.reporters.default_reporter_factory import (
+            get_default_reporter,
+        )
 
-        return self.with_reporter(MultiReporter(self.reporter, additional_reporter))
+        current = self.fields.get("reporter") or get_default_reporter()
+        return self.with_reporter(MultiReporter(current, additional_reporter))

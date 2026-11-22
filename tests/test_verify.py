@@ -22,6 +22,7 @@ from approvaltests.approvals import (
     verify_xml,
 )
 from approvaltests.core.comparator import Comparator
+from approvaltests.reporters.default_reporter_factory import disabled_front_reporter
 from approvaltests.reporters.report_all_to_clipboard import (
     ReporterByCopyMoveCommandForEverythingToClipboard,
 )
@@ -282,16 +283,17 @@ class VerifyTests(unittest.TestCase):
         verify(1)
 
     def test_verify_automatic_approval(self):
-        approvals.settings().allow_multiple_verify_calls_for_this_method()
-        delete_approved_file()
-        with pytest.raises(ApprovalException):
-            verify(
-                2,
-                options=Options().with_reporter(
-                    reporter=ReporterThatAutomaticallyApproves()
-                ),
-            )
-        verify(2)
+        with disabled_front_reporter():
+            approvals.settings().allow_multiple_verify_calls_for_this_method()
+            delete_approved_file()
+            with pytest.raises(ApprovalException):
+                verify(
+                    2,
+                    options=Options().with_reporter(
+                        reporter=ReporterThatAutomaticallyApproves()
+                    ),
+                )
+            verify(2)
 
     def test_verify_custom_comparator_allows_all_inputs(self):
         class EverythingIsTrue(Comparator):

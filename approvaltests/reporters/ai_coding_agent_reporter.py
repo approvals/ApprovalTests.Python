@@ -15,7 +15,7 @@ class AiCodingAgentReporter(Reporter):
     agent can read, so that no visual diff tool is opened.
     """
 
-    ENVIRONMENT_VARIABLES: ClassVar[List[str]] = [
+    ENVIRONMENT_VARIABLES: ClassVar[list[str]] = [
         "AI_AGENT",
         "APPROVAL_TESTS_AGENT",
         "CLAUDECODE",
@@ -26,10 +26,10 @@ class AiCodingAgentReporter(Reporter):
         "GEMINI_CLI",
         "OPENCODE",
     ]
-    FALSE_VALUES: ClassVar[List[str]] = ["", "0", "f", "F", "false", "FALSE", "False"]
+    FALSE_VALUES: ClassVar[list[str]] = ["", "0", "f", "F", "false", "FALSE", "False"]
 
     @staticmethod
-    def is_agent_detected(environment: Optional[Mapping[str, str]] = None) -> bool:
+    def is_agent_detected(environment: Mapping[str, str] | None = None) -> bool:
         values = os.environ if environment is None else environment
         return any(
             values.get(variable, "") not in AiCodingAgentReporter.FALSE_VALUES

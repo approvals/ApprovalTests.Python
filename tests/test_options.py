@@ -19,6 +19,7 @@ from approvaltests.core.options import Options
 from approvaltests.inline.parse import Parse
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters import MultiReporter, ReportByCreatingDiffFile
+from approvaltests.reporters.default_reporter_factory import disabled_front_reporter
 from approvaltests.reporters.diff_tools import ReportWithBeyondCompare
 from approvaltests.reporters.python_native_reporter import PythonNativeReporter
 from approvaltests.utilities import command_line_approvals  # noqa: F401
@@ -63,25 +64,28 @@ def assert_verify_methods_have_options(module) -> None:
 
 def test_empty_options_has_default_reporter() -> None:
     ##approvals.set_default_reporter(None)
-    options = Options()
-    assert options.reporter == get_default_reporter()
+    with disabled_front_reporter():
+        options = Options()
+        assert options.reporter == get_default_reporter()
 
 
 def test_with_reporter() -> None:
-    testr = ReporterForTesting()
-    options = Options().with_reporter(testr)
-    try:
-        verify("Data2", options=options)
-    except:
-        pass
+    with disabled_front_reporter():
+        testr = ReporterForTesting()
+        options = Options().with_reporter(testr)
+        try:
+            verify("Data2", options=options)
+        except:
+            pass
 
-    assert testr.called
+        assert testr.called
 
 
 def test_setting_reporter() -> None:
-    testr = ReporterForTesting()
-    options = Options().with_reporter(testr)
-    assert options.reporter == testr
+    with disabled_front_reporter():
+        testr = ReporterForTesting()
+        options = Options().with_reporter(testr)
+        assert options.reporter == testr
 
 
 def test_file_extensions() -> None:
@@ -154,21 +158,23 @@ def test_reporter() -> None:
 
 def test_overwrite_reporter() -> None:
     # current behaviour, override
-    options0 = (
-        Options()
-        .with_reporter(ReportByCreatingDiffFile())
-        .with_reporter(DiffReporter())
-    )
-    assert type(options0.reporter) == DiffReporter
+    with disabled_front_reporter():
+        options0 = (
+            Options()
+            .with_reporter(ReportByCreatingDiffFile())
+            .with_reporter(DiffReporter())
+        )
+        assert type(options0.reporter) == DiffReporter
 
 
 def test_add_reporter() -> None:
-    reporter1 = ReportByCreatingDiffFile()
-    reporter2 = DiffReporter()
-    handmade = MultiReporter(reporter1, reporter2)
+    with disabled_front_reporter():
+        reporter1 = ReportByCreatingDiffFile()
+        reporter2 = DiffReporter()
+        handmade = MultiReporter(reporter1, reporter2)
 
-    options0 = Options().with_reporter(reporter1).add_reporter(reporter2)
-    assert str(options0.reporter) == str(handmade)
+        options0 = Options().with_reporter(reporter1).add_reporter(reporter2)
+        assert str(options0.reporter) == str(handmade)
 
 
 # Original Input = Hello, Approvals!
