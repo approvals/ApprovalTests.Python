@@ -50,8 +50,9 @@ class FileApprover:
     def verify(
         namer: Namer, writer: Writer, reporter: Reporter, comparator: Comparator
     ) -> str | None:
-        approved = namer.get_approved_filename()
-        received = namer.get_received_filename()
+        extension = writer.get_file_extension_with_dot()
+        approved = namer.get_approved_file(extension)
+        received = namer.get_received_file(extension)
 
         if FileApprover.is_this_a_multiple_verify(approved):
             return FileApprover.get_duplicate_verify_error_message(approved)

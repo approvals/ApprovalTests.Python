@@ -1,0 +1,4 @@
+Names used by FileApprover.verify
+
+0) test_writer_extension_wins.test_writer_extension_wins_over_namer_extension.approved.xml
+1) test_writer_extension_wins.test_writer_extension_wins_over_namer_extension.received.xml

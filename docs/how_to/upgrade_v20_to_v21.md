@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has six breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, `NamerBase` is removed, and custom `Namer` subclasses need two more methods.
+21.0.0 has seven breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, `NamerBase` is removed, custom `Namer` subclasses need two more methods, and the extension now comes from the writer.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -22,7 +22,8 @@ Apply the sections below in order. For each section:
 5. [ScenarioNamer is removed](#scenarionamer-is-removed)
 6. [NamerBase is removed](#namerbase-is-removed)
 7. [Custom Namer subclasses](#custom-namer-subclasses)
-8. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+8. [The extension comes from the writer](#the-extension-comes-from-the-writer)
+9. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -264,9 +265,32 @@ class MyNamer(Namer):
         return f"my_test.received{extension_with_dot}"
 ```
 
+## The extension comes from the writer
+
+`FileApprover.verify` now asks the writer for its extension and passes it to `namer.get_approved_file(...)` and `namer.get_received_file(...)`.
+A namer built with its own extension, such as `StackFrameNamer(".json")`, or one that had `set_extension` called on it, no longer controls the extension. The writer does.
+For `verify`, the writer's extension is `options.for_file.file_extention`. For files, it is the file's own extension.
+
+Search:
+
+```sh
+rg -n "Namer\(\"\.|set_extension" --type py
+```
+
+Before:
+
+```py
+verify(data, options=Options().with_namer(StackFrameNamer(".json")))
+```
+
+After:
+
+```py
+verify(data, options=Options().for_file.with_extension(".json"))
+```
+
 ## Coming in this release (still in progress)
 
-- The extension will come from the writer. A namer built with its own extension, such as `StackFrameNamer(".json")`, will no longer control the extension.
 - Most namers will become a `TemplatedCustomNamer`.
 
 ---
