@@ -68,30 +68,28 @@ class TemplatedCustomNamer(Namer):
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
     def format_filename(self, approved_or_received: str) -> str:
-        fields = self.get_template_fields_from_stacktrace()
-        if self.approvals_subdirectory is not None:
-            fields = replace(fields, approvals_subdirectory=self.approvals_subdirectory)
-        fields = fields.with_(approved_or_received, self.extension_with_dot[1:])
-        fields = fields.with_additional_information(
-            f".{self.additional_information}" if self.additional_information else ""
+        fields = self._get_field_values().with_(
+            approved_or_received, self.extension_with_dot[1:]
         )
         return TemplatedCustomNamer.create_filename(self.template, fields)
 
     def get_file_name(self) -> str:
-        fields = self.get_template_fields_from_stacktrace()
-        return f"{fields.test_file_name}.{fields.test_case_name}"
+        return TemplatedCustomNamer.create_filename(
+            "{test_file_name}.{test_case_name}", self._get_field_values()
+        )
 
     def get_basename(self) -> str:
-        fields = self.get_template_fields_from_stacktrace()
-        subdirectory = (
-            self.approvals_subdirectory
-            if self.approvals_subdirectory is not None
-            else fields.approvals_subdirectory
+        return TemplatedCustomNamer.create_filename(
+            "{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}",
+            self._get_field_values(),
         )
-        return os.path.join(
-            fields.test_source_directory,
-            subdirectory,
-            self.get_file_name(),
+
+    def _get_field_values(self) -> TemplateFieldValues:
+        fields = self.get_template_fields_from_stacktrace()
+        if self.approvals_subdirectory is not None:
+            fields = replace(fields, approvals_subdirectory=self.approvals_subdirectory)
+        return fields.with_additional_information(
+            f".{self.additional_information}" if self.additional_information else ""
         )
 
     @staticmethod
