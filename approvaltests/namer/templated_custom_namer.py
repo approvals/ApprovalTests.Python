@@ -37,17 +37,6 @@ class TemplatedCustomNamer(Namer):
         )
         return TemplatedCustomNamer.create_filename(self.template, fields)
 
-    def get_file_name(self) -> str:
-        return TemplatedCustomNamer.create_filename(
-            "{test_file_name}.{test_case_name}", self.get_template_field_values()
-        )
-
-    def get_basename(self) -> str:
-        return TemplatedCustomNamer.create_filename(
-            "{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}",
-            self.get_template_field_values(),
-        )
-
     def get_template_field_values(self) -> TemplateFieldValues:
         fields = self._template_field_values
         if self.approvals_subdirectory is not None:
