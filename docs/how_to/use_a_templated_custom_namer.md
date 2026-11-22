@@ -20,7 +20,7 @@ namer = TemplatedCustomNamer(
 )
 verify("Hello", options=Options().with_namer(namer))
 ```
-<sup><a href='/tests/namers/test_templated_namer.py#L12-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-templated_custom_namer_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/tests/namers/test_templated_namer.py#L10-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-templated_custom_namer_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Template paths are written using forward slashes; these are handled
@@ -33,6 +33,7 @@ The available template fields are:
 <!-- include: test_templated_namer.test_template_fields.approved.md -->
 | template | usage |
 | --- | --- |
+| additional_information | {additional_information} |
 | approvals_subdirectory | {approvals_subdirectory} |
 | approved_or_received | {approved_or_received} |
 | file_extension | {file_extension} |

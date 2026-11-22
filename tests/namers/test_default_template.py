@@ -1,7 +1,6 @@
 import os
 
-from approvaltests import verify_all
-from approvaltests.core.scenario_namer import ScenarioNamer
+from approvaltests import get_scenario_namer, verify_all
 from approvaltests.namer.default_name import get_default_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
@@ -34,7 +33,7 @@ def template_names_with_parameters(parameters: tuple) -> list[str]:
 
 
 def scenario_names(parameters: tuple) -> list[str]:
-    namer = ScenarioNamer(get_default_namer(), *parameters)
+    namer = get_scenario_namer(*parameters)
     return [namer.get_approved_filename(), namer.get_received_filename()]
 
 

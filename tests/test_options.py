@@ -16,7 +16,6 @@ from approvaltests import (
 )
 from approvaltests.core.comparator import Comparator
 from approvaltests.core.options import Options
-from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.inline.parse import Parse
 from approvaltests.namer.default_name import get_default_namer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
@@ -207,7 +206,7 @@ def test_demonstrate_available_approvaltests_options() -> None:
         .with_scrubber(lambda text: text.replace("!", "!!!"))
         # add a scenario name to the file name, so one test can keep a separate
         # approved file per case (e.g. one per language)
-        .with_namer(ScenarioNamer(get_default_namer(), "english"))
+        .for_file.add_additional_information("english")
         # use a custom comparator that ignores trailing "!"s, so the mismatch
         # created by the second scrubber above still counts as approved
         .with_comparator(IgnoreTrailingExclamationsComparator())

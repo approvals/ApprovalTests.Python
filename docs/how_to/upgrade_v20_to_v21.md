@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has three breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, and `TemplatedCustomNamer` must be created inside a test.
+21.0.0 has four breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, and `ScenarioNamer` is removed.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -19,7 +19,8 @@ Apply the sections below in order. For each section:
 2. [TemplatedCustomNamer.namer_parts](#templatedcustomnamernamer_parts)
 3. [Create TemplatedCustomNamer inside the test](#create-templatedcustomnamer-inside-the-test)
 4. [Custom templates with scenarios](#custom-templates-with-scenarios)
-5. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+5. [ScenarioNamer is removed](#scenarionamer-is-removed)
+6. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -143,6 +144,26 @@ After:
 ```py
 TemplatedCustomNamer("{test_case_name}{additional_information}.{approved_or_received}.{file_extension}")
 ```
+
+## ScenarioNamer is removed
+
+`ScenarioNamer` (`approvaltests/core/scenario_namer.py`) is gone. Scenario names are now additional information on the default namer.
+
+Search:
+
+```sh
+rg -n "ScenarioNamer|get_scenario_namer|with_parameters" --type py
+```
+
+| Before | After |
+|---|---|
+| `ScenarioNamer(get_default_namer(), "a", 2)` | `get_scenario_namer("a", 2)` (or `options=NamerFactory.with_parameters("a", 2)`) |
+| `from approvaltests.core.scenario_namer import ScenarioNamer` | remove the import |
+
+Two behaviors to know about:
+
+- `NamerFactory.with_parameters(...)` no longer sets a namer. If you add `.with_namer(x)` after it, `x` wins and the parameters are ignored (like Java).
+- `.namer.get_basename()` no longer includes the parameters.
 
 ## Coming in this release (still in progress)
 
