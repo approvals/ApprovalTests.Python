@@ -5,11 +5,7 @@ from inspect import FrameInfo
 from typing_extensions import override
 
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
-from approvaltests.approval_exception import FrameNotFound
-from approvaltests.integrations.pytest._pytest_pattern_matching import (
-    matches_prefix_or_glob,
-)
-from approvaltests.integrations.pytest.pytest_config import PytestConfig
+from approvaltests.namer import stack_walker
 from approvaltests.namer.namer_base import NamerBase
 
 
@@ -25,7 +21,7 @@ class StackFrameNamer(NamerBase):
         self.config_loaded = False
 
     def set_for_stack(self, caller: list[FrameInfo]) -> None:
-        frame = self.get_test_frame_index(caller)
+        frame = stack_walker.get_test_frame_index(caller)
         stacktrace = caller[frame]
         self.method_name = stacktrace[3]
         self.class_name = get_class_name_for_frame(stacktrace)
@@ -33,48 +29,21 @@ class StackFrameNamer(NamerBase):
 
     @staticmethod
     def get_test_frame_index(caller: list[FrameInfo]) -> int:
-        tmp_array = []
-        for index, frame in enumerate(caller):
-            if StackFrameNamer.is_test_method(frame):
-                tmp_array.append(index)
-        if tmp_array:
-            return tmp_array[-1]
-        message = """Could not find test method/function. Possible reasons could be:
-1) approvaltests is not being used inside a test function
-2) your test framework is not supported by ApprovalTests (unittest and pytest are currently supported)."""
-        raise FrameNotFound(message)
+        return stack_walker.get_test_frame_index(caller)
 
     @staticmethod
     def is_pytest_test(frame: FrameInfo) -> bool:
-        method_name = frame[3]
-        patterns = PytestConfig.test_naming_patterns
-        return matches_prefix_or_glob(method_name, patterns)
+        return stack_walker.is_pytest_test(frame)
 
-    UNITTEST_EXCLUDED_METHOD_NAMES = {
-        "__call__",
-        "_callTestMethod",
-        "_callMaybeAsync",
-        "_asyncioLoopRunner",
-        "run",
-    }
+    UNITTEST_EXCLUDED_METHOD_NAMES = stack_walker.UNITTEST_EXCLUDED_METHOD_NAMES
 
     @staticmethod
     def is_unittest_test(frame: FrameInfo) -> bool:
-        method_name = frame[3]
-        local_attributes = frame[0].f_locals
-        is_unittest_test = (
-            "self" in local_attributes
-            and hasattr(local_attributes["self"], "__dict__")
-            and "_testMethodName" in vars(local_attributes["self"])
-            and method_name not in StackFrameNamer.UNITTEST_EXCLUDED_METHOD_NAMES
-        )
-        return is_unittest_test
+        return stack_walker.is_unittest_test(frame)
 
     @staticmethod
     def is_test_method(frame: FrameInfo) -> bool:
-        return StackFrameNamer.is_unittest_test(
-            frame
-        ) or StackFrameNamer.is_pytest_test(frame)
+        return stack_walker.is_test_method(frame)
 
     def get_class_name(self) -> str:
         return self.class_name
@@ -103,6 +72,4 @@ class StackFrameNamer(NamerBase):
 
     @classmethod
     def get_test_frame(cls) -> FrameInfo:
-        calling_stack = inspect.stack(1)
-        frame = StackFrameNamer.get_test_frame_index(calling_stack)
-        return calling_stack[frame]
+        return stack_walker.get_test_frame()

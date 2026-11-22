@@ -2,7 +2,8 @@ import os
 
 from typing_extensions import override
 
-from approvaltests import Namer, StackFrameNamer
+from approvaltests import Namer
+from approvaltests.namer import stack_walker
 
 
 class TemplateFields:
@@ -18,10 +19,11 @@ class TemplateFields:
 class TemplatedCustomNamer(Namer):
     def __init__(self, template: str) -> None:
         self.template = template
-        self.namer_parts = StackFrameNamer()
+        self.extension_with_dot = ".txt"
+        self.approvals_subdirectory: str | None = None
 
     def set_extension(self, extension_with_dot: str) -> None:
-        self.namer_parts.set_extension(extension_with_dot)
+        self.extension_with_dot = extension_with_dot
 
     @override
     def get_received_filename(self) -> str:
@@ -34,25 +36,23 @@ class TemplatedCustomNamer(Namer):
     def format_filename(self, approved_or_received: str) -> str:
         fields = self.get_template_fields_from_stacktrace()
         fields[TemplateFields.approved_or_received] = approved_or_received
-        fields[TemplateFields.approvals_subdirectory] = (
-            self.namer_parts.get_config().get("subdirectory", "")
-        )
-        fields[TemplateFields.file_extension] = (
-            self.namer_parts.get_extension_without_dot()
-        )
+        if self.approvals_subdirectory is not None:
+            fields[TemplateFields.approvals_subdirectory] = self.approvals_subdirectory
+        fields[TemplateFields.file_extension] = self.extension_with_dot[1:]
         return self.template.format_map(fields)
 
     @staticmethod
     def get_template_fields_from_stacktrace() -> dict[str, str]:
-        namer_parts = StackFrameNamer()
+        frame = stack_walker.get_test_frame()
+        directory = os.path.dirname(frame[1])
         return {
-            TemplateFields.test_file_name: namer_parts.get_class_name(),
-            TemplateFields.test_case_name: namer_parts.get_method_name(),
-            TemplateFields.test_source_directory: namer_parts.directory,
+            TemplateFields.test_file_name: stack_walker.get_class_name_of_frame(frame),
+            TemplateFields.test_case_name: frame[3],
+            TemplateFields.test_source_directory: directory,
             TemplateFields.relative_test_source_directory: os.path.relpath(
-                namer_parts.directory
+                directory
             ).replace(os.sep, "/"),
-            TemplateFields.approvals_subdirectory: namer_parts.get_config().get(
-                "subdirectory", ""
-            ),
+            TemplateFields.approvals_subdirectory: stack_walker.load_config(
+                directory
+            ).get("subdirectory", ""),
         }

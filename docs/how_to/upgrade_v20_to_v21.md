@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has one breaking change so far: custom `Writer` subclasses need two more methods.
+21.0.0 has two breaking changes so far: custom `Writer` subclasses need two more methods, and `TemplatedCustomNamer.namer_parts` is gone.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -16,7 +16,8 @@ Apply the sections below in order. For each section:
 ## Contents
 
 1. [Custom Writer subclasses](#custom-writer-subclasses)
-2. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+2. [TemplatedCustomNamer.namer_parts](#templatedcustomnamernamer_parts)
+3. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -73,6 +74,21 @@ class MyWriter(Writer):
 ```
 
 `StringWriter` in `approvaltests/string_writer.py` is a real example.
+
+## TemplatedCustomNamer.namer_parts
+
+`TemplatedCustomNamer` no longer holds a `StackFrameNamer`, so the `namer_parts` attribute is gone.
+
+Search:
+
+```sh
+rg -n "namer_parts" --type py
+```
+
+| Before | After |
+|---|---|
+| `namer.namer_parts.config = {"subdirectory": "my_subdir"}` | `namer.approvals_subdirectory = "my_subdir"` |
+| `namer.namer_parts.set_extension(".json")` | `namer.set_extension(".json")` |
 
 ## Coming in this release (still in progress)
 
