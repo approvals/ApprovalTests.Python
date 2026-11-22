@@ -24,6 +24,10 @@ class FilePathNamer(StackFrameNamer):
     def get_approved_filename(self) -> str:
         return self.file_path
 
+    @override
+    def get_approved_file(self, extension_with_dot: str) -> str:
+        return self.file_path
+
 
 def assert_against_file(
     actual: str, file_path: str, reporter: ReporterForTesting | None = None

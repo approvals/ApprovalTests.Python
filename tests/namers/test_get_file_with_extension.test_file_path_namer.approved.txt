@@ -1,0 +1,4 @@
+FilePathNamer
+
+0) fixed/path.approved.txt
+1) test_get_file_with_extension.test_file_path_namer.received.json

@@ -102,10 +102,12 @@ class StackFrameNamer(NamerBase):
             )
         return TemplatedCustomNamer.DEFAULT_TEMPLATE
 
-    def _create_filename(self, approved_or_received: str) -> str:
+    def _create_filename(
+        self, approved_or_received: str, extension_with_dot: str
+    ) -> str:
         template = self.get_template()
         values = self.get_template_field_values().with_(
-            approved_or_received, self.extension_with_dot[1:]
+            approved_or_received, extension_with_dot[1:]
         )
         return TemplatedCustomNamer.create_filename(template, values)
 
@@ -117,11 +119,17 @@ class StackFrameNamer(NamerBase):
 
     @override
     def get_approved_filename(self) -> str:
-        return self._create_filename(self.APPROVED_WITHOUT_DOT)
+        return self.get_approved_file(self.extension_with_dot)
 
     @override
     def get_received_filename(self) -> str:
-        return self._create_filename(self.RECEIVED_WITHOUT_DOT)
+        return self.get_received_file(self.extension_with_dot)
+
+    def get_approved_file(self, extension_with_dot: str) -> str:
+        return self._create_filename(self.APPROVED_WITHOUT_DOT, extension_with_dot)
+
+    def get_received_file(self, extension_with_dot: str) -> str:
+        return self._create_filename(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
 
     def get_extension_with_dot(self) -> str:
         return self.extension_with_dot
