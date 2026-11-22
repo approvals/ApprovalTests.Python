@@ -37,9 +37,11 @@ class CliNamer(Namer):
     def get_approved_filename(self) -> str:
         return self._create_filename(Namer.APPROVED_WITHOUT_DOT)
 
+    @override
     def get_approved_file(self, extension_with_dot: str) -> str:
         return self._create_filename(Namer.APPROVED_WITHOUT_DOT, extension_with_dot)
 
+    @override
     def get_received_file(self, extension_with_dot: str) -> str:
         return self._create_filename(Namer.RECEIVED_WITHOUT_DOT, extension_with_dot)
 

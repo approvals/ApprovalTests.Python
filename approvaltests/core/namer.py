@@ -14,3 +14,11 @@ class Namer(ABC):
     @abstractmethod
     def get_approved_filename(self) -> str:
         pass
+
+    @abstractmethod
+    def get_approved_file(self, extension_with_dot: str) -> str:
+        pass
+
+    @abstractmethod
+    def get_received_file(self, extension_with_dot: str) -> str:
+        pass

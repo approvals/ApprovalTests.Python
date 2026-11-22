@@ -81,7 +81,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Collapse `NamerBase` 3: `PyTestNamer.get_basename()` is a `create_filename` call with its own template
 - [x] Add them to whatever is left outside the template (`FilePathNamer`, `InlineComparator`)
 - [x] Collapse `NamerBase` 4: move `extension_with_dot` / `set_extension` into `StackFrameNamer` and `PyTestNamer`, both inherit `Namer` directly; delete `namer_base.py` (upgrade guide; update the architecture diagram)
-- [ ] Add both as `@abstractmethod` on `Namer`
+- [x] Add both as `@abstractmethod` on `Namer`
 - [ ] `FileApprover.verify` calls `namer.get_*_file(writer.get_file_extension_with_dot())`. This is the only step that changes behavior.
 - [ ] `Options.namer` stops calling `set_extension`
 

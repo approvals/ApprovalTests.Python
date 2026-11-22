@@ -23,6 +23,7 @@ class InlineComparator(Namer):
     def get_received_filename(self) -> str:
         return self.get_received_file(".txt")
 
+    @override
     def get_approved_file(self, extension_with_dot: str) -> str:
         file = tempfile.NamedTemporaryFile(
             suffix=".approved" + extension_with_dot, delete=False
@@ -31,6 +32,7 @@ class InlineComparator(Namer):
         Path(file).write_text(docs, encoding="utf-8")
         return file
 
+    @override
     def get_received_file(self, extension_with_dot: str) -> str:
         return tempfile.NamedTemporaryFile(
             suffix=".received" + extension_with_dot, delete=False

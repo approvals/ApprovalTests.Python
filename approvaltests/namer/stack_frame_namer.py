@@ -126,9 +126,11 @@ class StackFrameNamer(Namer):
     def get_received_filename(self) -> str:
         return self.get_received_file(self.extension_with_dot)
 
+    @override
     def get_approved_file(self, extension_with_dot: str) -> str:
         return self._create_filename(self.APPROVED_WITHOUT_DOT, extension_with_dot)
 
+    @override
     def get_received_file(self, extension_with_dot: str) -> str:
         return self._create_filename(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
 

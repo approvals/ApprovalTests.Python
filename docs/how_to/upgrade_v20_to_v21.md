@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has five breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, and `NamerBase` is removed.
+21.0.0 has six breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, `NamerBase` is removed, and custom `Namer` subclasses need two more methods.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -21,7 +21,8 @@ Apply the sections below in order. For each section:
 4. [Custom templates with scenarios](#custom-templates-with-scenarios)
 5. [ScenarioNamer is removed](#scenarionamer-is-removed)
 6. [NamerBase is removed](#namerbase-is-removed)
-7. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+7. [Custom Namer subclasses](#custom-namer-subclasses)
+8. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -207,6 +208,61 @@ def is_namer(x) -> bool:
 ```
 
 Or subclass `StackFrameNamer` if you want the default naming.
+
+## Custom Namer subclasses
+
+`Namer` (in `approvaltests/core/namer.py`) now has two more abstract methods. The extension includes the dot, such as `".txt"`.
+
+- `get_approved_file(self, extension_with_dot: str) -> str`
+- `get_received_file(self, extension_with_dot: str) -> str`
+
+If your namer does not implement both, creating it raises `TypeError`.
+
+Search:
+
+```sh
+rg -n "\(Namer\)" --type py
+```
+
+Before:
+
+```py
+from approvaltests.core.namer import Namer
+
+
+class MyNamer(Namer):
+    def get_approved_filename(self) -> str:
+        return "my_test.approved.txt"
+
+    def get_received_filename(self) -> str:
+        return "my_test.received.txt"
+```
+
+After:
+
+```py
+from typing_extensions import override
+
+from approvaltests.core.namer import Namer
+
+
+class MyNamer(Namer):
+    @override
+    def get_approved_filename(self) -> str:
+        return "my_test.approved.txt"
+
+    @override
+    def get_received_filename(self) -> str:
+        return "my_test.received.txt"
+
+    @override
+    def get_approved_file(self, extension_with_dot: str) -> str:
+        return f"my_test.approved{extension_with_dot}"
+
+    @override
+    def get_received_file(self, extension_with_dot: str) -> str:
+        return f"my_test.received{extension_with_dot}"
+```
 
 ## Coming in this release (still in progress)
 
