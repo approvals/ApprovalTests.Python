@@ -1,5 +1,5 @@
 import os
-from typing import ClassVar, List, Mapping, Optional
+from typing import ClassVar, Mapping
 
 from typing_extensions import override
 

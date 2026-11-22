@@ -1,7 +1,12 @@
 # How to Use Front Loaded Reporters
 
 <!-- toc -->
-<!-- endToc -->
+## Contents
+
+  * [What they are](#what-they-are)
+  * [The default front loaded reporter](#the-default-front-loaded-reporter)
+  * [Turn it off for one block of code](#turn-it-off-for-one-block-of-code)
+  * [Replace it](#replace-it)<!-- endToc -->
 
 ## What they are
 
@@ -23,13 +28,26 @@ When neither applies, your normal reporter runs.
 
 Use `disabled_front_reporter` when your own reporter must run, for example in a test that checks your reporter was called:
 
-snippet: disabled_front_reporter
+<!-- snippet: disabled_front_reporter -->
+<a id='snippet-disabled_front_reporter'></a>
+```py
+with disabled_front_reporter():
+    reporter = get_reporter(my_reporter)
+```
+<sup><a href='/tests/reporters/test_front_loaded_reporter.py#L67-L70' title='Snippet source file'>snippet source</a> | <a href='#snippet-disabled_front_reporter' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Replace it
 
 Set your own front loaded reporter for the current thread.
 It should return `False` from `report` when it does not apply, so the normal reporter can run:
 
-snippet: set_front_loaded_reporter
+<!-- snippet: set_front_loaded_reporter -->
+<a id='snippet-set_front_loaded_reporter'></a>
+```py
+set_front_loaded_reporter(my_ci_reporter)
+```
+<sup><a href='/tests/reporters/test_front_loaded_reporter.py#L78-L80' title='Snippet source file'>snippet source</a> | <a href='#snippet-set_front_loaded_reporter' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Pass `None` to turn front loading off.
