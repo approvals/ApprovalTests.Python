@@ -18,8 +18,11 @@ class StackFrameNamer(NamerBase):
     method_name = ""
     class_name = ""
 
-    def __init__(self, extension: str | None = None) -> None:
+    def __init__(
+        self, extension: str | None = None, additional_information: str = ""
+    ) -> None:
         NamerBase.__init__(self, extension)
+        self.additional_information = additional_information
         self.set_for_stack(inspect.stack(1))
         self.config: dict[str, str] = {}
         self.config_loaded = False
@@ -85,7 +88,7 @@ class StackFrameNamer(NamerBase):
             test_case_name=self.method_name,
             test_file_name=test_file_name,
             test_source_directory=self.get_directory(),
-            additional_information="",
+            additional_information=self.additional_information,
         )
 
     def get_template(self) -> str:

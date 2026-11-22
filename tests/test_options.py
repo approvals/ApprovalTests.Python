@@ -239,3 +239,10 @@ def test_add_additional_information() -> None:
         [options, with_a, with_a_and_2],
         lambda o: repr(o.for_file.additional_information),
     )
+
+
+def test_verify_with_additional_information() -> None:
+    verify(
+        "named like the scenario namer",
+        options=Options().for_file.add_additional_information("a"),
+    )
