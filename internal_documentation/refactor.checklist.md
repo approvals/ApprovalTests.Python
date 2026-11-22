@@ -62,7 +62,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] `get_file_name()` and `get_basename()` are each just a call to `create_filename` with their own template string (`"{test_file_name}.{test_case_name}"` and `"{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}"`)
 - [-] ~~`create_filename` raises `Unknown template field: {x}` for fields it doesn't know (like Java's `resolveTemplate`)~~ (skipped)
 - [x] Read the stack once when the namer is built and keep the `TemplateFieldValues` (like Java's `StackTraceNamer`), instead of on every call
-- [ ] `get_default_namer()` returns the template namer with `DEFAULT_TEMPLATE`
+- [ ] The default namer (`StackFrameNamer`) becomes a shell around the template: it keeps its API, but its file names come from `TemplatedCustomNamer.create_filename(DEFAULT_TEMPLATE, values)` (like Java's `StackTraceNamer`)
 - [ ] Replace `ScenarioNamer` with the template namer plus additional information (`NamerFactory.with_parameters`, `get_scenario_namer`)
 - [ ] `PyTestNamer` builds its fields from the pytest `request` (a second way to get fields) and uses the template
 - [ ] `CliNamer` becomes a template: `"{test_id}.{approved_or_received}.{file_extension}"`
