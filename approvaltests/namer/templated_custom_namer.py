@@ -58,9 +58,20 @@ class TemplatedCustomNamer(Namer):
     def get_approved_filename(self) -> str:
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
+    def get_approved_file(self, extension_with_dot: str) -> str:
+        return self._format_with_extension(self.APPROVED_WITHOUT_DOT, extension_with_dot)
+
+    def get_received_file(self, extension_with_dot: str) -> str:
+        return self._format_with_extension(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
+
     def format_filename(self, approved_or_received: str) -> str:
+        return self._format_with_extension(approved_or_received, self.extension_with_dot)
+
+    def _format_with_extension(
+        self, approved_or_received: str, extension_with_dot: str
+    ) -> str:
         fields = self.get_template_field_values().with_(
-            approved_or_received, self.extension_with_dot[1:]
+            approved_or_received, extension_with_dot[1:]
         )
         return TemplatedCustomNamer.create_filename(self.template, fields)
 

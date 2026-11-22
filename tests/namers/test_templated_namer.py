@@ -1,7 +1,7 @@
 import pytest
 
 from approval_utilities.utilities.markdown_table import MarkdownTable
-from approvaltests import Options, verify, verify_as_json
+from approvaltests import Options, verify, verify_all, verify_as_json
 from approvaltests.namer.template_fields import TemplateFields
 from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
 
@@ -85,3 +85,17 @@ def test_relative_test_source_directory_field() -> None:
         "{test_file_name}.{test_case_name}.{file_extension}"
     )
     verify(namer.get_approved_filename(), options=Options().inline())
+
+
+def test_get_approved_and_received_file_take_the_extension() -> None:
+    namer = TemplatedCustomNamer(
+        "{approved_or_received}/{test_case_name}.{file_extension}"
+    )
+    verify_all(
+        "files",
+        [
+            namer.get_approved_file(".json"),
+            namer.get_received_file(".json"),
+            namer.get_approved_file(".txt"),
+        ],
+    )

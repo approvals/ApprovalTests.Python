@@ -75,7 +75,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] `InlineComparator` uses `get_template_fields_from_stacktrace()` where it can (it still writes the docstring to a temporary approved file)
 
 ### Phase 3: The extension comes from the writer
-- [ ] Add `get_approved_file(ext)` / `get_received_file(ext)` to `TemplatedCustomNamer` (ext fills `{file_extension}`)
+- [x] Add `get_approved_file(ext)` / `get_received_file(ext)` to `TemplatedCustomNamer` (ext fills `{file_extension}`)
 - [ ] Add them to whatever is left outside the template (`FilePathNamer`, `InlineComparator`)
 - [ ] Add both as `@abstractmethod` on `Namer`
 - [ ] `FileApprover.verify` calls `namer.get_*_file(writer.get_file_extension_with_dot())`. This is the only step that changes behavior.
