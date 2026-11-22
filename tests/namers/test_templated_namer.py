@@ -2,10 +2,8 @@ import pytest
 
 from approval_utilities.utilities.markdown_table import MarkdownTable
 from approvaltests import Options, verify, verify_as_json
-from approvaltests.namer.templated_custom_namer import (
-    TemplatedCustomNamer,
-    TemplateFields,
-)
+from approvaltests.namer.template_fields import TemplateFields
+from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
 
 
 def test_templated_custom_namer_example() -> None:

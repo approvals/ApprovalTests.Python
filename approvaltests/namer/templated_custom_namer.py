@@ -5,17 +5,7 @@ from typing_extensions import override
 
 from approvaltests.core.namer import Namer
 from approvaltests.namer import stack_walker
-
-
-class TemplateFields:
-    approved_or_received = "approved_or_received"
-    test_file_name = "test_file_name"
-    test_case_name = "test_case_name"
-    file_extension = "file_extension"
-    test_source_directory = "test_source_directory"
-    relative_test_source_directory = "relative_test_source_directory"
-    approvals_subdirectory = "approvals_subdirectory"
-    additional_information = "additional_information"
+from approvaltests.namer.template_fields import TemplateFields  # noqa: F401
 
 
 @dataclass(frozen=True)
