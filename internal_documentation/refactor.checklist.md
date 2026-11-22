@@ -58,7 +58,7 @@ writer.clean_up_received(received)  # instead of os.remove
   - an empty subdirectory must not leave `//` in the path
 - [x] Add an `{additional_information}` field (`.` + the parameters joined with `.`, or empty)
 - [x] Make sure the callers of `get_file_name()` / `get_basename()` (`approvals.py`, `asserts.py`, `ScenarioNamer`) work with the template namer
-- [ ] Add a `TemplateFieldValues` dataclass (the 8 fields, like Java) with `with_(approved_or_received, file_extension)` and `with_additional_information(...)`; `get_template_fields_from_stacktrace()` returns it and `create_filename(template, values)` takes it
+- [x] Add a `TemplateFieldValues` dataclass (the 8 fields, like Java) with `with_(approved_or_received, file_extension)` and `with_additional_information(...)`; `get_template_fields_from_stacktrace()` returns it and `create_filename(template, values)` takes it
 - [ ] `create_filename` raises `Unknown template field: {x}` for fields it doesn't know (like Java's `resolveTemplate`)
 - [ ] Read the stack once when the namer is built and keep the `TemplateFieldValues` (like Java's `StackTraceNamer`), instead of on every call
 - [ ] `get_default_namer()` returns the template namer with `DEFAULT_TEMPLATE`

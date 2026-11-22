@@ -1,4 +1,5 @@
 import os
+from dataclasses import asdict, dataclass, replace
 
 from typing_extensions import override
 
@@ -15,6 +16,32 @@ class TemplateFields:
     relative_test_source_directory = "relative_test_source_directory"
     approvals_subdirectory = "approvals_subdirectory"
     additional_information = "additional_information"
+
+
+@dataclass(frozen=True)
+class TemplateFieldValues:
+    approved_or_received: str
+    approvals_subdirectory: str
+    file_extension: str
+    relative_test_source_directory: str
+    test_case_name: str
+    test_file_name: str
+    test_source_directory: str
+    additional_information: str
+
+    def with_(
+        self, approved_or_received: str, file_extension: str
+    ) -> "TemplateFieldValues":
+        return replace(
+            self,
+            approved_or_received=approved_or_received,
+            file_extension=file_extension,
+        )
+
+    def with_additional_information(
+        self, additional_information: str
+    ) -> "TemplateFieldValues":
+        return replace(self, additional_information=additional_information)
 
 
 class TemplatedCustomNamer(Namer):
@@ -42,48 +69,50 @@ class TemplatedCustomNamer(Namer):
 
     def format_filename(self, approved_or_received: str) -> str:
         fields = self.get_template_fields_from_stacktrace()
-        fields[TemplateFields.approved_or_received] = approved_or_received
         if self.approvals_subdirectory is not None:
-            fields[TemplateFields.approvals_subdirectory] = self.approvals_subdirectory
-        fields[TemplateFields.additional_information] = (
+            fields = replace(fields, approvals_subdirectory=self.approvals_subdirectory)
+        fields = fields.with_(approved_or_received, self.extension_with_dot[1:])
+        fields = fields.with_additional_information(
             f".{self.additional_information}" if self.additional_information else ""
         )
-        fields[TemplateFields.file_extension] = self.extension_with_dot[1:]
         return TemplatedCustomNamer.create_filename(self.template, fields)
 
     def get_file_name(self) -> str:
         fields = self.get_template_fields_from_stacktrace()
-        return f"{fields[TemplateFields.test_file_name]}.{fields[TemplateFields.test_case_name]}"
+        return f"{fields.test_file_name}.{fields.test_case_name}"
 
     def get_basename(self) -> str:
         fields = self.get_template_fields_from_stacktrace()
         subdirectory = (
             self.approvals_subdirectory
             if self.approvals_subdirectory is not None
-            else fields[TemplateFields.approvals_subdirectory]
+            else fields.approvals_subdirectory
         )
         return os.path.join(
-            fields[TemplateFields.test_source_directory],
+            fields.test_source_directory,
             subdirectory,
             self.get_file_name(),
         )
 
     @staticmethod
-    def create_filename(template: str, fields: dict[str, str]) -> str:
-        return template.format_map(fields).replace("//", "/")
+    def create_filename(template: str, values: TemplateFieldValues) -> str:
+        return template.format_map(asdict(values)).replace("//", "/")
 
     @staticmethod
-    def get_template_fields_from_stacktrace() -> dict[str, str]:
+    def get_template_fields_from_stacktrace() -> TemplateFieldValues:
         frame = stack_walker.get_test_frame()
         directory = os.path.dirname(frame[1])
-        return {
-            TemplateFields.test_file_name: stack_walker.get_class_name_of_frame(frame),
-            TemplateFields.test_case_name: frame[3],
-            TemplateFields.test_source_directory: directory,
-            TemplateFields.relative_test_source_directory: os.path.relpath(
-                directory
-            ).replace(os.sep, "/"),
-            TemplateFields.approvals_subdirectory: stack_walker.load_config(
-                directory
-            ).get("subdirectory", ""),
-        }
+        return TemplateFieldValues(
+            approved_or_received="",
+            approvals_subdirectory=stack_walker.load_config(directory).get(
+                "subdirectory", ""
+            ),
+            file_extension="",
+            relative_test_source_directory=os.path.relpath(directory).replace(
+                os.sep, "/"
+            ),
+            test_case_name=frame[3],
+            test_file_name=stack_walker.get_class_name_of_frame(frame),
+            test_source_directory=directory,
+            additional_information="",
+        )
