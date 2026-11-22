@@ -44,7 +44,9 @@ class PyTestNamer(Namer):
         values = self.get_template_field_values().with_(
             approved_or_received, extension_with_dot[1:]
         )
-        return TemplatedCustomNamer.create_filename(self.get_template(), values)
+        return os.path.normpath(
+            TemplatedCustomNamer.create_filename(self.get_template(), values)
+        )
 
     @override
     def get_approved_file(self, extension_with_dot: str) -> str:

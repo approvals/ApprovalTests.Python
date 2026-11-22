@@ -84,14 +84,16 @@ class StackFrameNamer(Namer):
         values = self.get_template_field_values().with_(
             approved_or_received, extension_with_dot[1:]
         )
-        return TemplatedCustomNamer.create_filename(template, values)
+        return os.path.normpath(TemplatedCustomNamer.create_filename(template, values))
 
     def get_basename(self) -> str:
         template = "{test_source_directory}/{approvals_subdirectory}/{test_file_name}"
         if not self._overrides_get_file_name():
             template += ".{test_case_name}"
-        return TemplatedCustomNamer.create_filename(
-            template, self.get_template_field_values()
+        return os.path.normpath(
+            TemplatedCustomNamer.create_filename(
+                template, self.get_template_field_values()
+            )
         )
 
     @override
