@@ -3,6 +3,7 @@ from typing import Any
 from typing_extensions import override
 
 from approvaltests.core.namer import Namer
+from approvaltests.integrations.pytest.py_test_namer import PyTestNamer
 from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.namer.templated_custom_namer import TemplatedCustomNamer
 
@@ -15,7 +16,8 @@ class ScenarioNamer(Namer):
     """
 
     def __init__(
-        self, base_namer: StackFrameNamer | TemplatedCustomNamer, *scenario_names: Any
+        self, base_namer: StackFrameNamer | TemplatedCustomNamer | PyTestNamer,
+        *scenario_names: Any,
     ) -> None:
         self.base_namer = base_namer
         self.scenario_names = scenario_names

@@ -64,7 +64,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Read the stack once when the namer is built and keep the `TemplateFieldValues` (like Java's `StackTraceNamer`), instead of on every call
 - [x] The default namer (`StackFrameNamer`) becomes a shell around the template: it keeps its API, but its file names come from `TemplatedCustomNamer.create_filename(DEFAULT_TEMPLATE, values)` (like Java's `StackTraceNamer`)
 - [x] Replace `ScenarioNamer` with the template namer plus additional information (`NamerFactory.with_parameters`, `get_scenario_namer`)
-- [ ] `PyTestNamer` builds its fields from the pytest `request` (a second way to get fields) and uses the template
+- [x] `PyTestNamer` builds its fields from the pytest `request` (a second way to get fields) and uses the template
 - [ ] `CliNamer` becomes a template: `"{test_id}.{approved_or_received}.{file_extension}"`
 - [ ] `FilePathNamer` uses `get_template_fields_from_stacktrace()` for the received file and keeps its fixed approved path
 - [ ] `InlineComparator` uses `get_template_fields_from_stacktrace()` where it can (it still writes the docstring to a temporary approved file)
