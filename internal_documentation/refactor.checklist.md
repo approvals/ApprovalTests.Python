@@ -65,6 +65,11 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] The default namer (`StackFrameNamer`) becomes a shell around the template: it keeps its API, but its file names come from `TemplatedCustomNamer.create_filename(DEFAULT_TEMPLATE, values)` (like Java's `StackTraceNamer`)
 - [x] Replace `ScenarioNamer` with the template namer plus additional information (`NamerFactory.with_parameters`, `get_scenario_namer`)
 - [x] `PyTestNamer` builds its fields from the pytest `request` (a second way to get fields) and uses the template
+- [ ] Add `options.for_file.add_additional_information(x)` (adds `.x` each time, like Java's `forFile().withAdditionalInformation`) and a property to read it back
+- [ ] `Options.namer` passes that additional information to the default namer when no namer was set (`get_default_namer(additional_information)`, `StackFrameNamer` accepts it)
+- [ ] `NamerFactory.with_parameters(*args)` becomes a loop of `add_additional_information` (and so `as_ci_specific_test`)
+- [ ] `get_scenario_namer(...)` returns the default namer with that additional information instead of a `ScenarioNamer`
+- [ ] Remove `ScenarioNamer` (upgrade guide: what to write instead)
 - [ ] `CliNamer` becomes a template: `"{test_id}.{approved_or_received}.{file_extension}"`
 - [ ] `FilePathNamer` uses `get_template_fields_from_stacktrace()` for the received file and keeps its fixed approved path
 - [ ] `InlineComparator` uses `get_template_fields_from_stacktrace()` where it can (it still writes the docstring to a temporary approved file)
@@ -80,7 +85,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [ ] Remove `get_approved_filename` / `get_received_filename` / `set_extension`
 - [ ] Remove `NamerBase` and `StackFrameNamer` if nothing uses them
 - [ ] Stop returning a path from `write_received_file`
-- [ ] Creator per `verify`, `with_additional_information`, `with_subdirectory` and `with_template` on `Options`
+- [ ] Creator per `verify`, `with_subdirectory` and `with_template` on `Options`
 
 ## Known traps (found in the first attempt)
 - **pylint prints a hidden crash.** pylint 4.1.4 with astroid 4.3.4 prints `Exception ignored ... ValueError: generator already executing` and still exits 0 with a 10/10 score. In our first attempt it was triggered by a non-abstract method on `Namer` that calls another `self` method, such as `return self.get_approved_filename()`. Don't give `Namer` default methods that delegate.
