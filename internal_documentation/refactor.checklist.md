@@ -72,7 +72,7 @@ writer.clean_up_received(received)  # instead of os.remove
 - [x] Remove `ScenarioNamer` (upgrade guide: what to write instead)
 - [x] `CliNamer` becomes a template: `"{test_id}.{approved_or_received}.{file_extension}"`
 - [x] `FilePathNamer` uses `get_template_fields_from_stacktrace()` for the received file and keeps its fixed approved path
-- [ ] `InlineComparator` uses `get_template_fields_from_stacktrace()` where it can (it still writes the docstring to a temporary approved file)
+- [x] `InlineComparator` uses `get_template_fields_from_stacktrace()` where it can (it still writes the docstring to a temporary approved file)
 
 ### Phase 3: The extension comes from the writer
 - [ ] Add `get_approved_file(ext)` / `get_received_file(ext)` to `TemplatedCustomNamer` (ext fills `{file_extension}`)
