@@ -228,3 +228,14 @@ def test_options_example() -> None:
         .for_file.with_extension(".md"),
     )
     # end-snippet
+
+
+def test_add_additional_information() -> None:
+    options = Options()
+    with_a = options.for_file.add_additional_information("a")
+    with_a_and_2 = with_a.for_file.add_additional_information("2")
+    verify_all(
+        "additional_information",
+        [options, with_a, with_a_and_2],
+        lambda o: repr(o.for_file.additional_information),
+    )
