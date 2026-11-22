@@ -71,7 +71,7 @@ class StackFrameNamer(NamerBase):
     def _overrides_get_file_name(self) -> bool:
         return type(self).get_file_name is not StackFrameNamer.get_file_name
 
-    def _get_field_values(self) -> TemplateFieldValues:
+    def get_template_field_values(self) -> TemplateFieldValues:
         test_file_name = (
             self.get_file_name() if self._overrides_get_file_name() else self.class_name
         )
@@ -88,14 +88,17 @@ class StackFrameNamer(NamerBase):
             additional_information="",
         )
 
-    def _create_filename(self, approved_or_received: str) -> str:
-        template = TemplatedCustomNamer.DEFAULT_TEMPLATE
+    def get_template(self) -> str:
         if self._overrides_get_file_name():
-            template = (
+            return (
                 "{test_source_directory}/{approvals_subdirectory}/"
-                "{test_file_name}.{approved_or_received}.{file_extension}"
+                "{test_file_name}{additional_information}.{approved_or_received}.{file_extension}"
             )
-        values = self._get_field_values().with_(
+        return TemplatedCustomNamer.DEFAULT_TEMPLATE
+
+    def _create_filename(self, approved_or_received: str) -> str:
+        template = self.get_template()
+        values = self.get_template_field_values().with_(
             approved_or_received, self.extension_with_dot[1:]
         )
         return TemplatedCustomNamer.create_filename(template, values)
@@ -105,7 +108,7 @@ class StackFrameNamer(NamerBase):
         template = "{test_source_directory}/{approvals_subdirectory}/{test_file_name}"
         if not self._overrides_get_file_name():
             template += ".{test_case_name}"
-        return TemplatedCustomNamer.create_filename(template, self._get_field_values())
+        return TemplatedCustomNamer.create_filename(template, self.get_template_field_values())
 
     @override
     def get_approved_filename(self) -> str:

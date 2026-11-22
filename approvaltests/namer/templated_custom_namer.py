@@ -59,29 +59,32 @@ class TemplatedCustomNamer(Namer):
         return self.format_filename(self.APPROVED_WITHOUT_DOT)
 
     def format_filename(self, approved_or_received: str) -> str:
-        fields = self._get_field_values().with_(
+        fields = self.get_template_field_values().with_(
             approved_or_received, self.extension_with_dot[1:]
         )
         return TemplatedCustomNamer.create_filename(self.template, fields)
 
     def get_file_name(self) -> str:
         return TemplatedCustomNamer.create_filename(
-            "{test_file_name}.{test_case_name}", self._get_field_values()
+            "{test_file_name}.{test_case_name}", self.get_template_field_values()
         )
 
     def get_basename(self) -> str:
         return TemplatedCustomNamer.create_filename(
             "{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}",
-            self._get_field_values(),
+            self.get_template_field_values(),
         )
 
-    def _get_field_values(self) -> TemplateFieldValues:
+    def get_template_field_values(self) -> TemplateFieldValues:
         fields = self._template_field_values
         if self.approvals_subdirectory is not None:
             fields = replace(fields, approvals_subdirectory=self.approvals_subdirectory)
         return fields.with_additional_information(
             f".{self.additional_information}" if self.additional_information else ""
         )
+
+    def get_template(self) -> str:
+        return self.template
 
     @staticmethod
     def create_filename(template: str, values: TemplateFieldValues) -> str:

@@ -22,7 +22,7 @@ from approvaltests.core.options import Options
 from approvaltests.core.scenario_namer import ScenarioNamer
 from approvaltests.existing_file_writer import ExistingFileWriter
 from approvaltests.file_approver import FileApprover
-from approvaltests.namer.namer_base import NamerBase
+from approvaltests.namer.stack_frame_namer import StackFrameNamer
 from approvaltests.reporters.diff_reporter import DiffReporter
 from approvaltests.reporters.executable_command_reporter import (
     ExecutableCommandReporter,
@@ -68,7 +68,7 @@ def get_reporter(reporter: Reporter | None) -> Reporter:
     return approvaltests.reporters.default_reporter_factory.get_reporter(reporter)
 
 
-def get_default_namer(extension: str | None = None) -> NamerBase:
+def get_default_namer(extension: str | None = None) -> StackFrameNamer:
     from approvaltests.namer.default_name import get_default_namer as get_namer
 
     return get_namer(extension)

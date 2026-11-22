@@ -18,7 +18,8 @@ Apply the sections below in order. For each section:
 1. [Custom Writer subclasses](#custom-writer-subclasses)
 2. [TemplatedCustomNamer.namer_parts](#templatedcustomnamernamer_parts)
 3. [Create TemplatedCustomNamer inside the test](#create-templatedcustomnamer-inside-the-test)
-4. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+4. [Custom templates with scenarios](#custom-templates-with-scenarios)
+5. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -118,6 +119,29 @@ After:
 def test_something() -> None:
     namer = TemplatedCustomNamer("{test_case_name}.{approved_or_received}.{file_extension}")
     verify("hello", options=Options().with_namer(namer))
+```
+
+## Custom templates with scenarios
+
+A `ScenarioNamer` (used by `NamerFactory.with_parameters` and `get_scenario_namer`) wrapped around a `TemplatedCustomNamer` now uses that namer's own template. The scenario names go into `{additional_information}`.
+If your template does not have `{additional_information}`, the scenario names are left out, and every scenario writes to the same file.
+
+Search:
+
+```sh
+rg -n "TemplatedCustomNamer\(" --type py
+```
+
+Before:
+
+```py
+TemplatedCustomNamer("{test_case_name}.{approved_or_received}.{file_extension}")
+```
+
+After:
+
+```py
+TemplatedCustomNamer("{test_case_name}{additional_information}.{approved_or_received}.{file_extension}")
 ```
 
 ## Coming in this release (still in progress)
