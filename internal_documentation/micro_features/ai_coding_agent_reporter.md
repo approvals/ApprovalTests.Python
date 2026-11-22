@@ -59,6 +59,6 @@ A variable counts as set when it exists, is not blank, and is not a false value:
 ## Integration
 Python gets a new front-loaded step, which runs before whichever reporter a test uses, including one the test names itself. It holds only `AiCodingAgentReporter`, so an agent never gets a diff tool it can't see.
 
-`EnvironmentVariableReporter` stays where it is, in the default reporter.
+`EnvironmentVariableReporter` moved there too, see [front_loaded_reporter.md](front_loaded_reporter.md).
 
 It can also be used directly: `options=Options().with_reporter(AiCodingAgentReporter())`.

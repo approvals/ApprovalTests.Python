@@ -2,7 +2,9 @@
 
 ``` mermaid
 flowchart TD
-    verify[verify called] --> options{Options has reporter?}
+    verify[verify called] --> front{Front loaded reporter reports?}
+    front -->|Yes| done[Done]
+    front -->|No| options{Options has reporter?}
     options -->|Yes| use_custom[Use custom reporter]
     options -->|No| get_default[get_default_reporter]
     get_default --> check_set{DEFAULT_REPORTER set?}
@@ -27,6 +29,8 @@ flowchart TD
 ## Overview
 
 When a test fails, ApprovalTests needs to show you the difference between the received and approved files. The **default reporter** determines which diff tool to use.
+
+Before any of this, the [front loaded reporter](../how_to/use_front_loaded_reporters.md) gets the first chance to report.
 
 ## Reporter Selection Order
 

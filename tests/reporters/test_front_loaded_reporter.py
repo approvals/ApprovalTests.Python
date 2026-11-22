@@ -3,6 +3,7 @@ from typing_extensions import override
 from approvaltests.core.options import Options
 from approvaltests.core.reporter import Reporter
 from approvaltests.reporters.default_reporter_factory import (
+    disabled_front_reporter,
     get_front_loaded_reporter,
     get_reporter,
     set_front_loaded_reporter,
@@ -59,3 +60,25 @@ def test_front_loaded_reporter_overrides_the_options_reporter() -> None:
         set_front_loaded_reporter(old)
 
     assert (front_loaded.called, from_options.called) == (True, False)
+
+
+def test_disabled_front_reporter_uses_the_passed_in_reporter() -> None:
+    my_reporter = RecordingReporter(works=True)
+    # begin-snippet: disabled_front_reporter
+    with disabled_front_reporter():
+        reporter = get_reporter(my_reporter)
+    # end-snippet
+    assert reporter is my_reporter
+
+
+def test_set_your_own_front_loaded_reporter() -> None:
+    my_ci_reporter = RecordingReporter(works=True)
+    old = get_front_loaded_reporter()
+    try:
+        # begin-snippet: set_front_loaded_reporter
+        set_front_loaded_reporter(my_ci_reporter)
+        # end-snippet
+        get_reporter(None).report("a.received.txt", "a.approved.txt")
+    finally:
+        set_front_loaded_reporter(old)
+    assert my_ci_reporter.called
