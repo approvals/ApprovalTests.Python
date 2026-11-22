@@ -21,9 +21,6 @@ class PyTestNamer(Namer):
         if subdir:
             self.config["subdirectory"] = subdir
 
-    def get_file_name(self) -> str:
-        return f"{os.path.splitext(self.filename)[0]}.{self.request.node.name}"
-
     def get_template_field_values(self) -> TemplateFieldValues:
         return TemplateFieldValues(
             approved_or_received="",
@@ -40,12 +37,6 @@ class PyTestNamer(Namer):
 
     def get_template(self) -> str:
         return TemplatedCustomNamer.DEFAULT_TEMPLATE
-
-    def get_basename(self) -> str:
-        return TemplatedCustomNamer.create_filename(
-            "{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}",
-            self.get_template_field_values(),
-        )
 
     def _create_filename(
         self, approved_or_received: str, extension_with_dot: str

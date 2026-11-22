@@ -29,24 +29,6 @@ class StackFrameNamer(Namer):
         self.class_name = get_class_name_for_frame(stacktrace)
         self.directory = os.path.dirname(stacktrace[1])
 
-    @staticmethod
-    def get_test_frame_index(caller: list[FrameInfo]) -> int:
-        return stack_walker.get_test_frame_index(caller)
-
-    @staticmethod
-    def is_pytest_test(frame: FrameInfo) -> bool:
-        return stack_walker.is_pytest_test(frame)
-
-    UNITTEST_EXCLUDED_METHOD_NAMES = stack_walker.UNITTEST_EXCLUDED_METHOD_NAMES
-
-    @staticmethod
-    def is_unittest_test(frame: FrameInfo) -> bool:
-        return stack_walker.is_unittest_test(frame)
-
-    @staticmethod
-    def is_test_method(frame: FrameInfo) -> bool:
-        return stack_walker.is_test_method(frame)
-
     def get_class_name(self) -> str:
         return self.class_name
 

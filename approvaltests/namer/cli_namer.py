@@ -34,6 +34,3 @@ class CliNamer(Namer):
     @override
     def get_received_file(self, extension_with_dot: str) -> str:
         return self._create_filename(Namer.RECEIVED_WITHOUT_DOT, extension_with_dot)
-
-    def get_basename(self) -> str:
-        return self.test_id

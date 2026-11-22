@@ -3,7 +3,6 @@ import json
 import os
 from inspect import FrameInfo
 
-from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests.approval_exception import FrameNotFound
 from approvaltests.integrations.pytest._pytest_pattern_matching import (
     matches_prefix_or_glob,
@@ -56,10 +55,6 @@ def is_test_method(frame: FrameInfo) -> bool:
 def get_test_frame() -> FrameInfo:
     calling_stack = inspect.stack(1)
     return calling_stack[get_test_frame_index(calling_stack)]
-
-
-def get_class_name_of_frame(frame: FrameInfo) -> str:
-    return get_class_name_for_frame(frame)
 
 
 def load_config(directory: str) -> dict[str, str]:

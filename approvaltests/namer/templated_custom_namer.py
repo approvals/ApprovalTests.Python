@@ -3,6 +3,7 @@ from dataclasses import asdict, replace
 
 from typing_extensions import override
 
+from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
 from approvaltests.core.namer import Namer
 from approvaltests.namer import stack_walker
 from approvaltests.namer.template_field_values import TemplateFieldValues
@@ -66,7 +67,7 @@ class TemplatedCustomNamer(Namer):
                 os.sep, "/"
             ),
             test_case_name=frame[3],
-            test_file_name=stack_walker.get_class_name_of_frame(frame),
+            test_file_name=get_class_name_for_frame(frame),
             test_source_directory=directory,
             additional_information="",
         )

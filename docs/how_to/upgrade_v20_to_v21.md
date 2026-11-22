@@ -24,7 +24,8 @@ Apply the sections below in order. For each section:
 7. [Custom Namer subclasses](#custom-namer-subclasses)
 8. [The extension comes from the writer](#the-extension-comes-from-the-writer)
 9. [get_approved_filename, get_received_filename and set_extension are removed](#get_approved_filename-get_received_filename-and-set_extension-are-removed)
-10. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+10. [Removed helpers](#removed-helpers)
+11. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -301,6 +302,10 @@ rg -n "get_approved_filename|get_received_filename|set_extension" --type py
 | `namer.get_received_filename()` | `namer.get_received_file(".txt")` |
 | `namer.set_extension(".json")` then `namer.get_approved_filename()` | `namer.get_approved_file(".json")` |
 | `namer.format_filename("approved")` | `namer.get_approved_file(".txt")` |
+
+## Removed helpers
+
+Removed: `Namer.APPROVED`, `Namer.RECEIVED` (use `APPROVED_WITHOUT_DOT` / `RECEIVED_WITHOUT_DOT` with a dot), `StackFrameNamer.get_test_frame_index`, `is_pytest_test`, `is_unittest_test`, `is_test_method` and `UNITTEST_EXCLUDED_METHOD_NAMES` (use `approvaltests.namer.stack_walker`), `CliNamer.get_basename()`, `PyTestNamer.get_basename()`, `PyTestNamer.get_file_name()` and `stack_walker.get_class_name_of_frame` (use `get_class_name_for_frame` from `approval_utilities.utilities.stack_frame_utilities`).
 
 ## Coming in this release (still in progress)
 
