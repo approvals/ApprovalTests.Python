@@ -2,7 +2,7 @@
 
 # Upgrade from 20.0.1 to 21.0.0
 
-21.0.0 has four breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, and `ScenarioNamer` is removed.
+21.0.0 has five breaking changes so far: custom `Writer` subclasses need two more methods, `TemplatedCustomNamer.namer_parts` is gone, `TemplatedCustomNamer` must be created inside a test, `ScenarioNamer` is removed, and `NamerBase` is removed.
 Approved files keep their names. You do not need to re-approve anything.
 
 ## For AI coding agents
@@ -20,7 +20,8 @@ Apply the sections below in order. For each section:
 3. [Create TemplatedCustomNamer inside the test](#create-templatedcustomnamer-inside-the-test)
 4. [Custom templates with scenarios](#custom-templates-with-scenarios)
 5. [ScenarioNamer is removed](#scenarionamer-is-removed)
-6. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
+6. [NamerBase is removed](#namerbase-is-removed)
+7. [Coming in this release (still in progress)](#coming-in-this-release-still-in-progress)
 
 ## Custom Writer subclasses
 
@@ -164,6 +165,48 @@ Two behaviors to know about:
 
 - `NamerFactory.with_parameters(...)` no longer sets a namer. If you add `.with_namer(x)` after it, `x` wins and the parameters are ignored (like Java).
 - `.namer.get_basename()` no longer includes the parameters.
+
+## NamerBase is removed
+
+`NamerBase` (`approvaltests/namer/namer_base.py`) is gone. `StackFrameNamer` and `PyTestNamer` now inherit `Namer` directly.
+
+Search:
+
+```sh
+rg -n "NamerBase" --type py
+```
+
+Before:
+
+```py
+from approvaltests.namer.namer_base import NamerBase
+
+
+class MyNamer(NamerBase):
+    ...
+
+
+def is_namer(x) -> bool:
+    return isinstance(x, NamerBase)
+```
+
+After:
+
+```py
+from approvaltests.core.namer import Namer
+
+
+class MyNamer(Namer):
+    # implement get_approved_filename, get_received_filename,
+    # get_approved_file and get_received_file yourself
+    ...
+
+
+def is_namer(x) -> bool:
+    return isinstance(x, Namer)
+```
+
+Or subclass `StackFrameNamer` if you want the default naming.
 
 ## Coming in this release (still in progress)
 

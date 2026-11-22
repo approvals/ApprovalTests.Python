@@ -3,18 +3,18 @@ import os
 from _pytest.fixtures import FixtureRequest
 from typing_extensions import override
 
-from approvaltests.namer.namer_base import NamerBase
+from approvaltests.core.namer import Namer
 from approvaltests.namer.templated_custom_namer import (
     TemplatedCustomNamer,
     TemplateFieldValues,
 )
 
 
-class PyTestNamer(NamerBase):
+class PyTestNamer(Namer):
     "Pass a pytest 'request' to the constructor. You get one of those as a pytest fixture"
 
     def __init__(self, request: FixtureRequest, extension: None = None) -> None:
-        NamerBase.__init__(self, extension)
+        self.extension_with_dot = extension or ".txt"
         self.request = request
         self.filepath, self.filename = os.path.split(str(self.request.fspath))
         self.config: dict[str, str] = {}
@@ -24,7 +24,9 @@ class PyTestNamer(NamerBase):
         if subdir:
             self.config["subdirectory"] = subdir
 
-    @override
+    def set_extension(self, extension: str) -> None:
+        self.extension_with_dot = extension
+
     def get_file_name(self) -> str:
         return f"{os.path.splitext(self.filename)[0]}.{self.request.node.name}"
 
@@ -73,7 +75,6 @@ class PyTestNamer(NamerBase):
     def get_received_file(self, extension_with_dot: str) -> str:
         return self._create_filename(self.RECEIVED_WITHOUT_DOT, extension_with_dot)
 
-    @override
     def get_directory(self) -> str:
         return self.filepath
 

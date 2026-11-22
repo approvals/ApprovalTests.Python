@@ -5,15 +5,15 @@ from inspect import FrameInfo
 from typing_extensions import override
 
 from approval_utilities.utilities.stack_frame_utilities import get_class_name_for_frame
+from approvaltests.core.namer import Namer
 from approvaltests.namer import stack_walker
-from approvaltests.namer.namer_base import NamerBase
 from approvaltests.namer.templated_custom_namer import (
     TemplatedCustomNamer,
     TemplateFieldValues,
 )
 
 
-class StackFrameNamer(NamerBase):
+class StackFrameNamer(Namer):
     directory = ""
     method_name = ""
     class_name = ""
@@ -21,11 +21,14 @@ class StackFrameNamer(NamerBase):
     def __init__(
         self, extension: str | None = None, additional_information: str = ""
     ) -> None:
-        NamerBase.__init__(self, extension)
+        self.extension_with_dot = extension or ".txt"
         self.additional_information = additional_information
         self.set_for_stack(inspect.stack(1))
         self.config: dict[str, str] = {}
         self.config_loaded = False
+
+    def set_extension(self, extension: str) -> None:
+        self.extension_with_dot = extension
 
     def set_for_stack(self, caller: list[FrameInfo]) -> None:
         frame = stack_walker.get_test_frame_index(caller)
@@ -58,7 +61,6 @@ class StackFrameNamer(NamerBase):
     def get_method_name(self) -> str:
         return self.method_name
 
-    @override
     def get_directory(self) -> str:
         return self.directory
 
@@ -69,7 +71,6 @@ class StackFrameNamer(NamerBase):
             self.config_loaded = True
         return self.config
 
-    @override
     def get_file_name(self) -> str:
         class_name = "" if (self.class_name is None) else (self.class_name + ".")
         return class_name + self.method_name

@@ -39,14 +39,11 @@ classDiagram
     Namer <|-- TemplatedCustomNamer
     TemplatedCustomNamer ..> TemplateFieldValues : fills
 
-    class NamerBase
-    Namer <|-- NamerBase
-
     class StackFrameNamer {
         +get_template(): str
         +get_template_field_values(): TemplateFieldValues
     }
-    NamerBase <|-- StackFrameNamer
+    Namer <|-- StackFrameNamer
     class FilePathNamer {
         approved file only
     }
@@ -55,7 +52,7 @@ classDiagram
     class PyTestNamer {
         +get_template_field_values(): TemplateFieldValues
     }
-    NamerBase <|-- PyTestNamer
+    Namer <|-- PyTestNamer
 
     class CliNamer {
         +TEMPLATE: str
