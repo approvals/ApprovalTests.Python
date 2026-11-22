@@ -62,7 +62,6 @@ class StackFrameNamer(NamerBase):
     def get_directory(self) -> str:
         return self.directory
 
-    @override
     def get_config(self) -> dict[str, str]:
         """lazy load config when we need it, then store it in the instance variable self.config"""
         if not self.config_loaded:
@@ -110,7 +109,6 @@ class StackFrameNamer(NamerBase):
         )
         return TemplatedCustomNamer.create_filename(template, values)
 
-    @override
     def get_basename(self) -> str:
         template = "{test_source_directory}/{approvals_subdirectory}/{test_file_name}"
         if not self._overrides_get_file_name():

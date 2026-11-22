@@ -45,6 +45,12 @@ class PyTestNamer(NamerBase):
     def get_template(self) -> str:
         return TemplatedCustomNamer.DEFAULT_TEMPLATE
 
+    def get_basename(self) -> str:
+        return TemplatedCustomNamer.create_filename(
+            "{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}",
+            self.get_template_field_values(),
+        )
+
     def _create_filename(self, approved_or_received: str) -> str:
         values = self.get_template_field_values().with_(
             approved_or_received, self.extension_with_dot[1:]
@@ -63,6 +69,5 @@ class PyTestNamer(NamerBase):
     def get_directory(self) -> str:
         return self.filepath
 
-    @override
     def get_config(self) -> dict[str, str]:
         return self.config
