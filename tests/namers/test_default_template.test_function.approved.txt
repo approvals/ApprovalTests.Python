@@ -1,0 +1,4 @@
+subdirectory
+
+same as default namer: True, names: ['tests/namers/test_default_template.test_function.approved.txt', 'tests/namers/test_default_template.test_function.received.txt']
+same as default namer: True, names: ['tests/namers/my_subdir/test_default_template.test_function.approved.txt', 'tests/namers/my_subdir/test_default_template.test_function.received.txt']

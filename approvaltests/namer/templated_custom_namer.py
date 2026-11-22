@@ -17,6 +17,11 @@ class TemplateFields:
 
 
 class TemplatedCustomNamer(Namer):
+    DEFAULT_TEMPLATE = (
+        "{test_source_directory}/{approvals_subdirectory}/"
+        "{test_file_name}.{test_case_name}.{approved_or_received}.{file_extension}"
+    )
+
     def __init__(self, template: str) -> None:
         self.template = template
         self.extension_with_dot = ".txt"
@@ -43,7 +48,7 @@ class TemplatedCustomNamer(Namer):
 
     @staticmethod
     def create_filename(template: str, fields: dict[str, str]) -> str:
-        return template.format_map(fields)
+        return template.format_map(fields).replace("//", "/")
 
     @staticmethod
     def get_template_fields_from_stacktrace() -> dict[str, str]:
