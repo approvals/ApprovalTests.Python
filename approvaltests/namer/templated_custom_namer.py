@@ -39,7 +39,11 @@ class TemplatedCustomNamer(Namer):
         if self.approvals_subdirectory is not None:
             fields[TemplateFields.approvals_subdirectory] = self.approvals_subdirectory
         fields[TemplateFields.file_extension] = self.extension_with_dot[1:]
-        return self.template.format_map(fields)
+        return TemplatedCustomNamer.create_filename(self.template, fields)
+
+    @staticmethod
+    def create_filename(template: str, fields: dict[str, str]) -> str:
+        return template.format_map(fields)
 
     @staticmethod
     def get_template_fields_from_stacktrace() -> dict[str, str]:
