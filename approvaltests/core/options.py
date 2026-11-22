@@ -100,8 +100,6 @@ class Options:
         namer = self.fields.get("namer") or get_default_namer(
             additional_information=self.for_file.additional_information
         )
-        if hasattr(namer, "set_extension"):
-            namer.set_extension(self.for_file.file_extention)
         return namer
 
     def inline(self, inline_options: InlineOptions | None = None) -> "Options":
